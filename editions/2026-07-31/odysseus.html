@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odysseus - The Self-Hosted AI Control Room | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea:#081627;
+    --sea2:#0c1f36;
+    --panel:#102843;
+    --line:#1e3a57;
+    --foam:#e9eef4;
+    --mist:#93a8bd;
+    --bronze:#c08a3e;
+    --gold2:#d9b26a;
+    --term:#4ade80;
+    --warn:#e8a94c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--sea);
+    color:var(--foam);
+    font-family:'Inter',sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--gold2);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  code,pre{font-family:'JetBrains Mono',monospace;}
+  code{color:var(--term);font-size:.9em;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 32px;
+    border-bottom:1px solid var(--line);
+    background:rgba(8,22,39,.9);
+    position:relative;z-index:5;
+  }
+  .topbar .radar{
+    font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;color:var(--foam);
+  }
+  .topbar .radar span{color:var(--bronze);}
+  .topbar .ext{display:flex;gap:20px;font-size:.85rem;font-weight:500;}
+
+  /* ---------- meander strip ---------- */
+  .meander{display:block;width:100%;height:22px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:90px 32px 60px;text-align:center;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 110%,rgba(23,64,104,.55),transparent 65%),
+      radial-gradient(ellipse 60% 40% at 50% 0%,rgba(192,138,62,.12),transparent 70%),
+      var(--sea);
+  }
+  .hero svg.waves{
+    position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;
+    opacity:.5;pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--bronze);margin-bottom:22px;
+  }
+  h1.repo-name{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:700;
+    font-size:clamp(3.4rem,10vw,6.4rem);
+    letter-spacing:.02em;line-height:1;
+    color:var(--foam);
+    margin-bottom:6px;
+  }
+  h1.repo-name .cap{color:var(--gold2);}
+  .owner{
+    font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--mist);
+    margin-bottom:26px;
+  }
+  .tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:500;font-style:italic;
+    color:var(--foam);max-width:660px;margin:0 auto 38px;line-height:1.5;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .chip{
+    border:1px solid var(--line);
+    background:rgba(16,40,67,.6);
+    padding:8px 18px;
+    font-size:.8rem;font-weight:500;color:var(--mist);
+  }
+  .chip b{color:var(--gold2);font-weight:600;}
+
+  /* ---------- tabs ---------- */
+  .tabnav{
+    position:sticky;top:0;z-index:10;
+    display:flex;justify-content:center;gap:6px;
+    background:rgba(8,22,39,.95);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--bronze);
+    padding:0 16px;overflow-x:auto;
+  }
+  .tabnav button{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.12rem;
+    color:var(--mist);
+    padding:16px 22px 13px;
+    border-bottom:3px solid transparent;
+    white-space:nowrap;letter-spacing:.02em;
+  }
+  .tabnav button:hover{color:var(--foam);}
+  .tabnav button.active{color:var(--gold2);border-bottom-color:var(--bronze);}
+
+  /* ---------- panels ---------- */
+  main{max-width:940px;margin:0 auto;padding:64px 32px 40px;}
+  .panel{display:none;}
+  .panel.active{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  h2{
+    font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;
+    letter-spacing:.01em;margin-bottom:10px;
+  }
+  h3{
+    font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
+    margin:40px 0 14px;color:var(--gold2);
+  }
+  .lede{color:var(--mist);font-size:1.02rem;margin-bottom:42px;max-width:680px;}
+  p{margin-bottom:16px;}
+  ul{margin:0 0 20px 20px;}
+  li{margin-bottom:10px;}
+
+  /* big numbers */
+  .stat-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;margin:32px 0 8px;
+  }
+  .stat{
+    background:var(--sea2);
+    border:1px solid var(--line);
+    border-top:2px solid var(--bronze);
+    padding:26px 24px;
+  }
+  .stat .num{
+    font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-weight:700;line-height:1;
+    color:var(--gold2);
+  }
+  .stat .lbl{font-size:.82rem;color:var(--mist);margin-top:8px;}
+
+  .callout{
+    margin:46px 0;
+    border:1px solid var(--bronze);
+    background:linear-gradient(160deg,rgba(192,138,62,.1),rgba(8,22,39,0) 60%),var(--sea2);
+    padding:32px 34px;
+    position:relative;
+  }
+  .callout .tag{
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--bronze);margin-bottom:12px;
+  }
+  .callout h3{margin:0 0 10px;font-size:1.6rem;}
+  .callout p{margin:0;color:var(--foam);}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0;}
+  .ba .col{
+    border:1px solid var(--line);padding:26px 24px;background:var(--sea2);
+  }
+  .ba .col.after{border-color:var(--bronze);}
+  .ba .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.24em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .ba .before .lbl{color:var(--mist);}
+  .ba .after .lbl{color:var(--gold2);}
+  .ba ul{margin-left:18px;}
+  .ba li{font-size:.94rem;}
+
+  /* setup */
+  pre{
+    background:#04101d;
+    border:1px solid var(--line);
+    border-left:3px solid var(--term);
+    padding:16px 20px;
+    overflow-x:auto;
+    font-size:.83rem;line-height:1.8;
+    margin:12px 0 10px;
+    color:var(--term);
+  }
+  pre .c{color:#54718c;}
+  pre .p{color:var(--gold2);user-select:none;}
+  .sub{
+    border:1px solid var(--line);padding:26px 28px;margin-bottom:18px;background:var(--sea2);
+  }
+  .sub h4{
+    font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;
+    color:var(--foam);margin-bottom:8px;
+  }
+  .sub h4 .rec{
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--sea);background:var(--bronze);
+    padding:3px 9px;margin-left:10px;vertical-align:middle;
+  }
+  .sub p{font-size:.93rem;color:var(--mist);margin-bottom:6px;}
+
+  /* use cases */
+  .case{
+    border-left:2px solid var(--bronze);
+    padding:4px 0 4px 24px;margin:30px 0;
+  }
+  .case h3{margin:0 0 8px;}
+  .metric-inline{color:var(--term);font-family:'JetBrains Mono',monospace;font-size:.92em;}
+  .watch{
+    margin-top:50px;
+    border:1px solid rgba(232,169,76,.5);
+    background:rgba(232,169,76,.06);
+    padding:28px 30px;
+  }
+  .watch h3{margin:0 0 14px;color:var(--warn);}
+  .watch ul{margin-left:18px;}
+  .watch li{font-size:.94rem;}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 32px 56px;text-align:center;
+    color:var(--mist);font-size:.85rem;
+  }
+  footer .ed{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.05rem;color:var(--foam);margin-bottom:14px;}
+  footer .vids{display:flex;flex-direction:column;gap:8px;margin:0 auto 18px;max-width:520px;}
+
+  @media(max-width:680px){
+    .topbar{padding:14px 18px;}
+    .topbar .ext{gap:12px;font-size:.78rem;}
+    .hero{padding:60px 20px 44px;}
+    main{padding:44px 20px 32px;}
+    .ba{grid-template-columns:1fr;}
+    .tabnav button{padding:13px 14px 10px;font-size:1rem;}
+    .stat .num{font-size:2.1rem;}
+    .callout{padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="radar" href="../../index.html"><span>&#9673;</span> Repo Radar</a>
+  <div class="ext">
+    <a href="https://github.com/odysseus-dev/odysseus" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <a href="https://odysseus-dev.github.io/odysseus" target="_blank" rel="noopener">Homepage &#8599;</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">The Self-Hosted Voyage</div>
+    <h1 class="repo-name"><span class="cap">O</span>dysseus</h1>
+    <div class="owner">odysseus-dev/odysseus</div>
+    <p class="tagline">A free, self-hosted, local-first AI workspace and control room - chat, autonomous agents, model management, documents, and deep research, unified under one dashboard on your own hardware.</p>
+    <div class="chips">
+      <span class="chip"><b>84.4K</b> stars</span>
+      <span class="chip"><b>227</b> forks</span>
+      <span class="chip"><b>Python</b></span>
+      <span class="chip"><b>AGPL-3.0</b></span>
+      <span class="chip">created <b>May 2026</b></span>
+    </div>
+  </div>
+  <svg class="waves" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 Q100 40 200 70 T400 70 T600 70 T800 70 T1000 70 T1200 70 V120 H0 Z" fill="#0c1f36"/>
+    <path d="M0 90 Q100 60 200 90 T400 90 T600 90 T800 90 T1000 90 T1200 90 V120 H0 Z" fill="#102843" opacity=".8"/>
+    <path d="M0 70 Q100 40 200 70 T400 70 T600 70 T800 70 T1000 70 T1200 70" fill="none" stroke="#c08a3e" stroke-width="1.5" opacity=".6"/>
+  </svg>
+</header>
+
+<svg class="meander" viewBox="0 0 1200 22" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <pattern id="mkey" width="40" height="22" patternUnits="userSpaceOnUse">
+      <path d="M2 19 V4 H34 V15 H14 V10 H26" fill="none" stroke="#c08a3e" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="22" fill="url(#mkey)"/>
+</svg>
+
+<nav class="tabnav" aria-label="Page sections">
+  <button data-tab="highlights" class="active">Highlights</button>
+  <button data-tab="problem">The Problem</button>
+  <button data-tab="setup">Setup</button>
+  <button data-tab="usecases">Use Cases</button>
+</nav>
+
+<main>
+
+  <!-- ================= HIGHLIGHTS ================= -->
+  <section id="highlights" class="panel active">
+    <h2>The voyage in numbers</h2>
+    <p class="lede">Created and open-sourced by PewDiePie (Felix Kjellberg) for his personal 10-GPU rig, Odysseus turned a creator's homelab project into one of the fastest-adopted self-hosted AI workspaces on GitHub.</p>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="num">84.4K</div><div class="lbl">GitHub stars</div></div>
+      <div class="stat"><div class="num">10.5K+</div><div class="lbl">Stars gained within 12-16 hours of release</div></div>
+      <div class="stat"><div class="num">~1M</div><div class="lbl">Video views within hours of release</div></div>
+      <div class="stat"><div class="num">10</div><div class="lbl">GPUs in the rig it was built for</div></div>
+    </div>
+
+    <h3>One dashboard, the whole fleet</h3>
+    <p>Odysseus unifies what commercial platforms scatter across tabs and subscriptions:</p>
+    <ul>
+      <li><b>Chat + autonomous agents</b> with local and cloud models side by side</li>
+      <li><b>Compare mode</b> - run models head-to-head before committing to expensive cloud API calls</li>
+      <li><b>Cookbook</b> - hardware-aware model management for downloading and running local models</li>
+      <li><b>Deep Research</b> - autonomous multi-step web research synthesized into structured, visual markdown reports</li>
+      <li><b>Documents, email (IMAP/SMTP), calendar, notes, and a local image canvas</b> - all in the same control room</li>
+    </ul>
+
+    <div class="callout">
+      <div class="tag">Single best feature</div>
+      <h3>The Deep Research engine</h3>
+      <p>Autonomously performs multi-step web research across dozens of sources and synthesizes the findings into structured, visual markdown reports - in reviewer testing, generating multi-source reports in 20 seconds to 1 minute across 14-32 web sources.</p>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEM ================= -->
+  <section id="problem" class="panel">
+    <h2>The problem it solves</h2>
+    <p class="lede">Between cloud lock-in on one shore and fragmented local tooling on the other, there was no unified home port for self-hosted AI work. Odysseus is that port.</p>
+
+    <div class="ba">
+      <div class="col before">
+        <div class="lbl">Before - the broken status quo</div>
+        <ul>
+          <li>Commercial AI platforms lock users into paid cloud subscriptions and mine private user data.</li>
+          <li>Workflows scatter across separate web tabs for research, email, and coding.</li>
+          <li>Pure local setups without a unified workspace layer often prove too weak or fragmented for complex tasks.</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <div class="lbl">After - with Odysseus</div>
+        <ul>
+          <li>A free, self-hosted, local-first workspace - your data stays on your hardware.</li>
+          <li>Chat, autonomous agents, model management, document editing, and deep research unified under one dashboard.</li>
+          <li>Local models and cloud APIs coexist in the same control room, so you choose the tradeoff per task instead of per platform.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The framing matters: this is not another chat wrapper. It is a control room - the layer that makes a self-hosted rig feel like a coherent workspace instead of a pile of terminals and browser tabs.</p>
+  </section>
+
+  <!-- ================= SETUP ================= -->
+  <section id="setup" class="panel">
+    <h2>Setup</h2>
+    <p class="lede">Odysseus is a self-hosted workspace, so setup is about deployment and model connections rather than per-editor plugins. Docker is the recommended route; models - local or cloud - are wired up inside the app.</p>
+
+    <div class="sub">
+      <h4>Docker <span class="rec">Recommended</span></h4>
+      <pre><span class="p">$</span> git clone https://github.com/odysseus-dev/odysseus.git
+<span class="p">$</span> cd odysseus
+<span class="p">$</span> cp .env.example .env
+<span class="p">$</span> docker compose up -d --build</pre>
+      <p>Open <code>http://localhost:7000</code> - the initial admin password prints in the Docker logs.</p>
+    </div>
+
+    <div class="sub">
+      <h4>Native bare-metal (macOS / Linux)</h4>
+      <pre><span class="p">$</span> git clone https://github.com/odysseus-dev/odysseus.git
+<span class="p">$</span> cd odysseus
+<span class="p">$</span> python3 -m venv venv && source venv/bin/activate
+<span class="p">$</span> pip install -r requirements.txt   <span class="c"># or: python setup.py</span>
+<span class="p">$</span> python launcher.py</pre>
+      <p>Make sure <code>tmux</code> is installed before launching.</p>
+    </div>
+
+    <h3>Connecting models and providers</h3>
+
+    <div class="sub">
+      <h4>Local models - Ollama and the Cookbook</h4>
+      <p>Connect Ollama by pointing Odysseus to <code>http://localhost:11434</code>, or download models directly through the built-in, hardware-aware Cookbook.</p>
+    </div>
+
+    <div class="sub">
+      <h4>Cloud models - OpenAI, DeepSeek, OpenRouter</h4>
+      <p>Add cloud model API keys (OpenAI, DeepSeek, OpenRouter) under the Models/API settings inside the dashboard. This is also how ChatGPT-class and Gemini-class capability reaches the workspace - via whichever provider keys you configure.</p>
+    </div>
+
+    <div class="sub">
+      <h4>Web and Deep Research</h4>
+      <p>Add a Brave Search API key under Settings to enable web search and the Deep Research engine.</p>
+    </div>
+  </section>
+
+  <!-- ================= USE CASES ================= -->
+  <section id="usecases" class="panel">
+    <h2>Use cases</h2>
+    <p class="lede">Reviewed over 30 days by creators Creator Magic and Ash Automates - here is what the workspace is actually good at, and where the hull takes on water.</p>
+
+    <div class="case">
+      <h3>Deep research on demand</h3>
+      <p>Used for multi-step deep research: the engine generates multi-source structured visual reports in <span class="metric-inline">20s to 1min</span> across <span class="metric-inline">14-32 web sources</span>.</p>
+    </div>
+
+    <div class="case">
+      <h3>Model shopping with Compare Mode</h3>
+      <p>Side-by-side model execution lets you evaluate model quality against cost before committing to expensive cloud API calls - a practical way to decide when the local rig is enough.</p>
+    </div>
+
+    <div class="case">
+      <h3>A creator's daily driver</h3>
+      <p>Open-sourced by PewDiePie after building it for his 10-GPU rig, and used across the 30-day reviews for email inbox triage and content script planning alongside research. The launch itself was a phenomenon: over <span class="metric-inline">11,400 stars</span> and nearly 1 million video views within hours of release.</p>
+    </div>
+
+    <div class="watch">
+      <h3>&#9888; Watch out for</h3>
+      <ul>
+        <li><b>Bare-metal friction:</b> native setup involves <code>tmux</code> dependencies, Python virtual environment conflicts, and PATH issues. Docker is the smoother path.</li>
+        <li><b>Consumer hardware is slow:</b> local model execution on an M1 Max runs around 3.6 tokens/sec and is prone to crashes.</li>
+        <li><b>Weak coding agent:</b> coding agent performance was rated 5/10 in reviewer testing.</li>
+        <li><b>False confidence:</b> agents can claim tasks or MCP tool calls are "done" when no file edits or execution actually occurred - verify the artifacts.</li>
+        <li><b>Alpha-grade edges:</b> image canvas editing and background removal tools remain buggy and alpha-grade.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<svg class="meander" viewBox="0 0 1200 22" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <pattern id="mkey2" width="40" height="22" patternUnits="userSpaceOnUse">
+      <path d="M2 19 V4 H34 V15 H14 V10 H26" fill="none" stroke="#c08a3e" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="22" fill="url(#mkey2)"/>
+</svg>
+
+<footer>
+  <div class="ed">Repo Radar &middot; Edition 001 &middot; Week of July 31, 2026</div>
+  <div class="vids">
+    <a href="https://www.youtube.com/watch?v=4FzxVXCNguw" target="_blank" rel="noopener">&#9654; "I Tested PewDiePie's Odysseus AI" - Creator Magic</a>
+    <a href="https://www.youtube.com/watch?v=1PfwLK1TuZc" target="_blank" rel="noopener">&#9654; "I Used Odysseus AI for 30 Days" - Ash Automates</a>
+  </div>
+  <a href="../../index.html">&larr; Back to the Repo Radar hub</a>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tabnav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

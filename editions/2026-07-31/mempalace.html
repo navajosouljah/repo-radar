@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MemPalace/mempalace - Repo Radar Edition 001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#160d18;
+    --aubergine:#241226;
+    --aubergine-soft:#2e1830;
+    --panel:#1d1020;
+    --gold:#c9a227;
+    --gold-bright:#e3c565;
+    --marble:#f2ede2;
+    --marble-dim:#cfc6b8;
+    --stone:#8f8496;
+    --hairline:rgba(201,162,39,.28);
+    --hairline-soft:rgba(201,162,39,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -100px, rgba(201,162,39,.06), transparent 60%),
+      linear-gradient(180deg, var(--ink), var(--aubergine) 40%, var(--ink));
+    background-color:var(--ink);
+    color:var(--marble);
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:19px;
+    line-height:1.72;
+  }
+  ::selection{background:var(--gold);color:var(--ink);}
+  a{color:var(--gold-bright);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 26px;}
+
+  /* small-caps museum label */
+  .plaque{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:600;
+    letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* ── top bar ────────────────────────────────────── */
+  .topbar{border-bottom:1px solid var(--hairline);}
+  .topbar-inner{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 0;gap:16px;flex-wrap:wrap;
+    font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .topbar a{color:var(--marble-dim);}
+  .topbar a b{color:var(--gold-bright);font-weight:600;}
+  .tb-right{display:flex;gap:26px;flex-wrap:wrap;}
+
+  /* ── hero: the arch ─────────────────────────────── */
+  .hero{padding:70px 0 30px;text-align:center;position:relative;}
+  .arch{
+    max-width:660px;margin:0 auto;
+    border:1px solid var(--hairline);
+    border-bottom:none;
+    border-radius:330px 330px 0 0;
+    padding:70px 40px 40px;
+    position:relative;
+    background:linear-gradient(180deg, rgba(201,162,39,.05), transparent 70%);
+  }
+  .arch::before,.arch::after{
+    content:"";position:absolute;bottom:0;top:46%;width:14px;
+    background:repeating-linear-gradient(90deg, rgba(201,162,39,.25) 0 1px, transparent 1px 4px);
+    border-top:1px solid var(--hairline);
+  }
+  .arch::before{left:-34px;}
+  .arch::after{right:-34px;}
+  .hero .kicker{margin-bottom:26px;}
+  .hero h1{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:clamp(46px,8.4vw,86px);
+    line-height:1.02;
+    letter-spacing:.01em;
+    color:var(--marble);
+  }
+  .hero h1 .gilt{color:var(--gold-bright);}
+  .hero .tagline{
+    margin:22px auto 0;max-width:34em;
+    font-size:clamp(18px,2.4vw,22px);
+    font-style:italic;color:var(--marble-dim);
+  }
+  .ornament{color:var(--gold);letter-spacing:.5em;margin-top:26px;font-size:14px;}
+
+  /* stat drawers */
+  .chips{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+    padding:34px 0 8px;max-width:760px;margin:0 auto;
+  }
+  .chip{
+    border:1px solid var(--hairline);
+    background:var(--panel);
+    padding:12px 20px 10px;
+    min-width:118px;text-align:center;
+    position:relative;
+  }
+  .chip::after{ /* drawer handle */
+    content:"";position:absolute;left:50%;bottom:5px;transform:translateX(-50%);
+    width:26px;height:3px;border-radius:2px;background:var(--gold);opacity:.75;
+  }
+  .chip .v{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--gold-bright);line-height:1.2;}
+  .chip .k{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-top:3px;margin-bottom:8px;}
+
+  /* ── tab nav: gallery rooms ─────────────────────── */
+  .tabnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(22,13,24,.94);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+    margin-top:40px;
+  }
+  .tabnav-inner{display:flex;justify-content:center;overflow-x:auto;}
+  .tabbtn{
+    appearance:none;background:none;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
+    letter-spacing:.24em;text-transform:uppercase;
+    color:var(--stone);
+    padding:17px 26px 15px;
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  .tabbtn:hover{color:var(--marble);}
+  .tabbtn.active{color:var(--gold-bright);border-bottom-color:var(--gold);}
+
+  /* ── panels ─────────────────────────────────────── */
+  .tabpanel{display:none;padding:56px 0 20px;}
+  .tabpanel.active{display:block;}
+
+  .room-head{text-align:center;margin-bottom:44px;}
+  .room-head h2{
+    font-family:'Playfair Display',serif;font-weight:700;
+    font-size:clamp(30px,4.6vw,44px);color:var(--marble);
+    margin:12px 0 8px;
+  }
+  .room-head .lede{font-style:italic;color:var(--marble-dim);max-width:38em;margin:0 auto;}
+
+  /* exhibit cards */
+  .exhibit{
+    border:1px solid var(--hairline-soft);
+    background:var(--panel);
+    padding:30px 34px;
+    margin-bottom:26px;
+    position:relative;
+  }
+  .exhibit::before{ /* column capital corner */
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    opacity:.5;
+  }
+  .exhibit .plaque{display:block;margin-bottom:14px;}
+  .exhibit p{margin-bottom:14px;}
+  .exhibit p:last-child{margin-bottom:0;}
+  .exhibit b{color:var(--gold-bright);font-weight:600;}
+
+  /* big number gallery */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-bottom:26px;}
+  .pedestal{
+    border:1px solid var(--hairline-soft);
+    background:linear-gradient(180deg, var(--panel), rgba(201,162,39,.04));
+    padding:28px 22px 24px;text-align:center;
+  }
+  .pedestal .n{
+    font-family:'Playfair Display',serif;font-weight:900;
+    font-size:clamp(34px,4.6vw,46px);color:var(--gold-bright);line-height:1.1;
+  }
+  .pedestal .l{
+    font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.06em;
+    color:var(--marble-dim);margin-top:10px;line-height:1.55;
+  }
+
+  /* best feature: the centerpiece */
+  .centerpiece{
+    border:1px solid var(--gold);
+    background:
+      radial-gradient(500px 200px at 50% 0%, rgba(201,162,39,.12), transparent),
+      var(--panel);
+    padding:38px 36px;text-align:center;margin-bottom:26px;
+  }
+  .centerpiece h3{
+    font-family:'Playfair Display',serif;font-weight:700;
+    font-size:clamp(22px,3.2vw,30px);color:var(--marble);margin:14px 0 12px;
+  }
+  .centerpiece p{max-width:44em;margin:0 auto;color:var(--marble-dim);}
+  .centerpiece p b{color:var(--gold-bright);}
+
+  /* hierarchy strip */
+  .hierarchy{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+    font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--marble);
+    margin:20px 0 4px;
+  }
+  .hierarchy span{padding:8px 18px;border:1px solid var(--hairline);border-left:none;background:rgba(201,162,39,.05);}
+  .hierarchy span:first-child{border-left:1px solid var(--hairline);}
+  .hierarchy .sep{border:none;background:none;color:var(--gold);padding:8px 4px;}
+
+  /* before/after wings */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:26px;}
+  .ba .exhibit{margin-bottom:0;height:100%;}
+  .ba .ruin .plaque{color:#b56a6a;}
+  .ba .ruin::before{background:linear-gradient(90deg, transparent, #b56a6a 30%, #b56a6a 70%, transparent);}
+
+  ul.inv{list-style:none;}
+  ul.inv li{
+    padding:12px 0 12px 26px;position:relative;
+    border-bottom:1px solid var(--hairline-soft);
+  }
+  ul.inv li:last-child{border-bottom:none;}
+  ul.inv li::before{content:"❧";position:absolute;left:0;top:12px;color:var(--gold);font-size:15px;}
+  ul.inv li b{color:var(--gold-bright);font-weight:600;}
+
+  /* code plinths */
+  pre.code{
+    font-family:'SF Mono','JetBrains Mono',ui-monospace,monospace;
+    font-size:13.5px;line-height:1.8;
+    background:#120a14;
+    border:1px solid var(--hairline-soft);
+    border-left:3px solid var(--gold);
+    padding:16px 20px;margin:12px 0 20px;
+    overflow-x:auto;color:#e9e2d2;
+  }
+  pre.code .c{color:#7d7387;}
+  code{
+    font-family:'SF Mono','JetBrains Mono',ui-monospace,monospace;
+    font-size:.78em;background:#120a14;border:1px solid var(--hairline-soft);
+    padding:2px 7px;border-radius:3px;color:var(--gold-bright);
+  }
+  pre.code code{background:none;border:none;padding:0;color:inherit;}
+
+  .llm-h{
+    font-family:'Playfair Display',serif;font-weight:700;font-size:21px;
+    color:var(--marble);margin:28px 0 4px;
+  }
+  .llm-h::before{content:"§ ";color:var(--gold);}
+  .llm-note{font-style:italic;color:var(--stone);font-size:16px;margin-bottom:6px;}
+
+  /* watch out: the cracked wing */
+  .warn{
+    border:1px solid rgba(181,106,106,.55);
+    background:rgba(181,106,106,.06);
+    padding:30px 34px;margin-bottom:26px;position:relative;
+  }
+  .warn::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg, transparent, #b56a6a 30%, #b56a6a 70%, transparent);opacity:.6;
+  }
+  .warn .plaque{color:#d18a8a;display:block;margin-bottom:14px;}
+  .warn ul.inv li::before{content:"✕";color:#b56a6a;font-size:13px;top:15px;}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--hairline);
+    margin-top:60px;padding:40px 0 70px;text-align:center;
+  }
+  footer .plaque{display:block;margin-bottom:16px;}
+  footer .links{display:flex;flex-direction:column;gap:9px;font-size:17px;font-style:italic;}
+  footer .colon{color:var(--gold);letter-spacing:.5em;margin-top:24px;font-size:13px;}
+
+  @media (max-width:720px){
+    body{font-size:17px;}
+    .ba{grid-template-columns:1fr;}
+    .arch{border-radius:200px 200px 0 0;padding:50px 22px 30px;}
+    .arch::before,.arch::after{display:none;}
+    .exhibit,.warn{padding:22px 20px;}
+    .tabbtn{padding:15px 16px 13px;letter-spacing:.16em;}
+    .hierarchy span{padding:6px 10px;letter-spacing:.1em;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="../../index.html">◉ <b>Repo Radar</b> · Edition 001</a>
+    <div class="tb-right">
+      <a href="https://github.com/MemPalace/mempalace">GitHub · MemPalace/mempalace</a>
+      <a href="https://mempalaceofficial.com">mempalaceofficial.com</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero wrap">
+  <div class="arch">
+    <div class="kicker plaque">Wing of Perfect Recall · Est. April 2026</div>
+    <h1>Mem<span class="gilt">Palace</span></h1>
+    <p class="tagline">A local, lossless long-term memory for your AI agents - verbatim conversation history kept in drawers, inside rooms, inside wings, atop a temporal SQLite knowledge graph.</p>
+    <div class="ornament">❦ ❦ ❦</div>
+  </div>
+  <div class="chips">
+    <div class="chip"><div class="v">57.9K</div><div class="k">Stars</div></div>
+    <div class="chip"><div class="v">7,451</div><div class="k">Forks</div></div>
+    <div class="chip"><div class="v">Python</div><div class="k">Language</div></div>
+    <div class="chip"><div class="v">MIT</div><div class="k">License</div></div>
+    <div class="chip"><div class="v">2026-04-05</div><div class="k">Founded</div></div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap tabnav-inner">
+    <button class="tabbtn active" data-tab="highlights">Highlights</button>
+    <button class="tabbtn" data-tab="problem">The Problem</button>
+    <button class="tabbtn" data-tab="setup">Setup</button>
+    <button class="tabbtn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ═══════════ HIGHLIGHTS ═══════════ -->
+  <section class="tabpanel active" id="highlights">
+    <div class="room-head">
+      <span class="plaque">Room I · The Gallery of Numbers</span>
+      <h2>Why 58K developers built a palace</h2>
+      <p class="lede">Adoption, benchmarks, and the one capability that separates MemPalace from every summarizing memory tool before it.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="pedestal"><div class="n">57.9K</div><div class="l">GitHub stars</div></div>
+      <div class="pedestal"><div class="n">96.6%</div><div class="l">R@5 raw retrieval recall on LongMemEval (500 questions)</div></div>
+      <div class="pedestal"><div class="n">98.4%</div><div class="l">recall with the hybrid v4 pipeline</div></div>
+      <div class="pedestal"><div class="n">≥99%</div><div class="l">recall with LLM reranking</div></div>
+      <div class="pedestal"><div class="n">0</div><div class="l">API calls required - fully local semantic search, no LLM needed</div></div>
+      <div class="pedestal"><div class="n">130</div><div class="l">contributors</div></div>
+    </div>
+
+    <div class="centerpiece">
+      <span class="plaque">★ The Centerpiece · Single Best Feature</span>
+      <h3>Verbatim drawer storage, arranged as a palace</h3>
+      <p>Every memory is preserved in its <b>exact original wording</b> - edge cases, constraints, and temporal validity windows intact - and filed into the Wings, Rooms, and Halls of a structured hierarchy. No lossy LLM summarization. Ever.</p>
+      <div class="hierarchy">
+        <span>Wings</span><span class="sep">→</span>
+        <span>Rooms</span><span class="sep">→</span>
+        <span>Halls</span><span class="sep">→</span>
+        <span>Closets</span><span class="sep">→</span>
+        <span>Drawers</span>
+      </div>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Exhibit A · Unique Capabilities</span>
+      <ul class="inv">
+        <li><b>Lossless, local long-term memory</b> - never summarizes or paraphrases the original text.</li>
+        <li><b>Temporal SQLite knowledge graph</b> with validity windows, so the palace knows not just what was true, but when.</li>
+        <li><b>Historical Claude Code JSONL transcript mining</b> - your past sessions become searchable memory.</li>
+        <li><b>AAAK rule-based string compression</b> shrinks the stored context footprint while the full verbatim drawers remain for exact recall.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════ THE PROBLEM ═══════════ -->
+  <section class="tabpanel" id="problem">
+    <div class="room-head">
+      <span class="plaque">Room II · The Hall of Forgetting</span>
+      <h2>Agents that wake up with amnesia</h2>
+      <p class="lede">What was broken before MemPalace, and how the palace restores what other memory systems quietly throw away.</p>
+    </div>
+
+    <div class="ba">
+      <div class="exhibit ruin">
+        <span class="plaque">Before · The Ruin</span>
+        <p>AI coding agents lose context across separate chat sessions and compaction events. They repeat the same mistakes, and they forget past architectural decisions the moment a session ends.</p>
+        <p>Worse, the existing memory tools paraphrase text through an LLM before storing it - silently dropping critical edge cases, technical constraints, and time-bound context. The memory you saved is not the memory you get back.</p>
+      </div>
+      <div class="exhibit">
+        <span class="plaque">After · The Palace</span>
+        <p>MemPalace stores <b>verbatim conversation history</b> in drawers, organized in a Wing/Room/Hall hierarchy, indexed by a temporal SQLite knowledge graph - all local, all lossless.</p>
+        <p>What went in is exactly what comes out: the precise wording of the bug fix, the constraint, the decision - with its validity window attached. The agent stops relearning its own project every Monday.</p>
+      </div>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">The Restoration Principle</span>
+      <p>The architecture is the fix. Summaries compress by discarding; a palace compresses by <b>organizing</b>. Hierarchy plus verbatim drawers means recall is a lookup, not a reconstruction - and nothing of consequence is lost in translation.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ SETUP ═══════════ -->
+  <section class="tabpanel" id="setup">
+    <div class="room-head">
+      <span class="plaque">Room III · The Builder's Atelier</span>
+      <h2>Raising your own palace</h2>
+      <p class="lede">Install, initialize, mine your history, then wire the palace into your agent of choice.</p>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Step I · Install</span>
+      <p class="llm-note">Recommended package install (uv), or pipx:</p>
+      <pre class="code">uv tool install mempalace
+<span class="c"># or</span>
+pipx install mempalace</pre>
+      <p class="llm-note">Docker option:</p>
+      <pre class="code">docker build -t mempalace .
+docker run -i --rm -v mempalace-data:/data mempalace</pre>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Step II · Initialize &amp; Mine</span>
+      <p class="llm-note">Initialize in your repository, then ingest project files and past conversation transcripts:</p>
+      <pre class="code">mempalace init ~/projects/myapp
+mempalace mine ~/projects/myapp
+mempalace mine ~/.claude/projects/ --mode convos</pre>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Step III · Wire Into Your Agent</span>
+
+      <h3 class="llm-h">Claude Code</h3>
+      <p class="llm-note">Wire auto-save hooks in <code>.claude/hooks</code>, or connect via the MCP stdio server:</p>
+      <pre class="code">"command": "mempalace", "args": ["mcp"]</pre>
+
+      <h3 class="llm-h">ChatGPT / Codex</h3>
+      <p class="llm-note">Same pattern: wire auto-save hooks in <code>.codex</code>, or use the identical MCP stdio configuration:</p>
+      <pre class="code">"command": "mempalace", "args": ["mcp"]</pre>
+
+      <h3 class="llm-h">Gemini &amp; other MCP-capable agents</h3>
+      <p class="llm-note">The content sources document no Gemini-specific installer; connect through the standard MCP stdio server shown above.</p>
+
+      <h3 class="llm-h">Others · Cursor IDE</h3>
+      <p class="llm-note">Add <code>.cursor/rules</code> plus the <code>mempalace-recall</code> skill to your project.</p>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Step IV · Configuration &amp; Keys</span>
+      <p><b>Core semantic recall requires no API keys.</b> It runs on embedded local models such as <code>embeddinggemma-300m</code>.</p>
+      <p>Configure via <code>~/.config/mempalace/config.json</code> or <code>MEMPALACE_BACKEND</code> environment variables if switching storage backends: <code>chroma</code>, <code>sqlite_exact</code>, <code>milvus</code>, <code>qdrant</code>, or <code>pgvector</code>.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ USE CASES ═══════════ -->
+  <section class="tabpanel" id="usecases">
+    <div class="room-head">
+      <span class="plaque">Room IV · The Visitors' Ledger</span>
+      <h2>Who walks these halls</h2>
+      <p class="lede">Documented recall in the field, with the honest cracks in the marble recorded alongside.</p>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">The Curators &amp; Their Guests</span>
+      <p>Created by <b>Ma and Ben</b>, and tested by <b>Mansel Scheffel (Atomic Ops)</b> and <b>Better Stack</b>. Developers use it to mine, index, and retrieve verbatim project history, Slack conversations, and Claude Code JSONL transcripts across separate chat sessions - so the agent that starts today remembers what the agent decided in March.</p>
+    </div>
+
+    <div class="exhibit">
+      <span class="plaque">Exhibit B · Measured Recall</span>
+      <ul class="inv">
+        <li><b>96.6% R@5 raw retrieval recall</b> on LongMemEval using 100% local semantic search - 0 API calls, no LLM required.</li>
+        <li><b>355 MB mined in 32 minutes:</b> Mansel Scheffel ingested 186 historical Claude JSONL conversations into 33,000 drawers, then accurately recalled exact late-March bug fixes and personal career context.</li>
+        <li><b>AAAK rule-based compression</b> reduces the stored context token footprint while preserving full verbatim drawers for exact recall.</li>
+      </ul>
+    </div>
+
+    <div class="warn">
+      <span class="plaque">⚠ Watch Out For · Cracks in the Marble</span>
+      <ul class="inv">
+        <li><b>Mining is time-intensive</b> on large historical chat directories - 32 minutes for 355 MB in Scheffel's test.</li>
+        <li><b>Auto-classification can mislabel</b> minor entity details on occasion, such as misfiling a school community name.</li>
+        <li><b>Overkill for small projects</b> - where a few local Markdown files would suffice, the palace is unnecessary overhead.</li>
+        <li><b>No administrative UI</b> for managing database backups, permissions, or multi-device sync.</li>
+        <li><b>Lookalike malware domains exist</b> due to its viral growth - verify your installation source strictly before running anything.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="plaque">Repo Radar · Edition 001 · Week of July 31, 2026</span>
+    <div class="links">
+      <a href="https://www.youtube.com/watch?v=kRACHOx1p8s">"MemPalace: The Tool That Makes Claude Stop Forgetting" - Better Stack</a>
+      <a href="https://www.youtube.com/watch?v=4RHgCJVcdQM">"Claude Code + Milla Jovovich = Ultimate Memory System?!" - Mansel Scheffel</a>
+      <a href="../../index.html">Return to the Repo Radar hub</a>
+    </div>
+    <div class="colon">❦ ❦ ❦</div>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tabbtn');
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  }));
+</script>
+
+</body>
+</html>

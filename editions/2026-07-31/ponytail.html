@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ponytail - the lazy senior dev plugin | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf8f2;
+    --ink:#1c1a16;
+    --faint:#6f6a5f;
+    --hair:#dcd8cc;
+    --sage:#77855f;
+    --sage-soft:#eef0e8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4',serif;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:3px;}
+  a:hover{color:var(--sage);}
+  code,pre,.mono{font-family:'IBM Plex Mono',monospace;}
+  del{text-decoration-color:var(--sage);text-decoration-thickness:2px;color:var(--faint);}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    max-width:720px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:28px 24px 0;
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;
+  }
+  .topbar a{text-decoration:none;}
+  .topbar a:hover{text-decoration:underline;}
+  .topbar .ext a{margin-left:18px;}
+
+  /* ---------- hero ---------- */
+  .hero{max-width:720px;margin:0 auto;padding:110px 24px 70px;}
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--sage);margin-bottom:34px;
+  }
+  h1.repo-name{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:500;
+    font-size:clamp(2.6rem,8vw,4.4rem);
+    letter-spacing:-.02em;line-height:1.05;
+    margin-bottom:10px;
+  }
+  .owner{
+    font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--faint);
+    margin-bottom:44px;
+  }
+  .tagline{
+    font-size:clamp(1.2rem,2.6vw,1.55rem);
+    line-height:1.55;
+    max-width:620px;
+    margin-bottom:52px;
+  }
+  .tagline .struck{white-space:nowrap;}
+  .chips{
+    display:flex;flex-wrap:wrap;gap:0;
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .chip{padding:12px 22px 12px 0;margin-right:22px;color:var(--faint);}
+  .chip b{color:var(--ink);font-weight:500;}
+
+  /* ---------- tabs ---------- */
+  .tabnav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(250,248,242,.95);
+    border-bottom:1px solid var(--hair);
+  }
+  .tabnav-inner{
+    max-width:720px;margin:0 auto;padding:0 24px;
+    display:flex;gap:34px;overflow-x:auto;
+  }
+  .tabnav button{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;
+    color:var(--faint);
+    padding:16px 0 13px;
+    border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  .tabnav button:hover{color:var(--ink);}
+  .tabnav button.active{color:var(--ink);border-bottom-color:var(--sage);}
+
+  /* ---------- panels ---------- */
+  main{max-width:720px;margin:0 auto;padding:72px 24px 60px;}
+  .panel{display:none;}
+  .panel.active{display:block;animation:fade .3s ease;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+
+  h2{
+    font-weight:600;font-size:1.7rem;letter-spacing:-.01em;
+    margin-bottom:14px;
+  }
+  h3{
+    font-weight:600;font-size:1.12rem;margin:48px 0 14px;
+  }
+  .lede{color:var(--faint);font-size:1.02rem;margin-bottom:46px;max-width:600px;}
+  p{margin-bottom:18px;}
+  ul{margin:0 0 22px 20px;}
+  li{margin-bottom:10px;}
+  hr{border:0;border-top:1px solid var(--hair);margin:52px 0;}
+
+  /* big numbers - minimal, typographic */
+  .figures{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:0;margin:40px 0 10px;
+    border-top:1px solid var(--ink);
+  }
+  .fig{padding:22px 18px 22px 0;border-bottom:1px solid var(--hair);}
+  .fig .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:2.1rem;font-weight:500;letter-spacing:-.03em;line-height:1.1;
+  }
+  .fig .num.accent{color:var(--sage);}
+  .fig .lbl{font-size:.8rem;color:var(--faint);margin-top:6px;line-height:1.5;}
+
+  .callout{
+    margin:56px 0;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:34px 0;
+  }
+  .callout .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--sage);margin-bottom:14px;
+  }
+  .callout h3{margin:0 0 12px;font-size:1.3rem;}
+  .callout p{margin:0;}
+
+  /* the ladder */
+  .ladder{list-style:none;margin:30px 0 14px;counter-reset:rung;}
+  .ladder li{
+    counter-increment:rung;
+    display:flex;gap:20px;align-items:baseline;
+    padding:13px 0;margin:0;
+    border-bottom:1px solid var(--hair);
+  }
+  .ladder li::before{
+    content:counter(rung);
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;
+    color:var(--sage);flex:0 0 22px;
+  }
+
+  /* before/after - typographic columns */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin:40px 0;}
+  .ba .lbl{
+    font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.26em;
+    text-transform:uppercase;margin-bottom:16px;
+    padding-bottom:10px;border-bottom:1px solid var(--ink);
+  }
+  .ba .before .lbl{color:var(--faint);}
+  .ba .after .lbl{color:var(--sage);}
+  .ba ul{margin-left:16px;}
+  .ba li{font-size:.95rem;}
+
+  /* setup */
+  pre{
+    background:var(--sage-soft);
+    border:1px solid var(--hair);
+    padding:16px 20px;
+    overflow-x:auto;
+    font-size:.82rem;line-height:1.8;
+    margin:14px 0 10px;
+  }
+  pre .c{color:var(--faint);}
+  .llm{margin:44px 0;}
+  .llm h4{
+    font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.92rem;
+    margin-bottom:8px;
+  }
+  .llm h4 .arrow{color:var(--sage);margin-right:8px;}
+  .llm p{font-size:.95rem;color:var(--faint);margin-bottom:6px;}
+
+  /* use cases */
+  .case{margin:44px 0;}
+  .case h3{margin:0 0 10px;}
+  .metric-inline{
+    font-family:'IBM Plex Mono',monospace;font-size:.92em;
+    color:var(--sage);font-weight:500;
+  }
+  .watch{
+    margin-top:64px;
+    border:1px solid var(--ink);
+    padding:30px 32px;
+  }
+  .watch h3{margin:0 0 16px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.95rem;letter-spacing:.06em;}
+  .watch ul{margin-left:18px;}
+  .watch li{font-size:.95rem;}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--hair);
+    max-width:720px;margin:0 auto;
+    padding:44px 24px 64px;
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--faint);
+  }
+  footer .ed{color:var(--ink);margin-bottom:16px;}
+  footer .vids{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+
+  @media(max-width:640px){
+    .hero{padding:70px 24px 50px;}
+    .ba{grid-template-columns:1fr;gap:28px;}
+    .tabnav-inner{gap:22px;}
+    .fig .num{font-size:1.7rem;}
+    .watch{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="../../index.html">&#9673; Repo Radar</a>
+  <span class="ext">
+    <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://ponytail.dev" target="_blank" rel="noopener">ponytail.dev</a>
+  </span>
+</nav>
+
+<header class="hero">
+  <div class="kicker">The lazy senior dev</div>
+  <h1 class="repo-name">ponytail</h1>
+  <div class="owner">DietrichGebert/ponytail</div>
+  <p class="tagline">The best code is the code you <span class="struck"><del>wrote</del></span> didn't write. Ponytail forces AI agents down a "lazy senior dev" decision ladder - standard library, native platform, existing dependency - before a single new line gets written.</p>
+  <div class="chips">
+    <span class="chip"><b>93.1K</b> stars</span>
+    <span class="chip"><b>5.1K</b> forks</span>
+    <span class="chip"><b>JavaScript</b></span>
+    <span class="chip"><b>MIT</b></span>
+    <span class="chip">created <b>Jun 2026</b></span>
+  </div>
+</header>
+
+<nav class="tabnav" aria-label="Page sections">
+  <div class="tabnav-inner">
+    <button data-tab="highlights" class="active">Highlights</button>
+    <button data-tab="problem">The Problem</button>
+    <button data-tab="setup">Setup</button>
+    <button data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= HIGHLIGHTS ================= -->
+  <section id="highlights" class="panel active">
+    <h2>Less code. Measurably.</h2>
+    <p class="lede">Ponytail's pitch is subtraction, and the benchmarks are real agentic runs on a real open-source template - not synthetic demos.</p>
+
+    <div class="figures">
+      <div class="fig"><div class="num">93.1K</div><div class="lbl">GitHub stars</div></div>
+      <div class="fig"><div class="num">5.1K</div><div class="lbl">Forks</div></div>
+      <div class="fig"><div class="num accent">~54%</div><div class="lbl">Mean reduction in lines of code on tiangolo's full-stack-fastapi-template</div></div>
+      <div class="fig"><div class="num accent">94%</div><div class="lbl">Peak code reduction on over-built UI components</div></div>
+      <div class="fig"><div class="num accent">~22%</div><div class="lbl">Fewer tokens</div></div>
+      <div class="fig"><div class="num accent">~20%</div><div class="lbl">Lower cost</div></div>
+      <div class="fig"><div class="num accent">~27%</div><div class="lbl">Faster execution</div></div>
+      <div class="fig"><div class="num">100%</div><div class="lbl">Safety pass rate across the benchmark runs</div></div>
+    </div>
+
+    <h3>Reviewed in public</h3>
+    <p>Evaluated and reviewed by technical creators <b>Better Stack</b> and <b>Renato Dinis</b> - including a skeptical cost breakdown, not just applause. Both source videos are linked in the footer.</p>
+
+    <h3>How it behaves in your codebase</h3>
+    <p>When ponytail defers an abstraction, it says so: it injects <code>&lt;!-- ponytail: ... --&gt;</code> comments explaining what it deliberately did not build, so the restraint is documented instead of silent.</p>
+
+    <div class="callout">
+      <div class="tag">Single best feature</div>
+      <h3>The 7-rung "lazy senior dev" decision ladder</h3>
+      <p>Every task descends the ladder before any code is written - forcing agents to use standard libraries and native HTML/CSS platform features, like <code>&lt;input type="date"&gt;</code> instead of a 400-line custom date picker.</p>
+    </div>
+
+    <ol class="ladder">
+      <li>Does it already exist?</li>
+      <li>Is it already in the codebase?</li>
+      <li>Is it in the standard library?</li>
+      <li>Is it a native platform feature?</li>
+      <li>Is it in an installed dependency?</li>
+      <li>Is there a one-liner?</li>
+      <li>Write the minimum that works.</li>
+    </ol>
+  </section>
+
+  <!-- ================= PROBLEM ================= -->
+  <section id="problem" class="panel">
+    <h2>The problem it solves</h2>
+    <p class="lede">Coding agents are eager juniors. Ponytail makes them behave like the senior who has seen this feature built - and deleted - a dozen times.</p>
+
+    <div class="ba">
+      <div class="before">
+        <div class="lbl">Before</div>
+        <ul>
+          <li>Agents habitually over-engineer: heavy third-party UI libraries, wrappers, and unnecessary abstractions for basic tasks like date pickers or modal dialogs.</li>
+          <li>Codebases bloat with hundreds of redundant lines where simple native elements would suffice.</li>
+          <li>Every "small feature" arrives with its own dependency tree.</li>
+        </ul>
+      </div>
+      <div class="after">
+        <div class="lbl">After</div>
+        <ul>
+          <li>Every request runs through the 7-step decision ladder first: standard libraries, native platform features, and existing dependencies before new code.</li>
+          <li>The agent writes the minimum that works - and leaves a <code>ponytail:</code> comment where it deferred an abstraction.</li>
+          <li>Less code to review, less code to maintain, less code to delete later.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The philosophy is YAGNI, enforced mechanically. <del>Build the flexible abstraction now.</del> Reach for what already exists, and only then write something new.</p>
+  </section>
+
+  <!-- ================= SETUP ================= -->
+  <section id="setup" class="panel">
+    <h2>Setup</h2>
+    <p class="lede">No API keys required. Install as a plugin in your agent of choice, optionally tune the intensity, done.</p>
+
+    <div class="llm">
+      <h4><span class="arrow">&#9656;</span>Claude Code</h4>
+      <pre>/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail</pre>
+    </div>
+
+    <div class="llm">
+      <h4><span class="arrow">&#9656;</span>ChatGPT / Codex CLI</h4>
+      <pre>codex plugin marketplace add DietrichGebert/ponytail
+codex plugin add ponytail@ponytail</pre>
+    </div>
+
+    <div class="llm">
+      <h4><span class="arrow">&#9656;</span>Gemini CLI / Antigravity</h4>
+      <pre>gemini extensions install https://github.com/DietrichGebert/ponytail
+<span class="c"># or, on Antigravity:</span>
+agy plugin install https://github.com/DietrichGebert/ponytail</pre>
+    </div>
+
+    <div class="llm">
+      <h4><span class="arrow">&#9656;</span>Others</h4>
+      <p><b>Copilot CLI:</b></p>
+      <pre>copilot plugin marketplace add DietrichGebert/ponytail
+copilot plugin install ponytail@ponytail</pre>
+      <p><b>OpenCode</b> - add to your <code>opencode.json</code>:</p>
+      <pre>{ "plugin": ["@dietrichgebert/ponytail"] }</pre>
+      <p><b>Hermes / OpenClaw / Swival / Devin</b> - host-specific commands, e.g.:</p>
+      <pre>hermes plugins install DietrichGebert/ponytail --enable
+<span class="c"># or</span>
+clawhub install ponytail</pre>
+      <p><b>Instruction-only editors</b> (Cursor, Windsurf, Cline, Copilot Chat, Kiro, Qoder): copy rule files from the repo - e.g. <code>.cursor/rules/</code>, <code>.clinerules/</code>, or <code>AGENTS.md</code> - into your project.</p>
+    </div>
+
+    <hr>
+
+    <h3 style="margin-top:0">Configuration</h3>
+    <p>No API keys needed. Set the intensity mode - <code>lite</code>, <code>full</code>, <code>ultra</code>, or <code>off</code> - via the <code>PONYTAIL_DEFAULT_MODE</code> environment variable or <code>~/.config/ponytail/config.json</code>.</p>
+  </section>
+
+  <!-- ================= USE CASES ================= -->
+  <section id="usecases" class="panel">
+    <h2>Use cases</h2>
+    <p class="lede">Where restraint pays, where it costs, and what honest testing actually showed.</p>
+
+    <div class="case">
+      <h3>Enforcing YAGNI on real projects</h3>
+      <p>Ponytail was tested on open-source repositories like tiangolo's <code>full-stack-fastapi-template</code> and evaluated by reviewers including Renato Dinis and Better Stack. Developers use it to enforce YAGNI principles and stop coding agents from over-engineering simple features.</p>
+    </div>
+
+    <div class="case">
+      <h3>The benchmark numbers</h3>
+      <p>Across the agentic benchmark runs: <span class="metric-inline">~54% less code</span> on average (up to <span class="metric-inline">94%</span> on overbuilt UI elements like date and color pickers), <span class="metric-inline">~22% fewer tokens</span>, <span class="metric-inline">~20% lower cost</span>, and <span class="metric-inline">~27% faster execution</span> - with a 100% safety pass rate.</p>
+    </div>
+
+    <div class="case">
+      <h3>The admin dashboard that shrank 78%</h3>
+      <p>In Renato Dinis's tests, an admin dashboard implementation went from <span class="metric-inline">464 lines to 101 lines</span> - 78% less code - and completed in <span class="metric-inline">27s vs 2m 4s</span> without the plugin.</p>
+    </div>
+
+    <div class="watch">
+      <h3>WATCH OUT FOR</h3>
+      <ul>
+        <li><b>It is not always faster or cheaper.</b> In Renato Dinis's real-world tests, ponytail took <em>longer</em> on authentication (2m vs 32s) and rate limiting (1m 30s vs 17s) while consuming <em>more</em> output and cache tokens.</li>
+        <li><b>Reasoning-model tax:</b> terse reasoning models (like GPT-5.5) that spend thinking tokens deliberating the decision ladder can increase overall latency and cost.</li>
+        <li><b>The prompt-only alternative:</b> technical reviewers noted that a simple system prompt ("follow YAGNI principles and one-liner solutions") yields nearly identical code reductions without needing the plugin at all.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ed">Repo Radar &middot; Edition 001 &middot; Week of July 31, 2026</div>
+  <div class="vids">
+    <a href="https://www.youtube.com/watch?v=2xuFcmUAQUc" target="_blank" rel="noopener">"This Claude Code Plugin Writes 94% Less Code" - Better Stack</a>
+    <a href="https://www.youtube.com/watch?v=j8-do7UfQ4M" target="_blank" rel="noopener">"Ponytail Isn't Cheaper (I Tested It)" - Renato Dinis</a>
+  </div>
+  <a href="../../index.html">&larr; Back to the Repo Radar hub</a>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tabnav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

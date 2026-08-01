@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rtk-ai/rtk - Repo Radar Edition 001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000000;
+    --bg-soft:#0a0a0a;
+    --panel:#0d0d0d;
+    --line:#2a2a2a;
+    --line-soft:#1b1b1b;
+    --orange:#f74c00;
+    --orange-soft:#ff7a3d;
+    --green:#3fb950;
+    --red:#f85149;
+    --dim:#8b8b8b;
+    --dimmer:#5c5c5c;
+    --fg:#e6e6e6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:15px;
+    line-height:1.7;
+  }
+  ::selection{background:var(--orange);color:#000;}
+  a{color:var(--orange);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* blinking cursor motif */
+  .cursor{display:inline-block;width:.6em;height:1.1em;background:var(--orange);vertical-align:text-bottom;margin-left:.15em;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  /* ── top bar: terminal titlebar ─────────────────── */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-soft);
+    font-size:13px;
+  }
+  .topbar-inner{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;gap:16px;flex-wrap:wrap;
+  }
+  .tb-left{display:flex;align-items:center;gap:14px;}
+  .dots{display:flex;gap:6px;}
+  .dots span{width:10px;height:10px;border-radius:50%;border:1px solid var(--line);}
+  .dots span:nth-child(1){background:#f85149;}
+  .dots span:nth-child(2){background:#d29922;}
+  .dots span:nth-child(3){background:#3fb950;}
+  .tb-radar{color:var(--dim);}
+  .tb-radar b{color:var(--fg);font-weight:700;}
+  .tb-right{display:flex;gap:18px;color:var(--dim);flex-wrap:wrap;}
+
+  /* ── hero ───────────────────────────────────────── */
+  .hero{padding:64px 0 40px;}
+  .prompt-line{color:var(--dim);font-size:14px;margin-bottom:10px;}
+  .prompt-line .dollar{color:var(--green);}
+  .hero h1{
+    font-size:clamp(52px,10vw,110px);
+    font-weight:800;
+    letter-spacing:-0.04em;
+    color:var(--orange);
+    line-height:1;
+  }
+  .hero .tagline{
+    margin-top:20px;
+    font-size:clamp(16px,2.4vw,21px);
+    color:var(--fg);
+    max-width:44em;
+  }
+  .hero .tagline .c{color:var(--dimmer);}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;font-size:13px;}
+  .chip{
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    padding:6px 12px;
+    color:var(--dim);
+  }
+  .chip b{color:var(--orange);font-weight:700;}
+
+  /* ── sticky tab nav: tmux style ─────────────────── */
+  .tabnav{
+    position:sticky;top:0;z-index:50;
+    background:var(--bg);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .tabnav-inner{display:flex;overflow-x:auto;}
+  .tabbtn{
+    appearance:none;background:none;border:none;
+    font-family:inherit;font-size:13px;
+    padding:13px 18px;
+    color:var(--dim);cursor:pointer;
+    white-space:nowrap;
+    border-right:1px solid var(--line-soft);
+  }
+  .tabbtn:hover{color:var(--fg);}
+  .tabbtn.active{color:#000;background:var(--orange);font-weight:700;}
+
+  /* ── panels / ascii boxes ───────────────────────── */
+  .tabpanel{display:none;padding:48px 0 24px;}
+  .tabpanel.active{display:block;}
+
+  .h-cmd{
+    font-size:clamp(20px,3.4vw,28px);
+    font-weight:700;color:var(--fg);
+    margin:0 0 6px;
+  }
+  .h-cmd::before{content:"$ ";color:var(--green);}
+  .h-cmd .flag{color:var(--orange);}
+  .h-sub{color:var(--dim);font-size:14px;margin-bottom:34px;}
+
+  .box{
+    border:1px solid var(--line);
+    background:var(--panel);
+    margin-bottom:26px;
+    position:relative;
+  }
+  .box-label{
+    display:block;
+    font-size:12px;color:var(--dim);
+    border-bottom:1px solid var(--line-soft);
+    padding:8px 16px;
+    letter-spacing:.06em;
+  }
+  .box-label::before{content:"┌─ ";color:var(--dimmer);}
+  .box-label::after{content:" ─┐";color:var(--dimmer);float:right;}
+  .box-body{padding:20px 20px 22px;}
+  .box-body p{margin-bottom:14px;color:var(--fg);}
+  .box-body p:last-child{margin-bottom:0;}
+  .box-body .dim{color:var(--dim);}
+
+  /* big numbers grid */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:26px;}
+  .stat{
+    border:1px solid var(--line);background:var(--panel);
+    padding:22px 18px;
+  }
+  .stat .n{font-size:clamp(30px,4.5vw,42px);font-weight:800;color:var(--orange);letter-spacing:-.03em;line-height:1.1;}
+  .stat .l{margin-top:8px;font-size:12.5px;color:var(--dim);}
+
+  /* best feature callout */
+  .callout{
+    border:1px solid var(--orange);
+    background:linear-gradient(180deg,rgba(247,76,0,.08),rgba(247,76,0,.02));
+    padding:26px 24px;
+    margin-bottom:26px;
+  }
+  .callout .k{font-size:12px;letter-spacing:.15em;color:var(--orange);text-transform:uppercase;font-weight:700;}
+  .callout h3{font-size:20px;margin:10px 0 10px;color:var(--fg);}
+  .callout p{color:var(--fg);}
+  .callout code{color:var(--orange-soft);}
+
+  /* before / after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px;}
+  .ba .box{margin-bottom:0;}
+  .ba .bad .box-label{color:var(--red);}
+  .ba .good .box-label{color:var(--green);}
+  .diffline{padding-left:1.2em;text-indent:-1.2em;margin-bottom:10px;font-size:14px;}
+  .diffline:last-child{margin-bottom:0;}
+  .diffline.minus{color:#e9a19b;}
+  .diffline.minus::before{content:"- ";color:var(--red);}
+  .diffline.plus{color:#b5e2bd;}
+  .diffline.plus::before{content:"+ ";color:var(--green);}
+
+  pre.code{
+    background:#050505;
+    border:1px solid var(--line-soft);
+    padding:14px 16px;
+    overflow-x:auto;
+    font-size:13.5px;
+    line-height:1.75;
+    margin:12px 0 16px;
+    color:var(--fg);
+  }
+  pre.code .d{color:var(--green);}
+  pre.code .c{color:var(--dimmer);}
+  pre.code .o{color:var(--orange);}
+  code{font-family:inherit;background:#141414;border:1px solid var(--line-soft);padding:1px 6px;font-size:.9em;color:var(--orange-soft);}
+  pre.code code{background:none;border:none;padding:0;color:inherit;}
+
+  .llm-h{
+    font-size:16px;font-weight:700;color:var(--fg);
+    margin:30px 0 4px;
+  }
+  .llm-h::before{content:"## ";color:var(--orange);}
+  .llm-note{color:var(--dim);font-size:13.5px;margin-bottom:6px;}
+
+  ul.tick{list-style:none;margin:6px 0 14px;}
+  ul.tick li{padding-left:1.5em;text-indent:-1.5em;margin-bottom:10px;}
+  ul.tick li::before{content:"▸ ";color:var(--orange);}
+  ul.tick li b{color:var(--fg);}
+  ul.tick li{color:#cfcfcf;}
+
+  /* watch out block */
+  .warn{
+    border:1px solid var(--red);
+    background:rgba(248,81,73,.05);
+    margin-bottom:26px;
+  }
+  .warn .box-label{color:var(--red);border-bottom:1px solid rgba(248,81,73,.25);}
+  .warn ul.tick li::before{content:"! ";color:var(--red);font-weight:700;}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    margin-top:56px;
+    padding:34px 0 60px;
+    font-size:13px;color:var(--dim);
+  }
+  footer .frow{display:flex;flex-direction:column;gap:8px;}
+  footer .exit{color:var(--dimmer);margin-top:16px;}
+
+  @media (max-width:720px){
+    body{font-size:14px;}
+    .ba{grid-template-columns:1fr;}
+    .hero{padding:44px 0 32px;}
+    .tb-right{gap:12px;font-size:12px;}
+    .box-body{padding:16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="tb-left">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <a class="tb-radar" href="../../index.html">◉ <b>Repo Radar</b> ~ edition-001</a>
+    </div>
+    <div class="tb-right">
+      <a href="https://github.com/rtk-ai/rtk">github.com/rtk-ai/rtk</a>
+      <a href="https://rtk-ai.app">rtk-ai.app</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero wrap">
+  <div class="prompt-line"><span class="dollar">$</span> rtk --about</div>
+  <h1>rtk<span class="cursor"></span></h1>
+  <p class="tagline">A single Rust CLI proxy that intercepts terminal command output and compresses it before it ever hits your LLM's context window. <span class="c"># 60-90% fewer bash output tokens, &lt;10ms overhead</span></p>
+  <div class="chips">
+    <span class="chip">stars: <b>74.2K</b></span>
+    <span class="chip">forks: <b>4,644</b></span>
+    <span class="chip">lang: <b>Rust</b></span>
+    <span class="chip">license: <b>Apache-2.0</b></span>
+    <span class="chip">created: <b>2026-01-22</b></span>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap tabnav-inner">
+    <button class="tabbtn active" data-tab="highlights">[1:highlights]</button>
+    <button class="tabbtn" data-tab="problem">[2:the-problem]</button>
+    <button class="tabbtn" data-tab="setup">[3:setup]</button>
+    <button class="tabbtn" data-tab="usecases">[4:use-cases]</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ══════════ HIGHLIGHTS ══════════ -->
+  <section class="tabpanel active" id="highlights">
+    <h2 class="h-cmd">rtk gain <span class="flag">--summary</span></h2>
+    <p class="h-sub"># adoption, benchmarks, and why 74K developers starred a token compressor</p>
+
+    <div class="stats-grid">
+      <div class="stat"><div class="n">74.2K</div><div class="l">GitHub stars</div></div>
+      <div class="stat"><div class="n">60-90%</div><div class="l">bash output token reduction on common dev commands</div></div>
+      <div class="stat"><div class="n">&lt;10ms</div><div class="l">overhead per intercepted command</div></div>
+      <div class="stat"><div class="n">80%</div><div class="l">savings in a typical 30-min session: 118,000 tokens down to 23,900</div></div>
+      <div class="stat"><div class="n">100+</div><div class="l">commands supported</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">AI tools integrated via <span style="color:var(--orange)">rtk init -g</span></div></div>
+      <div class="stat"><div class="n">129</div><div class="l">contributors</div></div>
+      <div class="stat"><div class="n">266</div><div class="l">releases shipped</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="k">★ single best feature</div>
+      <h3>Transparent pre-execution hook auto-rewriting</h3>
+      <p><code>rtk init -g</code> wires rtk into your agent's pre-execution hooks so raw terminal output - <code>git status</code>, test runners, package managers - gets intercepted and passed to the LLM as ultra-compact summaries. No manual commands, no altered agent prompts. Your agent just quietly stops drowning in noise.</p>
+    </div>
+
+    <div class="box">
+      <span class="box-label">unique capabilities</span>
+      <div class="box-body">
+        <ul class="tick">
+          <li><b>Single Rust binary</b> - one CLI proxy, no runtime, no daemon farm.</li>
+          <li><b>Transparent auto-rewriting</b> across 15 AI tools: Claude Code, Gemini CLI, Codex, Cursor, OpenCode, and more.</li>
+          <li><b>Built-in <code>rtk gain</code> analytics dashboard</b> - see exactly how many tokens you did not spend.</li>
+          <li><b>Tee failure logging</b> - full raw output is preserved on failures so compression never hides a broken build from you.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="box-label">field results</span>
+      <div class="box-body">
+        <p>In FuturMinds' tests, running commands through rtk yielded <b style="color:var(--orange)">76% token savings across 10 commands</b>, saving 6.8K tokens - and that is before compounding over a full working session.</p>
+        <p class="dim"># Created by Patrick Szymkowiak and core maintainers. Compression collapses passing test suites and summarizes logs, so the model sees the signal, not the scroll.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ THE PROBLEM ══════════ -->
+  <section class="tabpanel" id="problem">
+    <h2 class="h-cmd">man rtk <span class="flag">--why</span></h2>
+    <p class="h-sub"># what was broken, and what rtk does about it</p>
+
+    <div class="box">
+      <span class="box-label">the broken status quo</span>
+      <div class="box-body">
+        <p>Standard development commands - <code>git status</code>, <code>npm install</code>, <code>cargo test</code> - dump hundreds of lines of noisy, redundant output straight into the AI's context window. Every passing test, every progress bar, every unchanged file listing lands in the model's working memory.</p>
+        <p>That working memory bloat rapidly consumes input tokens and exhausts session context limits. The agent forgets what it was doing not because the task was hard, but because a test suite printed 400 lines of green checkmarks.</p>
+      </div>
+    </div>
+
+    <div class="ba">
+      <div class="bad">
+        <div class="box">
+          <span class="box-label">before: raw pipe</span>
+          <div class="box-body">
+            <div class="diffline minus">Every <code>cargo test</code> run floods the context with full suite output</div>
+            <div class="diffline minus"><code>git status</code> and <code>npm install</code> print noise the model never needed</div>
+            <div class="diffline minus">A 30-minute session burns 118,000 tokens on plumbing</div>
+            <div class="diffline minus">Context limits hit early, sessions compact, momentum dies</div>
+          </div>
+        </div>
+      </div>
+      <div class="good">
+        <div class="box">
+          <span class="box-label">after: rtk proxy</span>
+          <div class="box-body">
+            <div class="diffline plus">rtk intercepts the output before it reaches the LLM</div>
+            <div class="diffline plus">Passing test suites collapse, logs get summarized</div>
+            <div class="diffline plus">The same session costs 23,900 tokens - 80% savings</div>
+            <div class="diffline plus">Sub-10ms overhead: the human never feels it, the model never sees the noise</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="box-label">how it solves it</span>
+      <div class="box-body">
+        <p>rtk is a single Rust CLI proxy that sits between your shell and your agent. It intercepts terminal command outputs and compresses them - collapsing passing test suites, summarizing logs - before they hit the LLM context. The agent gets a compact, faithful summary; the raw output stays available locally when you need it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SETUP ══════════ -->
+  <section class="tabpanel" id="setup">
+    <h2 class="h-cmd">rtk init <span class="flag">--help</span></h2>
+    <p class="h-sub"># install the binary, then wire it into your agent of choice</p>
+
+    <div class="box">
+      <span class="box-label">step 1 · install the binary</span>
+      <div class="box-body">
+        <p class="llm-note"># Homebrew (macOS)</p>
+        <pre class="code"><span class="d">$</span> brew install rtk</pre>
+        <p class="llm-note"># Linux / macOS install script (installs to ~/.local/bin)</p>
+        <pre class="code"><span class="d">$</span> curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh</pre>
+        <p class="llm-note"># Cargo (note: install via git - see "Watch out for" on the crates.io name collision)</p>
+        <pre class="code"><span class="d">$</span> cargo install --git https://github.com/rtk-ai/rtk</pre>
+        <p class="llm-note"># Windows: extract the zip into your PATH</p>
+        <pre class="code"><span class="c"># rtk-x86_64-pc-windows-msvc.zip → any directory on your PATH</span></pre>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="box-label">step 2 · wire it into your AI tool</span>
+      <div class="box-body">
+
+        <h3 class="llm-h">Claude Code</h3>
+        <p class="llm-note"># also covers GitHub Copilot - the default global init target</p>
+        <pre class="code"><span class="d">$</span> rtk init -g</pre>
+
+        <h3 class="llm-h">ChatGPT / Codex</h3>
+        <pre class="code"><span class="d">$</span> rtk init -g <span class="o">--codex</span></pre>
+
+        <h3 class="llm-h">Gemini CLI</h3>
+        <pre class="code"><span class="d">$</span> rtk init -g <span class="o">--gemini</span></pre>
+
+        <h3 class="llm-h">Others (Cursor, Windsurf, Cline, Kilo, Hermes, Droid, Kimi)</h3>
+        <pre class="code"><span class="d">$</span> rtk init -g <span class="o">--agent</span> &lt;agent_name&gt;
+<span class="c"># e.g. rtk init -g --agent cursor</span></pre>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="box-label">step 3 · configuration (optional)</span>
+      <div class="box-body">
+        <p>Config lives at <code>~/.config/rtk/config.toml</code> (on macOS: <code>~/Library/Application Support/rtk/config.toml</code>). Use it to set excluded commands and tee failure logging.</p>
+        <p><b style="color:var(--green)">No API keys required.</b> rtk runs strictly as a local Rust CLI proxy - nothing leaves your machine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ USE CASES ══════════ -->
+  <section class="tabpanel" id="usecases">
+    <h2 class="h-cmd">rtk log <span class="flag">--sessions</span></h2>
+    <p class="h-sub"># who runs it, what it saved them, and where it bites</p>
+
+    <div class="box">
+      <span class="box-label">who uses it</span>
+      <div class="box-body">
+        <p>Created by <b>Patrick Szymkowiak</b> and core maintainers, rtk is used as a proxy in front of the everyday command stream: <code>git status</code>, <code>cargo test</code>, <code>npm test</code>, <code>pytest</code>, <code>aws</code>, <code>kubectl</code> - intercepted before they reach the context windows of Claude Code, Gemini CLI, Codex, Cursor, and other agent harnesses.</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="box-label">measured outcomes</span>
+      <div class="box-body">
+        <ul class="tick">
+          <li><b>60-90% fewer bash output tokens</b> on common dev commands, with sub-10ms overhead per command.</li>
+          <li><b>80% session savings:</b> a typical 30-minute Claude Code session drops from 118,000 tokens to 23,900 tokens.</li>
+          <li><b>76% token savings in FuturMinds' tests</b> across 10 commands - 6.8K tokens saved in a single short run.</li>
+          <li><b><code>rtk gain</code> analytics</b> quantify the delta per session, so the savings are measured, not vibes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warn">
+      <span class="box-label">⚠ watch out for</span>
+      <div class="box-body">
+        <ul class="tick">
+          <li><b>Filtering is lossy.</b> Aggressive log compression risks dropping critical error details or tracebacks exactly when you need them most - during complex debugging.</li>
+          <li><b>Savings apply to bash output tokens only.</b> System prompts, conversation history, and model generation tokens are untouched, so the headline percentage dilutes across your overall LLM bill.</li>
+          <li><b>Built-in tools bypass the hook.</b> Claude Code's <code>Read</code>, <code>Grep</code>, and <code>Glob</code> do not go through the Bash hook and are not auto-compressed unless run as raw shell commands or explicit <code>rtk</code> calls.</li>
+          <li><b>crates.io name collision.</b> "rtk" collides with "Rust Type Kit" on crates.io - install via the git/cargo flags shown in Setup, not <code>cargo install rtk</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <span style="color:var(--fg);font-weight:700;">Repo Radar · Edition 001 · Week of July 31, 2026</span>
+      <a href="https://www.youtube.com/watch?v=CncyYt9ozAQ">▸ "Claude Code + RTK: Saves 90% Tokens" - FuturMinds</a>
+      <a href="https://www.youtube.com/watch?v=UslVzxAkiZ0">▸ "How To Save 90% of Claude Code Token Usage" - John Kim</a>
+      <a href="../../index.html">▸ back to the Repo Radar hub</a>
+    </div>
+    <div class="exit">$ exit<span class="cursor" style="height:.9em;width:.5em;"></span></div>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tabbtn');
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  }));
+</script>
+
+</body>
+</html>

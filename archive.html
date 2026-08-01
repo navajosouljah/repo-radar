@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive · Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080b0f;--panel:#0e131a;--line:#1c2530;--text:#e9edf2;--dim:#8593a5;--radar:#4ade80;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 80px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:56px}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--radar);box-shadow:0 0 12px var(--radar)}
+  nav .links a{color:var(--dim);text-decoration:none;font-size:13.5px;margin-left:24px}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--radar);margin-bottom:16px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:12px}
+  .sub{color:var(--dim);font-size:16px;margin-bottom:48px;max-width:560px}
+  .edition{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 30px;text-decoration:none;color:var(--text);margin-bottom:14px;transition:border-color .15s}
+  .edition:hover{border-color:var(--radar)}
+  .edition h2{font-family:'Space Grotesk',sans-serif;font-size:20px;margin-bottom:4px}
+  .edition .meta{color:var(--dim);font-size:13.5px}
+  .edition .arrow{font-family:'JetBrains Mono',monospace;color:var(--radar);font-size:18px}
+  .repos{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);margin-top:8px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="index.html"><span class="dot"></span>Repo Radar</a>
+    <div class="links"><a href="index.html">Current Edition</a></div>
+  </nav>
+  <div class="kicker">Archive</div>
+  <h1>Every edition, every repo.</h1>
+  <p class="sub">Past editions stay live forever at their original URLs. New edition every week.</p>
+
+  <a class="edition" href="editions/2026-07-31/">
+    <div>
+      <h2>Edition 001 · Week of July 31, 2026</h2>
+      <div class="meta">10 repos · 30 sources · audio digest</div>
+      <div class="repos">ECC · mattpocock/skills · gstack · graphify · ponytail · odysseus · open-design · paperclip · rtk · mempalace</div>
+    </div>
+    <div class="arrow">-&gt;</div>
+  </a>
+</div>
+</body>
+</html>

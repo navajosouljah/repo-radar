@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphify - Turn Your Codebase into a Queryable Knowledge Graph | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c1e;
+    --bg2:#101336;
+    --panel:#141845;
+    --line:#252a5e;
+    --ink:#e6e9ff;
+    --muted:#9aa1d4;
+    --cyan:#38e1ff;
+    --violet:#a78bfa;
+    --glow:rgba(56,225,255,.35);
+    --warn:#ffb454;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  code,pre{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 32px;
+    border-bottom:1px solid var(--line);
+    background:rgba(10,12,30,.85);
+    backdrop-filter:blur(8px);
+    position:relative;z-index:5;
+  }
+  .topbar .radar{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;color:var(--ink);
+    letter-spacing:.02em;
+  }
+  .topbar .radar span{color:var(--cyan);}
+  .topbar .ext{display:flex;gap:20px;font-size:.85rem;font-weight:500;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:90px 32px 70px;
+    text-align:center;
+    background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(103,88,220,.25),transparent 70%),var(--bg);
+  }
+  .hero svg.net{
+    position:absolute;inset:0;width:100%;height:100%;
+    opacity:.55;pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--cyan);margin-bottom:20px;
+  }
+  h1.repo-name{
+    font-family:'Sora',sans-serif;
+    font-size:clamp(3rem,9vw,5.8rem);
+    font-weight:800;letter-spacing:-.03em;line-height:1;
+    background:linear-gradient(92deg,var(--cyan) 10%,var(--violet) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:8px;
+  }
+  .owner{
+    font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--muted);
+    margin-bottom:24px;
+  }
+  .tagline{
+    font-size:clamp(1.05rem,2.4vw,1.35rem);
+    color:var(--ink);max-width:640px;margin:0 auto 36px;
+    font-weight:400;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .chip{
+    border:1px solid var(--line);
+    background:rgba(20,24,69,.7);
+    border-radius:999px;
+    padding:8px 18px;
+    font-size:.82rem;font-weight:500;
+    display:flex;align-items:center;gap:8px;
+  }
+  .chip b{font-family:'Sora',sans-serif;color:var(--cyan);font-weight:700;}
+  .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--violet);box-shadow:0 0 8px var(--violet);}
+
+  /* ---------- tabs ---------- */
+  .tabnav{
+    position:sticky;top:0;z-index:10;
+    display:flex;justify-content:center;gap:4px;
+    background:rgba(10,12,30,.92);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:0 16px;overflow-x:auto;
+  }
+  .tabnav button{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:'Sora',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--muted);
+    padding:18px 22px 15px;
+    border-bottom:3px solid transparent;
+    white-space:nowrap;
+    transition:color .2s;
+  }
+  .tabnav button:hover{color:var(--ink);}
+  .tabnav button.active{
+    color:var(--ink);
+    border-image:linear-gradient(90deg,var(--cyan),var(--violet)) 1;
+    border-bottom:3px solid;
+  }
+
+  /* ---------- panels ---------- */
+  main{max-width:960px;margin:0 auto;padding:64px 32px 40px;}
+  .panel{display:none;}
+  .panel.active{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  h2{
+    font-family:'Sora',sans-serif;font-size:1.9rem;font-weight:700;
+    letter-spacing:-.02em;margin-bottom:10px;
+  }
+  h3{
+    font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;
+    margin:38px 0 14px;color:var(--ink);
+  }
+  .lede{color:var(--muted);font-size:1.05rem;margin-bottom:40px;max-width:680px;}
+  p{margin-bottom:16px;}
+  ul{margin:0 0 20px 20px;}
+  li{margin-bottom:10px;}
+
+  /* big numbers */
+  .stat-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;margin:32px 0 8px;
+  }
+  .stat{
+    background:linear-gradient(160deg,var(--panel),var(--bg2));
+    border:1px solid var(--line);border-radius:16px;
+    padding:26px 22px;position:relative;overflow:hidden;
+  }
+  .stat::before{
+    content:"";position:absolute;top:-30px;right:-30px;width:90px;height:90px;
+    border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);
+  }
+  .stat .num{
+    font-family:'Sora',sans-serif;font-size:2.3rem;font-weight:800;line-height:1.1;
+    background:linear-gradient(92deg,var(--cyan),var(--violet));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat .lbl{font-size:.82rem;color:var(--muted);margin-top:6px;}
+
+  .callout{
+    margin:44px 0;
+    border:1px solid transparent;
+    border-radius:18px;
+    background:
+      linear-gradient(var(--bg2),var(--bg2)) padding-box,
+      linear-gradient(120deg,var(--cyan),var(--violet)) border-box;
+    padding:30px 32px;
+  }
+  .callout .tag{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--cyan);margin-bottom:10px;
+  }
+  .callout h3{margin:0 0 10px;font-size:1.3rem;}
+  .callout p{margin:0;color:var(--ink);}
+
+  /* before / after */
+  .ba{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0;
+  }
+  .ba .col{
+    border:1px solid var(--line);border-radius:16px;padding:26px 24px;
+    background:var(--bg2);
+  }
+  .ba .col.after{
+    background:
+      linear-gradient(var(--bg2),var(--bg2)) padding-box,
+      linear-gradient(140deg,var(--cyan),var(--violet)) border-box;
+    border:1px solid transparent;
+  }
+  .ba .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .ba .before .lbl{color:var(--warn);}
+  .ba .after .lbl{color:var(--cyan);}
+  .ba ul{margin-left:18px;}
+  .ba li{font-size:.94rem;color:var(--ink);}
+
+  /* setup */
+  .step{
+    display:flex;gap:18px;margin-bottom:30px;align-items:flex-start;
+  }
+  .step .n{
+    flex:0 0 34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;
+    background:linear-gradient(140deg,var(--cyan),var(--violet));color:#0a0c1e;
+  }
+  .step-body{flex:1;min-width:0;}
+  pre{
+    background:#070917;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    overflow-x:auto;
+    font-size:.85rem;line-height:1.7;
+    margin:12px 0 8px;
+    color:#b5f6ff;
+  }
+  pre .c{color:#5b6296;}
+  .llm{
+    border:1px solid var(--line);border-radius:16px;
+    padding:24px 26px;margin-bottom:18px;background:var(--bg2);
+  }
+  .llm h4{
+    font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;
+    display:flex;align-items:center;gap:10px;margin-bottom:6px;
+  }
+  .llm h4 .node{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--glow);}
+  .llm p{font-size:.92rem;color:var(--muted);margin-bottom:4px;}
+
+  /* use cases */
+  .case{
+    border-left:3px solid;
+    border-image:linear-gradient(180deg,var(--cyan),var(--violet)) 1;
+    padding:6px 0 6px 24px;margin:28px 0;
+  }
+  .case h3{margin:0 0 8px;}
+  .case p{color:var(--ink);}
+  .metric-inline{
+    font-family:'Sora',sans-serif;font-weight:700;color:var(--cyan);
+  }
+  .watch{
+    margin-top:48px;
+    border:1px solid rgba(255,180,84,.4);
+    background:rgba(255,180,84,.06);
+    border-radius:16px;padding:28px 30px;
+  }
+  .watch h3{margin:0 0 14px;color:var(--warn);display:flex;align-items:center;gap:10px;}
+  .watch ul{margin-left:18px;}
+  .watch li{color:var(--ink);font-size:.95rem;}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 32px 56px;text-align:center;
+    color:var(--muted);font-size:.85rem;
+  }
+  footer .ed{font-family:'Sora',sans-serif;font-weight:600;color:var(--ink);margin-bottom:14px;}
+  footer .vids{display:flex;flex-direction:column;gap:8px;margin:0 auto 18px;max-width:560px;}
+  footer .vids a{font-size:.85rem;}
+
+  @media(max-width:680px){
+    .topbar{padding:14px 18px;}
+    .topbar .ext{gap:12px;font-size:.78rem;}
+    .hero{padding:64px 20px 50px;}
+    main{padding:44px 20px 32px;}
+    .ba{grid-template-columns:1fr;}
+    .tabnav button{padding:15px 14px 12px;font-size:.82rem;}
+    .stat .num{font-size:1.9rem;}
+    .callout{padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a class="radar" href="../../index.html"><span>&#9673;</span> Repo Radar</a>
+  <div class="ext">
+    <a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">GitHub &#8599;</a>
+    <a href="https://graphify.com" target="_blank" rel="noopener">graphify.com &#8599;</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="net" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#38e1ff" stop-opacity=".9"/>
+        <stop offset="100%" stop-color="#38e1ff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="nodeGlowV" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#a78bfa" stop-opacity=".9"/>
+        <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <g stroke="#2b3170" stroke-width="1">
+      <line x1="120" y1="90" x2="310" y2="180"/><line x1="310" y1="180" x2="220" y2="330"/>
+      <line x1="310" y1="180" x2="520" y2="110"/><line x1="520" y1="110" x2="680" y2="220"/>
+      <line x1="680" y1="220" x2="560" y2="360"/><line x1="680" y1="220" x2="880" y2="150"/>
+      <line x1="880" y1="150" x2="1060" y2="250"/><line x1="880" y1="150" x2="990" y2="60"/>
+      <line x1="220" y1="330" x2="430" y2="420"/><line x1="560" y1="360" x2="430" y2="420"/>
+      <line x1="560" y1="360" x2="760" y2="440"/><line x1="1060" y1="250" x2="920" y2="400"/>
+      <line x1="760" y1="440" x2="920" y2="400"/><line x1="120" y1="90" x2="60" y2="260"/>
+      <line x1="60" y1="260" x2="220" y2="330"/><line x1="520" y1="110" x2="380" y2="40"/>
+    </g>
+    <g>
+      <circle cx="120" cy="90" r="16" fill="url(#nodeGlow)"/><circle cx="120" cy="90" r="4" fill="#38e1ff"/>
+      <circle cx="310" cy="180" r="20" fill="url(#nodeGlowV)"/><circle cx="310" cy="180" r="5" fill="#a78bfa"/>
+      <circle cx="520" cy="110" r="14" fill="url(#nodeGlow)"/><circle cx="520" cy="110" r="4" fill="#38e1ff"/>
+      <circle cx="680" cy="220" r="22" fill="url(#nodeGlow)"/><circle cx="680" cy="220" r="6" fill="#38e1ff"/>
+      <circle cx="880" cy="150" r="16" fill="url(#nodeGlowV)"/><circle cx="880" cy="150" r="4" fill="#a78bfa"/>
+      <circle cx="1060" cy="250" r="14" fill="url(#nodeGlow)"/><circle cx="1060" cy="250" r="4" fill="#38e1ff"/>
+      <circle cx="990" cy="60" r="12" fill="url(#nodeGlowV)"/><circle cx="990" cy="60" r="3" fill="#a78bfa"/>
+      <circle cx="220" cy="330" r="15" fill="url(#nodeGlowV)"/><circle cx="220" cy="330" r="4" fill="#a78bfa"/>
+      <circle cx="430" cy="420" r="13" fill="url(#nodeGlow)"/><circle cx="430" cy="420" r="4" fill="#38e1ff"/>
+      <circle cx="560" cy="360" r="17" fill="url(#nodeGlow)"/><circle cx="560" cy="360" r="5" fill="#38e1ff"/>
+      <circle cx="760" cy="440" r="12" fill="url(#nodeGlowV)"/><circle cx="760" cy="440" r="3" fill="#a78bfa"/>
+      <circle cx="920" cy="400" r="14" fill="url(#nodeGlow)"/><circle cx="920" cy="400" r="4" fill="#38e1ff"/>
+      <circle cx="60" cy="260" r="11" fill="url(#nodeGlow)"/><circle cx="60" cy="260" r="3" fill="#38e1ff"/>
+      <circle cx="380" cy="40" r="11" fill="url(#nodeGlowV)"/><circle cx="380" cy="40" r="3" fill="#a78bfa"/>
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <div class="kicker">Knowledge Graph Engine</div>
+    <h1 class="repo-name">graphify</h1>
+    <div class="owner">Graphify-Labs/graphify</div>
+    <p class="tagline">Turn your entire codebase - plus docs, PDFs, images, and videos - into a single queryable knowledge graph. Local tree-sitter AST parsing, zero LLM credits for code.</p>
+    <div class="chips">
+      <span class="chip"><span class="dot"></span><b>99.8K</b> stars</span>
+      <span class="chip"><span class="dot"></span><b>9.7K</b> forks</span>
+      <span class="chip"><span class="dot"></span><b>Python</b></span>
+      <span class="chip"><span class="dot"></span><b>Apache-2.0</b></span>
+      <span class="chip"><span class="dot"></span>created <b>Apr 2026</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav" aria-label="Page sections">
+  <button data-tab="highlights" class="active">Highlights</button>
+  <button data-tab="problem">The Problem</button>
+  <button data-tab="setup">Setup</button>
+  <button data-tab="usecases">Use Cases</button>
+</nav>
+
+<main>
+
+  <!-- ================= HIGHLIGHTS ================= -->
+  <section id="highlights" class="panel active">
+    <h2>Why the graph wins</h2>
+    <p class="lede">Graphify has become the reference implementation for structural code memory: deterministic, local, and dramatically cheaper than stuffing raw source into a context window.</p>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="num">99.8K</div><div class="lbl">GitHub stars</div></div>
+      <div class="stat"><div class="num">9.7K</div><div class="lbl">Forks</div></div>
+      <div class="stat"><div class="num">177</div><div class="lbl">Releases shipped</div></div>
+      <div class="stat"><div class="num">200</div><div class="lbl">Contributors</div></div>
+    </div>
+
+    <h3>Benchmarks that hold up</h3>
+    <div class="stat-grid">
+      <div class="stat"><div class="num">71.5&times;</div><div class="lbl">Tokens saved per query on a 52-file corpus vs feeding raw source files to an LLM</div></div>
+      <div class="stat"><div class="num">0.497</div><div class="lbl">recall@10 on the LOCOMO benchmark - vs mem0's 0.048</div></div>
+      <div class="stat"><div class="num">76%</div><div class="lbl">QA accuracy on LongMemEval-S</div></div>
+      <div class="stat"><div class="num">0</div><div class="lbl">LLM credits required for local code parsing</div></div>
+    </div>
+
+    <h3>What makes it different</h3>
+    <ul>
+      <li><b>Local tree-sitter AST parsing across 36 languages</b> - structure is extracted deterministically on your machine, not guessed by a model.</li>
+      <li><b>Multimodal indexing</b> - code, docs, PDFs, images, and audio/video all land in one graph.</li>
+      <li><b>Confidence-tagged edges</b> - every relationship is labeled <code>EXTRACTED</code> or <code>INFERRED</code>, so you always know what is fact and what is a model's guess.</li>
+      <li><b>Leiden community detection</b> - the graph self-organizes into architectural neighborhoods you can query.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="tag">Single best feature</div>
+      <h3>Local deterministic AST parsing</h3>
+      <p>Graphify maps cross-file dependencies and multimodal assets into a queryable knowledge graph without vector stores or API token costs. The structural layer of your codebase becomes persistent memory - built once, queried forever, at zero LLM spend.</p>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEM ================= -->
+  <section id="problem" class="panel">
+    <h2>The problem it solves</h2>
+    <p class="lede">Text matching was never structural understanding. Graphify replaces both grep-blindness and brute-force context stuffing with a real graph of how your project fits together.</p>
+
+    <div class="ba">
+      <div class="col before">
+        <div class="lbl">Before - the broken status quo</div>
+        <ul>
+          <li>Text-matching tools like <code>grep</code> have no structural awareness - cross-file calls, imports, and architectural dependencies stay invisible.</li>
+          <li>Sending raw source files to LLMs for every query consumed up to 71.5&times; more tokens than necessary.</li>
+          <li>No persistent structural memory - every session re-derives the same architecture from scratch.</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <div class="lbl">After - with graphify</div>
+        <ul>
+          <li>Tree-sitter AST parsing runs locally and maps the entire codebase into a single queryable knowledge graph.</li>
+          <li>Docs, PDFs, images, and videos are indexed alongside code - one graph for the whole project, not just the source tree.</li>
+          <li>Structure is extracted deterministically, so cross-file calls, imports, and dependency chains become first-class queryable edges.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The shift is from <em>searching text</em> to <em>querying structure</em>. Instead of paying an LLM to re-read your repository on every question, the graph answers structural questions directly - and confidence-tagged edges keep extracted facts cleanly separated from inferred ones.</p>
+  </section>
+
+  <!-- ================= SETUP ================= -->
+  <section id="setup" class="panel">
+    <h2>Setup</h2>
+    <p class="lede">One package install, one skill registration, and a platform flag for your agent of choice. Local code parsing needs no API keys at all.</p>
+
+    <div class="step">
+      <div class="n">1</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Install the package</h3>
+        <p>Note the double-y package name:</p>
+        <pre>uv tool install graphifyy
+<span class="c"># or</span>
+pipx install graphifyy</pre>
+        <p>Optional extras are available for richer extraction:</p>
+        <pre>uv tool install "graphifyy[pdf]"
+uv tool install "graphifyy[office]"
+uv tool install "graphifyy[all]"</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">2</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Register the skill</h3>
+        <pre>graphify install
+<span class="c"># or scope it to the current project only:</span>
+graphify install --project</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">3</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Wire up your agent</h3>
+
+        <div class="llm">
+          <h4><span class="node"></span>Claude Code</h4>
+          <pre>graphify claude install</pre>
+        </div>
+
+        <div class="llm">
+          <h4><span class="node"></span>ChatGPT / Codex</h4>
+          <pre>graphify install --platform codex</pre>
+          <p>Requires <code>multi_agent = true</code> under <code>[features]</code> in <code>~/.codex/config.toml</code>.</p>
+        </div>
+
+        <div class="llm">
+          <h4><span class="node"></span>Gemini CLI</h4>
+          <pre>graphify install --platform gemini</pre>
+        </div>
+
+        <div class="llm">
+          <h4><span class="node"></span>Others - Cursor, OpenCode, Copilot, Trae, Kimi, Antigravity, Pi</h4>
+          <pre><span class="c"># Cursor gets a dedicated command (creates .cursor/rules/graphify.mdc):</span>
+graphify cursor install
+
+<span class="c"># Everything else uses the platform flag:</span>
+graphify install --platform &lt;platform_name&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">4</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">API keys - only if you go multimodal</h3>
+        <p>Local AST code parsing requires <b>no API keys</b>. Headless extraction of docs, PDFs, or images requires environment variables such as <code>OPENAI_API_KEY</code>, <code>ANTHROPIC_API_KEY</code>, <code>GEMINI_API_KEY</code>, <code>DEEPSEEK_API_KEY</code>, <code>MOONSHOT_API_KEY</code>, or Azure/Bedrock credentials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= USE CASES ================= -->
+  <section id="usecases" class="panel">
+    <h2>Use cases</h2>
+    <p class="lede">Where the graph earns its keep: complex, multi-file codebases where dependencies span dozens of files and the docs live somewhere else entirely.</p>
+
+    <div class="case">
+      <h3>Tracing architecture in complex codebases</h3>
+      <p>Developers working on multi-file projects such as <b>FastAPI</b> and <b>nanoGPT</b> use graphify to trace architectural dependencies and cross-file imports, and to connect code to documentation, PDFs, images, and videos - all through one queryable graph.</p>
+    </div>
+
+    <div class="case">
+      <h3>Cutting the token bill on every structural question</h3>
+      <p>On a 52-file corpus, querying the graph saves <span class="metric-inline">71.5&times; tokens per query</span> compared to feeding raw source files into an LLM context window - and pure code parsing costs <span class="metric-inline">0 LLM credits</span> because extraction is local tree-sitter AST work.</p>
+    </div>
+
+    <div class="case">
+      <h3>Memory benchmarks, not vibes</h3>
+      <p>Graphify scored <span class="metric-inline">0.497 recall@10</span> on the LOCOMO benchmark (mem0 scored 0.048 on the same test) and <span class="metric-inline">76% QA accuracy</span> on LongMemEval-S.</p>
+    </div>
+
+    <div class="watch">
+      <h3>&#9888; Watch out for</h3>
+      <ul>
+        <li><b>Indexing time:</b> initial graph indexing takes 1 to 5 minutes on repositories with 150+ files.</li>
+        <li><b>Multimodal costs tokens:</b> non-code extraction (PDFs, docs, images, videos) requires LLM token expenditure - only code parsing is free.</li>
+        <li><b>Static analysis limits:</b> it cannot trace dynamic runtime behavior, dynamic imports, or event-emitter callbacks.</li>
+        <li><b>Scale ceilings:</b> repositories over 500 files must be scoped to subfolders, and generated HTML graphs with more than 5,000 nodes fail to render comfortably in web browsers.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ed">Repo Radar &middot; Edition 001 &middot; Week of July 31, 2026</div>
+  <div class="vids">
+    <a href="https://www.youtube.com/watch?v=AkP7-uBB7hc" target="_blank" rel="noopener">&#9654; "Graphify: Turn Your Codebase into a Queryable Knowledge Graph" - WiseBuilder</a>
+    <a href="https://www.youtube.com/watch?v=-Fb1SBC_nmg" target="_blank" rel="noopener">&#9654; "Graphify vs GitNexus vs CodeGraph" - WiseBuilder</a>
+  </div>
+  <a href="../../index.html">&larr; Back to the Repo Radar hub</a>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tabnav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

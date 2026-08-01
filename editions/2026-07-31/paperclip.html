@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paperclip · Repo Radar Edition 001</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f7f5;
+    --surface:#ffffff;
+    --ink:#17181c;
+    --muted:#6b6f76;
+    --faint:#9a9ea6;
+    --line:#e6e6e2;
+    --blue:#3b6ef5;
+    --blue-soft:#eef2fe;
+    --warm:#f2efe9;
+    --ok:#2f9e6e;
+    --warn:#c2703d;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(23,24,28,.05), 0 8px 24px rgba(23,24,28,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:60;background:rgba(247,247,245,.85);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .in{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+  .topbar a{text-decoration:none;font-size:.86rem;font-weight:600}
+  .radar-link{display:flex;align-items:center;gap:7px;color:var(--muted)}
+  .radar-link .dot{color:var(--blue)}
+  .radar-link:hover{color:var(--ink)}
+  .ext{display:flex;gap:8px}
+  .ext a{
+    border:1px solid var(--line);background:var(--surface);border-radius:8px;
+    padding:6px 13px;color:var(--muted);transition:all .15s ease;
+  }
+  .ext a:hover{color:var(--ink);border-color:#cfcfca}
+  .ext a.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .ext a.primary:hover{background:#2b2d33}
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:600;
+    color:var(--blue);background:var(--blue-soft);border:1px solid #d8e2fc;
+    border-radius:999px;padding:5px 12px;margin-bottom:20px;letter-spacing:.01em;
+  }
+  h1{font-size:clamp(2.3rem,5.5vw,3.4rem);font-weight:800;letter-spacing:-.035em;line-height:1.08}
+  h1 .clip{color:var(--blue)}
+  .repo-path{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--faint);margin-bottom:10px}
+  .tagline{font-size:1.1rem;color:var(--muted);margin:18px 0 26px;max-width:520px}
+  .tagline strong{color:var(--ink);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    padding:8px 14px;font-size:.85rem;font-weight:600;box-shadow:0 1px 2px rgba(23,24,28,.04);
+  }
+  .chip span{display:block;font-size:.66rem;font-weight:500;color:var(--faint);text-transform:uppercase;letter-spacing:.07em}
+  /* ---------- org chart motif ---------- */
+  .org{position:relative;padding:10px 0}
+  .orgnode{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:12px 16px;display:flex;align-items:center;gap:10px;
+    position:relative;z-index:2;
+  }
+  .orgnode .avatar{
+    width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;font-weight:700;color:#fff;flex:0 0 32px;
+  }
+  .orgnode .who{font-size:.84rem;font-weight:600;line-height:1.25}
+  .orgnode .who span{display:block;font-size:.68rem;font-weight:500;color:var(--faint)}
+  .orgnode .status{margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(47,158,110,.15)}
+  .org .root{max-width:250px;margin:0 auto}
+  .org .root .avatar{background:var(--ink)}
+  .org .trunk{width:1.5px;height:26px;background:var(--line);margin:0 auto}
+  .org .rail{height:1.5px;background:var(--line);margin:0 9%;position:relative;top:0}
+  .org .drops{display:flex;justify-content:space-between;margin:0 9%}
+  .org .drops i{width:1.5px;height:22px;background:var(--line);display:block}
+  .org .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:0}
+  .org .row .avatar.a1{background:var(--blue)}
+  .org .row .avatar.a2{background:#7a5af5}
+  .org .row .avatar.a3{background:var(--warn)}
+  .org .meta{
+    margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  }
+  .org .meta em{
+    font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--faint);
+    background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 9px;
+  }
+  /* ---------- tab nav ---------- */
+  .tabnav{position:sticky;top:53px;z-index:50;background:rgba(247,247,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .tabnav .row{display:flex;gap:2px;padding:8px 0;overflow-x:auto}
+  .tabbtn{
+    font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);
+    background:transparent;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;
+    transition:all .15s ease;white-space:nowrap;
+  }
+  .tabbtn:hover{color:var(--ink);background:rgba(23,24,28,.05)}
+  .tabbtn.active{background:var(--ink);color:#fff}
+  /* ---------- panels ---------- */
+  .panel{display:none;padding:52px 0 24px;animation:rise .3s ease}
+  .panel.show{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  h2.sec{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
+  .sec-dek{color:var(--muted);max-width:640px;margin-bottom:36px;font-size:1rem}
+  /* highlights */
+  .metricgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:36px}
+  .metric{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;box-shadow:0 1px 2px rgba(23,24,28,.04);
+  }
+  .metric .n{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+  .metric .n em{font-style:normal;color:var(--blue)}
+  .metric .d{font-size:.86rem;color:var(--muted);margin-top:6px}
+  .feature{
+    background:var(--ink);color:#fff;border-radius:14px;padding:34px 32px;margin-bottom:36px;
+    position:relative;overflow:hidden;
+  }
+  .feature::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle,rgba(59,110,245,.35),transparent 70%);
+  }
+  .feature .tag{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8fabf9;margin-bottom:12px}
+  .feature h3{font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:700;letter-spacing:-.02em;margin-bottom:12px;max-width:640px;position:relative;z-index:1}
+  .feature p{color:rgba(255,255,255,.75);max-width:680px;font-size:.96rem;position:relative;z-index:1}
+  .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .cap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .cap h4{font-size:.95rem;font-weight:700;margin-bottom:6px;display:flex;gap:9px;align-items:center}
+  .cap h4 .ic{width:26px;height:26px;flex:0 0 26px;border-radius:7px;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.8rem}
+  .cap p{font-size:.87rem;color:var(--muted)}
+  .team{margin-top:36px;background:var(--warm);border:1px solid #e8e2d6;border-radius:var(--radius);padding:24px 26px}
+  .team h4{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:10px}
+  .team p{font-size:.93rem;color:#4c4a45}
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+  .bacol{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px}
+  .bacol.after{border-color:#c9d7fc;background:linear-gradient(180deg,#fdfdff, #f6f8ff)}
+  .balabel{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;padding:4px 10px;margin-bottom:16px}
+  .before .balabel{background:#f1f1ee;color:var(--muted)}
+  .after .balabel{background:var(--blue);color:#fff}
+  .bacol ul{list-style:none;display:grid;gap:12px}
+  .bacol li{position:relative;padding-left:26px;font-size:.92rem;color:#3c3e44}
+  .before li::before{content:"✕";position:absolute;left:0;color:#c14848;font-weight:700;font-size:.85rem}
+  .after li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700;font-size:.85rem}
+  .quoteline{
+    border-left:3px solid var(--blue);background:var(--surface);border-radius:0 10px 10px 0;
+    padding:20px 24px;font-size:.98rem;color:var(--muted);border-top:1px solid var(--line);
+    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .quoteline strong{color:var(--ink)}
+  /* setup */
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin-bottom:16px}
+  .step h3{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:12px;margin-bottom:10px;letter-spacing:-.01em}
+  .stepnum{
+    width:26px;height:26px;flex:0 0 26px;border-radius:8px;background:var(--blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;
+  }
+  .step p{font-size:.9rem;color:var(--muted);margin-bottom:8px}
+  pre{
+    background:#101114;color:#dfe2e8;font-family:'JetBrains Mono',monospace;font-size:.78rem;
+    border-radius:9px;padding:15px 17px;overflow-x:auto;line-height:1.65;margin:10px 0;
+  }
+  pre .c{color:#6b7280}
+  code.inline{font-family:'JetBrains Mono',monospace;font-size:.82em;background:#eeeeeb;border:1px solid var(--line);padding:1px 6px;border-radius:5px}
+  .llm{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;background:#fbfbfa}
+  .llm h4{font-size:.9rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .llm h4 .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .llm.claude .dot{background:var(--warn)} .llm.codex .dot{background:#10a37f}
+  .llm.gemini .dot{background:#7a5af5} .llm.others .dot{background:var(--faint)}
+  .llm p{font-size:.87rem;color:var(--muted)}
+  /* use cases */
+  .story{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin-bottom:14px;box-shadow:0 1px 2px rgba(23,24,28,.04)}
+  .story h4{font-size:1rem;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
+  .story p{font-size:.92rem;color:var(--muted)}
+  .story .hi{color:var(--blue);font-weight:700}
+  .watch{border:1px solid #ecd9c8;background:#fdf8f2;border-radius:12px;padding:28px;margin-top:30px}
+  .watch h3{font-size:1.02rem;font-weight:700;margin-bottom:14px;color:#8a5527;display:flex;gap:9px;align-items:center}
+  .watch ul{list-style:none;display:grid;gap:11px}
+  .watch li{position:relative;padding-left:26px;font-size:.91rem;color:#5c5348}
+  .watch li::before{content:"!";position:absolute;left:2px;top:1px;width:16px;height:16px;border-radius:5px;background:#f0dcc4;color:#8a5527;font-weight:800;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+  .watch li strong{color:#3f3428}
+  /* footer */
+  footer{margin-top:64px;border-top:1px solid var(--line);padding:34px 0 56px;font-size:.86rem;color:var(--muted)}
+  footer .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  footer h5{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  footer a{color:var(--blue);text-decoration:none;font-weight:600}
+  footer a:hover{text-decoration:underline}
+  footer ul{list-style:none;display:grid;gap:6px}
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;gap:36px;padding-top:48px}
+    .ba{grid-template-columns:1fr}
+    .org .row{gap:8px}
+    .orgnode{padding:10px 10px}
+    .orgnode .who span{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar"><div class="wrap in">
+  <a class="radar-link" href="../../index.html"><span class="dot">◉</span>&nbsp;Repo Radar</a>
+  <span class="ext">
+    <a href="https://paperclip.ing" target="_blank" rel="noopener">paperclip.ing</a>
+    <a class="primary" href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">GitHub ↗</a>
+  </span>
+</div></div>
+
+<div class="wrap">
+  <!-- Hero -->
+  <header class="hero">
+    <div>
+      <span class="pill">● Repo Radar · #8 this week</span>
+      <div class="repo-path">paperclipai / paperclip</div>
+      <h1>Hire AI agents<br>like <span class="clip">employees.</span></h1>
+      <p class="tagline">Paperclip is the open-source <strong>management control plane</strong> for zero-human AI companies: org charts, tickets, heartbeats, and hard token budgets for every agent on your payroll.</p>
+      <div class="chips">
+        <div class="chip">75.3K<span>Stars</span></div>
+        <div class="chip">14K<span>Forks</span></div>
+        <div class="chip">TypeScript<span>Language</span></div>
+        <div class="chip">MIT<span>License</span></div>
+        <div class="chip">Mar 2, 2026<span>Created</span></div>
+      </div>
+    </div>
+    <div class="org" aria-hidden="true">
+      <div class="orgnode root">
+        <div class="avatar">You</div>
+        <div class="who">Founder / CEO<span>Human oversight</span></div>
+        <div class="status"></div>
+      </div>
+      <div class="trunk"></div>
+      <div class="rail"></div>
+      <div class="drops"><i></i><i></i><i></i></div>
+      <div class="row">
+        <div class="orgnode"><div class="avatar a1">C</div><div class="who">Claude Code<span>Engineering</span></div><div class="status"></div></div>
+        <div class="orgnode"><div class="avatar a2">X</div><div class="who">Codex<span>Backend</span></div><div class="status"></div></div>
+        <div class="orgnode"><div class="avatar a3">O</div><div class="who">OpenClaw<span>Marketing</span></div><div class="status"></div></div>
+      </div>
+      <div class="meta">
+        <em>heartbeat: 4h</em><em>budget: capped</em><em>tasks: atomic</em>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Tabs -->
+<div class="tabnav"><div class="wrap row">
+  <button class="tabbtn active" data-tab="highlights">Highlights</button>
+  <button class="tabbtn" data-tab="problem">The Problem</button>
+  <button class="tabbtn" data-tab="setup">Setup</button>
+  <button class="tabbtn" data-tab="usecases">Use Cases</button>
+</div></div>
+
+<div class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section class="panel show" id="highlights">
+    <div class="eyebrow">Highlights</div>
+    <h2 class="sec">The fastest-growing control plane in AI ops</h2>
+    <p class="sec-dek">Built by people who shipped Slack, Figma, and Pinterest design - and adopted at breakneck speed.</p>
+
+    <div class="metricgrid">
+      <div class="metric"><div class="n">75.3K</div><div class="d">GitHub stars, with 14K forks</div></div>
+      <div class="metric"><div class="n"><em>36K+</em></div><div class="d">stars accumulated within 3 weeks of launch</div></div>
+      <div class="metric"><div class="n">4 / 8 / 12h</div><div class="d">scheduled heartbeat wakeups keep agents working 24/7</div></div>
+      <div class="metric"><div class="n"><em>Any</em> CLI</div><div class="d">connects Claude Code, Codex, Cursor, OpenClaw, and HTTP bots</div></div>
+    </div>
+
+    <div class="feature">
+      <div class="tag">★ Single best feature</div>
+      <h3>The org chart + heartbeat control plane</h3>
+      <p>Paperclip coordinates multi-agent workflows the way a company coordinates people: reporting lines, atomic task checkouts, and scheduled heartbeats. It eliminates multi-terminal chaos, prevents runaway token spend through hard budget caps, and keeps agents working around the clock.</p>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap"><h4><span class="ic">▦</span>Org charts &amp; reporting lines</h4><p>Structure agents into teams with managers and reports, so work flows down and status flows up - like an actual company.</p></div>
+      <div class="cap"><h4><span class="ic">◔</span>Token budget caps</h4><p>Hard monthly budget caps per agent halt overspend automatically before a runaway loop burns your bill.</p></div>
+      <div class="cap"><h4><span class="ic">✓</span>Atomic task checkouts</h4><p>Tasks are checked out atomically so two agents never do the same work twice.</p></div>
+      <div class="cap"><h4><span class="ic">↻</span>Scheduled heartbeats</h4><p>Wakeups every 4, 8, or 12 hours keep the org running while you sleep.</p></div>
+    </div>
+
+    <div class="team">
+      <h4>Who built it</h4>
+      <p>Created by <strong>Dota</strong>, <strong>Devin Foley</strong> (early Slack / Figma), and <strong>Scott Tong</strong> (former Head of Product Design at Pinterest). Featured on Greg Isenberg's podcast.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="panel" id="problem">
+    <div class="eyebrow">The Problem</div>
+    <h2 class="sec">20 terminals is not a management strategy</h2>
+    <p class="sec-dek">Running a fleet of coding agents used to mean a wall of terminal tabs, no delegation structure, and a token bill nobody was watching.</p>
+
+    <div class="ba">
+      <div class="bacol before">
+        <span class="balabel">Before Paperclip</span>
+        <ul>
+          <li>Developers juggle 20-30 open terminal sessions and lose track of what each agent is doing.</li>
+          <li>Runaway token spend with no automatic stop - a looping agent quietly burns the budget.</li>
+          <li>No task delegation structure: no tickets, no ownership, no reporting lines.</li>
+          <li>Agent conflicts and context resets whenever the machine reboots.</li>
+        </ul>
+      </div>
+      <div class="bacol after">
+        <span class="balabel">After Paperclip</span>
+        <ul>
+          <li>One open-source management control plane for zero-human AI companies.</li>
+          <li>Org charts and ticketing give every agent a role, a queue, and a manager.</li>
+          <li>Atomic task execution plus heartbeats keep work moving without double-work.</li>
+          <li>Budget caps per agent enforce a spending ceiling across multiple agent frameworks.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quoteline">
+      The core reframe: stop babysitting terminals and start <strong>running your agents like an organization</strong> - hire them, assign them, budget them, and let the heartbeat schedule keep the company alive between your check-ins.
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="panel" id="setup">
+    <div class="eyebrow">Setup</div>
+    <h2 class="sec">From zero to org chart</h2>
+    <p class="sec-dek">A managed one-line install, or run it from source with pnpm. Then connect the agent CLIs you already have installed.</p>
+
+    <div class="step">
+      <h3><span class="stepnum">1</span>Managed CLI quickstart</h3>
+      <pre>curl -fsSLO https://paperclip.ing/install.sh && bash install.sh</pre>
+      <p>Non-interactive setup (optionally bind to your LAN or tailnet):</p>
+      <pre>paperclipai onboard --yes
+<span class="c"># or: paperclipai onboard --yes --bind lan</span>
+<span class="c"># or: paperclipai onboard --yes --bind tailnet</span></pre>
+      <p>Prefer npx? Try it without the installer:</p>
+      <pre>npx --registry https://registry.npmjs.org paperclipai onboard --yes</pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">2</span>Manual / source setup</h3>
+      <pre>git clone https://github.com/paperclipai/paperclip.git
+cd paperclip
+pnpm install
+pnpm dev</pre>
+      <p>This starts the API server at <code class="inline">http://localhost:3100</code> and creates an embedded Postgres.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">3</span>Connect your agents</h3>
+      <p>Paperclip connects locally installed agent CLIs and bots. Assign specific models and set token budgets per agent or per company in the UI.</p>
+
+      <div class="llm claude">
+        <h4><span class="dot"></span>Claude Code</h4>
+        <p>Connects as a locally installed agent CLI. Assign it Sonnet 4.6 or Opus 4.6 in the UI, then set its token budget so a runaway session halts automatically.</p>
+      </div>
+
+      <div class="llm codex">
+        <h4><span class="dot"></span>ChatGPT / Codex</h4>
+        <p>Connects the OpenAI Codex CLI the same way. Assign GPT-5.4 (or a free OpenRouter model) and its own budget cap in the UI.</p>
+      </div>
+
+      <div class="llm gemini">
+        <h4><span class="dot"></span>Gemini</h4>
+        <p>Paperclip attaches to any agent CLI or HTTP bot, so a Gemini-based CLI connects like the rest. Free OpenRouter models are also assignable from the UI for budget-friendly seats.</p>
+      </div>
+
+      <div class="llm others">
+        <h4><span class="dot"></span>Others (Cursor, OpenCode, OpenClaw, HTTP bots)</h4>
+        <p>Cursor and OpenClaw connect as local CLIs; OpenCode connects via OpenRouter; anything else can join as an HTTP bot. Every seat gets a model assignment and a token budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="panel" id="usecases">
+    <div class="eyebrow">Use Cases</div>
+    <h2 class="sec">Who is actually running agent companies</h2>
+    <p class="sec-dek">Not just developers: solo entrepreneurs, digital agencies, roofing companies, dentists, and security firms use Paperclip to orchestrate 20-30 simultaneous coding and marketing agents into structured org charts.</p>
+
+    <div class="story">
+      <h4>One dashboard instead of a terminal wall</h4>
+      <p>Paperclip replaces chaotic multi-tab terminal setups with a <span class="hi">unified dashboard</span> tracking tasks, tickets, and session histories - and it all survives reboots.</p>
+    </div>
+
+    <div class="story">
+      <h4>Spending that stops itself</h4>
+      <p>Monthly token budget caps per agent <span class="hi">halt overspend automatically</span>, preventing the runaway-loop costs that plague unattended agent fleets.</p>
+    </div>
+
+    <div class="story">
+      <h4>Around-the-clock output, zero double-work</h4>
+      <p>Atomic task checkouts plus scheduled heartbeats (every <span class="hi">4, 8, or 12 hours</span>) keep agents working continuously without two agents ever picking up the same ticket.</p>
+    </div>
+
+    <div class="watch">
+      <h3>⚠ Watch out for</h3>
+      <ul>
+        <li><strong>"Momento man" syndrome.</strong> Agents wake up at every heartbeat with fresh context and need detailed instruction checklists to remember their role and task history.</li>
+        <li><strong>You are still the board.</strong> Paperclip requires ongoing board-level oversight and prompt tuning from the human operator - this is management software, not magic.</li>
+        <li><strong>Maximizer mode is unproven.</strong> Fully autonomous "maximizer mode" remains a work-in-progress; do not bet the company on it yet.</li>
+        <li><strong>Taste is not automated.</strong> Agent design decisions and code taste still require human review before they ship.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="fgrid">
+      <div>
+        <h5>Repo Radar</h5>
+        <p>Edition 001 · Week of July 31, 2026</p>
+        <p style="margin-top:8px"><a href="../../index.html">← Back to the hub</a></p>
+      </div>
+      <div>
+        <h5>Source videos</h5>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=C3-4llQYT8o" target="_blank" rel="noopener">"Paperclip: Hire AI Agents Like Employees" - Greg Isenberg</a></li>
+          <li><a href="https://www.youtube.com/watch?v=HJ-dwefABss" target="_blank" rel="noopener">"Claude Code + Paperclip Just Destroyed OpenClaw" - Nate Herk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Project</h5>
+        <ul>
+          <li><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">github.com/paperclipai/paperclip</a></li>
+          <li><a href="https://paperclip.ing" target="_blank" rel="noopener">paperclip.ing</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tabbtn');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    panels.forEach(p => p.classList.toggle('show', p.id === btn.dataset.tab));
+    window.scrollTo({ top: document.querySelector('.tabnav').offsetTop - 60, behavior: 'smooth' });
+  }));
+</script>
+</body>
+</html>

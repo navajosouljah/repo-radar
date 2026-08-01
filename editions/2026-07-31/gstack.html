@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>gstack - Your AI Engineering Team | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg2:#f6f6f4;
+    --orange:#ff6600;
+    --orange-dk:#e05500;
+    --black:#111111;
+    --gray:#5f5f5c;
+    --line:#e2e2de;
+    --line-dk:#111111;
+    --sans:'Archivo',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--black);font-family:var(--sans);line-height:1.6}
+  a{color:var(--orange);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+  /* top bar */
+  .topbar{border-bottom:2px solid var(--black);background:#fff}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-weight:700;font-size:14px;color:var(--black);letter-spacing:.02em}
+  .radar-link:hover{color:var(--orange);text-decoration:none}
+  .radar-link .dot{color:var(--orange)}
+  .gh-link{font-weight:700;font-size:13px;color:#fff;background:var(--black);padding:9px 18px}
+  .gh-link:hover{background:var(--orange);text-decoration:none}
+
+  /* hero */
+  .hero{padding:76px 0 56px;border-bottom:1px solid var(--line)}
+  .yc-tag{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--gray);text-transform:uppercase;margin-bottom:24px}
+  .yc-tag .sq{width:14px;height:14px;background:var(--orange);display:inline-block}
+  h1{font-size:clamp(52px,9.5vw,108px);font-weight:900;line-height:.95;letter-spacing:-.03em}
+  h1 .g{color:var(--orange)}
+  .tagline{font-size:clamp(17px,2.5vw,23px);color:var(--gray);max-width:640px;margin:24px 0 40px;font-weight:500}
+  .tagline strong{color:var(--black)}
+  .chips{display:flex;flex-wrap:wrap;border:2px solid var(--black)}
+  .chip{flex:1;min-width:140px;padding:16px 18px;border-right:2px solid var(--black);text-align:left}
+  .chip:last-child{border-right:none}
+  .chip .cv{font-weight:900;font-size:22px;line-height:1}
+  .chip .cv.o{color:var(--orange)}
+  .chip .ck{font-family:var(--mono);font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;margin-top:5px}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:2px solid var(--black)}
+  .tabnav .wrap{display:flex;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:14px;background:#fff;border:none;border-right:1px solid var(--line);color:var(--gray);padding:17px 26px;cursor:pointer;white-space:nowrap;position:relative}
+  .tab-btn:hover{color:var(--black)}
+  .tab-btn.active{color:var(--black)}
+  .tab-btn.active::after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--orange)}
+
+  /* panels */
+  .tab-panel{display:none;padding:56px 0 72px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(28px,4.5vw,42px);font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
+  h2 .bar{color:var(--orange)}
+  .sub{color:var(--gray);margin-bottom:42px;max-width:660px;font-size:17px}
+  h3{font-size:19px;font-weight:800;margin-bottom:16px;letter-spacing:-.01em}
+  h3 .sq{display:inline-block;width:10px;height:10px;background:var(--orange);margin-right:10px}
+
+  /* highlights */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--black);margin-bottom:48px}
+  .bignum{padding:30px 24px;border-right:2px solid var(--black);border-bottom:2px solid var(--black)}
+  .bignum:nth-child(3n){border-right:none}
+  .bignum:nth-child(n+4){border-bottom:none}
+  .bignum .n{font-size:clamp(30px,4.5vw,46px);font-weight:900;line-height:1;letter-spacing:-.02em}
+  .bignum .n.o{color:var(--orange)}
+  .bignum .l{font-family:var(--mono);font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;margin-top:10px}
+
+  .quote{border-left:6px solid var(--orange);background:var(--bg2);padding:28px 32px;margin-bottom:44px}
+  .quote p{font-size:clamp(19px,2.6vw,25px);font-weight:700;letter-spacing:-.01em;line-height:1.35}
+  .quote .who{font-family:var(--mono);font-size:13px;color:var(--gray);margin-top:14px}
+
+  .pipeline{display:flex;flex-wrap:wrap;gap:0;margin-bottom:44px;border:2px solid var(--black)}
+  .pstep{flex:1;min-width:110px;padding:14px 10px;text-align:center;font-weight:800;font-size:14px;border-right:2px solid var(--black);background:#fff}
+  .pstep:last-child{border-right:none}
+  .pstep span{display:block;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--orange);letter-spacing:.15em;margin-bottom:3px}
+
+  .best-feature{border:3px solid var(--orange);padding:36px;position:relative;margin-bottom:24px;background:#fff}
+  .best-feature .bf-tag{position:absolute;top:-14px;left:24px;background:var(--orange);color:#fff;font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px}
+  .best-feature h3{font-size:23px;margin-bottom:10px}
+  .best-feature h3 code{font-family:var(--mono);color:var(--orange)}
+  .best-feature p{color:var(--gray);font-size:16px;max-width:760px}
+  .best-feature p strong{color:var(--black)}
+
+  /* problem */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--black);margin-bottom:36px}
+  .ba{padding:32px}
+  .ba.before{border-right:2px solid var(--black);background:var(--bg2)}
+  .ba.after{background:#fff}
+  .ba .ba-tag{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--gray)}
+  .ba.after .ba-tag{color:var(--orange)}
+  .ba p{color:var(--gray);font-size:15px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--black)}
+
+  /* setup */
+  .llm-section{border:2px solid var(--black);margin-bottom:22px;background:#fff}
+  .llm-head{padding:16px 26px;border-bottom:2px solid var(--black);display:flex;align-items:center;gap:14px;background:var(--bg2)}
+  .llm-num{font-family:var(--mono);font-weight:600;font-size:13px;color:#fff;background:var(--orange);width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .llm-head h3{margin:0;font-size:17px}
+  .llm-body{padding:22px 26px}
+  .llm-body p{color:var(--gray);font-size:14.5px;margin-bottom:12px}
+  .llm-body p strong{color:var(--black)}
+  pre{background:var(--black);color:#7dff9b;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--orange-dk);background:var(--bg2);padding:2px 7px;border:1px solid var(--line)}
+
+  /* use cases */
+  .story{border:2px solid var(--black);padding:28px;margin-bottom:20px;display:grid;grid-template-columns:190px 1fr;gap:26px;align-items:center;background:#fff}
+  .story .metric{font-size:32px;font-weight:900;color:var(--orange);line-height:1.05;letter-spacing:-.02em}
+  .story p{color:var(--gray);font-size:15px}
+  .story p strong{color:var(--black)}
+  .watchout{border:2px solid var(--black);background:var(--bg2);padding:32px;margin-top:42px;position:relative}
+  .watchout::before{content:"WATCH OUT FOR";position:absolute;top:-12px;left:24px;background:var(--black);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.22em;padding:4px 12px}
+  .watchout ul{list-style:none;margin-top:8px}
+  .watchout li{padding:11px 0;color:var(--gray);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--black)}
+  .watchout li::before{content:"▪ ";color:var(--orange)}
+
+  /* footer */
+  footer{border-top:2px solid var(--black);padding:44px 0 64px;margin-top:20px;background:var(--bg2)}
+  footer .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14.5px;color:var(--gray)}
+  footer li::before{content:"▸ ";color:var(--orange)}
+  .backhub{display:inline-block;margin-top:26px;font-weight:700;font-size:14px;background:var(--black);color:#fff;padding:11px 22px}
+  .backhub:hover{background:var(--orange);text-decoration:none;color:#fff}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .bignum{border-right:2px solid var(--black);border-bottom:2px solid var(--black)}
+    .bignum:nth-child(2n){border-right:none}
+    .bignum:nth-child(n+5){border-bottom:none}
+    .ba-grid{grid-template-columns:1fr}
+    .ba.before{border-right:none;border-bottom:2px solid var(--black)}
+    .story{grid-template-columns:1fr;gap:10px}
+    .chip{min-width:45%;border-bottom:2px solid var(--black)}
+    .hero{padding:52px 0 40px}
+    .pstep{min-width:33%;border-bottom:2px solid var(--black)}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html"><span class="dot">◉</span> Repo Radar</a>
+    <a class="gh-link" href="https://github.com/garrytan/gstack" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="yc-tag"><span class="sq"></span>Built by Garry Tan · President &amp; CEO, Y Combinator</div>
+    <h1><span class="g">g</span>stack</h1>
+    <p class="tagline">Turn Claude Code into a <strong>virtual, full-stack engineering team</strong> - 23 opinionated tools that enforce a structured think, plan, build, review, test, ship sprint process.</p>
+    <div class="chips">
+      <div class="chip"><div class="cv o">126K</div><div class="ck">Stars</div></div>
+      <div class="chip"><div class="cv">18.8K</div><div class="ck">Forks</div></div>
+      <div class="chip"><div class="cv">TypeScript</div><div class="ck">Language</div></div>
+      <div class="chip"><div class="cv">MIT</div><div class="ck">License</div></div>
+      <div class="chip"><div class="cv">Mar 2026</div><div class="ck">Created</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2><span class="bar">/</span> Highlights</h2>
+    <p class="sub">The founder-velocity numbers behind the fastest-growing agent workflow of the year.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n o">~810×</div><div class="l">Garry Tan's 2026 pace vs. his 2013 pace</div></div>
+      <div class="bignum"><div class="n">40+</div><div class="l">Features shipped in 60 days, part-time</div></div>
+      <div class="bignum"><div class="n o">10-50</div><div class="l">PRs shipped per day</div></div>
+      <div class="bignum"><div class="n">~11,417</div><div class="l">Logical lines per day (2026 run rate)</div></div>
+      <div class="bignum"><div class="n o">22</div><div class="l">Commits in one day (Alex Larcheveque, up from 1-2)</div></div>
+      <div class="bignum"><div class="n">~100ms</div><div class="l">Per browser automation command</div></div>
+    </div>
+
+    <div class="quote">
+      <p>"I don't think I've typed a line of code since December."</p>
+      <div class="who">Andrej Karpathy, citing gstack</div>
+    </div>
+
+    <h3><span class="sq"></span>The full sprint, encoded in 23 tools</h3>
+    <div class="pipeline">
+      <div class="pstep"><span>01</span>Think</div>
+      <div class="pstep"><span>02</span>Plan</div>
+      <div class="pstep"><span>03</span>Build</div>
+      <div class="pstep"><span>04</span>Review</div>
+      <div class="pstep"><span>05</span>Test</div>
+      <div class="pstep"><span>06</span>Ship</div>
+      <div class="pstep"><span>07</span>Reflect</div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Integrated browser QA - <code>/qa</code> + <code>/open-gstack-browser</code></h3>
+      <p>Native Playwright browser automation gives the agent <strong>eyes</strong> - it interacts with live web apps, catches visual and runtime bugs, and auto-generates regression tests, at roughly 100ms per command. It replaces the sluggish Claude-in-Chrome MCP.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2><span class="bar">/</span> The Problem</h2>
+    <p class="sub">Out-of-the-box coding agents are talented juniors with no process. gstack gives them a sprint.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Agents wander.</strong> Without structure, out-of-the-box coding agents guess without knowing project context and silently break code.</p>
+        <p><strong>Terminal sprawl.</strong> Developers managing dozens of parallel terminal windows lost track of tasks and burned through token budgets.</p>
+        <p><strong>Manual browser QA.</strong> Every UI change meant a human clicking through the app by hand to verify nothing broke.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After · with gstack</div>
+        <p><strong>A structured sprint process.</strong> 23 opinionated tools enforce think, plan, build, review, test, ship - Claude Code operates like a virtual full-stack engineering team.</p>
+        <p><strong>Product planning to code review, covered.</strong> The team spans product planning, design reviews, code reviews, and automated browser QA.</p>
+        <p><strong>The agent tests its own UI.</strong> Native headless browser automation runs QA at roughly 100ms per command - no more tedious manual click-throughs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2><span class="bar">/</span> Setup</h2>
+    <p class="sub">One clone and a setup script. Solo, team mode, or any of the supported agent hosts.</p>
+
+    <div class="llm-section">
+      <div class="llm-head"><span class="llm-num">1</span><h3>Claude Code</h3></div>
+      <div class="llm-body">
+<pre>git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack &amp;&amp; cd ~/.claude/skills/gstack &amp;&amp; ./setup</pre>
+        <p>Setup updates <code class="inline">CLAUDE.md</code> or <code class="inline">AGENTS.md</code> with skill routing entries. Persistent configuration lives in <code class="inline">~/.gstack/config.yaml</code>.</p>
+      </div>
+    </div>
+
+    <div class="llm-section">
+      <div class="llm-head"><span class="llm-num">2</span><h3>ChatGPT / Codex</h3></div>
+      <div class="llm-body">
+        <p>Clone to <code class="inline">~/gstack</code>, then run setup with the Codex host flag:</p>
+<pre>./setup --host codex</pre>
+      </div>
+    </div>
+
+    <div class="llm-section">
+      <div class="llm-head"><span class="llm-num">3</span><h3>Other hosts (Cursor, OpenCode, Factory, Kiro, Hermes)</h3></div>
+      <div class="llm-body">
+        <p>Same pattern - clone to <code class="inline">~/gstack</code> and pass your host:</p>
+<pre>./setup --host cursor
+./setup --host opencode</pre>
+        <p><strong>OpenClaw:</strong> install via ClawHub instead:</p>
+<pre>clawhub install gstack-openclaw-office-hours gstack-openclaw-ceo-review gstack-openclaw-investigate gstack-openclaw-retro</pre>
+      </div>
+    </div>
+
+    <div class="llm-section">
+      <div class="llm-head"><span class="llm-num">4</span><h3>Team mode (shared repos)</h3></div>
+      <div class="llm-body">
+        <p>Inside your repository:</p>
+<pre>(cd ~/.claude/skills/gstack &amp;&amp; ./setup --team) &amp;&amp; ~/.claude/skills/gstack/bin/gstack-team-init required &amp;&amp; git add .claude/ CLAUDE.md &amp;&amp; git commit -m "require gstack for AI-assisted work"</pre>
+      </div>
+    </div>
+
+    <div class="llm-section">
+      <div class="llm-head"><span class="llm-num">5</span><h3>Memory &amp; API keys</h3></div>
+      <div class="llm-body">
+        <p>Run <code class="inline">/setup-gbrain</code> to connect persistent memory via a local PGLite database or a Supabase Personal Access Token / Session Pooler URL.</p>
+        <p>For background runners or Conductor workspaces, set <code class="inline">GSTACK_ANTHROPIC_API_KEY</code> or <code class="inline">GSTACK_OPENAI_API_KEY</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section id="usecases" class="tab-panel">
+    <h2><span class="bar">/</span> Use Cases</h2>
+    <p class="sub">Used by tech leads, startup founders, and solo builders - including Alex Larcheveque (building radio.ai) and Andrej Karpathy - to orchestrate Claude Code into a virtual engineering team covering product planning, design reviews, code reviews, and automated browser QA.</p>
+
+    <div class="story">
+      <div class="metric">3 services,<br>60 days</div>
+      <p><strong>Garry Tan, part-time.</strong> Built 3 production services and 40+ features in 60 days, increasing his normalized coding output from 14 logical lines per day in 2013 to a 2026 run rate roughly 810× faster (~11,417 logical lines per day), shipping 10 to 50 PRs a day.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">1-2 → 22<br>commits/day</div>
+      <p><strong>Alex Larcheveque, building radio.ai.</strong> Scaled output from 1-2 commits per day to 22 commits in a single day using the gstack sprint workflow.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">~100ms<br>per command</div>
+      <p><strong>Browser QA at machine speed.</strong> gstack's native headless browser automation replaces the sluggish Claude-in-Chrome MCP, letting the agent verify its own work on the live app.</p>
+    </div>
+
+    <div class="watchout">
+      <ul>
+        <li><strong>Deep reviews take time.</strong> Interactive reviews like <code class="inline">/office-hours</code> or <code class="inline">/plan-devex-review</code> require answering dozens of forcing questions, which can feel time-consuming.</li>
+        <li><strong>Parallel sprints need orchestration.</strong> Managing multiple parallel agent sprints requires external workspace tools like Conductor to prevent context-switching chaos.</li>
+        <li><strong>Windows friction.</strong> Bun hits Playwright pipe transport bugs (bun#4253), forcing a fallback to Node.js and non-symlink file copies that require manual setup re-runs after every <code class="inline">git pull</code>.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 001 · Week of July 31, 2026</div>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=wkv2ifxPpF8" target="_blank" rel="noopener">"How to Make Claude Code Your AI Engineering Team" - Y Combinator</a></li>
+      <li><a href="https://www.youtube.com/watch?v=ARoSHjX2oOw" target="_blank" rel="noopener">"Gstack Full Tutorial" - Alex Larcheveque</a></li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to the hub</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

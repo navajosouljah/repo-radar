@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repo Radar · The 10 Best Repos This Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080b0f;--panel:#0e131a;--panel2:#131a23;--line:#1c2530;--text:#e9edf2;--dim:#8593a5;--radar:#4ade80;--radar-dim:rgba(74,222,128,.12);}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--radar);box-shadow:0 0 12px var(--radar);animation:ping 2s infinite}
+  @keyframes ping{0%,100%{opacity:1}50%{opacity:.45}}
+  nav .links a{color:var(--dim);text-decoration:none;font-size:13.5px;margin-left:24px}
+  nav .links a:hover{color:var(--text)}
+  .hero{padding:88px 0 64px;position:relative}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--radar);margin-bottom:20px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,62px);line-height:1.04;font-weight:700;max-width:780px;margin-bottom:22px}
+  h1 span{color:var(--radar)}
+  .hero p{font-size:18px;color:var(--dim);max-width:660px;margin-bottom:18px}
+  .why{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--radar);border-radius:12px;padding:24px 28px;max-width:760px;margin-top:30px}
+  .why h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:8px}
+  .why p{color:#bac3d0;font-size:14.5px;margin:0}
+  section{padding:56px 0}
+  .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--radar);margin-bottom:10px}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:700;margin-bottom:8px}
+  .sub{color:var(--dim);font-size:15.5px;margin-bottom:36px;max-width:640px}
+  .repo-list{display:flex;flex-direction:column;gap:14px}
+  .repo{display:grid;grid-template-columns:56px 1fr auto;gap:22px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 26px;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s}
+  .repo:hover{border-color:var(--radar);transform:translateX(4px)}
+  .rank{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--radar);opacity:.85}
+  .repo h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:3px}
+  .repo h3 .org{color:var(--dim);font-weight:500}
+  .repo .desc{color:var(--dim);font-size:13.5px;max-width:560px}
+  .stats{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);line-height:1.9;white-space:nowrap}
+  .stats .stars{color:var(--radar);font-weight:500}
+  .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--radar-dim);color:var(--radar);border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+  .listen-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .listen-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:14px}
+  audio{width:100%}
+  footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+  footer a{color:var(--radar);text-decoration:none}
+  @media(max-width:720px){.repo{grid-template-columns:40px 1fr}.stats{display:none}.rank{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="logo"><span class="dot"></span>Repo Radar</div>
+    <div class="links"><a href="#top10">This Week's 10</a><a href="#listen">Audio Digest</a><a href="archive.html">Archive</a></div>
+  </nav>
+
+  <div class="hero">
+    <div class="kicker">Edition 001 · Week of July 31, 2026</div>
+    <h1>The 10 open-source repos <span>actually worth</span> your week.</h1>
+    <p>Every week, thousands of repos fight for your attention. Ten earn it. We scan GitHub's fastest-rising open-source projects, verify them against real community usage - YouTube walkthroughs, honest reviews, star velocity, engagement - and build each one a full briefing: what problem it solves, how to set it up on your LLM of choice, and how real users are winning with it.</p>
+    <div class="why">
+      <h3>Why this exists</h3>
+      <p>Stars tell you a repo is popular. They don't tell you whether it will survive contact with your workflow. Repo Radar exists to close that gap: every repo here has a proven track record of measurably improving how people work - grounded in cited sources, not hype. New edition every week, so you stay current without living on GitHub Trending.</p>
+    </div>
+  </div>
+
+  <section id="top10">
+    <div class="label">This Week's Top 10</div>
+    <h2>Edition 001</h2>
+    <p class="sub">Ranked by community traction: star velocity, total stars, and depth of real-world coverage. Click any repo for its full briefing - highlights, the problem it solves, setup for your LLM, and real use cases.</p>
+    <div class="repo-list">
+      <a class="repo" href="editions/2026-07-31/ecc.html"><div class="rank">01</div><div><h3><span class="org">affaan-m/</span>ECC</h3><div class="desc">The agent harness performance optimization system - skills, instincts, memory, session intelligence for Claude Code.</div></div><div class="stats"><div class="stars">★ 237K</div><div>36K forks · JS · MIT</div></div></a>
+      <a class="repo" href="editions/2026-07-31/skills.html"><div class="rank">02</div><div><h3><span class="org">mattpocock/</span>skills<span class="badge">Just updated</span></h3><div class="desc">Skills for real engineers - a complete AI coding workflow straight from Matt Pocock's .agents directory.</div></div><div class="stats"><div class="stars">★ 198K</div><div>17K forks · Shell · MIT</div></div></a>
+      <a class="repo" href="editions/2026-07-31/gstack.html"><div class="rank">03</div><div><h3><span class="org">garrytan/</span>gstack</h3><div class="desc">Y Combinator CEO Garry Tan's exact Claude Code setup - 23 opinionated tools that act as CEO of your codebase.</div></div><div class="stats"><div class="stars">★ 126K</div><div>19K forks · TS · MIT</div></div></a>
+      <a class="repo" href="editions/2026-07-31/graphify.html"><div class="rank">04</div><div><h3><span class="org">Graphify-Labs/</span>graphify</h3><div class="desc">Turn any codebase - docs, SQL schemas, configs, PDFs - into a queryable knowledge graph for your agent.</div></div><div class="stats"><div class="stars">★ 100K</div><div>10K forks · Python · Apache-2.0</div></div></a>
+      <a class="repo" href="editions/2026-07-31/ponytail.html"><div class="rank">05</div><div><h3><span class="org">DietrichGebert/</span>ponytail<span class="badge">Fastest riser</span></h3><div class="desc">Makes your AI agent think like the laziest senior dev in the room - the best code is the code you don't write.</div></div><div class="stats"><div class="stars">★ 93K</div><div>5K forks · JS · MIT</div></div></a>
+      <a class="repo" href="editions/2026-07-31/odysseus.html"><div class="rank">06</div><div><h3><span class="org">odysseus-dev/</span>odysseus</h3><div class="desc">Self-hosted AI workspace - your models, your machine, your data.</div></div><div class="stats"><div class="stars">★ 84K</div><div>1K watchers · Python · AGPL-3.0</div></div></a>
+      <a class="repo" href="editions/2026-07-31/open-design.html"><div class="rank">07</div><div><h3><span class="org">nexu-io/</span>open-design</h3><div class="desc">The open-source Claude Design alternative - local-first desktop design app. Your canvas, your rules.</div></div><div class="stats"><div class="stars">★ 83K</div><div>10K forks · TS · Apache-2.0</div></div></a>
+      <a class="repo" href="editions/2026-07-31/paperclip.html"><div class="rank">08</div><div><h3><span class="org">paperclipai/</span>paperclip</h3><div class="desc">The open-source app everyone uses to manage agents at work - hire AI agents like employees.</div></div><div class="stats"><div class="stars">★ 75K</div><div>14K forks · TS · MIT</div></div></a>
+      <a class="repo" href="editions/2026-07-31/rtk.html"><div class="rank">09</div><div><h3><span class="org">rtk-ai/</span>rtk</h3><div class="desc">Rust CLI proxy that cuts LLM token consumption 60-90% on common dev commands.</div></div><div class="stats"><div class="stars">★ 74K</div><div>5K forks · Rust · Apache-2.0</div></div></a>
+      <a class="repo" href="editions/2026-07-31/mempalace.html"><div class="rank">10</div><div><h3><span class="org">MemPalace/</span>mempalace</h3><div class="desc">The best-benchmarked open-source AI memory system. And it's free.</div></div><div class="stats"><div class="stars">★ 58K</div><div>7K forks · Python · MIT</div></div></a>
+    </div>
+  </section>
+
+  <section id="listen">
+    <div class="label">Audio Digest</div>
+    <h2>All 10 repos, one listen</h2>
+    <p class="sub">The weekly NotebookLM deep dive covering every repo in this edition - what it does, why it's rising, and what users report.</p>
+    <div class="listen-card">
+      <h3>Repo Radar · Edition 001 Digest</h3>
+      <audio controls preload="metadata"><source src="editions/2026-07-31/audio-digest.mp3" type="audio/mpeg"></audio>
+    </div>
+  </section>
+
+  <footer>
+    Repo Radar · New edition weekly · Grounded in GitHub metrics + cited community sources via NotebookLM<br><br>
+    <a href="archive.html">All editions</a> · Metrics captured 2026-07-31 from the GitHub API - never estimated.
+  </footer>
+</div>
+</body>
+</html>
