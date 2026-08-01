@@ -385,6 +385,12 @@ clawhub install ponytail</pre>
       <p>In Renato Dinis's tests, an admin dashboard implementation went from <span class="metric-inline">464 lines to 101 lines</span> - 78% less code - and completed in <span class="metric-inline">27s vs 2m 4s</span> without the plugin.</p>
     </div>
 
+    <div class="case itw">
+      <h3>In the wild</h3>
+      <p>The JetBrains AI team ran ponytail against a no-skill baseline across 80 paired coding tasks: median <span class="metric-inline">15% less code</span> and <span class="metric-inline">10.3% lower cost</span> (p=0.004, the only statistically significant cost saving among the tools they tested), with quality held - far more modest than the README's headline numbers, and real (<a href="https://blog.jetbrains.com/ai/2026/07/ponytail-skill-claude-tested/">JetBrains</a>). On HN, kamphey says the 5 heuristics finally got agents to make "very simple deletions and text edits quicker" where plain prompting failed (<a href="https://news.ycombinator.com/item?id=48592765">comment</a>), and Neywiny runs it to tame local models that "love to put in everything the skill tells it not to" (<a href="https://news.ycombinator.com/item?id=48535478">comment</a>). The counterweight: Scott Logic CTO Colin Eberhardt's methodology critique (<a href="https://blog.scottlogic.com/2026/06/16/ponytail-yagni-and-the-problem-with-prompt-benchmarks.html">post</a>), and HN's donatj - "The repo is bigger than most of the code Ponytail would allow me to write" (<a href="https://news.ycombinator.com/item?id=48538006">comment</a>).</p>
+    </div>
+    <style>#usecases .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}#usecases .itw a:hover{opacity:.6}</style>
+
     <div class="watch">
       <h3>WATCH OUT FOR</h3>
       <ul>

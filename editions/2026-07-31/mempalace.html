@@ -458,6 +458,17 @@ mempalace mine ~/.claude/projects/ --mode convos</pre>
       </ul>
     </div>
 
+    <div class="exhibit itw">
+      <span class="plaque">Exhibit C · Independent Verification</span>
+      <ul class="inv">
+        <li><b>gizmax reproduced the benchmark</b> on a Mac Studio M2 Ultra while evaluating MemPalace for his Sandcastle orchestrator: raw mode hits 96.6% R@5 exactly - but he found raw mode never touches the palace architecture at all. He is integrating it anyway, as a <code>claude_history_search</code> MCP tool. <a href="https://github.com/MemPalace/mempalace/issues/39">Issue #39</a></li>
+        <li><b>danilchenko.dev's rerun:</b> "The 100% score was fake. 96.6% is real." The honest number still beats Mem0 (~85%) and Zep (~82%) at $0/month, and the wings/halls/rooms architecture tested 34% better than flat vector search. <a href="https://www.danilchenko.dev/posts/2026-04-10-mempalace-review-ai-memory-system-milla-jovovich/">Review</a></li>
+        <li><b>darkhanakh's audit (HN):</b> the 100% LongMemEval claim used targeted fixes for the 3 failing questions (98.4% without them); the 100% LoCoMo used top-k=50. <a href="https://news.ycombinator.com/item?id=47672792">Thread</a></li>
+        <li><b>Reebz (HN), adopting regardless:</b> "I'll be implementing mempalace for a few small agents to have memory portability that's managed locally."</li>
+      </ul>
+    </div>
+    <style>#usecases .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}#usecases .itw a:hover{opacity:.6}</style>
+
     <div class="warn">
       <span class="plaque">⚠ Watch Out For · Cracks in the Marble</span>
       <ul class="inv">

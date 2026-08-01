@@ -348,6 +348,17 @@ cp -R rules/common ~/.claude/rules/ecc/</pre>
       <p><strong>Security review that actually reviews.</strong> Dedicated security reviewer subagents successfully catch critical vulnerabilities - such as un-whitelisted OAuth redirect URLs - before code hits production.</p>
     </div>
 
+    <h3><span class="tick">&gt;</span>In the wild</h3>
+    <div class="card itw">
+      <ul>
+        <li><strong>An entire AI engineering team.</strong> Ikjot Juneja runs ECC's sub-agent roster - planner, architect, code reviewer, security reviewer, build-error resolver - so Claude Code delegates instead of doing everything in one context window. <a href="https://ikjotjuneja.substack.com/p/claude-code-ecc-an-entire-ai-engineering">Substack</a></li>
+        <li><strong>A cheatsheet born of daily use.</strong> Developer shimo4228 published a complete community reference covering ECC's agents, skills, and commands - the kind of artifact you only build after living in a tool. <a href="https://dev.to/shimo4228/everything-claude-code-ecc-complete-cheatsheet-24ok">dev.to</a></li>
+        <li><strong>The divided reception, documented.</strong> Ewan Mak's deep dive captures the recurring practitioner complaint: on small projects the full suite means paying token overhead for agent context you never use. <a href="https://medium.com/@tentenco/everything-claude-code-inside-the-82k-star-agent-harness-thats-dividing-the-developer-community-4fe54feccbc1">Medium</a></li>
+        <li><strong>An ecosystem grows around it.</strong> Third parties now publish ECC configuration wizards on MCP Market - tooling built to smooth ECC's own install path. <a href="https://mcpmarket.com/tools/skills/everything-claude-code-ecc-configuration-wizard">MCP Market</a></li>
+      </ul>
+    </div>
+    <style>#usecases .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}#usecases .itw a:hover{opacity:.6}</style>
+
     <div class="watchout">
       <ul>
         <li><strong>Strict modes slow you down on purpose.</strong> GateGuard and strict safety modes intentionally trade execution speed for correctness, which can feel restrictive during rapid prototyping.</li>

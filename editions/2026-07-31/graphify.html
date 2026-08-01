@@ -501,6 +501,12 @@ graphify install --platform &lt;platform_name&gt;</pre>
       <p>Graphify scored <span class="metric-inline">0.497 recall@10</span> on the LOCOMO benchmark (mem0 scored 0.048 on the same test) and <span class="metric-inline">76% QA accuracy</span> on LongMemEval-S.</p>
     </div>
 
+    <div class="case itw">
+      <h3>In the wild</h3>
+      <p>Mir Mursalin Ankur wired a <b>self-updating knowledge graph</b>: a PreToolUse hook refreshes the graph on every human edit, git commit, or agent edit, with an Obsidian vault as persistent memory (<a href="https://dev.to/mir_mursalin_ankur/graphify-code-review-graph-build-a-self-updating-knowledge-graph-for-claude-code-and-other-ai-j1m">dev.to</a>). Engr Mejba Ahmed ran it on three real codebases and found <span class="metric-inline">5-10x token reduction</span> on pure-code repos - flagging that the viral 71.5x figure leans on multimodal content inflating the baseline (<a href="https://www.mejba.me/blog/graphify-knowledge-graph-codebase-claude-code">writeup</a>). Kevin Kinnett's verdict is honestly mixed: "the structural insights were interesting," but the workflow felt rough enough that he didn't keep reaching for it daily (<a href="https://www.kevinkinnett.com/posts/graphify-review-claude-code-knowledge-graph/">review</a>). Level Up Coding independently stress-tested the "70x cheaper" claim - the real number depends on what you index (<a href="https://levelup.gitconnected.com/everyone-says-graphify-cut-their-ai-coding-bill-70x-752fc1e1f0d9">analysis</a>).</p>
+    </div>
+    <style>#usecases .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}#usecases .itw a:hover{opacity:.6}</style>
+
     <div class="watch">
       <h3>&#9888; Watch out for</h3>
       <ul>

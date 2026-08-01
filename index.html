@@ -39,6 +39,19 @@
   .stats{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);line-height:1.9;white-space:nowrap}
   .stats .stars{color:var(--radar);font-weight:500}
   .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--radar-dim);color:var(--radar);border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+  .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .cat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px 12px}
+  .cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .cat-head h3{font-family:'Space Grotesk',sans-serif;font-size:16.5px}
+  .cat-head .ctag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .crepo{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:11px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--text);transition:background .12s}
+  .crepo:hover{background:var(--radar-dim)}
+  .crepo .cname{font-size:14px;font-weight:600}
+  .crepo .cname .org{color:var(--dim);font-weight:400}
+  .crepo .cdesc{color:var(--dim);font-size:12.5px;line-height:1.45}
+  .crepo .cstat{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);text-align:right;line-height:1.7;white-space:nowrap}
+  .crepo .cstat .stars{color:var(--radar)}
+  @media(max-width:820px){.cat-grid{grid-template-columns:1fr}}
   .listen-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
   .listen-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:14px}
   audio{width:100%}
@@ -51,7 +64,7 @@
 <div class="wrap">
   <nav>
     <div class="logo"><span class="dot"></span>Repo Radar</div>
-    <div class="links"><a href="#top10">This Week's 10</a><a href="#listen">Audio Digest</a><a href="archive.html">Archive</a></div>
+    <div class="links"><a href="#top10">This Week's 10</a><a href="#categories">Categories</a><a href="#listen">Audio Digest</a><a href="archive.html">Archive</a></div>
   </nav>
 
   <div class="hero">
@@ -82,6 +95,92 @@
     </div>
   </section>
 
+  <section id="categories">
+    <div class="label">Category Radar</div>
+    <h2>Top 3 by category</h2>
+    <p class="sub">The best of every lane, not just the loudest. Each pick is verified against the live GitHub API and required to have shipped commits in the last 30 days - up to date or it doesn't make the board. Rows link straight to GitHub.</p>
+    <div class="cat-grid">
+
+      <div class="cat">
+        <div class="cat-head"><h3>Development &amp; Coding Agents</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/anomalyco/opencode"><div><div class="cname"><span class="org">anomalyco/</span>opencode</div><div class="cdesc">The open-source coding agent, terminal-native.</div></div><div class="cstat"><div class="stars">★ 192K</div><div>TS · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/openai/codex"><div><div class="cname"><span class="org">openai/</span>codex</div><div class="cdesc">OpenAI's lightweight coding agent that runs in your terminal.</div></div><div class="cstat"><div class="stars">★ 103K</div><div>Rust · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/earendil-works/pi"><div><div class="cname"><span class="org">earendil-works/</span>pi</div><div class="cdesc">AI agent toolkit: unified LLM API, agent loop, TUI, coding CLI.</div></div><div class="cstat"><div class="stars">★ 82K</div><div>TS · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>AI Updates</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/antirez/ds4"><div><div class="cname"><span class="org">antirez/</span>ds4</div><div class="cdesc">Pure-C local inference for the new DeepSeek 4 open models, by the creator of Redis.</div></div><div class="cstat"><div class="stars">★ 20K</div><div>C · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/Michael-A-Kuykendall/shimmy"><div><div class="cname"><span class="org">Michael-A-Kuykendall/</span>shimmy</div><div class="cdesc">Single-binary Rust WebGPU inference engine - v2.4.0 shipped this week.</div></div><div class="cstat"><div class="stars">★ 5.7K</div><div>Rust · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/drumih/turbo-fieldfare"><div><div class="cname"><span class="org">drumih/</span>turbo-fieldfare</div><div class="cdesc">Runs Gemma 4 26B in ~2GB of RAM on any M-series Mac - 3.5K stars in 2 weeks.</div></div><div class="cstat"><div class="stars">★ 3.6K</div><div>Swift · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Automation &amp; Agent Orchestration</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/bytedance/deer-flow"><div><div class="cname"><span class="org">bytedance/</span>deer-flow</div><div class="cdesc">ByteDance's open long-horizon SuperAgent harness - researches, codes, creates.</div></div><div class="cstat"><div class="stars">★ 79K</div><div>Python · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/ruvnet/ruflo"><div><div class="cname"><span class="org">ruvnet/</span>ruflo</div><div class="cdesc">The de facto standard for deploying and coordinating multi-agent swarms.</div></div><div class="cstat"><div class="stars">★ 67K</div><div>TS · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/HKUDS/nanobot"><div><div class="cname"><span class="org">HKUDS/</span>nanobot</div><div class="cdesc">Ultra-light self-hosted personal AI agent framework - 46K stars in 6 months.</div></div><div class="cstat"><div class="stars">★ 47K</div><div>Python · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Research &amp; Knowledge</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/siyuan-note/siyuan"><div><div class="cname"><span class="org">siyuan-note/</span>siyuan</div><div class="cdesc">Privacy-first, self-hosted personal knowledge management.</div></div><div class="cstat"><div class="stars">★ 46K</div><div>TS · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/HKUDS/RAG-Anything"><div><div class="cname"><span class="org">HKUDS/</span>RAG-Anything</div><div class="cdesc">All-in-one RAG framework - text, tables, images, equations, one pipeline.</div></div><div class="cstat"><div class="stars">★ 23K</div><div>Python · Jul 20</div></div></a>
+        <a class="crepo" href="https://github.com/AgriciDaniel/claude-obsidian"><div><div class="cname"><span class="org">AgriciDaniel/</span>claude-obsidian</div><div class="cdesc">Self-organizing AI second brain for Obsidian + Claude Code.</div></div><div class="cstat"><div class="stars">★ 10K</div><div>Python · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Web Scraping &amp; Data Extraction</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/D4Vinci/Scrapling"><div><div class="cname"><span class="org">D4Vinci/</span>Scrapling</div><div class="cdesc">Adaptive scraping framework - from a single request to a full-scale crawl.</div></div><div class="cstat"><div class="stars">★ 72K</div><div>Python · Jul 30</div></div></a>
+        <a class="crepo" href="https://github.com/vercel-labs/agent-browser"><div><div class="cname"><span class="org">vercel-labs/</span>agent-browser</div><div class="cdesc">Browser automation CLI built for AI agents.</div></div><div class="cstat"><div class="stars">★ 40K</div><div>Rust · Jul 31</div></div></a>
+        <a class="crepo" href="https://github.com/apify/crawlee"><div><div class="cname"><span class="org">apify/</span>crawlee</div><div class="cdesc">Reliable web scraping and browser automation for Node.js.</div></div><div class="cstat"><div class="stars">★ 25K</div><div>TS · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Website Builders</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/onlook-dev/onlook"><div><div class="cname"><span class="org">onlook-dev/</span>onlook</div><div class="cdesc">The Cursor for designers - visually build, style, and edit your React app.</div></div><div class="cstat"><div class="stars">★ 26K</div><div>TS · Jul 22</div></div></a>
+        <a class="crepo" href="https://github.com/GrapesJS/grapesjs"><div><div class="cname"><span class="org">GrapesJS/</span>grapesjs</div><div class="cdesc">The classic embeddable drag-and-drop web builder framework.</div></div><div class="cstat"><div class="stars">★ 26K</div><div>TS · Jul 31</div></div></a>
+        <a class="crepo" href="https://github.com/webstudio-is/webstudio"><div><div class="cname"><span class="org">webstudio-is/</span>webstudio</div><div class="cdesc">Open-source visual builder - the Webflow alternative.</div></div><div class="cstat"><div class="stars">★ 8.8K</div><div>TS · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Design &amp; Branding</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/excalidraw/excalidraw"><div><div class="cname"><span class="org">excalidraw/</span>excalidraw</div><div class="cdesc">The virtual whiteboard for hand-drawn style diagrams.</div></div><div class="cstat"><div class="stars">★ 129K</div><div>TS · Jul 31</div></div></a>
+        <a class="crepo" href="https://github.com/penpot/penpot"><div><div class="cname"><span class="org">penpot/</span>penpot</div><div class="cdesc">Open-source design and prototyping platform for teams.</div></div><div class="cstat"><div class="stars">★ 58K</div><div>Clojure · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/ZSeven-W/openpencil"><div><div class="cname"><span class="org">ZSeven-W/</span>openpencil</div><div class="cdesc">First open AI-native vector design tool with concurrent agent teams.</div></div><div class="cstat"><div class="stars">★ 4.5K</div><div>Rust · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Build &amp; DevOps</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/coollabsio/coolify"><div><div class="cname"><span class="org">coollabsio/</span>coolify</div><div class="cdesc">Self-hostable Heroku / Netlify / Vercel alternative.</div></div><div class="cstat"><div class="stars">★ 60K</div><div>PHP · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/Dokploy/dokploy"><div><div class="cname"><span class="org">Dokploy/</span>dokploy</div><div class="cdesc">Self-hosted PaaS in a box - deploy anything to your own servers.</div></div><div class="cstat"><div class="stars">★ 36K</div><div>TS · Jul 31</div></div></a>
+        <a class="crepo" href="https://github.com/dagger/dagger"><div><div class="cname"><span class="org">dagger/</span>dagger</div><div class="cdesc">Portable, programmable CI/CD pipelines as code.</div></div><div class="cstat"><div class="stars">★ 16K</div><div>Go · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Sales &amp; CRM</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/twentyhq/twenty"><div><div class="cname"><span class="org">twentyhq/</span>twenty</div><div class="cdesc">The open alternative to Salesforce, designed for AI.</div></div><div class="cstat"><div class="stars">★ 54K</div><div>TS · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/frappe/erpnext"><div><div class="cname"><span class="org">frappe/</span>erpnext</div><div class="cdesc">Free open-source ERP with a full CRM and sales pipeline inside.</div></div><div class="cstat"><div class="stars">★ 37K</div><div>Python · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/krayin/laravel-crm"><div><div class="cname"><span class="org">krayin/</span>laravel-crm</div><div class="cdesc">Open Laravel CRM covering the complete customer lifecycle.</div></div><div class="cstat"><div class="stars">★ 24K</div><div>PHP · Jul 31</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Finance</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/TauricResearch/TradingAgents"><div><div class="cname"><span class="org">TauricResearch/</span>TradingAgents</div><div class="cdesc">Multi-agent LLM financial trading framework.</div></div><div class="cstat"><div class="stars">★ 95K</div><div>Python · Jul 18</div></div></a>
+        <a class="crepo" href="https://github.com/OpenBB-finance/OpenBB"><div><div class="cname"><span class="org">OpenBB-finance/</span>OpenBB</div><div class="cdesc">The open-source investment research terminal.</div></div><div class="cstat"><div class="stars">★ 71K</div><div>Python · Jul 30</div></div></a>
+        <a class="crepo" href="https://github.com/freqtrade/freqtrade"><div><div class="cname"><span class="org">freqtrade/</span>freqtrade</div><div class="cdesc">The free, open-source crypto trading bot.</div></div><div class="cstat"><div class="stars">★ 53K</div><div>Python · Aug 1</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Security &amp; Privacy</h3><span class="ctag">verified 08-01</span></div>
+        <a class="crepo" href="https://github.com/usestrix/strix"><div><div class="cname"><span class="org">usestrix/</span>strix</div><div class="cdesc">AI pentesting agent - finds, validates, and fixes vulnerabilities autonomously.</div></div><div class="cstat"><div class="stars">★ 46K</div><div>Python · Aug 1</div></div></a>
+        <a class="crepo" href="https://github.com/projectdiscovery/nuclei"><div><div class="cname"><span class="org">projectdiscovery/</span>nuclei</div><div class="cdesc">Template-driven vulnerability scanner - the backbone of open appsec.</div></div><div class="cstat"><div class="stars">★ 30K</div><div>Go · Jul 31</div></div></a>
+        <a class="crepo" href="https://github.com/gitleaks/gitleaks"><div><div class="cname"><span class="org">gitleaks/</span>gitleaks</div><div class="cdesc">The standard for catching hardcoded secrets, keys, and tokens in git repos.</div></div><div class="cstat"><div class="stars">★ 28K</div><div>Go · Jul 29</div></div></a>
+      </div>
+
+    </div>
+  </section>
+
   <section id="listen">
     <div class="label">Audio Digest</div>
     <h2>All 10 repos, one listen</h2>
@@ -94,7 +193,7 @@
 
   <footer>
     Repo Radar · New edition weekly · Grounded in GitHub metrics + cited community sources via NotebookLM<br><br>
-    <a href="archive.html">All editions</a> · Metrics captured 2026-07-31 from the GitHub API - never estimated.
+    <a href="archive.html">All editions</a> · Top 10 metrics captured 2026-07-31, category picks verified 2026-08-01 - all from the GitHub API, never estimated.
   </footer>
 </div>
 </body>
