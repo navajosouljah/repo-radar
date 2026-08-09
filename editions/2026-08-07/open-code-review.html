@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>open-code-review - AI Code Review at Alibaba Scale | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0d0b;
+    --panel:#171511;
+    --panel2:#1e1b15;
+    --line:#2c2820;
+    --amber:#ffb02e;
+    --ember:#ff6b35;
+    --text:#ece7dd;
+    --muted:#9a927f;
+    --green:#8fe388;
+    --sans:'Sora',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65}
+  a{color:var(--amber);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* topbar */
+  .topbar{border-bottom:1px solid var(--line);background:rgba(14,13,11,.92);backdrop-filter:blur(8px)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+  .radar-link{font-weight:700;font-size:14px;color:var(--text);letter-spacing:.02em}
+  .radar-link:hover{color:var(--amber);text-decoration:none}
+  .gh-pill{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--bg);background:var(--amber);padding:9px 20px;border-radius:999px}
+  .gh-pill:hover{background:var(--ember);text-decoration:none;color:var(--bg)}
+
+  /* hero */
+  .hero{padding:80px 0 56px;background:radial-gradient(ellipse 80% 60% at 70% 0%,rgba(255,176,46,.09),transparent 60%);border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:6px 16px;margin-bottom:26px}
+  h1{font-size:clamp(38px,7.5vw,84px);font-weight:800;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:600}
+  h1 .slash{color:var(--ember)}
+  .tagline{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:700px;margin:22px 0 40px;font-weight:400}
+  .tagline strong{color:var(--text)}
+  .chips{display:flex;flex-wrap:wrap;gap:14px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 22px;min-width:140px}
+  .chip .cv{font-weight:800;font-size:24px;line-height:1;color:var(--text)}
+  .chip .cv.a{color:var(--amber)}
+  .chip .ck{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:7px}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tabnav .wrap{display:flex;overflow-x:auto;gap:4px}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:14px;background:transparent;border:none;color:var(--muted);padding:18px 22px;cursor:pointer;white-space:nowrap;position:relative}
+  .tab-btn:hover{color:var(--text)}
+  .tab-btn.active{color:var(--amber)}
+  .tab-btn.active::after{content:"";position:absolute;bottom:0;left:18px;right:18px;height:3px;background:var(--amber);border-radius:3px 3px 0 0}
+
+  /* panels */
+  .tab-panel{display:none;padding:56px 0 72px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  h2 .tick{color:var(--ember)}
+  .sub{color:var(--muted);margin-bottom:44px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
+
+  /* highlights */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px}
+  .bignum{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 24px}
+  .bignum .n{font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--amber)}
+  .bignum:nth-child(even) .n{color:var(--text)}
+  .bignum .l{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;margin-top:12px;line-height:1.5}
+
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px}
+  .feat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px}
+  .feat h4{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--text)}
+  .feat h4::before{content:"◆ ";color:var(--ember);font-size:12px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p strong{color:var(--text)}
+
+  .best-feature{border:1px solid var(--amber);border-radius:16px;padding:38px;position:relative;background:linear-gradient(135deg,rgba(255,176,46,.07),rgba(255,107,53,.04))}
+  .best-feature .bf-tag{position:absolute;top:-13px;left:26px;background:var(--amber);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px;border-radius:999px}
+  .best-feature h3{font-size:22px;margin-bottom:10px}
+  .best-feature p{color:var(--muted);font-size:15.5px;max-width:780px}
+  .best-feature p strong{color:var(--text)}
+
+  /* problem */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px}
+  .ba{border-radius:16px;padding:32px}
+  .ba.before{background:var(--panel);border:1px dashed var(--line)}
+  .ba.after{background:var(--panel2);border:1px solid var(--amber)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--muted)}
+  .ba.after .ba-tag{color:var(--amber)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--text)}
+  .rootcause{background:var(--panel);border-left:4px solid var(--ember);border-radius:0 12px 12px 0;padding:24px 28px}
+  .rootcause p{color:var(--muted);font-size:15px}
+  .rootcause p strong{color:var(--text)}
+
+  /* setup */
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;background:var(--panel2)}
+  .step-num{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--bg);background:var(--amber);width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16.5px}
+  .step-body{padding:22px 26px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--text)}
+  pre{background:#080705;border:1px solid var(--line);color:var(--green);padding:16px 20px;border-radius:10px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8}
+  code.inline{font-family:var(--mono);font-size:.88em;color:var(--amber);background:var(--panel2);padding:2px 8px;border-radius:6px;border:1px solid var(--line)}
+
+  /* real-world use */
+  .story{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:18px;display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center}
+  .story .metric{font-size:30px;font-weight:800;color:var(--amber);line-height:1.1;letter-spacing:-.02em}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--text)}
+
+  /* watchouts */
+  .watchout{border:2px dashed var(--ember);border-radius:16px;background:rgba(255,107,53,.05);padding:34px;position:relative}
+  .watchout::before{content:"WATCH OUT FOR";position:absolute;top:-13px;left:26px;background:var(--bg);color:var(--ember);font-family:var(--mono);font-size:11px;letter-spacing:.22em;padding:4px 14px}
+  .watchout ul{list-style:none;margin-top:6px}
+  .watchout li{padding:13px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--text)}
+  .watchout li::before{content:"⚠ ";color:var(--ember)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 64px;margin-top:20px;background:var(--panel)}
+  footer .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"▸ ";color:var(--amber)}
+  .backhub{display:inline-block;margin-top:26px;font-weight:600;font-size:14px;background:var(--amber);color:var(--bg);padding:12px 24px;border-radius:999px}
+  .backhub:hover{background:var(--ember);text-decoration:none;color:var(--bg)}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+    .ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">← Repo Radar</a>
+    <a class="gh-pill" href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">New Entry · Battle-Tested at Alibaba Scale</span>
+    <h1><span class="owner">alibaba<span class="slash">/</span></span>open-code-review</h1>
+    <p class="tagline">A hybrid AI code review CLI that pairs <strong>deterministic engineering pipelines</strong> with an LLM agent - the exact tool that served tens of thousands of Alibaba developers internally for two years before going open source.</p>
+    <div class="chips">
+      <div class="chip"><div class="cv a">19,567</div><div class="ck">Stars</div></div>
+      <div class="chip"><div class="cv">New</div><div class="ck">This Week</div></div>
+      <div class="chip"><div class="cv a">Go 66.8%</div><div class="ck">+ TS 16.4%</div></div>
+      <div class="chip"><div class="cv">Apache-2.0</div><div class="ck">License</div></div>
+      <div class="chip"><div class="cv a">1.4K</div><div class="ck">Forks</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Real-World Use</button>
+    <button class="tab-btn" data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2><span class="tick">//</span> Highlights</h2>
+    <p class="sub">Not a demo, not a side project - the literal production tool Alibaba ran internally, now Apache-2.0 in the open.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n">2 years</div><div class="l">As Alibaba Group's official internal AI code review assistant</div></div>
+      <div class="bignum"><div class="n">Millions</div><div class="l">Of code defects identified on real production code</div></div>
+      <div class="bignum"><div class="n">~11%</div><div class="l">Token consumption vs. general-purpose agents (roughly 1/9th)</div></div>
+      <div class="bignum"><div class="n">10+</div><div class="l">Languages in the built-in ruleset: Java, TS, Go, Python, Kotlin, C++, C</div></div>
+      <div class="bignum"><div class="n">1,505</div><div class="l">Ground-truth issues in the 50-repo benchmark, validated by 80+ senior engineers</div></div>
+      <div class="bignum"><div class="n">5 vendors</div><div class="l">OpenAI, Anthropic, DashScope, DeepSeek, MiniMax - no lock-in</div></div>
+    </div>
+
+    <h3>The feature set</h3>
+    <div class="feat-grid">
+      <div class="feat"><h4>Deterministic smart file bundling</h4><p>Divide and conquer instead of one giant diff. Related files (like <strong>message_en.properties</strong> and <strong>message_zh.properties</strong>) get grouped into a single review unit, each running as a sub-agent with isolated context for concurrent, predictable scaling.</p></div>
+      <div class="feat"><h4>Rules from a real incident database</h4><p>Dedicated detection rules for NPE, thread-safety hazards (race conditions, missing locks, shared state mutations), XSS, and SQL injection - derived from <strong>Alibaba's internal incident data</strong>, not a generic security checklist.</p></div>
+      <div class="feat"><h4>Four-layer rule priority chain</h4><p>First match wins: CLI override flags, then project config in the repo, then global personal config, then embedded defaults. Granular include/exclude filtering - even force-reviewing test files that are excluded by default to save tokens.</p></div>
+      <div class="feat"><h4>Scenario-tuned prompts and toolset</h4><p>Prompt templates optimized to cut token overhead, plus a distilled toolset built from analysis of <strong>large-scale production tool-call traces</strong> - noticeably more stable execution than a generic agent toolkit.</p></div>
+      <div class="feat"><h4>Local web UI via ocrui</h4><p>A TypeScript-based local dashboard to browse, replay, and analyze past review sessions - filter findings by repo, severity, rule, or model, with <strong>no cloud upload</strong>.</p></div>
+      <div class="feat"><h4>Every workflow hook you need</h4><p>Global CLI, delegation inside active Claude Code or Cursor sessions as portable skills, and direct CI/CD integration with <strong>GitHub Actions, GitLab CI, GitFlic, and Gerrit</strong>.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Deterministic comment positioning - position drift, eliminated</h3>
+      <p>An independent positioning and reflection module calculates exact line placements <strong>programmatically instead of letting the model guess</strong>. LLMs are bad at precise counting; OCR simply never asks them to count. Every finding lands on the exact line in the exact file it is about.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2><span class="tick">//</span> The Problem</h2>
+    <p class="sub">General-purpose agents are talented reviewers with three chronic failure modes on large changesets.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before · pure LLM reviewers</div>
+        <p><strong>Incomplete coverage.</strong> On extensive pull requests, general-purpose agents cut corners - selectively reviewing some files while silently skipping others.</p>
+        <p><strong>Position drift.</strong> LLMs struggle with precise counting, so they drift or hallucinate line numbers, placing otherwise valid feedback on completely wrong lines.</p>
+        <p><strong>Unstable quality.</strong> Purely natural-language-driven skills are near impossible to debug - a subtle prompt tweak can make review quality fluctuate wildly.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After · the hybrid edge</div>
+        <p><strong>Deterministic rails.</strong> Engineering logic handles what must not go wrong: precise file selection, smart bundling, fine-grained rule matching, and independent comment positioning.</p>
+        <p><strong>The LLM does what it does best.</strong> Dynamic code analysis, scenario-tuned reviews, and codebase context retrieval - the judgment calls, not the counting.</p>
+        <p><strong>Drift is gone by design.</strong> Exact line placements are computed programmatically, so findings never land on the wrong line.</p>
+      </div>
+    </div>
+
+    <div class="rootcause">
+      <p><strong>The root cause:</strong> a purely language-driven setup lacks hard constraints. LLMs are excellent at dynamic reasoning but fundamentally the wrong tool for deterministic counting and routing. OCR splits the labor accordingly.</p>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2><span class="tick">//</span> Setup</h2>
+    <p class="sub">One npm install, an interactive config, and you are reviewing. Requires Git 2.41 or newer for diff generation, code search, and repository operations.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install globally</h3></div>
+      <div class="step-body">
+<pre>npm install -g @alibaba-group/open-code-review</pre>
+        <p>Cross-platform binaries are also in the GitHub Releases tab - macOS, Linux, and Windows, on both x86_64 and ARM64.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your LLM</h3></div>
+      <div class="step-body">
+<pre>ocr config provider   # guided provider selection + API key entry
+ocr config model      # picks the active model, auto-tests connectivity</pre>
+        <p>Or set environment variables like <code class="inline">OCR_MODEL</code> and <code class="inline">OCR_API_KEY</code> manually. Works with OpenAI, Anthropic, DashScope, DeepSeek, and MiniMax.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Run reviews</h3></div>
+      <div class="step-body">
+<pre>ocr review                                  # workspace mode: staged + unstaged + untracked
+ocr review --from main --to feature-branch  # branch range, merge-base semantics
+ocr review --commit abc123                  # single commit
+ocr review --from main --to feature-branch --resume &lt;session-id&gt;</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Scan, delegate, inspect</h3></div>
+      <div class="step-body">
+<pre>ocr scan --path internal/agent    # full-file audit, no Git history needed
+ocr delegate preview              # your active coding agent runs the review
+ocr delegate rule src/main.go src/handler.go
+ocr session comments --severity critical,high --json &lt;session-id&gt;</pre>
+        <p>Delegation mode uses your active agent's own LLM context - <strong>no OCR keys required</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>Launch the local dashboard</h3></div>
+      <div class="step-body">
+<pre>ocrui</pre>
+        <p>Starts the local session viewer - browse, replay, and analyze past reviews, filtered by repository, severity, rule, or model.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section id="usecases" class="tab-panel">
+    <h2><span class="tick">//</span> Real-World Use</h2>
+    <p class="sub">Two years of production duty at one of the world's largest engineering organizations, then a rigorous public benchmark.</p>
+
+    <div class="story">
+      <div class="metric">Tens of<br>thousands</div>
+      <p><strong>Alibaba's daily driver.</strong> OCR served as Alibaba Group's official internal AI code review assistant for two years, supporting tens of thousands of developers and identifying millions of code defects on real production code before open sourcing.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">50 repos ·<br>200 PRs</div>
+      <p><strong>A real-world benchmark, not a toy.</strong> Built from 50 popular open-source repositories, 200 real pull requests, and 10 programming languages - cross-validated by more than 80 senior engineers into 1,505 annotated ground-truth issues.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">1/9th<br>tokens</div>
+      <p><strong>Versus Claude Code and other general agents:</strong> significantly higher precision and F1 with far fewer false alarms, roughly 11% of the token consumption, and lower pipeline latency - reviews finish faster and block CI less.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">CI gate on<br>every push</div>
+      <p><strong>The automated gatekeeper pattern.</strong> Drop it into GitHub Actions or GitLab CI, output JSON, handle fork PRs via commit SHAs - line-level findings land on every pull request with the rule name and suggested fix attached.</p>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section id="watchouts" class="tab-panel">
+    <h2><span class="tick">//</span> Watchouts</h2>
+    <p class="sub">The honest trade-offs. Most are deliberate design choices, but you should know them before adopting.</p>
+
+    <div class="watchout">
+      <ul>
+        <li><strong>Deliberately lower recall.</strong> The pipeline prioritizes precision over noise to prevent alert fatigue - it may miss minor style issues or edge-case defects that a noisier, purely language-driven reviewer would flag.</li>
+        <li><strong>Rule-engine rigidity.</strong> Quality depends on template-engine-based rule matching. If you want open-ended, free-flowing architectural critiques rather than structured, rule-conforming feedback, the framework will feel restrictive.</li>
+        <li><strong>Local-first UI, no central rollup.</strong> Telemetry, session histories, and dashboards all run locally via ocrui. Enterprises wanting aggregated team-wide metrics or centralized reporting will need extra integration work.</li>
+        <li><strong>Hard Git version floor.</strong> Requires Git 2.41 or newer. Legacy Git environments can fail on diff extraction and code search.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 002 · Week of August 7, 2026</div>
+    <ul>
+      <li>alibaba/open-code-review README and repository (GitHub)</li>
+      <li>Open Code Review video walkthrough transcripts (architecture + customization deep-dives)</li>
+      <li>NotebookLM research briefing, August 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to Edition 002</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

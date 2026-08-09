@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edition 002 · August 7, 2026 · Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080b0f;--panel:#0e131a;--line:#1c2530;--text:#e9edf2;--dim:#8593a5;--radar:#4ade80;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 80px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:56px}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--radar);box-shadow:0 0 12px var(--radar)}
+  nav .links a{color:var(--dim);text-decoration:none;font-size:13.5px;margin-left:24px}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--radar);margin-bottom:16px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,44px);font-weight:700;margin-bottom:40px}
+  .repo{display:grid;grid-template-columns:48px 1fr auto;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;text-decoration:none;color:var(--text);margin-bottom:12px;transition:border-color .15s}
+  .repo:hover{border-color:var(--radar)}
+  .rank{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--radar)}
+  .repo h2{font-family:'Space Grotesk',sans-serif;font-size:16.5px}
+  .repo h2 span{color:var(--dim);font-weight:500}
+  .stars{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--radar)}
+  .listen{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:36px}
+  .listen h2{font-family:'Space Grotesk',sans-serif;font-size:17px;margin-bottom:12px}
+  audio{width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="../../index.html"><span class="dot"></span>Repo Radar</a>
+    <div class="links"><a href="../../index.html">Current Edition</a><a href="../../archive.html">Archive</a></div>
+  </nav>
+  <div class="kicker">Edition 002 · Week of August 7, 2026</div>
+  <h1>The 10 repos of the week</h1>
+  <a class="repo" href="pi.html"><div class="rank">01</div><h2><span>earendil-works/</span>pi</h2><div class="stars">★ 85K</div></a>
+  <a class="repo" href="strix.html"><div class="rank">02</div><h2><span>usestrix/</span>strix</h2><div class="stars">★ 50K</div></a>
+  <a class="repo" href="codexplusplus.html"><div class="rank">03</div><h2><span>BigPizzaV3/</span>CodexPlusPlus</h2><div class="stars">★ 28K</div></a>
+  <a class="repo" href="grok-build.html"><div class="rank">04</div><h2><span>xai-org/</span>grok-build</h2><div class="stars">★ 24K</div></a>
+  <a class="repo" href="colibri.html"><div class="rank">05</div><h2><span>JustVugg/</span>colibri</h2><div class="stars">★ 23K</div></a>
+  <a class="repo" href="ds4.html"><div class="rank">06</div><h2><span>antirez/</span>ds4</h2><div class="stars">★ 21K</div></a>
+  <a class="repo" href="open-code-review.html"><div class="rank">07</div><h2><span>alibaba/</span>open-code-review</h2><div class="stars">★ 20K</div></a>
+  <a class="repo" href="skillopt.html"><div class="rank">08</div><h2><span>microsoft/</span>SkillOpt</h2><div class="stars">★ 16K</div></a>
+  <a class="repo" href="openwiki.html"><div class="rank">09</div><h2><span>langchain-ai/</span>openwiki</h2><div class="stars">★ 15K</div></a>
+  <a class="repo" href="turbo-fieldfare.html"><div class="rank">10</div><h2><span>drumih/</span>turbo-fieldfare</h2><div class="stars">★ 5.3K</div></a>
+  <div class="listen">
+    <h2>Edition 002 Audio Digest</h2>
+    <audio controls preload="metadata"><source src="audio-digest.mp3" type="audio/mpeg"></audio>
+  </div>
+</div>
+</body>
+</html>

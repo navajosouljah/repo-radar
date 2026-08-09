@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>colibri - frontier models on the laptop in your drawer | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07120e;
+    --panel:#0c1d17;
+    --line:#1c352b;
+    --ink:#e9f5ef;
+    --muted:#8aa89b;
+    --aqua:#3fe8ac;
+    --sky:#5ac8ff;
+    --grad:linear-gradient(100deg,#3fe8ac,#5ac8ff);
+    --warn:#ffb454;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(63,232,172,.08), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(90,200,255,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Outfit',sans-serif;
+    font-weight:300;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--aqua);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  code,pre{font-family:'JetBrains Mono',monospace;}
+  code{background:rgba(63,232,172,.09);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:.85em;color:#aef2d6;}
+  b,strong{font-weight:600;color:var(--ink);}
+  .wrap{max-width:940px;margin:0 auto;padding:0 26px;}
+
+  /* topbar */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding-top:26px;}
+  .topbar .back{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--muted);letter-spacing:.04em;}
+  .topbar .back:hover{color:var(--aqua);text-decoration:none;}
+  .gh-pill{
+    font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.05em;
+    border:1px solid var(--line);border-radius:999px;padding:8px 18px;color:var(--ink);
+    background:rgba(63,232,172,.06);transition:.2s;
+  }
+  .gh-pill:hover{border-color:var(--aqua);text-decoration:none;box-shadow:0 0 24px rgba(63,232,172,.18);}
+
+  /* hero */
+  .hero{padding:96px 0 64px;}
+  .kicker{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    letter-spacing:.3em;text-transform:uppercase;color:#062018;
+    background:var(--grad);border-radius:3px;padding:6px 14px;margin-bottom:34px;font-weight:500;
+  }
+  h1.repo{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(3rem,9vw,5.4rem);line-height:1.02;letter-spacing:-.02em;
+    margin-bottom:8px;
+  }
+  h1.repo .owner{display:block;font-size:.32em;font-weight:400;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;margin-bottom:14px;}
+  h1.repo .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .tagline{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.6;max-width:700px;color:#c4dcd1;margin:26px 0 44px;}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;}
+  .chip{
+    border:1px solid var(--line);border-radius:10px;background:var(--panel);
+    padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);
+  }
+  .chip b{display:block;font-size:1.25rem;color:var(--ink);font-weight:500;letter-spacing:-.02em;}
+  .chip.hot b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  /* tabs */
+  .tabnav{position:sticky;top:0;z-index:20;background:rgba(7,18,14,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .tabnav-inner{max-width:940px;margin:0 auto;padding:0 26px;display:flex;gap:8px;overflow-x:auto;}
+  .tabnav button{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:'Outfit',sans-serif;font-weight:500;font-size:.88rem;color:var(--muted);
+    padding:16px 16px 14px;border-bottom:2px solid transparent;white-space:nowrap;
+  }
+  .tabnav button:hover{color:var(--ink);}
+  .tabnav button.active{color:var(--aqua);border-bottom-color:var(--aqua);}
+
+  main{padding:70px 0 40px;}
+  .panel{display:none;}
+  .panel.active{display:block;animation:rise .35s ease;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.01em;margin-bottom:14px;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.25rem;margin:0 0 10px;}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:680px;margin-bottom:48px;}
+  p{margin-bottom:18px;}
+  ul{margin:0 0 22px 20px;}
+  li{margin-bottom:10px;}
+
+  /* big numbers */
+  .bignums{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:0 0 54px;}
+  .bn{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px 22px;}
+  .bn .num{font-family:'Fraunces',serif;font-weight:700;font-size:2.3rem;letter-spacing:-.02em;line-height:1.05;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .bn .lbl{font-size:.85rem;color:var(--muted);margin-top:8px;line-height:1.55;}
+
+  /* feature cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:54px;}
+  .card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:26px 24px;}
+  .card h3{font-size:1.1rem;}
+  .card p{color:#b6cfc4;font-size:.94rem;margin:0;}
+
+  .callout{
+    border:1px solid rgba(63,232,172,.4);border-radius:16px;
+    background:linear-gradient(160deg,rgba(63,232,172,.09),rgba(90,200,255,.05));
+    padding:36px 34px;margin-bottom:20px;
+  }
+  .callout .tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--aqua);margin-bottom:14px;}
+  .callout h3{font-size:1.45rem;}
+  .callout p{margin:0;color:#c4dcd1;}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:44px 0;}
+  .ba-col{border:1px solid var(--line);border-radius:14px;padding:28px 26px;background:var(--panel);}
+  .ba-col.after{border-color:rgba(63,232,172,.4);background:linear-gradient(170deg,rgba(63,232,172,.07),transparent 70%);}
+  .ba-col .lbl{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px;}
+  .ba-col.before .lbl{color:var(--muted);}
+  .ba-col.after .lbl{color:var(--aqua);}
+  .ba-col ul{margin-left:16px;}
+  .ba-col li{font-size:.94rem;color:#b6cfc4;}
+
+  /* setup */
+  .step{display:flex;gap:20px;margin-bottom:38px;}
+  .step .n{
+    flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:.8rem;color:#062018;background:var(--grad);font-weight:500;margin-top:2px;
+  }
+  .step .body{flex:1;min-width:0;}
+  .step h3{font-size:1.08rem;margin-bottom:6px;}
+  .step p{font-size:.93rem;color:var(--muted);margin-bottom:10px;}
+  pre{
+    background:#050d0a;border:1px solid var(--line);border-radius:10px;
+    padding:16px 18px;overflow-x:auto;font-size:.8rem;line-height:1.8;color:#aef2d6;margin-bottom:8px;
+  }
+  pre .c{color:#5c7a6d;}
+
+  /* use case story cards */
+  .story{border:1px solid var(--line);border-left:3px solid var(--aqua);border-radius:0 14px 14px 0;background:var(--panel);padding:26px 26px;margin-bottom:16px;}
+  .story .metric{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .story h3{font-size:1.02rem;margin:6px 0 8px;}
+  .story p{font-size:.93rem;color:#b6cfc4;margin:0;}
+  .story.slow{border-left-color:var(--warn);}
+  .story.slow .metric{background:none;color:var(--warn);-webkit-background-clip:unset;background-clip:unset;-webkit-text-fill-color:var(--warn);}
+
+  /* watchouts */
+  .watch{border:1px dashed var(--warn);border-radius:14px;padding:30px 30px;margin-bottom:18px;background:rgba(255,180,84,.04);}
+  .watch h3{color:var(--warn);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.95rem;letter-spacing:.08em;margin-bottom:8px;}
+  .watch p{font-size:.94rem;color:#c9c0ae;margin:0;}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:44px 0 70px;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--muted);}
+  footer .ed{color:var(--ink);margin-bottom:16px;}
+  footer ul{list-style:none;margin:0 0 24px;}
+  footer li{margin-bottom:8px;}
+
+  @media(max-width:680px){
+    .hero{padding:64px 0 48px;}
+    .ba{grid-template-columns:1fr;}
+    .step{gap:14px;}
+    .bn .num{font-size:1.9rem;}
+    .watch,.callout{padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="topbar">
+    <a class="back" href="../../index.html">&larr; Repo Radar</a>
+    <a class="gh-pill" href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">JustVugg/colibri &nearr;</a>
+  </nav>
+
+  <header class="hero">
+    <div class="kicker">New Entry &middot; Local Inference</div>
+    <h1 class="repo"><span class="owner">JustVugg /</span><span class="grad">colibri</span></h1>
+    <p class="tagline">A pure-C inference engine that turns your GPU VRAM, system RAM, and NVMe SSD into one layered cache - so a 744B-parameter frontier MoE model runs on a laptop with 25 GB of RAM. Slow at the floor, but mathematically exact.</p>
+    <div class="chips">
+      <span class="chip"><b>23.2K</b> stars</span>
+      <span class="chip hot"><b>NEW</b> entry this week</span>
+      <span class="chip"><b>2.5K</b> forks</span>
+      <span class="chip"><b>89</b> contributors</span>
+      <span class="chip"><b>Pure C</b> zero runtime deps</span>
+    </div>
+  </header>
+</div>
+
+<nav class="tabnav" aria-label="Page sections">
+  <div class="tabnav-inner">
+    <button data-tab="highlights" class="active">Highlights</button>
+    <button data-tab="problem">The Problem</button>
+    <button data-tab="setup">Setup</button>
+    <button data-tab="realworld">Real-World Use</button>
+    <button data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ HIGHLIGHTS ============ -->
+  <section id="highlights" class="panel active">
+    <h2>The hummingbird ration</h2>
+    <p class="lede">MoE models only fire ~5% of their weights per token. Colibri (Italian for hummingbird) is built entirely around exploiting that gap - keep the sliver you need this instant in RAM, stream the rest off disk.</p>
+
+    <div class="bignums">
+      <div class="bn"><div class="num">744B</div><div class="lbl">Parameters in GLM-5.2, the reference model it runs locally</div></div>
+      <div class="bn"><div class="num">25 GB</div><div class="lbl">RAM floor - the smallest machine it runs on, correctly</div></div>
+      <div class="bn"><div class="num">~40B</div><div class="lbl">Parameters actually active per token (~5% of the model)</div></div>
+      <div class="bn"><div class="num">57x</div><div class="lbl">KV cache reduction via re-implemented MLA attention</div></div>
+      <div class="bn"><div class="num">4K &rarr; 14K</div><div class="lbl">GitHub stars in six weeks, now at 23.2K</div></div>
+      <div class="bn"><div class="num">71.6%</div><div class="lbl">Expert routing predictability one layer ahead, exploited by PILOT prefetch</div></div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>AI memory multitiering</h3>
+        <p>VRAM, RAM, and NVMe become one cache ladder. Dense attention layers (~17B params, under 10 GB at INT4) stay resident; 19,456 routed experts park on SSD and stream on demand. Insufficient fast memory only changes speed, never model semantics or precision.</p>
+      </div>
+      <div class="card">
+        <h3>Dual-SSD bandwidth striping</h3>
+        <p>Mirror the model to a second drive and experts stream from both at once, hash-weighted by measured bandwidth. A 9 GB/s + 3 GB/s pair reads roughly 33% faster than the fast drive alone.</p>
+      </div>
+      <div class="card">
+        <h3>I/O latency hiding</h3>
+        <p>Each expert's three matrices sit adjacent on disk for a single <code>pread</code>. An async I/O pool (<code>PIPE=1</code>) loads missing experts while resident ones compute, and a router-lookahead thread (<code>PILOT=1</code>) prefetches the next layer's experts.</p>
+      </div>
+      <div class="card">
+        <h3>Warm restarts via compressed KV</h3>
+        <p>MLA stores 576 floats per token instead of 32,768, and the compressed state persists to disk (<code>.coli_kv</code>) - conversations reopen warm across restarts with zero re-prefill.</p>
+      </div>
+      <div class="card">
+        <h3>Heterogeneous backends</h3>
+        <p>GPU-resident CUDA pipeline (<code>COLI_CUDA_PIPE=2</code>), an experimental Apple Metal backend using a <code>newBufferWithBytesNoCopy</code> residency trick, a Vulkan 1.2 backend that revives older AMD cards dropped by ROCm, and <code>COLI_NUMA=1</code> interleaving on multi-socket hosts.</p>
+      </div>
+      <div class="card">
+        <h3>One developer, then a movement</h3>
+        <p>Created by Vincenzo Fornaro and tested on a plain 12-core laptop. The forward pass is validated token-exact against a reference transformer - the streaming, quantized version produces the same outputs.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">Single best feature</div>
+      <h3>The learning cache - it gets faster the more you use it</h3>
+      <p>Colibri records which experts your prompts actually route to in a local <code>.coli_usage</code> file, updated every turn. At startup it automatically pins the hottest experts into spare RAM. Use it for one kind of task and the engine literally tunes its own cache for that task.</p>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem" class="panel">
+    <h2>The problem it solves</h2>
+    <p class="lede">Frontier-class open models exist. The hardware to hold them mostly does not - unless you stop trying to hold them at all.</p>
+
+    <div class="ba">
+      <div class="ba-col before">
+        <div class="lbl">Before</div>
+        <ul>
+          <li>GLM-5.2 at full precision is ~1.4 TB of raw numbers. Even compressed hard, it is still 239 GB to 370 GB - pure data center territory.</li>
+          <li>Your options: a multi-GPU rig, a ~$15,000 maxed-out unified-memory Mac Studio, or pay-per-token cloud APIs with rate limits, privacy trade-offs, and vendor deprecation risk.</li>
+          <li>Even Ollama, the friendly one-click tool, refuses to load these weights locally and hands you off to a cloud endpoint instead.</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <div class="lbl">After</div>
+        <ul>
+          <li>The dense core every token needs (~17B params, under 10 GB at INT4) stays resident in RAM the whole time.</li>
+          <li>The 19,456 routed experts stay parked on a fast NVMe SSD and stream in on demand - only the handful the router calls for each token.</li>
+          <li>A 744B-parameter model boots in about 30 seconds holding just 9.9 GB resident, on the laptop a lot of people already have in a drawer. Colibri runs exactly where the official path gives up.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The framing shift: the model does not need to <b>fit</b> in fast memory - it needs to be <b>placed</b> across a hierarchy. RAM holds the working set, never the whole model.</p>
+  </section>
+
+  <!-- ============ SETUP ============ -->
+  <section id="setup" class="panel">
+    <h2>Setup</h2>
+    <p class="lede">The runtime is pure C with zero dependencies. Python 3 is only used by the one-time converter and the optional API gateway.</p>
+
+    <div class="step">
+      <div class="n">1</div>
+      <div class="body">
+        <h3>Install a prebuilt release</h3>
+        <pre>mkdir colibri &amp;&amp; tar xzf colibri-v1.1.0-linux-x86_64.tar.gz -C colibri &amp;&amp; cd colibri
+python3 coli info   <span class="c"># verifies engine readiness</span></pre>
+        <p>Or build from source (needs gcc or clang with OpenMP):</p>
+        <pre>git clone https://github.com/JustVugg/colibri &amp;&amp; cd colibri/c
+./setup.sh          <span class="c"># checks compilers, builds, runs self-tests</span></pre>
+        <p>Run <code>pip install -e .</code> from your checkout to put the <code>coli</code> command on your PATH.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">2</div>
+      <div class="body">
+        <h3>Download the model (~372 GB)</h3>
+        <p>Grab the pre-converted GLM-5.2 INT4 group-scaled (gs64) container with the INT8 MTP head from Hugging Face:</p>
+        <pre>https://huggingface.co/mastouri/GLM-5.2-colibri-int4-g64-with-int8-mtp</pre>
+        <p>Or convert FP8 weights yourself:</p>
+        <pre>./coli convert --model /nvme/glm52_i4</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">3</div>
+      <div class="body">
+        <h3>Preflight and tune</h3>
+        <pre>COLI_MODEL=/nvme/glm52_i4 ./coli plan     <span class="c"># inspect planned VRAM/RAM/disk placement</span>
+COLI_MODEL=/nvme/glm52_i4 ./coli doctor   <span class="c"># standard preflight check</span>
+COLI_MODEL=/nvme/glm52_i4 ./coli doctor --deep  <span class="c"># strict tensor/shard preflight</span>
+COLI_MODEL=/nvme/glm52_i4 ./coli tune     <span class="c"># measures and saves fastest profile</span></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">4</div>
+      <div class="body">
+        <h3>Run it</h3>
+        <pre>COLI_MODEL=/nvme/glm52_i4 ./coli chat     <span class="c"># TUI chat (Windows: python coli chat --model D:\glm52_i4)</span>
+./coli web --model /nvme/glm52_i4         <span class="c"># API gateway + web dashboard, auto-opens browser</span>
+./coli serve --model /nvme/glm52_i4       <span class="c"># headless API gateway</span></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">5</div>
+      <div class="body">
+        <h3>Optional: dual-SSD striping</h3>
+        <pre>COLI_MODEL=/fast/glm52_i4 COLI_MODEL_MIRROR=/second/glm52_i4 ./coli chat</pre>
+        <p>Stage a partial mirror to a smaller secondary drive:</p>
+        <pre>./c/coli mirror plan  --model /fast/glm52_i4 --mirror /second/glm52_i4 --budget-gib 200 --reserve-gib 20
+./c/coli mirror stage --model /fast/glm52_i4 --mirror /second/glm52_i4 --budget-gib 200 --reserve-gib 20
+./c/coli mirror verify --model /fast/glm52_i4 --mirror /second/glm52_i4</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REAL-WORLD USE ============ -->
+  <section id="realworld" class="panel">
+    <h2>Real-world numbers</h2>
+    <p class="lede">Same engine, same 744B model, wildly different speeds. The lesson across every benchmark: RAM volume and disk bandwidth drive local MoE performance, not GPU compute.</p>
+
+    <div class="story">
+      <div class="metric">5.8 - 6.8 tok/s</div>
+      <h3>6x RTX 5090 rig, full residency</h3>
+      <p>The top of the published range, with time-to-first-token around 13 seconds. The fastest configs are still serious machines.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">No GPU, still wins</div>
+      <h3>High-RAM dual-Xeon server (1 TB RAM)</h3>
+      <p>Beats a single RTX 5090 workstation "by a mile" because the entire expert set stays resident in memory. It all comes back to the memory.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">~1.8 tok/s</div>
+      <h3>128 GB CPU-only desktop</h3>
+      <p>Respectable decode speed once the learning cache is warm - no graphics card involved. An RTX 5070 Ti laptop-class box lands at 1.07 tok/s via the GPU-resident pipeline.</p>
+    </div>
+
+    <div class="story slow">
+      <div class="metric">0.1 tok/s</div>
+      <h3>MacBook M2 Max, 32 GB, external USB SSD (1 GB/s)</h3>
+      <p>Over 2 minutes to first token. Profiling showed 145 of 158 seconds - over 80% of the turn - was pure disk waiting; actual math took 7 seconds. The chip was never the problem.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">8x faster</div>
+      <h3>Same model, better placement</h3>
+      <p>Moving to a workstation with an RTX 5090, 64 GB RAM, and a fast internal SSD lifted the same workload to 0.8 tok/s, cut TTFT to 17 seconds, and halved disk waiting to 48%. The upgrade that mattered was double the RAM and the internal drive, not the GPU.</p>
+    </div>
+
+    <div class="story slow">
+      <div class="metric">0.05 - 0.1 tok/s</div>
+      <h3>The 25 GB laptop floor</h3>
+      <p>Roughly one word every 10 seconds cold - each word requires physically reading about 11 GB of expert data. Painfully slow, but with perfect mathematical correctness. The use case is queueing deep tasks overnight, not conversation.</p>
+    </div>
+  </section>
+
+  <!-- ============ WATCHOUTS ============ -->
+  <section id="watchouts" class="panel">
+    <h2>Watchouts</h2>
+    <p class="lede">The project is honest about its trade-offs, and the community has mapped the sharp edges. Know these before you clear 400 GB of disk.</p>
+
+    <div class="watch">
+      <h3>SLOW STORAGE = SLOW EVERYTHING</h3>
+      <p>Without a fast internal NVMe drive the engine is painfully slow - practical for queueing deep tasks overnight, not active chat. The whole trick is constantly streaming model pieces off disk, so the disk sets the ceiling.</p>
+    </div>
+
+    <div class="watch">
+      <h3>MASSIVE DISK REQUIREMENTS</h3>
+      <p>GLM-5.2 is 372 GB, Inkling is 469 GB, DeepSeek V4 Flash is 167 GB, and Kimi K3 is 1.6 TB. Freeing that much internal SSD space is a real barrier on standard laptops - it is the first wall most users hit, before RAM or GPU even comes up.</p>
+    </div>
+
+    <div class="watch">
+      <h3>OLD QUANTIZATIONS DEGRADE HARD</h3>
+      <p>Older per-row INT4 mirrors (the <code>mateogrgic/...</code> and <code>jlnsrk/...</code> uploads) cause a ~9 percentage point quality drop plus endless repeating-text and think-mode loops. Use the newer group-scaled (gs64) build, full stop.</p>
+    </div>
+
+    <div class="watch">
+      <h3>MTP HEAD MUST BE INT8</h3>
+      <p>If the Multi-Token Prediction head is quantized to INT4, draft token acceptance collapses to 0% - 4% and speculation is useless. The reference container ships the INT8 MTP head for a reason.</p>
+    </div>
+
+    <div class="watch">
+      <h3>DEEPSEEK V4 SPECULATIVE DRAFTING IS OFF BY DEFAULT</h3>
+      <p>On the DeepSeek V4 Flash engine, <code>V4_DRAFT</code> and <code>V4_MTP</code> default to 0: measured on real multi-turn chat, the rejected-suffix replay of the recurrent attention state cost more than the drafts saved - one 14-token answer took 495 seconds. The code stays in the tree, with the numbers beside it, for anyone retrying on faster storage.</p>
+    </div>
+
+    <div class="watch">
+      <h3>DIRECT=1 IS DRIVE-DEPENDENT</h3>
+      <p>O_DIRECT bypassing the page cache is often a large win on drives with DRAM cache and bandwidth headroom, but on QLC, DRAM-less, or virtualized drives it can be neutral to negative. Try it first; keep what your hardware rewards.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="wrap">
+  <footer>
+    <div class="ed">Repo Radar &middot; Edition 002 &middot; Week of August 7, 2026</div>
+    <ul>
+      <li>Source: Colibri README and docs (JustVugg/colibri on GitHub)</li>
+      <li>Source: community video breakdown - two-machine hands-on test (M2 Max MacBook + RTX 5090 workstation)</li>
+      <li>Source: community video breakdown - "local AI tipping point" analysis of the 25 GB mini-PC demo</li>
+    </ul>
+    <a href="../../index.html">&larr; Back to Edition 002</a>
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tabnav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

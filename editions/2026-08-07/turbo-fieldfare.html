@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>turbo-fieldfare · Repo Radar Edition 002</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo:ital,wght@1,800&family=Red+Hat+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0d10;
+    --carbon:#15151a;
+    --carbon-2:#111116;
+    --line:rgba(255,255,255,.09);
+    --ink:#f2f0ec;
+    --muted:#93919c;
+    --ember:#ff5a36;     /* heat: the streaming path */
+    --steel:#6ea8ff;     /* cool: the memory budget */
+    --amber:#ffb347;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Archivo',sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.6;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse 620px 400px at 88% -4%, rgba(255,90,54,.13), transparent 60%),
+      radial-gradient(ellipse 560px 420px at 4% 22%, rgba(110,168,255,.09), transparent 60%),
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.008) 3px 4px);
+  }
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 26px}
+  a{color:inherit}
+  /* ---------- topbar ---------- */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:.92rem}
+  .topbar a{text-decoration:none;font-weight:700}
+  .back{color:var(--muted);text-transform:uppercase;font-size:.78rem;letter-spacing:.12em;transition:color .15s}
+  .back:hover{color:var(--ember)}
+  .ghpill{
+    border:1px solid var(--ember);border-radius:6px;padding:8px 18px;color:var(--ember);
+    font-family:'Red Hat Mono',monospace;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+    transition:background .15s,color .15s;
+  }
+  .ghpill:hover{background:var(--ember);color:var(--bg)}
+  /* ---------- hero ---------- */
+  .hero{padding:56px 0 34px}
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;font-family:'Red Hat Mono',monospace;
+    font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bg);
+    background:linear-gradient(90deg,var(--ember),var(--amber));border-radius:6px;
+    padding:7px 16px;margin-bottom:26px;font-weight:700;
+  }
+  h1.big{
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.5rem,8vw,5.2rem);
+    line-height:.98;letter-spacing:-.03em;text-transform:uppercase;
+  }
+  h1.big .owner{display:block;font-size:.32em;font-weight:600;color:var(--muted);letter-spacing:.08em;margin-bottom:12px;text-transform:none}
+  h1.big .name{color:var(--ink)}
+  h1.big .name em{font-style:italic;color:var(--ember)}
+  .tagline{font-size:clamp(1.02rem,2.3vw,1.28rem);color:var(--muted);max-width:680px;margin:22px 0 4px;font-weight:400}
+  .tagline strong{color:var(--ink);font-weight:700}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 4px}
+  .chip{
+    background:var(--carbon);border:1px solid var(--line);border-radius:8px;padding:12px 20px;
+    font-weight:800;font-size:1.05rem;letter-spacing:-.01em;
+  }
+  .chip span{display:block;font-family:'Red Hat Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:3px}
+  .chip.hot{border-color:rgba(255,90,54,.55)}
+  .chip.hot b{color:var(--ember)}
+  .chip.cool b{color:var(--steel)}
+  /* gauge strip */
+  .gauge{margin:32px 0 6px;background:var(--carbon-2);border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .gauge .glabel{display:flex;justify-content:space-between;font-family:'Red Hat Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .gauge .track{height:14px;border-radius:7px;background:#1d1d24;overflow:hidden;position:relative}
+  .gauge .fill{position:absolute;left:0;top:0;bottom:0;border-radius:7px}
+  .gauge .full{width:100%;background:rgba(110,168,255,.22)}
+  .gauge .active{width:14%;background:linear-gradient(90deg,var(--ember),var(--amber))}
+  .gauge .cap{margin-top:10px;font-size:.84rem;color:var(--muted)}
+  .gauge .cap b{color:var(--ember)}
+  /* ---------- tabs ---------- */
+  .tabnav{
+    position:sticky;top:0;z-index:50;background:rgba(13,13,16,.9);backdrop-filter:blur(12px);
+    padding:14px 0;margin-top:30px;border-bottom:1px solid var(--line);
+  }
+  .tabnav .row{display:flex;gap:8px;flex-wrap:wrap}
+  .tabbtn{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;
+    text-transform:uppercase;letter-spacing:.06em;
+    background:transparent;border:1px solid var(--line);border-radius:6px;padding:9px 18px;
+    color:var(--muted);transition:all .15s ease;
+  }
+  .tabbtn:hover{color:var(--ink);border-color:var(--ember)}
+  .tabbtn.active{background:var(--ember);border-color:var(--ember);color:var(--bg)}
+  /* ---------- panels ---------- */
+  .panel{display:none;padding:46px 0 24px;animation:slam .3s ease}
+  .panel.show{display:block}
+  @keyframes slam{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  h2.sec{font-weight:900;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;letter-spacing:-.02em;text-transform:uppercase}
+  h2.sec em{font-style:italic;color:var(--ember)}
+  .sec-dek{color:var(--muted);max-width:700px;margin-bottom:36px;font-size:1rem}
+  /* highlights */
+  .biggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:36px}
+  .bigcard{background:var(--carbon);border:1px solid var(--line);border-radius:10px;padding:26px 22px;position:relative}
+  .bigcard::after{content:"";position:absolute;left:22px;bottom:16px;width:34px;height:3px;background:var(--ember)}
+  .bigcard.cool::after{background:var(--steel)}
+  .bigcard .n{font-weight:900;font-size:2.35rem;line-height:1.02;letter-spacing:-.02em}
+  .bigcard.cool .n{color:var(--steel)}
+  .bigcard .d{color:var(--muted);font-size:.88rem;margin:8px 0 18px}
+  .callout{
+    background:linear-gradient(120deg,rgba(255,90,54,.12),rgba(255,179,71,.06) 60%,transparent),var(--carbon);
+    border:1px solid rgba(255,90,54,.4);border-radius:12px;padding:36px 32px;margin:10px 0 34px;
+  }
+  .callout .tag{font-family:'Red Hat Mono',monospace;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ember);margin-bottom:12px;font-weight:700}
+  .callout h3{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:900;margin-bottom:12px;line-height:1.22;letter-spacing:-.01em}
+  .callout p{color:var(--muted);max-width:760px}
+  .callout p b{color:var(--ink)}
+  .featgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .fcard{background:var(--carbon-2);border:1px solid var(--line);border-radius:10px;padding:24px;border-top:3px solid var(--ember)}
+  .fcard.cool{border-top-color:var(--steel)}
+  .fcard h4{font-weight:800;margin-bottom:8px;font-size:1rem;letter-spacing:-.01em}
+  .fcard p{font-size:.89rem;color:var(--muted)}
+  .fcard code{font-family:'Red Hat Mono',monospace;font-size:.82em;color:var(--amber)}
+  /* before / after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .bacol{border-radius:12px;padding:30px 28px;border:1px solid var(--line)}
+  .bacol.before{background:var(--carbon-2)}
+  .bacol.after{background:var(--carbon);border-color:rgba(255,90,54,.45)}
+  .balabel{font-family:'Red Hat Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;display:inline-block;padding:6px 14px;border-radius:6px;margin-bottom:20px;font-weight:700}
+  .before .balabel{background:rgba(110,168,255,.12);color:var(--steel);border:1px solid rgba(110,168,255,.3)}
+  .after .balabel{background:rgba(255,90,54,.14);color:var(--ember);border:1px solid rgba(255,90,54,.35)}
+  .bacol ul{list-style:none;display:grid;gap:14px}
+  .bacol li{padding-left:26px;position:relative;font-size:.93rem;color:var(--muted)}
+  .bacol li b{color:var(--ink);font-weight:700}
+  .before li::before{content:"✕";position:absolute;left:0;color:var(--steel);font-weight:800}
+  .after li::before{content:"▸";position:absolute;left:0;color:var(--ember);font-weight:800}
+  /* setup */
+  .req{background:var(--carbon-2);border:1px solid var(--line);border-left:3px solid var(--steel);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:22px;font-size:.9rem;color:var(--muted)}
+  .req b{color:var(--steel)}
+  .step{background:var(--carbon);border:1px solid var(--line);border-radius:10px;padding:26px;margin-bottom:16px}
+  .step h3{font-size:1.02rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:14px;text-transform:uppercase;letter-spacing:.02em}
+  .stepnum{
+    font-family:'Red Hat Mono',monospace;font-size:.78rem;width:30px;height:30px;flex:0 0 30px;
+    display:flex;align-items:center;justify-content:center;border-radius:6px;
+    background:var(--ember);color:var(--bg);font-weight:700;
+  }
+  .step p{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+  .step p b{color:var(--ink)}
+  pre{
+    background:#09090c;color:#e8ded6;font-family:'Red Hat Mono',monospace;font-size:.78rem;
+    border-radius:8px;padding:16px 18px;overflow-x:auto;line-height:1.65;margin:10px 0;
+    border:1px solid var(--line);border-left:3px solid var(--ember);
+  }
+  pre .c{color:#6a6a75}
+  code.inline{font-family:'Red Hat Mono',monospace;font-size:.82em;background:rgba(255,90,54,.1);color:var(--amber);padding:2px 7px;border-radius:5px}
+  /* real-world use */
+  .story{background:var(--carbon);border:1px solid var(--line);border-radius:10px;padding:26px;margin-bottom:14px;display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:start}
+  .story .big{font-weight:900;font-size:1.7rem;line-height:1.1;color:var(--ember);letter-spacing:-.02em}
+  .story .big small{display:block;font-family:'Red Hat Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:5px}
+  .story.cool .big{color:var(--steel)}
+  .story h4{font-weight:800;font-size:1rem;margin-bottom:6px}
+  .story p{font-size:.9rem;color:var(--muted)}
+  .story p b{color:var(--ink)}
+  /* watchouts */
+  .watch{border:2px dashed rgba(255,179,71,.55);background:rgba(255,179,71,.05);border-radius:12px;padding:32px;margin-top:6px}
+  .watch h3{font-size:1.2rem;font-weight:900;margin-bottom:18px;color:var(--amber);text-transform:uppercase;letter-spacing:.02em}
+  .watch ul{list-style:none;display:grid;gap:14px}
+  .watch li{padding-left:30px;position:relative;font-size:.93rem;color:var(--muted)}
+  .watch li::before{content:"⚠";position:absolute;left:0;color:var(--amber)}
+  .watch li strong{color:var(--ink)}
+  /* footer */
+  footer{margin-top:70px;border-top:1px solid var(--line);padding:38px 0 64px;font-size:.9rem;color:var(--muted)}
+  footer .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  footer h5{font-family:'Red Hat Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;color:var(--ink);font-weight:700}
+  footer a{color:var(--ember);text-decoration:none;font-weight:700}
+  footer a:hover{text-decoration:underline}
+  footer ul{list-style:none;display:grid;gap:6px}
+  @media(max-width:740px){
+    .ba{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:8px}
+    .chip{padding:10px 14px;font-size:.95rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Topbar -->
+  <nav class="topbar">
+    <a class="back" href="../../index.html">← Repo Radar</a>
+    <a class="ghpill" href="https://github.com/drumih/turbo-fieldfare" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="kicker">Edition 002 · Velocity Pick · +46% This Week</span>
+    <h1 class="big"><span class="owner">drumih /</span><span class="name">turbo-<em>fieldfare</em></span></h1>
+    <p class="tagline">A Swift + Metal inference engine by iOS engineer Andrey Mikhaylov that runs Google's <strong>Gemma 4 26B-A4B</strong> in about <strong>2 GB of RAM</strong> - on any Apple Silicon Mac, including a base 8 GB MacBook Air. Idle experts sleep on your SSD and stream in per token.</p>
+    <div class="chips">
+      <div class="chip hot"><b>5,325</b><span>Stars</span></div>
+      <div class="chip hot"><b>+1,673</b><span>This week · +46%</span></div>
+      <div class="chip"><b>Swift 92.6%</b><span>+ Metal 7.3%</span></div>
+      <div class="chip cool"><b>2 GB</b><span>Active RAM</span></div>
+      <div class="chip"><b>Apache 2.0</b><span>License</span></div>
+    </div>
+    <div class="gauge" aria-hidden="true">
+      <div class="glabel"><span>Full weights on disk · 14.3 GB</span><span>Active RAM budget · 2 GB</span></div>
+      <div class="track"><div class="fill full"></div><div class="fill active"></div></div>
+      <p class="cap">26B total parameters, only <b>3.88B active per token</b>. The 1.35 GB shared core and FP16 KV cache stay resident; the 120 idle routed experts stay parked on the SSD.</p>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabnav">
+    <div class="row">
+      <button class="tabbtn active" data-tab="highlights">Highlights</button>
+      <button class="tabbtn" data-tab="problem">The Problem</button>
+      <button class="tabbtn" data-tab="setup">Setup</button>
+      <button class="tabbtn" data-tab="realworld">Real-World Use</button>
+      <button class="tabbtn" data-tab="watchouts">Watchouts</button>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <section class="panel show" id="highlights">
+    <h2 class="sec">The <em>2 GB</em> trick</h2>
+    <p class="sec-dek">One solo developer, no corporate backing, no funding round. Front page of Hacker News with 544 points and 184 comments, and the fastest-growing repo in this edition.</p>
+
+    <div class="biggrid">
+      <div class="bigcard"><div class="n">2 GB</div><div class="d">active RAM footprint for a 26B-parameter model whose 4-bit weights total 14.3 GB on disk</div></div>
+      <div class="bigcard cool"><div class="n">3.88B</div><div class="d">parameters actually activated per token - the MoE loophole the whole engine is built on</div></div>
+      <div class="bigcard"><div class="n">5.1-6.3</div><div class="d">tokens per second on a base 8 GB M2 MacBook Air, under the strict 2 GB ceiling</div></div>
+      <div class="bigcard cool"><div class="n">31-35</div><div class="d">tokens per second on a 24 GB M5 Pro - same trick, same 2 GB budget, faster chip</div></div>
+      <div class="bigcard"><div class="n">544</div><div class="d">Hacker News points (184 comments) in one afternoon on the front page</div></div>
+      <div class="bigcard cool"><div class="n">103</div><div class="d">measured results in the curated experiment record across kernels, caching, I/O, prefill, and decode</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">★ Single best feature</div>
+      <h3>On-demand expert streaming under a rolling memory budget</h3>
+      <p>Memory is treated as a strict accounting budget, not a container to fill. An <b>8-bit router</b> evaluates the current token, pulls <b>exactly eight specific experts off the SSD</b> in real time, and computes the active layers on the GPU while the other <b>120 experts stay asleep on the drive</b>. A 16-slot LFU cache per layer exploits the roughly 40% expert overlap between neighboring tokens so the same weights are not re-read from disk.</p>
+    </div>
+
+    <div class="featgrid">
+      <div class="fcard"><h4>Parallel pread instead of mmap</h4><p>Rather than blocking on memory mapping, the CPU coordinates router expert IDs against cache misses and issues bounded, parallel <code>pread</code> calls straight into Metal-visible buffers.</p></div>
+      <div class="fcard cool"><h4>Streaming repack installer</h4><p><code>TurboFieldfareRepack</code> pulls the Hugging Face checkpoint via range requests and writes it straight into a custom <code>.gturbo</code> layout - no raw shard files staged on disk.</p></div>
+      <div class="fcard"><h4>Loopback OpenAI-compatible server</h4><p>Bundled local server with Chat Completions, streaming, single-prefix prompt reuse to bypass prefill costs, and function-tool call support.</p></div>
+      <div class="fcard cool"><h4>Dual KV cache storage</h4><p>Exact split-K/V decode attention: circular storage for the 25 sliding-window layers, linear storage for the 5 full-attention layers.</p></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="panel" id="problem">
+    <h2 class="sec">The <em>memory wall</em></h2>
+    <p class="sec-dek">Big MoE models do not need all their weights at once - but every mainstream local runtime loads them as if they do.</p>
+
+    <div class="ba">
+      <div class="bacol before">
+        <span class="balabel">Before · load everything</span>
+        <ul>
+          <li>Gemma 4 26B is roughly <b>14.3 GB of weights</b> at compressed 4-bit precision.</li>
+          <li>Under Apple's MLX or llama.cpp, all 14.3 GB must be resident in RAM - <b>physically impossible</b> on a base 8 GB MacBook Air.</li>
+          <li>The workarounds: unified-memory workstations from <b>$7,000 and up</b>, or renting cloud GPUs by the hour, forever.</li>
+        </ul>
+      </div>
+      <div class="bacol after">
+        <span class="balabel">After · stream the experts</span>
+        <ul>
+          <li>Memory becomes a <b>rolling accounting budget</b>, not a container to fill all at once.</li>
+          <li>Only the <b>1.35 GB shared core</b> and the FP16 KV cache live permanently in RAM.</li>
+          <li>Idle routed experts park on the SSD and <b>stream on demand per token</b> - active footprint drops to about 2 GB.</li>
+          <li>Result: a 26B model running on the <b>cheapest 8 GB M-series Mac</b> Apple sells, for $0 in cloud fees.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">Why it matters</div>
+      <h3>A 26B model does not have to live in someone else's data center</h3>
+      <p>The thesis was proven publicly, fast: from a private repo to a Hacker News front page in <b>12 days</b>, by one engineer. One path costs $7,000 and up in hardware or an endless cloud meter; the other is a git clone on a Mac you may already own. Not the same job - but only one of them is free.</p>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="panel" id="setup">
+    <h2 class="sec">Get it <em>running</em></h2>
+    <p class="sec-dek">Three commands, no account, no sign-in wall. The pinned model download is a one-time ~15 GB network transfer.</p>
+
+    <div class="req"><b>Requirements:</b> Apple Silicon Mac, macOS 26 with Metal 4, Xcode 26, Swift 6.2 or newer, and roughly 14.3 GB of free storage.</div>
+
+    <div class="step">
+      <h3><span class="stepnum">1</span>Clone and build from source</h3>
+      <pre>git clone https://github.com/drumih/turbo-fieldfare.git
+cd turbo-fieldfare
+swift build -c release
+.build/release/TurboFieldfareMac</pre>
+      <p>On first run, Swift Package Manager automatically downloads the required tokenizer packages.</p>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">2</span>Download the model (GUI or CLI)</h3>
+      <p><b>GUI:</b> in the native Mac app, choose <b>Download</b> to stream and repack the pinned model (about 15 GB transfer), then <b>Load Model</b> and start prompting.</p>
+      <p><b>CLI:</b></p>
+      <pre>swift run -c release TurboFieldfareRepack --output scratch/gemma4.gturbo --overwrite
+<span class="c"># resume an interrupted download:</span>
+swift run -c release TurboFieldfareRepack --output scratch/gemma4.gturbo --overwrite --resume
+<span class="c"># verify a completed install manifest:</span>
+swift run -c release TurboFieldfareRepack --verify-install --input-gturbo scratch/gemma4.gturbo</pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">3</span>Chat from the terminal</h3>
+      <p>Create a local <code class="inline">messages.json</code>:</p>
+      <pre>[
+  {"role": "user", "content": "Explain why chunked prefill reduces time to first token while keeping memory bounded."}
+]</pre>
+      <p>Then run the CLI chat:</p>
+      <pre>swift run -c release TurboFieldfareCLI --model scratch/gemma4.gturbo --messages-file messages.json</pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">4</span>Run the local OpenAI-compatible server</h3>
+      <pre>swift build -c release --product TurboFieldfareServer
+.build/release/TurboFieldfareServer --model scratch/gemma4.gturbo</pre>
+      <p>The server listens on <code class="inline">http://127.0.0.1:8080/v1</code> and supports tool calls.</p>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section class="panel" id="realworld">
+    <h2 class="sec">On the <em>dyno</em></h2>
+    <p class="sec-dek">Community-measured numbers, including honest comparisons against the frameworks it undercuts on memory.</p>
+
+    <div class="story">
+      <div class="big">5.1-6.3<small>tok/s · 8 GB M2 Air</small></div>
+      <div><h4>The headline unlock</h4><p>On the cheapest M2 MacBook Air Apple sells, the 26B model generates a respectable 5.1 to 6.3 tokens per second under the strict <b>2 GB memory ceiling</b> - hardware that previously could not run this model at all.</p></div>
+    </div>
+
+    <div class="story cool">
+      <div class="big">31-35<small>tok/s · 24 GB M5 Pro</small></div>
+      <div><h4>Scales with the chip, not the budget</h4><p>On a 24 GB M5 Pro the same trick hits 31 to 35 tokens per second (some tests report 24 to 35) at the <b>exact same 2 GB allocation</b>. The memory math never changes; only the streaming gets faster.</p></div>
+    </div>
+
+    <div class="story">
+      <div class="big">8x<small>mmap → pread</small></div>
+      <div><h4>The unglamorous fix that made it work</h4><p>Early experiments with standard <b>mmap yielded 0.5 tok/s</b> with a 10 ms cold-expert load. Switching to optimized parallel pread calls cut expert loads to <b>2.8 ms</b> and lifted throughput to 4 tok/s - an 8x improvement from a smarter read pattern, not an architecture change.</p></div>
+    </div>
+
+    <div class="story cool">
+      <div class="big">75 vs 35<small>tok/s · MLX vs TF</small></div>
+      <div><h4>The honest trade against MLX</h4><p>Apple's own MLX runs the same model at <b>75 tokens per second</b> on an M5 Pro - more than double TurboFieldfare's speed - but consumes <b>14 GB of memory</b> to do it. More speed for seven times the RAM: that is the real trade behind the headline.</p></div>
+    </div>
+
+    <div class="story">
+      <div class="big">6-10<small>tok/s · llama.cpp CPU</small></div>
+      <div><h4>And against llama.cpp</h4><p>Running the model CPU-only (GPU layers set to zero) in llama.cpp on <b>16 GB Macs</b> yields 6 to 10 tokens per second - which outperforms the 8 GB Air unlock, if you have the RAM to spare.</p></div>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section class="panel" id="watchouts">
+    <h2 class="sec">Read <em>the warning label</em></h2>
+    <p class="sec-dek">A clever proof of concept, not a production system - and the tradeoffs are physical, not just theoretical.</p>
+
+    <div class="watch">
+      <h3>⚠ Watch out for</h3>
+      <ul>
+        <li><strong>SSD wear and battery drain.</strong> Constant expert streaming triggers physical disk reads on every token. A 2026 arXiv study ("SSD Offloading for LLM Mixture of Experts Weights Considered Harmful in Energy Efficiency") finds this can multiply per-token energy consumption by close to an order of magnitude - heavy battery drain plus accelerated drive wear.</li>
+        <li><strong>The model itself is weak at code.</strong> The engine runs Gemma 4 fine, but in an independent test the model scored 33.33% on a standard coding suite and failed all 21 test cases. Not a coding-agent replacement, and the creator never claimed it was.</li>
+        <li><strong>Slow drives kill it.</strong> On an external USB SSD transferring at 1 GB/s, community tests saw disk waits eat over 80% of run time (145 of 158 seconds), generation crash to 0.1 tok/s, and time to first token blow past 2 minutes.</li>
+        <li><strong>One model, period.</strong> TurboFieldfare is not a general runtime - it runs exclusively Google's instruction-tuned Gemma 4 26B-A4B. The trick also fails entirely on dense models, which keep every parameter active per token.</li>
+        <li><strong>Context window RAM bleed.</strong> Gemma 4 supports up to a 256K token context, but the KV cache must stay resident in unified memory - long conversations steadily consume the tiny allocation that makes the 2 GB limit possible.</li>
+        <li><strong>Sequential and text-only.</strong> Generation is a single-file sequential decode loop with no batching, and there is no image, audio, or video input support.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="fgrid">
+      <div>
+        <h5>Repo Radar</h5>
+        <p>Edition 002 · Week of August 7, 2026</p>
+        <p style="margin-top:8px"><a href="../../index.html">← Back to Edition 002</a></p>
+      </div>
+      <div>
+        <h5>Sources</h5>
+        <ul>
+          <li>TurboFieldfare README and system design docs - github.com/drumih/turbo-fieldfare</li>
+          <li>Hacker News front-page thread (544 points, 184 comments), including creator replies</li>
+          <li>Two independent video breakdowns of the architecture and benchmarks</li>
+          <li>2026 arXiv study on SSD offloading energy costs for MoE weights</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Project</h5>
+        <ul>
+          <li><a href="https://github.com/drumih/turbo-fieldfare" target="_blank" rel="noopener">github.com/drumih/turbo-fieldfare</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tabbtn');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    panels.forEach(p => p.classList.toggle('show', p.id === btn.dataset.tab));
+    window.scrollTo({ top: document.querySelector('.tabnav').offsetTop - 8, behavior: 'smooth' });
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ds4 - antirez's DwarfStar inference engine | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0d0b09;
+    --coal:#161210;
+    --seam:#2b241e;
+    --ash:#efe9e2;
+    --smoke:#a1968a;
+    --ember:#ff7a1a;
+    --ember-soft:#ffb37a;
+    --heat:linear-gradient(90deg,#ff7a1a,#ffc24d);
+    --danger:#ff5d5d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:
+      radial-gradient(900px 480px at 50% -12%, rgba(255,122,26,.12), transparent 60%),
+      var(--void);
+    color:var(--ash);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-weight:300;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ember-soft);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  code,pre{font-family:'IBM Plex Mono',monospace;}
+  code{background:rgba(255,122,26,.1);border:1px solid var(--seam);border-radius:4px;padding:1px 6px;font-size:.85em;color:var(--ember-soft);}
+  b,strong{font-weight:600;color:var(--ash);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px;}
+
+  /* topbar */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding-top:26px;}
+  .topbar .back{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--smoke);}
+  .topbar .back:hover{color:var(--ember);text-decoration:none;}
+  .gh-pill{
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;
+    border:1px solid var(--seam);border-radius:999px;padding:8px 18px;color:var(--ash);
+    background:var(--coal);transition:.2s;
+  }
+  .gh-pill:hover{border-color:var(--ember);text-decoration:none;box-shadow:0 0 26px rgba(255,122,26,.22);}
+
+  /* hero */
+  .hero{padding:92px 0 60px;text-align:left;position:relative;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--ember);border:1px solid rgba(255,122,26,.45);border-radius:999px;
+    padding:7px 16px;margin-bottom:36px;
+  }
+  .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px var(--ember);}
+  h1.repo{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(3.2rem,10vw,6rem);line-height:.98;letter-spacing:-.03em;
+    margin-bottom:10px;
+  }
+  h1.repo .owner{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.85rem;color:var(--smoke);letter-spacing:.08em;margin-bottom:16px;}
+  h1.repo .glow{color:var(--ember);text-shadow:0 0 60px rgba(255,122,26,.45);}
+  .tagline{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.6;max-width:720px;color:#d4c9bd;margin:26px 0 44px;}
+  .chips{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--seam);border-bottom:1px solid var(--seam);}
+  .chip{
+    padding:16px 28px 16px 0;margin-right:28px;
+    font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--smoke);
+  }
+  .chip b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:600;color:var(--ash);letter-spacing:-.02em;}
+  .chip.up b{color:var(--ember);}
+
+  /* tabs */
+  .tabnav{position:sticky;top:0;z-index:20;background:rgba(13,11,9,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--seam);}
+  .tabnav-inner{max-width:960px;margin:0 auto;padding:0 26px;display:flex;gap:4px;overflow-x:auto;}
+  .tabnav button{
+    appearance:none;border:0;background:none;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--smoke);
+    padding:17px 15px 15px;border-bottom:2px solid transparent;white-space:nowrap;
+  }
+  .tabnav button:hover{color:var(--ash);}
+  .tabnav button.active{color:var(--ember);border-bottom-color:var(--ember);}
+
+  main{padding:70px 0 40px;}
+  .panel{display:none;}
+  .panel.active{display:block;animation:ignite .35s ease;}
+  @keyframes ignite{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.9rem,4.5vw,2.7rem);letter-spacing:-.02em;margin-bottom:14px;}
+  h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.2rem;margin:0 0 10px;}
+  .lede{color:var(--smoke);font-size:1.05rem;max-width:700px;margin-bottom:48px;}
+  p{margin-bottom:18px;}
+  ul{margin:0 0 22px 20px;}
+  li{margin-bottom:10px;}
+
+  /* big numbers */
+  .bignums{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--seam);border:1px solid var(--seam);margin:0 0 54px;}
+  .bn{background:var(--coal);padding:26px 24px;}
+  .bn .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.03em;line-height:1.05;color:var(--ember);}
+  .bn .lbl{font-size:.85rem;color:var(--smoke);margin-top:8px;line-height:1.55;}
+
+  /* feature cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-bottom:54px;}
+  .card{background:var(--coal);border:1px solid var(--seam);border-radius:4px;padding:26px 24px;position:relative;}
+  .card::before{content:"";position:absolute;top:0;left:0;width:36px;height:2px;background:var(--heat);}
+  .card h3{font-size:1.05rem;}
+  .card p{color:#c2b7aa;font-size:.94rem;margin:0;}
+
+  .callout{
+    border:1px solid rgba(255,122,26,.5);border-radius:4px;
+    background:linear-gradient(180deg,rgba(255,122,26,.1),rgba(255,122,26,.02));
+    padding:36px 34px;margin-bottom:20px;position:relative;overflow:hidden;
+  }
+  .callout .tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ember);margin-bottom:14px;}
+  .callout h3{font-size:1.45rem;}
+  .callout p{margin:0;color:#d4c9bd;}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:44px 0;}
+  .ba-col{border:1px solid var(--seam);border-radius:4px;padding:28px 26px;background:var(--coal);}
+  .ba-col.after{border-color:rgba(255,122,26,.5);}
+  .ba-col .lbl{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px;}
+  .ba-col.before .lbl{color:var(--smoke);}
+  .ba-col.after .lbl{color:var(--ember);}
+  .ba-col ul{margin-left:16px;}
+  .ba-col li{font-size:.94rem;color:#c2b7aa;}
+
+  /* setup */
+  .step{display:flex;gap:22px;margin-bottom:40px;}
+  .step .n{
+    flex:0 0 34px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.6rem;
+    color:var(--ember);line-height:1.2;
+  }
+  .step .body{flex:1;min-width:0;border-left:1px solid var(--seam);padding-left:22px;}
+  .step h3{font-size:1.08rem;margin-bottom:6px;}
+  .step p{font-size:.93rem;color:var(--smoke);margin-bottom:10px;}
+  pre{
+    background:#080605;border:1px solid var(--seam);border-radius:4px;
+    padding:16px 18px;overflow-x:auto;font-size:.8rem;line-height:1.8;color:var(--ember-soft);margin-bottom:10px;
+  }
+  pre .c{color:#6e6257;}
+
+  /* real-world metric stories */
+  .story{display:grid;grid-template-columns:200px 1fr;gap:26px;border-top:1px solid var(--seam);padding:28px 0;}
+  .story:last-of-type{border-bottom:1px solid var(--seam);}
+  .story .metric{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-.03em;color:var(--ember);line-height:1.1;}
+  .story .metric small{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.68rem;letter-spacing:.1em;color:var(--smoke);margin-top:8px;}
+  .story h3{font-size:1.02rem;margin-bottom:6px;}
+  .story p{font-size:.93rem;color:#c2b7aa;margin:0;}
+
+  /* watchouts */
+  .watch{border:1px dashed var(--danger);border-radius:4px;padding:28px 28px;margin-bottom:18px;background:rgba(255,93,93,.04);}
+  .watch h3{color:var(--danger);font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.92rem;letter-spacing:.08em;margin-bottom:8px;}
+  .watch p{font-size:.94rem;color:#cbbdb4;margin:0;}
+
+  footer{border-top:1px solid var(--seam);margin-top:60px;padding:44px 0 70px;font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--smoke);}
+  footer .ed{color:var(--ash);margin-bottom:16px;}
+  footer ul{list-style:none;margin:0 0 24px;}
+  footer li{margin-bottom:8px;}
+
+  @media(max-width:680px){
+    .hero{padding:60px 0 46px;}
+    .ba{grid-template-columns:1fr;}
+    .story{grid-template-columns:1fr;gap:10px;}
+    .chip{padding-right:18px;margin-right:18px;}
+    .bn .num{font-size:1.8rem;}
+    .step{gap:14px;}
+    .watch,.callout{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="topbar">
+    <a class="back" href="../../index.html">&larr; Repo Radar</a>
+    <a class="gh-pill" href="https://github.com/antirez/ds4" target="_blank" rel="noopener">antirez/ds4 &nearr;</a>
+  </nav>
+
+  <header class="hero">
+    <div class="kicker">Climber &middot; From the creator of Redis</div>
+    <h1 class="repo"><span class="owner">antirez /</span>ds4 <span class="glow">&#10022;</span></h1>
+    <p class="tagline">DwarfStar: a self-contained inference engine built from scratch by Salvatore Sanfilippo that refuses to run every model - it runs three, brutally well. DeepSeek V4 Flash, GLM 5.2, and DeepSeek V4 PRO on high-end personal machines, with its own CUDA and Metal backends, disk-persistent KV cache, and a native coding agent.</p>
+    <div class="chips">
+      <span class="chip"><b>20.9K</b> stars</span>
+      <span class="chip up"><b>+1,135</b> this week</span>
+      <span class="chip"><b>C 45%</b> + CUDA 29.3%</span>
+      <span class="chip"><b>3 models</b> by design</span>
+    </div>
+  </header>
+</div>
+
+<nav class="tabnav" aria-label="Page sections">
+  <div class="tabnav-inner">
+    <button data-tab="highlights" class="active">Highlights</button>
+    <button data-tab="problem">The Problem</button>
+    <button data-tab="setup">Setup</button>
+    <button data-tab="realworld">Real-World Use</button>
+    <button data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ HIGHLIGHTS ============ -->
+  <section id="highlights" class="panel active">
+    <h2>Radical specialization</h2>
+    <p class="lede">Where generic runners chase every GGUF on Hugging Face, DwarfStar bundles model loading, prompt rendering, tool calling, KV state management, an HTTP server that speaks OpenAI, Anthropic, and Responses APIs, and an in-process coding agent - all tuned for exactly three heavyweight models.</p>
+
+    <div class="bignums">
+      <div class="bn"><div class="num">39.35 t/s</div><div class="lbl">Generation on a MacBook Pro M5 Max (128 GB, Metal, 2-bit) at 2048 context</div></div>
+      <div class="bn"><div class="num">790 t/s</div><div class="lbl">Prefill on the same M5 Max at 2048 context</div></div>
+      <div class="bn"><div class="num">2-bit</div><div class="lbl">Routed-expert quantization - while attention, shared experts, and routing stay high precision</div></div>
+      <div class="bn"><div class="num">~25K</div><div class="lbl">Tokens of Claude Code system prompt whose re-prefill the disk KV cache skips entirely</div></div>
+      <div class="bn"><div class="num">120 t/s</div><div class="lbl">Aggregated generation micro-batching sessions on an 8x NVIDIA L40S server</div></div>
+      <div class="bn"><div class="num">2 Macs</div><div class="lbl">Split one model 50/50 over a Thunderbolt 5 cable with RDMA tensor parallelism</div></div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Asymmetric expert quantization</h3>
+        <p>Instead of a naive full-model quant that destroys accuracy, only the routed MoE experts get compressed to 2-bit (<code>IQ2_XXS</code> up/gate, <code>Q2_K</code> down tensors). Dense attention projections, shared experts, and routing layers keep higher precision.</p>
+      </div>
+      <div class="card">
+        <h3>Dual KV cache with disk spill</h3>
+        <p>The active session lives in RAM; switching sessions or restarting the server flushes KV state to SSD as a <code>&lt;sha1&gt;.kv</code> file. Prompts matching a cached prefix skip prefill and load token IDs and graph state straight from disk.</p>
+      </div>
+      <div class="card">
+        <h3>SSD streaming mode</h3>
+        <p>When VRAM and RAM cannot hold the whole model, non-routed weights and activations stay resident while heavy MoE experts park on disk and stream in on cache misses.</p>
+      </div>
+      <div class="card">
+        <h3>RDMA tensor parallelism</h3>
+        <p>Two Macs on a Thunderbolt 5 cable work on the same token at the same time, exchanging 16-24 KB partial sums over RDMA or dedicated TCP sockets - cutting per-token latency, not just adding capacity.</p>
+      </div>
+      <div class="card">
+        <h3>DSpark speculative decoding</h3>
+        <p>An experimental 5.6 GiB draft model proposes up to five future tokens; the main model verifies them in one pass. Predictable continuations - especially code - benefit most. Explicitly opt-in.</p>
+      </div>
+      <div class="card">
+        <h3>Power steering</h3>
+        <p><code>--power 50</code> targets a GPU usage level by injecting micro-sleeps between prefill layers and decoded tokens - taming heat, fan noise, and battery drain without changing output math.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">Single best feature</div>
+      <h3>The KV cache that survives restarts</h3>
+      <p>Standard APIs are stateless: switch sessions or restart the server and a 25,000-token system prompt gets re-prefilled from scratch, every time. DwarfStar's disk KV cache makes the saved prefix the resume mechanism - point Claude Code at it with <code>--kv-disk-dir</code> and later continuations reuse the expensive prefill instead of paying for it again.</p>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem" class="panel">
+    <h2>The problem it solves</h2>
+    <p class="lede">antirez calls it the generality trap: tools that try to run every model end up running the big ones badly.</p>
+
+    <div class="ba">
+      <div class="ba-col before">
+        <div class="lbl">Before</div>
+        <ul>
+          <li>Traditional local runners (standard GGUF tooling) support every model under the sun - at the cost of generalized, bloated codepaths and unnecessary software layers.</li>
+          <li>On resource-constrained consumer hardware, that generality translates into massive performance degradation for 284B-class MoE models.</li>
+          <li>Stateless APIs discard context on every session switch or server restart, forcing expensive re-prefills of 25,000+ token system prompts on startup.</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <div class="lbl">After</div>
+        <ul>
+          <li>One unified, lightweight codebase: model loading, prompt rendering, tool calling, KV management, HTTP server, and a native coding agent, all in-process with zero socket overhead.</li>
+          <li>The disk is a first-class memory tier: aggressive expert-only quantization, SSD streaming, and persistent disk KV caching put 284B-parameter models on 128 GB laptops and 512 GB workstations.</li>
+          <li>Sessions survive restarts - the cached prefix on disk is loaded instantly instead of recomputed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>The bet is extreme model specialization: support exactly the GGUFs the author publishes, tune every codepath for them, and let everything else fail loudly rather than run slowly.</p>
+  </section>
+
+  <!-- ============ SETUP ============ -->
+  <section id="setup" class="panel">
+    <h2>Setup</h2>
+    <p class="lede">Native backends for Metal (macOS), NVIDIA CUDA (Linux), and ROCm on Strix Halo APUs. Three steps: clone, build, download.</p>
+
+    <div class="step">
+      <div class="n">01</div>
+      <div class="body">
+        <h3>Clone and build for your backend</h3>
+        <pre>git clone https://github.com/antirez/ds4 &amp;&amp; cd ds4</pre>
+        <pre>make               <span class="c"># macOS (Metal)</span>
+make cuda-spark    <span class="c"># Linux CUDA - DGX Spark / GB10</span>
+make cuda-generic  <span class="c"># Linux CUDA - generic GPUs (or: make cuda CUDA_ARCH=native)</span>
+make strix-halo    <span class="c"># Linux ROCm - AMD Strix Halo</span>
+make cpu           <span class="c"># CPU-only diagnostics</span></pre>
+        <p>If compilation fails on a clean VM, install <code>gcc</code> first - the build errors point straight at the missing compiler.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">02</div>
+      <div class="body">
+        <h3>Download the specialized GGUF</h3>
+        <p>The script auto-resumes interrupted downloads and saves under <code>./gguf/</code>. Pick by RAM:</p>
+        <pre>./download_model.sh ds4f-q2      <span class="c"># 96/128 GB machines - 2-bit Flash GGUF</span>
+./download_model.sh ds4f-q4      <span class="c"># 256 GB+ machines - 4-bit Flash GGUF</span>
+./download_model.sh ds4f-dspark  <span class="c"># optional DSpark draft model, ~5.6 GiB</span></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">03</div>
+      <div class="body">
+        <h3>Run it</h3>
+        <pre>./ds4                                          <span class="c"># interactive CLI, thinking on by default</span>
+./ds4 --nothink -p "List three Redis design principles."</pre>
+        <p>Or serve it to any OpenAI/Anthropic-speaking client (Claude Code, coding agents) with disk KV caching on:</p>
+        <pre>./ds4-server --ctx 100000 --kv-disk-dir /tmp/ds4-kv --kv-disk-space-mb 8192</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REAL-WORLD USE ============ -->
+  <section id="realworld" class="panel">
+    <h2>Real-world numbers</h2>
+    <p class="lede">Built first for Apple Silicon, and the benchmark table shows it - unified memory bandwidth is the star of this show.</p>
+
+    <div class="story">
+      <div class="metric">39.35 t/s<small>gen &middot; 790.18 t/s prefill</small></div>
+      <div>
+        <h3>MacBook Pro M5 Max, 128 GB, Metal, 2-bit quant</h3>
+        <p>At 2048 context. Stretch the context to 65,536 tokens and it still holds 27.64 t/s generation with 398.50 t/s prefill - a laptop running a frontier-class MoE at usable interactive speed.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="metric">18.05 t/s<small>gen &middot; 825.76 t/s prefill</small></div>
+      <div>
+        <h3>NVIDIA DGX Spark GB10, 128 GB, CUDA, 2-bit quant</h3>
+        <p>At 2048 context. Prefill edges out the Mac, but generation lands at roughly half - CUDA bandwidth on that machine is simply different from Apple unified memory.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="metric">27.39 t/s<small>on 11,709-token prompts</small></div>
+      <div>
+        <h3>Mac Studio M3 Ultra, 512 GB, Metal</h3>
+        <p>2-bit quant with 468.03 t/s prefill. The same machine running the bigger PRO 2-bit model via SSD streaming still produces 9.56 t/s on 32,768-token prompts.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="metric">120 t/s<small>aggregate &middot; 2000 t/s prefill</small></div>
+      <div>
+        <h3>8x NVIDIA L40S enterprise server, micro-batched serving</h3>
+        <p>Aggregated generation across multiple concurrent sessions - the same engine scaling from a laptop to a serving box.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="metric">3.5x<small>~4.8 &rarr; ~16.8 t/s decode</small></div>
+      <div>
+        <h3>Two MacBook M5 Max over Thunderbolt 5 RDMA, GLM 5.2</h3>
+        <p>Tensor parallelism splits the expert load 50/50; decode jumps from a sluggish ~4.8 t/s (single machine, SSD streaming) to ~16.8 t/s with ~94 t/s prefill. Startup takes about 9 seconds per machine as each rank pre-faults its ~100 GiB shard and pins it through a Metal residency set.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WATCHOUTS ============ -->
+  <section id="watchouts" class="panel">
+    <h2>Watchouts</h2>
+    <p class="lede">DwarfStar is bleeding-edge by design. The author flags most of these himself - read them before you download 81 GB of weights.</p>
+
+    <div class="watch">
+      <h3>BETA QUALITY, MOVING FAST</h3>
+      <p>The codebase is rapidly changing and instabilities are common. The distributed protocol has no native encryption or authentication - trusted local networks only.</p>
+    </div>
+
+    <div class="watch">
+      <h3>NOT A GENERAL GGUF RUNNER</h3>
+      <p>Pointing it at an arbitrary Hugging Face GGUF will fail to load. Tensor layout, quantization mix, metadata, and MTP state must exactly match the specialized GGUFs published by the author. Other quant layouts are unsupported until deliberately added and scored against the official 100-case fixture.</p>
+    </div>
+
+    <div class="watch">
+      <h3>APPLE SILICON GETS THE LOVE</h3>
+      <p>Built first and foremost for macOS/Metal. CUDA and ROCm are supported, but NVIDIA and AMD paths occasionally fall back to slower exact execution layers when native batched kernels are unavailable. If something behaves differently on your Linux GPU, that is why.</p>
+    </div>
+
+    <div class="watch">
+      <h3>AN 80 GB H100 IS NOT ENOUGH</h3>
+      <p>A single H100 with 80 GB of VRAM fails immediately with an out-of-memory crash. The model files demand a strict minimum of 96 to 128 GB of addressable memory just to load - before CUDA runtime overhead even touches it.</p>
+    </div>
+
+    <div class="watch">
+      <h3>SSD STREAMING CAN CRAWL</h3>
+      <p>Running larger-than-RAM models over SSD streaming on lower-end devices can drop below 1 t/s - or 0.1 t/s on external USB drives. That mode suits offline batch runs, not active chat.</p>
+    </div>
+
+    <div class="watch">
+      <h3>AI-BUILT, OPENLY DISCLOSED</h3>
+      <p>The README notes the software was developed with strong assistance from GPT 5.5, 5.6, and Claude Fable, and the author is blunt about it: "If you are not happy with AI-developed code, this software is not for you."</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="wrap">
+  <footer>
+    <div class="ed">Repo Radar &middot; Edition 002 &middot; Week of August 7, 2026</div>
+    <ul>
+      <li>Source: DS4 README and docs (antirez/ds4 on GitHub)</li>
+      <li>Source: community video walkthrough - H100 80 GB CUDA install attempt and OOM boundary test</li>
+      <li>Source: community video walkthrough - 128 GB MacBook Pro coding-agent integration test</li>
+    </ul>
+    <a href="../../index.html">&larr; Back to Edition 002</a>
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tabnav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.panel').forEach(p =>
+      p.classList.toggle('active', p.id === btn.dataset.tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

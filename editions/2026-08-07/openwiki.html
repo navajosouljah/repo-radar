@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>openwiki · Repo Radar Edition 002</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#111823;
+    --panel-2:#0e141d;
+    --line:rgba(148,178,205,.14);
+    --ink:#e8eef4;
+    --muted:#8b99a9;
+    --machine:#4be3c3;   /* the machine layer */
+    --human:#e8b45a;     /* the human layer */
+    --danger:#ff7a6b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.65;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse 700px 480px at 12% -6%, rgba(75,227,195,.10), transparent 60%),
+      radial-gradient(ellipse 640px 440px at 92% 8%, rgba(232,180,90,.09), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 50% 110%, rgba(75,227,195,.05), transparent 65%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 26px}
+  a{color:inherit}
+  /* ---------- topbar ---------- */
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:.92rem}
+  .topbar a{text-decoration:none;font-weight:600}
+  .back{color:var(--muted);letter-spacing:.02em;transition:color .15s}
+  .back:hover{color:var(--machine)}
+  .ghpill{
+    border:1px solid var(--machine);border-radius:999px;padding:8px 18px;color:var(--machine);
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.04em;
+    transition:background .15s,color .15s;
+  }
+  .ghpill:hover{background:var(--machine);color:var(--bg)}
+  /* ---------- hero ---------- */
+  .hero{padding:58px 0 34px}
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;
+    font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--human);
+    border:1px solid rgba(232,180,90,.35);border-radius:999px;padding:7px 16px;margin-bottom:26px;
+  }
+  .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--human);box-shadow:0 0 10px var(--human)}
+  h1.big{
+    font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.7rem,8.4vw,5.6rem);
+    line-height:1.0;letter-spacing:-.015em;
+  }
+  h1.big .owner{display:block;font-size:.34em;font-weight:600;color:var(--muted);letter-spacing:.02em;margin-bottom:10px}
+  h1.big .name{
+    background:linear-gradient(95deg,var(--machine) 0%,#9be8d6 45%,var(--human) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .tagline{font-size:clamp(1.05rem,2.3vw,1.3rem);color:var(--muted);max-width:660px;margin:22px 0 4px;font-weight:300}
+  .tagline strong{color:var(--ink);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 4px}
+  .chip{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 20px;
+    font-weight:700;font-size:1.02rem;
+  }
+  .chip span{display:block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:3px}
+  .chip.hot{border-color:rgba(75,227,195,.5)}
+  .chip.hot b{color:var(--machine)}
+  /* dual-layer strip */
+  .layers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 6px}
+  .layer{border-radius:14px;padding:16px 20px;border:1px solid var(--line);background:var(--panel-2);font-size:.9rem;color:var(--muted)}
+  .layer b{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+  .layer.hu{border-left:3px solid var(--human)} .layer.hu b{color:var(--human)}
+  .layer.ma{border-left:3px solid var(--machine)} .layer.ma b{color:var(--machine)}
+  /* ---------- tabs ---------- */
+  .tabnav{
+    position:sticky;top:0;z-index:50;background:rgba(11,15,20,.88);backdrop-filter:blur(12px);
+    padding:14px 0;margin-top:30px;border-bottom:1px solid var(--line);
+  }
+  .tabnav .row{display:flex;gap:8px;flex-wrap:wrap}
+  .tabbtn{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.92rem;cursor:pointer;
+    background:transparent;border:1px solid var(--line);border-radius:999px;padding:9px 20px;
+    color:var(--muted);transition:all .15s ease;
+  }
+  .tabbtn:hover{color:var(--ink);border-color:var(--machine)}
+  .tabbtn.active{background:var(--machine);border-color:var(--machine);color:var(--bg)}
+  /* ---------- panels ---------- */
+  .panel{display:none;padding:46px 0 24px;animation:rise .35s ease}
+  .panel.show{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  h2.sec{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:10px;letter-spacing:-.01em}
+  h2.sec em{font-style:italic;color:var(--machine)}
+  .sec-dek{color:var(--muted);max-width:680px;margin-bottom:36px;font-size:1.02rem;font-weight:300}
+  /* highlights */
+  .biggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-bottom:36px}
+  .bigcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 24px;position:relative;overflow:hidden}
+  .bigcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--machine),transparent)}
+  .bigcard.hu::before{background:linear-gradient(90deg,var(--human),transparent)}
+  .bigcard .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.3rem;line-height:1.05;color:var(--ink)}
+  .bigcard .d{color:var(--muted);font-size:.9rem;margin-top:8px;font-weight:300}
+  .callout{
+    background:linear-gradient(140deg,rgba(75,227,195,.10),rgba(232,180,90,.08)),var(--panel);
+    border:1px solid rgba(75,227,195,.35);border-radius:20px;padding:36px 34px;margin:10px 0 34px;
+  }
+  .callout .tag{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--machine);margin-bottom:12px}
+  .callout h3{font-family:'Fraunces',serif;font-size:clamp(1.2rem,3vw,1.65rem);font-weight:800;margin-bottom:12px;line-height:1.25}
+  .callout p{color:var(--muted);max-width:740px}
+  .callout p b{color:var(--ink)}
+  .featgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .fcard{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .fcard h4{font-weight:700;margin-bottom:8px;font-size:1.02rem}
+  .fcard h4 .pip{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:9px;background:var(--machine)}
+  .fcard.hu h4 .pip{background:var(--human)}
+  .fcard p{font-size:.9rem;color:var(--muted);font-weight:300}
+  .fcard code{font-family:'JetBrains Mono',monospace;font-size:.82em;color:var(--machine)}
+  /* before / after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .bacol{border-radius:18px;padding:30px 28px;border:1px solid var(--line)}
+  .bacol.before{background:var(--panel-2)}
+  .bacol.after{background:var(--panel);border-color:rgba(75,227,195,.4)}
+  .balabel{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;display:inline-block;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  .before .balabel{background:rgba(255,122,107,.12);color:var(--danger);border:1px solid rgba(255,122,107,.3)}
+  .after .balabel{background:rgba(75,227,195,.12);color:var(--machine);border:1px solid rgba(75,227,195,.3)}
+  .bacol ul{list-style:none;display:grid;gap:14px}
+  .bacol li{padding-left:26px;position:relative;font-size:.94rem;color:var(--muted);font-weight:300}
+  .bacol li b{color:var(--ink);font-weight:600}
+  .before li::before{content:"✕";position:absolute;left:0;color:var(--danger);font-weight:700}
+  .after li::before{content:"✓";position:absolute;left:0;color:var(--machine);font-weight:700}
+  /* setup */
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:18px}
+  .step h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:14px}
+  .stepnum{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;width:30px;height:30px;flex:0 0 30px;
+    display:flex;align-items:center;justify-content:center;border-radius:50%;
+    border:1px solid var(--machine);color:var(--machine);
+  }
+  .step p{font-size:.92rem;color:var(--muted);margin-bottom:10px;font-weight:300}
+  .step p b{color:var(--ink)}
+  pre{
+    background:#070b10;color:#d4e4de;font-family:'JetBrains Mono',monospace;font-size:.8rem;
+    border-radius:10px;padding:16px 18px;overflow-x:auto;line-height:1.65;margin:10px 0;
+    border:1px solid var(--line);border-left:3px solid var(--machine);
+  }
+  pre .c{color:#5c7285}
+  code.inline{font-family:'JetBrains Mono',monospace;font-size:.82em;background:rgba(75,227,195,.1);color:var(--machine);padding:2px 7px;border-radius:5px}
+  .note{border-left:3px solid var(--human);background:rgba(232,180,90,.06);border-radius:0 10px 10px 0;padding:14px 18px;margin:12px 0;font-size:.88rem;color:var(--muted)}
+  .note b{color:var(--human)}
+  /* use cases */
+  .story{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin-bottom:16px}
+  .story h4{font-family:'Fraunces',serif;font-weight:800;font-size:1.08rem;margin-bottom:8px}
+  .story p{font-size:.93rem;color:var(--muted);font-weight:300}
+  .story .metric{color:var(--machine);font-weight:600}
+  .story p b{color:var(--ink)}
+  /* watchouts */
+  .watch{border:2px dashed rgba(255,122,107,.5);background:rgba(255,122,107,.05);border-radius:18px;padding:32px;margin-top:6px}
+  .watch h3{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:800;margin-bottom:18px;color:var(--danger)}
+  .watch ul{list-style:none;display:grid;gap:14px}
+  .watch li{padding-left:30px;position:relative;font-size:.94rem;color:var(--muted);font-weight:300}
+  .watch li::before{content:"⚠";position:absolute;left:0;color:var(--danger)}
+  .watch li strong{color:var(--ink)}
+  .watch code{font-family:'JetBrains Mono',monospace;font-size:.82em;color:var(--danger)}
+  /* footer */
+  footer{margin-top:70px;border-top:1px solid var(--line);padding:38px 0 64px;font-size:.9rem;color:var(--muted)}
+  footer .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  footer h5{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;color:var(--ink)}
+  footer a{color:var(--machine);text-decoration:none;font-weight:600}
+  footer a:hover{text-decoration:underline}
+  footer ul{list-style:none;display:grid;gap:6px;font-weight:300}
+  @media(max-width:740px){
+    .ba,.layers{grid-template-columns:1fr}
+    .chip{padding:10px 14px;font-size:.92rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Topbar -->
+  <nav class="topbar">
+    <a class="back" href="../../index.html">← Repo Radar</a>
+    <a class="ghpill" href="https://github.com/langchain-ai/openwiki" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="kicker">Edition 002 · New Entry This Week</span>
+    <h1 class="big"><span class="owner">langchain-ai /</span><span class="name">openwiki</span></h1>
+    <p class="tagline">A CLI-based, <strong>self-maintaining documentation agent</strong> from LangChain. It gives your repo dual citizenship: narrative docs for humans, and a dense knowledge graph piped into <strong>AGENTS.md</strong> and <strong>CLAUDE.md</strong> for the coding agents that read your code more often than people do.</p>
+    <div class="chips">
+      <div class="chip hot"><b>14,526</b><span>Stars</span></div>
+      <div class="chip"><b>New entry</b><span>Weekly delta</span></div>
+      <div class="chip"><b>TypeScript 95%</b><span>Language</span></div>
+      <div class="chip"><b>1.0K</b><span>Forks</span></div>
+      <div class="chip"><b>MIT</b><span>License</span></div>
+    </div>
+    <div class="layers">
+      <div class="layer hu"><b>Track 1 · The human layer</b>Standard narrative readmes that onboard developers and explain the product vision.</div>
+      <div class="layer ma"><b>Track 2 · The machine layer</b>An invisible automated pipeline dictating strict, unambiguous context to your AI agents.</div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabnav">
+    <div class="row">
+      <button class="tabbtn active" data-tab="highlights">Highlights</button>
+      <button class="tabbtn" data-tab="problem">The Problem</button>
+      <button class="tabbtn" data-tab="setup">Setup</button>
+      <button class="tabbtn" data-tab="realworld">Real-World Use</button>
+      <button class="tabbtn" data-tab="watchouts">Watchouts</button>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <section class="panel show" id="highlights">
+    <h2 class="sec">Docs that <em>maintain themselves</em></h2>
+    <p class="sec-dek">Built on deep agents, OpenWiki parses your unstructured codebase - commits, comments, and pull requests included - and exports a knowledge graph straight into the files coding agents treat as memory.</p>
+
+    <div class="biggrid">
+      <div class="bigcard"><div class="n">14.5K</div><div class="d">GitHub stars and 1.0K forks, gained fast for a brand-new LangChain open-source agent</div></div>
+      <div class="bigcard hu"><div class="n">12</div><div class="d">model providers out of the box: OpenAI, Anthropic, Gemini, Vertex AI, AWS Bedrock, OpenRouter, Ollama, LM Studio, and more</div></div>
+      <div class="bigcard"><div class="n">2</div><div class="d">documentation layers per repo: a human narrative track and a machine context track</div></div>
+      <div class="bigcard hu"><div class="n">95%</div><div class="d">TypeScript, with 4.7% Python and 0.3% JavaScript, under the permissive MIT license</div></div>
+      <div class="bigcard"><div class="n">$0</div><div class="d">token cost on unchanged repos: runs are snapshotted, so no-change runs are zero-cost no-ops</div></div>
+      <div class="bigcard hu"><div class="n">OKF v0.1</div><div class="d">output in Google's Open Knowledge Format, portable to any other OKF-compliant tool</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">★ Single best feature</div>
+      <h3>Subscription recycling: run it on the AI plan you already pay for</h3>
+      <p>OpenWiki lets teams bypass metered API keys entirely. It can <b>reuse an active GitHub Copilot subscription</b> through your GitHub CLI session, or sign in through a standard web-based <b>ChatGPT Plus/Pro subscription</b> and run on that plan instead. A documentation agent with no new bill attached.</p>
+    </div>
+
+    <div class="featgrid">
+      <div class="fcard"><h4><span class="pip"></span>Code Mode vs Personal Mode</h4><p>Default Code Mode documents the current repo into <code>openwiki/</code>. Personal Mode (<code>openwiki personal</code>) ingests Notion, Slack, Gmail, X/Twitter, Web Search, and Hacker News into a personal wiki under <code>~/.openwiki/wiki/</code>.</p></div>
+      <div class="fcard hu"><h4><span class="pip"></span>LangSmith runtime tracing</h4><p>In Code Mode, the official LangSmith SDK connector enriches static docs with recent runtime traces - tool calls, outcomes, and latency - so the wiki reflects how the code actually behaves, not just what it says.</p></div>
+      <div class="fcard"><h4><span class="pip"></span>Self-healing Mermaid diagrams</h4><p>Embedded flowcharts, lifecycles, and ER diagrams are validated after every run. Failed diagrams become plain text fences with a comment, and later <code>--update</code> cycles attempt a programmatic repair.</p></div>
+      <div class="fcard hu"><h4><span class="pip"></span>Interactive graph visualizer</h4><p><code>openwiki visualize</code> serves your wiki on a loopback address and opens an interactive node graph in the browser with a side-by-side Markdown reader.</p></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="panel" id="problem">
+    <h2 class="sec">The <em>translation bottleneck</em></h2>
+    <p class="sec-dek">The most frequent reader of your repository is no longer a human. Feeding human-centric docs to coding agents guarantees processing errors - the format itself is the point of failure.</p>
+
+    <div class="ba">
+      <div class="bacol before">
+        <span class="balabel">Before · the generality trap</span>
+        <ul>
+          <li>Readmes, wikis, and diagrams are built exclusively for <b>human engineers</b>: tutorials, narrative, conversational pacing.</li>
+          <li>To an AI coding agent, that conversational padding is <b>noise</b> diluting strict logical constraints and precise file paths.</li>
+          <li>Fed standard docs, tools like Claude Code or Copilot get lost in the prose, grab wrong variables, and misinterpret the layout.</li>
+          <li>The model confidently outputs <b>broken syntax that breaks the build</b> the moment you hit run.</li>
+        </ul>
+      </div>
+      <div class="bacol after">
+        <span class="balabel">After · the OpenWiki way</span>
+        <ul>
+          <li><b>Dual citizenship:</b> a human narrative layer plus an invisible, automated machine layer in the background.</li>
+          <li>Deep agents parse the unstructured codebase - commit history, comments, and PRs included.</li>
+          <li>Raw data becomes a <b>dense, interconnected knowledge graph</b> exported into rigid root files: <b>AGENTS.md</b> and <b>CLAUDE.md</b>.</li>
+          <li>Agents read those files as memory: pure, unambiguous context that eliminates processing errors and hallucinations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">Why it matters</div>
+      <h3>Static files rot the second a team pushes new commits</h3>
+      <p>Maintaining a strict technical map by hand would take a developer <b>hours of tedious updates every week</b>. OpenWiki runs a self-healing automation loop instead: a GitHub Actions workflow parses new code on a schedule, restructures the agent instructions, and opens a pull request with fresh documentation.</p>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="panel" id="setup">
+    <h2 class="sec">Get it <em>running</em></h2>
+    <p class="sec-dek">Runs on Node.js and requires Git 2.41 or newer for repo operations. One global install, then a wizard for whichever mode you want.</p>
+
+    <div class="step">
+      <h3><span class="stepnum">1</span>Install the CLI</h3>
+      <pre>npm install -g openwiki</pre>
+      <div class="note"><b>Windows note:</b> install with a standard Node.js package manager like npm or pnpm. Installing with bun on Windows is heavily discouraged - bun can fall back to compiling the native <code class="inline">better-sqlite3</code> dependency, which requires Visual Studio Build Tools with the Desktop development with C++ workload.</div>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">2</span>Initialize Code Mode</h3>
+      <p>The wizard walks you through selecting a model provider (defaulting to OpenAI with <code class="inline">gpt-5.6-terra</code>), entering credentials, and generating the initial docs under <code class="inline">./openwiki/</code>.</p>
+      <pre>openwiki --init</pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">3</span>Or initialize Personal Mode</h3>
+      <pre>openwiki personal --init</pre>
+      <p>Then authenticate connectors and ingest your data:</p>
+      <pre>openwiki auth notion          <span class="c"># local browser OAuth flow, tokens saved to ~/.openwiki/.env</span>
+openwiki ngrok start          <span class="c"># ngrok tunnel for the Slack OAuth callback</span>
+openwiki ingest all           <span class="c"># ingest all configured sources</span>
+openwiki ingest web-search    <span class="c"># one source (requires TAVILY_API_KEY)</span></pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">4</span>Explore the graph</h3>
+      <pre>openwiki visualize                                 <span class="c"># serves ./openwiki on port 4321</span>
+openwiki visualize openwiki --port 4400 --no-open  <span class="c"># custom directory and port</span></pre>
+    </div>
+
+    <div class="step">
+      <h3><span class="stepnum">5</span>Automate updates in CI</h3>
+      <p>Copy the configured workflow file (<code class="inline">openwiki-update.yml</code> for GitHub Actions). It tracks the last committed hash, inspects merged commits, PR descriptions, and comments, and updates only changed concepts - then opens a PR with the fresh docs.</p>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section class="panel" id="realworld">
+    <h2 class="sec">In <em>production</em></h2>
+    <p class="sec-dek">What OpenWiki actually does day to day once it is wired into a repository.</p>
+
+    <div class="story">
+      <h4>Zero-cost runs when nothing changed</h4>
+      <p>OpenWiki snapshots the output directory after each run. If no codebase changes are detected on subsequent runs, it records the metadata and executes <span class="metric">no-op runs with zero token cost</span> and no file churn.</p>
+    </div>
+
+    <div class="story">
+      <h4>Git-driven documentation lifecycles</h4>
+      <p>The GitHub Actions workflow runs on your schedule - <b>once a day by default</b>, weekly for quiet repos, or every 4 to 6 hours for repos merging hundreds of commits daily. By tracking the last committed hash, it reads merged commits, PR descriptions, and comments and <span class="metric">updates only the changed concepts</span> to avoid churn.</p>
+    </div>
+
+    <div class="story">
+      <h4>Documenting the why, not just the what</h4>
+      <p>Beyond file structures, OpenWiki reads git commits, history, and comments to extract <span class="metric">high-level business logic and engineering decisions</span> - so agents understand why features are structured the way they are before writing code against them.</p>
+    </div>
+
+    <div class="story">
+      <h4>Agent alignment with zero prompting</h4>
+      <p>Once initialized, OpenWiki maintains <b>AGENTS.md</b> and <b>CLAUDE.md</b> automatically. Any coding agent scanning the repo instantly detects the instructions and references the wiki pages - <span class="metric">no manual prompting or context injection</span> required from the developer.</p>
+    </div>
+
+    <div class="story">
+      <h4>Portable by format</h4>
+      <p>Output is formatted into the <span class="metric">Google Open Knowledge Format (OKF v0.1)</span>, making the generated concepts, relationships, and logs fully portable to any other OKF-compliant tool.</p>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section class="panel" id="watchouts">
+    <h2 class="sec">Read <em>before you install</em></h2>
+    <p class="sec-dek">Honest caveats from the README and community coverage. None are dealbreakers, but two involve defaults you should know about.</p>
+
+    <div class="watch">
+      <h3>⚠ Watch out for</h3>
+      <ul>
+        <li><strong>Telemetry is on by default.</strong> OpenWiki collects anonymous, aggregate usage data on execution (brain mode, command, outcome, provider). Opt out explicitly with <code>export OPENWIKI_TELEMETRY_DISABLED=1</code> or <code>export DO_NOT_TRACK=1</code>.</li>
+        <li><strong>The visualizer needs the internet.</strong> The server runs strictly on local loopback, but graph and diagram rendering libraries load from a public CDN - you cannot explore your node graph offline.</li>
+        <li><strong>Windows compilation friction.</strong> Running via the Bun package manager on Windows can hit native compilation failures unless a full Visual Studio C++ build environment is configured. Use npm or pnpm instead.</li>
+        <li><strong>Rigid contribution policy.</strong> Community PRs must be restricted to a single change; PRs bundling multiple unrelated enhancements are immediately rejected and closed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="fgrid">
+      <div>
+        <h5>Repo Radar</h5>
+        <p>Edition 002 · Week of August 7, 2026</p>
+        <p style="margin-top:8px"><a href="../../index.html">← Back to Edition 002</a></p>
+      </div>
+      <div>
+        <h5>Sources</h5>
+        <ul>
+          <li>OpenWiki README - github.com/langchain-ai/openwiki</li>
+          <li>LangChain's official OpenWiki launch walkthrough (video)</li>
+          <li>Third-party architecture breakdown of the dual-layer docs pipeline (video)</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Project</h5>
+        <ul>
+          <li><a href="https://github.com/langchain-ai/openwiki" target="_blank" rel="noopener">github.com/langchain-ai/openwiki</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tabbtn');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    panels.forEach(p => p.classList.toggle('show', p.id === btn.dataset.tab));
+    window.scrollTo({ top: document.querySelector('.tabnav').offsetTop - 8, behavior: 'smooth' });
+  }));
+</script>
+</body>
+</html>

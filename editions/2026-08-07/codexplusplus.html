@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodexPlusPlus - External Control Layer for CodexApp | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0806;
+    --panel:#141009;
+    --panel2:#1a140c;
+    --line:#2b2115;
+    --copper:#e8924a;
+    --copper-hot:#ffb374;
+    --jade:#5fc9a0;
+    --danger:#d95f4c;
+    --ink:#f0e9df;
+    --muted:#9c8f7d;
+    --mono:'IBM Plex Mono',monospace;
+    --disp:'Syne',sans-serif;
+    --body:'Manrope',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;
+    background-image:radial-gradient(ellipse 900px 480px at 70% -10%,rgba(232,146,74,.08),transparent),
+      radial-gradient(ellipse 600px 400px at 0% 100%,rgba(95,201,160,.04),transparent);}
+  a{color:var(--copper);text-decoration:none}
+  a:hover{color:var(--copper-hot)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* topbar */
+  .topbar{border-bottom:1px solid var(--line);background:rgba(11,8,6,.92);backdrop-filter:blur(6px)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:54px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.08em}
+  .radar-link:hover{color:var(--copper)}
+  .gh-pill{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 16px;letter-spacing:.06em}
+  .gh-pill:hover{color:var(--copper);border-color:var(--copper)}
+
+  /* hero */
+  .hero{padding:76px 0 52px;position:relative}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--jade);border:1px solid rgba(95,201,160,.35);border-radius:999px;padding:6px 16px;margin-bottom:26px}
+  .kicker::before{content:"";width:7px;height:7px;background:var(--jade);border-radius:50%;box-shadow:0 0 10px var(--jade);animation:blip 2.2s infinite}
+  @keyframes blip{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{font-family:var(--disp);font-size:clamp(42px,7.5vw,88px);font-weight:800;line-height:1;letter-spacing:-.01em}
+  h1 .owner{display:block;font-size:clamp(15px,2vw,20px);font-weight:600;color:var(--muted);letter-spacing:.12em;margin-bottom:10px}
+  h1 .pp{color:var(--copper);text-shadow:0 0 32px rgba(232,146,74,.4)}
+  .tagline{font-size:clamp(16px,2.3vw,20px);color:var(--muted);max-width:660px;margin:22px 0 38px}
+  .tagline strong{color:var(--ink);font-weight:600}
+
+  /* stat chips */
+  .chips{display:flex;gap:14px;flex-wrap:wrap}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 24px;min-width:150px}
+  .chip .ck{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .chip .cv{font-family:var(--disp);font-size:28px;font-weight:700;color:var(--copper);margin-top:6px}
+  .chip .cv.jade{color:var(--jade)}
+  .chip .cv.plain{color:var(--ink)}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(11,8,6,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
+  .tabnav .wrap{display:flex;overflow-x:auto}
+  .tab-btn{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:18px 22px;cursor:pointer;white-space:nowrap;position:relative}
+  .tab-btn:hover{color:var(--ink)}
+  .tab-btn.active{color:var(--copper)}
+  .tab-btn.active::after{content:"";position:absolute;bottom:-1px;left:12px;right:12px;height:2px;background:var(--copper);box-shadow:0 0 12px var(--copper)}
+
+  /* panels */
+  .tab-panel{display:none;padding:56px 0 72px}
+  .tab-panel.active{display:block;animation:fadein .35s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  h2{font-family:var(--disp);font-size:clamp(26px,4vw,36px);font-weight:700;margin-bottom:8px}
+  h2 .mark{color:var(--jade);margin-right:10px}
+  .sub{color:var(--muted);margin-bottom:40px;max-width:700px}
+  h3{font-family:var(--disp);font-size:18px;font-weight:700;margin:0 0 14px}
+  h3 .tick{color:var(--copper);margin-right:8px;font-family:var(--mono)}
+
+  /* big number grid */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+  .bignum{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 22px;position:relative;overflow:hidden}
+  .bignum::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--copper),transparent)}
+  .bignum .n{font-family:var(--disp);font-size:clamp(30px,4.5vw,44px);font-weight:800;color:var(--copper);line-height:1}
+  .bignum .n.jade{color:var(--jade)}
+  .bignum .l{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px;margin-bottom:24px}
+  .card ul{list-style:none}
+  .card li{padding:11px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:15px}
+  .card li:last-child{border-bottom:none}
+  .card li strong{color:var(--ink);font-weight:600}
+  .card li::before{content:"◆ ";color:var(--copper);font-size:11px}
+
+  .best-feature{border:1px solid var(--copper);border-radius:12px;background:linear-gradient(180deg,rgba(232,146,74,.08),rgba(232,146,74,.01));padding:34px;position:relative;margin-bottom:24px}
+  .best-feature::before{content:"THE STANDOUT";position:absolute;top:-10px;left:26px;background:var(--bg);color:var(--copper);font-family:var(--mono);font-size:10px;letter-spacing:.3em;padding:0 10px}
+  .best-feature h3{color:var(--copper-hot);font-size:21px}
+  .best-feature p{color:var(--ink);font-size:16px;max-width:780px}
+
+  /* before/after */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px}
+  .ba{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px}
+  .ba.before{border-top:3px solid var(--danger)}
+  .ba.after{border-top:3px solid var(--jade)}
+  .ba .ba-tag{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}
+  .ba.before .ba-tag{color:var(--danger)}
+  .ba.after .ba-tag{color:var(--jade)}
+  .ba p{color:var(--muted);font-size:15px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink);font-weight:600}
+
+  /* setup */
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:20px;overflow:hidden}
+  .step-head{padding:16px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;background:var(--panel2)}
+  .step-num{font-family:var(--mono);font-size:12px;color:var(--bg);background:var(--copper);border-radius:6px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-weight:600;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:22px 26px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink);font-weight:600}
+  .step-body ol{margin:0 0 12px 20px;color:var(--muted);font-size:14px}
+  .step-body ol li{padding:4px 0}
+  .step-body ol li strong{color:var(--ink);font-weight:600}
+  pre{background:#080503;border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:0 8px 8px 0;padding:16px 18px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--copper-hot)}
+  pre .cmt{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--jade);background:#080503;padding:2px 7px;border:1px solid var(--line);border-radius:5px}
+
+  /* use */
+  .story{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px;margin-bottom:22px}
+  .story .metric{font-family:var(--disp);font-size:30px;font-weight:800;color:var(--jade)}
+  .story p{color:var(--muted);font-size:15px;margin-top:8px}
+  .story p strong{color:var(--ink);font-weight:600}
+
+  /* watchouts */
+  .watchout{border:1px dashed var(--danger);border-radius:12px;background:linear-gradient(180deg,rgba(217,95,76,.07),transparent);padding:30px;position:relative}
+  .watchout::before{content:"⚠ HANDLE WITH CARE";position:absolute;top:-10px;left:24px;background:var(--bg);color:var(--danger);font-family:var(--mono);font-size:10px;letter-spacing:.26em;padding:0 10px}
+  .watchout ul{list-style:none;margin-top:6px}
+  .watchout li{padding:12px 0;border-bottom:1px dashed var(--line);color:var(--muted);font-size:14px}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li::before{content:"! ";color:var(--danger);font-family:var(--mono);font-weight:600}
+  .watchout li strong{color:var(--ink);font-weight:600}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"◆ ";color:var(--copper);font-size:10px}
+  .backhub{display:inline-block;margin-top:24px;font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:8px;padding:10px 18px;color:var(--muted)}
+  .backhub:hover{border-color:var(--copper);color:var(--copper)}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .ba-grid{grid-template-columns:1fr}
+    .chips{gap:10px}
+    .chip{min-width:120px;padding:12px 16px}
+    .tab-btn{padding:14px 14px;font-size:11px}
+    .hero{padding:48px 0 36px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">← Repo Radar</a>
+    <a class="gh-pill" href="https://github.com/BigPizzaV3/CodexPlusPlus" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">New Entry · Edition 002</span>
+    <h1><span class="owner">BigPizzaV3 /</span>Codex<span class="pp">++</span></h1>
+    <p class="tagline">An external launcher and control layer for the OpenAI Codex and ChatGPT desktop apps - <strong>multi-provider routing, plugin store unlocking, and session history repair</strong>, injected live over CDP without touching a single installed file.</p>
+    <div class="chips">
+      <div class="chip"><div class="ck">Stars</div><div class="cv">28.2K</div></div>
+      <div class="chip"><div class="ck">This Week</div><div class="cv jade">New Entry</div></div>
+      <div class="chip"><div class="ck">Language</div><div class="cv plain">Rust 61.3%</div></div>
+      <div class="chip"><div class="ck">Forks</div><div class="cv plain">1.8K</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="realworld">Real-World Use</button>
+    <button class="tab-btn" data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2><span class="mark">::</span>Highlights</h2>
+    <p class="sub">A visual workspace manager for CodexApp power users. It splits your login state from your model query path, so the paid account stays logged in while the token-heavy traffic goes wherever you route it.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n">28.2K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n">1.8K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n jade">67</div><div class="l">Contributors</div></div>
+      <div class="bignum"><div class="n">61.3%</div><div class="l">Rust Core</div></div>
+      <div class="bignum"><div class="n jade">0.12x</div><div class="l">Of Official Pricing (Best Case)</div></div>
+      <div class="bignum"><div class="n">v1.2.45</div><div class="l">Latest Release, 13h Old</div></div>
+    </div>
+
+    <h3><span class="tick">&gt;</span>What ships in the box</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Isolated multi-provider engine</strong> - four auth modes (Official Login, Official + API hybrid, Pure API with custom Base URLs, and Aggregator Providers) with weight-based routing, request/session rotation, and automatic failover.</li>
+        <li><strong>Plugin store and model whitelisting unlock</strong> - CDP script injection via <code class="inline">renderer-inject.js</code> bypasses tier checks so plugin market downloads work without an official paid account.</li>
+        <li><strong>History Session Repair</strong> - switch API keys, change provider endpoints, or modify system files, and your active and historic chats survive instead of being cleared.</li>
+        <li><strong>Paste formatting fix</strong> - intercepts rich-text paste (like a copy from Microsoft Word) and strips formatting so clean plain text lands in the composer instead of an accidental file attachment.</li>
+        <li><strong>Upstream Worktree</strong> - deploys a target worktree straight from the upstream tracking branch, instead of native Codex's start-from-local-HEAD behavior.</li>
+        <li><strong>Interface enhancements</strong> - automated localization, scroll position recovery, dynamic chat width controls, and stepwise next-action recommendations with configurable timeout rules.</li>
+      </ul>
+    </div>
+
+    <div class="best-feature">
+      <h3>An external control layer, not a patch</h3>
+      <p>Codex++ boots the official app through its own launcher and injects enhancement scripts dynamically over the Chromium DevTools Protocol. It never alters the official app's native <code class="inline">app.asar</code> file and never writes patches into the installation directories. Your install stays factory-clean while the running app gains a whole new feature set.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2><span class="mark">::</span>The Problem</h2>
+    <p class="sub">The official CodexApp couples everything to one login: your sessions, your plugin access, and your API bill. Codex++ pulls those apart.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before · Stock CodexApp</div>
+        <p><strong>Switching endpoints nuked your sessions.</strong> Moving to a custom API endpoint or aggregator often meant losing every active conversational session.</p>
+        <p><strong>The plugin store was pay-gated.</strong> Without an official, paid ChatGPT login, developers were completely locked out of the plugin store and built-in features.</p>
+        <p><strong>Manual provider juggling.</strong> Managing multiple API providers, token histories, and directory trees by hand was tedious overhead on every project.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After · With Codex++</div>
+        <p><strong>Login state and query path are split.</strong> Keep the official paid login and its plugin market access, while routing the actual token-heavy model requests to cost-effective custom API providers.</p>
+        <p><strong>Sessions survive every switch.</strong> History Session Repair retains active and historic chats across API key swaps, endpoint changes, and system file edits.</p>
+        <p><strong>One visual manager.</strong> Providers, routing weights, failover, and directory state all live in the Manager Tool instead of scattered config files.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2><span class="mark">::</span>Setup</h2>
+    <p class="sub">Prebuilt installers from GitHub Releases for Windows x64 and both macOS architectures. No Windows ARM support.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Download the installer</h3></div>
+      <div class="step-body">
+        <p>Grab the right package from the GitHub Releases page:</p>
+<pre>CodexPlusPlus-*-windows-x64-setup.exe   <span class="cmt"># Windows (x64 only)</span>
+CodexPlusPlus-*-macos-x64.dmg           <span class="cmt"># macOS Intel</span>
+CodexPlusPlus-*-macos-arm64.dmg         <span class="cmt"># macOS Apple Silicon</span></pre>
+        <p>On Windows: double-click the installer, accept the license agreement, install to the default location.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>macOS Gatekeeper override</h3></div>
+      <div class="step-body">
+        <p>If macOS blocks the unsigned binary with a "damaged / cannot open" warning, clear the quarantine flags:</p>
+<pre>sudo xattr -rd com.apple.quarantine /Applications/Codex++\ 管理工具.app
+sudo xattr -rd com.apple.quarantine /Applications/Codex++.app</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>First-time configuration</h3></div>
+      <div class="step-body">
+        <ol>
+          <li>Installation drops two shortcuts: <strong>Codex++</strong> (the silent launcher) and the <strong>Codex++ Manager Tool</strong>.</li>
+          <li>Open the <strong>Manager Tool</strong> first to verify application directories, config files, and path states.</li>
+          <li>Under the <strong>Providers</strong> panel, add custom API keys or pick a built-in preset like SiliconFlow or DeepSeek.</li>
+          <li>Run the <strong>Provider Doctor</strong> diagnostic to test active model routing.</li>
+          <li>Check the <strong>History Session Repair</strong> option to protect your chats.</li>
+          <li>Close the manager and boot with the <strong>Codex++ silent launcher</strong> to start coding.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Building from source (optional)</h3></div>
+      <div class="step-body">
+        <p>Frontend validation:</p>
+<pre>cd apps/codex-plus-manager
+npm ci
+npm run check
+npm run vite:build</pre>
+        <p>Rust workspace compilation:</p>
+<pre>cd ../..
+cargo fmt --all -- --check
+cargo test
+cargo build --release</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section id="realworld" class="tab-panel">
+    <h2><span class="mark">::</span>Real-World Use</h2>
+    <p class="sub">What developers actually report after running Codex++ as their daily driver.</p>
+
+    <div class="story">
+      <div class="metric">Down to 0.12x</div>
+      <p><strong>Extreme budget savings via API mid-way hubs.</strong> Routing through aggregators like JoJo Code, AIGoCode, APIKEY.FUN, or Cubence gives access to advanced models (GPT-5.5, Claude Sonnet 5, DeepSeek-V4-Pro) at a fraction of standard developer rates - sometimes as low as 0.12x of official pricing.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">10+ day sessions</div>
+      <p><strong>Prolonged session longevity.</strong> Local database sync improvements in <code class="inline">~/.codex/sqlite/</code> let developers keep a single project troubleshooting thread alive for more than ten days straight - deep workspace context without repetitive code uploads or constant re-priming.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">Ships every 3-5 days</div>
+      <p><strong>Highly active maintenance.</strong> 67 community contributors push compatibility patches and enhancements every three to five days. The latest release, v1.2.45, landed within the last 13 hours of the briefing.</p>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section id="watchouts" class="tab-panel">
+    <h2><span class="mark">::</span>Watchouts</h2>
+    <p class="sub">Codex++ lives by injecting into someone else's app. That power comes with sharp edges worth knowing before you commit a workflow to it.</p>
+
+    <div class="watchout">
+      <ul>
+        <li><strong>Domestic multimodal API failures can destroy a chat.</strong> Domestic Chinese models like DeepSeek-V4-Pro have no native image recognition or file-upload support through this routing. Upload a screenshot or attachment into one of those sessions and the system throws a fatal error or an infinite loop, permanently breaking that chat history.</li>
+        <li><strong>Brittle CDP hook dependencies.</strong> Codex++ injects scripts into CodexApp's rendering interfaces over Chromium DevTools. Any official app update that changes the internal page structure can break the injected modules until a compatibility patch ships.</li>
+        <li><strong>API keys are stored locally - guard them.</strong> All active API keys are saved on disk. Never publish diagnostic screenshots, raw logs, or GitHub issues that contain those paths or credentials.</li>
+        <li><strong>Aggregator mode-switching flaws.</strong> Flipping between Pure API and Official Hybrid modes can occasionally cause request failures. The maintainers explicitly warn: never manually copy <code class="inline">auth.json</code> files between the two validation states to work around errors.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 002 · Week of August 7, 2026</div>
+    <ul>
+      <li><a href="https://github.com/BigPizzaV3/CodexPlusPlus" target="_blank" rel="noopener">BigPizzaV3/CodexPlusPlus - GitHub README and Releases</a></li>
+      <li>Community video walkthroughs (Chinese-language CodexApp workflow reviews)</li>
+      <li>NotebookLM research briefing, August 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to Edition 002</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

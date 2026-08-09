@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>usestrix/strix - Autonomous AI Penetration Testing | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a10;
+    --bg2:#120f17;
+    --card:#171320;
+    --card2:#1d1828;
+    --red:#ff3b52;
+    --red-soft:#ff8091;
+    --gold:#f5b942;
+    --ink:#f3f0f7;
+    --muted:#a49bb4;
+    --line:#2a2338;
+    --sans:'Sora',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --r:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(circle at 90% -5%,rgba(255,59,82,.12),transparent 42%),
+                     radial-gradient(circle at 5% 40%,rgba(245,185,66,.05),transparent 38%);}
+  a{color:var(--gold);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* topbar */
+  .topbar{background:rgba(12,10,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+  .radar-link{font-weight:700;font-size:14px;color:var(--muted);letter-spacing:.04em}
+  .radar-link:hover{color:var(--red);text-decoration:none}
+  .gh-link{font-weight:600;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+  .gh-link:hover{border-color:var(--red);color:var(--red);text-decoration:none}
+
+  /* hero */
+  .hero{padding:74px 0 52px}
+  .kicker{display:inline-block;background:var(--red);color:#fff;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:8px 18px;border-radius:4px;margin-bottom:24px;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+  h1{font-size:clamp(40px,8vw,82px);font-weight:800;line-height:1;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:600}
+  h1 .name{background:linear-gradient(92deg,var(--red),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:700px;margin:22px 0 36px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 20px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--gold)}
+  .chip .cv.rd{color:var(--red)}
+  .chip .ck{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(12,10,16,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:13px 0}
+  .tabnav .wrap{display:flex;gap:9px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13.5px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 21px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--red-soft)}
+  .tab-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 20px rgba(255,59,82,.35)}
+
+  /* panels */
+  .tab-panel{display:none;padding:56px 0 72px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--red)}
+  .sub{color:var(--muted);margin-bottom:40px;max-width:680px;font-size:16.5px}
+  h3{font-size:20px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--gold)}
+
+  /* highlights */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-bottom:44px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:27px 23px;position:relative;overflow:hidden}
+  .bignum::after{content:"";position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--red),var(--gold))}
+  .bignum .n{font-family:var(--mono);font-size:clamp(30px,4.3vw,42px);font-weight:600;line-height:1;color:var(--ink)}
+  .bignum .n.rd{color:var(--red)}
+  .bignum .n.gd{color:var(--gold)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-bottom:44px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:23px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--gold);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--red-soft)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(255,59,82,.14),rgba(245,185,66,.08));border:2px solid var(--red);border-radius:20px;padding:36px}
+  .best-feature .bf-tag{display:inline-block;background:var(--red);color:#fff;font-weight:800;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;border-radius:4px;margin-bottom:16px}
+  .best-feature h3{font-size:24px}
+  .best-feature p{color:var(--ink);font-size:16px;max-width:760px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--gold);font-size:.92em}
+
+  /* problem */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px;margin-bottom:36px}
+  .ba{border-radius:var(--r);padding:29px;border:1px solid var(--line)}
+  .ba.before{background:rgba(255,59,82,.06);border-color:rgba(255,59,82,.4)}
+  .ba.after{background:rgba(245,185,66,.05);border-color:rgba(245,185,66,.4)}
+  .ba .ba-tag{font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--red)}
+  .ba.after .ba-tag{color:var(--gold)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--gold)}
+
+  /* setup */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:19px;overflow:hidden}
+  .step-head{padding:17px 25px;background:var(--card2);display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line)}
+  .step-badge{background:var(--red);color:#fff;font-weight:800;font-size:11px;padding:5px 13px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;flex-shrink:0}
+  .step-badge.gd{background:var(--gold);color:#0c0a10}
+  .step-head h3{margin:0;font-size:16.5px}
+  .step-body{padding:21px 25px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:#08060c;border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--gold)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--red-soft);background:#08060c;padding:2px 8px;border-radius:6px}
+
+  /* real-world use */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:27px;margin-bottom:19px;display:grid;grid-template-columns:195px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:27px;font-weight:600;color:var(--red);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--gold)}
+
+  /* watchouts */
+  .watchout{background:rgba(245,185,66,.05);border:2px dashed var(--gold);border-radius:20px;padding:31px}
+  .watchout h3{color:var(--gold);font-size:20px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(245,185,66,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--gold)}
+  .watchout li::before{content:"⚠ ";color:var(--gold)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-weight:700;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"▸ ";color:var(--red)}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:999px;color:var(--ink)}
+  .backhub:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">← Repo Radar</a>
+    <a class="gh-link" href="https://github.com/usestrix/strix" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Autonomous AI penetration testing</span>
+    <h1><span class="owner">usestrix/</span><span class="name">strix</span></h1>
+    <p class="tagline">Teams of <strong>specialized AI agents</strong> that navigate your app, execute real exploits inside a Kali Linux sandbox, hand you a <strong>working proof-of-concept</strong> - and a ready-to-merge autofix pull request.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv">49,642</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv rd">+3,205</span><span class="ck">this week</span></div>
+      <div class="chip"><span class="cv rd">96%</span><span class="ck">Xben solve rate</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">66.1%</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Real-World Use</button>
+    <button class="tab-btn" data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2>Proof, not <em>warnings</em></h2>
+    <p class="sub">Strix does not tell you an endpoint might be vulnerable. It spins up a sandbox, breaks in, proves it, and hands you the patch.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n rd">96%</div><div class="l">Xben Benchmark Solve Rate</div></div>
+      <div class="bignum"><div class="n gd">19 min</div><div class="l">Avg Challenge Duration</div></div>
+      <div class="bignum"><div class="n">49.6K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n gd">~10 min</div><div class="l">Typical Quick Scan</div></div>
+      <div class="bignum"><div class="n">5.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n rd">3</div><div class="l">Languages: Py / Go / TS</div></div>
+    </div>
+
+    <h3><span class="dot">●</span> The architecture</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Graph of agents</div><p>A reconnaissance agent maps the application and endpoints, passes context to an exploitation agent that generates targeted payloads, and a validation agent executes and confirms the exploit. Collaboration, not a linear script.</p></div>
+      <div class="feat"><div class="fh">Kali Linux Docker sandbox</div><p>All offensive utilities live inside a pre-built Kali container. Agents point attacks exclusively at the target from the sandbox boundary - live exploit payloads never touch your host.</p></div>
+      <div class="feat"><div class="fh">Pro red-team toolkit</div><p>Ships with Caido for HTTP interception and request manipulation, Playwright for browser exploitation (XSS, CSRF, auth bypass), and Nuclei for vulnerability scanning.</p></div>
+      <div class="feat"><div class="fh"><code>strix view</code> dashboard</div><p>A lightweight local server bound to <code>127.0.0.1</code> on a random port opens a private, tokened web interface: live agent graph, severity breakdowns, vulnerability details, and a steering portal to redirect agents mid-run. Everything reads from local disk - no cloud uploads.</p></div>
+      <div class="feat"><div class="fh">Agent-ready skills</div><p>Run <code>npx skills add usestrix/strix</code> to inject four skills into Claude Code, Cursor, or Codex: penetration-testing, managed-pentesting, fix-security-vulnerabilities, and ci-security-scanning.</p></div>
+      <div class="feat"><div class="fh">CI/CD fail-safes</div><p>In GitHub Actions, Strix runs automatically on pull requests and exits with a non-zero code when it uncovers a vulnerability - so insecure merges get blocked programmatically before production.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Validated findings with working PoC + one-click autofix</h3>
+      <p>Every real bug ships with a working, validated proof-of-concept exploit and a ready-to-merge autofix pull request. The pile of static "what-if" warnings disappears - what remains is proven, reproducible, and already patched. On the Xben exploitation benchmark, that approach hits a <code>96%</code> solve rate on real break-in tasks, averaging 19 minutes per challenge.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Security tooling has forced a bad choice: slow expensive humans, or fast noisy scanners. Strix closes the loop between the two.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Alert fatigue by design.</strong> Legacy vulnerability scanners lean on static signatures, pattern matching, and SAST - inundating security and dev teams with high volumes of false positives.</p>
+        <p><strong>Priced out of real pentesting.</strong> Small teams without budget for manual human pentesting either ignore the risk or burn hours auditing static "what-if" warnings.</p>
+        <p><strong>Slow and unscalable.</strong> Traditional manual penetration tests are slow, highly expensive, and scale poorly.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Agents that actually break in.</strong> Autonomous teams of specialized AI agents navigate the application, identify vectors, and execute real-world exploits dynamically.</p>
+        <p><strong>Proof over speculation.</strong> Strix spins up a sandbox, attacks the system to prove the vulnerability exists, and generates a working proof-of-concept exploit.</p>
+        <p><strong>The loop closes with a patch.</strong> A one-click autofix arrives as a ready-to-merge pull request - detection, exploitation, and remediation in a single run.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Prerequisites: a Unix-like terminal, Python 3.12 or higher, a running Docker daemon, and an active LLM provider API key.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-badge">Step 1</span><h3>Install</h3></div>
+      <div class="step-body">
+<pre>curl -sSL https://strix.ai/install | bash</pre>
+        <p>The script retrieves the latest binaries, verifies your environment, and configures base directories.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-badge gd">Step 2</span><h3>Attach a cognitive engine</h3></div>
+      <div class="step-body">
+        <p><strong>Option A - metered API key:</strong></p>
+<pre>export STRIX_LLM="openai/gpt-5.4"
+export LLM_API_KEY="your-api-key"</pre>
+        <p><strong>Option B - existing ChatGPT Plus or Pro subscription</strong> (no metered API):</p>
+<pre>strix auth login chatgpt
+export STRIX_LLM="chatgpt/gpt-5.4"
+strix auth status   <span class="cm"># verifies active sign-in</span></pre>
+        <p>Strix saves your setup parameters to <code class="inline">~/.strix/cli-config.json</code> so you never re-enter them.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-badge">Step 3</span><h3>Run a scan</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Scan a local codebase</span>
+strix --target ./app-directory
+
+<span class="cm"># Quick scan of a live target you own</span>
+strix --target https://your-app.com --scan-mode quick
+
+<span class="cm"># Cap API spend for the run</span>
+strix --target https://your-app.com --max-budget-usd 5
+
+<span class="cm"># Directories over 1,024 MB: mount instead of streaming</span>
+strix --target ./app-directory --mount
+
+<span class="cm"># Authenticated grey-box testing</span>
+strix --target https://your-app.com --instruction "Perform authenticated testing using credentials: user:pass"
+
+<span class="cm"># Headless, non-interactive (CI jobs)</span>
+strix -n --target https://your-app.com</pre>
+        <p>Run <code class="inline">strix view</code> at any time to open the local dashboard - live agent graph, severity breakdowns, and mid-run steering.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Benchmarks and run data, not marketing claims.</p>
+
+    <div class="story"><div class="metric">96% solve rate</div><p><strong>The Xben exploitation benchmark.</strong> Strix solves 96% of real-world break-in tasks - actual exploitation, not multiple-choice vulnerability identification - averaging <code>19 minutes</code> per challenge.</p></div>
+    <div class="story"><div class="metric">~10 min</div><p><strong>Typical quick scan.</strong> A standard quick scan of a typical backend application (a FastAPI expense app in community walkthroughs) completes in around ten minutes. Deep comprehensive tests can run for hours.</p></div>
+    <div class="story"><div class="metric">OWASP Top 10</div><p><strong>What it actually finds.</strong> Uncovers and exploits SQL injection, XSS, RCE, SSRF, broken access control including IDOR, and complex API security flaws - each confirmed with a working proof-of-concept.</p></div>
+    <div class="story"><div class="metric">exit 1</div><p><strong>CI/CD as a fail-safe.</strong> In GitHub Actions, Strix runs on every pull request and exits non-zero when it uncovers a vulnerability - insecure merges get blocked programmatically before production.</p></div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section id="watchouts" class="tab-panel">
+    <h2>Watch <em>out</em> for</h2>
+    <p class="sub">Honest limits from reviewers and the docs - know them before you point Strix at anything.</p>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Legal boundary first.</strong> Strix executes active, real-world exploitation tools. Running it against any domain, API, or server where you do not hold explicit written permission is illegal in most jurisdictions. Only scan systems you own or are authorized to test.</li>
+        <li><strong>Token costs add up.</strong> Agents run non-deterministic reasoning loops - a single quick scan on a frontier model (GPT-5.4, Claude Sonnet 4.6) typically costs <code>$3-$5</code> in API tokens, and deep scans run significantly higher. Use <code>--max-budget-usd</code>.</li>
+        <li><strong>Weak local model, weak findings.</strong> Ollama and LMStudio engines are supported, but reviewers report that local models materially degrade coverage. Top-tier proprietary models remain necessary for deep results.</li>
+        <li><strong>Docker is mandatory.</strong> The Kali Linux sandbox requires a running Docker daemon - real operational overhead and setup friction on locked-down machines.</li>
+        <li><strong>1,024 MB streaming cap.</strong> Local directories over 1,024 MB fail the run unless you override with <code>--mount</code>.</li>
+        <li><strong>Not a human replacement yet.</strong> Agents still struggle with highly complex custom business-logic flaws and long multi-stage attack chains. For critical, high-risk systems, keep the professional pentester.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 002 · Week of August 7, 2026</div>
+    <ul>
+      <li>usestrix/strix GitHub README - architecture, sandbox model, CLI flags, CI integration</li>
+      <li>Xben exploitation benchmark results - 96% solve rate, 19 min average challenge duration</li>
+      <li>Community walkthroughs - quick-scan run data, token cost reports, local-model comparisons</li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to Edition 002</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

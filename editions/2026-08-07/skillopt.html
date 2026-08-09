@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillOpt - Train the Procedure, Not the Weights | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b14;
+    --panel:#12141f;
+    --panel2:#181b2a;
+    --line:#262a3f;
+    --violet:#a78bfa;
+    --violet-dk:#7c5cf0;
+    --cyan:#22d3ee;
+    --text:#e8e9f2;
+    --muted:#8d91a8;
+    --sans:'Space Grotesk',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* topbar */
+  .topbar{border-bottom:1px solid var(--line);background:rgba(10,11,20,.92);backdrop-filter:blur(8px)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+  .radar-link{font-weight:600;font-size:14px;color:var(--text);letter-spacing:.02em}
+  .radar-link:hover{color:var(--violet);text-decoration:none}
+  .gh-pill{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--bg);background:linear-gradient(90deg,var(--violet),var(--cyan));padding:9px 20px;border-radius:6px}
+  .gh-pill:hover{opacity:.85;text-decoration:none;color:var(--bg)}
+
+  /* hero */
+  .hero{padding:80px 0 56px;background:
+    radial-gradient(ellipse 70% 55% at 20% 0%,rgba(167,139,250,.13),transparent 60%),
+    radial-gradient(ellipse 50% 45% at 90% 10%,rgba(34,211,238,.08),transparent 60%);
+    border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.35);padding:6px 16px;margin-bottom:26px}
+  h1{font-size:clamp(38px,7.5vw,86px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:720px;margin:22px 0 40px}
+  .tagline strong{color:var(--text)}
+  .chips{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line)}
+  .chip{flex:1;min-width:150px;padding:18px 22px;border-right:1px solid var(--line);background:var(--panel)}
+  .chip:last-child{border-right:none}
+  .chip .cv{font-weight:700;font-size:24px;line-height:1;color:var(--text)}
+  .chip .cv.v{color:var(--violet)}
+  .chip .ck{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:7px}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,11,20,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tabnav .wrap{display:flex;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:14px;background:transparent;border:none;color:var(--muted);padding:18px 24px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+  .tab-btn:hover{color:var(--text)}
+  .tab-btn.active{color:var(--text);border-bottom-color:var(--violet)}
+
+  /* panels */
+  .tab-panel{display:none;padding:56px 0 72px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(28px,4.5vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 .mark{color:var(--violet)}
+  .sub{color:var(--muted);margin-bottom:44px;max-width:700px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
+
+  /* highlights */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:48px}
+  .bignum{background:var(--panel);padding:30px 26px}
+  .bignum .n{font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.05;letter-spacing:-.02em;color:var(--violet)}
+  .bignum:nth-child(even) .n{color:var(--cyan)}
+  .bignum .l{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.05em;margin-top:12px;line-height:1.5}
+
+  .loop{display:flex;flex-wrap:wrap;gap:0;margin-bottom:48px;border:1px solid var(--line)}
+  .lstep{flex:1;min-width:120px;padding:16px 12px;text-align:center;font-weight:700;font-size:15px;border-right:1px solid var(--line);background:var(--panel)}
+  .lstep:last-child{border-right:none}
+  .lstep span{display:block;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--cyan);letter-spacing:.18em;margin-bottom:4px}
+
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px}
+  .feat{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--violet);padding:26px}
+  .feat:nth-child(even){border-left-color:var(--cyan)}
+  .feat h4{font-size:16px;font-weight:700;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p strong{color:var(--text)}
+
+  .best-feature{border:1px solid var(--violet);padding:38px;position:relative;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(34,211,238,.05))}
+  .best-feature .bf-tag{position:absolute;top:-13px;left:26px;background:var(--violet);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px}
+  .best-feature h3{font-size:22px;margin-bottom:10px}
+  .best-feature p{color:var(--muted);font-size:15.5px;max-width:780px}
+  .best-feature p strong{color:var(--text)}
+
+  /* problem */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px}
+  .ba{padding:32px}
+  .ba.before{background:var(--panel);border:1px dashed var(--line)}
+  .ba.after{background:var(--panel2);border:1px solid var(--cyan)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--muted)}
+  .ba.after .ba-tag{color:var(--cyan)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--text)}
+  .thesis{background:var(--panel);border-left:4px solid var(--violet);padding:24px 28px}
+  .thesis p{color:var(--muted);font-size:15px}
+  .thesis p strong{color:var(--text)}
+
+  /* setup */
+  .step{background:var(--panel);border:1px solid var(--line);margin-bottom:18px}
+  .step-head{padding:16px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;background:var(--panel2)}
+  .step-num{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--bg);background:linear-gradient(135deg,var(--violet),var(--cyan));width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16.5px}
+  .step-body{padding:22px 26px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--text)}
+  .step-body ol{color:var(--muted);font-size:14px;margin:0 0 4px 20px}
+  .step-body ol li{margin-bottom:9px}
+  .step-body ol li strong{color:var(--text)}
+  pre{background:#060710;border:1px solid var(--line);color:#9fe8ff;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8}
+  code.inline{font-family:var(--mono);font-size:.88em;color:var(--violet);background:var(--panel2);padding:2px 8px;border:1px solid var(--line)}
+
+  /* real-world use */
+  .story{background:var(--panel);border:1px solid var(--line);padding:28px;margin-bottom:18px;display:grid;grid-template-columns:210px 1fr;gap:26px;align-items:center}
+  .story .metric{font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-.02em;background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--text)}
+
+  /* watchouts */
+  .watchout{border:2px dashed var(--violet);background:rgba(167,139,250,.05);padding:34px;position:relative}
+  .watchout::before{content:"WATCH OUT FOR";position:absolute;top:-13px;left:26px;background:var(--bg);color:var(--violet);font-family:var(--mono);font-size:11px;letter-spacing:.22em;padding:4px 14px}
+  .watchout ul{list-style:none;margin-top:6px}
+  .watchout li{padding:13px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--text)}
+  .watchout li::before{content:"△ ";color:var(--cyan)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 64px;margin-top:20px;background:var(--panel)}
+  footer .fmeta{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"▸ ";color:var(--violet)}
+  .backhub{display:inline-block;margin-top:26px;font-weight:600;font-size:14px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:var(--bg);padding:12px 24px}
+  .backhub:hover{opacity:.85;text-decoration:none;color:var(--bg)}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+    .ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .chip{min-width:45%;border-bottom:1px solid var(--line)}
+    .lstep{min-width:48%;border-bottom:1px solid var(--line)}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">← Repo Radar</a>
+    <a class="gh-pill" href="https://github.com/microsoft/SkillOpt" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">New Entry · Microsoft Research</span>
+    <h1><span class="owner">microsoft/</span><span class="name">SkillOpt</span></h1>
+    <p class="tagline">A text-space optimizer that treats the <strong>skill markdown file as the trainable state of a frozen agent</strong> - train the procedure, not the weights, and deploy the result with zero inference-time overhead.</p>
+    <div class="chips">
+      <div class="chip"><div class="cv v">15,745</div><div class="ck">Stars</div></div>
+      <div class="chip"><div class="cv">New</div><div class="ck">This Week</div></div>
+      <div class="chip"><div class="cv v">+24.8 pts</div><div class="ck">GPT-5.5 in Codex loop</div></div>
+      <div class="chip"><div class="cv">Python 87.2%</div><div class="ck">Language</div></div>
+      <div class="chip"><div class="cv v">MIT</div><div class="ck">License</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Real-World Use</button>
+    <button class="tab-btn" data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2><span class="mark">§</span> Highlights</h2>
+    <p class="sub">Prompt engineering, reframed as a reproducible deep-learning problem - with the benchmark sweep to back it up.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n">52/52</div><div class="l">Best or tied-best on every evaluated (model, benchmark, harness) cell</div></div>
+      <div class="bignum"><div class="n">+23.5 pts</div><div class="l">Average GPT-5.5 accuracy lift in direct chat</div></div>
+      <div class="bignum"><div class="n">+57.5 pts</div><div class="l">Peak lift on a Spreadsheet Bench configuration</div></div>
+      <div class="bignum"><div class="n">+19.1 pts</div><div class="l">Average lift inside the Claude Code environment</div></div>
+      <div class="bignum"><div class="n">300-2K</div><div class="l">Tokens in the deployable best_skill.md artifact</div></div>
+      <div class="bignum"><div class="n">Zero</div><div class="l">Inference-time token cost or model call overhead added</div></div>
+    </div>
+
+    <h3>The optimization loop</h3>
+    <div class="loop">
+      <div class="lstep"><span>01</span>Rollout</div>
+      <div class="lstep"><span>02</span>Reflect</div>
+      <div class="lstep"><span>03</span>Edit</div>
+      <div class="lstep"><span>04</span>Gate</div>
+      <div class="lstep"><span>05</span>Repeat</div>
+    </div>
+
+    <h3>The feature set</h3>
+    <div class="feat-grid">
+      <div class="feat"><h4>Strict bounded edit operations</h4><p>The optimizer never rewrites files from scratch. It is constrained to bounded <strong>add, delete, and replace</strong> edits on the markdown text - preventing chaotic or destructive prompt degradation.</p></div>
+      <div class="feat"><h4>Validation gate + rejection buffer</h4><p>Edits are scored on a held-out validation set the optimizer has never seen. Accepted only on <strong>strict improvement</strong>; rejected edits go to a buffer that stabilizes future epochs.</p></div>
+      <div class="feat"><h4>skillopt-sleep nightly self-evolution</h4><p>A companion engine that runs offline training loops overnight - harvesting past interaction transcripts, replaying recurring errors, and consolidating verified skills behind a held-out safety gate.</p></div>
+      <div class="feat"><h4>Multi-backend, multi-harness</h4><p>Optimizer and target models decouple across OpenAI, Azure OpenAI, Anthropic Claude, Qwen, and MiniMax, plus local models via vLLM. Harnesses include direct chat, <strong>Codex CLI, Claude Code CLI</strong>, Copilot, Devin, and OpenClaw.</p></div>
+      <div class="feat"><h4>Multi-objective slow updates</h4><p>Epoch-wise meta-updates generate <strong>protected markdown blocks</strong> that preserve foundational learned rules, so later iterations cannot overwrite verified reasoning steps.</p></div>
+      <div class="feat"><h4>Gradio WebUI dashboard</h4><p>A local interface to watch live training accuracy, track edit budget behavior, and supervise <strong>cumulative API token expenditure</strong> during a run.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The validation gate - edits must earn their place</h3>
+      <p>Every proposed edit is tested on a held-out validation dataset and saved <strong>only if it strictly improves the score</strong>. That single discipline is what turns free-form prompt fiddling into a reproducible optimization process - and the paper's ablations show removing it stalls or destroys the run.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2><span class="mark">§</span> The Problem</h2>
+    <p class="sub">Agent customization today forces a choice between two bad options. SkillOpt is the third path.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before · the manual bottleneck</div>
+        <p><strong>Fine-tuning is expensive and brittle.</strong> Weight-level tuning must be repeated from scratch for every new model release.</p>
+        <p><strong>Hand-crafted prompts are tedious.</strong> The alternative is slow, manual prompt engineering with no measurement discipline.</p>
+        <p><strong>Unstructured self-revision regresses.</strong> When skills are evolved by free-form self-editing, LLMs struggle to improve reliably over baseline and frequently introduce regressions.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After · the SkillOpt way</div>
+        <p><strong>The skill document is the trainable state.</strong> A separate, highly capable optimizer LLM reads the target agent's task rollouts and proposes bounded text edits to the skill markdown.</p>
+        <p><strong>Updates survive only if validated.</strong> Strict gating on unseen data means every accepted change is a measured improvement, not a hunch.</p>
+        <p><strong>The artifact is just markdown.</strong> A compact, deployable file that runs against unchanged target models - zero inference-time token cost, zero extra model calls.</p>
+      </div>
+    </div>
+
+    <div class="thesis">
+      <p><strong>The core reframe:</strong> you do not touch model weights at all. You rewrite the skill files your agent already uses - and let a teacher model do it under strict, scientific constraints.</p>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2><span class="mark">§</span> Setup</h2>
+    <p class="sub">PyPI package, editable source install, or the full WebUI - then configure a teacher, a student, and a budget.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Standard install</h3></div>
+      <div class="step-body">
+<pre>pip install skillopt</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Developer install (editable mode)</h3></div>
+      <div class="step-body">
+<pre>git clone https://github.com/microsoft/SkillOpt
+cd SkillOpt
+pip install -e .</pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Gradio WebUI dashboard</h3></div>
+      <div class="step-body">
+<pre>pip install -e ".[webui]"
+python -m skillopt_webui.app</pre>
+        <p>Add the <code class="inline">--host 127.0.0.1</code> flag to restrict the dashboard to localhost only.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run a training pipeline</h3></div>
+      <div class="step-body">
+        <ol>
+          <li>Export your <strong>OpenAI, Azure, or Anthropic API keys</strong> as environment variables.</li>
+          <li>Configure the <strong>optimizer model</strong> (the teacher that evaluates and writes prompt edits, e.g. GPT-5.5) and the <strong>target model</strong> (the student agent executing tasks).</li>
+          <li>Pick one of the six built-in benchmarks (e.g. <code class="inline">searchqa</code> or <code class="inline">alfworld</code>) or write a custom adapter using the benchmark contract.</li>
+          <li>Set a <strong>strict data sample limit</strong> to avoid runaway API costs, plus your epoch budget and batch size.</li>
+          <li>Run the train command - the output is your optimized <code class="inline">best_skill.md</code> file.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section id="usecases" class="tab-panel">
+    <h2><span class="mark">§</span> Real-World Use</h2>
+    <p class="sub">Six benchmarks, seven target models, three execution harnesses - and skills that transfer without retraining.</p>
+
+    <div class="story">
+      <div class="metric">52 cells,<br>0 losses</div>
+      <p><strong>The full sweep.</strong> Evaluated across 6 benchmarks, 7 target models, and 3 execution harnesses (direct chat, Codex CLI, Claude Code CLI), SkillOpt achieved best or tied-best performance on every single one of the 52 evaluated configurations.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">+24.8 pts<br>in Codex</div>
+      <p><strong>Double-digit lifts on GPT-5.5.</strong> Average no-skill accuracy improved by +23.5 points in direct chat, +24.8 inside the OpenAI Codex agentic loop, and +19.1 inside Claude Code - with a peak of +57.5 points on a Spreadsheet Bench configuration.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">+40 pts,<br>unseen split</div>
+      <p><strong>The tutorial run holds up.</strong> A standard walkthrough using the Search QA environment produced a 40 percentage point lift measured on a completely unseen validation split - baseline first, then the automated rollout-reflect-edit-gate loop did the rest.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">1 file,<br>any model</div>
+      <p><strong>Zero-shot transferability.</strong> The compiled best_skill.md (typically 300 to 2,000 tokens) transfers across model scales - a skill optimized for a smaller model improves a larger model in the same family, and skills carry cleanly between the Codex and Claude Code harnesses.</p>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section id="watchouts" class="tab-panel">
+    <h2><span class="mark">§</span> Watchouts</h2>
+    <p class="sub">Powerful, but delicate - the constraints that make it work are also the things you must not remove.</p>
+
+    <div class="watchout">
+      <ul>
+        <li><strong>Runaway token costs.</strong> Iterative multi-turn rollouts, reflections, edits, and validation tests add up fast. A strict target data sample limit is mandatory, not optional, for keeping API bills manageable.</li>
+        <li><strong>Ablation fragility.</strong> The paper's ablations show stability is delicate: remove the bounded edit restrictions, the rejection buffer, or the validation gate and optimization either stalls entirely or destructively overwrites the prompt.</li>
+        <li><strong>Experimental features stay hidden.</strong> Advanced v0.2.0 capabilities - multi-objective modeling, offline replay, dream-rollout controls - remain highly experimental and are deliberately kept off the default CLI flags.</li>
+        <li><strong>Prompt security is your job.</strong> Because the optimizer dynamically edits prompt files, output markdown could carry optimized prompt exploits. Pair it with a safety checker like Nvidia's open-source SkillSpector before production.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 002 · Week of August 7, 2026</div>
+    <ul>
+      <li>microsoft/SkillOpt README, paper, and project page (GitHub / aka.ms/skillopt)</li>
+      <li>SkillOpt video walkthrough transcripts (pipeline tutorial + benchmark deep-dive)</li>
+      <li>NotebookLM research briefing, August 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to Edition 002</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

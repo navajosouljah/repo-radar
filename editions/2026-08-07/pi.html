@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>earendil-works/pi - The Neovim of Coding Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d09;
+    --bg2:#10130c;
+    --card:#151a10;
+    --card2:#1a2114;
+    --lime:#c6f24e;
+    --lime-dim:#8fb43a;
+    --amber:#ffa94d;
+    --ink:#eef2e4;
+    --muted:#98a48a;
+    --line:#252d1c;
+    --sans:'Space Grotesk',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 15% -5%,rgba(198,242,78,.08),transparent 45%),
+                     radial-gradient(ellipse at 95% 20%,rgba(255,169,77,.05),transparent 40%);}
+  a{color:var(--lime);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+  /* topbar */
+  .topbar{background:rgba(11,13,9,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--lime);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--lime);color:var(--lime);text-decoration:none}
+
+  /* hero */
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);background:transparent;color:var(--lime);border:1px solid var(--lime-dim);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border-radius:6px;margin-bottom:24px}
+  .kicker::before{content:"$ ";color:var(--amber)}
+  h1{font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--lime)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--lime)}
+  .chip .cv.am{color:var(--amber)}
+  .chip .ck{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+  /* tab nav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(11,13,9,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--mono);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--lime-dim)}
+  .tab-btn.active{background:var(--lime);border-color:var(--lime);color:#0b0d09;box-shadow:0 4px 18px rgba(198,242,78,.25)}
+
+  /* panels */
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--lime)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--amber)}
+
+  /* highlights */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;position:relative}
+  .bignum::before{content:">";position:absolute;top:14px;right:18px;font-family:var(--mono);color:var(--line);font-weight:700}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--lime)}
+  .bignum .n.am{color:var(--amber)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--lime-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--lime);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--amber)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(198,242,78,.10),rgba(255,169,77,.06));border:1px solid var(--lime);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--lime);color:#0b0d09;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature h3 code{font-family:var(--mono);color:var(--lime)}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--amber);font-size:.92em}
+
+  /* problem */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(255,169,77,.05);border-color:rgba(255,169,77,.35)}
+  .ba.after{background:rgba(198,242,78,.05);border-color:rgba(198,242,78,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--amber)}
+  .ba.after .ba-tag{color:var(--lime)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--lime)}
+
+  /* setup */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--lime);color:#0b0d09;font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:#080a06;border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--lime)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--amber);background:#080a06;padding:2px 8px;border-radius:6px}
+
+  /* real-world use */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--lime);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--amber)}
+
+  /* watchouts */
+  .watchout{background:rgba(255,169,77,.05);border:2px dashed var(--amber);border-radius:18px;padding:30px}
+  .watchout h3{color:var(--amber);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,169,77,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--lime)}
+  .watchout li::before{content:"! ";font-family:var(--mono);color:var(--amber);font-weight:700}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:42px 0 60px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--lime);font-weight:700}
+  .backhub{display:inline-block;margin-top:24px;font-family:var(--mono);font-weight:600;font-size:13px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--lime);color:var(--lime);text-decoration:none}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:50px 0 38px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">← Repo Radar</a>
+    <a class="gh-link" href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">The Neovim of coding agents</span>
+    <h1><span class="owner">earendil-works/</span><span class="name">pi</span></h1>
+    <p class="tagline">A <strong>minimalist agent harness</strong> that ships with just four core tools and a clean TUI - then hands you the keys. You tell the Pi agent to <strong>build its own extensions</strong>, and <code style="font-family:var(--mono);color:var(--lime)">/reload</code> makes them live instantly.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv">85,277</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv am">+3,331</span><span class="ck">this week</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">93.9%</span></div>
+      <div class="chip"><span class="cv">10.6K</span><span class="ck">forks</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Real-World Use</button>
+    <button class="tab-btn" data-tab="watchouts">Watchouts</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HIGHLIGHTS -->
+  <section id="highlights" class="tab-panel active">
+    <h2>Ship <em>nothing</em>, enable everything</h2>
+    <p class="sub">Pi is a modular toolkit split into focused packages - coding agent, agent core, unified LLM API, differential-rendering TUI, and telemetry - built on the philosophy that your harness should start empty.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">85.3K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n am">4</div><div class="l">Core Tools Out of the Box</div></div>
+      <div class="bignum"><div class="n">10.6K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">93.9%</div><div class="l">TypeScript</div></div>
+      <div class="bignum"><div class="n am">140 tps</div><div class="l">GPT 5.5 Low Reasoning</div></div>
+      <div class="bignum"><div class="n">5</div><div class="l">Focused Packages</div></div>
+    </div>
+
+    <h3><span class="dot">●</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Self-extensible slash commands</div><p>Handwritten markdown docs (like <code>extensions.md</code> in node_modules) are exposed to the LLM via the default system prompt. Ask Pi for a feature and it writes and compiles the TS/JS extension itself, straight into your <code>.pi</code> directory.</p></div>
+      <div class="feat"><div class="fh"><code>/reload</code> hot-reloading</div><p>Freshly compiled commands go live instantly - no restarting the terminal session, no destroying active thread history.</p></div>
+      <div class="feat"><div class="fh">Unified multi-provider LLM API</div><p>The <code>pi-ai</code> package runs open-weight models like GLM 5.2 and Kimmy K3 alongside frontier proprietary models like GPT 5.5 on low reasoning.</p></div>
+      <div class="feat"><div class="fh"><code>/tree</code> state traversal</div><p>Visually browse a structured history of past prompts, tool executions, and assistant responses inside the differential-rendering TUI.</p></div>
+      <div class="feat"><div class="fh">Supply-chain hardening</div><p>Direct deps locked to exact versions, <code>min-release-age=2</code> blocks same-day dependency exploits, and a pre-commit check blocks lockfile commits unless <code>PI_ALLOW_LOCKFILE_CHANGE=1</code> is set.</p></div>
+      <div class="feat"><div class="fh">Ephemeral context loading</div><p>Community patterns like Pi Ephemeral mount MCP servers and project-local skills on a single-turn basis - only when triggered, never squatting in context.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The agent builds its own harness</h3>
+      <p>Ask a fresh Pi instance "how do I make a custom extension" and it reads the bundled <code>extensions.md</code>, writes the extension, compiles it, and after one <code>/reload</code> your new slash command is live - mid-session, without interrupting active threads. Neovim-level customization without the Neovim learning curve.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Opinionated agent platforms ship heavy and customize hard. Pi inverts the trade: start bare, grow exactly what you need.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Heavyweight opinionated defaults.</strong> Traditional agent systems (Open Code, VS Code-style platforms) bundle MCP, to-do systems, LSPs, and native undo engines whether you need them or not.</p>
+        <p><strong>Rigid extension APIs.</strong> Customizing means a steep learning curve - and restarting the entire program just to test a minor command change.</p>
+        <p><strong>Context window pollution.</strong> Global agent "skills" are permanently injected into the LLM context, wasting tokens and confusing models during unrelated tasks.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Four core tools, one clean TUI.</strong> Pi ships as a minimalist harness in the Neovim mold - configuration shifts entirely to the developer.</p>
+        <p><strong>The agent extends itself.</strong> Tell Pi to build a slash command and it writes the extension into your <code>.pi</code> directory. <code>/reload</code> makes it live instantly, no restart.</p>
+        <p><strong>Context stays clean.</strong> Ephemeral loading patterns mount local skills, prompts, or MCP servers on a single-turn basis, protecting precious context boundaries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install via curl, PowerShell, npm / pnpm / bun, or the AUR on Arch Linux. Then log in, pick a model, and start extending.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Global install</h3></div>
+      <div class="step-body">
+<pre>npm i -g @earendil-works/pi</pre>
+        <p>On Arch Linux, install the Pi coding agent package via <code class="inline">yay</code> from the AUR instead.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Log in and pick a model</h3></div>
+      <div class="step-body">
+        <p>Run <code class="inline">pi</code> in your project directory, then:</p>
+<pre>/login          <span class="cm"># or /lo - OAuth or paste an API key (e.g. an Open Code Zen key)</span>
+/model GLM 5.2  <span class="cm"># select your model</span>
+/settings       <span class="cm"># tune reasoning depth (e.g. set GLM to maximum reasoning)</span></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Install the essentials Pi deliberately leaves out</h3></div>
+      <div class="step-body">
+<pre>pi install npm pi-permission-system   <span class="cm"># approval gateways</span>
+pi install npm pi-undo-redo           <span class="cm"># rollback support</span>
+pi install npm pi-web-access          <span class="cm"># web search</span></pre>
+        <p><strong>Then wire the policy:</strong> edit <code class="inline">.pi/permissions.json</code> so write/edit tools, bash, MCP, and skills ask first - while read-only commands like <code class="inline">ls</code>, <code class="inline">git status</code>, and <code class="inline">git diff</code> stay whitelisted.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Building from source (optional)</h3></div>
+      <div class="step-body">
+<pre>npm install --ignore-scripts   <span class="cm"># deps without lifecycle scripts</span>
+npm run build                  <span class="cm"># refresh model data + compile all packages</span>
+npm run build:offline          <span class="cm"># rebuild with existing model catalogs</span>
+npm run check                  <span class="cm"># lint, format, TypeScript checks</span>
+./pi-test.sh                   <span class="cm"># run Pi directly from sources</span></pre>
+        <p>Standalone binaries build from the release tarball via <code class="inline">./scripts/build-binaries.sh --offline-model-data --platform linux-x64</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD USE -->
+  <section id="usecases" class="tab-panel">
+    <h2>How power users <em>run</em> it</h2>
+    <p class="sub">Pi has become a daily driver for developers running open-weight models and building hyper-custom terminal workflows.</p>
+
+    <div class="story">
+      <div class="metric">140 tps</div>
+      <p><strong>Blazing terminal generation.</strong> Running GPT 5.5 on low reasoning, power users report highly stable, rapid outputs averaging around 140 tokens per second.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">SOTA<br>open-weight</div>
+      <p><strong>The go-to open-weight harness.</strong> Developer NeuralNine highlights Pi as the premier harness for running models like Kimmy K3 - which currently defines the state-of-the-art in web development on the Code Arena ranking.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">Parallel<br>threads</div>
+      <p><strong>Multiplexed agent teams.</strong> Developers like Ben Davis pair Pi with terminal multiplexers like Semox - a split view running several Pi threads side-by-side to parallelize backend and frontend tasks simultaneously.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">/copy all<br>→ /new</div>
+      <p><strong>Manual context hygiene that works.</strong> Users bypass long, messy conversational histories by extracting code and key details with <code>/copy all</code>, then spinning up a clean thread with <code>/new</code> - dropping the model's tool execution overhead.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">/yeet</div>
+      <p><strong>Repetitive task elimination.</strong> The custom <code>/yeet</code> command has the agent stage changes, write the commit message, push to production, and even open pull requests autonomously.</p>
+    </div>
+  </section>
+
+  <!-- WATCHOUTS -->
+  <section id="watchouts" class="tab-panel">
+    <h2>Know the <em>sharp edges</em></h2>
+    <p class="sub">Minimalism cuts both ways. Pi's bare-by-default design pushes real security and safety work onto you.</p>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>No permission system out of the box.</strong> Pi will execute arbitrary shell and Python commands immediately, without asking - no filesystem, process, network, or credential restrictions. You must install <code>pi-permission-system</code> and hand-write <code>.pi/permissions.json</code> to get approval gates.</li>
+        <li><strong>Incomplete undo mechanics.</strong> There is no native undo/redo. The community <code>pi-undo-redo</code> extension warns that in non-git mode it only restores files explicitly touched by Pi's native tools - changes made through shell commands are not restorable.</li>
+        <li><strong>Extension supply-chain risk.</strong> Every extension install pulls an npm package or clones a GitHub repo. Read the extension code before installing - malicious code execution is a real exposure.</li>
+        <li><strong>No web search or MCP included.</strong> Modern agent essentials are completely absent from the core. You build them yourself or lean on third-party scrapers like Firecrawl or Exa.</li>
+        <li><strong>Global skills pollute context.</strong> Skills loaded globally sit in the prompt context permanently, degrading LLM performance even when they are never called - the reason the community reaches for ephemeral loading patterns.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Edition 002 · Week of August 7, 2026</div>
+    <ul>
+      <li>earendil-works/pi GitHub README - packages, supply-chain hardening, build instructions</li>
+      <li>NeuralNine - Pi coding agent walkthrough: install, permissions, undo-redo extensions</li>
+      <li>Power-user deep dive - extension system, /reload, /tree, /yeet, Semox parallel workflows</li>
+    </ul>
+    <a class="backhub" href="../../index.html">← Back to Edition 002</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>
