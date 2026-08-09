@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lookup Library · Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080b0f;--panel:#0e131a;--line:#1c2530;--text:#e9edf2;--dim:#8593a5;--radar:#4ade80;--amber:#fbbf24;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 80px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);margin-bottom:56px}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--radar);box-shadow:0 0 12px var(--radar)}
+  nav .links a{color:var(--dim);text-decoration:none;font-size:13.5px;margin-left:24px}
+  nav .links a:hover{color:var(--text)}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--radar);margin-bottom:16px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,44px);font-weight:700;margin-bottom:12px}
+  .sub{color:var(--dim);font-size:15.5px;margin-bottom:44px;max-width:600px}
+  .sub a{color:var(--radar);text-decoration:none}
+  .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--radar);margin:34px 0 12px}
+  .label.pend{color:var(--amber)}
+  .row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin-bottom:10px;text-decoration:none;color:var(--text);transition:border-color .15s}
+  .row:hover{border-color:var(--radar)}
+  .row h2{font-family:'Space Grotesk',sans-serif;font-size:16px}
+  .row h2 span{color:var(--dim);font-weight:500}
+  .row .meta{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim)}
+  .row .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--radar);background:rgba(74,222,128,.12);border-radius:99px;padding:3px 11px}
+  .row.pending{border-style:dashed;opacity:.75}
+  .row.pending .tag{color:var(--amber);background:rgba(251,191,36,.1)}
+  .empty{color:var(--dim);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:24px}
+  .empty a{color:var(--radar);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="../index.html"><span class="dot"></span>Repo Radar</a>
+    <div class="links"><a href="../lookup.html">Lookup</a><a href="../index.html">Current Edition</a><a href="../archive.html">Archive</a></div>
+  </nav>
+  <div class="kicker">Lookup Library</div>
+  <h1>Every repo you've pointed the radar at.</h1>
+  <p class="sub">Deep briefings and Top 3 hunts, newest first. Queue new ones from the <a href="../lookup.html">Lookup</a> page.</p>
+
+  <div class="label">Completed briefings</div>
+  <div id="done">
+    <!-- AGENT: insert completed lookup rows here, newest first. Row template:
+    <a class="row" href="SLUG.html"><div><h2><span>owner/</span>repo</h2><div class="meta">briefed Mon D, YYYY</div></div><div class="tag">Repo Brief</div></a>
+    <a class="row" href="search-SLUG.html"><div><h2>Top 3: query</h2><div class="meta">hunted Mon D, YYYY</div></div><div class="tag">Top 3</div></a>
+    -->
+  </div>
+  <div class="empty" id="doneEmpty">Nothing briefed yet. Queue your first lookup from the <a href="../lookup.html">Lookup page</a>, then tell Claude to <b>run repo lookups</b>.</div>
+
+  <div class="label pend">In the queue (this device)</div>
+  <div id="pending"></div>
+  <div class="empty" id="pendEmpty">Queue is clear.</div>
+</div>
+
+<script>
+  // Completed lookups baked in by the agent at publish time (lowercased "type:query" strings):
+  window.RR_COMPLETED = [];
+  (function () {
+    const doneRows = document.querySelectorAll('#done .row');
+    if (doneRows.length) document.getElementById('doneEmpty').style.display = 'none';
+    let q = [];
+    try { q = JSON.parse(localStorage.getItem('rr_lookup_queue')) || []; } catch {}
+    const completed = (window.RR_COMPLETED || []).map((s) => s.toLowerCase());
+    const pending = q.filter((x) => !completed.includes((x.type + ':' + x.query).toLowerCase()));
+    const esc = (s) => (s || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    if (pending.length) {
+      document.getElementById('pendEmpty').style.display = 'none';
+      document.getElementById('pending').innerHTML = pending.map((x) => `
+        <div class="row pending"><div><h2>${x.type === 'url' ? esc(x.query) : 'Top 3: ' + esc(x.query)}</h2>
+        <div class="meta">queued ${new Date(x.ts).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div></div>
+        <div class="tag">Queued</div></div>`).join('');
+    }
+  })();
+</script>
+</body>
+</html>
