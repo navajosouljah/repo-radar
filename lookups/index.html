@@ -30,6 +30,11 @@
   .row .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--radar);background:rgba(74,222,128,.12);border-radius:99px;padding:3px 11px}
   .row.pending{border-style:dashed;opacity:.75}
   .row.pending .tag{color:var(--amber);background:rgba(251,191,36,.1)}
+  .row.running{border-color:var(--radar)}
+  .row.running .tag{color:var(--radar);background:rgba(74,222,128,.12);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .row.failed .tag{color:#ff6b7d;background:rgba(255,107,125,.1)}
+  .livehint{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);margin:-4px 0 12px}
   .empty{color:var(--dim);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:24px}
   .empty a{color:var(--radar);text-decoration:none}
 </style>
@@ -53,30 +58,58 @@
   </div>
   <div class="empty" id="doneEmpty">Nothing briefed yet. Queue your first lookup from the <a href="../lookup.html">Lookup page</a>, then tell Claude to <b>run repo lookups</b>.</div>
 
-  <div class="label pend">In the queue (this device)</div>
+  <div class="label pend">In the queue</div>
+  <div class="livehint" id="livehint"></div>
   <div id="pending"></div>
   <div class="empty" id="pendEmpty">Queue is clear.</div>
 </div>
 
-<script>
+<script type="module">
+  import { QUEUE_ENDPOINT } from '../lookup.js';
   // Completed lookups baked in by the agent at publish time (lowercased "type:query" strings):
   window.RR_COMPLETED = [];
-  (function () {
-    const doneRows = document.querySelectorAll('#done .row');
-    if (doneRows.length) document.getElementById('doneEmpty').style.display = 'none';
+  const esc = (s) => (s || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const doneRows = document.querySelectorAll('#done .row');
+  if (doneRows.length) document.getElementById('doneEmpty').style.display = 'none';
+
+  const TAGS = { pending: 'Queued', running: 'Running', failed: 'Failed', done: 'Live' };
+
+  function render(rows) {
+    const active = rows.filter((x) => x.status !== 'done');
+    document.getElementById('pendEmpty').style.display = active.length ? 'none' : '';
+    document.getElementById('pending').innerHTML = active.map((x) => `
+      <div class="row ${esc(x.status)}"><div><h2>${x.type === 'url' ? esc(x.query) : 'Top 3: ' + esc(x.query)}</h2>
+      <div class="meta">${x.status === 'failed' && x.detail ? esc(x.detail) : 'queued ' + new Date(x.ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div></div>
+      <div class="tag">${TAGS[x.status] || esc(x.status)}</div></div>`).join('');
+  }
+
+  async function pollLive() {
+    try {
+      const r = await fetch(QUEUE_ENDPOINT);
+      const rows = await r.json();
+      render(rows);
+      const running = rows.some((x) => x.status === 'running');
+      document.getElementById('livehint').textContent = running
+        ? '● runner active - briefings take 5-10 min each, this page updates itself'
+        : 'live queue - checks every 15s · runner picks up new items within ~2 min';
+      // Fresh "done" rows may mean new pages: nudge a reload once when a running item finishes
+      if (window.__hadRunning && !running) location.reload();
+      window.__hadRunning = running;
+    } catch { document.getElementById('livehint').textContent = 'queue status unavailable - retrying'; }
+  }
+
+  if (QUEUE_ENDPOINT) {
+    pollLive();
+    setInterval(pollLive, 15000);
+  } else {
+    // Fallback: device-local queue view (backend not connected yet)
+    document.getElementById('livehint').textContent = 'this device only - queue backend not connected yet';
     let q = [];
     try { q = JSON.parse(localStorage.getItem('rr_lookup_queue')) || []; } catch {}
     const completed = (window.RR_COMPLETED || []).map((s) => s.toLowerCase());
-    const pending = q.filter((x) => !completed.includes((x.type + ':' + x.query).toLowerCase()));
-    const esc = (s) => (s || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    if (pending.length) {
-      document.getElementById('pendEmpty').style.display = 'none';
-      document.getElementById('pending').innerHTML = pending.map((x) => `
-        <div class="row pending"><div><h2>${x.type === 'url' ? esc(x.query) : 'Top 3: ' + esc(x.query)}</h2>
-        <div class="meta">queued ${new Date(x.ts).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div></div>
-        <div class="tag">Queued</div></div>`).join('');
-    }
-  })();
+    render(q.filter((x) => !completed.includes((x.type + ':' + x.query).toLowerCase()))
+            .map((x) => ({ ...x, status: 'pending' })));
+  }
 </script>
 </body>
 </html>

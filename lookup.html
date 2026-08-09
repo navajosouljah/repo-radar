@@ -81,7 +81,7 @@
 </div>
 
 <script type="module">
-import { parseInput, formatCount, addToQueue, postToQueue } from './lookup.js';
+import { parseInput, formatCount, addToQueue, postToQueue, QUEUE_ENDPOINT } from './lookup.js';
 
 const out = document.getElementById('out');
 const esc = (s) => (s || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -98,7 +98,9 @@ function queueIt(type, query, label) {
   const item = { type, query, ts: Date.now() };
   addToQueue(localStorage, item);
   postToQueue(item);
-  return `<div class="note">✓ ${esc(label)} queued - say "run repo lookups" to Claude and it lands in the library.</div>`;
+  return QUEUE_ENDPOINT
+    ? `<div class="note">✓ ${esc(label)} queued - the runner picks it up within ~2 minutes. <a href="lookups/index.html" style="color:var(--radar)">Watch it live in the Library →</a></div>`
+    : `<div class="note">✓ ${esc(label)} queued on this device - queue backend not connected yet (see queue/SETUP.md).</div>`;
 }
 
 async function runUrl(owner, repo) {
