@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenCut-app/OpenCut - The Open-Source CapCut | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a080c;--bg2:#100e15;--card:#181422;--card2:#201a2c;
+    --primary:#ec4899;--primary-dim:#be185d;--secondary:#fbbf24;
+    --ink:#f4f0f8;--muted:#a898b8;--line:#2c2440;
+    --sans:'Poppins',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Poppins',sans-serif;
+    --r:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(circle at 80% -10%,rgba(236,72,153,.10),transparent 42%),radial-gradient(circle at 10% 50%,rgba(251,191,36,.05),transparent 38%);}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,8,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#0a080c;font-weight:800;border-radius:6px;padding:8px 18px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%);margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,8,12,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 22px rgba(236,72,153,.35);}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}
+  .bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(236,72,153,.10),rgba(251,191,36,.06));border:1px solid var(--primary);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.35)}
+  .ba.after{background:rgba(236,72,153,.05);border-color:rgba(236,72,153,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}
+  .ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--secondary);background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}
+  .itw h3{color:var(--primary);font-size:20px;margin-bottom:16px}
+  .itw ul{list-style:none}
+  .itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}
+  .itw a:hover{opacity:.6}
+  .watchout{background:rgba(251,191,36,.05);border:2px dashed var(--secondary);border-radius:18px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(251,191,36,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/OpenCut-app/OpenCut" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">The open-source CapCut alternative</span>
+    <h1><span class="owner">OpenCut-app/</span><span class="name">OpenCut</span></h1>
+    <p class="tagline">A <strong>free, open-source video editor</strong> for web, desktop, and mobile - built on a unified Rust core with a <strong>plugin-first architecture</strong>, MCP server for AI agents, and headless batch rendering. No watermarks, no subscription.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">82,887</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">8.2K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript + Rust</span><span class="ck">languages</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Edit anywhere, <em>own</em> everything</h2>
+    <p class="sub">OpenCut runs on web, desktop, and mobile from a single Rust-powered codebase. All processing happens locally - files never leave your device.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">83K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">3</div><div class="l">Platforms (Web, Desktop, Mobile)</div></div>
+      <div class="bignum"><div class="n">8.2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Local</div><div class="l">All Processing On-Device</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n">0</div><div class="l">Watermarks</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Unified Rust core</div><p>GPU compositing runs on a platform-agnostic Rust engine. Web, desktop, and mobile share the same rendering pipeline.</p></div>
+      <div class="feat"><div class="fh">Plugin-first architecture</div><p>First-class third-party plugin support via an Editor API. The editor is designed around extensibility, not as an afterthought.</p></div>
+      <div class="feat"><div class="fh">MCP server for AI agents</div><p>AI coding agents can drive the editor via Model Context Protocol - automate edits, batch renders, and template generation.</p></div>
+      <div class="feat"><div class="fh">Headless batch rendering</div><p>Process video projects without the UI. Script automated rendering pipelines for content at scale.</p></div>
+      <div class="feat"><div class="fh">Built-in scripting tab</div><p>Write and run scripts directly in the editor interface - automate repetitive editing tasks without leaving the app.</p></div>
+      <div class="feat"><div class="fh">No cloud, no watermarks</div><p>All processing is local. No subscription required, no watermarks on output, no files uploaded to third-party servers.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Video editing meets AI agents</h3>
+      <p>The MCP server integration means AI agents can programmatically control the editor - inserting clips, applying effects, adjusting timing, and triggering renders. Combined with headless mode, this enables fully automated video production pipelines driven by AI.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Video editing is locked behind proprietary apps with subscriptions, watermarks, and cloud dependencies.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><p><strong>Proprietary lock-in.</strong> CapCut, Premiere, DaVinci - all proprietary with vendor lock-in, subscription fees, or cloud dependencies.</p></p>
+        <p><p><strong>No extensibility.</strong> Want to add a custom effect or automate a workflow? You are limited to what the vendor provides.</p></p>
+        <p><p><strong>Cloud-dependent processing.</strong> Many editors upload footage to cloud servers for processing, creating privacy and bandwidth concerns.</p></p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><p><strong>Open-source, free forever.</strong> MIT licensed. No subscription, no watermarks, no cloud uploads. Run it anywhere.</p></p>
+        <p><p><strong>Plugin-first design.</strong> Build custom plugins via the Editor API. The extension ecosystem is a first-class feature.</p></p>
+        <p><p><strong>Local processing only.</strong> All rendering happens on your hardware. Files never leave your device.</p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install the proto toolchain, then run the dev server for web, API, or desktop.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install proto toolchain</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Linux / macOS / WSL</span>
+curl -fsSL https://moonrepo.dev/install/proto.sh | bash
+
+<span class="cm"># Windows</span>
+irm https://moonrepo.dev/install/proto.ps1 | iex
+
+<span class="cm"># From repo root</span>
+proto use</pre>
+        <p>Proto manages the pinned tool versions needed for the project.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Run the dev server</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Web editor</span>
+moon run web:dev      <span class="cm"># localhost:5173</span>
+
+<span class="cm"># API server</span>
+moon run api:dev      <span class="cm"># localhost:8787</span>
+
+<span class="cm"># Desktop app</span>
+moon run desktop:dev</pre>
+        <p>Each target runs independently. The web editor is the quickest way to start editing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Reviews, walkthroughs, and honest assessments of where OpenCut stands today.</p>
+
+    <div class="story"><div class="metric">45K to 83K</div><p><strong>Rapid star growth.</strong> Stars nearly doubled in the last few months, driven by the CapCut alternative positioning and AI integration story.</p></div>
+    <div class="story"><div class="metric">3 platforms</div><p><strong>One codebase, everywhere.</strong> Web, desktop, and mobile from a single Rust core. YouTube walkthroughs cover all three targets.</p></div>
+    <div class="story"><div class="metric">Ground-up<br>rewrite</div><p><strong>Active rewrite in progress.</strong> The classic version lives at opencut-app/opencut-classic. The current repo is a ground-up rewrite with a modern architecture.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>YouTube walkthrough.</strong> "OpenCut: The Free Open-Source Video Editor That Runs Everywhere" covers web, desktop, and mobile from a single codebase. <a href="https://www.youtube.com/watch?v=dMdAmLaY0sk">YouTube</a></li>
+        <li><strong>PrivacyTools.io review.</strong> Recommends OpenCut for quick social-video edits but suggests Kdenlive for deep effects or real color work. Calls it "young and rough in places." <a href="https://privacytools.io/app/opencut">PrivacyTools.io</a></li>
+        <li><strong>Filmora comparison review.</strong> "Open-Source CapCut Alternative? OpenCut Full Review" provides a thorough feature comparison against established editors. <a href="https://filmora.wondershare.com/video-editor-review/opencut-review.html">Filmora review</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Young and rough.</strong> Multiple reviewers note missing features compared to mature desktop editors. Good for quick social-video edits, not for heavyweight VFX.</li>
+        <li><strong>Active rewrite.</strong> The project is being rewritten from the ground up. Expect instability and breaking changes as the new architecture matures.</li>
+        <li><strong>Hype may outpace features.</strong> The star count (45K to 83K rapid growth) suggests hype driven by the CapCut positioning is ahead of the current feature set.</li>
+        <li><strong>Limited effects library.</strong> Compared to CapCut's extensive template and effect library, OpenCut's offerings are still minimal.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 003 - Week of August 14, 2026</div>
+    <ul>
+      <li><a href="https://github.com/OpenCut-app/OpenCut" target="_blank">OpenCut-app/OpenCut GitHub</a> - README, architecture, dev setup</li>
+      <li><a href="https://privacytools.io/app/opencut" target="_blank">PrivacyTools.io review</a> - independent privacy-focused assessment</li>
+      <li><a href="https://filmora.wondershare.com/video-editor-review/opencut-review.html" target="_blank">Filmora comparison review</a> - feature-by-feature comparison</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 003</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>github/spec-kit - Spec-Driven Development Toolkit | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080c;--bg2:#0e0e14;--card:#14141e;--card2:#1a1a26;
+    --primary:#7c3aed;--primary-dim:#5b21b6;--secondary:#06b6d4;
+    --ink:#eeeef4;--muted:#8888a8;--line:#22223a;
+    --sans:'Geist',sans-serif;--mono:'Geist Mono',monospace;--disp:'Geist',sans-serif;
+    --r:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 10% -5%,rgba(124,58,237,.10),transparent 42%),radial-gradient(ellipse at 95% 20%,rgba(6,182,212,.05),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(8,8,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:2px solid var(--primary);color:var(--primary);font-weight:600;border-radius:6px;padding:6px 16px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(8,8,12,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 18px rgba(124,58,237,.3);}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;background:linear-gradient(135deg,var(--card),rgba(124,58,237,.08));}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}
+  .bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(124,58,237,.10),rgba(6,182,212,.06));border:1px solid var(--primary);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(6,182,212,.05);border-color:rgba(6,182,212,.35)}
+  .ba.after{background:rgba(124,58,237,.05);border-color:rgba(124,58,237,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}
+  .ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--secondary);background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}
+  .itw h3{color:var(--primary);font-size:20px;margin-bottom:16px}
+  .itw ul{list-style:none}
+  .itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}
+  .itw a:hover{opacity:.6}
+  .watchout{background:rgba(6,182,212,.05);border:2px dashed var(--secondary);border-radius:18px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(6,182,212,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/github/spec-kit" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Spec-driven development</span>
+    <h1><span class="owner">github/</span><span class="name">spec-kit</span></h1>
+    <p class="tagline">GitHub's <strong>open-source toolkit</strong> for Spec-Driven Development - a methodology where detailed specifications are created before implementation, enabling <strong>30+ AI coding agents</strong> to generate working software from those specs.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">127,992</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">11.4K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">30+</span><span class="ck">compatible agents</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Define first, <em>build</em> second</h2>
+    <p class="sub">Spec Kit enforces a four-phase loop - Specify, Plan, Tasks, Implement - where specs become executable artifacts that directly generate implementations.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">128K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">30+</div><div class="l">Compatible Agents</div></div>
+      <div class="bignum"><div class="n">11.4K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">4</div><div class="l">Workflow Phases</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n lm">GitHub</div><div class="l">Built By</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> Core workflow</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Constitution command</div><p>Establish project-wide principles, constraints, and organizational standards before any spec is written. Think of it as the project's operating system.</p></div>
+      <div class="feat"><div class="fh">Specify, Plan, Tasks, Implement</div><p>Four-phase loop where each phase produces a markdown artifact the next phase consumes. Specifications become executable instructions, not disposable documents.</p></div>
+      <div class="feat"><div class="fh">Agent-agnostic</div><p>Works with 30+ AI coding agents: GitHub Copilot, Claude Code, Cursor, Gemini CLI, Devin, and more. Process-independent, not tied to any tech stack.</p></div>
+      <div class="feat"><div class="fh">Extensibility system</div><p>Custom commands, domain-specific extensions, and preset customization for templates, terminology, and organizational standards.</p></div>
+      <div class="feat"><div class="fh">Role-based bundles</div><p>Package extensions and presets for specific personas - PM, developer, security engineer - each getting a tailored workflow.</p></div>
+      <div class="feat"><div class="fh">Quality validation</div><p>Built-in analysis and checklist commands verify spec completeness and consistency before implementation begins.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Specs that survive contact with code</h3>
+      <p>The four-phase loop means specs are not throwaway documents. Each phase reads the previous phase's output, creating a chain of accountability: Constitution sets principles, Specify creates detailed requirements, Plan breaks them into tasks, and Implement executes with full traceability back to the original spec.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Specs are treated as temporary scaffolding. Spec Kit makes them the source of truth.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><p><strong>Specs as disposable scaffolding.</strong> Requirements docs are written once, then abandoned as coding begins. Intent gets lost, scope creeps, and the final product drifts from the original vision.</p></p>
+        <p><p><strong>Agents infer intent.</strong> Without clear specs, AI coding agents guess at requirements, building features nobody asked for or missing critical edge cases.</p></p>
+        <p><p><strong>No traceability.</strong> When bugs appear, there is no chain connecting the implementation back to the requirement that motivated it.</p></p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><p><strong>Executable specifications.</strong> Specs are structured markdown artifacts that directly generate implementation plans. They are consumed by code, not filed and forgotten.</p></p>
+        <p><p><strong>Reduced ambiguity.</strong> The Constitution-Specify-Plan-Tasks chain forces clarity at every step. Agents work from precise instructions, not vibes.</p></p>
+        <p><p><strong>Full traceability.</strong> Every implementation step traces back through Tasks, Plan, Spec, and Constitution - a complete chain of accountability.</p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Requires uv and Python 3.11+. Install via uv or PyPI, then initialize a project.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the CLI</h3></div>
+      <div class="step-body">
+<pre>uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@latest
+
+<span class="cm"># Or via PyPI</span>
+pip install specify-cli</pre>
+        <p>The specify CLI provides all Spec Kit commands and integrations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Initialize a project</h3></div>
+      <div class="step-body">
+<pre>specify init my-project --integration copilot
+
+<span class="cm"># Establish project principles</span>
+/speckit.constitution</pre>
+        <p>The init command scaffolds the spec directory structure. The constitution establishes project-wide principles.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Write and execute specs</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a detailed specification</span>
+/speckit.specify "Build a rate-limiting middleware"
+
+<span class="cm"># Generate implementation plan</span>
+/speckit.plan
+
+<span class="cm"># Break into tasks and implement</span>
+/speckit.tasks
+/speckit.implement</pre>
+        <p>Each phase produces a markdown file the next phase reads. The chain is fully traceable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Coverage from consultancies, tech press, and the developer community.</p>
+
+    <div class="story"><div class="metric">Thoughtworks<br>Radar</div><p><strong>Industry recognition.</strong> Spec Kit made the Thoughtworks Technology Radar - the industry benchmark for technology adoption signals.</p></div>
+    <div class="story"><div class="metric">30+ agents</div><p><strong>Agent-agnostic adoption.</strong> Works across GitHub Copilot, Claude Code, Cursor, Gemini CLI, Devin, and more. EPAM, LogRocket, and MarkTechPost have published adoption guides.</p></div>
+    <div class="story"><div class="metric">Waterfall<br>debate</div><p><strong>The critical conversation.</strong> Scott Logic asked the hard question: "Radical Idea or Reinvented Waterfall?" The answer from practitioners is nuanced - it works best on projects with clear requirements.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Scott Logic critical evaluation.</strong> "Putting Spec Kit Through Its Paces: Radical Idea or Reinvented Waterfall?" - a fair, thorough technical assessment from a well-known consultancy. <a href="https://blog.scottlogic.com/2025/11/26/putting-spec-kit-through-its-paces-radical-idea-or-reinvented-waterfall.html">Scott Logic</a></li>
+        <li><strong>Towards AI walkthrough.</strong> Applied Spec Kit to a checkout payment flow, concluding "spec-driven development is not about slowing the team down." <a href="https://pub.towardsai.net/spec-driven-development-in-action-with-github-speckit-44190f2a7c57">Towards AI</a></li>
+        <li><strong>Community pushback.</strong> A GitHub Discussion titled "SpecKit creates the illusion of work, generating a bunch of text" captures the skeptic case. HN practitioners report spec drift and duplication. <a href="https://github.com/github/spec-kit/discussions/1784">Discussion</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Spec drift is real.</strong> Practitioners report specs drifting and duplicating until contradictions appear. Maintaining spec fidelity requires discipline the tool does not enforce.</li>
+        <li><strong>Breaking changes.</strong> The v0.10.0 release removed the --ai flag, invalidating most existing tutorials. Expect compatibility churn in a pre-1.0 project.</li>
+        <li><strong>No parallel task execution.</strong> Tasks still run one at a time. No native multi-agent parallelization.</li>
+        <li><strong>The old 5GL critique applies.</strong> Critics raise the question: does specifying precisely enough in natural language guarantee correct implementation? History suggests not always.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 003 - Week of August 14, 2026</div>
+    <ul>
+      <li><a href="https://github.com/github/spec-kit" target="_blank">github/spec-kit GitHub</a> - README, CLI docs, extension system</li>
+      <li><a href="https://blog.scottlogic.com/2025/11/26/putting-spec-kit-through-its-paces-radical-idea-or-reinvented-waterfall.html" target="_blank">Scott Logic evaluation</a> - independent technical assessment</li>
+      <li><a href="https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/" target="_blank">GitHub Blog announcement</a> - official launch and methodology overview</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 003</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

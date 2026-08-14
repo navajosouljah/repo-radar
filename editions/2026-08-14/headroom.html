@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>headroomlabs-ai/headroom - Context Compression for LLMs | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060a08;--bg2:#0a100c;--card:#101c14;--card2:#14241a;
+    --primary:#10b981;--primary-dim:#059669;--secondary:#f59e0b;
+    --ink:#e4f0ea;--muted:#78a890;--line:#1c302a;
+    --sans:'Nunito Sans',sans-serif;--mono:'Space Mono',monospace;--disp:'Nunito Sans',sans-serif;
+    --r:8px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 50% -10%,rgba(16,185,129,.10),transparent 45%),radial-gradient(ellipse at 85% 50%,rgba(245,158,11,.04),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(6,10,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--primary);color:var(--primary);font-weight:700;border-radius:4px;padding:6px 14px;letter-spacing:.15em;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(6,10,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#060a08;box-shadow:0 3px 16px rgba(16,185,129,.3);}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:2px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}
+  .bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(16,185,129,.10),rgba(245,158,11,.06));border:1px solid var(--primary);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.35)}
+  .ba.after{background:rgba(16,185,129,.05);border-color:rgba(16,185,129,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}
+  .ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--secondary);background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}
+  .itw h3{color:var(--primary);font-size:20px;margin-bottom:16px}
+  .itw ul{list-style:none}
+  .itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}
+  .itw a:hover{opacity:.6}
+  .watchout{background:rgba(245,158,11,.05);border:2px dashed var(--secondary);border-radius:18px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(245,158,11,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/headroomlabs-ai/headroom" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">20% fewer tokens, same answers</span>
+    <h1><span class="owner">headroomlabs-ai/</span><span class="name">headroom</span></h1>
+    <p class="tagline">A <strong>context compression layer</strong> that sits between AI agents and LLM providers. Ships as a library, drop-in proxy, agent wrapper, and MCP server. Built by a Netflix engineer burning <strong>$200/day</strong> on tool-heavy agent runs.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">66,310</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">5.1K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">60-95%</span><span class="ck">JSON compression</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Compress everything, <em>lose</em> nothing</h2>
+    <p class="sub">Headroom compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% for JSON payloads - with no accuracy drop on standard benchmarks.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">66K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">60-95%</div><div class="l">JSON Compression</div></div>
+      <div class="bignum"><div class="n">20%</div><div class="l">Coding Agent Savings</div></div>
+      <div class="bignum"><div class="n">15+</div><div class="l">Compatible Agents</div></div>
+      <div class="bignum"><div class="n">Apache-2.0</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n">Local</div><div class="l">Data Never Leaves Machine</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> The compression stack</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">SmartCrusher for JSON</div><p>Structure-aware compression that removes redundancy from JSON payloads while preserving all semantically important content. 60-95% reduction on typical tool outputs.</p></div>
+      <div class="feat"><div class="fh">AST-aware CodeCompressor</div><p>Compresses code files using abstract syntax tree analysis. Strips comments, whitespace, and redundant structure while preserving all meaningful code.</p></div>
+      <div class="feat"><div class="fh">Kompress-v2-base model</div><p>A compression model trained on agentic traces. Understands what LLMs actually need from tool output and strips the rest.</p></div>
+      <div class="feat"><div class="fh">Four deployment modes</div><p>Python/TypeScript library, drop-in HTTP proxy, agent wrapper (headroom wrap claude), or MCP server. Pick the integration that fits your stack.</p></div>
+      <div class="feat"><div class="fh">Reversible compression (CCR)</div><p>Content-addressable recovery stores originals locally with configurable TTL. The LLM can pull back uncompressed data on demand.</p></div>
+      <div class="feat"><div class="fh">Failure learning</div><p>headroom learn mines failed sessions and writes corrections to agent-specific markdown files - the agent gets smarter about what to compress next time.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Drop-in proxy, zero code changes</h3>
+      <p>Run <code>headroom wrap claude</code> and every tool output, log, and file read is compressed before reaching the LLM. No code changes, no configuration files, no workflow disruption. The proxy intercepts API calls transparently and the agent never knows the difference - it just gets the same answers with fewer tokens.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Tool-heavy agent runs burn through context windows and API budgets. Headroom compresses the problem away.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><p><strong>Context window exhaustion.</strong> Agents processing 100+ KB of tool outputs, logs, and RAG results hit context limits and lose track of the task.</p></p>
+        <p><p><strong>Expensive API calls.</strong> Every token sent to the LLM costs money. Verbose tool outputs inflate costs on high-volume agent workflows.</p></p>
+        <p><p><strong>Redundant information.</strong> Tool outputs contain massive amounts of structural redundancy, boilerplate, and formatting that the LLM does not need.</p></p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><p><strong>Compressed context.</strong> Tool outputs are compressed before reaching the LLM. The model sees only semantically important content.</p></p>
+        <p><p><strong>Lower costs.</strong> 20% fewer tokens for coding agents, 60-95% for JSON-heavy workflows. Real savings on real bills.</p></p>
+        <p><p><strong>Reversible on demand.</strong> If the LLM needs the original, CCR retrieves it from local storage. Nothing is permanently lost.</p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install via uv or pip. Then wrap your agent or run the proxy.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Python (recommended)</span>
+uv tool install --python 3.13 "headroom-ai[all]"
+
+<span class="cm"># Or via pip</span>
+pip install "headroom-ai[all]"
+
+<span class="cm"># TypeScript SDK</span>
+npm install headroom-ai</pre>
+        <p>Installs the library, CLI, proxy, and MCP server.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Wrap your agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Wrap Claude Code</span>
+headroom wrap claude
+
+<span class="cm"># Deploy as standalone proxy</span>
+headroom deploy
+
+<span class="cm"># Health check</span>
+headroom doctor</pre>
+        <p>The wrapper intercepts API calls transparently. No code changes needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Independent testing, honest assessments, and where the numbers actually hold.</p>
+
+    <div class="story"><div class="metric">$200/day<br>origin story</div><p><strong>Born from real pain.</strong> Built by Tejas Chopra, Senior Engineer at Netflix, who was burning $200/day on tool-heavy agent runs. The compression layer was the fix.</p></div>
+    <div class="story"><div class="metric">92%<br>compression</div><p><strong>Peak performance.</strong> Documented 92% compression on code search results and incident debugging scenarios - the JSON-heavy workloads where Headroom shines.</p></div>
+    <div class="story"><div class="metric">Benchmark<br>verified</div><p><strong>No accuracy drop.</strong> Benchmark-proven accuracy on GSM8K, TruthfulQA, SQuAD v2, and BFCL - the compression preserves what the LLM needs to produce correct answers.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>DEV Community tutorial.</strong> "Cut Your LLM Token Usage by Up to 95% Without Changing Your Answers" - practical walkthrough by arshtechpro. <a href="https://dev.to/arshtechpro/headroom-cut-your-llm-token-usage-by-up-to-95-without-changing-your-answers-5g06">dev.to</a></li>
+        <li><strong>Medium deep-dive.</strong> "Headroom Can Cut Agent Context by Up to 95%. Here's Where That Number Actually Holds" - honest assessment of claim boundaries. <a href="https://medium.com/@creativeaininja/headroom-can-cut-agent-context-by-up-to-95-heres-where-that-number-actually-holds-24a04ebf54dc">Medium</a></li>
+        <li><strong>SitePoint CLI tutorial.</strong> "The Token-Compression CLI That Cuts Your LLM API Costs by 60-95%" - practical walkthrough of the CLI. <a href="https://www.sitepoint.com/headroom-the-tokencompression-cli-that-cuts-your-llm-api-costs-by-6095/">SitePoint</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>95% is the ceiling, not the floor.</strong> The headline number comes from JSON-heavy workloads. General coding agent savings are closer to 20%.</li>
+        <li><strong>Retrieval latency.</strong> The headroom_retrieve mechanism (pulling back originals) adds latency when the LLM needs uncompressed data.</li>
+        <li><strong>Model dependency.</strong> Kompress-v2-base is trained on agentic traces. Performance on non-agent workloads may be lower.</li>
+        <li><strong>Cost-optimization positioning.</strong> Multiple guides frame Headroom specifically as a hack for Claude Code usage caps rather than a general-purpose tool.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 003 - Week of August 14, 2026</div>
+    <ul>
+      <li><a href="https://github.com/headroomlabs-ai/headroom" target="_blank">headroomlabs-ai/headroom GitHub</a> - README, benchmarks, deployment modes</li>
+      <li><a href="https://medium.com/@creativeaininja/headroom-can-cut-agent-context-by-up-to-95-heres-where-that-number-actually-holds-24a04ebf54dc" target="_blank">Medium deep-dive</a> - honest assessment of compression claims</li>
+      <li><a href="https://www.sitepoint.com/headroom-the-tokencompression-cli-that-cuts-your-llm-api-costs-by-6095/" target="_blank">SitePoint tutorial</a> - practical CLI walkthrough</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 003</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

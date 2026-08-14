@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JuliusBrussee/caveman - Why Use Many Token When Few Token Do Trick | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=Inconsolata:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0b08;--bg2:#13110c;--card:#1c1912;--card2:#24201a;
+    --primary:#d4a053;--primary-dim:#a07830;--secondary:#8b9a6b;
+    --ink:#f0e8d8;--muted:#a89878;--line:#302a1e;
+    --sans:'Work Sans',sans-serif;--mono:'Inconsolata',monospace;--disp:'Archivo Black',sans-serif;
+    --r:6px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 40% 0%,rgba(212,160,83,.08),transparent 40%),radial-gradient(ellipse at 80% 60%,rgba(139,154,107,.05),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(12,11,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--primary);color:#0c0b08;font-weight:700;border-radius:2px;padding:7px 18px;text-transform:uppercase;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(12,11,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0c0b08;box-shadow:0 3px 12px rgba(212,160,83,.25);}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:4px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}
+  .bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(212,160,83,.10),rgba(139,154,107,.06));border:1px solid var(--primary);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(139,154,107,.05);border-color:rgba(139,154,107,.35)}
+  .ba.after{background:rgba(212,160,83,.05);border-color:rgba(212,160,83,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}
+  .ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--secondary);background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}
+  .itw h3{color:var(--primary);font-size:20px;margin-bottom:16px}
+  .itw ul{list-style:none}
+  .itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}
+  .itw a:hover{opacity:.6}
+  .watchout{background:rgba(139,154,107,.05);border:2px dashed var(--secondary);border-radius:18px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(139,154,107,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Why use many token when few token do trick</span>
+    <h1><span class="owner">JuliusBrussee/</span><span class="name">caveman</span></h1>
+    <p class="tagline">A <strong>multi-layer token optimization system</strong> for AI coding agents that compresses what agents say and what they read. Six intensity levels from lite to <strong>wenyan</strong> (classical Chinese patterns). The meme that actually works.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">98,132</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">5.7K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Go</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">65%</span><span class="ck">output token reduction</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Fewer tokens, <em>same</em> answers</h2>
+    <p class="sub">Caveman compresses AI agent output by an average of 65%, strips verbosity from input context, and adds pixel mode rendering for extreme compression scenarios.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">98K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">65%</div><div class="l">Output Token Reduction</div></div>
+      <div class="bignum"><div class="n">33%</div><div class="l">Input Token Reduction</div></div>
+      <div class="bignum"><div class="n">7</div><div class="l">Native Agent Wraps</div></div>
+      <div class="bignum"><div class="n">6</div><div class="l">Intensity Levels</div></div>
+      <div class="bignum"><div class="n">5.7K</div><div class="l">Forks</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> The compression stack</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">65% output compression</div><p>On average, agent responses are 65% shorter. The skill strips hedging, filler, and unnecessary explanation while preserving technical accuracy.</p></div>
+      <div class="feat"><div class="fh">33% input compression via proxy</div><p>Caveman Proxy sits between the agent and the LLM, compressing tool schemas, logs, and context before they reach the model.</p></div>
+      <div class="feat"><div class="fh">Seven native agent wraps</div><p>Claude Code, Gemini, Codex, Aider, opencode, Hermes, OpenClaw - wrap any of them with zero code changes.</p></div>
+      <div class="feat"><div class="fh">Pixel mode</div><p>Renders dense text to PNG images for extreme compression scenarios - 79% token savings on long-line content like logs and tables.</p></div>
+      <div class="feat"><div class="fh">Content-addressable recovery</div><p>CCR stores original bytes locally for exact recovery. Lossy compression is reversible on demand - nothing is truly thrown away.</p></div>
+      <div class="feat"><div class="fh">Six intensity levels</div><p>From lite (removes hedging) to ultra (heavy abbreviation) to wenyan (classical Chinese patterns). Pick the aggression level that fits your workflow.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The readability win nobody expected</h3>
+      <p>Users report the real value is not cost savings but speed. Caveman responses are faster to scan, quicker to act on, and cut through the filler that makes agent output exhausting to read. The token savings are a welcome side effect of what is fundamentally a readability upgrade.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI agents are pathologically verbose. Caveman makes them concise.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><p><strong>Agents explain everything.</strong> Every response includes disclaimers, caveats, alternative approaches, and step-by-step reasoning you did not ask for.</p></p>
+        <p><p><strong>Token costs scale with verbosity.</strong> Output tokens are expensive. Agents that say the same thing in 3x the words cost 3x the money.</p></p>
+        <p><p><strong>Tool output bloat.</strong> Full tool schemas, complete logs, and entire file contents are sent to the model on every turn, wasting context window capacity.</p></p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><p><strong>Responses you can scan.</strong> Hedging, filler, and unnecessary explanation are stripped. What remains is technical accuracy in fewer words.</p></p>
+        <p><p><strong>Lower cost per interaction.</strong> 65% fewer output tokens means meaningfully lower API costs on high-volume agent workflows.</p></p>
+        <p><p><strong>Compressed input context.</strong> Proxy compresses tool results, logs, and schemas before they reach the model, freeing context window for actual work.</p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install the skill for quick output compression, or the full stack for input + output + pixel mode.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Skill install (simplest)</h3></div>
+      <div class="step-body">
+<pre>curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/v1.10.0/install.sh | bash
+
+<span class="cm"># Windows</span>
+irm https://raw.githubusercontent.com/JuliusBrussee/caveman/v1.10.0/install.ps1 | iex</pre>
+        <p>Installs the output compression skill. No other dependencies needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Full stack install</h3></div>
+      <div class="step-body">
+<pre>npm install -g @caveman-ai/cli
+caveman setup --install
+
+<span class="cm"># Wrap your agent</span>
+caveman claude
+caveman gemini
+caveman codex</pre>
+        <p>Installs the CLI, proxy, and all seven agent wraps. Requires Node.js 18+.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Viral adoption, independent testing, and honest assessments of what the numbers actually mean.</p>
+
+    <div class="story"><div class="metric">399 pts<br>on HN</div><p><strong>Viral launch.</strong> "Why use many token when few token do trick" hit 399 points and 238 comments on Hacker News. The meme tagline drove adoption, but the benchmarks kept users.</p></div>
+    <div class="story"><div class="metric">8.5%<br>real-world</div><p><strong>JetBrains tested it.</strong> Independent testing by JetBrains found the 65% applies to output text only. On real agentic tasks, measured savings were 8.5% because reasoning and tool output dominate sessions. <a href="https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/">JetBrains blog</a></p></div>
+    <div class="story"><div class="metric">54K to 98K</div><p><strong>Stars doubled in 3 months.</strong> From 54K in April 2026 to 98K by August - sustained growth beyond the initial viral spike.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>JetBrains independent benchmark.</strong> "Speaking to AI Agents like Cavemen Saves 65% of Tokens. We Test." - found 8.5% real-world savings on agentic tasks. <a href="https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/">JetBrains AI Blog</a></li>
+        <li><strong>Hacker News viral thread.</strong> 399 points, 238 comments. Author Julius Brussee participated in the discussion. A separate thread benchmarked Caveman against a simple "be brief" prompt. <a href="https://news.ycombinator.com/item?id=47647455">HN thread</a></li>
+        <li><strong>The New Stack coverage.</strong> "Getting Claude Code to grunt in Caveman-speak might not save as many tokens as you think" - honest assessment of the gap between headline claims and measured performance. <a href="https://thenewstack.io/caveman-mode-token-savings/">The New Stack</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>65% is output only.</strong> The headline number applies to output tokens. Input and reasoning tokens are untouched. JetBrains measured 8.5% on real agentic tasks.</li>
+        <li><strong>Skill overhead.</strong> The skill itself adds 1-1.5K input tokens per turn. On already-terse workloads, savings can go net-negative.</li>
+        <li><strong>Dual license.</strong> MIT for skill/SDK/CLI; BSL-1.1 for engine/proxy/cache (converts to Apache-2.0 in 2030 or 4 years after each release). Commercial use of BSL components requires a license.</li>
+        <li><strong>"Be brief" captures most value.</strong> HN skeptics note that a simple system prompt instruction like "be concise" captures most of the output compression without the overhead.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 003 - Week of August 14, 2026</div>
+    <ul>
+      <li><a href="https://github.com/JuliusBrussee/caveman" target="_blank">JuliusBrussee/caveman GitHub</a> - README, benchmarks, intensity levels</li>
+      <li><a href="https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/" target="_blank">JetBrains AI Blog</a> - independent benchmark, 8.5% real-world finding</li>
+      <li><a href="https://news.ycombinator.com/item?id=47647455" target="_blank">Hacker News launch thread</a> - 399 points, community reception and debate</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 003</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

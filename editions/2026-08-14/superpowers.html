@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>obra/superpowers - Agentic Development Methodology | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0812;--bg2:#0f0c18;--card:#15112a;--card2:#1b1634;
+    --primary:#a78bfa;--primary-dim:#7c5bbf;--secondary:#f472b6;
+    --ink:#f0edf8;--muted:#9b8eb8;--line:#2a2244;
+    --sans:'Plus Jakarta Sans',sans-serif;--mono:'Source Code Pro',monospace;--disp:'Plus Jakarta Sans',sans-serif;
+    --r:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(circle at 50% -15%,rgba(167,139,250,.12),transparent 45%),radial-gradient(circle at 90% 50%,rgba(244,114,182,.06),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,8,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:800;border-radius:99px;padding:8px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,78px);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,8,18,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0812;box-shadow:0 4px 22px rgba(167,139,250,.35);}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}
+  .bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(167,139,250,.10),rgba(244,114,182,.06));border:1px solid var(--primary);border-radius:18px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}
+  .best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(244,114,182,.05);border-color:rgba(244,114,182,.35)}
+  .ba.after{background:rgba(167,139,250,.05);border-color:rgba(167,139,250,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}
+  .ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}
+  .step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  code.inline{font-family:var(--mono);font-size:.9em;color:var(--secondary);background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}
+  .itw h3{color:var(--primary);font-size:20px;margin-bottom:16px}
+  .itw ul{list-style:none}
+  .itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}
+  .itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}
+  .itw a:hover{opacity:.6}
+  .watchout{background:rgba(244,114,182,.05);border:2px dashed var(--secondary);border-radius:18px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}
+  .watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(244,114,182,.15)}
+  .watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  .watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-list,.ba-grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr;gap:10px}
+    .hero{padding:52px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/obra/superpowers" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Agentic skills framework</span>
+    <h1><span class="owner">obra/</span><span class="name">superpowers</span></h1>
+    <p class="tagline">A <strong>composable development methodology</strong> that enforces a five-phase discipline - clarify, design, plan, code, verify - across <strong>14+ coding agent platforms</strong>. Built by Jesse Vincent, creator of the RT ticketing system.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">272,010</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">24.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Shell</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">14+</span><span class="ck">agent platforms</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Discipline <em>before</em> code</h2>
+    <p class="sub">Superpowers enforces a structured workflow across brainstorming, design, planning, implementation, and review - turning coding agents from impulsive assistants into disciplined engineers.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">272K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">14+</div><div class="l">Compatible Platforms</div></div>
+      <div class="bignum"><div class="n">24.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">5</div><div class="l">Workflow Phases</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n">2-5 min</div><div class="l">Task Granularity</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Brainstorming via Socratic questioning</div><p>Before any code is written, the agent challenges your assumptions through structured questioning - forcing clarity on what you actually need to build.</p></div>
+      <div class="feat"><div class="fh">Test-Driven Development enforcement</div><p>RED-GREEN-REFACTOR cycles are mandatory, not optional. The agent writes tests first, implements to pass them, then refactors - every time.</p></div>
+      <div class="feat"><div class="fh">Subagent-driven development</div><p>Implementation delegates to subagents working in isolated git worktrees, with a two-stage review checking both spec compliance and code quality.</p></div>
+      <div class="feat"><div class="fh">Plans broken into 2-5 minute tasks</div><p>Every implementation plan specifies exact file paths, verification steps, and task durations small enough that context drift becomes impossible.</p></div>
+      <div class="feat"><div class="fh">14+ platform compatibility</div><p>Works across Claude Code, Cursor, OpenAI Codex, GitHub Copilot, Gemini CLI, Devin, and more - same methodology, any agent.</p></div>
+      <div class="feat"><div class="fh">YAGNI and DRY as mandatory law</div><p>The methodology enforces these principles at the workflow level, not just as suggestions. Over-engineering triggers a design review loop.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Multi-hour autonomous development sessions</h3>
+      <p>The five-phase discipline keeps agents on track long enough to work autonomously for hours at a time without drifting from the plan. Users report running entire feature implementations end-to-end while the agent handles brainstorm, plan, code, test, and review - without manual intervention.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Coding agents jump straight to implementation. Superpowers forces them to think first.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><p><strong>Agents code before thinking.</strong> Without structure, coding agents immediately attempt implementation - often building the wrong thing for 40 minutes before you notice.</p></p>
+        <p><p><strong>No plan survives contact with code.</strong> Even when you provide requirements, agents drift from the plan within minutes, adding features nobody asked for.</p></p>
+        <p><p><strong>Review is an afterthought.</strong> Code ships without systematic verification, testing, or spec compliance checks.</p></p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><p><strong>Clarify before coding.</strong> Socratic brainstorming surfaces edge cases and requirements gaps before a single line is written.</p></p>
+        <p><p><strong>Plans that stick.</strong> Implementation plans are broken into 2-5 minute tasks with exact file paths, making drift structurally impossible.</p></p>
+        <p><p><strong>Two-stage review on every PR.</strong> Subagents review for spec compliance first, code quality second - every implementation, every time.</p></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install via the plugin marketplace for your agent of choice, or clone directly.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install for your platform</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Claude Code</span>
+/plugin install superpowers@claude-plugins-official
+
+<span class="cm"># Cursor</span>
+/add-plugin superpowers
+
+<span class="cm"># Gemini CLI</span>
+gemini extensions install https://github.com/obra/superpowers</pre>
+        <p>Available on 14+ platforms. Each installs via a single command.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Start a session</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Begin with brainstorming</span>
+/brainstorm "Build a rate-limiting middleware"
+
+<span class="cm"># Generate implementation plan</span>
+/plan
+
+<span class="cm"># Execute the plan</span>
+/implement</pre>
+        <p>The workflow guides you through clarify, design, plan, code, and verify phases sequentially.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How developers actually use Superpowers in production workflows.</p>
+
+    <div class="story"><div class="metric">6 months<br>daily use</div><p><strong>A daily driver.</strong> Developer Gautam Khorana reports running Superpowers across every project for six months - calling it "the single biggest productivity change to my Claude Code workflow since the agent itself shipped." <a href="https://gautamkhorana.com/blog/claude-code-superpowers-how-i-actually-use-it/">Blog post</a></p></div>
+    <div class="story"><div class="metric">60/40<br>HN split</div><p><strong>The divided reception.</strong> Hacker News discussions run roughly 60/40 in favor. The 40% dissent centers on overhead for small tasks - the brainstorm-plan-implement loop adds friction on trivial changes.</p></div>
+    <div class="story"><div class="metric">Hours-long<br>sessions</div><p><strong>Autonomous multi-hour coding.</strong> Users report running entire feature implementations end-to-end while the agent handles all five phases without manual intervention.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Six-month daily driver report.</strong> Gautam Khorana's detailed write-up covering personal site, consulting work, and tooling projects - all run through Superpowers. <a href="https://gautamkhorana.com/blog/claude-code-superpowers-how-i-actually-use-it/">Full review</a></li>
+        <li><strong>Independent testing.</strong> Mejba Ahmed published "I Tested Superpowers for Claude Code - Here's the Truth" with hands-on evaluation of the plugin's claims. <a href="https://www.mejba.me/blog/superpowers-plugin-claude-code-review">Review</a></li>
+        <li><strong>Organic HN recommendation.</strong> A Hacker News user: "I just use Jesse's superpowers plugin. It does all of this but also steps you through the methodology." <a href="https://news.ycombinator.com/item?id=47110374">HN comment</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Overhead on small tasks.</strong> The five-phase methodology adds real friction on trivial changes. Not every bug fix needs a brainstorming session.</li>
+        <li><strong>Shell-based implementation.</strong> The core is Shell scripts, which limits extensibility compared to TypeScript or Python-based skill systems.</li>
+        <li><strong>TDD enforcement is non-negotiable.</strong> If your workflow does not include testing, Superpowers will fight you at every step.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 003 - Week of August 14, 2026</div>
+    <ul>
+      <li><a href="https://github.com/obra/superpowers" target="_blank">obra/superpowers GitHub</a> - README, methodology docs, platform compatibility</li>
+      <li><a href="https://gautamkhorana.com/blog/claude-code-superpowers-how-i-actually-use-it/" target="_blank">Gautam Khorana blog</a> - six-month daily driver report</li>
+      <li><a href="https://news.ycombinator.com/item?id=47110374" target="_blank">Hacker News discussions</a> - community reception and critical takes</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 003</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>
