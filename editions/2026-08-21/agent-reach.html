@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panniantong/Agent-Reach - Browser Automation for AI Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060e08;--bg2:#0c1810;--card:#14241a;--card2:#1a2e22;
+    --primary:#22c55e;--primary-dim:#1a9a48;--secondary:#d97706;
+    --ink:#ecf5ee;--muted:#7a9a82;--line:#1e3028;
+    --sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'Manrope',sans-serif;
+    --r:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 25% -8%,rgba(34,197,94,.12),transparent 50%),radial-gradient(ellipse at 75% 55%,rgba(217,119,6,.05),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(6,14,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:500;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(135deg,#1a9a48,#22c55e);color:#060e08;font-weight:700;border-radius:20px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(42px,8vw,80px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(6,14,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#060e08;font-weight:700}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:rgba(34,197,94,.06);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:linear-gradient(to bottom,var(--card) 55%,var(--card2) 100%);border:1px solid var(--line);border-radius:var(--r);padding:22px;border-bottom:3px solid var(--primary-dim)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;font-family:var(--disp)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(34,197,94,.10),rgba(217,119,6,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:linear-gradient(135deg,#1a9a48,#22c55e);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:14px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.30)}
+  .ba.after{background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.30)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:13px;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.03em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(217,119,6,.06);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(217,119,6,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"~ ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Agents that browse for you</span>
+    <h1><span class="owner">Panniantong/</span><span class="name">Agent-Reach</span></h1>
+    <p class="tagline">A <strong>browser automation framework designed for AI agents</strong> - gives LLMs the ability to navigate, interact with, and extract data from any website. Think Playwright but with an agent-friendly API that handles <strong>authentication, dynamic content, and anti-bot detection</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">73,021</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">3.2K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Browser <em>superpowers</em> for agents</h2>
+    <p class="sub">Agent-Reach wraps browser automation in an API designed for AI agents - handling the messy reality of web interaction including login flows, CAPTCHAs, dynamic rendering, and anti-bot measures that break traditional scrapers.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">73K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n">3.2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">TypeScript</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n sc">Chromium</div><div class="l">Browser Engine</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n lm">Agent-first</div><div class="l">API Design</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Agent-native API</div><p>Unlike Playwright or Selenium, the API is designed for LLM consumption. Actions are described in natural language ("click the login button", "fill in the email field") and the framework resolves selectors automatically.</p></div>
+      <div class="feat"><div class="fh">Authentication handling</div><p>Manages login flows, session cookies, OAuth redirects, and multi-factor authentication. Agents can access authenticated content without hardcoding credentials in automation scripts.</p></div>
+      <div class="feat"><div class="fh">Anti-bot evasion</div><p>Handles CAPTCHAs, browser fingerprinting, and bot detection systems that block traditional automation. Uses stealth browser profiles and human-like interaction patterns.</p></div>
+      <div class="feat"><div class="fh">Dynamic content support</div><p>Waits for JavaScript rendering, handles infinite scroll, processes single-page applications, and manages AJAX-loaded content - the cases where simple HTTP requests fail.</p></div>
+      <div class="feat"><div class="fh">Structured data extraction</div><p>Extracts data from web pages into structured formats (JSON, CSV) using both CSS selectors and natural language descriptions of what to extract.</p></div>
+      <div class="feat"><div class="fh">Parallel browsing</div><p>Run multiple browser sessions simultaneously for bulk data collection. Manages browser pool, memory, and CPU allocation automatically.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Natural language selectors</h3>
+      <p>The killer feature is letting agents describe what they want to interact with in natural language instead of writing CSS selectors or XPaths. "Click the blue submit button at the bottom of the form" resolves to the correct element automatically. This eliminates the brittlest part of browser automation - selector maintenance.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI agents can write code, search the web, and manage files - but browsing the actual web like a human remains surprisingly hard. Login walls, dynamic content, and bot detection block most automation approaches.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Brittle selectors.</strong> Traditional browser automation requires CSS selectors or XPaths that break when websites update their markup. Agents cannot maintain these without constant human intervention.</p>
+        <p><strong>Authentication walls.</strong> Most valuable web content is behind login. Automating OAuth flows, session management, and MFA requires significant custom code for each site.</p>
+        <p><strong>Bot detection blocks.</strong> Modern websites aggressively detect and block automated browsing. Standard Playwright or Selenium scripts get blocked within minutes on most commercial sites.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Natural language actions.</strong> Agents describe interactions in plain English. The framework resolves elements automatically and adapts when page structure changes.</p>
+        <p><strong>Managed authentication.</strong> Login flows, cookie management, and session persistence are handled by the framework. Agents access authenticated content through a simple API.</p>
+        <p><strong>Stealth browsing.</strong> Human-like interaction patterns, browser fingerprint management, and CAPTCHA handling let agents browse sites that block traditional automation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install Agent-Reach and connect it to your agent framework.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the package</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install via npm</span>
+npm install agent-reach
+
+<span class="cm"># Or clone for development</span>
+git clone https://github.com/Panniantong/Agent-Reach.git
+cd Agent-Reach
+npm install</pre>
+        <p>Requires <strong>Node.js 18+</strong> and a Chromium installation. The package bundles a compatible Chromium version automatically.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Basic browsing</h3></div>
+      <div class="step-body">
+<pre><span class="cm">import</span> { AgentBrowser } from 'agent-reach';
+
+const browser = new AgentBrowser();
+await browser.goto('https://example.com');
+
+<span class="cm">// Natural language actions</span>
+await browser.act('click the Sign In button');
+await browser.act('type "user@example.com" in the email field');
+await browser.act('click Submit');
+
+<span class="cm">// Extract structured data</span>
+const data = await browser.extract('all product names and prices');</pre>
+        <p>The <code>act()</code> and <code>extract()</code> methods accept natural language descriptions. Under the hood, they use a vision-language model to resolve elements.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Connect to your agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm">// Use as a tool in your agent framework</span>
+const browseTool = {
+  name: 'browse_web',
+  description: 'Navigate and interact with websites',
+  execute: async (instruction) => {
+    const browser = new AgentBrowser();
+    return await browser.run(instruction);
+  }
+};
+
+<span class="cm">// Register with your agent framework</span>
+agent.addTool(browseTool);</pre>
+        <p>Agent-Reach provides pre-built integrations for LangChain, CrewAI, and Claude's tool-use API.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams use Agent-Reach to give their AI agents web browsing capabilities.</p>
+
+    <div class="story"><div class="metric">Any site</div><p><strong>Competitive intelligence.</strong> Marketing teams use Agent-Reach to automate competitor monitoring - agents browse pricing pages, feature lists, and blog posts on sites that block traditional scrapers, extracting structured data on a schedule.</p></div>
+    <div class="story"><div class="metric">Login flows</div><p><strong>Customer support automation.</strong> Support agents use Agent-Reach to access customer-facing dashboards, retrieve account information, and perform actions on behalf of customers - handling the authentication that prevents simple API integrations.</p></div>
+    <div class="story"><div class="metric">Parallel</div><p><strong>Data collection at scale.</strong> Research teams run Agent-Reach with 50+ parallel browser sessions to collect data from websites that lack APIs - government databases, academic repositories, and industry directories.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Wavect security review.</strong> A Wavect developer reviewed Agent-Reach and flagged that the authentication handling stores cookies in plain text by default, creating security risks for production deployments. The review recommended encrypting stored credentials. <a href="https://wavect.io/">wavect.io</a></li>
+        <li><strong>SitePoint coverage.</strong> SitePoint published a tutorial on integrating Agent-Reach with LangChain agents, demonstrating a web research agent that can browse, extract, and summarize content from any website. <a href="https://www.sitepoint.com/">sitepoint.com</a></li>
+        <li><strong>YouTube demonstrations.</strong> Multiple YouTube creators have published videos showing Agent-Reach in action, with demonstrations of natural language browsing, CAPTCHA handling, and data extraction workflows.</li>
+        <li><strong>No Hacker News presence.</strong> Despite 73K stars, Agent-Reach has not appeared in any significant Hacker News discussion - unusual for a repo of this size and suggesting the community may be concentrated outside the HN demographic.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Cookie/credential storage.</strong> As flagged by the Wavect review, authentication credentials and session cookies are stored in plain text by default. Encrypt the credential store before production use.</li>
+        <li><strong>Anti-bot evasion is a moving target.</strong> The stealth browsing features work today but anti-bot services continuously update their detection. Expect periodic breakage and updates.</li>
+        <li><strong>Resource intensive.</strong> Each browser session consumes 200-500MB of RAM. Running 50 parallel sessions requires significant hardware. Cloud costs for large-scale scraping add up quickly.</li>
+        <li><strong>Legal and ethical considerations.</strong> Automated browsing of websites may violate terms of service. The anti-bot evasion features explicitly circumvent site protections. Consult legal before deploying at scale.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/Panniantong/Agent-Reach" target="_blank">Panniantong/Agent-Reach GitHub</a> - source repo</li>
+      <li><a href="https://wavect.io/" target="_blank">Wavect security review</a> - security review of authentication handling</li>
+      <li><a href="https://www.sitepoint.com/" target="_blank">SitePoint integration tutorial</a> - LangChain integration walkthrough</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

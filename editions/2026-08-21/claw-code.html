@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ultraworkers/claw-code - The Agent-Managed Rust Exhibit | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0906;--bg2:#14100a;--card:#1e1710;--card2:#28201a;
+    --primary:#e8732a;--primary-dim:#b85a1e;--secondary:#6ec1e4;
+    --ink:#f4ebe0;--muted:#a89480;--line:#352a1e;
+    --sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Oswald',sans-serif;
+    --r:4px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 30% -10%,rgba(232,115,42,.10),transparent 45%),radial-gradient(ellipse at 80% 50%,rgba(110,193,228,.04),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(13,9,6,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:4px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0d0906;font-weight:700;border-radius:2px;padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(42px,8vw,82px);font-weight:700;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.45em;display:block;letter-spacing:.05em;margin-bottom:4px;text-transform:none}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(13,9,6,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:500;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.08em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0d0906;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;text-transform:uppercase}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(232,115,42,.10),rgba(110,193,228,.06));border:1px solid var(--primary);border-radius:8px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(110,193,228,.05);border-color:rgba(110,193,228,.35)}
+  .ba.after{background:rgba(232,115,42,.05);border-color:rgba(232,115,42,.35)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:13px;width:26px;height:26px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:4px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.05em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(110,193,228,.05);border:2px dashed var(--secondary);border-radius:8px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(110,193,228,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:4px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/ultraworkers/claw-code" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Clean-room Claude Code rewrite</span>
+    <h1><span class="owner">ultraworkers/</span><span class="name">claw-code</span></h1>
+    <p class="tagline">A <strong>clean-room reimplementation</strong> of Anthropic's Claude Code agent architecture in Rust and Python - born from a leaked source map, now the <strong>fastest GitHub repo to cross 100K stars</strong>. Open-source, multi-provider, and deeply controversial.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">195,092</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">109K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Rust</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The open <em>Claude Code</em> clone</h2>
+    <p class="sub">After an accidental source map leak exposed Claude Code's TypeScript internals, developer Sigrid Jin began a clean-room rewrite in Rust and Python. Claw-code became the fastest repo to cross 100K stars - and the most debated.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">195K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">109K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Rust</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">Multi</div><div class="l">LLM Provider Support</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">WSJ</div><div class="l">Featured Creator</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Clean-room Claude Code architecture</div><p>Reimplements Claude Code's agent architecture - codebase reading, edit planning, command execution - without using Anthropic's proprietary code. Works with any LLM provider, not just Claude.</p></div>
+      <div class="feat"><div class="fh">Multi-provider by design</div><p>Swap between OpenAI, Anthropic, Google, and local models freely. The original Claude Code locks you to Anthropic's API - claw-code does not.</p></div>
+      <div class="feat"><div class="fh">Rust core, Python extensions</div><p>Performance-critical agent loop written in Rust, with Python used for plugin extensibility. The Rust port is still maturing but functional.</p></div>
+      <div class="feat"><div class="fh">Agent-managed development</div><p>Self-described as an "agent-managed museum exhibit" - portions of the codebase are written and maintained by AI agents (Gajae-Code, LazyCodex) as a demonstration of agentic development.</p></div>
+      <div class="feat"><div class="fh">Benchmarked against the original</div><p>A Towards AI article tested claw-code on 15 coding tasks and reported it matched or beat Claude Code on 9 of 15 - though the benchmark methodology was informal.</p></div>
+      <div class="feat"><div class="fh">Explosive growth with caveats</div><p>Fastest repo to 100K stars, but the authenticity of the star count is widely debated. One developer estimated 95% of people who starred never cloned it.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Claude Code's architecture, any model</h3>
+      <p>The core value proposition is provider freedom. If you like how Claude Code works but want to run it against GPT, Gemini, or a local model, claw-code is the closest open-source option. The architecture mirrors the original's codebase reading, edit planning, and command execution pipeline.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Claude Code is one of the best terminal coding agents - but it only works with Anthropic's API and its source code is proprietary. Claw-code breaks both constraints.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Vendor lock-in.</strong> Claude Code requires an Anthropic API key. Want to use the same workflow with GPT or Gemini? Start over with a different tool.</p>
+        <p><strong>Closed source.</strong> You cannot audit, modify, or self-host Claude Code's agent logic. Enterprise teams with compliance requirements hit a wall.</p>
+        <p><strong>No open reference architecture.</strong> The design patterns that make Claude Code effective were not documented or available for the community to learn from.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Any provider.</strong> Point claw-code at OpenAI, Anthropic, Google, or a local model. Same agent loop, your choice of brain.</p>
+        <p><strong>Fully open source.</strong> MIT-licensed Rust and Python. Read the architecture, fork it, modify it, self-host it.</p>
+        <p><strong>Documented patterns.</strong> The clean-room rewrite makes Claude Code's architectural patterns visible and learnable for the open-source community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Clone the exhibit and run it locally, or fork it to test your own agent against the same Rust codebase.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and build</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repo</span>
+git clone https://github.com/ultraworkers/claw-code.git
+cd claw-code
+
+<span class="cm"># Build with Rust (requires rustup)</span>
+cargo build --release</pre>
+        <p>Requires <strong>Rust 1.80+</strong> and a standard toolchain. The codebase is pure Rust with no external C dependencies.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Run the exhibit</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Run the compiled binary</span>
+cargo run --release
+
+<span class="cm"># Or run tests to validate agent output</span>
+cargo test</pre>
+        <p>The test suite is the primary way to verify agent code quality. All tests were also written by the agents.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Fork and benchmark your agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Fork on GitHub, then point your agent at it</span>
+<span class="cm"># Compare your agent's output against the original commits</span>
+git log --oneline --author="gajae-code"
+git log --oneline --author="lazycodex"</pre>
+        <p>The commit history shows exactly what each agent contributed. Use it as a comparison baseline for your own agent's approach.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How the community is using claw-code as a reference point for agent-driven development.</p>
+
+    <div class="story"><div class="metric">109K forks</div><p><strong>Fork-as-benchmark.</strong> The extraordinary fork count suggests developers are using claw-code as a standardized challenge - fork the repo, point your own agent at it, and compare results against the original agent-written code.</p></div>
+    <div class="story"><div class="metric">Rust + agents</div><p><strong>Type-safety stress test.</strong> Developers reference claw-code when debating whether AI agents can handle strict type systems. The repo is cited as evidence that agents can navigate Rust's borrow checker - with caveats.</p></div>
+    <div class="story"><div class="metric">Dual-agent<br>patterns</div><p><strong>Multi-agent coordination research.</strong> The Gajae-Code/LazyCodex split is studied by teams building their own multi-agent workflows - how to divide architecture from implementation.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News launch threads.</strong> Multiple HN threads covered the initial rewrite, including discussions of the architecture and its relationship to Claude Code. <a href="https://news.ycombinator.com/item?id=47615235">HN: Claw Code rewrite</a> and <a href="https://news.ycombinator.com/item?id=47613215">HN: Architecture explained</a></li>
+        <li><strong>Independent benchmarks.</strong> A Towards AI author tested claw-code against Claude Code on 15 coding tasks and reported it matched or beat the original on 9 of 15. <a href="https://pub.towardsai.net/i-tested-claw-code-on-15-coding-tasks-the-114k-star-clone-is-quietly-embarrassing-claude-code-425b89c73703">Towards AI benchmark</a></li>
+        <li><strong>DEV Community hands-on.</strong> A dev.to author tested the repo and confirmed it reads codebases, plans edits, and runs commands across any LLM backend. <a href="https://dev.to/jim_l_efc70c3a738e9f4baa7/i-tested-the-fastest-growing-github-repo-ever-here-is-what-claw-code-actually-does-f0a">DEV: What Claw Code actually does</a></li>
+        <li><strong>Star authenticity questioned.</strong> Developer Volodymyr Stoiko publicly stated: "Repositories like ultraworkers/claw-code just prove how useless the stars metric has become. 140k in one day. My guess is 95% of people who starred or forked it didn't even clone it." <a href="https://x.com/core_st/status/2039677930528194739">Source</a></li>
+        <li><strong>Copyright controversy.</strong> An open issue on the Anthropic claude-code repo titled "[COPYRIGHT] Take down this stupid repo" debates whether the clean-room claim holds up. <a href="https://github.com/anthropics/claude-code/issues/42395">GitHub issue</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Star inflation.</strong> Carnegie Mellon researchers have documented millions of suspected fake/coordinated stars on GitHub. Claw-code's explosive growth pattern is a frequent example cited in these discussions.</li>
+        <li><strong>Not production-ready.</strong> Multiple sources (WaveSpeed, Eigent.ai) explicitly advise against production use. It lacks Claude Code's permission system, enterprise features, and the Rust port is described as unstable.</li>
+        <li><strong>IP and legal risk.</strong> Born from a source map leak, the "clean-room" rewrite claim is disputed. Anthropic has not taken legal action, but the origin story creates uncertainty for enterprise adopters.</li>
+        <li><strong>Repo locked during transition.</strong> The repository has been locked during an ownership transfer. The claw-code crate on crates.io is a deprecated stub that prints "claw-code has been renamed to agent-code."</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/ultraworkers/claw-code" target="_blank">ultraworkers/claw-code GitHub</a> - source, issues, commit history</li>
+      <li><a href="https://news.ycombinator.com/item?id=47615235" target="_blank">Hacker News launch thread</a> - community discussion of the rewrite</li>
+      <li><a href="https://pub.towardsai.net/i-tested-claw-code-on-15-coding-tasks-the-114k-star-clone-is-quietly-embarrassing-claude-code-425b89c73703" target="_blank">Towards AI benchmark</a> - 15-task comparison vs Claude Code</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egonex-AI/Understand-Anything - Multimodal Document Understanding | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080e;--bg2:#0e0e18;--card:#161624;--card2:#1c1c30;
+    --primary:#6366f1;--primary-dim:#4f46e5;--secondary:#fb923c;
+    --ink:#eeeef6;--muted:#8888a8;--line:#222240;
+    --sans:'Inter',sans-serif;--mono:'Fira Code',monospace;--disp:'Nunito',sans-serif;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 20% -10%,rgba(99,102,241,.12),transparent 50%),radial-gradient(ellipse at 85% 40%,rgba(251,146,60,.06),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(8,8,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:500;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:800;border-radius:20px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(40px,7.5vw,76px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+  h1 .owner{color:var(--muted);font-weight:600;font-size:.44em;display:block;letter-spacing:.03em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:inset 0 1px 6px rgba(99,102,241,.08)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(8,8,14,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:700;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(26px,4.2vw,38px);font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;box-shadow:inset 0 1px 8px rgba(99,102,241,.07);border-bottom:3px solid var(--primary)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:500;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:inset 0 1px 10px rgba(99,102,241,.06)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(251,146,60,.07));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(99,102,241,.05);border-color:rgba(99,102,241,.30)}
+  .ba.after{background:rgba(251,146,60,.05);border-color:rgba(251,146,60,.30)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--primary)}.ba.after .ba-tag{color:var(--secondary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:800;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center;box-shadow:inset 0 1px 8px rgba(99,102,241,.06)}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.03em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(251,146,60,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(251,146,60,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"~ ";font-family:var(--mono);color:var(--primary);font-weight:500}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/Egonex-AI/Understand-Anything" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">See documents like a human</span>
+    <h1><span class="owner">Egonex-AI/</span><span class="name">Understand-Anything</span></h1>
+    <p class="tagline">A <strong>multimodal document understanding pipeline</strong> that processes PDFs, images, videos, and handwritten notes into structured, searchable data. Combines OCR, layout analysis, and vision-language models to <strong>understand any document format</strong> without manual configuration.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">79,234</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">3.8K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Documents <em>understood</em></h2>
+    <p class="sub">Understand-Anything chains together OCR, layout analysis, table extraction, and vision-language models into a single pipeline that converts messy real-world documents into clean structured data - handling PDFs, scanned images, handwritten notes, and even video frames.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">79K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">3.8K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">Multi</div><div class="l">Input Formats</div></div>
+      <div class="bignum"><div class="n">Apache-2.0</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">96%+</div><div class="l">OCR Accuracy (claimed)</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Universal input handling</div><p>Feed it a PDF, a photo of a whiteboard, a scanned receipt, a video lecture, or a handwritten note. The pipeline auto-detects the input type and selects the appropriate processing chain.</p></div>
+      <div class="feat"><div class="fh">Layout-aware extraction</div><p>Does not just OCR text but understands document structure: headers, paragraphs, tables, figures, captions, footnotes. Preserves the logical reading order that flat OCR destroys.</p></div>
+      <div class="feat"><div class="fh">Table extraction</div><p>Automatically detects and extracts tables from documents, handling complex layouts with merged cells, multi-row headers, and borderless tables. Outputs structured CSV or JSON.</p></div>
+      <div class="feat"><div class="fh">Handwriting recognition</div><p>Handles handwritten text alongside printed text in the same document - critical for forms, annotated documents, and whiteboard photos.</p></div>
+      <div class="feat"><div class="fh">Vision-language model integration</div><p>Uses VLMs (GPT-4V, Claude vision, or local models) for semantic understanding - not just "what text is here" but "what does this document mean."</p></div>
+      <div class="feat"><div class="fh">Batch processing</div><p>Process thousands of documents in parallel with GPU acceleration. Designed for bulk digitization workflows, not just one-off conversions.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Structure from chaos</h3>
+      <p>The real breakthrough is layout-aware extraction. Most OCR tools give you a wall of text. Understand-Anything preserves the document's logical structure - tables stay as tables, headers stay as headers, footnotes stay connected to their references. This is the difference between text extraction and document understanding.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Documents come in every format imaginable. Converting them into structured, searchable data traditionally required different tools for each format and manual cleanup for each edge case.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>One tool per format.</strong> PDF extraction tools break on scans. OCR tools lose layout. Table extractors choke on complex formats. Handwriting? Forget it. Each format needs its own pipeline.</p>
+        <p><strong>Lost structure.</strong> Traditional OCR outputs flat text. A financial report with tables, charts, and footnotes becomes an unstructured wall of characters. Manual reconstruction required.</p>
+        <p><strong>Manual configuration.</strong> Each document type needs different settings: DPI, language, preprocessing. Operators spend more time configuring tools than processing documents.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One pipeline, any format.</strong> Drop in a PDF, image, video frame, or handwritten note. The pipeline auto-detects and selects the right processing chain.</p>
+        <p><strong>Structure preserved.</strong> Tables, headers, footnotes, and reading order survive extraction. The output mirrors the document's logical organization, not just its character sequence.</p>
+        <p><strong>Zero configuration.</strong> Auto-detection handles format, language, and layout. Process a thousand documents without touching a settings panel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install the pipeline and start processing documents.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repo</span>
+git clone https://github.com/Egonex-AI/Understand-Anything.git
+cd Understand-Anything
+
+<span class="cm"># Create virtual environment</span>
+python -m venv venv
+source venv/bin/activate
+
+<span class="cm"># Install with GPU support (recommended)</span>
+pip install -e ".[gpu]"</pre>
+        <p>Requires <strong>Python 3.10+</strong> and CUDA 12+ for GPU acceleration. CPU-only mode works but is significantly slower for batch processing.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Process your first document</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Process a single PDF</span>
+understand-anything process document.pdf --output result.json
+
+<span class="cm"># Process a scanned image</span>
+understand-anything process whiteboard.jpg --output notes.md
+
+<span class="cm"># Batch process a directory</span>
+understand-anything batch ./documents/ --output ./results/</pre>
+        <p>Output formats include JSON (structured), Markdown (readable), and CSV (tables only). The pipeline auto-selects models based on the input.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure vision-language models (optional)</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># For semantic understanding beyond OCR</span>
+export OPENAI_API_KEY=your-key-here
+
+<span class="cm"># Or use a local model</span>
+understand-anything process doc.pdf \
+  --vlm local \
+  --model-path ./models/llava-v1.6</pre>
+        <p>VLM integration is optional. Basic OCR and layout extraction work without any API keys or external models.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams use Understand-Anything to convert document chaos into structured data.</p>
+
+    <div class="story"><div class="metric">Batch mode</div><p><strong>Legal document processing.</strong> Law firms process thousands of discovery documents through the pipeline, extracting structured data from scanned contracts, handwritten notes, and faxed correspondence - work that previously required manual review.</p></div>
+    <div class="story"><div class="metric">96%+ OCR</div><p><strong>Academic research.</strong> Researchers digitize historical archives - handwritten letters, typed manuscripts, annotated diagrams - preserving the layout and structure that flat OCR would destroy.</p></div>
+    <div class="story"><div class="metric">Tables intact</div><p><strong>Financial data extraction.</strong> Accounting teams extract table data from scanned invoices and financial statements, getting structured CSV output that feeds directly into their analysis pipelines.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News discussions.</strong> Multiple HN threads covered Understand-Anything, with the most substantive at <a href="https://news.ycombinator.com/item?id=47822572">item 47822572</a>, <a href="https://news.ycombinator.com/item?id=47908512">item 47908512</a>, and <a href="https://news.ycombinator.com/item?id=47977470">item 47977470</a> - discussions focused on OCR accuracy claims and comparison to existing tools.</li>
+        <li><strong>andrew.ooo review.</strong> An independent developer review tested the pipeline on real-world documents and reported strong results on printed text but noted handwriting accuracy drops significantly on cursive. <a href="https://andrew.ooo/">andrew.ooo</a></li>
+        <li><strong>Better Stack deployment guide.</strong> Better Stack published a guide on deploying Understand-Anything in production, covering GPU provisioning, queue management, and monitoring. <a href="https://betterstack.com/">betterstack.com</a></li>
+        <li><strong>Community forks.</strong> Several forks add specialized capabilities: medical document processing, multi-language support packs, and integration with vector databases for RAG pipelines.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>GPU requirements for batch processing.</strong> CPU-only mode works for one-off documents but batch processing thousands of files requires CUDA-capable hardware. Cloud GPU costs add up quickly.</li>
+        <li><strong>Accuracy claims need context.</strong> The "96%+ OCR accuracy" is measured on clean printed documents. Handwritten text, degraded scans, and unusual fonts reduce accuracy significantly.</li>
+        <li><strong>Large model downloads.</strong> The full model suite requires several GB of disk space and significant download time on first run. Plan for this in CI/CD and container builds.</li>
+        <li><strong>Active development, breaking changes.</strong> The API and CLI interface are still evolving. Pin your version and test upgrades carefully in production workflows.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/Egonex-AI/Understand-Anything" target="_blank">Egonex-AI/Understand-Anything GitHub</a> - source repo</li>
+      <li><a href="https://news.ycombinator.com/item?id=47822572" target="_blank">Hacker News discussion thread</a> - HN discussion thread</li>
+      <li><a href="https://andrew.ooo/" target="_blank">andrew.ooo</a> - Independent developer review</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

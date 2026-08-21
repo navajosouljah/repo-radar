@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>farion1231/cc-switch - All-in-One Agent Desktop | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08060e;--bg2:#100c18;--card:#1a1428;--card2:#241e34;
+    --primary:#ec4899;--primary-dim:#c0367a;--secondary:#22d3ee;
+    --ink:#f0eaf8;--muted:#9a8fb0;--line:#302648;
+    --sans:'Poppins',sans-serif;--mono:'JetBrains Mono',monospace;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 30% -10%,rgba(236,72,153,.10),transparent 45%),radial-gradient(ellipse at 80% 50%,rgba(34,211,238,.04),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(8,6,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:99px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:99px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--sans);font-size:clamp(42px,8vw,82px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:10px 20px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(8,6,14,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.03em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--sans);font-size:clamp(27px,4.2vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);transition:box-shadow .2s}
+  .bignum:hover{box-shadow:0 0 24px rgba(236,72,153,.15)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px;transition:box-shadow .2s}
+  .feat:hover{box-shadow:0 0 20px rgba(236,72,153,.12)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(236,72,153,.10),rgba(34,211,238,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:var(--primary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:99px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(34,211,238,.05);border-color:rgba(34,211,238,.35)}
+  .ba.after{background:rgba(236,72,153,.05);border-color:rgba(236,72,153,.35)}
+  .ba .ba-tag{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--sans);background:var(--primary);color:#fff;font-weight:700;font-size:13px;width:26px;height:26px;border-radius:99px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center;transition:box-shadow .2s}
+  .story:hover{box-shadow:0 0 20px rgba(236,72,153,.12)}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;letter-spacing:.02em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(34,211,238,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(34,211,238,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:99px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/farion1231/cc-switch" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">All-in-One Agent Desktop</span>
+    <h1><span class="owner">farion1231/</span><span class="name">cc-switch</span></h1>
+    <p class="tagline">A <strong>cross-platform desktop app</strong> that unifies Claude Code, Codex, OpenCode, OpenClaw, Grok Build, and Hermes Agent in one interface. Built with <strong>Tauri 2, Rust, and React</strong> - hot-switch providers without restarting terminals.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">128,640</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">8.8K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Rust</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>One app, <em>every</em> coding agent</h2>
+    <p class="sub">CC Switch is a Tauri 2 desktop app that puts Claude Code, Codex, OpenCode, OpenClaw, Grok Build, and Hermes Agent under one roof. Hot-switch between providers, sync MCP configs, and run speed tests - all from a single ~10MB native app.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">128K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">8.8K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Rust</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">6</div><div class="l">Agents Supported</div></div>
+      <div class="bignum"><div class="n">~10MB</div><div class="l">App Footprint</div></div>
+      <div class="bignum"><div class="n sc">180</div><div class="l">Contributors</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Hot-switch between providers</div><p>Swap from Claude Code to Codex to Grok Build without restarting terminals or re-configuring anything. One click, new provider, same workflow.</p></div>
+      <div class="feat"><div class="fh">Built-in speed test</div><p>Compare provider response times side-by-side before committing to a session. See which model is fastest for your current task type.</p></div>
+      <div class="feat"><div class="fh">Visual MCP configuration</div><p>Manage MCP server configs through a GUI instead of hand-editing JSON. See all your servers, toggle them on/off, and configure parameters visually.</p></div>
+      <div class="feat"><div class="fh">Bidirectional MCP sync</div><p>Changes to MCP server configs in one agent app automatically propagate to the others. No more maintaining six separate config files.</p></div>
+      <div class="feat"><div class="fh">Multi-provider failover</div><p>When one provider is rate-limited or down, CC Switch automatically routes to a backup. Circuit-breaker logic prevents cascading failures.</p></div>
+      <div class="feat"><div class="fh">Tauri 2 native performance</div><p>Built on Tauri 2 with a Rust backend and React frontend. The entire app ships at roughly 10MB - a fraction of Electron-based alternatives.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>One-click provider switching</h3>
+      <p>The core value is seamless context-preserving provider switches. You can start a task with Claude Code, hit a rate limit, and hot-switch to Codex or Grok Build without losing your place. No terminal restarts, no re-configuring API keys, no manual JSON edits. The switch happens in the app and the new provider picks up where the last one left off.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI coding agents each live in their own silo - separate configs, separate API key management, separate terminals. Switching between them means manual JSON editing and context loss.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Config sprawl.</strong> Each AI coding tool has its own config format, API key storage, and MCP server definitions. Keeping six tools in sync means editing six different JSON files by hand.</p>
+        <p><strong>Context-breaking switches.</strong> Swapping providers means closing one terminal, opening another, and re-establishing context. You lose your working state every time.</p>
+        <p><strong>No visibility into performance.</strong> Which provider is fastest right now? Which is rate-limited? You have no way to compare without running separate tests in separate terminals.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One config, all tools.</strong> CC Switch manages API keys and MCP servers through a single visual interface. Changes sync bidirectionally across all connected agent apps.</p>
+        <p><strong>Seamless switching.</strong> Hot-switch providers with one click. No terminal restarts, no context loss, no manual reconfiguration.</p>
+        <p><strong>Built-in benchmarking.</strong> Speed test your providers before starting a session. See response times and availability at a glance, with automatic failover when one goes down.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Download the desktop app or build from source. Connect your existing agent installations and start switching.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Download or build from source</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Option A: Download from the official site</span>
+<span class="cm"># Visit ccswitch.io for macOS, Windows, and Linux builds</span>
+
+<span class="cm"># Option B: Build from source</span>
+git clone https://github.com/farion1231/cc-switch.git
+cd cc-switch
+npm install
+cargo tauri build</pre>
+        <p>Building from source requires the <strong>Rust toolchain</strong> and <strong>Node.js</strong>. The Tauri CLI handles bundling the Rust backend with the React frontend.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Connect your agent installations</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Launch CC Switch - it auto-detects installed agents</span>
+<span class="cm"># Supported agents:</span>
+<span class="cm">#   Claude Code, Codex, OpenCode,</span>
+<span class="cm">#   OpenClaw, Grok Build, Hermes Agent</span></pre>
+        <p>CC Switch scans for existing agent installations and imports their configurations. You can also <strong>manually point it</strong> at agent binaries if auto-detection misses them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure keys and MCP servers</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Use the visual interface to:</span>
+<span class="cm"># - Add/manage provider API keys</span>
+<span class="cm"># - Configure MCP servers across all tools</span>
+<span class="cm"># - Set failover priorities</span>
+<span class="cm"># - Run provider speed tests</span></pre>
+        <p>All configuration happens through the GUI. Changes to MCP servers <strong>sync bidirectionally</strong> - edit in CC Switch or in the agent's own config, and both stay in sync.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and individual developers are using CC Switch to manage their AI coding tool sprawl.</p>
+
+    <div class="story"><div class="metric">Cost<br>optimization</div><p><strong>Provider switching for budget control.</strong> Use cheaper models for simple tasks like boilerplate generation, then switch to Claude or GPT for complex architecture decisions. CC Switch makes the swap instant - no need to reconfigure anything between tasks.</p></div>
+    <div class="story"><div class="metric">MCP<br>management</div><p><strong>Centralized MCP server configs.</strong> Instead of maintaining separate MCP configurations for each coding agent, CC Switch provides a single visual interface. Add a new MCP server once and it propagates to all connected tools automatically.</p></div>
+    <div class="story"><div class="metric">Failover<br>routing</div><p><strong>Automatic fallback on rate limits.</strong> When one provider hits a rate limit or goes down, CC Switch routes to the next available provider. The circuit-breaker logic prevents repeated calls to a failing endpoint.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Augment Code review.</strong> Analysis of CC Switch's growth to 104K stars and its role as a unified desktop for seven AI coding tools. <a href="https://www.augmentcode.com/learn/cc-switch-104k-stars-seven-ai-coding-tools">CC Switch Hits 104K Stars</a></li>
+        <li><strong>Growth analysis.</strong> Earlier coverage tracking the project at 75K stars, examining why developers are consolidating their AI coding CLIs. <a href="https://www.augmentcode.com/learn/cc-switch-75k-stars-ai-cli-manager">CC Switch hits 75K stars</a></li>
+        <li><strong>Critical take.</strong> Medium piece arguing CC Switch has suffered scope creep - evolving from a config switcher into a local proxy and service mesh that nobody asked for. <a href="https://medium.com/@creativeaininja/cc-switch-became-a-service-mesh-and-nobody-asked-it-to-682c2ffd222b">CC Switch Became a Service Mesh</a></li>
+        <li><strong>Setup guide.</strong> EggStriker's complete installation walkthrough, noting the app's ~10MB footprint and platform-specific quirks. <a href="https://www.eggstriker.com/en/blog/cc-switch-install-guide-2026">CC Switch Install Guide 2026</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>CORS security vulnerability (Issue #1841).</strong> The local proxy used <code>allow_origin(Any)</code>, which let any website silently use your API keys via a 1-click attack. Fixed in later versions, but the incident reveals the security surface area of routing all provider keys through one app.</li>
+        <li><strong>Scope creep.</strong> CC Switch started as a simple config switcher but grew into a local proxy with format translation, failover routing, and circuit-breaker logic. The Medium piece above argues this complexity was not asked for and adds fragility.</li>
+        <li><strong>No team features.</strong> CC Switch is a single-user tool with no shared state, team config propagation, or organizational management. Enterprise teams needing shared configurations will hit a wall.</li>
+        <li><strong>Rapid release cadence.</strong> One patch release included 59 commits, raising stability concerns. The pace of change can make it hard to trust production stability on any given version.</li>
+        <li><strong>Minimal community presence.</strong> Despite 128K stars, no Reddit or YouTube coverage was found. The gap between star count and observable community activity is worth noting.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/farion1231/cc-switch" target="_blank">farion1231/cc-switch GitHub</a> - source, issues, releases</li>
+      <li><a href="https://www.augmentcode.com/learn/cc-switch-104k-stars-seven-ai-coding-tools" target="_blank">Augment Code analysis</a> - 104K stars review and feature breakdown</li>
+      <li><a href="https://medium.com/@creativeaininja/cc-switch-became-a-service-mesh-and-nobody-asked-it-to-682c2ffd222b" target="_blank">Critical review</a> - scope creep from config switcher to service mesh</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

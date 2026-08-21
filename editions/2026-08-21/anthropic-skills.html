@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anthropics/skills - Agent Skills Repository | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060a14;--bg2:#0c1220;--card:#111827;--card2:#1a2332;
+    --primary:#3b82f6;--primary-dim:#2563eb;--secondary:#f59e0b;
+    --ink:#e8ecf4;--muted:#8896b0;--line:#1e2d44;
+    --sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'Sora',sans-serif;
+    --r:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 20% -10%,rgba(59,130,246,.12),transparent 50%),radial-gradient(ellipse at 75% 40%,rgba(245,158,11,.05),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(6,10,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#060a14;font-weight:700;border-radius:20px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(40px,7.5vw,76px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.45em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(6,10,20,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.02em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:linear-gradient(135deg,var(--primary),var(--primary-dim));border-color:var(--primary);color:#fff;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid;border-image:linear-gradient(90deg,var(--primary),var(--secondary)) 1;}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid;border-image:linear-gradient(90deg,var(--primary),var(--secondary)) 1;border-radius:var(--r);padding:22px;overflow:hidden}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(59,130,246,.10),rgba(245,158,11,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.30)}
+  .ba.after{background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.30)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:var(--bg);font-weight:700;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.02em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(245,158,11,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(245,158,11,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/anthropics/skills" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Public repository for Agent Skills</span>
+    <h1><span class="owner">anthropics/</span><span class="name">skills</span></h1>
+    <p class="tagline">Anthropic's official collection of <strong>SKILL.md files</strong> - structured instructions that any agent loads dynamically for specialized tasks. A single portable format adopted across <strong>70+ agents</strong>, from Claude Code to Gemini CLI.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">170,781</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">20.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">N/A</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Skills that stick to <em>any</em> agent</h2>
+    <p class="sub">Anthropic's official collection of SKILL.md files - structured instructions Claude loads dynamically for specialized tasks. Launched October 2025, 170K+ stars, and the format has become a de facto standard adopted well beyond Claude.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">170K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">20.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">70+</div><div class="l">Compatible Agents</div></div>
+      <div class="bignum"><div class="n">Oct 2025</div><div class="l">Launch Date</div></div>
+      <div class="bignum"><div class="n sc">SKILL.md</div><div class="l">Portable Format</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Cross-platform by design</div><p>A single SKILL.md file works in Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Write once, use everywhere - no per-tool custom instructions.</p></div>
+      <div class="feat"><div class="fh">Creative, technical, and enterprise</div><p>Skills span art, music, and design through testing, MCP server generation, and enterprise branding and document workflows. The breadth is deliberate.</p></div>
+      <div class="feat"><div class="fh"><code>skill-creator</code> meta-skill</div><p>A skill that creates other skills. Includes an eval and testing framework so you can validate new skills systematically before deploying them.</p></div>
+      <div class="feat"><div class="fh">Org-wide deployment</div><p>Enterprise teams can deploy skills across their entire organization. Shipped December 2025, this turns institutional knowledge into portable agent instructions.</p></div>
+      <div class="feat"><div class="fh">Frontmatter trigger conditions</div><p>Each SKILL.md includes structured frontmatter that tells agents when to activate it. Skills fire automatically based on task context - no manual invocation needed.</p></div>
+      <div class="feat"><div class="fh">De facto standard</div><p>The SKILL.md format has been adopted beyond Claude. Community-built generators, curated directories, and academic analysis all treat it as the reference format for agent instructions.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The SKILL.md format itself</h3>
+      <p>The biggest contribution is not any individual skill - it is the format. SKILL.md has become a de facto standard for encoding domain expertise as portable agent instructions. One file works across 70+ agents, and the community has built generators, directories, and tooling around the spec. The format outlived its origin as a Claude-only feature.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Before skills, every AI coding tool required its own custom instructions format. No reuse, no sharing, no way to encode domain expertise portably.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Separate instructions per tool.</strong> Every AI agent had its own format for custom instructions. Moving from Claude to Cursor to Copilot meant rewriting everything from scratch.</p>
+        <p><strong>No reusable format.</strong> Domain expertise lived in ad-hoc prompts, scattered docs, and tribal knowledge. No structured way to package and share it.</p>
+        <p><strong>No cross-tool sharing.</strong> A team that built great workflows in one tool could not port them to another. Expertise was locked to a specific agent.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One format, 70+ agents.</strong> A single SKILL.md file works across Claude Code, Cursor, Gemini CLI, Codex CLI, and GitHub Copilot. Write it once.</p>
+        <p><strong>Portable domain expertise.</strong> Encode what your team knows - code review standards, document templates, security checklists - as structured instructions any agent can load.</p>
+        <p><strong>Org-wide deployment.</strong> Enterprise teams deploy skills across their organization. New team members get institutional expertise on day one, in whatever agent they prefer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Browse the repo, pick skills, drop them into your agent's skills directory. Trigger conditions handle the rest.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Browse and pick skills</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Browse the repo on GitHub</span>
+https://github.com/anthropics/skills
+
+<span class="cm"># Or use the skills CLI to search</span>
+claude skills search "code review"</pre>
+        <p>The repo is organized by category - creative, technical, enterprise. Pick skills that match your workflow. The <strong>skills CLI</strong> lets you search and install directly.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Copy SKILL.md files to your skills directory</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Copy a skill to your local skills directory</span>
+cp code-review/SKILL.md ~/.claude/skills/code-review.md
+
+<span class="cm"># Or for project-scoped skills</span>
+cp code-review/SKILL.md .claude/skills/code-review.md</pre>
+        <p>Skills live in <code>.claude/skills/</code> at user or project level. Project-scoped skills travel with the repo so the whole team gets them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Skills activate automatically</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># No manual invocation needed</span>
+<span class="cm"># Skills fire based on trigger conditions in their frontmatter</span>
+
+<span class="cm"># Example trigger in a SKILL.md:</span>
+<span class="cm"># triggers:</span>
+<span class="cm">#   - pattern: "review.*code"</span>
+<span class="cm">#   - file_type: "*.py"</span></pre>
+        <p>Each SKILL.md includes <strong>trigger conditions</strong> in its frontmatter. When your task matches, the skill loads automatically. No need to remember slash commands.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and individuals are putting skills to work across document generation, code quality, enterprise deployment, and security.</p>
+
+    <div class="story"><div class="metric">PDF/PPTX/<br>XLSX/DOCX</div><p><strong>Document automation.</strong> Skills for generating polished documents in multiple formats. Teams use these to standardize report generation, slide decks, and spreadsheet outputs directly from agent workflows.</p></div>
+    <div class="story"><div class="metric">Code review<br>+ simplify</div><p><strong>Code review and simplification workflows.</strong> The <code>code-review</code> and <code>simplify</code> skills encode review standards as portable instructions. Teams deploy them org-wide so every developer gets consistent review quality regardless of which agent they use.</p></div>
+    <div class="story"><div class="metric">Org-wide<br>Dec 2025</div><p><strong>Enterprise org-wide deployment.</strong> Shipped December 2025, enterprise teams deploy skills across their entire organization. Institutional knowledge becomes agent instructions that persist across team changes.</p></div>
+    <div class="story"><div class="metric">817 skills<br>MITRE</div><p><strong>Cybersecurity skill set.</strong> An 817-skill collection mapped to the MITRE ATT&CK framework. Each skill covers a specific technique or procedure, turning the ATT&CK knowledge base into actionable agent instructions.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News launch thread.</strong> Direct submission with active community discussion about the format, cross-platform support, and implications for agent tooling. <a href="https://news.ycombinator.com/item?id=47171432">HN discussion</a></li>
+        <li><strong>Anthropic engineering blog.</strong> Official deep-dive on equipping agents for the real world with skills - the design philosophy, format decisions, and deployment model. <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Engineering blog</a></li>
+        <li><strong>AI-SkillForge.</strong> Community-built tool that generates SKILL.md files from natural language descriptions. Lowers the barrier to creating new skills. <a href="https://news.ycombinator.com/item?id=46632017">HN: AI-SkillForge</a></li>
+        <li><strong>Academic analysis.</strong> arXiv paper "Agent Skills Can Be Harmful" found skills can cause functional failures when topically relevant but over-prescribing - a useful caution for skill authors.</li>
+        <li><strong>Curated community directory.</strong> 1K curated skills selected from 60K+ GitHub skills - a quality filter for the rapidly growing ecosystem. <a href="https://news.ycombinator.com/item?id=46693426">HN: Curated skills</a></li>
+        <li><strong>Skill churn discussion.</strong> "What former must-have agent skills have you deprecated?" - a Hacker News thread showing real skill turnover and the practical limits of the format.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Trigger unreliability.</strong> Weak or vague trigger conditions mean skills sometimes do not activate when expected. Well-written triggers are critical - the skill-creator eval helps validate them, but many community skills ship with poor triggers.</li>
+        <li><strong>Model update fragility.</strong> Skills that work on one model version can break after updates. The instructions are tuned to specific model behaviors, and those behaviors shift between releases.</li>
+        <li><strong>Testing gap.</strong> Before the <code>skill-creator</code> eval shipped, there was no systematic way to validate skill quality. Many older skills in the ecosystem were never tested against a structured eval.</li>
+        <li><strong>Skill churn.</strong> The deprecated-skills HN thread suggests many community skills have short shelf lives. The format is stable, but the content inside individual skills can become outdated quickly.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills GitHub</a> - source, skills catalog, documentation</li>
+      <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Anthropic engineering blog</a> - design philosophy and deployment model</li>
+      <li><a href="https://news.ycombinator.com/item?id=47171432" target="_blank">Hacker News discussion</a> - community reception and format debate</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

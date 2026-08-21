@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>addyosmani/agent-skills - Curated Agent Skill Directory | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Roboto+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a08;--bg2:#141210;--card:#1e1a16;--card2:#282220;
+    --primary:#dc2626;--primary-dim:#a81e1e;--secondary:#fef3c7;
+    --ink:#f2ebe4;--muted:#a09080;--line:#302820;
+    --sans:'Inter',sans-serif;--mono:'Roboto Mono',monospace;--disp:'Bitter',serif;
+    --r:6px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 25% -8%,rgba(220,38,38,.09),transparent 42%),radial-gradient(ellipse at 75% 55%,rgba(254,243,199,.03),transparent 30%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(12,10,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:500;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:15px;font-style:italic;font-weight:500;color:var(--secondary);border-bottom:2px solid var(--primary);padding-bottom:4px;margin-bottom:24px;letter-spacing:.01em}
+  h1{font-family:var(--disp);font-size:clamp(40px,7.5vw,76px);font-weight:700;line-height:1.05;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(12,10,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:14px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:10px 20px;cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.01em}
+  .tab-btn:hover{color:var(--ink)}
+  .tab-btn.active{border-bottom-color:var(--primary);color:var(--ink)}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  h2 em{font-style:italic;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:rgba(254,243,199,.04);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,rgba(220,38,38,.08),rgba(254,243,199,.05));border:1px solid var(--primary);border-radius:8px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(254,243,199,.04);border-color:rgba(254,243,199,.25)}
+  .ba.after{background:rgba(220,38,38,.04);border-color:rgba(220,38,38,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:14px;width:28px;height:28px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.02em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(254,243,199,.04);border:2px dashed var(--secondary);border-radius:8px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(254,243,199,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Curated skill-writing guide</span>
+    <h1><span class="owner">addyosmani/</span><span class="name">agent-skills</span></h1>
+    <p class="tagline">A <strong>curated guide to writing effective AI agent skills</strong> by Chrome engineering lead Addy Osmani - with real-world patterns, anti-patterns, and a framework for making agents actually useful. The <strong>essential reading list</strong> for anyone building agent tooling.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">88,319</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">5.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Markdown</span><span class="ck">primary format</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The agent skill <em>bible</em></h2>
+    <p class="sub">Addy Osmani distilled patterns from building Chrome DevTools and years of open-source leadership into a practical guide for writing AI agent skills - the instructions that turn generic LLMs into specialized tools.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">88K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">5.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Markdown</div><div class="l">Primary Format</div></div>
+      <div class="bignum"><div class="n lm">50+</div><div class="l">Skill Patterns</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">Chrome</div><div class="l">Author's Team</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Skill anatomy breakdown</div><p>Dissects what makes a skill effective: trigger conditions, context requirements, output formats, and guardrails. Goes beyond "write a system prompt" to structured, testable instructions.</p></div>
+      <div class="feat"><div class="fh">Anti-pattern catalog</div><p>Documents the most common mistakes in skill design: over-specification, context bloat, missing error paths, and skills that fight the model's natural behavior.</p></div>
+      <div class="feat"><div class="fh">Real-world examples</div><p>Includes complete, working skill files from production agent setups - not toy examples but patterns used in actual development workflows.</p></div>
+      <div class="feat"><div class="fh">Framework-agnostic</div><p>Patterns apply whether you are writing SKILL.md files for Claude Code, custom GPT instructions, Cursor rules, or any agent framework that accepts natural language configuration.</p></div>
+      <div class="feat"><div class="fh">Progressive complexity</div><p>Organized from simple one-purpose skills to complex multi-step workflows, letting you start small and scale up as your needs grow.</p></div>
+      <div class="feat"><div class="fh">Testing strategies</div><p>Covers how to evaluate whether a skill actually improves agent behavior - the part most skill guides skip entirely.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>From prompt engineering to skill engineering</h3>
+      <p>The guide reframes the conversation from "write better prompts" to "design better skills" - treating agent instructions as software with structure, testing, and maintenance. This mental model shift is what practitioners cite as the biggest takeaway.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Everyone writes agent instructions. Almost nobody writes them well. The gap between a working prompt and an effective skill costs teams hours of debugging and inconsistent results.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Ad-hoc prompts.</strong> Agent instructions written on the fly, never tested, duplicated across projects. When they break, nobody knows why.</p>
+        <p><strong>Context overload.</strong> Skills stuffed with every possible instruction, blowing context windows and confusing models. "Just add more detail" as the default debugging strategy.</p>
+        <p><strong>No feedback loop.</strong> No way to measure whether a skill change actually improved agent behavior. Changes made by feel, regressions caught by accident.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Structured skill files.</strong> Each skill has a defined anatomy: trigger, context, output format, guardrails. Testable, version-controlled, reviewable.</p>
+        <p><strong>Minimal effective context.</strong> Skills scoped to the smallest instruction set that produces correct behavior. The guide teaches what to leave out.</p>
+        <p><strong>Measurable quality.</strong> Testing strategies that let you evaluate skill effectiveness before deploying - catch regressions before they reach users.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Read the guide, then apply the patterns to your own agent setup.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Read the guide</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone for offline reading</span>
+git clone https://github.com/addyosmani/agent-skills.git
+cd agent-skills
+
+<span class="cm"># Or read directly on GitHub</span>
+<span class="cm"># The README.md is the primary document</span></pre>
+        <p>The guide is a single comprehensive Markdown document. Start with the skill anatomy section and work through the examples.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Audit your existing skills</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Find your existing agent skill files</span>
+find . -name "SKILL.md" -o -name ".cursorrules" -o -name "CLAUDE.md"
+
+<span class="cm"># Check each one against the anti-pattern catalog</span>
+<span class="cm"># Common issues: over-specification, missing guardrails, no exit conditions</span></pre>
+        <p>Apply the anti-pattern checklist to your current skills. Most teams find 2-3 issues per skill file.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Rewrite one skill using the framework</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Structure your skill with the recommended anatomy:</span>
+<span class="cm"># 1. Trigger - when should this skill activate?</span>
+<span class="cm"># 2. Context - what does the agent need to know?</span>
+<span class="cm"># 3. Output - what format should the result take?</span>
+<span class="cm"># 4. Guardrails - what should the agent never do?</span>
+<span class="cm"># 5. Exit - when is the skill complete?</span></pre>
+        <p>Start with your most-used skill. Apply the full anatomy, test it, then expand to others.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams are applying agent-skills patterns to improve their development workflows.</p>
+
+    <div class="story"><div class="metric">50+ patterns</div><p><strong>Skill template library.</strong> Teams are extracting the patterns into reusable templates for their organizations - pre-structured skill files with the anatomy already laid out, reducing the time from "I need a new skill" to a working first draft.</p></div>
+    <div class="story"><div class="metric">Code review</div><p><strong>Review checklist for skills.</strong> Engineering teams use the anti-pattern catalog as a PR review checklist for skill file changes - the same way they review code, but for agent instructions.</p></div>
+    <div class="story"><div class="metric">Onboarding</div><p><strong>New-hire agent training.</strong> Companies use agent-skills as required reading for engineers joining teams that use AI agents - establishing a shared vocabulary and quality bar for skill authoring.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>arXiv research paper.</strong> "Agent Skills Can Be Harmful: How and When" examines failure modes in skill design, including cases where skills actively degrade agent performance. Cites patterns from Osmani's guide. <a href="https://arxiv.org/abs/2507.02998">arXiv paper</a></li>
+        <li><strong>Osmani's blog post.</strong> Addy Osmani published a companion blog post expanding on the most common anti-patterns and how to fix them. <a href="https://addyosmani.com/blog/agent-skills/">Blog post</a></li>
+        <li><strong>O'Reilly coverage.</strong> O'Reilly Media featured agent-skills in their AI engineering newsletter, calling it "the missing manual for agent instruction design." <a href="https://www.oreilly.com/radar/">O'Reilly Radar</a></li>
+        <li><strong>YouTube walkthroughs.</strong> Multiple YouTube creators have published video walkthroughs of the guide, with the most popular accumulating significant view counts. Search "addyosmani agent skills" for current listings.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Markdown, not code.</strong> This is a guide, not a framework or library. If you are looking for an installable tool that manages skills, this is not it.</li>
+        <li><strong>Opinionated patterns.</strong> The guide reflects Osmani's experience at Google Chrome. Some patterns may not translate directly to smaller teams or different agent frameworks.</li>
+        <li><strong>Fast-moving space.</strong> Agent skill formats are evolving rapidly. SKILL.md, .cursorrules, and other formats are still changing - patterns that work today may need updating.</li>
+        <li><strong>No automated tooling.</strong> The testing strategies are manual. There is no linter or CI integration for validating skills against the recommended patterns.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/addyosmani/agent-skills" target="_blank">addyosmani/agent-skills GitHub</a> - source repo</li>
+      <li><a href="https://arxiv.org/abs/2507.02998" target="_blank">Agent Skills Can Be Harmful</a> - arXiv research paper</li>
+      <li><a href="https://addyosmani.com/blog/agent-skills/" target="_blank">Osmani's companion blog post</a> - anti-patterns and fixes</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

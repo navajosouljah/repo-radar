@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>msitarzewski/agency-agents - AI Agency Personas | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0614;--bg2:#120e22;--card:#1e1638;--card2:#2a2248;
+    --primary:#a855f7;--primary-dim:#8b3fd6;--secondary:#84cc16;
+    --ink:#f0ecf8;--muted:#9b8fb8;--line:#352d50;
+    --sans:'DM Sans',sans-serif;--mono:'Fira Code',monospace;
+    --r:12px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 30% -10%,rgba(168,85,247,.12),transparent 45%),radial-gradient(ellipse at 80% 50%,rgba(132,204,22,.05),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,6,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#0a0614;font-weight:700;border-radius:var(--r);padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--sans);font-size:clamp(38px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,6,20,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0614;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--sans);font-size:clamp(27px,4.2vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid;border-image:linear-gradient(90deg,var(--primary),var(--secondary)) 1;}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid;border-image:linear-gradient(90deg,var(--primary),var(--secondary)) 1;border-radius:var(--r);padding:22px;overflow:hidden}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(168,85,247,.10),rgba(132,204,22,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:linear-gradient(135deg,var(--primary),var(--secondary));color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(132,204,22,.05);border-color:rgba(132,204,22,.35)}
+  .ba.after{background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.35)}
+  .ba .ba-tag{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--sans);background:linear-gradient(135deg,var(--primary),var(--secondary));color:var(--bg);font-weight:700;font-size:13px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--sans);letter-spacing:.02em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(132,204,22,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(132,204,22,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI agency persona library</span>
+    <h1><span class="owner">msitarzewski/</span><span class="name">agency-agents</span></h1>
+    <p class="tagline">A <strong>complete AI agency at your fingertips</strong> - 200+ specialized agent personas as plain markdown files. From frontend wizards to Reddit community managers, organized into 12 divisions covering <strong>every business function</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">147K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">23.7K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Shell</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>200+ expert personas, <em>one</em> install</h2>
+    <p class="sub">Michael Sitarzewski (30+ years in tech, Techstars alum) assembled a library of specialized AI agent personas as simple markdown files. Not a framework - just drop them into your config directory and your generalist coding agent becomes a domain expert.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">200+</div><div class="l">Agent Personas</div></div>
+      <div class="bignum"><div class="n sc">12</div><div class="l">Business Divisions</div></div>
+      <div class="bignum"><div class="n">147K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n lm">6+</div><div class="l">Compatible Agents</div></div>
+      <div class="bignum"><div class="n">Markdown</div><div class="l">Just Plain Files</div></div>
+      <div class="bignum"><div class="n sc">Nexus</div><div class="l">Multi-Agent Exercises</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Not a framework - just files</div><p>No dependencies, no build step, no SDK. Each persona is a standalone markdown file you copy into your agent's config directory. Works with <code>Claude Code</code>, <code>Cursor</code>, <code>Codex</code>, <code>Copilot</code>, <code>Aider</code>, and more.</p></div>
+      <div class="feat"><div class="fh">12 divisions, every function</div><p>Organized like a real agency: engineering, marketing, sales, security, design, data, DevOps, QA, product, legal, HR, and community management. Each division has multiple specialist roles.</p></div>
+      <div class="feat"><div class="fh">Companion native app</div><p>The <code>agency-agents-app</code> companion provides visual browsing and one-click persona installation. No more hunting through directories - browse, preview, and install from a GUI.</p></div>
+      <div class="feat"><div class="fh">Nexus Spatial Discovery</div><p>Multi-agent coordination exercises that let persona teams work together. Designed for workflows where a frontend specialist hands off to a backend architect, who hands off to a security reviewer.</p></div>
+      <div class="feat"><div class="fh">Domain-narrowed expertise</div><p>Each persona carries specific domain knowledge, constraints, and best practices. A security reviewer persona knows OWASP, a React specialist knows hooks patterns - they stay in their lane.</p></div>
+      <div class="feat"><div class="fh">Community-driven growth</div><p>Started with roughly 140 personas, now past 200 and growing. The community contributes new specialists as new agent use cases emerge across industries.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Core value proposition</span>
+      <h3>Turn any generalist agent into a specialist</h3>
+      <p>The pitch is simple: your AI coding agent gives the same generic responses regardless of the task. Drop in a persona file and it becomes a domain expert - a React performance optimizer, a Kubernetes security auditor, or a Reddit community strategist. Each persona is a curated system prompt that narrows the agent's focus and reduces hallucinations by keeping it in its lane.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI coding agents are powerful generalists - but generalists hallucinate more, miss domain nuances, and give boilerplate answers. Agency-agents narrows each agent to a specific expert role.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Generic behavior.</strong> Your AI agent gives the same style of response whether you ask about React performance, Kubernetes security, or marketing copy. It is a jack of all trades, master of none.</p>
+        <p><strong>More hallucinations.</strong> Without domain constraints, generalist agents confidently suggest outdated patterns, misapply best practices, or invent APIs that do not exist.</p>
+        <p><strong>No organizational structure.</strong> When you need multiple specialists on a project, there is no predefined way to coordinate handoffs between a frontend agent, a backend agent, and a security reviewer.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Domain-narrowed focus.</strong> Each persona constrains the agent to a specific domain. A React specialist knows hooks, a security reviewer knows OWASP - they stay in their lane and hallucinate less.</p>
+        <p><strong>Expert-level prompting.</strong> Each 300-500 line persona encodes domain best practices, constraints, and vocabulary that would take hours to write from scratch.</p>
+        <p><strong>Agency structure.</strong> Twelve divisions mirror a real organization. Nexus exercises coordinate multi-agent handoffs so specialists collaborate instead of duplicating work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Three paths to get started - clone the repo, copy individual personas, or use the companion app for a visual experience.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone or download the repo</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the full persona library</span>
+git clone https://github.com/msitarzewski/agency-agents.git
+cd agency-agents
+
+<span class="cm"># Browse the divisions</span>
+ls divisions/</pre>
+        <p>The repo is organized by division. Each directory contains the specialist personas for that business function as <strong>standalone markdown files</strong>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Copy personas to your agent's config</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># For Claude Code</span>
+cp personas/react-specialist.md .claude/skills/
+
+<span class="cm"># For Cursor</span>
+cp personas/react-specialist.md .cursor/rules/
+
+<span class="cm"># For other agents - check their config directory</span></pre>
+        <p>Each agent tool has its own config directory. Copy the persona markdown file there, and the agent loads it automatically on every session.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Or use the companion app</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># The agency-agents-app provides a visual browser</span>
+<span class="cm"># Browse, preview, and one-click install personas</span>
+<span class="cm"># See: github.com/msitarzewski/agency-agents-app</span></pre>
+        <p>The companion native app lets you <strong>visually browse</strong> all 200+ personas, preview their contents, and install them to your agent's config directory with a single click.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and individuals are applying specialized personas across development, marketing, and multi-agent workflows.</p>
+
+    <div class="story"><div class="metric">Frontend<br>specialists</div><p><strong>React, Vue, Angular experts.</strong> Frontend development personas carry framework-specific patterns, performance optimization strategies, and accessibility best practices. Drop one in and your agent stops suggesting jQuery solutions for React problems.</p></div>
+    <div class="story"><div class="metric">Security<br>review</div><p><strong>OWASP-aware auditing.</strong> Security personas know common vulnerability patterns, authentication best practices, and compliance requirements. Use them for automated security review passes before merging.</p></div>
+    <div class="story"><div class="metric">Community<br>management</div><p><strong>Reddit and social agents.</strong> Beyond code - marketing personas, sales agents, and Reddit community managers extend AI assistance into non-engineering business functions.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>YUV.AI overview.</strong> "Transform Your IDE into a Multi-Agent AI Studio" - covers the vision of turning any code editor into an agency of specialized agents. <a href="https://yuv.ai/blog/agency-agents">yuv.ai/blog/agency-agents</a></li>
+        <li><strong>ExplainX complete guide.</strong> A walkthrough of all 144+ specialists with installation instructions and use case examples. <a href="https://explainx.ai/blog/agency-agents-ai-specialists-complete-guide-2026">explainx.ai complete guide</a></li>
+        <li><strong>"201 Claude Code Agent Personas. I Installed Zero."</strong> The most substantive user perspective is from someone who chose not to use it. Argues that skills beat personas, and each 300-500 line persona is mostly noise for your specific task. <a href="https://levelup.gitconnected.com/201-claude-code-agent-personas-i-installed-zero-b45e4629512d">levelup.gitconnected.com</a></li>
+        <li><strong>YouTube tutorial.</strong> Video walkthrough covering installation, persona browsing, and configuration for multiple agent platforms. <a href="https://www.youtube.com/watch?v=xB5cEBGcsTc">YouTube</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Prompt engineering vs real agency.</strong> Critics argue these are just elaborate system prompts, not genuine autonomous agents. Curated persona files are a convenience layer, not a paradigm shift in how agents work.</li>
+        <li><strong>Context overhead.</strong> Each persona is 300-500 lines that loads with every API call. Most of those lines are irrelevant to your specific task - you are paying tokens for breadth you may never use.</li>
+        <li><strong>No HN traction.</strong> Surprisingly zero prominent Hacker News discussion for a repo with 147K stars. The absence of organic technical discourse is notable for a project of this size.</li>
+        <li><strong>Deep usage testimony is thin.</strong> Massive star count, extensive introductory blog coverage, but few "I used this for three months and here is what happened" retrospectives. The most substantive user perspective was someone who chose not to use it at all.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents GitHub</a> - source, persona library, companion app</li>
+      <li><a href="https://yuv.ai/blog/agency-agents" target="_blank">YUV.AI overview</a> - "Transform Your IDE into a Multi-Agent AI Studio"</li>
+      <li><a href="https://levelup.gitconnected.com/201-claude-code-agent-personas-i-installed-zero-b45e4629512d" target="_blank">Critical review</a> - "201 Claude Code Agent Personas. I Installed Zero"</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>koala73/worldmonitor - Real-Time Global Event Dashboard | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060a0e;--bg2:#0c1218;--card:#141c24;--card2:#1a242e;
+    --primary:#14b8a6;--primary-dim:#0e8c7e;--secondary:#f59e0b;
+    --ink:#e4eaf0;--muted:#7a8a9a;--line:#1e2a36;
+    --sans:'Inter',sans-serif;--mono:'Space Mono',monospace;--disp:'Barlow',sans-serif;
+    --r:3px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 20% 0%,rgba(20,184,166,.08),transparent 50%),radial-gradient(ellipse at 75% 60%,rgba(245,158,11,.04),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(6,10,14,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:700;font-size:12px;color:var(--muted);letter-spacing:.05em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:700;font-size:12px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);border:1px solid var(--primary-dim);border-radius:var(--r);padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(42px,8vw,82px);font-weight:800;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;letter-spacing:.05em;margin-bottom:4px;text-transform:none}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--primary);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(6,10,14,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.06em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#060a0e;font-weight:700}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;text-transform:uppercase}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--primary);border-radius:var(--r);padding:26px 22px}
+  .bignum .n{font-family:var(--disp);font-size:clamp(30px,4.2vw,44px);font-weight:800;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-family:var(--mono);font-weight:400;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--primary-dim);border-radius:var(--r);padding:22px;
+    background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(30,42,54,.5) 39px,rgba(30,42,54,.5) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(30,42,54,.5) 39px,rgba(30,42,54,.5) 40px)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;font-family:var(--disp)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(160deg,rgba(20,184,166,.10),rgba(245,158,11,.06));border:1px solid var(--primary);border-radius:6px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px}
+  .best-feature h3{font-size:23px;font-family:var(--disp)}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(245,158,11,.04);border-color:rgba(245,158,11,.30)}
+  .ba.after{background:rgba(20,184,166,.04);border-color:rgba(20,184,166,.30)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:800;font-size:13px;width:26px;height:26px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.5);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--primary);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--disp);font-size:28px;font-weight:800;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(245,158,11,.04);border:2px dashed var(--secondary);border-radius:6px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(245,158,11,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"// ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">[Open-source global intelligence]</span>
+    <h1><span class="owner">koala73/</span><span class="name">worldmonitor</span></h1>
+    <p class="tagline">An <strong>open-source real-time global event monitoring dashboard</strong> that aggregates news, social media, and government feeds into a unified threat and trend map. Pitched as the <strong>"open-source Palantir"</strong> for individual analysts.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">83,206</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">4.1K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">AGPL-3.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Your open-source <em>Palantir</em></h2>
+    <p class="sub">Worldmonitor aggregates real-time data from news APIs, social media firehoses, and government data feeds into a single dashboard - giving individual analysts the kind of global situational awareness that used to require enterprise intelligence platforms.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">83K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">4.1K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">TypeScript</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">Real-time</div><div class="l">Data Ingestion</div></div>
+      <div class="bignum"><div class="n">AGPL-3.0</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">50+</div><div class="l">Data Sources</div></div>
+    </div>
+
+    <h3><span class="dot">&#9670;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Multi-source aggregation</div><p>Pulls from news APIs (NewsAPI, GDELT), social media (Twitter/X firehose, Reddit), government feeds (USGS earthquakes, CDC health alerts, NWS weather), and dark web monitors into one unified feed.</p></div>
+      <div class="feat"><div class="fh">Interactive threat map</div><p>Real-time geographic visualization of events on an interactive map. Filter by category (conflict, natural disaster, health, cyber, economic), severity, and region.</p></div>
+      <div class="feat"><div class="fh">Anomaly detection</div><p>ML-based anomaly detection flags unusual spikes in event frequency or geographic clustering - catching emerging situations before they hit mainstream news.</p></div>
+      <div class="feat"><div class="fh">Custom alert pipelines</div><p>Define custom alert rules: "notify me when earthquake > 6.0 within 500km of Tokyo" or "flag any mention of specific keywords in government feeds." Supports webhook, email, and Slack notifications.</p></div>
+      <div class="feat"><div class="fh">Historical playback</div><p>Scrub through historical event data to study how situations developed over time. Useful for post-incident analysis and pattern recognition.</p></div>
+      <div class="feat"><div class="fh">Self-hosted privacy</div><p>All processing happens on your infrastructure. No data leaves your servers - critical for analysts working with sensitive intelligence requirements.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The feeds you cannot get elsewhere</h3>
+      <p>The real value is not the dashboard itself but the aggregation layer. Worldmonitor normalizes data from 50+ sources into a common event schema with geolocation, severity scoring, and cross-referencing. Building this integration layer from scratch would take months - worldmonitor gives you the plumbing.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Global situational awareness used to require Palantir-tier budgets. Individual analysts, journalists, and researchers had to manually monitor dozens of feeds across different formats and platforms.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Tab overload.</strong> Analysts monitoring global events had 20+ browser tabs open - one per news source, one per government feed, one per social platform. Critical signals buried in noise.</p>
+        <p><strong>No cross-referencing.</strong> An earthquake in one feed, an infrastructure alert in another, and social media chatter in a third - connecting them required manual correlation and institutional knowledge.</p>
+        <p><strong>Enterprise-only tools.</strong> Platforms like Palantir, Recorded Future, and Dataminr provide this aggregation but cost six figures annually and require enterprise contracts.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Single pane of glass.</strong> One dashboard, 50+ sources, real-time. Filter by category, region, or severity. The tab problem is solved.</p>
+        <p><strong>Automatic correlation.</strong> Events are geolocated and cross-referenced automatically. An earthquake triggers a check for related infrastructure alerts and social media reports in the same region.</p>
+        <p><strong>Free and self-hosted.</strong> AGPL-licensed, runs on a single server. The Palantir-tier workflow at the cost of your own compute.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Deploy <em>worldmonitor</em></h2>
+    <p class="sub">Self-host the dashboard on your own infrastructure for full data sovereignty.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and configure</h3></div>
+      <div class="step-body">
+<pre>git clone https://github.com/koala73/worldmonitor.git
+cd worldmonitor
+cp .env.example .env
+
+<span class="cm"># Add your API keys for data sources</span>
+<span class="cm"># Required: at least one news API key</span>
+<span class="cm"># Optional: Twitter/X, USGS, NWS, CDC feeds (free)</span></pre>
+        <p>Most government feeds (USGS, NWS, CDC) are free and keyless. News APIs and social media require API keys.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Start the stack</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Docker Compose handles the full stack</span>
+docker compose up -d
+
+<span class="cm"># Stack includes:</span>
+<span class="cm"># - Ingestion workers (Node.js)</span>
+<span class="cm"># - Event database (PostgreSQL + PostGIS)</span>
+<span class="cm"># - ML anomaly detection (Python)</span>
+<span class="cm"># - Dashboard frontend (React + Mapbox)</span></pre>
+        <p>The full stack runs on a single machine with <strong>4GB+ RAM</strong>. Production deployments should separate the ingestion workers.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure alerts</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Access the dashboard at http://localhost:3000</span>
+<span class="cm"># Navigate to Settings > Alert Pipelines</span>
+
+<span class="cm"># Example alert rule (YAML config):</span>
+<span class="cm"># - name: "Pacific Ring Earthquakes"</span>
+<span class="cm">#   source: usgs</span>
+<span class="cm">#   filter: magnitude > 5.5</span>
+<span class="cm">#   region: pacific_ring</span>
+<span class="cm">#   notify: [slack, email]</span></pre>
+        <p>Alert rules are defined in YAML and hot-reloaded. Start with a few high-signal rules and tune from there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How analysts, journalists, and researchers use worldmonitor for situational awareness.</p>
+
+    <div class="story"><div class="metric">50+ feeds</div><p><strong>OSINT research.</strong> Open-source intelligence analysts use worldmonitor as their primary aggregation layer - replacing manual monitoring of dozens of sources with a single dashboard that cross-references events automatically.</p></div>
+    <div class="story"><div class="metric">Real-time</div><p><strong>Newsroom monitoring.</strong> Journalists use the anomaly detection to catch breaking events before they hit wire services - the ML layer flags unusual activity patterns that manual monitoring would miss.</p></div>
+    <div class="story"><div class="metric">Self-hosted</div><p><strong>Corporate security.</strong> Security teams at mid-size companies deploy worldmonitor to monitor geopolitical events affecting their supply chains and office locations - the enterprise alternative at a fraction of the cost.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>"Open-source Palantir" framing.</strong> Multiple tech publications have described worldmonitor as "the open-source Palantir for individuals," which has driven significant interest from the OSINT community. Search "worldmonitor open source palantir" for coverage.</li>
+        <li><strong>DarkWebInformer coverage.</strong> Security-focused accounts have highlighted worldmonitor's dark web monitoring capabilities, noting its ability to aggregate Tor-based feeds alongside clearnet sources. <a href="https://x.com/DarkWebInformer">@DarkWebInformer</a></li>
+        <li><strong>YouTube deployment tutorials.</strong> Several YouTube creators have published self-hosting walkthroughs, with the most detailed covering the full Docker Compose stack and alert configuration.</li>
+        <li><strong>Thin deep usage evidence.</strong> Despite 83K stars, deep usage reports from production deployments are limited. Most public discussion focuses on the concept rather than operational experience.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>API cost accumulation.</strong> While worldmonitor itself is free, the data source APIs are not. A full-featured deployment with premium news feeds and social media access can accumulate significant monthly API costs.</li>
+        <li><strong>Data freshness varies.</strong> Government feeds update in near-real-time, but news and social media feeds depend on API rate limits. Expect 1-15 minute delays depending on the source.</li>
+        <li><strong>AGPL license implications.</strong> AGPL requires sharing modifications if you deploy worldmonitor as a service. Enterprise teams should verify compliance with legal before internal deployment.</li>
+        <li><strong>Thin community support.</strong> The project is primarily maintained by a single developer. Issue response times are inconsistent and documentation gaps exist for advanced configurations.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/koala73/worldmonitor" target="_blank">koala73/worldmonitor GitHub</a> - source repo</li>
+      <li><a href="https://x.com/DarkWebInformer" target="_blank">DarkWebInformer</a> - DarkWebInformer coverage</li>
+      <li><a href="https://www.youtube.com/results?search_query=worldmonitor+self-hosted" target="_blank">YouTube deployment tutorials</a> - self-hosted walkthroughs</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

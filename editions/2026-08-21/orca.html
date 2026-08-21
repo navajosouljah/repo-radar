@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stablyai/orca - AI-Powered Video Generation | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04080e;--bg2:#081018;--card:#0e1a28;--card2:#132233;
+    --primary:#0ea5e9;--primary-dim:#0b7db5;--secondary:#e0f2fe;
+    --ink:#eaf4fb;--muted:#6a8aaa;--line:#162838;
+    --sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Montserrat',sans-serif;
+    --r:8px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 50% 120%,rgba(14,165,233,.12),transparent 55%),radial-gradient(ellipse at 20% -5%,rgba(14,165,233,.06),transparent 40%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(4,8,14,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:500;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:0;padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(42px,8vw,82px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.45em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(4,8,14,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.06em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;border-radius:6px}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;box-shadow:0 4px 18px rgba(14,165,233,.08)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .l{font-size:12.5px;color:var(--secondary);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid rgba(14,165,233,.4);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,rgba(14,165,233,.10),rgba(224,242,254,.04));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:0;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(106,138,170,.06);border-color:rgba(106,138,170,.3)}
+  .ba.after{background:rgba(14,165,233,.06);border-color:rgba(14,165,233,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--muted)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.03em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(14,165,233,.04);border:2px dashed var(--primary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(14,165,233,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/stablyai/orca" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Video from text, open source</span>
+    <h1><span class="owner">stablyai/</span><span class="name">orca</span></h1>
+    <p class="tagline">An <strong>open-source AI video generation model</strong> from the YC W22-backed Stably AI team. Text-to-video and image-to-video generation with <strong>controllable motion, camera movement, and scene composition</strong> - the open alternative to Runway and Pika.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv">50,489</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">2.1K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Open-source <em>video AI</em></h2>
+    <p class="sub">Orca brings text-to-video and image-to-video generation to the open-source community. Built by Stably AI (YC W22), it offers controllable video generation with motion direction, camera movement, and scene composition - capabilities previously locked behind commercial APIs.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n">50K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n">2.1K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n">720p</div><div class="l">Max Resolution</div></div>
+      <div class="bignum"><div class="n">Apache-2.0</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n">YC W22</div><div class="l">Backed By</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Text-to-video generation</div><p>Describe a scene in natural language and generate a video clip. Supports scene descriptions with action, lighting, and camera direction - "a dog running through a field at sunset, camera tracking left."</p></div>
+      <div class="feat"><div class="fh">Image-to-video animation</div><p>Upload a static image and animate it. Control motion direction, intensity, and camera movement. Useful for bringing product photos, illustrations, and concept art to life.</p></div>
+      <div class="feat"><div class="fh">Controllable motion</div><p>Fine-grained control over motion direction, speed, and camera movement. Specify "zoom in," "pan left," "orbit around subject" - rather than hoping the model picks a good camera path.</p></div>
+      <div class="feat"><div class="fh">Scene composition</div><p>Multi-subject scenes with specified spatial relationships. "A person on the left walking toward a building on the right" generates video with the described layout.</p></div>
+      <div class="feat"><div class="fh">Model weights available</div><p>Full model weights are released under Apache-2.0. Fine-tune on your own data, deploy on your own hardware, integrate into your own pipeline.</p></div>
+      <div class="feat"><div class="fh">Batch generation API</div><p>Programmatic API for generating videos at scale. Queue jobs, set parameters, and retrieve results - designed for integration into content pipelines, not just interactive use.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Camera control that actually works</h3>
+      <p>The standout is controllable camera movement. Most open-source video models generate random camera motion or static shots. Orca lets you specify zoom, pan, orbit, and tracking shots with predictable results. For any workflow where camera direction matters - product demos, architectural visualization, social media content - this is the capability that makes it usable.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI video generation is dominated by closed-source commercial services. Open-source alternatives exist but lack controllability - you describe a scene and hope for the best.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Pay-per-clip pricing.</strong> Services like Runway ($12-76/month) and Pika charge per video. Iterating on a single concept - adjusting motion, camera, timing - costs money every attempt.</p>
+        <p><strong>No model access.</strong> Commercial services provide an API, not model weights. You cannot fine-tune, self-host, or integrate the model into custom pipelines.</p>
+        <p><strong>Uncontrollable motion.</strong> Most open-source video models generate random or unpredictable camera movement. "A person walking" might produce a static shot, a zoom, or a wild camera swing.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Generate freely.</strong> Run on your own GPU. Iterate as many times as needed without per-clip costs. The only expense is your compute.</p>
+        <p><strong>Full model access.</strong> Apache-2.0 licensed weights. Fine-tune on your own dataset, deploy on your infrastructure, embed in your pipeline.</p>
+        <p><strong>Directed camera.</strong> Specify zoom, pan, orbit, and tracking. The video follows your camera direction instead of picking one randomly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Install Orca and start generating videos from text or images.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install and download models</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repo</span>
+git clone https://github.com/stablyai/orca.git
+cd orca
+
+<span class="cm"># Install dependencies</span>
+pip install -e .
+
+<span class="cm"># Download model weights (requires ~8GB)</span>
+python scripts/download_models.py</pre>
+        <p>Requires <strong>Python 3.10+</strong>, <strong>CUDA 12+</strong>, and a GPU with at least 12GB VRAM (RTX 3060 or better). Model weights are hosted on Hugging Face.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Generate your first video</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Text-to-video</span>
+orca generate \
+  --prompt "a whale breaching from calm ocean water, golden hour lighting" \
+  --camera "slow zoom out" \
+  --duration 4 \
+  --output whale.mp4
+
+<span class="cm"># Image-to-video</span>
+orca animate \
+  --image product_photo.jpg \
+  --motion "gentle rotation, zoom in" \
+  --duration 3 \
+  --output product_spin.mp4</pre>
+        <p>Default output is 720p at 24fps. Generation takes 2-5 minutes per 4-second clip on an RTX 4090.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Batch generation</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Define a batch in YAML</span>
+<span class="cm"># batch.yaml:</span>
+<span class="cm"># - prompt: "ocean waves crashing on rocks"</span>
+<span class="cm">#   camera: "slow pan right"</span>
+<span class="cm">#   duration: 5</span>
+<span class="cm"># - prompt: "city skyline at night, rain"</span>
+<span class="cm">#   camera: "slow zoom in"</span>
+<span class="cm">#   duration: 4</span>
+
+orca batch --config batch.yaml --output ./videos/</pre>
+        <p>Batch mode queues jobs and processes them sequentially. Multi-GPU setups can process jobs in parallel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How creators and teams use Orca for video generation workflows.</p>
+
+    <div class="story"><div class="metric">720p</div><p><strong>Social media content.</strong> Content creators use Orca to generate B-roll and background footage for YouTube and TikTok - scenes that would require stock footage purchases or expensive shoots. Controlled camera motion makes the output usable.</p></div>
+    <div class="story"><div class="metric">Image<br>animate</div><p><strong>Product visualization.</strong> E-commerce teams animate product photos into short videos - rotating views, zoom-ins, and lifestyle animations generated from a single product image.</p></div>
+    <div class="story"><div class="metric">Apache-2.0</div><p><strong>Research and fine-tuning.</strong> Academic researchers fine-tune Orca on domain-specific datasets - medical imaging animations, architectural walkthroughs, scientific visualizations - leveraging the open weights for specialized applications.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>YC W22 backing.</strong> Stably AI is a Y Combinator Winter 2022 batch company. The YC backing lends credibility but also raises questions about the long-term open-source commitment as the company matures. <a href="https://www.ycombinator.com/">Y Combinator</a></li>
+        <li><strong>andrew.ooo review.</strong> An independent developer reviewed Orca's output quality and noted strong results for simple scenes but visible artifacts on complex multi-subject compositions. Camera control was praised as the standout feature. <a href="https://andrew.ooo/">andrew.ooo</a></li>
+        <li><strong>YouTube demos.</strong> Several YouTube channels have published generation comparisons between Orca and commercial services (Runway, Pika, Sora), with Orca generally rated behind on quality but ahead on controllability and cost.</li>
+        <li><strong>Name collision with Microsoft Orca.</strong> Note: stablyai/orca is unrelated to Microsoft's Orca language models. The shared name creates confusion in search results and discussions. Verify the repository owner when reading about "Orca."</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>GPU requirements.</strong> Minimum 12GB VRAM for inference. Fine-tuning requires 24GB+. Cloud GPU costs for significant generation workloads can approach or exceed commercial service pricing.</li>
+        <li><strong>Quality gap with commercial services.</strong> Orca's output quality is notably behind Runway Gen-3, Pika 2.0, and Sora. Expect visible artifacts on complex scenes, inconsistent faces, and occasional motion glitches.</li>
+        <li><strong>8GB model download.</strong> The model weights require a significant download and storage. Factor this into containerized deployments and CI/CD pipelines.</li>
+        <li><strong>Name confusion.</strong> The "Orca" name collides with Microsoft's Orca language models. When searching for help, documentation, or discussions, always include "stablyai" to avoid irrelevant results.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 004 - Week of August 21, 2026</div>
+    <ul>
+      <li><a href="https://github.com/stablyai/orca" target="_blank">stablyai/orca GitHub</a> - source repo</li>
+      <li><a href="https://andrew.ooo/" target="_blank">andrew.ooo</a> - Independent developer review</li>
+      <li><a href="https://www.ycombinator.com/" target="_blank">Y Combinator</a> - Y Combinator (backer)</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 004</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
