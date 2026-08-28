@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>esengine/DeepSeek-Reasonix - DeepSeek Coding Agent | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0b09;--bg2:#161210;--card:#1e1914;--card2:#28211a;
+    --primary:#f59e0b;--primary-dim:#c77d09;--secondary:#60a5fa;
+    --ink:#f0e8dc;--muted:#a89278;--line:#352a1e;
+    --sans:'Inter',sans-serif;--mono:'Courier Prime',monospace;--disp:'Cinzel',serif;
+    --r:4px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 40% -5%,rgba(245,158,11,.08),transparent 45%),radial-gradient(ellipse at 70% 60%,rgba(96,165,250,.04),transparent 40%),radial-gradient(ellipse at 20% 90%,rgba(245,158,11,.03),transparent 30%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(13,11,9,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.15em;text-transform:uppercase;background:var(--primary);color:#0d0b09;font-weight:700;border-radius:2px;padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(36px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(13,11,9,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0d0b09;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(245,158,11,.10),rgba(96,165,250,.06));border:1px solid var(--primary);border-radius:8px;padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(96,165,250,.05);border-color:rgba(96,165,250,.35)}
+  .ba.after{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.35)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:13px;width:26px;height:26px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.05em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(96,165,250,.05);border:2px dashed var(--secondary);border-radius:8px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(96,165,250,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">DeepSeek-Native Terminal Agent</span>
+    <h1><span class="owner">esengine/</span><span class="name">DeepSeek-Reasonix</span></h1>
+    <p class="tagline"><strong>DeepSeek-native AI coding agent</strong> for your terminal. Engineered around <strong>prefix-cache stability</strong> - designed to be left running for extended sessions without losing context.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">35.2K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">2,353</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Go</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Go deep, <em>stay</em> deep</h2>
+    <p class="sub">DeepSeek-Reasonix is a terminal coding agent built specifically for DeepSeek models. Its core innovation is prefix-cache stability - the agent is designed to maintain context efficiently across long sessions by leveraging DeepSeek's caching architecture.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">35.2K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">2,353</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Go</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">Prefix</div><div class="l">Cache Optimized</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">Persist</div><div class="l">Session Design</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Prefix-cache stability</div><p>The headline feature. DeepSeek-Reasonix structures its prompts so that <strong>DeepSeek's prefix cache</strong> remains warm across turns. This means faster responses and lower costs in long sessions.</p></div>
+      <div class="feat"><div class="fh">Built for persistent sessions</div><p>Unlike agents designed for quick tasks, Reasonix is meant to be <strong>left running</strong>. Start it in the morning, use it all day, and the accumulated context compounds rather than decays.</p></div>
+      <div class="feat"><div class="fh">Written in Go</div><p>An unusual choice in the coding agent space. Go brings fast compilation, minimal runtime overhead, simple deployment (single binary), and strong concurrency - well-suited for a long-running agent process.</p></div>
+      <div class="feat"><div class="fh">DeepSeek-native optimization</div><p>Every design decision is tuned for DeepSeek models. Prompt structure, context window management, and caching strategy are all optimized for DeepSeek's specific architecture.</p></div>
+      <div class="feat"><div class="fh">Cost-efficient by design</div><p>Prefix caching means tokens that were seen before are served from cache, not recomputed. Longer sessions become <strong>cheaper per turn</strong>, not more expensive.</p></div>
+      <div class="feat"><div class="fh">Single-binary deployment</div><p>Go compiles to a single binary with no runtime dependencies. Download, set your API key, and run - no package manager, no virtual environment, no dependency conflicts.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Leave it running - it gets cheaper</h3>
+      <p>The prefix-cache optimization inverts the typical cost curve. Most agents get more expensive as sessions grow because each turn resends the full context. DeepSeek-Reasonix structures prompts so DeepSeek's prefix cache absorbs repeated context, meaning each subsequent turn processes fewer new tokens. Longer sessions cost less per interaction, not more.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>context</em> problem</h2>
+    <p class="sub">Generic coding agents waste tokens when model context expires or refreshes. DeepSeek-Reasonix is engineered to maintain context efficiently by working with DeepSeek's caching architecture instead of against it.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Context decay.</strong> Most agents resend the full conversation and codebase context every turn. As sessions grow, latency increases and costs balloon.</p>
+        <p><strong>Model-agnostic overhead.</strong> Generic agents do not optimize for any particular model's caching strategy. They treat every provider the same - and pay the performance penalty.</p>
+        <p><strong>Session fragmentation.</strong> Developers start fresh sessions when context windows fill up, losing accumulated understanding of the codebase and breaking flow.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Cache-stable context.</strong> Reasonix structures prompts so DeepSeek's prefix cache stays warm. Repeated context is served from cache, reducing latency and cost with every turn.</p>
+        <p><strong>Model-native optimization.</strong> Built exclusively for DeepSeek's architecture. Every prompt decision - ordering, structure, framing - is tuned for DeepSeek's specific caching behavior.</p>
+        <p><strong>Persistent sessions.</strong> Designed to run all day. Context accumulates efficiently instead of being discarded, so the agent gets more useful over time rather than less.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set up <em>camp</em></h2>
+    <p class="sub">Install the Go binary, configure your DeepSeek API key, and start a persistent coding session. The agent is designed to be left running.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install DeepSeek-Reasonix</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install via go install</span>
+go install github.com/esengine/DeepSeek-Reasonix@latest
+
+<span class="cm"># Or download a prebuilt binary from releases</span>
+<span class="cm"># Available for macOS, Linux, and Windows</span></pre>
+        <p>Requires <strong>Go 1.21+</strong> for source install, or just download the prebuilt binary - no Go toolchain needed for that path.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your DeepSeek API key</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your DeepSeek API key</span>
+export DEEPSEEK_API_KEY="sk-..."
+
+<span class="cm"># Optional: configure model and cache settings</span>
+deepseek-reasonix config --model deepseek-coder \
+  --cache-strategy aggressive</pre>
+        <p>The <code>--cache-strategy</code> flag controls how aggressively Reasonix optimizes for prefix caching. <strong>aggressive</strong> maximizes cache hits at the cost of some prompt flexibility.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Start a persistent session</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Launch in your project directory</span>
+cd your-project
+deepseek-reasonix
+
+<span class="cm"># The agent is designed to stay running</span>
+<span class="cm"># Context accumulates and costs decrease over time</span></pre>
+        <p>Start the agent and <strong>leave it running</strong>. Unlike quick-task agents, Reasonix is optimized for all-day sessions where context compounds.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How developers are leveraging DeepSeek-Reasonix for cost-efficient, long-running coding sessions.</p>
+
+    <div class="story"><div class="metric">All-day<br>sessions</div><p><strong>Persistent coding companion.</strong> Developers who work on the same codebase all day benefit most. The agent accumulates context about your project, your patterns, and your current task - and the prefix cache means this context gets cheaper to maintain over time.</p></div>
+    <div class="story"><div class="metric">Cost control</div><p><strong>DeepSeek-first teams.</strong> Teams that have standardized on DeepSeek models for cost reasons find that Reasonix amplifies those savings. The prefix-cache optimization stacks on top of DeepSeek's already-competitive pricing.</p></div>
+    <div class="story"><div class="metric">Deep dives</div><p><strong>Extended refactoring sessions.</strong> Multi-hour refactoring work - migrating a module, upgrading a framework, restructuring a data layer - benefits from persistent context. The agent remembers what you have already discussed and decided.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News front page.</strong> A <a href="https://news.ycombinator.com/item?id=48256953" target="_blank">HN thread</a> hit the front page with discussion focused on the prefix-cache economics and whether model-specific optimization justifies vendor lock-in.</li>
+        <li><strong>Developers Digest coverage.</strong> Featured in a YouTube roundup by <a href="https://www.youtube.com/results?search_query=DeepSeek+Reasonix+coding+agent" target="_blank">Developers Digest</a>, positioned alongside other DeepSeek-native tools as part of the broader ecosystem buildout.</li>
+        <li><strong>Verdent setup guide.</strong> A <a href="https://verdent.dev/" target="_blank">Verdent blog post</a> walks through installation, configuration, and benchmark results on a mid-size Go project - useful for evaluating before committing.</li>
+        <li><strong>Medium critical analysis.</strong> A <a href="https://medium.com/tag/deepseek" target="_blank">Medium piece</a> raises concerns about prefix-cache savings at scale, noting that the cost advantage narrows with larger codebases and longer sessions where cache eviction becomes a factor.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Tightly coupled to DeepSeek.</strong> This is vendor lock-in by design. If DeepSeek changes their caching architecture, pricing, or API, Reasonix is directly affected. There is no fallback to other providers.</li>
+        <li><strong>Go is less common in AI tooling.</strong> The AI/ML ecosystem centers on Python. Go has fewer AI libraries, fewer community examples, and fewer developers who can contribute. Finding Go developers who also understand LLM optimization is a narrow intersection.</li>
+        <li><strong>Prefix-cache optimization is model-specific.</strong> The techniques that work for DeepSeek's prefix caching do not transfer to other providers. If you switch models later, none of this optimization carries over.</li>
+        <li><strong>Persistent session trade-offs.</strong> Long-running processes can accumulate stale context. If the agent has been running for hours, its understanding of your codebase may lag behind your actual changes unless you actively refresh it.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 005 - Week of August 28, 2026</div>
+    <ul>
+      <li><a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank">esengine/DeepSeek-Reasonix GitHub</a> - source, configuration guide, benchmarks</li>
+      <li>Topics: agent, agent-framework, ai-agent, ai-coding, cli, coding-agent, deepseek, developer-tools</li>
+      <li>Last pushed: August 28, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 005</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

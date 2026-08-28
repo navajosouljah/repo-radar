@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shareAI-lab/learn-claude-code - Bash Is All You Need | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Source+Code+Pro:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1a0f;--bg2:#0e2214;--card:#112a18;--card2:#163320;
+    --primary:#7dcea0;--primary-dim:#5fb882;--secondary:#f0e68c;
+    --ink:#e8f0e8;--muted:#8fa898;--line:#1e3d28;
+    --sans:'Inter',sans-serif;--display:'Caveat',cursive;--mono:'Source Code Pro',monospace;
+    --r:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 20% 10%,rgba(125,206,160,.08),transparent 50%),radial-gradient(ellipse at 75% 60%,rgba(240,230,140,.04),transparent 40%),radial-gradient(circle at 50% 50%,rgba(125,206,160,.03),transparent 60%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,26,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:10px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--display);font-size:18px;letter-spacing:.06em;background:var(--primary);color:#0a1a0f;font-weight:700;border-radius:6px;padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--display);font-size:clamp(48px,9vw,92px);font-weight:700;line-height:1;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.42em;display:block;letter-spacing:.02em;margin-bottom:4px;font-family:var(--sans)}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:680px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,26,15,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.03em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a1a0f;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--display);font-size:clamp(32px,5vw,50px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(125,206,160,.10),rgba(240,230,140,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:var(--primary);color:#0a1a0f;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(240,230,140,.05);border-color:rgba(240,230,140,.35)}
+  .ba.after{background:rgba(125,206,160,.05);border-color:rgba(125,206,160,.35)}
+  .ba .ba-tag{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--sans);background:var(--primary);color:#0a1a0f;font-weight:700;font-size:13px;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--display);font-size:30px;font-weight:700;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--display);letter-spacing:.02em;font-size:26px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .watchout{background:rgba(240,230,140,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(240,230,140,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:10px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/shareAI-lab/learn-claude-code" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Educational Agent Harness</span>
+    <h1><span class="owner">shareAI-lab/</span><span class="name">learn-claude-code</span></h1>
+    <p class="tagline"><strong>"Bash is all you need"</strong> - a nano Claude Code-like agent harness, built from zero to one. Learn how terminal AI agents actually work by <strong>rebuilding one from scratch</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">75.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">12.2K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Deconstruct the agent, <em>learn</em> the pattern</h2>
+    <p class="sub">75K+ stars for a repo that teaches you how Claude Code works internally - by building a minimalist version from scratch in pure Python.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">75.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">12.2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">0 to 1</div><div class="l">Build Philosophy</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">Aug 26</div><div class="l">Last Pushed</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it stand out</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">"Bash is all you need" philosophy</div><p>Strips agent architecture down to its essentials. No frameworks, no abstractions - just Python, bash tool calls, and an LLM loop. You see exactly how the sausage is made.</p></div>
+      <div class="feat"><div class="fh">Zero to one walkthrough</div><p>Builds the agent harness incrementally from an empty file to a working Claude Code-like system. Each step teaches a core concept - tool use, context management, agentic loops.</p></div>
+      <div class="feat"><div class="fh">Massive community signal</div><p>75K stars and 12K forks suggest the developer community is hungry to understand - not just use - AI coding agents. Educational repos rarely reach this scale.</p></div>
+      <div class="feat"><div class="fh">Practical tool use patterns</div><p>Teaches file reading, writing, code execution, and shell interaction as tool calls. The same patterns that power production agents like Claude Code and Codex.</p></div>
+      <div class="feat"><div class="fh">Minimal dependency footprint</div><p>Pure Python implementation with minimal external libraries. No heavy ML framework, no vector database, no complex orchestration layer. Readable start to finish.</p></div>
+      <div class="feat"><div class="fh">Part of the "rebuild to learn" wave</div><p>Joins a growing movement of educational repos that teach by reimplementing (like build-your-own-x). Understanding through construction, not documentation.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">What is the best feature</span>
+      <h3>Demystifying agent architecture</h3>
+      <p>Most developers use Claude Code as a black box. This repo cracks it open. You see the agentic loop, the tool dispatch, the context window management - all the patterns that make a terminal AI agent work. The "aha" moment when you realize <code>bash</code> is the fundamental tool that makes everything possible is worth the read alone.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Claude Code is powerful but opaque. Developers want to understand the architecture behind their favorite AI agent - and this repo teaches by building.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Black-box agents.</strong> Claude Code, Codex, and Gemini CLI are impressive but closed. Developers use them daily without understanding how the agentic loop, tool dispatch, or context management actually works.</p>
+        <p><strong>Scattered documentation.</strong> Agent architecture knowledge is spread across blog posts, papers, and Twitter threads. No single resource walks you through building one from zero.</p>
+        <p><strong>Framework overload.</strong> LangChain, CrewAI, AutoGen - the framework ecosystem is complex and opinionated. Understanding agent fundamentals gets buried under abstraction layers.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Transparent architecture.</strong> Every component of an agent harness is visible, readable, and modifiable. You can trace exactly how a prompt becomes a tool call becomes a file edit.</p>
+        <p><strong>One coherent build path.</strong> Instead of piecing together blog posts, you follow a single 0-to-1 progression. Each step introduces one concept and builds on the last.</p>
+        <p><strong>Framework-free understanding.</strong> By building without frameworks, you learn the primitives that every framework wraps. When you do adopt LangChain or similar, you understand what it is doing under the hood.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Clone the repo, install Python dependencies, and start walking through the agent harness. Straightforward setup for an educational project.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone from GitHub</span>
+git clone https://github.com/shareAI-lab/learn-claude-code.git
+cd learn-claude-code</pre>
+        <p>The repo is well-structured with incremental examples you can follow step by step.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Install Python dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a virtual environment (recommended)</span>
+python -m venv .venv
+source .venv/bin/activate
+
+<span class="cm"># Install requirements</span>
+pip install -r requirements.txt</pre>
+        <p>Requires <strong>Python 3.10+</strong>. Dependencies are minimal - primarily the Anthropic SDK for LLM calls.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure your API key</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your Anthropic API key</span>
+export ANTHROPIC_API_KEY="sk-ant-..."</pre>
+        <p>You need an <strong>Anthropic API key</strong> to run the agent. The harness calls Claude through the API to power its agentic loop.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run the agent harness</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Point the agent at a codebase and watch it work</span>
+python agent.py</pre>
+        <p>The nano agent will start its loop - reading files, executing commands, and making edits. Watch the terminal output to see every tool call and decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How developers are using this repo to learn, teach, and build their own agent systems.</p>
+
+    <div class="story"><div class="metric">Learn</div><p><strong>Understanding agent architecture.</strong> The primary use case - developers read through the code to understand how agentic loops, tool dispatch, and context management work in practice. Seeing a working agent in under 500 lines of Python makes the concepts click.</p></div>
+    <div class="story"><div class="metric">Teach</div><p><strong>AI agent design courses.</strong> University instructors and bootcamp leaders use this repo as teaching material. The incremental build approach maps naturally to a syllabus - one concept per session, each building on the last.</p></div>
+    <div class="story"><div class="metric">Build</div><p><strong>Custom agent harnesses.</strong> Developers fork the repo and extend it into domain-specific agents. The minimal codebase is easy to modify - add new tools, change the system prompt, swap the LLM provider.</p></div>
+    <div class="story"><div class="metric">Grok</div><p><strong>Tool use pattern library.</strong> The repo is a practical reference for how to implement file read/write, shell execution, and code analysis as tool calls. Copy the patterns into your own projects.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News front page.</strong> Two separate HN threads covered the project - one at launch and a later submission focused on the hands-on quiz approach to learning agent architecture. <a href="https://news.ycombinator.com/item?id=46454313">HN: Learn Claude Code</a></li>
+        <li><strong>YouTube walkthrough.</strong> A video covering the shareAI-lab learn-claude-code repo and the "Bash is all you need" concept drew developer interest. <a href="https://www.youtube.com/watch?v=V3joeQX_73E">YouTube: Learn Claude Code walkthrough</a></li>
+        <li><strong>Star History tracking.</strong> Tracked at global rank #261 on Star History, indicating rapid viral growth from the Chinese developer community where the project originated. <a href="https://www.star-history.com/shareai-lab/learn-claude-code/">Star History profile</a></li>
+        <li><strong>Coverage gap worth noting.</strong> English-language blog and critical coverage is thin for a 75K-star repo. Most organic discussion appears in Chinese-language communities. The project is primarily educational, which limits the surface for production usage reports.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Not production-grade.</strong> This is an educational project, not a production agent. It lacks error handling, security sandboxing, and the robustness you would need for real-world deployment. Use it to learn, not to ship.</li>
+        <li><strong>May diverge from Claude Code's actual architecture.</strong> As Claude Code evolves, the nano version may lag behind or diverge from the real implementation. Treat it as a conceptual model, not a spec.</li>
+        <li><strong>Chinese-language README.</strong> The primary documentation is in Chinese, which may limit accessibility for some audiences. The code itself is in English, but explanatory text requires translation.</li>
+        <li><strong>API costs for running examples.</strong> While the repo is free, running the agent harness requires an Anthropic API key and incurs token costs. Budget accordingly if you plan to experiment extensively.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 005 - Week of August 28, 2026</div>
+    <ul>
+      <li><a href="https://github.com/shareAI-lab/learn-claude-code" target="_blank">shareAI-lab/learn-claude-code GitHub</a> - source, examples, documentation</li>
+      <li>Topics: agent, agent-development, ai-agent, claude, claude-code, educational, llm, python</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 005</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

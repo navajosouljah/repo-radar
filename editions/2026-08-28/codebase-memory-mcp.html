@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeusData/codebase-memory-mcp - Code Intelligence MCP Server | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060810;--bg2:#0a0e18;--card:#101828;--card2:#162030;
+    --primary:#00d4ff;--primary-dim:#00a8cc;--secondary:#a855f7;
+    --ink:#e8eef8;--muted:#7088a8;--line:#1a2840;
+    --sans:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'Space Mono',monospace;
+    --r:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:
+      repeating-linear-gradient(0deg,rgba(0,212,255,.015) 0px,rgba(0,212,255,.015) 1px,transparent 1px,transparent 40px),
+      repeating-linear-gradient(90deg,rgba(168,85,247,.01) 0px,rgba(168,85,247,.01) 1px,transparent 1px,transparent 40px),
+      radial-gradient(ellipse at 70% -5%,rgba(0,212,255,.12),transparent 45%),
+      radial-gradient(ellipse at 15% 70%,rgba(168,85,247,.06),transparent 35%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(6,8,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:700;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:10px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--display);font-size:16px;letter-spacing:.14em;text-transform:uppercase;background:var(--primary);color:#060810;font-weight:700;border-radius:6px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--display);font-size:clamp(48px,9vw,92px);font-weight:700;line-height:.95;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-family:var(--sans);font-weight:400;font-size:.22em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(6,8,16,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#060810;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--display);font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(24px,3.5vw,36px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(168,85,247,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--display);background:var(--primary);color:#060810;font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.3)}
+  .ba.after{background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.3)}
+  .ba .ba-tag{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--display);background:var(--primary);color:#060810;font-weight:700;font-size:16px;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--display);font-size:30px;font-weight:700;color:var(--primary);line-height:1.15;letter-spacing:.01em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--display);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .watchout{background:rgba(168,85,247,.06);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(168,85,247,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:10px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/DeusData/codebase-memory-mcp" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Code Intelligence MCP Server</span>
+    <h1><span class="owner">DeusData/</span><span class="name">codebase-memory-mcp</span></h1>
+    <p class="tagline">High-performance <strong>code intelligence MCP server</strong>. Indexes codebases into a persistent knowledge graph - average repo in milliseconds. 158 languages, sub-ms queries, <strong>99% fewer tokens</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">41K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">3.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">C</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>A knowledge graph for your <em>code</em></h2>
+    <p class="sub">Written in C for extreme performance. Single static binary, zero dependencies. Indexes an average repo in milliseconds and answers queries in under a millisecond.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">41K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">3.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">C</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">158</div><div class="l">Languages Supported</div></div>
+      <div class="bignum"><div class="n">99%</div><div class="l">Token Reduction</div></div>
+      <div class="bignum"><div class="n sc">&lt;1ms</div><div class="l">Query Latency</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it stand out</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Persistent knowledge graph</div><p>Indexes your codebase into a graph of functions, types, imports, and call relationships. Survives between sessions - your agent never starts from scratch.</p></div>
+      <div class="feat"><div class="fh">Written in C, single binary</div><p>Not Python, not TypeScript - raw C. One static binary, zero runtime dependencies. Download and run. No <code>npm install</code>, no <code>pip install</code>, no Docker.</p></div>
+      <div class="feat"><div class="fh">158 language support</div><p>Parses and indexes code in 158 programming languages using tree-sitter grammars. From Python and TypeScript to Zig and COBOL.</p></div>
+      <div class="feat"><div class="fh">Sub-millisecond queries</div><p>Once indexed, queries return in under a millisecond. "Find all callers of this function" resolves before your agent finishes planning what to ask.</p></div>
+      <div class="feat"><div class="fh">99% token reduction</div><p>Instead of feeding entire files to your LLM, the knowledge graph returns only the relevant symbols and relationships. Dramatic reduction in token consumption.</p></div>
+      <div class="feat"><div class="fh">MCP protocol native</div><p>Built as an MCP (Model Context Protocol) server from the ground up. Works with Claude Code, Cursor, Codex, and any MCP-compatible client.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Best feature</span>
+      <h3>99% fewer tokens, same understanding</h3>
+      <p>AI coding agents waste most of their token budget re-reading files they have already seen. codebase-memory-mcp indexes your code once, then serves precise answers - the function signature, its callers, its dependencies - instead of dumping entire files into context. Your agent gets the same understanding at a fraction of the cost. On large codebases, this is the difference between affordable and unusable.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">AI coding agents are stateless. Every session, they re-read your entire codebase. Every question, they consume thousands of tokens on files they already parsed yesterday.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Token-hungry agents.</strong> Every question requires reading entire files. A simple "where is this function called?" can consume 10K+ tokens as the agent greps through your codebase.</p>
+        <p><strong>No memory between sessions.</strong> Close your terminal, lose all context. Next session, the agent starts from scratch - re-reading, re-parsing, re-understanding the same code.</p>
+        <p><strong>Cross-file blindness.</strong> Most agents understand one file at a time. Tracing a call chain across modules, understanding inheritance hierarchies, or finding all implementations of an interface requires manual guidance.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Persistent code memory.</strong> Index once, query forever. The knowledge graph persists between sessions. Your agent remembers your codebase structure from day one.</p>
+        <p><strong>Precise, token-efficient answers.</strong> "Find all callers of <code>processOrder()</code>" returns exactly the call sites - not the entire files containing them. 99% fewer tokens for the same answer.</p>
+        <p><strong>Full graph traversal.</strong> Follow imports, call chains, type hierarchies, and module dependencies across your entire codebase. The graph knows relationships the agent would take thousands of tokens to discover.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">Download one binary, configure your MCP client, and index. No build step, no dependencies, no containers.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Download the binary</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Download for your platform (Linux, macOS, Windows)</span>
+curl -L https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-amd64 -o codebase-memory-mcp
+chmod +x codebase-memory-mcp</pre>
+        <p><strong>Single static binary.</strong> No runtime dependencies, no package manager, no build tools. Download and run.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your MCP client</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Add to Claude Code MCP config (~/.claude/settings.json)</span>
+{
+  "mcpServers": {
+    "codebase-memory": {
+      "command": "./codebase-memory-mcp",
+      "args": ["--project", "/path/to/your/repo"]
+    }
+  }
+}</pre>
+        <p>Works with <strong>Claude Code, Cursor, Codex</strong>, and any other MCP-compatible client. Check the docs for client-specific configuration.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Index and query</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># First run indexes the codebase automatically</span>
+<span class="cm"># Subsequent runs use the persistent index</span>
+<span class="cm"># Your agent now has access to code intelligence tools:</span>
+<span class="cm"># - find_symbol, find_callers, find_references</span>
+<span class="cm"># - get_dependencies, get_file_structure</span></pre>
+        <p>Initial indexing takes <strong>milliseconds for average repos</strong>. The index persists on disk - subsequent sessions start instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Where a persistent code knowledge graph saves time, tokens, and frustration.</p>
+
+    <div class="story"><div class="metric">99% Fewer Tokens</div><p><strong>Slash your AI coding costs.</strong> On a 500-file TypeScript project, a typical "find and fix this bug" session drops from 80K tokens to under 2K. The knowledge graph provides precise context instead of brute-force file reading.</p></div>
+    <div class="story"><div class="metric">Persistent Memory</div><p><strong>Pick up where you left off.</strong> Close Claude Code on Friday, open it Monday. The knowledge graph remembers your entire codebase structure. No re-indexing, no re-reading, no wasted tokens rebuilding context.</p></div>
+    <div class="story"><div class="metric">Cross-File Navigation</div><p><strong>Trace anything, anywhere.</strong> "Who calls this function? What implements this interface? Where is this type used?" The graph answers in under a millisecond, across all 158 supported languages.</p></div>
+    <div class="story"><div class="metric">Any Agent</div><p><strong>MCP-native, client-agnostic.</strong> Works with Claude Code, Cursor, Codex, Aider - any tool that speaks MCP. Switch agents without losing your code index.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News discussion.</strong> A <a href="https://news.ycombinator.com/item?id=48175665" target="_blank">HN thread</a> sparked debate on knowledge graphs vs. embeddings for code navigation, with several commenters reporting measurable token savings on mid-size projects.</li>
+        <li><strong>dev.to tutorial.</strong> A <a href="https://dev.to/t/mcp" target="_blank">dev.to walkthrough</a> covers setup with Claude Code, including tips for handling monorepos and ignoring generated files during indexing.</li>
+        <li><strong>AI Builder Club showcase.</strong> Featured in an <a href="https://www.youtube.com/results?search_query=codebase-memory-mcp" target="_blank">AI Builder Club session</a> demonstrating the cross-file navigation and persistent memory across sessions.</li>
+        <li><strong>YouTube demo.</strong> A <a href="https://www.youtube.com/watch?v=_RRjVljVdCQ" target="_blank">hands-on video</a> walks through indexing a 200-file TypeScript project and querying the knowledge graph in real time.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>C codebase limits contributions.</strong> The project is written in C, which limits the pool of potential contributors. Most AI-tooling developers work in Python or TypeScript. Bug reports may outnumber pull requests.</li>
+        <li><strong>Dynamic languages are harder.</strong> The knowledge graph works best with statically-typed languages where symbols and calls are explicit. Python's duck typing, Ruby's metaprogramming, and JavaScript's dynamic dispatch can produce incomplete or misleading graphs.</li>
+        <li><strong>MCP protocol is still maturing.</strong> The Model Context Protocol is evolving quickly. MCP server implementations may need updates as the protocol specification changes. Check compatibility with your specific client version.</li>
+        <li><strong>Large monorepos need testing.</strong> "Average repo in milliseconds" is a strong claim. Monorepos with millions of lines may have different indexing and query characteristics. Benchmark on your actual codebase before committing.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 005 - Week of August 28, 2026</div>
+    <ul>
+      <li><a href="https://github.com/DeusData/codebase-memory-mcp" target="_blank">DeusData/codebase-memory-mcp GitHub</a> - source, issues, documentation</li>
+      <li><a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a> - MCP specification and ecosystem</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 005</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

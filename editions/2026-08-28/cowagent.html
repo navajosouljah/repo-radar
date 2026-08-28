@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zhayujie/CowAgent - Self-Evolving AI Assistant | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12100b;--bg2:#1a1710;--card:#221e16;--card2:#2a2518;
+    --primary:#c17817;--primary-dim:#a86510;--secondary:#87ceeb;
+    --ink:#f0ebe0;--muted:#9a8e78;--line:#352e22;
+    --sans:'Inter',sans-serif;--display:'Teko',sans-serif;--mono:'IBM Plex Mono',monospace;
+    --r:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:
+      repeating-linear-gradient(90deg,rgba(193,120,23,.02) 0px,rgba(193,120,23,.02) 1px,transparent 1px,transparent 60px),
+      repeating-linear-gradient(0deg,rgba(193,120,23,.015) 0px,rgba(193,120,23,.015) 1px,transparent 1px,transparent 60px),
+      radial-gradient(ellipse at 60% 0%,rgba(193,120,23,.10),transparent 50%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(18,16,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:10px}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--display);font-size:18px;letter-spacing:.14em;text-transform:uppercase;background:var(--primary);color:#12100b;font-weight:600;border-radius:6px;padding:7px 22px;margin-bottom:24px}
+  h1{font-family:var(--display);font-size:clamp(56px,10vw,104px);font-weight:700;line-height:.9;letter-spacing:.02em}
+  h1 .owner{color:var(--muted);font-family:var(--sans);font-weight:400;font-size:.2em;display:block;letter-spacing:.02em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(18,16,11,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.08em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#12100b;}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--display);font-size:clamp(34px,5.5vw,56px);font-weight:700;letter-spacing:.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-top:3px solid var(--primary);}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(193,120,23,.12),rgba(135,206,235,.06));border:1px solid var(--primary);border-radius:var(--r);padding:34px}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--display);background:var(--primary);color:#12100b;font-weight:600;font-size:15px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(135,206,235,.04);border-color:rgba(135,206,235,.25)}
+  .ba.after{background:rgba(193,120,23,.05);border-color:rgba(193,120,23,.35)}
+  .ba .ba-tag{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--display);background:var(--primary);color:#12100b;font-weight:700;font-size:17px;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:10px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--display);font-size:32px;font-weight:600;color:var(--primary);line-height:1.15;letter-spacing:.02em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:20px;margin-bottom:16px;font-family:var(--display);letter-spacing:.06em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}
+  .watchout{background:rgba(135,206,235,.05);border:2px dashed var(--secondary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(135,206,235,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:10px;color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/zhayujie/CowAgent" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Self-Evolving AI Agent</span>
+    <h1><span class="owner">zhayujie/</span><span class="name">CowAgent</span></h1>
+    <p class="tagline">Open-source <strong>super AI assistant and agent harness</strong>. Plans tasks, runs tools, self-evolves with memory and knowledge. Multi-model, multi-channel, one-line install.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">46.7K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">10.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">primary lang</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>From WeChat bot to <em>agent</em> harness</h2>
+    <p class="sub">Originally chatgpt-on-wechat, one of China's most popular AI projects. Rebranded as CowAgent with full agent capabilities - memory, tools, skills, and self-evolution.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">46.7K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">10.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">Multi-Model</div><div class="l">LLM Support</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">Multi-Channel</div><div class="l">Deployment</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it stand out</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Self-evolving memory</div><p>Learns from interactions and builds persistent knowledge. The agent gets better at your specific tasks over time - not just stateless prompt-response cycles.</p></div>
+      <div class="feat"><div class="fh">Multi-model support</div><p>Works with <code>Claude</code>, <code>GPT</code>, <code>DeepSeek</code>, and other providers. Swap models per task or use different models for different capabilities.</p></div>
+      <div class="feat"><div class="fh">Multi-channel deployment</div><p>Run in your terminal, connect to WeChat, deploy a web UI, or integrate with other messaging platforms. Same agent, multiple interfaces.</p></div>
+      <div class="feat"><div class="fh">Tool and skill system</div><p>Plans tasks, selects appropriate tools, executes multi-step workflows. Extensible skill system lets you add custom capabilities without modifying core code.</p></div>
+      <div class="feat"><div class="fh">One-line install</div><p><code>pip install cowagent</code> gets you from zero to running agent. No Docker, no complex setup, no infrastructure requirements.</p></div>
+      <div class="feat"><div class="fh">Lightweight and extensible</div><p>Small core footprint with a plugin architecture. Add what you need, skip what you do not. Designed for both personal use and team deployment.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Best feature</span>
+      <h3>Self-evolution with persistent memory</h3>
+      <p>Most AI assistants reset with every conversation. CowAgent builds and maintains a knowledge graph of your preferences, past interactions, and learned patterns. Ask it to do something twice and the second time is faster, more accurate, and tailored to your style. This is the difference between a chatbot and an assistant that actually learns.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Building a personal AI assistant that remembers, learns, and improves requires stitching together a dozen tools. CowAgent packages the whole stack.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Stateless chatbots.</strong> Each conversation starts from zero. No memory of previous interactions, no accumulated knowledge, no improvement over time.</p>
+        <p><strong>Single-channel lock-in.</strong> Your AI assistant lives in one interface. Want it on WeChat and in the terminal? Build two separate integrations.</p>
+        <p><strong>Assembly required.</strong> Connecting an LLM to tools, memory, and channels means stitching together LangChain, vector databases, API wrappers, and deployment infrastructure. Weeks of work before anything useful runs.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Persistent, evolving memory.</strong> CowAgent remembers what you asked, what worked, and what you prefer. Knowledge compounds across sessions.</p>
+        <p><strong>Deploy anywhere.</strong> One agent, multiple channels. Terminal for dev work, WeChat for mobile, web UI for team access. Configure once, run everywhere.</p>
+        <p><strong>One-line install.</strong> <code>pip install cowagent</code> handles the entire stack - LLM integration, memory, tools, and channel connectors. Go from nothing to a working agent in minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set it <em>up</em></h2>
+    <p class="sub">One pip install, one API key, and you are running. Channel configuration is optional - terminal mode works immediately.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install CowAgent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># One-line install</span>
+pip install cowagent</pre>
+        <p>Requires <strong>Python 3.8+</strong>. Pulls in all dependencies including memory, tools, and channel connectors.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your model</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your preferred LLM provider</span>
+export OPENAI_API_KEY="sk-..."
+
+<span class="cm"># Or use Claude, DeepSeek, or other providers</span>
+export ANTHROPIC_API_KEY="sk-ant-..."</pre>
+        <p>Supports <strong>multiple LLM backends</strong>. Configure your preferred provider or set up multiple for different tasks.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Run the agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start in terminal mode (default)</span>
+cowagent
+
+<span class="cm"># Or connect to WeChat</span>
+cowagent --channel wechat
+
+<span class="cm"># Or launch the web UI</span>
+cowagent --channel web</pre>
+        <p>Terminal mode works immediately. <strong>WeChat and web channels</strong> require additional configuration - check the docs for channel-specific setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and individuals use CowAgent across different channels and workflows.</p>
+
+    <div class="story"><div class="metric">Personal AI</div><p><strong>Your always-on assistant.</strong> Connect CowAgent to WeChat or your terminal and use it as a personal assistant that remembers your preferences, your schedule patterns, and your communication style. It gets better the more you use it.</p></div>
+    <div class="story"><div class="metric">Team Knowledge</div><p><strong>Shared knowledge base.</strong> Deploy CowAgent with a web UI for your team. It learns from every interaction, building a collective knowledge base that any team member can query. Faster than searching Confluence.</p></div>
+    <div class="story"><div class="metric">Customer Support</div><p><strong>Automated first-line response.</strong> Connect to a messaging channel and let CowAgent handle common questions. It learns your product's FAQ over time and routes complex issues to humans.</p></div>
+    <div class="story"><div class="metric">Self-Improving</div><p><strong>Repeated task automation.</strong> For tasks you do regularly - data formatting, report generation, template filling - CowAgent learns the pattern and automates it. Each iteration is faster and more accurate than the last.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Docker Hub image pulls.</strong> The <a href="https://hub.docker.com/r/zhayujie/chatgpt-on-wechat" target="_blank">zhayujie/chatgpt-on-wechat Docker image</a> still carries the old name, signaling how embedded the original branding remains. Production deployments overwhelmingly use Docker - worth checking for pinned versions before upgrading.</li>
+        <li><strong>Stork.AI review calls it a "thin orchestration layer."</strong> A <a href="https://stork.ai/projects/cowagent" target="_blank">Stork.AI breakdown</a> describes CowAgent as more of a channel connector than a full agent framework - useful if you need chat-to-LLM wiring, less so if you need deep agent logic.</li>
+        <li><strong>Chinese-language tutorials dominate.</strong> Nearly all video walkthroughs are in Mandarin, including the most-viewed <a href="https://www.youtube.com/results?search_query=CowAgent+chatgpt-on-wechat" target="_blank">YouTube tutorials</a>. English coverage is thin relative to the star count.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>3 unpatched CVEs (as of August 2026).</strong> CVE-2026-6129 is a remote code execution flaw in the plugin system. CVE-2026-5998 is a path-traversal bug exposing host files. CVE-2026-6126 is a missing-auth check on the web admin panel. None have fixes merged yet - do not expose CowAgent to the public internet without mitigations.</li>
+        <li><strong>WeChat-first DNA.</strong> The project started as a WeChat bot. Terminal and CLI agent features are newer and less polished. If your primary use case is terminal-based coding, more mature tools exist.</li>
+        <li><strong>English documentation gaps.</strong> README and core docs are translated, but advanced configuration guides and community discussions are Chinese-first.</li>
+        <li><strong>Self-evolution needs scrutiny.</strong> "Self-evolving" is a strong claim. In practice, the memory system handles pattern recognition and preference learning - it is not autonomous self-improvement.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 005 - Week of August 28, 2026</div>
+    <ul>
+      <li><a href="https://github.com/zhayujie/CowAgent" target="_blank">zhayujie/CowAgent GitHub</a> - source, issues, documentation</li>
+      <li><a href="https://pypi.org/project/cowagent/" target="_blank">PyPI package</a> - installation and version history</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 005</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
