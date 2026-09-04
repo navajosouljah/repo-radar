@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincentwei1021/video-shotcraft - Cinematic AI Video Skill | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Raleway:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a1a;--bg2:#222222;--card:#252525;--card2:#2e2e2e;
+    --gold:#d4af37;--gold-dim:#a68b2a;--gold-soft:rgba(212,175,55,.10);--gold-med:rgba(212,175,55,.20);
+    --ink:#f5f0e0;--muted:#a09880;--line:#3a3530;--line-light:#2f2b26;
+    --disp:'Playfair Display',Georgia,serif;--sans:'Raleway',system-ui,sans-serif;--mono:'Source Code Pro',monospace;
+    --r:4px;
+    --film-strip:repeating-linear-gradient(90deg,transparent 0,transparent 18px,rgba(212,175,55,.12) 18px,rgba(212,175,55,.12) 20px);
+    --shadow-warm:0 4px 20px rgba(0,0,0,.4);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* Film-strip border decoration */
+  .film-border{height:8px;background:var(--film-strip);border-bottom:1px solid var(--line)}
+
+  /* Topbar */
+  .topbar{background:rgba(26,26,26,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.04em;transition:color .15s}
+  .radar-link:hover{color:var(--gold);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--gold);background:var(--gold-soft);padding:8px 20px;border:1px solid var(--gold-med);border-radius:var(--r);transition:all .15s;letter-spacing:.02em}
+  .gh-link:hover{background:var(--gold);color:var(--bg);text-decoration:none}
+
+  /* Hero */
+  .hero{background:var(--bg);padding:72px 0 56px;border-bottom:1px solid var(--line);
+    background-image:radial-gradient(ellipse at 20% 50%,rgba(212,175,55,.06),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(212,175,55,.04),transparent 50%)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:12px;font-weight:700;font-style:italic;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-med);padding:7px 20px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(34px,6.5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.38em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
+  h1 .name{color:var(--gold);text-shadow:0 0 30px rgba(212,175,55,.2)}
+  .tagline{font-size:clamp(15px,2.2vw,19px);color:var(--muted);max-width:680px;margin:18px 0 30px;font-weight:400;line-height:1.65}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:9px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--gold)}
+  .chip .cv.wm{color:var(--ink)}
+  .chip .ck{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+
+  /* Sticky Tabs */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(26,26,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:11px 0}
+  .tabnav .wrap{display:flex;gap:6px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:9px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.03em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--gold-dim)}
+  .tab-btn.active{background:var(--gold);border-color:var(--gold);color:var(--bg);box-shadow:0 2px 12px rgba(212,175,55,.25)}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+
+  /* Headings */
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;margin-bottom:8px}
+  h2 em{font-style:italic;color:var(--gold)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px;font-family:var(--disp)}
+  h3 .dot{color:var(--gold)}
+
+  /* Bignum Grid */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px;border-left:3px solid var(--gold);box-shadow:var(--shadow-warm)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.6vw,36px);line-height:1;color:var(--ink);font-weight:600}
+  .bignum .n.gd{color:var(--gold)}.bignum .n.wm{color:var(--ink)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+
+  /* Features */
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-bottom:2px solid var(--gold-dim);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-warm)}
+  .feat .fh{font-family:var(--disp);font-weight:700;font-size:16px;margin-bottom:6px;color:var(--ink)}
+  .feat .fh code{font-family:var(--mono);color:var(--gold);font-size:13px}
+  .feat p{color:var(--muted);font-size:14px;line-height:1.55}
+  .feat p code{font-family:var(--mono);font-size:.88em;color:var(--gold)}
+
+  /* Best Feature */
+  .best-feature{background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(212,175,55,.03));border:1px solid var(--gold);border-radius:var(--r);padding:32px;box-shadow:0 0 30px rgba(212,175,55,.08)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--gold);color:var(--bg);font-weight:700;font-size:11px;font-style:italic;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:22px;margin-bottom:8px}.best-feature p{color:var(--ink);font-size:15px;max-width:720px;line-height:1.6}
+  .best-feature p code{font-family:var(--mono);color:var(--gold);font-size:.88em}
+
+  /* Before/After */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow-warm)}
+  .ba.before{background:rgba(180,100,60,.06);border-color:rgba(180,100,60,.25)}
+  .ba.after{background:var(--gold-soft);border-color:var(--gold-med)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-style:italic;font-size:13px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
+  .ba.before .ba-tag{color:#c47a50}.ba.after .ba-tag{color:var(--gold)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:12px;line-height:1.55}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.88em;color:var(--gold)}
+
+  /* Steps */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-warm)}
+  .step-head{padding:14px 22px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{background:var(--gold);color:var(--bg);font-family:var(--mono);font-weight:700;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;font-family:var(--sans);font-weight:700}
+  .step-body{padding:18px 22px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:10px}.step-body p strong{color:var(--ink)}
+  pre{background:#111111;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 12px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--gold)}
+  pre .cm{color:#5a5545}
+
+  /* Stories */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-bottom:16px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;box-shadow:var(--shadow-warm)}
+  .story .metric{font-family:var(--disp);font-size:22px;color:var(--gold);font-weight:700;line-height:1.2;font-style:italic}
+  .story p{color:var(--muted);font-size:14px;line-height:1.55}.story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.88em;color:var(--gold)}
+
+  /* In the Wild */
+  .itw{margin-top:34px}.itw h3{color:var(--gold);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px;font-family:var(--sans)}
+  .itw ul{list-style:none}.itw li{padding:13px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line-light)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--gold);font-weight:500;text-decoration:none;border-bottom:1px dotted var(--gold-med)}.itw a:hover{opacity:.7}
+
+  /* Watch Out */
+  .watchout{background:rgba(180,100,60,.06);border:2px dashed rgba(180,100,60,.3);border-radius:var(--r);padding:28px;margin-top:34px}
+  .watchout h3{color:#c47a50;font-size:18px;margin-bottom:14px}
+  .watchout ul{list-style:none}.watchout li{padding:10px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(180,100,60,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.88em;color:var(--gold)}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:40px 0 56px;margin-top:20px}
+  .film-border-bottom{height:8px;background:var(--film-strip);border-top:1px solid var(--line)}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-style:italic;font-size:12px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none}footer li{padding:5px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--gold);font-weight:700}
+  .backhub{display:inline-block;margin-top:22px;font-weight:700;font-size:13px;font-family:var(--sans);background:var(--card);border:1px solid var(--gold-med);color:var(--gold);padding:10px 24px;border-radius:var(--r);letter-spacing:.02em}
+  .backhub:hover{background:var(--gold);color:var(--bg);text-decoration:none}
+
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:48px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="film-border"></div>
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/Vincentwei1021/video-shotcraft" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI Video Skill for Claude Code</span>
+    <h1><span class="owner">Vincentwei1021/</span><span class="name">video-shotcraft</span></h1>
+    <p class="tagline"><strong>Cinematic product videos with Remotion.</strong> 152 shot recipe cards, 209 motion previews, and a production-ready template. Describe what you want to show - <strong>Claude writes the code, Remotion renders the film</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv gd">7.4K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">652</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv gd">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Your terminal is now a <em>film studio</em></h2>
+    <p class="sub">Video-shotcraft turns Claude Code and Codex into a motion-design studio. You describe your product - the agent storyboards, animates, sound-designs, and renders a cinematic video using Remotion. No video editor. No timeline. Just a prompt.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n gd">7.4K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n">652</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n gd">152</div><div class="l">Shot Recipe Cards</div></div>
+      <div class="bignum"><div class="n">209</div><div class="l">Motion Previews</div></div>
+      <div class="bignum"><div class="n gd">7-layer</div><div class="l">Anti-Slideshow System</div></div>
+      <div class="bignum"><div class="n">~7 weeks</div><div class="l">Age (Created Jul 19)</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Shot recipe cards</div><p>152 pre-built cinematic shots you call by name - zoom-ins, pan-overs, split screens, parallax reveals. Each card has timing, parameters, implementation notes, and common pitfalls documented.</p></div>
+      <div class="feat"><div class="fh">7-layer anti-slideshow system</div><p>Continuous camera curves, parallax planes, 2.5D real-page camera moves, beat-synced cuts, and film-grade SFX. Shots look like motion design - not a slide deck with transitions.</p></div>
+      <div class="feat"><div class="fh">Ink Press production template</div><p>A validated, complete 36-second promo template: 1920x1080, 30fps, 10 shots in a paper-ink-amber style with title cards, transitions, and a fully pinned cinematic SFX pass.</p></div>
+      <div class="feat"><div class="fh">Motion previews you can browse</div><p>209 motion previews organized by function. Browse them in the library, switch variants, copy the ones you want. No guessing what a shot looks like before you use it.</p></div>
+      <div class="feat"><div class="fh">Studied from real product films</div><p>Motion techniques distilled by studying outstanding product films from ClickUp, Perplexity, Slack, Notion, and Figma - then re-implemented from scratch without using any footage or brand assets.</p></div>
+      <div class="feat"><div class="fh">Works with Claude Code and Codex</div><p>Install as a skill for either agent. The agent handles visual direction, storyboarding, implementation, sound design, beat synchronization, and final quality review - the full pipeline.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>35 minutes from prompt to export</h3>
+      <p>A real-world test produced a complete 36-second cinematic product video in 35 minutes - from the first command to the final MP4 export - without ever opening a video editor. The shot recipe cards eliminate the blank-canvas problem. You are never starting from scratch - you are composing from a library of cinematic patterns that have already been tested and tuned.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>video production</em> bottleneck</h2>
+    <p class="sub">Every product launch needs a video. Most teams either spend a week in After Effects, pay an agency thousands, or settle for screen recordings with background music. Video-shotcraft opens a fourth path.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>The agency route.</strong> $5K-$20K and 2-4 weeks for a 60-second product video. Revisions cost extra. By the time it ships, the feature it shows has already changed.</p>
+        <p><strong>The DIY route.</strong> After Effects or Premiere Pro, motion graphics plugins, stock music licensing. A developer who can code but cannot keyframe spends a week producing something mediocre.</p>
+        <p><strong>The screen-recording compromise.</strong> Loom capture with background music. Ships fast but looks like what it is - a screen recording, not a product story. No camera moves, no visual rhythm, no cinematic feel.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Prompt-driven production.</strong> Describe your product and the story you want to tell. The agent storyboards the shots, writes Remotion code, adds sound design, syncs beats, and renders. You review and iterate in minutes.</p>
+        <p><strong>Cinematic by default.</strong> The 7-layer system means every shot has camera motion, parallax depth, and proper timing. No extra effort needed to avoid the slideshow look - the recipe cards enforce it.</p>
+        <p><strong>Code, not timelines.</strong> Everything is Remotion - React components and TypeScript. Version-controlled, parameterized, reproducible. Change your product screenshots and re-render the same video.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Lights, <em>camera</em>, install</h2>
+    <p class="sub">Clone the repo, link the skill to your agent, and start directing. The Ink Press template gives you a working video to render on your first run.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone video-shotcraft</span>
+git clone https://github.com/Vincentwei1021/video-shotcraft.git
+cd video-shotcraft</pre>
+        <p>The repo contains the <strong>shot recipe cards</strong>, motion previews, the Ink Press template, and the agent skill definition.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Link the skill to Claude Code</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a symlink to your Claude Code skills folder</span>
+ln -s "$(pwd)" ~/.claude/skills/video-shotcraft
+
+<span class="cm"># Or for Codex, link to its skill directory</span>
+ln -s "$(pwd)" ~/.codex/skills/video-shotcraft</pre>
+        <p>Once linked, Claude Code (or Codex) can reference the shot recipe cards and motion previews as part of its skill set.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Install Remotion dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Navigate to the template</span>
+cd template
+
+<span class="cm"># Install dependencies</span>
+npm install
+
+<span class="cm"># Preview the Ink Press template</span>
+npx remotion preview</pre>
+        <p>Opens the <strong>Remotion Studio</strong> in your browser where you can preview and tweak shots before rendering the final video.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Render your first video</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Render the Ink Press template to MP4</span>
+npx remotion render src/index.ts InkPress out/video.mp4
+
+<span class="cm"># Or ask Claude Code to build your custom video</span>
+<span class="cm"># "Create a 30-second promo for my SaaS dashboard"</span></pre>
+        <p>The Ink Press template renders a <strong>36-second, 1920x1080, 30fps</strong> video with 10 shots, title cards, transitions, and a full SFX pass right out of the box.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Who <em>shoots</em> with this</h2>
+    <p class="sub">Developers and indie teams who need cinematic product videos but do not have a motion designer on staff.</p>
+
+    <div class="story">
+      <div class="metric">35 min<br>to export</div>
+      <p><strong>Launch-day product video.</strong> A solo developer ships a new feature and needs a promo video by tomorrow. They describe the feature to Claude Code, pick shots from the recipe library, and render a 36-second cinematic video in a single sitting - no After Effects, no agency, no compromise.</p>
+    </div>
+    <div class="story">
+      <div class="metric">152 shots<br>on call</div>
+      <p><strong>Marketing team content pipeline.</strong> A startup marketing team produces weekly feature demos. Instead of re-learning motion graphics each time, they compose from the shot recipe library - zoom-ins, split screens, parallax reveals - and iterate on the storyboard in minutes.</p>
+    </div>
+    <div class="story">
+      <div class="metric">Code, not<br>timelines</div>
+      <p><strong>Version-controlled video assets.</strong> An engineering team wants their product videos in the same repo as their product. Since everything is Remotion (React + TypeScript), videos live in <code>git</code>, get reviewed in PRs, and re-render when screenshots update.</p>
+    </div>
+    <div class="story">
+      <div class="metric">10 shots<br>out of box</div>
+      <p><strong>First-time video creators.</strong> A developer who has never touched a video editor clones the Ink Press template and renders a polished 36-second video on their first try. The template is the training wheels - the recipe cards are the next step up.</p>
+    </div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>MoClaw Blog walkthrough</strong> - "I Made a Product Video With video-shotcraft" documents the full process: 35 minutes from first command to final export, with notes on friction and results. <a href="https://moclaw.ai/blog/product-video-claude-code-video-shotcraft" target="_blank" rel="noopener">moclaw.ai</a></li>
+        <li><strong>Enterprise DNA trending report</strong> - "video-shotcraft hit 1,387 stars in 5 days (260 stars/day)" - the fastest climb for any sub-2K-star project tracked that week. <a href="https://enterprisedna.co/resources/ai-pulse/ai-pulse-2026-07-24-video-shotcraft-a-claude-code-codex-skill-for-cinematic-prod/" target="_blank" rel="noopener">enterprisedna.co</a></li>
+        <li><strong>Axel Bitblaze thread on X</strong> - "You can turn Claude Code into a cinematic video studio with one skill" - a viral walkthrough of the shot recipe cards and motion previews. <a href="https://x.com/Axel_bitblaze69/status/2082487199765844066" target="_blank" rel="noopener">x.com</a></li>
+        <li><strong>AI Brain blog</strong> - "AI Video Production: The Rise of Video-Shotcraft" covers the architecture, the anti-slideshow system, and how shot recipes are distilled from real product films. <a href="https://www.aibrain.blog/blog/ai-agents-in-video-production-mastering-video-shotcraft" target="_blank" rel="noopener">aibrain.blog</a></li>
+        <li><strong>Official showcase page</strong> - Community-submitted videos made with video-shotcraft, with links to authors and social handles. <a href="https://vincentwei1021.github.io/video-shotcraft/showcase.html" target="_blank" rel="noopener">vincentwei1021.github.io</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Remotion dependency.</strong> Everything renders through Remotion, which has its own licensing terms for commercial use. Check the Remotion license before shipping paid work.</li>
+        <li><strong>Agent quality varies.</strong> The shot recipes guide Claude, but output quality depends on how well you describe what you want. Vague prompts produce vague videos. Be specific about your product, audience, and tone.</li>
+        <li><strong>Seven weeks old.</strong> Created July 19, 2026. The library is growing fast (104 to 152 cards in one month) but the API surface may shift. Pin to a commit if you build on it.</li>
+        <li><strong>No audio narration built in.</strong> The SFX pass is cinematic sound effects and beat sync - not voiceover. If you need narrated explainer videos, you will need to layer that separately.</li>
+        <li><strong>Rendering takes compute.</strong> Remotion renders video frame-by-frame. A 36-second video at 1080p/30fps is fast on a modern laptop, but CI rendering or longer videos will need real hardware or cloud rendering.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="film-border-bottom"></div>
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li>Pushed Sep 1, 2026</li>
+      <li>Created Jul 19, 2026</li>
+      <li>Apache-2.0 Licensed, TypeScript</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Repo Radar</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const btns=document.querySelectorAll('.tab-btn');
+  const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(b=>{
+    b.addEventListener('click',()=>{
+      btns.forEach(x=>x.classList.remove('active'));
+      panels.forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anywhere-labs/dsh-desktop - Everything Is a Plugin | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a14;--bg2:#0e0e1e;--card:#111128;--card2:#161636;
+    --primary:#00d4ff;--primary-dim:#009abb;--secondary:#ff00aa;
+    --ink:#e8f0ff;--muted:#8899bb;--line:#1e2248;
+    --sans:'Inter',sans-serif;--mono:'Share Tech Mono',monospace;--disp:'Exo 2',sans-serif;
+    --r:3px;
+    --glow-p:0 0 14px rgba(0,212,255,.3);--glow-s:0 0 14px rgba(255,0,170,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:
+      radial-gradient(ellipse at 15% 5%,rgba(0,212,255,.07),transparent 50%),
+      radial-gradient(ellipse at 85% 90%,rgba(255,0,170,.05),transparent 45%),
+      repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(0,212,255,.015) 60px,rgba(0,212,255,.015) 61px);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,10,20,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--glow-p);transition:all .15s}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.22em;text-transform:uppercase;background:var(--primary);color:#0a0a14;font-weight:700;border-radius:2px;padding:7px 20px;margin-bottom:24px;box-shadow:var(--glow-p)}
+  h1{font-family:var(--disp);font-size:clamp(36px,7vw,72px);font-weight:900;line-height:1.05;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.4em;display:block;letter-spacing:.08em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:0 0 24px rgba(0,212,255,.4)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:400;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,10,20,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:11.5px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.10em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0a14;box-shadow:var(--glow-p)}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(255,0,170,.05));border:1px solid var(--primary);border-radius:8px;padding:34px;box-shadow:var(--glow-p)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:16px}
+  .best-feature h3{font-size:23px}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(255,0,170,.04);border-color:rgba(255,0,170,.30)}
+  .ba.after{background:rgba(0,212,255,.04);border-color:rgba(0,212,255,.30)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow-p)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.5);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:24px;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:16px;margin-bottom:16px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:rgba(255,0,170,.04);border:2px dashed var(--secondary);border-radius:8px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,0,170,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/anywhere-labs/dsh-desktop" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">DeepSeek Harness Desktop Client</span>
+    <h1><span class="owner">anywhere-labs/</span><span class="name">dsh-desktop</span></h1>
+    <p class="tagline"><strong>Modern desktop client for the DeepSeek Harness (DSH) plugin ecosystem.</strong> "Everything is a plugin" - the desktop itself is a plugin. Powered by <strong>Cordis</strong>, with a built-in community market.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">23.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1,154</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The desktop <em>is</em> a plugin</h2>
+    <p class="sub">DSH Desktop wraps the DeepSeek Harness Web UI in a native Electron shell - but it goes further. The desktop shell itself registers as a DSH plugin, following the same composition rules as every third-party extension in the ecosystem.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">23.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1,154</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">TypeScript</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n lm">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">22 days</div><div class="l">Since Creation</div></div>
+      <div class="bignum"><div class="n">3</div><div class="l">Platforms</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it stand out</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Desktop-as-plugin architecture</div><p>The window, tray, terminal, updates, and work profiles all integrate as a DSH plugin. The shell uses the same Cordis composition mechanism as third-party plugins - it practices what it preaches.</p></div>
+      <div class="feat"><div class="fh">Built-in Community Market</div><p>Plugin discovery, details, one-click installation, and management are all built in. Browse the DSH ecosystem without leaving the app - similar to a phone's app store experience.</p></div>
+      <div class="feat"><div class="fh">Cordis-powered composition</div><p>Built on the <strong>Cordis</strong> framework - hot-reload, dynamic dispose (like Rust's <code>Drop</code> trait), and reversible effects. Plugins contribute services and typed events to a shared context.</p></div>
+      <div class="feat"><div class="fh">Profile and workspace isolation</div><p>Sessions, plugins, workspaces, model settings, and configurations live outside the application directory. Multiple profiles, multiple workflows, zero cross-contamination.</p></div>
+      <div class="feat"><div class="fh">Cross-platform native bindings</div><p>Runs on <strong>macOS, Windows, and Linux</strong> via Electron with platform-specific installers. Native tray integration, system notifications, and OS-level shortcuts on each platform.</p></div>
+      <div class="feat"><div class="fh">Upstream plugin compatibility</div><p>Plugins compatible with the pinned upstream DSH version work out of the box. Desktop capabilities can be composed, replaced, and evolved without forking.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The shell eats its own dogfood</h3>
+      <p>Most desktop wrappers are inert frames around a web view. DSH Desktop registers itself as a plugin and uses the same plugin composition mechanism as everything else. The window manager, the tray icon, the updater - each is a composable service that can be swapped or extended by the community. It is the only desktop client where the desktop <em>itself</em> follows the "everything is a plugin" rule.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>browser-tab</em> problem</h2>
+    <p class="sub">DeepSeek Harness runs as a local web service. Without a desktop client, you are stuck managing browser tabs, remembering to start the server, and losing plugin state across restarts.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Manual server start.</strong> Every time you want to use DSH, you open a terminal, run the start command, wait for it to boot, then navigate to localhost in your browser. Easy to forget, easy to break.</p>
+        <p><strong>Lost in browser tabs.</strong> Your DSH session competes with everything else in your browser. No dedicated window, no tray icon, no system-level integration. Close the wrong tab and your context is gone.</p>
+        <p><strong>Plugin management friction.</strong> Installing and discovering plugins means hunting through GitHub repos, copying configuration files, and restarting the server. No marketplace, no one-click installs.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Auto-start, always ready.</strong> DSH Desktop starts the Harness runtime automatically and opens the full interface as soon as the local runtime is ready. Launch and go.</p>
+        <p><strong>Native desktop experience.</strong> Dedicated window, system tray, notifications, keyboard shortcuts. Your DSH session is a first-class citizen on your desktop, not a browser tab you might accidentally close.</p>
+        <p><strong>One-click plugin marketplace.</strong> Browse, search, install, and manage plugins from a built-in community market. No terminal commands, no config file editing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>running</em></h2>
+    <p class="sub">Clone the repo, install dependencies, configure your DSH instance, and launch the desktop client. Requires Node.js 18+ and a working DSH installation.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone dsh-desktop</span>
+git clone https://github.com/anywhere-labs/dsh-desktop.git
+cd dsh-desktop</pre>
+        <p>The repo includes the Electron shell, the <code>dsh-plugin-desktop</code> plugin package, and platform-specific build configs.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Install dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install Node.js dependencies</span>
+npm install
+
+<span class="cm"># Or use yarn if you prefer</span>
+yarn install</pre>
+        <p>Requires <strong>Node.js 18+</strong>. Electron and platform-specific bindings are pulled automatically.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure your DSH instance</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Copy the example config</span>
+cp .env.example .env
+
+<span class="cm"># Edit to point at your DSH installation</span>
+<span class="cm"># DSH_HOME defaults to ~/.dsh</span>
+<span class="cm"># DSH_VERSION pins the upstream version</span></pre>
+        <p>The config controls where DSH Desktop finds its Harness runtime, which upstream version to pin, and where profiles and plugin data are stored.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Launch the desktop client</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Development mode with hot-reload</span>
+npm run dev
+
+<span class="cm"># Or build for production</span>
+npm run build
+npm run start</pre>
+        <p>The app starts the bundled DSH Web UI locally, loads it in a hardened Electron window, and opens the Community Market on first launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How developers and teams are using DSH Desktop to manage their DeepSeek Harness workflows with native desktop integration.</p>
+
+    <div class="story"><div class="metric">Plugin<br>devs</div><p><strong>Test plugins in a real desktop context.</strong> Plugin developers use DSH Desktop as their reference environment. The built-in market shows exactly how their plugin appears to end users - from discovery to install to daily use.</p></div>
+    <div class="story"><div class="metric">Multi-profile<br>teams</div><p><strong>Isolated workspaces per project.</strong> Keep client-A's plugins, model configs, and sessions completely separate from client-B's. Switch profiles without restarting, and each workspace retains its own plugin set.</p></div>
+    <div class="story"><div class="metric">Always-on<br>agents</div><p><strong>Tray-resident long-running tasks.</strong> Minimize to tray and let agents work in the background. System notifications fire when tasks complete or need attention - no need to keep a browser tab visible.</p></div>
+    <div class="story"><div class="metric">Upstream<br>tracking</div><p><strong>Pin and upgrade safely.</strong> Pin to a specific DSH upstream version for stability, or track the latest alpha. The desktop client manages the version lifecycle so plugin compatibility is predictable.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Hacker News launch.</strong> The parent project - DeepSeek Harness - hit <a href="https://news.ycombinator.com/item?id=49285244" target="_blank" rel="noopener">745 points and 311 comments</a> on HN the day of release. Community discussion focused on the Cordis plugin architecture and comparisons to Claude Code.</li>
+        <li><strong>90K-stars-in-two-days analysis.</strong> Justin3go published a <a href="https://justin3go.com/en/posts/2026/08/15-deepseek-harness-review" target="_blank" rel="noopener">detailed review</a> titled "90K Stars in Two Days - the Future, or Over-Engineering?" examining the "everything is a plugin" architecture and whether it holds up under real workloads.</li>
+        <li><strong>Cordis deep dive.</strong> AgentAtlas wrote a technical explainer - <a href="https://agentatlas.org/blog/cordis-explained-how-deepseek-harness-plugin-framework-works/" target="_blank" rel="noopener">"Cordis Explained"</a> - covering how the plugin framework's hot-reload and dynamic dispose actually work under the hood.</li>
+        <li><strong>Enterprise readiness review.</strong> Wavect published a <a href="https://wavect.io/blog/deepseek-harness-enterprise-review/" target="_blank" rel="noopener">production-readiness assessment</a> of the broader DeepSeek Harness ecosystem, noting that dsh-desktop is still early preview software built on a rapidly evolving alpha.</li>
+        <li><strong>Plugin architecture walkthrough.</strong> TeamORouter published a <a href="https://teamorouter.com/blogs/dsh-plugin-architecture-cordis" target="_blank" rel="noopener">blog post</a> on the DSH plugin architecture, explaining how "everything is a plugin" works in practice and how Cordis was originally designed for chatbot ecosystem resilience.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Alpha-grade upstream.</strong> DSH Desktop pins to <code>@deepseek-ai/dsh@0.1.2-alpha.4</code>. The upstream Harness is still in developer preview. Expect breaking changes, missing features, and rough edges in the plugin API.</li>
+        <li><strong>Electron resource cost.</strong> Wrapping a web UI in Electron adds significant memory and CPU overhead. If you are running large models locally, the extra resource consumption may compete with inference workloads.</li>
+        <li><strong>Windows installer tracked as open issue.</strong> As of late August 2026, the Windows installer and macOS stability issues are actively tracked in the issue tracker. Linux is the most stable platform currently.</li>
+        <li><strong>Plugin ecosystem maturity.</strong> The Community Market exists, but the ecosystem of desktop-specific plugins is still small. Most DSH plugins target the web interface; desktop-native capabilities like tray integration are less explored.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/anywhere-labs/dsh-desktop" target="_blank">anywhere-labs/dsh-desktop GitHub</a> - source, plugin ecosystem docs, community market</li>
+      <li>Topics: cordis, deepseek, deepseek-harness, desktop, dsh, dsh-plugin</li>
+      <li>Last pushed: September 4, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

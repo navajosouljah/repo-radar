@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yc-software/qm - Multiplayer Agent Harness for Work | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0d12;--bg2:#141420;--card:#18182a;--card2:#1e1e34;
+    --primary:#39ff14;--primary-dim:#2bcc10;--secondary:#ffab00;
+    --ink:#e8ffe8;--muted:#8a9a8a;--line:#2a2a3a;
+    --sans:'Inter',sans-serif;--mono:'Share Tech Mono',monospace;--disp:'Chakra Petch',sans-serif;
+    --r:0px;
+    --glow-p:0 0 14px rgba(57,255,20,.30);--glow-s:0 0 14px rgba(255,171,0,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:
+      repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(57,255,20,.015) 3px,rgba(57,255,20,.015) 4px),
+      radial-gradient(ellipse at 20% 15%,rgba(57,255,20,.06),transparent 50%),
+      radial-gradient(ellipse at 80% 75%,rgba(255,171,0,.04),transparent 45%);
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  /* Topbar */
+  .topbar{background:rgba(13,13,18,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.04em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--glow-p);text-transform:uppercase;letter-spacing:.06em}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  /* Hero */
+  .hero{padding:72px 0 50px;position:relative}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),transparent)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;background:var(--primary);color:#0d0d12;font-weight:700;border-radius:0;padding:7px 20px;margin-bottom:24px;box-shadow:var(--glow-p)}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,76px);font-weight:700;line-height:1.05;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.4em;display:block;letter-spacing:.08em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:0 0 24px rgba(57,255,20,.40)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:400;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  /* Tabnav */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(13,13,18,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:11.5px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.10em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary-dim)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0d0d12;box-shadow:var(--glow-p)}
+
+  /* Tab panels */
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+
+  /* Headings */
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+
+  /* Bignums */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);position:relative;overflow:hidden}
+  .bignum::after{content:'';position:absolute;top:0;right:0;bottom:0;width:60px;background:linear-gradient(90deg,transparent,rgba(57,255,20,.03))}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+
+  /* Features */
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);border-radius:var(--r);padding:22px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;font-family:var(--disp)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14.5px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .feat p strong{color:var(--ink)}
+
+  /* Best feature */
+  .best-feature{background:linear-gradient(135deg,rgba(57,255,20,.08),rgba(255,171,0,.05));border:1px solid var(--primary);border-radius:0;padding:34px;box-shadow:var(--glow-p)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:6px 14px;border-radius:0;margin-bottom:16px}
+  .best-feature h3{font-size:23px;font-family:var(--disp)}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+
+  /* Before / After */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(255,171,0,.04);border-color:rgba(255,171,0,.30)}
+  .ba.after{background:rgba(57,255,20,.04);border-color:rgba(57,255,20,.30)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  /* Steps */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-weight:700;font-size:12px;width:26px;height:26px;border-radius:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow-p)}
+  .step-head h3{margin:0;font-size:16px;font-family:var(--disp)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.50);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:var(--muted)}
+
+  /* Stories */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:24px;color:var(--primary);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  /* In the Wild */
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:16px;margin-bottom:16px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+
+  /* Watch out */
+  .watchout{background:rgba(255,171,0,.04);border:2px dashed var(--secondary);border-radius:0;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,171,0,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  /* HUD scanline overlay */
+  .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(57,255,20,.02) 2px,rgba(57,255,20,.02) 4px);z-index:1}
+
+  /* Responsive */
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/yc-software/qm" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">YC-Backed Multiplayer Agent Harness</span>
+    <h1><span class="owner">yc-software/</span><span class="name">qm</span></h1>
+    <p class="tagline"><strong>Multiplayer agent harness for work.</strong> Multiple agents collaborate in a shared workspace - in Slack and on the web. <strong>YC-backed</strong>, MIT-licensed, self-hosted.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">14.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1,767</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Company-wide <em>agent</em> control plane</h2>
+    <p class="sub">QM (Quartermaster) is the multiplayer agent harness Y Combinator built to run its own operations - and then open-sourced. Every person and every room gets scoped AI workspaces under one company control plane.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">14.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1,767</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Jul 2026</div><div class="l">Created</div></div>
+      <div class="bignum"><div class="n lm">TypeScript</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n sc">YC</div><div class="l">Backed By</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Per-person scoped workspaces</div><p>Each employee gets <strong>isolated memory, files, a keychain view, permissions, crons, web apps, and a durable sandbox</strong>. Teammates cannot leak into each other's context.</p></div>
+      <div class="feat"><div class="fh">Multi-model, multi-harness</div><p>QM drives <strong>Pi, OpenCode, Codex, and Claude Code</strong> through the same core. Swap model providers without rewriting your deployment.</p></div>
+      <div class="feat"><div class="fh">Slack and web native</div><p>Runs in <strong>Slack channels, group messages, and projects</strong> - plus a standalone web UI. Agents participate where teams already work.</p></div>
+      <div class="feat"><div class="fh">Security postures</div><p>Three tiers - <code>strict</code> (human approval per tool call), <code>auto</code> (content screening), and <code>dangerous</code> - let you tune risk per scope and per team.</p></div>
+      <div class="feat"><div class="fh">Agent-driven deployment</div><p>Rather than a 40-step runbook, QM hands the <strong>deployment itself to an agent</strong> that walks through infrastructure, credentials, and verification.</p></div>
+      <div class="feat"><div class="fh">Battle-tested at YC</div><p>YC runs QM across <strong>accounting, legal, events, and engineering</strong> - including using QM to build QM itself. It is not a weekend project.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>One company, many agents, one control plane</h3>
+      <p>Most agents are designed as personal assistants - making one work for a whole company gets messy fast. QM solves the multiplayer problem: every person and every shared room gets its own scoped workspace with its own memory, files, and permissions, while the company retains a single control plane for security, auditing, and model selection. You get agent collaboration without agent chaos.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>multiplayer</em> problem</h2>
+    <p class="sub">AI agents today are single-player. Scaling an agent from one developer to a whole company means rebuilding isolation, permissions, and context from scratch. QM treats the company as the deployment unit.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Personal agent, personal mess.</strong> Each employee sets up their own agent with their own API keys, their own memory, their own integrations. No shared context. No audit trail.</p>
+        <p><strong>Slack gaps.</strong> Want an agent in your team channel? You stitch together a bot, a model API, some file storage, and a homegrown permissions layer. Every team reinvents this wheel.</p>
+        <p><strong>No scope boundaries.</strong> One developer's agent can see another developer's secrets. Shared credentials get copy-pasted into prompts. There is no isolation model.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Scoped per person, shared per room.</strong> QM gives every person and every Slack channel/project its own isolated sandbox - memory, files, keychain, permissions, and crons - under one deploy.</p>
+        <p><strong>Agent in Slack, day one.</strong> QM runs natively in Slack channels, group messages, and a web UI. No bot assembly required - just deploy and invite.</p>
+        <p><strong>Security postures.</strong> Choose <code>strict</code>, <code>auto</code>, or <code>dangerous</code> per scope. The company controls what agents can do, and every action is auditable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>deployed</em></h2>
+    <p class="sub">QM is self-hosted - you deploy it into your own cloud account. The CLI scaffolds the deployment repository, provisions infrastructure, and optionally wires up Slack.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Scaffold the deployment</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create an org-owned deployment repository</span>
+npm exec --yes --package=@yc-software/qm@latest -- qm init .
+
+<span class="cm"># This scaffolds configs, provisions Postgres,</span>
+<span class="cm"># and optionally wires up the Slack plugin</span></pre>
+        <p>The <code>qm init</code> CLI creates the deployment repo, sets up <strong>Postgres</strong> for durable state, and walks you through Slack and web configuration.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Choose your cloud target</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Deploy to Fly.io (recommended for small teams)</span>
+qm deploy --target fly
+
+<span class="cm"># Or deploy to AWS</span>
+qm deploy --target aws</pre>
+        <p>Currently <strong>Fly and AWS</strong> are supported. Each deployment runs in your own cloud account - there is no hosted version. Cost is cloud hosting plus model tokens.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure model providers</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># QM supports multiple agent harnesses</span>
+<span class="cm"># Claude Code, Pi, OpenCode, Codex</span>
+<span class="cm"># Configure your preferred provider:</span>
+qm config set model-provider anthropic
+qm config set api-key $ANTHROPIC_API_KEY</pre>
+        <p>QM is <strong>model-agnostic</strong>. Pi, OpenCode, Codex, and Claude Code all drive the same core - your deployment is not locked to a single vendor.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Invite your team</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Add team members and assign security postures</span>
+qm team add --email team@company.com --posture auto
+
+<span class="cm"># Each person gets scoped memory, files, and permissions</span>
+<span class="cm"># Collaborate in shared Slack channels or projects</span></pre>
+        <p>Each person gets their own <strong>isolated workspace</strong>. They can work solo or collaborate with the agent in shared channels. Security postures (<code>strict</code>, <code>auto</code>, <code>dangerous</code>) are set per scope.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>plays</em></h2>
+    <p class="sub">QM is designed for startups and mid-sized companies with 10 to 500 people - any team that needs agents working across departments, not just in engineering.</p>
+
+    <div class="story"><div class="metric">Accounting<br>&amp; Legal</div><p><strong>Cross-functional agent ops.</strong> YC itself runs QM across <strong>accounting, legal, events, and engineering</strong>. The same agent harness handles invoice processing, contract review, event logistics, and code generation - each department scoped independently.</p></div>
+    <div class="story"><div class="metric">Slack-native<br>workflows</div><p><strong>Agent in every channel.</strong> Drop QM into a Slack channel and the agent joins the conversation. Team members collaborate with the agent in real time - no context switching to a separate tool. <strong>Shared rooms</strong> maintain their own memory and file context.</p></div>
+    <div class="story"><div class="metric">Multi-model<br>strategy</div><p><strong>Avoid vendor lock-in.</strong> Run Claude Code for code generation, Pi for internal docs, and OpenCode for infrastructure - all under one QM deployment. Swap providers without rewriting integrations or losing workspace state.</p></div>
+    <div class="story"><div class="metric">30-day<br>pilot</div><p><strong>Bounded evaluation.</strong> QM is best deployed as a time-boxed pilot with a narrow workflow. Start with one team, one use case, and one security posture. Expand after proving value - the scoped workspace model makes gradual rollout natural.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>MarkTechPost coverage.</strong> MarkTechPost reported on YC open-sourcing QM as <a href="https://www.marktechpost.com/2026/08/03/y-combinator-open-sources-qm-multiplayer-ai-agent-harness/" target="_blank">"an MIT-licensed multiplayer agent harness that runs in Slack and the web"</a>, detailing its multi-model support and scoped workspace architecture.</li>
+        <li><strong>Wavect review.</strong> Wavect published a decision-grade <a href="https://wavect.io/blog/qm-ai-agent-harness-review/" target="_blank">review asking "Is Quartermaster ready for work?"</a> - concluding it is worth a bounded 30-day pilot for technical startups, but is not turnkey SaaS.</li>
+        <li><strong>Medium architecture teardown.</strong> A <a href="https://atul4u.medium.com/inside-qm-a-system-design-teardown-of-y-combinators-multiplayer-agent-harness-d5482cd8d5d3" target="_blank">system-design teardown on Medium</a> walked through QM's internals - Postgres-backed state, per-scope sandboxing, and the agent-driven deployment flow.</li>
+        <li><strong>Startup Fortune profile.</strong> Startup Fortune covered the release as <a href="https://startupfortune.com/y-combinator-open-sources-qm-the-ai-agent-harness-it-uses-to-run-itself/" target="_blank">"Y Combinator open-sources QM, the AI agent harness it uses to run itself"</a>, emphasizing the dogfooding angle.</li>
+        <li><strong>YC Roaster analysis.</strong> YC Roaster asked <a href="https://www.ycroaster.com/blog/yc-open-sources-qm-multi-agent-harness-yc-f26-wedge" target="_blank">whether "agents for a whole company" remains an open F26 wedge</a> now that YC itself has shipped a free, open-source version.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Not turnkey SaaS.</strong> QM is self-hosted with no managed offering. You need at least one platform engineer to deploy, maintain, and troubleshoot. Cloud costs and model tokens are on you.</li>
+        <li><strong>Young codebase.</strong> Created July 29, 2026 - barely five weeks old. Expect rough edges, breaking changes, and gaps in documentation. It is production-tested at YC but may not match your environment.</li>
+        <li><strong>Security posture trust.</strong> The <code>dangerous</code> posture runs agent actions without human review. Use it only in sandboxed, low-risk scopes. The <code>strict</code> posture adds friction - find the right balance for your team.</li>
+        <li><strong>Slack dependency.</strong> While QM has a web UI, the strongest integration is with Slack. If your team lives in Teams, Discord, or another platform, the Slack-native workflow advantage disappears.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/yc-software/qm" target="_blank">yc-software/qm GitHub</a> - source, deployment CLI, documentation</li>
+      <li>Topics: multiplayer, agent-harness, yc, slack, typescript, self-hosted</li>
+      <li>Last pushed: September 4, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

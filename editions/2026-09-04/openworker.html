@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>andrewyng/openworker - AI Coworker That Delivers | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a3e;--bg2:#222252;--card:#252560;--card2:#2d2d6e;
+    --primary:#8c1515;--primary-dim:#a52020;--secondary:#f4c430;
+    --ink:#f5f0e8;--muted:#b8b0c8;--line:#3a3a78;
+    --sans:'Source Sans 3',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Merriweather',serif;
+    --r:4px;
+    --shadow:0 2px 12px rgba(0,0,0,.25);--shadow-lg:0 6px 24px rgba(0,0,0,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      radial-gradient(ellipse at 20% 0%,rgba(140,21,21,.12),transparent 50%),
+      radial-gradient(ellipse at 80% 100%,rgba(244,196,48,.06),transparent 45%);}
+  a{color:var(--secondary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(26,26,62,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--secondary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--secondary);color:var(--secondary);text-decoration:none}
+
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.20em;text-transform:uppercase;font-weight:700;background:var(--primary);color:var(--ink);border-radius:2px;padding:7px 20px;margin-bottom:24px;border-left:4px solid var(--secondary)}
+  h1{font-family:var(--disp);font-size:clamp(36px,7vw,68px);font-weight:900;line-height:1.1;letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.38em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
+  h1 .name{color:var(--secondary);text-shadow:0 0 30px rgba(244,196,48,.20)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--secondary)}
+  .chip .cv.rd{color:var(--primary-dim)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(26,26,62,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:12.5px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.10em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--muted)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:var(--ink);box-shadow:var(--shadow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:900;letter-spacing:-.005em;margin-bottom:10px}
+  h2 em{font-style:italic;color:var(--secondary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:4px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.gd{color:var(--secondary)}.bignum .n.rd{color:var(--primary-dim)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--secondary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(140,21,21,.12),rgba(244,196,48,.06));border:1px solid var(--secondary);border-radius:8px;padding:34px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:var(--secondary);color:var(--bg);font-weight:700;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:2px;margin-bottom:16px}
+  .best-feature h3{font-size:23px;color:var(--ink)}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(140,21,21,.08);border-color:rgba(140,21,21,.50)}
+  .ba.after{background:rgba(244,196,48,.06);border-color:rgba(244,196,48,.30)}
+  .ba .ba-tag{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.20em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--primary-dim)}.ba.after .ba-tag{color:var(--secondary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--ink);font-weight:700;font-size:13px;width:30px;height:30px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--secondary)}
+  pre .cm{color:var(--muted)}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:21px;color:var(--secondary);line-height:1.2;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--secondary);font-size:18px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--secondary);text-decoration:none;border-bottom:1px dotted var(--secondary)}.itw a:hover{opacity:.8}
+
+  .watchout{background:rgba(140,21,21,.08);border:2px dashed var(--primary-dim);border-radius:8px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--primary-dim);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(140,21,21,.20)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\00BB ";color:var(--secondary);font-weight:700;font-size:16px}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--secondary);color:var(--secondary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/andrewyng/openworker" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Open-Source AI Coworker for Real Work</span>
+    <h1><span class="owner">andrewyng/</span><span class="name">openworker</span></h1>
+    <p class="tagline">Andrew Ng's <strong>open-source agent framework</strong> for production work. An AI coworker that does not just chat - it <strong>delivers finished results</strong>: polished documents, Slack messages, calendar updates, and more.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv gd">17.3K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">2,429</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv rd">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Finished work, <em>not chat</em></h2>
+    <p class="sub">OpenWorker is a desktop AI agent that breaks tasks into steps, calls the right tools, and hands you the completed deliverable. Built on Andrew Ng's aisuite framework with a full Tauri desktop app.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n gd">17.3K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n rd">2,429</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">32K</div><div class="l">Lines of Python</div></div>
+      <div class="bignum"><div class="n gd">25+</div><div class="l">Integrations</div></div>
+      <div class="bignum"><div class="n">4</div><div class="l">Risk Tiers</div></div>
+      <div class="bignum"><div class="n rd">78</div><div class="l">Test Modules</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Results, not conversations</div><p>Ask OpenWorker to prepare a customer brief and it hands you a <strong>polished document on disk</strong>. Ask it to reschedule your afternoon and it <strong>actually moves the calendar entries</strong>. The output is finished work, not a chat transcript you have to act on yourself.</p></div>
+      <div class="feat"><div class="fh">Model-agnostic architecture</div><p>Bring your own API key for <strong>OpenAI, Anthropic, Google, DeepSeek, Mistral, Grok</strong>, or run fully local with <strong>Ollama</strong>. Built on Andrew Ng's <code>aisuite</code> - a unified API layer across LLM providers.</p></div>
+      <div class="feat"><div class="fh">Four-tier security model</div><p>Instead of approve-everything or trust-everything, OpenWorker sorts actions into four risk tiers: <strong>read local files, write files, execute code, call external services</strong>. You approve the tier once and the agent works within those guardrails.</p></div>
+      <div class="feat"><div class="fh">25+ built-in connectors</div><p>GitHub, Slack, Jira, Notion, Linear, HubSpot, Outlook, Gmail, Google Calendar, and more. Each connector is a native integration - not a browser automation hack.</p></div>
+      <div class="feat"><div class="fh">MCP server support</div><p>Point OpenWorker at any MCP server to extend its tool surface. If a tool exists as an MCP endpoint, OpenWorker can call it - no custom integration code needed.</p></div>
+      <div class="feat"><div class="fh">Built-in security agents</div><p>After the initial launch, users discovered cybersecurity as a strong use case. OpenWorker now ships with built-in agents for <strong>code vulnerability scanning, supply chain injection detection</strong>, and <strong>cloud configuration auditing</strong>.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Local-first, model-agnostic agent that actually does the work</h3>
+      <p>The core proposition is simple: instead of chatting about what to do, OpenWorker does it. It runs on your machine, uses whatever LLM you choose, and delivers finished artifacts - a drafted report, a sent Slack message, a reorganized calendar. The four-tier security model means it is not an uncontrolled script runner, but it is also not the "approve every keystroke" pattern that makes most agent tools unusable.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>last-mile</em> problem</h2>
+    <p class="sub">AI can reason, plan, and generate text. But getting from "the model said what to do" to "the work is actually done" still requires a human to copy, paste, click, and send. OpenWorker closes that gap.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Chat transcripts, not deliverables.</strong> You ask an LLM to prepare a meeting brief. It gives you a wall of text in a chat window. You copy it, paste it into a doc, format it, and save it. The AI did the thinking. You did the work.</p>
+        <p><strong>Model lock-in.</strong> Most agent tools are tied to a single model provider. Want to switch from GPT to Claude? Rewrite your prompts, retool your integrations, retest everything. Your agent workflow is vendor-captive.</p>
+        <p><strong>All-or-nothing trust.</strong> Current agent tools either ask you to approve every single action (death by a thousand clicks) or run autonomously with no guardrails (terrifying). Neither is usable for real work.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Finished artifacts on disk.</strong> OpenWorker writes the document, saves the file, sends the message, updates the calendar. You get a finished deliverable, not instructions on how to make one.</p>
+        <p><strong>Swap models freely.</strong> Built on <code>aisuite</code>, OpenWorker works with any major LLM provider or local model. Change your model in one config line - your tools, connectors, and workflows stay the same.</p>
+        <p><strong>Tiered approval.</strong> Approve a risk level once, not every action. Reading files? Auto-approved. Sending a Slack message? Asks once, then proceeds for that category. Meaningful safety without the friction.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>running</em></h2>
+    <p class="sub">OpenWorker runs as a local desktop app with a Python backend and Tauri frontend. Clone, configure your model, and start handing off tasks.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repository</span>
+git clone https://github.com/andrewyng/openworker.git
+cd openworker
+
+<span class="cm"># Install Python dependencies</span>
+pip install -r requirements.txt</pre>
+        <p>Requires <strong>Python 3.10+</strong>. The Tauri desktop app is optional - you can also use OpenWorker from the CLI.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your model provider</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your API key for your preferred provider</span>
+export OPENAI_API_KEY="sk-..."
+<span class="cm"># or</span>
+export ANTHROPIC_API_KEY="sk-ant-..."
+<span class="cm"># or run fully local with Ollama</span>
+ollama pull llama3</pre>
+        <p>OpenWorker supports <strong>OpenAI, Anthropic, Google, DeepSeek, Mistral, Grok</strong>, and any Ollama-hosted model. Configure in <code>config.yaml</code> or via environment variables.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Connect your tools</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Enable integrations in config.yaml</span>
+integrations:
+  slack:
+    token: "xoxb-..."
+  github:
+    token: "ghp_..."
+  google_calendar:
+    credentials: "./creds.json"
+
+<span class="cm"># Or connect any MCP server</span>
+mcp_servers:
+  - url: "http://localhost:3000/mcp"</pre>
+        <p>Each integration uses its own OAuth flow or API token. Enable only the ones you need - OpenWorker's security model respects the principle of least privilege.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Hand off your first task</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Launch OpenWorker</span>
+python -m openworker
+
+<span class="cm"># Or use the CLI directly</span>
+python -m openworker --task "Prepare a customer brief
+for Acme Corp using our HubSpot data and save it
+as a PDF on my desktop"</pre>
+        <p>OpenWorker will plan the steps, request approval for each risk tier it needs, and deliver the finished result. Check the <code>--interactive</code> flag to watch it work step by step.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and individuals are putting OpenWorker to work - from sales prep to incident response to executive calendar management.</p>
+
+    <div class="story"><div class="metric">Sales Prep</div><p><strong>Pre-meeting customer briefs.</strong> A sales rep asks OpenWorker to pull the last 90 days of HubSpot interactions, summarize open deals, and produce a one-page brief before a call. The brief lands on disk as a formatted PDF - no copy-paste, no manual research.</p></div>
+    <div class="story"><div class="metric">Incident Response</div><p><strong>Automated incident timelines.</strong> When a Slack alert fires, OpenWorker pulls the runbook, traces the failure across linked GitHub issues and deployment logs, and assembles a timeline document. The on-call engineer gets context, not a chat message saying "something broke."</p></div>
+    <div class="story"><div class="metric">Security Ops</div><p><strong>Vulnerability triage.</strong> After the initial release, users discovered cybersecurity was a natural fit. OpenWorker's built-in security agents scan code for vulnerabilities, check dependencies for supply chain injections, and audit cloud configurations - all from a single task prompt.</p></div>
+    <div class="story"><div class="metric">Executive Assistant</div><p><strong>Calendar and email management.</strong> Ask OpenWorker to untangle a double-booked week and it actually reschedules the meetings - sends the calendar updates, drafts the "sorry, need to reschedule" emails, and confirms the new slots. The calendar is fixed, not described.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Andrew Ng's launch post.</strong> The original announcement on X from Andrew Ng describing OpenWorker's philosophy of delivering finished work instead of chat transcripts. <a href="https://x.com/AndrewYNg/status/2080333504446108104" target="_blank">Andrew Ng on X</a></li>
+        <li><strong>MarkTechPost coverage.</strong> A detailed technical breakdown covering OpenWorker's architecture, the aisuite foundation, security tiers, and real-world use cases. <a href="https://www.marktechpost.com/2026/07/23/andrew-ng-just-released-openworker-an-open-source-local-first-desktop-ai-coworker-that-returns-finished-deliverables-instead-of-chat/" target="_blank">MarkTechPost article</a></li>
+        <li><strong>DEV Community deep-dive.</strong> A developer-focused walkthrough explaining OpenWorker's design, MCP integration, and how to extend it with custom tools. <a href="https://dev.to/arshtechpro/openworker-andrew-ngs-local-first-ai-coworker-explained-for-developers-3hc9" target="_blank">DEV Community post</a></li>
+        <li><strong>YouTube tutorial.</strong> Step-by-step setup and demo showing OpenWorker handling real tasks across Slack, GitHub, and Google Calendar integrations. <a href="https://www.youtube.com/watch?v=_Xc4m-fQ8jw" target="_blank">OpenWorker Tutorial on YouTube</a></li>
+        <li><strong>Security update announcement.</strong> Andrew Ng's follow-up post announcing the cybersecurity-focused update after users found OpenWorker especially useful for security workflows. <a href="https://x.com/AndrewYNg/status/2092315079576555806" target="_blank">Security update on X</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Desktop-first, not cloud-native.</strong> OpenWorker runs on your laptop, not on a server. Sharing agent workflows across a team means everyone installs and configures their own instance. There is no hosted version or shared workspace.</li>
+        <li><strong>Python-heavy setup.</strong> The codebase is roughly 32K lines of Python across 119 files. While the Tauri app provides a nice UI, the backend requires a Python environment with substantial dependencies. Expect some setup friction.</li>
+        <li><strong>Integration quality varies.</strong> The 25+ connectors are first-party but not all equally mature. Core integrations like Slack and GitHub are solid. Newer ones like HubSpot and Linear may have rougher edges and less error handling.</li>
+        <li><strong>Still in open beta.</strong> Created July 20, 2026 - about six weeks old. The API, config format, and plugin system are still evolving. Breaking changes between releases are likely. Pin your version if building on top of it.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/andrewyng/openworker" target="_blank">andrewyng/openworker GitHub</a> - source, documentation, integration guides</li>
+      <li>Built on aisuite with 25+ integrations and MCP server support</li>
+      <li>Last pushed: September 3, 2026 | Created: July 20, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>firecrawl/anydoc - Docs to Markdown in Milliseconds | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Fira+Code:wght@400;500&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf5eb;--bg2:#f3ece0;--card:#fff;--card2:#f7f1e5;
+    --primary:#2a9d8f;--primary-dim:#228176;--secondary:#e76f51;
+    --accent:#8b7355;--accent-light:#a8916e;
+    --ink:#2d2d2d;--muted:#6b5e4f;--line:#d4c9b8;
+    --sans:'Lato',sans-serif;--mono:'Fira Code',monospace;--disp:'Playfair Display',serif;
+    --r:6px;
+    --shadow:0 2px 12px rgba(107,94,79,.10);--shadow-lg:0 6px 24px rgba(107,94,79,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(139,115,85,.025) 40px,rgba(139,115,85,.025) 41px),
+      repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(139,115,85,.025) 40px,rgba(139,115,85,.025) 41px);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(250,245,235,.96);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:2px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.15em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--shadow)}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,72px);font-weight:800;line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.42em;display:block;letter-spacing:.04em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(250,245,235,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:2px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--accent)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:italic;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:4px solid var(--primary);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum::before{content:'';position:absolute;top:0;right:0;width:40px;height:40px;background:var(--bg2);clip-path:polygon(100% 0,0 0,100% 100%);opacity:.6}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:2px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(42,157,143,.06),rgba(231,111,81,.04));border:2px solid var(--primary);border-radius:10px;padding:34px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--secondary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:23px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:2px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(231,111,81,.05);border-color:var(--secondary)}
+  .ba.after{background:rgba(42,157,143,.05);border-color:var(--primary)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.10em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{background:var(--card);border:2px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:14px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:var(--ink);border:2px solid var(--accent);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#e8dfd0}
+  pre .cm{color:#8b8578}
+
+  .story{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:22px;color:var(--primary);line-height:1.2;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:18px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:rgba(231,111,81,.05);border:2px dashed var(--secondary);border-radius:10px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(231,111,81,.15)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:2px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:2px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/firecrawl/anydoc" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Documents to Markdown in Milliseconds</span>
+    <h1><span class="owner">firecrawl/</span><span class="name">anydoc</span></h1>
+    <p class="tagline">Convert <strong>Word, PowerPoint, Excel, PDF</strong>, and 10 more office formats to clean Markdown. Built in <strong>pure Rust</strong> - no ML models, no external dependencies, median <strong>4.7ms</strong> per file.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">20.3K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1,228</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Rust</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Office docs, <em>unfolded</em></h2>
+    <p class="sub">A single Rust binary that turns 14 office formats into consistent GitHub-Flavored Markdown. No network calls, no cloud API, no ML models. Just bytes in, Markdown out - in under 5 milliseconds.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">20.3K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1,228</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">14</div><div class="l">Formats Supported</div></div>
+      <div class="bignum"><div class="n lm">4.7ms</div><div class="l">Median Parse Time</div></div>
+      <div class="bignum"><div class="n">0</div><div class="l">External Dependencies</div></div>
+      <div class="bignum"><div class="n sc">4</div><div class="l">SDK Bindings</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Pure Rust, zero dependencies</div><p>No ML models, no system libraries, no network calls. The entire engine compiles to a single binary. This means it can run <strong>anywhere</strong> - including inside a Cloudflare Worker via WASM.</p></div>
+      <div class="feat"><div class="fh">Byte-level format detection</div><p>AnyDoc reads the actual bytes - PDF headers, RTF open groups, OLE stream names, ZIP package mimetypes - instead of trusting file extensions. A <code>.txt</code> file that is secretly a <code>.docx</code> still converts correctly.</p></div>
+      <div class="feat"><div class="fh">Unified Document model</div><p>Every format passes through the same internal <code>Document</code> model and GFM serializer. This guarantees consistent Markdown output regardless of input format - tables, headings, and lists map the same way.</p></div>
+      <div class="feat"><div class="fh">4 language bindings</div><p>Use it from <strong>Rust</strong> natively, <strong>Node.js</strong> via <code>npm</code>, <strong>Python</strong> via <code>pip</code>, or the <strong>CLI</strong> via <code>npx</code>. All four share the same compiled Rust core - no performance penalty for the bindings.</p></div>
+      <div class="feat"><div class="fh">Sub-5ms median performance</div><p>Benchmarked on 100 real-world documents across all 14 formats, AnyDoc achieves a <strong>4.7ms median</strong> processing time. That is not a typo - milliseconds, not seconds.</p></div>
+      <div class="feat"><div class="fh">Powers Firecrawl's /parse API</div><p>This is not a side project. AnyDoc is the production engine behind Firecrawl's hosted document parsing endpoint, processing millions of documents daily for paying customers.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>LLM-ready Markdown without a network round-trip</h3>
+      <p>The core value proposition is speed and locality. When you are building an RAG pipeline, agent workflow, or document ingestion system, sending every file to a cloud API adds latency, cost, and a privacy concern. AnyDoc converts locally in milliseconds - your data never leaves the machine. A <code>pip install firecrawl-anydoc</code> and one function call replaces an entire parsing microservice.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>parsing</em> problem</h2>
+    <p class="sub">Office documents are the dark matter of enterprise data. They are everywhere, they hold critical information, and they are annoyingly hard to convert into something an LLM can actually read.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Tool sprawl.</strong> Pandoc for Word. LibreOffice for slides. Unstructured for PDFs. Mammoth for .docx. Each tool has its own install process, its own output quirks, its own failure modes. Your pipeline becomes a Frankenstein of converters.</p>
+        <p><strong>Cloud-only parsing.</strong> Many modern document parsers require sending files to a hosted API. That means network latency, per-page pricing, and data leaving your infrastructure - a non-starter for regulated industries.</p>
+        <p><strong>Inconsistent output.</strong> Different tools produce wildly different Markdown. Tables render differently, headings use different conventions, code blocks get mangled. Your downstream LLM sees garbage in, garbage out.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One tool, 14 formats.</strong> Drop in AnyDoc and it handles .docx, .pptx, .xlsx, .odt, .odp, .ods, .rtf, .epub, .csv, and text-layer PDFs through a single API call. One dependency, one output format.</p>
+        <p><strong>Fully local, fully private.</strong> AnyDoc runs entirely on your machine. No API keys, no network calls, no data exfiltration risk. Ideal for healthcare, legal, and financial document pipelines.</p>
+        <p><strong>Consistent GFM output.</strong> Every format flows through the same Document model and serializer. Tables are always GFM tables. Headings are always ATX headings. Your LLM gets predictable, clean input every time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Pick your language and convert your first document in under a minute. No API keys, no Docker, no configuration files.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install via your preferred package manager</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Node.js</span>
+npm install @firecrawl/anydoc
+
+<span class="cm"># Python</span>
+pip install firecrawl-anydoc
+
+<span class="cm"># Rust</span>
+cargo add anydoc
+
+<span class="cm"># CLI (no install needed)</span>
+npx @firecrawl/anydoc</pre>
+        <p>Each binding wraps the same compiled Rust core. <strong>Node.js and Python</strong> ship pre-built native modules - no Rust toolchain required on your machine.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Convert a single file</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># CLI</span>
+npx @firecrawl/anydoc convert report.docx
+
+<span class="cm"># Python</span>
+from anydoc import convert
+md = convert("report.docx")
+print(md)</pre>
+        <p>The output is clean GitHub-Flavored Markdown. Tables, headings, lists, and inline formatting are all preserved.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Batch-convert a directory</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Convert every office file in a folder</span>
+npx @firecrawl/anydoc convert ./docs --out ./markdown
+
+<span class="cm"># Python - process multiple files</span>
+from pathlib import Path
+from anydoc import convert
+
+for f in Path("./docs").glob("*"):
+    md = convert(str(f))
+    Path(f"./markdown/{f.stem}.md").write_text(md)</pre>
+        <p>AnyDoc auto-detects each file's format from its bytes. No need to specify <code>--format</code> flags or sort files by extension first.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Feed into your LLM or RAG pipeline</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Example: convert and chunk for RAG</span>
+from anydoc import convert
+
+md = convert("quarterly_report.pptx")
+chunks = md.split("\n## ")  <span class="cm"># split on H2 headings</span>
+
+<span class="cm"># Feed chunks to your embedding model</span>
+for chunk in chunks:
+    embedding = embed(chunk)
+    vector_store.upsert(embedding, chunk)</pre>
+        <p>AnyDoc's consistent heading structure makes chunking predictable. Each slide in a .pptx becomes an H2, each sheet in an .xlsx becomes a section.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Where AnyDoc fits in the document processing landscape - and where the community is already putting it to work.</p>
+
+    <div class="story"><div class="metric">RAG Pipelines</div><p><strong>Local document ingestion.</strong> Teams building retrieval-augmented generation systems use AnyDoc to convert mixed office documents into Markdown before chunking and embedding. The 4.7ms median means you can process thousands of files in seconds without a parsing bottleneck.</p></div>
+    <div class="story"><div class="metric">Agent Tooling</div><p><strong>Give agents document eyes.</strong> AI agents that need to read uploaded files - expense reports, contracts, slide decks - use AnyDoc as a local tool call. No cloud API latency, no token-hungry screenshots. Just clean text the model can reason over.</p></div>
+    <div class="story"><div class="metric">Edge &amp; WASM</div><p><strong>Parse at the edge.</strong> Developers have compiled AnyDoc to WebAssembly and run it inside Cloudflare Workers. Document conversion happens at the CDN edge - no origin server needed. One developer reported processing <code>.docx</code> to Markdown entirely in-browser.</p></div>
+    <div class="story"><div class="metric">Compliance</div><p><strong>Data never leaves the perimeter.</strong> Healthcare and legal teams use AnyDoc precisely because it has no network dependency. Patient records, legal briefs, and financial filings convert to Markdown without ever touching an external API.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Official launch blog.</strong> Firecrawl's announcement post covers AnyDoc's architecture, benchmarks against Pandoc/LibreOffice/Mammoth, and the companion <code>pdf-inspector</code> tool. <a href="https://www.firecrawl.dev/blog/anydoc-and-pdf-inspector" target="_blank">firecrawl.dev/blog</a></li>
+        <li><strong>Medium deep-dive.</strong> AI Engineering published a detailed breakdown of AnyDoc's 4.7ms benchmark, format detection approach, and limitations. <a href="https://ai-engineering-trend.medium.com/firecrawl-open-sources-anydoc-convert-14-document-formats-to-markdown-in-just-4-7-milliseconds-9a540b77bef9" target="_blank">AI Engineering on Medium</a></li>
+        <li><strong>YouTube walkthrough.</strong> A video demo showing AnyDoc's CLI converting mixed document folders with real-time speed comparisons against other parsers. <a href="https://www.youtube.com/watch?v=G_yqPWRHlXM" target="_blank">Firecrawl AnyDoc: Blazing Fast 4ms Document Parsing</a></li>
+        <li><strong>Independent review.</strong> Wavect published a hands-on review of AnyDoc covering all 14 supported formats, quality tradeoffs, and where it falls short on complex PDFs. <a href="https://wavect.io/blog/firecrawl-anydoc-review/" target="_blank">Wavect review</a></li>
+        <li><strong>Developer guide.</strong> Agentpedia published a step-by-step guide for integrating AnyDoc into local agent workflows and RAG pipelines. <a href="https://agentpedia.codes/blog/firecrawl-anydoc-document-markdown-guide" target="_blank">Agentpedia guide</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>No OCR support.</strong> AnyDoc only processes the text layer of PDFs. Scanned documents, image-heavy PDFs, and photographed pages will produce empty or minimal output. You will need Firecrawl's hosted API or a separate OCR tool for those.</li>
+        <li><strong>No semantic extraction.</strong> AnyDoc gives you Markdown, not structured data. It will not extract invoice line items, form field values, or table headers as typed objects. You still need a downstream parser or LLM for that.</li>
+        <li><strong>Complex layouts may simplify.</strong> Multi-column Word documents, heavily formatted spreadsheets, and slide decks with overlapping text boxes will convert to linear Markdown. Spatial layout information is lost.</li>
+        <li><strong>Very young project.</strong> Created August 3, 2026 - barely one month old. The API surface may change, edge cases may lurk, and the ecosystem of third-party integrations is still forming. Pin your version.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/firecrawl/anydoc" target="_blank">firecrawl/anydoc GitHub</a> - source, benchmarks, SDK documentation</li>
+      <li>Supports: .docx, .pptx, .xlsx, .odt, .odp, .ods, .rtf, .epub, .csv, .pdf, and more</li>
+      <li>Last pushed: August 28, 2026 | Created: August 3, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

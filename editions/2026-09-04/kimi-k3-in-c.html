@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FareedKhan-dev/kimi-k3-in-c - Trillion-Parameter CPU Inference | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Fira+Code:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;--bg2:#0d0d0d;--card:#111111;--card2:#161616;
+    --primary:#33ff33;--primary-dim:#1faa1f;--secondary:#00cc66;
+    --ink:#ccffcc;--muted:#6aaa6a;--line:#1a3a1a;
+    --sans:'Space Mono',monospace;--mono:'Fira Code',monospace;--disp:'VT323',monospace;
+    --r:0px;
+    --glow-p:0 0 10px rgba(51,255,51,.3),0 0 30px rgba(51,255,51,.1);
+    --glow-s:0 0 10px rgba(0,204,102,.25);
+    --scanline:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:14px;position:relative}
+  body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:var(--scanline);pointer-events:none;z-index:9999;opacity:.35}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline;text-shadow:var(--glow-p)}
+  ::selection{background:var(--primary);color:var(--bg)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,10,10,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--disp);font-size:20px;color:var(--muted);letter-spacing:.04em}
+  .radar-link:hover{color:var(--primary);text-decoration:none;text-shadow:var(--glow-p)}
+  .gh-link{font-family:var(--mono);font-size:12px;color:var(--primary);background:transparent;border:1px solid var(--primary);padding:8px 18px;border-radius:var(--r);text-shadow:var(--glow-p);box-shadow:var(--glow-p)}
+  .gh-link:hover{background:var(--primary);color:var(--bg);text-shadow:none;text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:22px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--primary);padding:6px 18px;margin-bottom:24px;box-shadow:var(--glow-p)}
+  h1{font-family:var(--disp);font-size:clamp(48px,9vw,96px);font-weight:400;line-height:1.0;letter-spacing:.02em}
+  h1 .owner{color:var(--muted);font-size:.5em;display:block;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:0 0 20px rgba(51,255,51,.5),0 0 60px rgba(51,255,51,.15)}
+  .tagline{font-family:var(--sans);font-size:clamp(14px,2vw,17px);color:var(--muted);max-width:720px;margin:20px 0 34px}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:transparent;border:1px solid var(--line);padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:15px;color:var(--primary);text-shadow:var(--glow-p)}
+  .chip .cv.sc{color:var(--secondary);text-shadow:var(--glow-s)}
+  .chip .ck{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);border-top:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-size:22px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 22px;cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.06em}
+  .tab-btn:hover{color:var(--primary);border-color:var(--primary-dim);text-shadow:var(--glow-p)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:var(--bg);text-shadow:none;box-shadow:var(--glow-p)}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(32px,5vw,52px);font-weight:400;letter-spacing:.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow-p)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:700px;font-size:14px}
+  h3{font-size:16px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--secondary)}
+  .prompt{color:var(--primary-dim);font-family:var(--mono);font-size:12px;margin-bottom:4px}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:inset 0 0 30px rgba(51,255,51,.03)}
+  .bignum .n{font-family:var(--disp);font-size:clamp(36px,5vw,52px);line-height:1;color:var(--ink);text-shadow:0 0 8px rgba(51,255,51,.2)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow-p)}.bignum .n.sc{color:var(--secondary);text-shadow:var(--glow-s)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em;font-family:var(--sans)}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary-dim);padding:22px}
+  .feat .fh{font-weight:700;font-size:14px;margin-bottom:8px;font-family:var(--sans)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:13px}
+  .feat p{color:var(--muted);font-size:13px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:var(--card);border:2px solid var(--primary);padding:34px;box-shadow:var(--glow-p),inset 0 0 60px rgba(51,255,51,.04)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:var(--bg);font-size:20px;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;margin-bottom:16px}
+  .best-feature h3{font-size:20px;font-family:var(--sans)}.best-feature p{color:var(--ink);font-size:14px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{padding:28px;border:1px solid var(--line)}
+  .ba.before{border-color:rgba(255,80,80,.4);background:rgba(255,80,80,.03)}
+  .ba.after{border-color:rgba(51,255,51,.4);background:rgba(51,255,51,.03)}
+  .ba .ba-tag{font-family:var(--disp);font-size:24px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff5050}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:13px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);margin-bottom:18px;overflow:hidden}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:var(--bg);font-size:22px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow-p)}
+  .step-head h3{margin:0;font-size:14px;font-family:var(--sans)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:13px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050505;border:1px solid var(--line);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary);text-shadow:0 0 6px rgba(51,255,51,.15)}
+  pre .cm{color:var(--muted);text-shadow:none}
+  .story{background:var(--card);border:1px solid var(--line);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--disp);font-size:30px;color:var(--primary);line-height:1.15;text-shadow:var(--glow-p)}
+  .story p{color:var(--muted);font-size:13px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px}.itw h3{color:var(--primary);font-size:24px;margin-bottom:16px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary-dim)}.itw a:hover{text-shadow:var(--glow-p)}
+  .watchout{background:rgba(255,80,80,.03);border:2px dashed rgba(255,80,80,.4);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff5050;font-size:16px;margin-bottom:16px;font-family:var(--sans)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:13px;border-bottom:1px solid rgba(255,80,80,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-size:22px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:13px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13px;background:transparent;border:1px solid var(--primary);padding:11px 22px;color:var(--primary);font-family:var(--sans);text-shadow:var(--glow-p);box-shadow:var(--glow-p)}
+  .backhub:hover{background:var(--primary);color:var(--bg);text-shadow:none;text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/FareedKhan-dev/kimi-k3-in-c" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Zero-Dependency CPU Inference</span>
+    <h1><span class="owner">FareedKhan-dev/</span><span class="name">kimi-k3-in-c</span></h1>
+    <p class="tagline">A <strong>2.78-trillion-parameter</strong> Kimi K3 running inference on a single CPU in <strong>8.24 GB of RAM</strong>. Portable C99 - no BLAS, no framework, no GPU.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">7.1K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.2K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">C</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>2.78T params, <em>one CPU</em></h2>
+    <p class="sub">A 176 KB C99 binary that streams a 2.78-trillion-parameter mixture-of-experts model from NVMe, keeping only what fires in memory. Four architectural reductions yield a 676x memory compression with byte-identical output.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">7.1K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">176 KB</div><div class="l">Binary Size</div></div>
+      <div class="bignum"><div class="n lm">2.78T</div><div class="l">Parameters</div></div>
+      <div class="bignum"><div class="n">8.24 GB</div><div class="l">Peak RAM</div></div>
+      <div class="bignum"><div class="n sc">676x</div><div class="l">Memory Compression</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">MoE sparsity exploit</div><p>Kimi K3 has <strong>896 experts per layer</strong> but only 16 fire per token. 93% of the 1.447 TB checkpoint - the routed experts - never enters RAM. They stream from NVMe on demand.</p></div>
+      <div class="feat"><div class="fh">Zero dependencies</div><p>No BLAS, no framework, no GPU driver. The only requirements are <code>libm</code> and <code>OpenMP</code>. Compiles with any C99-compliant compiler on any POSIX system.</p></div>
+      <div class="feat"><div class="fh">LRU expert cache</div><p>An in-memory LRU cache of recently used experts handles cache hits from resident memory. Misses read from NVMe via <code>O_DIRECT</code>, bypassing the OS page cache entirely.</p></div>
+      <div class="feat"><div class="fh">MXFP4 native quantization</div><p>Uses <strong>SiTU-GLU</strong> and native MXFP4 expert weights from the Kimi K3 checkpoint. No additional quantization step - the model ships in this format.</p></div>
+      <div class="feat"><div class="fh">Seven source files</div><p>The entire engine is <strong>176 KB of C</strong> across seven source files. Every line is readable, debuggable, and modifiable - built as a teaching artifact.</p></div>
+      <div class="feat"><div class="fh">Full 93-layer architecture</div><p>Runs the complete model - 69 KDA layers, 24 Gated MLA layers, top-16 expert selection. No shortcuts, no layer pruning, no accuracy tradeoffs.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single Best Feature</span>
+      <h3>The memory wall was a loading problem, not a model problem</h3>
+      <p>Everyone assumed running 2.78 trillion parameters required a GPU cluster. This project proves the constraint was never the model itself - it was how we loaded it. By streaming only the 16 active experts per layer from disk and keeping everything else on NVMe, the peak memory footprint drops from <code>1.56 TB</code> to <code>8.24 GB</code>. The output is byte-identical to the full-memory version.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>memory wall</em></h2>
+    <p class="sub">Trillion-parameter models were supposed to require a rack of H100s. The memory limit everyone took for granted was a property of how we load models, not the models themselves.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>GPU cluster required.</strong> Running Kimi K3 at full precision meant distributing 1.56 TB of weights across 32 H100 GPUs. That is roughly $1M in hardware, accessible to a handful of labs.</p>
+        <p><strong>Opaque inference stacks.</strong> Inference runs through PyTorch or vLLM with layers of abstraction. When something goes wrong at layer 47, good luck debugging it on a machine you do not own.</p>
+        <p><strong>No personal debugging.</strong> If you deploy K3 on 32 GPUs at work and hit a problem, you cannot reproduce it at home. The model does not fit in any consumer hardware configuration.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One CPU, 8 GB RAM.</strong> Stream experts from a fast NVMe drive. Only the 16 active experts per layer reside in memory at any point. The rest stay on disk.</p>
+        <p><strong>176 KB you can read.</strong> Seven C files, no frameworks. Every matrix multiply, every router decision, every cache eviction is visible and debuggable with <code>gdb</code>.</p>
+        <p><strong>Debug at home.</strong> The same model, the same weights, the same outputs - running on a workstation you own. Reproduce production bugs on personal hardware.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>running</em></h2>
+    <p class="sub">Clone, compile, download the checkpoint, and run inference. Requires a C99 compiler, a fast NVMe drive with 1.6 TB free, and 8+ GB of RAM.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone kimi-k3-in-c</span>
+git clone https://github.com/FareedKhan-dev/kimi-k3-in-c.git
+cd kimi-k3-in-c</pre>
+        <p>The repo is small - <strong>176 KB of source</strong> across seven files in <code>src/</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Build the binary</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Build with make (any C99 compiler works)</span>
+make
+
+<span class="cm"># Or compile directly with gcc</span>
+gcc -std=c99 -O2 -fopenmp -o kimi-k3 src/*.c -lm</pre>
+        <p>No BLAS libraries, no CUDA toolkit, no Python. Just a C compiler and <code>libm</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Download the Kimi K3 checkpoint</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Download the MXFP4 checkpoint (~1.56 TB)</span>
+<span class="cm"># Follow the instructions in docs/ for your</span>
+<span class="cm"># preferred mirror (HuggingFace, ModelScope)</span>
+python scripts/download_checkpoint.py \
+  --model kimi-k3 \
+  --format mxfp4 \
+  --output ./checkpoint/</pre>
+        <p>You need a <strong>fast NVMe drive</strong> with at least 1.6 TB free. Sequential read speed directly affects tokens-per-second on cache misses.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run inference</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Run with default settings</span>
+./kimi-k3 --checkpoint ./checkpoint/ \
+  --prompt "Explain the Riemann hypothesis"
+
+<span class="cm"># Tune expert cache size (default fits in 8 GB)</span>
+./kimi-k3 --checkpoint ./checkpoint/ \
+  --cache-size 64 \
+  --prompt "Write a Python web server"</pre>
+        <p>The <code>--cache-size</code> flag controls how many experts stay resident. Larger values use more RAM but reduce NVMe reads on repeated expert activations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How engineers and researchers are using kimi-k3-in-c to study, debug, and deploy trillion-parameter inference without GPU infrastructure.</p>
+
+    <div class="story"><div class="metric">Debug at home</div><p><strong>Reproduce production bugs on personal hardware.</strong> The author built this after deploying Kimi K3 on 32 H100 GPUs at work and being unable to debug on personal hardware. With this engine, any developer can step through inference with <code>gdb</code> on a single machine.</p></div>
+    <div class="story"><div class="metric">Teaching tool</div><p><strong>Understand MoE architecture hands-on.</strong> Seven readable C files with no framework abstractions. Students and researchers can trace exactly how a 2.78T-parameter MoE model routes tokens, activates experts, and produces output.</p></div>
+    <div class="story"><div class="metric">Edge inference</div><p><strong>Run frontier-class models without GPUs.</strong> Any machine with a fast NVMe drive and 8 GB of RAM can run inference. Useful for air-gapped environments, embedded systems with NVMe storage, or cost-sensitive deployments.</p></div>
+    <div class="story"><div class="metric">Architecture research</div><p><strong>Experiment with expert routing and caching.</strong> The LRU cache and <code>O_DIRECT</code> NVMe streaming are modifiable. Researchers can test alternative routing strategies, cache policies, and quantization schemes without touching a GPU cluster.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>DEV Community deep dive.</strong> <a href="https://dev.to/euk_ela_a3e7ed01aa3f7314e/how-a-176-kb-c-binary-runs-a-278-trillion-parameter-model-on-one-cpu-with-8-gb-of-ram-1ime" target="_blank">How a 176 KB C Binary Runs a 2.78-Trillion-Parameter Model</a> walks through the four architectural reductions that achieve 676x memory compression while preserving byte-identical output.</li>
+        <li><strong>Technical review on andrew.ooo.</strong> <a href="https://andrew.ooo/posts/kimi-k3-in-c-278-trillion-params-8gb-ram-review/" target="_blank">kimi-k3-in-c: Run a 2.78T Model on One CPU in 8GB RAM</a> provides an independent review of the project's NVMe streaming approach and real-world performance characteristics.</li>
+        <li><strong>Medium analysis.</strong> <a href="https://medium.com/open-intelligence/how-kimi-k3-in-c-runs-a-2-78-trillion-parameter-model-on-one-cpu-with-8-gigabytes-of-ram-085ee5070f3c" target="_blank">Open Intelligence on Medium</a> covers how the engine exploits MoE sparsity and what it means for democratizing access to frontier-scale models.</li>
+        <li><strong>The Daily Commit featured.</strong> <a href="https://www.thedailycommit.in/story/2026-08-06/01-github-fareedkhan-dev-kimi-k3-in-c" target="_blank">The Daily Commit</a> highlighted the project shortly after launch, noting it collected 842 stars in its first two days on GitHub.</li>
+        <li><strong>Hacker News coverage.</strong> Multiple <a href="https://news.ycombinator.com/item?id=49065752" target="_blank">Hacker News threads</a> on Kimi K3 discuss the model architecture and community projects running it on consumer hardware.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>NVMe speed is the bottleneck.</strong> Tokens-per-second on cache misses depends entirely on your drive's sequential read speed. A slow SATA SSD will make inference painfully slow. Budget for a fast Gen4 or Gen5 NVMe.</li>
+        <li><strong>1.56 TB checkpoint download.</strong> You need the full Kimi K3 MXFP4 checkpoint on a local drive. That is a serious download and storage commitment before you can generate a single token.</li>
+        <li><strong>Slow compared to GPU inference.</strong> This is a teaching and debugging tool, not a production serving engine. Expect seconds per token, not milliseconds. The value is accessibility and debuggability, not throughput.</li>
+        <li><strong>Young project - one month old.</strong> Created August 1, 2026, with active development. Expect breaking changes, incomplete documentation, and rough edges. The roadmap in <code>docs/ROADMAP.md</code> outlines planned improvements.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/FareedKhan-dev/kimi-k3-in-c" target="_blank">FareedKhan-dev/kimi-k3-in-c GitHub</a> - source, docs, roadmap</li>
+      <li>Topics: c99, cpu-inference, kimi-k3, llm, mixture-of-experts, moe, quantization, zero-dependencies</li>
+      <li>Last pushed: August 26, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

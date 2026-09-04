@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sapientinc/PRAXIST - Autonomous Research System | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inconsolata:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fdf6e3;--bg2:#f7eed5;--card:#ffffff;--card2:#faf3e0;
+    --primary:#002b5c;--primary-dim:#1a4a7a;--secondary:#dc143c;
+    --ink:#1a1a1a;--muted:#5a6a78;--line:#d4c9a8;
+    --sans:'Source Serif 4',Georgia,serif;--mono:'Inconsolata',monospace;--disp:'Crimson Text',Georgia,serif;
+    --r:2px;
+    --rule:1px solid var(--line);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:15px}
+  a{color:var(--secondary);text-decoration:none}a:hover{text-decoration:underline}
+  ::selection{background:var(--primary);color:#fff}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:var(--primary);border-bottom:3px solid var(--secondary)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--disp);font-size:16px;color:rgba(255,255,255,.75);letter-spacing:.03em}
+  .radar-link:hover{color:#fff;text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 18px;border-radius:var(--r)}
+  .gh-link:hover{background:rgba(255,255,255,.22);text-decoration:none}
+  .hero{padding:72px 0 50px;border-bottom:var(--rule)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.18em;text-transform:uppercase;background:var(--secondary);color:#fff;font-weight:700;border-radius:var(--r);padding:6px 18px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,72px);font-weight:700;line-height:1.08;color:var(--primary);letter-spacing:-.01em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.38em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,20px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-style:italic}
+  .tagline strong{color:var(--ink);font-style:normal}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:var(--rule);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:var(--sans)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(253,246,227,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--primary);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:700;font-size:14px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--primary);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(28px,4.5vw,42px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--primary)}
+  h2 em{font-style:italic;color:var(--secondary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:700px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px;color:var(--primary)}
+  h3 .dot{color:var(--secondary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:var(--rule);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+  .bignum .n{font-family:var(--disp);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink);font-weight:700}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.10em;font-family:var(--sans)}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:var(--rule);border-left:3px solid var(--secondary);border-radius:var(--r);padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--primary)}.feat .fh code{font-family:var(--mono);color:var(--secondary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--primary)}
+  .best-feature{background:var(--card);border:2px solid var(--primary);border-radius:4px;padding:34px;box-shadow:0 2px 8px rgba(0,43,92,.08)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--secondary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:22px;color:var(--primary)}.best-feature p{color:var(--ink);font-size:15px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--secondary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:var(--rule)}
+  .ba.before{background:#fff5f5;border-color:rgba(220,20,60,.25)}
+  .ba.after{background:#f0f7ff;border-color:rgba(0,43,92,.25)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:var(--rule);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:var(--rule)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:15px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px;color:var(--primary)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:var(--primary);border:none;border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#e0ecf7}
+  pre .cm{color:rgba(255,255,255,.45)}
+  .story{background:var(--card);border:var(--rule);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .story .metric{font-family:var(--disp);font-size:26px;color:var(--secondary);line-height:1.15;font-weight:700}
+  .story p{color:var(--muted);font-size:14px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .itw{margin-top:32px;border-top:var(--rule);padding-top:28px}
+  .itw h3{color:var(--secondary);font-size:18px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14px;border-bottom:var(--rule)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--secondary);text-decoration:none;border-bottom:1px dotted var(--secondary)}.itw a:hover{color:var(--primary)}
+  .watchout{background:#fff5f5;border:2px solid var(--secondary);border-radius:4px;padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:18px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(220,20,60,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:2px solid var(--primary);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\2022  ";color:var(--secondary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--primary);color:#fff;border:none;padding:11px 22px;border-radius:var(--r)}
+  .backhub:hover{background:var(--primary-dim);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/sapientinc/PRAXIST" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Autonomous Research System</span>
+    <h1><span class="owner">sapientinc/</span><span class="name">PRAXIST</span></h1>
+    <p class="tagline">Turns research questions into <strong>reproducible computational experiments</strong>. Define the objective and constraints - PRAXIST discovers the path.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">7.1K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">529</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Other</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Research that <em>runs itself</em></h2>
+    <p class="sub">PRAXIST is the first production-ready, open-source autonomous research system. It coordinates parallel research peers, logs every experiment to a shared research graph, and carries evidence across generations of experiments.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">7.1K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">529</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">49</div><div class="l">MLE-Bench Golds</div></div>
+      <div class="bignum"><div class="n lm">75</div><div class="l">Kaggle Competitions</div></div>
+      <div class="bignum"><div class="n sc">$3K</div><div class="l">MLE-Bench Cost</div></div>
+      <div class="bignum"><div class="n">12.7x</div><div class="l">Cheaper than Claude Code</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Parallel Research Peers</div><p>Multiple autonomous agents explore competing approaches simultaneously. Each peer runs its own experimental loop, tests hypotheses, investigates failures, and validates promising results independently.</p></div>
+      <div class="feat"><div class="fh">Shared Research Graph</div><p>Every experiment - successful or failed - is logged to a <strong>durable research graph</strong> tracking findings, evidence strength, and lineage. Later experiments pull from the graph to reuse validated mechanisms.</p></div>
+      <div class="feat"><div class="fh">Generation-to-generation synthesis</div><p>Unlike one-shot coding agents, PRAXIST carries evidence across generations. Each generation of experiments builds on cumulative findings, not just the best single candidate.</p></div>
+      <div class="feat"><div class="fh">Task-owned evaluation</div><p>Every research objective carries its own evaluation criteria. PRAXIST does not rely on generic metrics - it validates solutions against the specific measurable goals you defined.</p></div>
+      <div class="feat"><div class="fh">Negative knowledge tracking</div><p>Failed experiments are first-class citizens. The system records what did not work and why, preventing future peers from repeating dead-end approaches and accelerating convergence.</p></div>
+      <div class="feat"><div class="fh">49 MLE-Bench gold medals</div><p>Achieved <strong>49 gold-medal outcomes</strong> across 75 Kaggle competitions at approximately $3K in model cost - compared to 34 golds for Claude Code at $38K under the same conditions.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single Best Feature</span>
+      <h3>Cumulative experimental research, not one-shot task execution</h3>
+      <p>The core insight is that real research is iterative and cumulative. General coding agents execute tasks. PRAXIST discovers the research approach itself. Multiple peers explore competing hypotheses in parallel, store every finding in a shared research graph, and synthesize across generations - so the 50th experiment knows everything the first 49 learned, including what failed and why.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>research loop</em> problem</h2>
+    <p class="sub">Real R&D requires long-horizon exploration, parallel hypothesis testing, and cumulative evidence. Single-shot coding agents were never designed for this.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>One-shot task execution.</strong> Coding agents run a single approach, return a result, and forget everything. If the first attempt fails, you start from scratch with a new prompt. No learning, no accumulation.</p>
+        <p><strong>Failed experiments vanish.</strong> When an approach does not work, the evidence disappears. The next run has no idea what was already tried or why it failed. Repeated dead ends waste time and compute.</p>
+        <p><strong>Serial exploration only.</strong> You test one hypothesis at a time, manually review results, decide the next direction, and write a new prompt. The human is the bottleneck in the research loop.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Cumulative multi-generation research.</strong> PRAXIST carries findings forward. Generation N+1 builds on everything generation N discovered - successes, failures, and partial results are all available.</p>
+        <p><strong>Durable evidence graph.</strong> Every experiment, finding, and failure is stored with evidence strength and lineage. Later peers reuse validated mechanisms and avoid proven dead ends.</p>
+        <p><strong>Parallel exploration.</strong> Multiple Research Peers test competing hypotheses simultaneously. The system synthesizes across branches, combining discoveries that no single peer would have found alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Install PRAXIST, configure your LLM provider, define a research objective, and let the system discover the approach.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone PRAXIST</span>
+git clone https://github.com/sapientinc/PRAXIST.git
+cd PRAXIST
+
+<span class="cm"># Install dependencies</span>
+pip install -e ".[all]"</pre>
+        <p>Requires <strong>Python 3.10+</strong>. The <code>[all]</code> extra includes all supported LLM backends and evaluation frameworks.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your LLM provider</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your API key (supports multiple providers)</span>
+export DEEPSEEK_API_KEY="your-key-here"
+
+<span class="cm"># Or use Anthropic, OpenAI, etc.</span>
+export ANTHROPIC_API_KEY="your-key-here"</pre>
+        <p>PRAXIST's MLE-Bench results used <strong>DeepSeek V4 Pro</strong>. Any provider with function-calling support works. Model cost scales with the number of peers and generations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Define a research objective</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a research configuration</span>
+praxist init my-research
+
+<span class="cm"># Edit the generated config</span>
+<span class="cm"># Define: objective, constraints, success criteria,</span>
+<span class="cm"># evaluation metrics, and compute budget</span>
+vim my-research/config.yaml</pre>
+        <p>The config file specifies <strong>what success looks like</strong> - measurable criteria that PRAXIST uses to evaluate and compare experimental results across peers and generations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Launch the research loop</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start PRAXIST with your research config</span>
+praxist run my-research/config.yaml \
+  --peers 4 \
+  --generations 10 \
+  --budget 50.00
+
+<span class="cm"># Monitor progress in real time</span>
+praxist status my-research</pre>
+        <p>PRAXIST spawns <strong>parallel Research Peers</strong> that explore competing approaches. The <code>--budget</code> flag caps total LLM spend. Use <code>praxist status</code> to monitor the research graph as it grows.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How teams and researchers are using PRAXIST to automate the experimental research loop across machine learning, data science, and computational research.</p>
+
+    <div class="story"><div class="metric">Kaggle<br>competitions</div><p><strong>49 gold medals on MLE-Bench.</strong> PRAXIST achieved gold-medal outcomes in 49 of 75 Kaggle competitions at $3K in model cost. The parallel-peer architecture lets it explore multiple feature engineering and modeling strategies simultaneously.</p></div>
+    <div class="story"><div class="metric">ML pipeline<br>optimization</div><p><strong>Discover better architectures autonomously.</strong> Define accuracy targets and compute budgets. PRAXIST explores model architectures, hyperparameter spaces, and data augmentation strategies in parallel, carrying successful patterns across generations.</p></div>
+    <div class="story"><div class="metric">Reproducible<br>research</div><p><strong>Every experiment is logged with lineage.</strong> The research graph records what was tried, what worked, what failed, and why. Published results come with a complete provenance chain - not just the winning approach, but the entire search history.</p></div>
+    <div class="story"><div class="metric">Cost-efficient<br>R&D</div><p><strong>12.7x cheaper than one-shot agents.</strong> By reusing validated findings and avoiding repeated dead ends, PRAXIST achieves better results at a fraction of the compute cost. The shared research graph means peers do not duplicate each other's failures.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Official launch post.</strong> <a href="https://sapient.inc/en/blog/praxist-autoresearch-built-for-production" target="_blank">PRAXIST: Autoresearch, Built for Production</a> on the Sapient Intelligence blog details the architecture, research graph design, and MLE-Bench methodology.</li>
+        <li><strong>Yahoo Finance coverage.</strong> <a href="https://finance.yahoo.com/technology/ai/articles/sapient-intelligence-launches-praxist-beta-010000334.html" target="_blank">Sapient Intelligence Launches PRAXIST Beta</a> covers the launch announcement, positioning PRAXIST as the world's first production-ready open-source autonomous research system.</li>
+        <li><strong>Morningstar pick-up.</strong> <a href="https://www.morningstar.com/news/business-wire/20260827755757/sapient-intelligence-launches-praxist-beta-to-accelerate-a-new-era-of-autonomous-ai-led-research-and-development" target="_blank">Morningstar's coverage</a> of the August 27 launch highlights the MLE-Bench results and the parallel-peer architecture.</li>
+        <li><strong>ExplainX deep dive.</strong> <a href="https://explainx.ai/blog/praxist-beta-sapient-intelligence-open-source-research-agents-august-2026" target="_blank">PRAXIST Beta: 49 MLE Golds, Open Source</a> provides an independent breakdown of the benchmark results and comparison with Claude Code's performance.</li>
+        <li><strong>Community signal on X.</strong> <a href="https://x.com/rohanpaul_ai/status/2093155760905838821" target="_blank">Rohan Paul's analysis</a> shared the detailed MLE-Bench numbers: 49 golds and 60 total medals for PRAXIST versus 34 golds for Claude Opus 4.8.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>One week old.</strong> Created August 27, 2026, and shipped as beta. Expect breaking changes, incomplete documentation, and evolving APIs. Production deployments should pin versions carefully.</li>
+        <li><strong>LLM costs can escalate.</strong> Parallel peers across many generations consume significant API tokens. The <code>--budget</code> flag caps spend, but misconfigured runs with many peers and generations can burn through credits quickly. Monitor costs closely.</li>
+        <li><strong>"Other" license.</strong> The license is not a standard OSI-approved license. Review the terms carefully before using PRAXIST in commercial research or integrating its outputs into proprietary systems.</li>
+        <li><strong>MLE-Bench is one benchmark.</strong> The 49-gold result is impressive but narrow. MLE-Bench tests machine learning engineering on Kaggle-style problems. Performance on novel research domains, open-ended exploration, or non-ML tasks is unproven.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/sapientinc/PRAXIST" target="_blank">sapientinc/PRAXIST GitHub</a> - source, documentation, research configs</li>
+      <li>Autonomous research system for measurable, computer-executable research</li>
+      <li>Last pushed: September 3, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

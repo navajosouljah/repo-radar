@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>guillaumemeyer/watermarks-remover - Strip AI Watermarks from Your Own Content | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8f9fa;--bg2:#ffffff;--card:#ffffff;--card2:#f1f3f5;
+    --primary:#e63946;--primary-dim:#c5303c;--secondary:#1a1a2e;
+    --ink:#1a1a2e;--muted:#5a6170;--line:#dde1e6;
+    --sans:'Source Sans 3',sans-serif;--mono:'Roboto Mono',monospace;--disp:'Roboto Mono',monospace;
+    --r:2px;
+    --shadow-sm:0 1px 3px rgba(26,26,46,.06);--shadow-md:0 2px 8px rgba(26,26,46,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      repeating-linear-gradient(90deg,transparent,transparent 199px,rgba(221,225,230,.35) 199px,rgba(221,225,230,.35) 200px),
+      repeating-linear-gradient(0deg,transparent,transparent 199px,rgba(221,225,230,.35) 199px,rgba(221,225,230,.35) 200px);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(248,249,250,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:2px solid var(--ink);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow-sm);transition:all .15s}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:var(--r);padding:7px 20px;margin-bottom:24px;position:relative}
+  .kicker::before{content:"";position:absolute;top:-3px;left:-3px;right:-3px;bottom:-3px;border:1px dashed var(--primary);border-radius:4px}
+  h1{font-family:var(--disp);font-size:clamp(32px,6.5vw,64px);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,20px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow-sm)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--ink)}
+  .chip .cv.lm{color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(248,249,250,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;background:transparent;border:2px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.08em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--ink)}
+  .tab-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:4px solid var(--primary);box-shadow:var(--shadow-sm)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.8vw,38px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.10em;font-family:var(--mono)}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-sm);position:relative}
+  .feat::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--primary);border-radius:var(--r) 0 0 var(--r)}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:8px;font-family:var(--mono)}.feat .fh code{color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--primary)}
+  .best-feature{background:var(--card);border:2px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-md);position:relative}
+  .best-feature::before{content:"EXHIBIT A";position:absolute;top:-12px;right:24px;font-family:var(--mono);background:var(--primary);color:#fff;font-weight:700;font-size:10px;letter-spacing:.18em;padding:4px 12px;border-radius:var(--r)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--ink);color:#fff;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:22px;font-family:var(--mono)}.best-feature p{color:var(--ink);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:2px solid var(--line);box-shadow:var(--shadow-sm)}
+  .ba.before{background:#fff5f5;border-color:var(--primary)}
+  .ba.after{background:#f0fdf4;border-color:#2d6a4f}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;padding:4px 10px;display:inline-block;border-radius:var(--r)}
+  .ba.before .ba-tag{color:#fff;background:var(--primary)}.ba.after .ba-tag{color:#fff;background:#2d6a4f}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:2px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--ink);color:#fff;font-weight:700;font-size:12px;width:26px;height:26px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;font-family:var(--mono)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:var(--ink);border:2px solid var(--secondary);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#e8f0ff}
+  pre .cm{color:#6a7388}
+  .story{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow-sm)}
+  .story .metric{font-family:var(--mono);font-size:22px;color:var(--primary);line-height:1.15;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .itw{margin-top:32px;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow-sm)}
+  .itw h3{color:var(--primary);font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:15px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--line)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:inherit;text-decoration:none;border-bottom:1px dotted;opacity:.9}.itw a:hover{opacity:.6}
+  .watchout{background:#fff5f5;border:2px dashed var(--primary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--primary);font-size:18px;margin-bottom:16px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(230,57,70,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:2px solid var(--ink);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--card);border:2px solid var(--ink);padding:11px 22px;border-radius:var(--r);color:var(--ink);font-family:var(--mono)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/guillaumemeyer/watermarks-remover" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI Watermark Forensics</span>
+    <h1><span class="owner">guillaumemeyer/</span><span class="name">watermarks-remover</span></h1>
+    <p class="tagline"><strong>Privacy-first app that strips AI watermarks from content you own.</strong> Covers C2PA, SynthID, EXIF, and invisible Unicode marks across <strong>20+ formats</strong> - from Claude, ChatGPT, and Gemini outputs.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">20.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">2,373</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Strip the <em>invisible</em> marks</h2>
+    <p class="sub">watermarks-remover uses a three-tier approach to clean AI provenance marks from files you own - deterministic Unicode cleanup, statistical rewrite hooks, and C2PA/EXIF/XMP metadata stripping across 20+ formats.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">20.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">2,373</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">20+</div><div class="l">File Formats</div></div>
+      <div class="bignum"><div class="n lm">3</div><div class="l">Removal Layers</div></div>
+      <div class="bignum"><div class="n">Python</div><div class="l">Primary Language</div></div>
+      <div class="bignum"><div class="n sc">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it stand out</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Three-layer removal pipeline</div><p><strong>Layer A</strong> - deterministic Unicode cleanup (invisible characters, variation selectors, zero-width marks). <strong>Layer B</strong> - statistical rewrite hooks for text watermarks. <strong>Layer C</strong> - C2PA, EXIF, XMP, and container metadata stripping.</p></div>
+      <div class="feat"><div class="fh">Multi-vendor coverage</div><p>Targets marks from <strong>Claude</strong> (Anthropic's seam watermark), <strong>Gemini</strong> (Google SynthID-Text), <strong>ChatGPT</strong> (OpenAI provenance surfaces), and open-weight models using Kirchenbauer-style marks.</p></div>
+      <div class="feat"><div class="fh">20+ format support</div><p>Handles PNG, JPEG, SVG, PDF, DOCX, HTML, Markdown, FLAC, and more. Each format gets a targeted removal strategy - not a generic metadata wipe.</p></div>
+      <div class="feat"><div class="fh">Detection-guided rewriting</div><p>Integrates vendor watermark detectors (SynthID scorer, Claude seam detector, MarkLLM) to evaluate variants iteratively until an attempt passes the evaluator.</p></div>
+      <div class="feat"><div class="fh">Claude Code plugin</div><p>Started as a Claude Code skill and still ships as one. Run <code>/remove-ai-marks</code> inside Claude Code to clean outputs without leaving your workflow.</p></div>
+      <div class="feat"><div class="fh">Privacy-first design</div><p>All processing runs locally. No files are uploaded to external servers. The tool is designed for cleaning content you own - not for circumventing attribution on others' work.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Honest about its own limits</h3>
+      <p>The creator publicly states that Layer A (Unicode cleanup) and Layer C (metadata stripping) work reliably, but Layer B (statistical watermark removal) cannot be independently verified because Anthropic has not published its detector. The <a href="https://github.com/guillaumemeyer/watermarks-remover/blob/main/skills/remove-ai-marks/references/removal-matrix.md" target="_blank" rel="noopener">removal matrix</a> in the repo documents exactly what works, what partially works, and what remains unproven. That transparency is rare in this space.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>invisible ink</em> problem</h2>
+    <p class="sub">The EU AI Act took effect August 1, 2026, requiring AI-generated content to be labeled. Days later, Anthropic switched on invisible text watermarks in Claude. If you use AI to draft content you then edit and own, those marks follow your work.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Hidden marks in your writing.</strong> Every text produced by Claude carries an invisible statistical watermark baked into word choices. You cannot see it, but a detector can flag your edited document as "AI-generated" even after heavy revision.</p>
+        <p><strong>Metadata you did not ask for.</strong> Images, PDFs, and documents produced by AI tools embed C2PA, EXIF, and XMP provenance metadata. Share a file and its origin story travels with it - whether you intended that or not.</p>
+        <p><strong>Unicode steganography.</strong> Invisible Unicode characters - variation selectors, zero-width joiners, directional marks - get sprinkled into AI-generated text. Most text editors cannot display them, but they persist through copy-paste.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Clean text, your choice.</strong> Layer A strips invisible Unicode artifacts deterministically. No rewriting needed, no meaning changed - just the hidden characters removed.</p>
+        <p><strong>Metadata under your control.</strong> Layer C removes C2PA signatures, EXIF tags, and XMP blocks from images, PDFs, and documents. You decide what provenance data ships with your files.</p>
+        <p><strong>Statistical marks addressed.</strong> Layer B uses detection-guided iterative rewriting to reduce the signal that statistical watermark detectors look for. Results vary by vendor and model - the removal matrix documents the current state honestly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>clean</em></h2>
+    <p class="sub">Clone the repo, install dependencies, configure your target vendors, and run the removal pipeline. Works standalone or as a Claude Code skill.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone watermarks-remover</span>
+git clone https://github.com/guillaumemeyer/watermarks-remover.git
+cd watermarks-remover</pre>
+        <p>The repo includes the CLI tool, the Claude Code skill, removal layers, and the vendor detection integrations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Install dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a virtual environment</span>
+python -m venv .venv
+source .venv/bin/activate
+
+<span class="cm"># Install the package</span>
+pip install -e .</pre>
+        <p>Requires <strong>Python 3.10+</strong>. Optional extras for SynthID detection and image processing are available via <code>pip install -e ".[synthid,images]"</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure target layers</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Copy the example config</span>
+cp config.example.yaml config.yaml
+
+<span class="cm"># Enable the layers you need:</span>
+<span class="cm"># layer_a: true   # Unicode cleanup (safe, deterministic)</span>
+<span class="cm"># layer_b: false  # Statistical rewrite (experimental)</span>
+<span class="cm"># layer_c: true   # Metadata stripping (reliable)</span></pre>
+        <p>Layer A and Layer C are safe defaults. Layer B involves rewriting text via a second model and should be reviewed carefully before enabling.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run the remover</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clean a single file</span>
+watermarks-remover clean document.pdf
+
+<span class="cm"># Clean a directory of files</span>
+watermarks-remover clean ./output/ --recursive
+
+<span class="cm"># Or use as a Claude Code skill</span>
+<span class="cm"># claude /remove-ai-marks</span></pre>
+        <p>The CLI outputs a cleaned copy alongside the original. Use <code>--in-place</code> to overwrite. The Claude Code skill runs the same pipeline interactively.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">How individuals and teams are using watermarks-remover to manage AI provenance marks on content they own.</p>
+
+    <div class="story"><div class="metric">Writers &<br>editors</div><p><strong>Clean drafts before publishing.</strong> Writers who use Claude or ChatGPT for initial drafts run the tool to strip invisible marks before submitting to editors or publishers. The content is theirs - the provenance metadata is not.</p></div>
+    <div class="story"><div class="metric">Privacy-<br>conscious</div><p><strong>Control your own metadata.</strong> Users in jurisdictions with strong data-ownership laws clean AI-assisted documents to ensure no hidden provenance data leaks into shared files. Not about hiding AI use - about choosing when to disclose it.</p></div>
+    <div class="story"><div class="metric">Dev teams</div><p><strong>CI/CD pipeline integration.</strong> Teams add watermarks-remover as a build step to clean generated documentation, API specs, and code comments that were drafted with AI assistance. Automated, consistent, auditable.</p></div>
+    <div class="story"><div class="metric">Researchers</div><p><strong>Study the marks themselves.</strong> Security researchers use the detection layer to analyze how different vendors implement watermarks, comparing coverage across Claude, Gemini, and open-weight models.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>19K stars in a day.</strong> Pasquale Pillitteri covered the explosive launch in a <a href="https://pasqualepillitteri.it/en/news/13291/watermarks-remover-claude-code-plugin-19k-stars" target="_blank" rel="noopener">news report</a> documenting how the tool hit 19K stars within 24 hours of Anthropic's watermark announcement.</li>
+        <li><strong>BleepingComputer investigation.</strong> BleepingComputer published a <a href="https://www.bleepingcomputer.com/news/security/ai-watermark-removers-flood-the-web-almost-none-can-prove-they-work/" target="_blank" rel="noopener">security analysis</a> titled "AI watermark removers flood the web. Almost none can prove they work" - noting that claims about defeating text watermarks cannot be independently verified.</li>
+        <li><strong>CyberNews profile.</strong> CyberNews ran a profile on the creator: <a href="https://cybernews.com/ai-news/claude-watermark-removal/" target="_blank" rel="noopener">"Entrepreneur fights Claude text watermarks by creating a remover"</a>, quoting Guillaume Meyer calling the watermark mechanism "wrong, technically, legally, ethically."</li>
+        <li><strong>Hacker News debate.</strong> The broader question of AI text watermarks sparked <a href="https://news.ycombinator.com/item?id=49287153" target="_blank" rel="noopener">heated HN discussion</a> around a post arguing "text AI watermarks will always be trivial to remove" - with watermarks-remover cited as evidence.</li>
+        <li><strong>Technical teardown.</strong> A technical blog by Pasquale Pillitteri <a href="https://pasqualepillitteri.it/en/news/10649/claude-watermark-remover-github-tested" target="_blank" rel="noopener">tested the tool's claims</a> and found that Layer A works reliably but the statistical layer lets through variation selectors - a widespread steganographic technique.</li>
+        <li><strong>Research context.</strong> The Menon Lab published an analysis - <a href="https://themenonlab.blog/blog/watermarks-remover-open-source-ai-watermark-stripping" target="_blank" rel="noopener">"24 Hours After Anthropic Announces Watermarks, Open Source Ships a Remover"</a> - framing the tool in the broader arms race between compliance infrastructure and circumvention tools.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Statistical removal is unverified.</strong> Layer B claims to reduce statistical watermark signals, but Anthropic has not published its detector. There is no independent way to confirm the text watermark is actually gone after processing.</li>
+        <li><strong>Dual-use concerns are real.</strong> The same tool that helps a privacy-conscious user clean their personal notes also helps a content farm strip provenance before publishing AI-generated content. The ethical tension is inherent and unresolved.</li>
+        <li><strong>Legal gray area.</strong> The EU AI Act requires AI-generated content to be labeled. Stripping those labels from content you did not create may violate the regulation. The tool's "content you own" framing is a license-level disclaimer, not legal advice.</li>
+        <li><strong>Layer B rewrites your text.</strong> Statistical watermark removal works by rewriting text through a second model. This changes your words. The output may not say what you intended. Always review Layer B output carefully.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li><a href="https://github.com/guillaumemeyer/watermarks-remover" target="_blank">guillaumemeyer/watermarks-remover GitHub</a> - source, removal matrix, Claude Code skill</li>
+      <li>Topics: ai, watermark, c2pa, synthid, watermark-detection, privacy</li>
+      <li>Last pushed: September 4, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 006</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

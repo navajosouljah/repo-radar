@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>trycompai/crm - Agentic-First CRM | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--bg2:#f7f8fa;--card:#ffffff;--card2:#f1f3f7;
+    --primary:#4f46e5;--primary-soft:rgba(79,70,229,.08);--primary-med:rgba(79,70,229,.15);
+    --success:#10b981;--success-soft:rgba(16,185,129,.08);
+    --ink:#1e1e2e;--muted:#6b7280;--line:#e5e7eb;--line-light:#f0f1f4;
+    --sans:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+    --r:12px;--r-sm:8px;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 16px rgba(0,0,0,.07);--shadow-lg:0 8px 30px rgba(0,0,0,.09);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg2);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* Topbar */
+  .topbar{background:var(--bg);border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.01em;transition:color .15s}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--primary);background:var(--primary-soft);padding:8px 20px;border-radius:var(--r-sm);border:1px solid var(--primary-med);transition:all .15s}
+  .gh-link:hover{background:var(--primary);color:#fff;text-decoration:none}
+
+  /* Hero */
+  .hero{background:var(--bg);padding:72px 0 56px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--primary);color:#fff;border-radius:100px;padding:6px 18px;margin-bottom:22px}
+  h1{font-size:clamp(36px,7vw,68px);font-weight:700;line-height:1.08;letter-spacing:-.02em}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;margin-bottom:2px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:660px;margin:18px 0 30px;font-weight:400}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--bg2);border:1px solid var(--line);border-radius:100px;padding:8px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--primary)}
+  .chip .cv.gr{color:var(--success)}
+  .chip .ck{font-size:12px;color:var(--muted);font-weight:500}
+
+  /* Sticky Tabs */
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 0}
+  .tabnav .wrap{display:flex;gap:6px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:600;font-size:13px;background:transparent;border:1px solid transparent;color:var(--muted);padding:9px 20px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);background:var(--bg2)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(79,70,229,.25)}
+  .tab-panel{display:none;padding:50px 0 70px}
+  .tab-panel.active{display:block}
+
+  /* Section Headings */
+  h2{font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:36px;max-width:660px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--success)}
+
+  /* Bignum Grid */
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px;box-shadow:var(--shadow-sm);border-top:3px solid var(--primary)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.6vw,36px);line-height:1;color:var(--ink);font-weight:600}
+  .bignum .n.pr{color:var(--primary)}.bignum .n.gr{color:var(--success)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  /* Features */
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-sm)}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:6px;color:var(--ink)}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:13px}
+  .feat p{color:var(--muted);font-size:14px;line-height:1.55}
+  .feat p code{font-family:var(--mono);font-size:.9em;color:var(--success)}
+
+  /* Best Feature */
+  .best-feature{background:linear-gradient(135deg,var(--primary-soft),var(--success-soft));border:1px solid var(--primary);border-radius:var(--r);padding:32px;box-shadow:var(--shadow-md)}
+  .best-feature .bf-tag{display:inline-block;background:var(--primary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+  .best-feature h3{font-size:22px;margin-bottom:8px}.best-feature p{color:var(--ink);font-size:15px;max-width:720px;line-height:1.6}
+  .best-feature p code{font-family:var(--mono);color:var(--success);font-size:.9em}
+
+  /* Before/After */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .ba.before{background:#fef9ee;border-color:#f3e4c0}
+  .ba.after{background:var(--primary-soft);border-color:var(--primary-med)}
+  .ba .ba-tag{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+  .ba.before .ba-tag{color:#b45309}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:12px;line-height:1.55}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.88em;color:var(--primary)}
+
+  /* Steps */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .step-head{padding:14px 22px;background:var(--bg2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{background:var(--primary);color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px}
+  .step-body{padding:18px 22px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:10px}.step-body p strong{color:var(--ink)}
+  pre{background:#1e1e2e;border:1px solid #2d2d44;border-radius:var(--r-sm);padding:16px 20px;overflow-x:auto;margin:0 0 12px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c6d0f5}
+  pre .cm{color:#6c7086}
+
+  /* Stories */
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-bottom:16px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;box-shadow:var(--shadow-sm)}
+  .story .metric{font-family:var(--mono);font-size:22px;color:var(--primary);font-weight:600;line-height:1.15}
+  .story p{color:var(--muted);font-size:14px;line-height:1.55}.story p strong{color:var(--ink)}
+  .story code{font-family:var(--mono);font-size:.88em;color:var(--success)}
+
+  /* In the Wild */
+  .itw{margin-top:34px}.itw h3{color:var(--primary);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .itw ul{list-style:none}.itw li{padding:13px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line-light)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);font-weight:500;text-decoration:none;border-bottom:1px dotted var(--primary-med)}.itw a:hover{opacity:.7}
+
+  /* Watch Out */
+  .watchout{background:#fef9ee;border:2px dashed #f3e4c0;border-radius:var(--r);padding:28px;margin-top:34px}
+  .watchout h3{color:#b45309;font-size:18px;margin-bottom:14px}
+  .watchout ul{list-style:none}.watchout li{padding:10px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(180,83,9,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.88em;color:var(--primary)}
+
+  /* Footer */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:40px 0 56px;margin-top:20px}
+  footer .fmeta{font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none}footer li{padding:5px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\2192 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:22px;font-weight:700;font-size:13px;background:var(--primary);color:#fff;padding:10px 24px;border-radius:100px}
+  .backhub:hover{opacity:.9;text-decoration:none}
+
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:48px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/trycompai/crm" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Agentic-First CRM</span>
+    <h1><span class="owner">trycompai/</span><span class="name">crm</span></h1>
+    <p class="tagline"><strong>Open-source CRM designed for AI agents.</strong> The agent is not a feature of the CRM - the CRM is where the agent keeps its notes. Durable research agents that <strong>read, write, and act on your pipeline</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv pr">9.7K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1,261</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv gr">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The CRM that <em>runs itself</em></h2>
+    <p class="sub">Comp AI CRM flips the script on traditional CRMs. Instead of humans doing data entry and an AI assistant answering questions, a durable research agent enriches every record autonomously - and only writes what it can evidence.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n pr">9.7K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n gr">1,261</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">18</div><div class="l">Agent Tools</div></div>
+      <div class="bignum"><div class="n pr">4</div><div class="l">Agent Skills</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+      <div class="bignum"><div class="n gr">~5 weeks</div><div class="l">Age (Created Jul 31)</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Agent as the product</div><p>The agent is not a chatbot bolted onto a contacts table. It runs on its own deployment, on its own schedule, against its own work queue. Close the browser and it keeps going.</p></div>
+      <div class="feat"><div class="fh">Evidence-priced enrichment</div><p>No tool accepts a confidence score. Tools report what they observed - <code>crm.signature-block</code>, <code>github.account-identity</code> - and a ledger prices the evidence before anything writes to a record.</p></div>
+      <div class="feat"><div class="fh">Zero-key inbox sync</div><p>Without any API keys the agent reads your own threads, meetings, and signature blocks through Gmail and Calendar sync. Free, private, and the best evidence there is.</p></div>
+      <div class="feat"><div class="fh">Built on Eve</div><p>Uses Vercel's filesystem-first framework for durable agents. The agent leases work off a queue, decides what to look at next, books follow-ups, and stops when its budget runs out.</p></div>
+      <div class="feat"><div class="fh">Turborepo + Bun monorepo</div><p>Clean TypeScript codebase with a Turborepo monorepo running on Bun. Deploy to Vercel or self-host on your own infrastructure with full Postgres backing.</p></div>
+      <div class="feat"><div class="fh">Self-hosted, no per-seat bill</div><p>MIT licensed with no open core holdback. Your customer records, email-derived evidence, and agent reasoning stay on infrastructure you control. No per-seat pricing ever.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Nothing about a person is guessed</h3>
+      <p>The rule the agent itself never breaks. Every enrichment field traces back to observable evidence - an email signature, a GitHub profile, a calendar invite. Strong evidence writes to the record. Weak evidence becomes a suggestion a human settles. You can audit exactly how every field was arrived at, which makes the CRM trustworthy enough to let an agent run unsupervised.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>data entry</em> trap</h2>
+    <p class="sub">Sales reps spend hours typing into CRM fields that go stale the moment they are entered. AI assistants help you query the mess but do nothing to prevent it. Comp AI CRM eliminates the mess at the source.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Manual data entry.</strong> Reps copy-paste from emails, LinkedIn, and meeting notes into CRM fields. Half the fields stay blank. The other half drift out of date within weeks.</p>
+        <p><strong>AI as a chatbot overlay.</strong> Bolt-on AI features let you ask "who at Acme is my champion?" but the answer is only as good as the stale data underneath.</p>
+        <p><strong>Enrichment black boxes.</strong> Third-party enrichment tools guess job titles from probabilistic models. You cannot audit why a field says what it says, and corrections vanish on the next sync.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Autonomous enrichment.</strong> The agent reads your inbox, calendar, and signature blocks. Records fill themselves in from evidence you already have, with zero manual entry.</p>
+        <p><strong>Auditable provenance.</strong> Every field traces to a specific observation - an email header, a GitHub commit, a meeting invite. The ledger shows exactly what was observed and how it was priced.</p>
+        <p><strong>Agent-first pipeline.</strong> The agent books its own follow-ups, spends a research budget, and stops when the budget runs out. It runs on its own schedule - not yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>running</em></h2>
+    <p class="sub">Clone the repo, start Postgres, configure your environment, and deploy. The agent works with zero API keys out of the box - optional keys unlock web research and LinkedIn lookups.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repository</span>
+git clone https://github.com/trycompai/crm.git
+cd crm
+
+<span class="cm"># Install dependencies with Bun</span>
+bun install</pre>
+        <p>Requires <strong>Bun</strong> and <strong>Docker</strong> installed on your system.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Start Postgres</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Spin up Postgres via Docker Compose</span>
+docker compose up -d
+
+<span class="cm"># Run database migrations</span>
+bun run db:migrate</pre>
+        <p>Docker Compose starts a local <strong>Postgres instance</strong>. Migrations create the schema for contacts, companies, deals, and the evidence ledger.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure environment</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Copy the example env file</span>
+cp .env.example .env
+
+<span class="cm"># Required: set your database URL</span>
+<span class="cm"># Optional: add Gmail, Calendar, research API keys</span>
+<span class="cm"># The agent works with zero keys - inbox sync is free</span></pre>
+        <p>Without keys, the agent uses <strong>Gmail and Calendar sync</strong> to read your threads, meetings, and signature blocks. Add optional keys for web research with citations and LinkedIn identity lookups.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run the dev server</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start the development server</span>
+bun run dev
+
+<span class="cm"># Open http://localhost:3000</span></pre>
+        <p>The CRM UI launches at <strong>localhost:3000</strong>. The agent deployment runs separately on Eve, leasing work off its queue and enriching records on its own schedule.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Who <em>ships</em> with this</h2>
+    <p class="sub">Small technical teams who want their CRM to do the work - not ask them to type into it.</p>
+
+    <div class="story">
+      <div class="metric">0 fields<br>typed</div>
+      <p><strong>Solo founder pipeline.</strong> A solo founder connects Gmail and lets the agent build their pipeline from scratch. Every contact, company, and deal stage is derived from real email threads and calendar invites - no manual entry, no imports, no CSV wrangling.</p>
+    </div>
+    <div class="story">
+      <div class="metric">Full audit<br>trail</div>
+      <p><strong>Compliance-sensitive teams.</strong> Regulated industries need to know why a record says what it says. The evidence ledger traces every enrichment to its source observation. When an auditor asks "where did this job title come from?" you have the answer.</p>
+    </div>
+    <div class="story">
+      <div class="metric">$0 / seat<br>forever</div>
+      <p><strong>Self-hosted Salesforce replacement.</strong> Small dev teams tired of per-seat CRM bills can self-host Comp AI on their own Postgres. MIT license, no open-core holdback, and customer records stay on infrastructure they control.</p>
+    </div>
+    <div class="story">
+      <div class="metric">Runs while<br>you sleep</div>
+      <p><strong>Overnight enrichment runs.</strong> Set a research budget and let the agent run overnight. It enriches stale records, books follow-ups, and stops when the budget is spent. Open your laptop in the morning to a pipeline that updated itself.</p>
+    </div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>DEV Community deep dive</strong> - "The Open-Source, Agentic-First CRM Revolutionizing Sales Workflows" breaks down the architecture and agent-first philosophy. <a href="https://dev.to/kaixintelligence/trycompaicrm-the-open-source-agentic-first-crm-revolutionizing-sales-workflows-2614" target="_blank" rel="noopener">dev.to</a></li>
+        <li><strong>Codeline repo review</strong> - "An Agent That Prices Its Own Evidence Before Writing to Your Record" examines the evidence ledger pattern and why no tool accepts a confidence score. <a href="https://www.codeline.co/thoughts/repo-review/2026/comp-ai-crm-agent-evidence-ledger" target="_blank" rel="noopener">codeline.co</a></li>
+        <li><strong>ExplainX technical analysis</strong> - "Comp AI CRM Open Source: Eve Agents & Durability Gaps" covers the Eve runtime, durable agent architecture, and current limitations. <a href="https://explainx.ai/blog/comp-ai-crm-agentic-open-source-eve-2026" target="_blank" rel="noopener">explainx.ai</a></li>
+        <li><strong>Open Source Alternatives listing</strong> - Comp AI CRM listed as an open-source alternative to Salesforce with community ratings and feature comparison. <a href="https://www.opensourcealternatives.to/item/comp-ai-crm" target="_blank" rel="noopener">opensourcealternatives.to</a></li>
+        <li><strong>Lewis Carhart launch post</strong> - The co-founder's announcement on X: "We've decided to open-source the CRM we built for ourselves at Comp AI. It's agentic-first - durable research agents. MIT license." <a href="https://x.com/lewiscarhart/status/2083610805069611230" target="_blank" rel="noopener">x.com</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Five weeks old.</strong> Created July 31, 2026 with v1.0.0 cut days later. The codebase is young and the contributor base is small. Expect rough edges and breaking changes.</li>
+        <li><strong>No hosted option.</strong> Self-hosting is the only path. You need Bun, Docker, and Postgres. There is no managed cloud version to fall back on if ops is not your thing.</li>
+        <li><strong>No multi-team permissions.</strong> Skip this if you need role-based access, team hierarchies, or a mature mobile app. Those features are not built yet.</li>
+        <li><strong>Eve dependency.</strong> The agent runtime is built on Vercel's Eve framework, which is itself relatively new. If Eve changes direction, the agent layer is affected.</li>
+        <li><strong>No third-party app marketplace.</strong> If your workflow depends on Zapier, Slack, or calendar integrations beyond Gmail/Calendar, those connectors do not exist yet.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 006 - Week of September 4, 2026</div>
+    <ul>
+      <li>Pushed Sep 2, 2026</li>
+      <li>Created Jul 31, 2026</li>
+      <li>MIT Licensed, TypeScript</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Repo Radar</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const btns=document.querySelectorAll('.tab-btn');
+  const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(b=>{
+    b.addEventListener('click',()=>{
+      btns.forEach(x=>x.classList.remove('active'));
+      panels.forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
