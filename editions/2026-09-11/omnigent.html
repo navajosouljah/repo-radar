@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>omnigent-ai/omnigent - Meta-Harness for AI Coding Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12061f;--bg2:#1a0d2e;--card:#1e1035;--card2:#261445;
+    --primary:#a855f7;--primary-dim:#9333ea;--secondary:#38bdf8;
+    --accent:#c084fc;--accent-light:#d8b4fe;
+    --ink:#eee8f5;--muted:#9b8ab8;--line:#3b2560;
+    --sans:'Inter',sans-serif;--mono:'Ubuntu Mono',monospace;--disp:'Ubuntu',sans-serif;
+    --r:8px;
+    --shadow:0 2px 14px rgba(168,85,247,.10);--shadow-lg:0 8px 32px rgba(168,85,247,.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(168,85,247,.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(56,189,248,.05) 0%, transparent 50%),
+      radial-gradient(1px 1px at 15% 25%, rgba(168,85,247,.25) 1px, transparent 0),
+      radial-gradient(1px 1px at 45% 65%, rgba(56,189,248,.18) 1px, transparent 0),
+      radial-gradient(1px 1px at 75% 15%, rgba(168,85,247,.20) 1px, transparent 0),
+      radial-gradient(1px 1px at 85% 55%, rgba(56,189,248,.15) 1px, transparent 0),
+      radial-gradient(1px 1px at 35% 85%, rgba(168,85,247,.18) 1px, transparent 0),
+      radial-gradient(1px 1px at 55% 35%, rgba(56,189,248,.12) 1px, transparent 0),
+      radial-gradient(1.5px 1.5px at 25% 75%, rgba(192,132,252,.15) 1px, transparent 0),
+      radial-gradient(1.5px 1.5px at 65% 45%, rgba(192,132,252,.12) 1px, transparent 0);
+    background-size: 100% 100%;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(18,6,31,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:0 0 12px rgba(168,85,247,.25)}
+
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:0 0 20px rgba(168,85,247,.3)}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,72px);font-weight:700;line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;letter-spacing:.04em;margin-bottom:4px}
+  h1 .name{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(18,6,31,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:500;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .2s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--accent);box-shadow:0 0 8px rgba(168,85,247,.15)}
+  .tab-btn.active{background:linear-gradient(135deg,var(--primary),var(--primary-dim));border-color:var(--primary);color:#fff;box-shadow:0 0 16px rgba(168,85,247,.3)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle at top right,rgba(168,85,247,.15),transparent 70%)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);transition:border-color .2s}
+  .feat:hover{border-left-color:var(--primary)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(56,189,248,.06));border:1px solid var(--primary);border-radius:10px;padding:34px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:23px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.3)}
+  .ba.after{background:rgba(168,85,247,.06);border-color:rgba(168,85,247,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.10em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ef4444}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:14px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#0a0318;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#d8b4fe}
+  pre .cm{color:#6b5e8a}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:22px;color:var(--primary);line-height:1.2;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:18px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--accent-light)}
+
+  .watchout{background:rgba(239,68,68,.05);border:1px dashed rgba(239,68,68,.35);border-radius:10px;padding:30px;margin-top:32px}
+  .watchout h3{color:#f87171;font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(239,68,68,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:500;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:600;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:0 0 14px rgba(168,85,247,.2)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/omnigent-ai/omnigent" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Meta-Harness for AI Coding Agents</span>
+    <h1><span class="owner">omnigent-ai /</span><span class="name">omnigent</span></h1>
+    <p class="tagline">Orchestrate <strong>Claude Code, Codex, Grok Build</strong>, and other coding agents from a <strong>single control plane</strong>. Route tasks to the best agent automatically, compare outputs, and build fallback chains.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">9.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.5K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>One CLI, <em>every agent</em></h2>
+    <p class="sub">Omnigent is a meta-harness that sits above your AI coding agents. Instead of switching between Claude Code, Codex, Grok Build, and DSH, you run one command and Omnigent routes the task to the right agent - or all of them at once.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">9.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.5K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">5+</div><div class="l">Agents Supported</div></div>
+      <div class="bignum"><div class="n lm">1</div><div class="l">Unified CLI</div></div>
+      <div class="bignum"><div class="n">3mo</div><div class="l">Project Age</div></div>
+      <div class="bignum"><div class="n sc">N-of-N</div><div class="l">Agent Selection</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Unified CLI across agents</div><p>Run <code>omnigent run "refactor the auth module"</code> and the framework decides whether Claude Code, Codex, Grok Build, or another agent handles the task. One interface, consistent output format, no context switching.</p></div>
+      <div class="feat"><div class="fh">Automatic task routing</div><p>Omnigent profiles each registered agent's strengths and routes tasks accordingly. Debugging tasks might go to Claude Code, bulk refactors to Codex, and quick fixes to Grok Build - all without manual selection.</p></div>
+      <div class="feat"><div class="fh">Best-of-N agent selection</div><p>Send the same task to multiple agents in parallel, then pick the best result using configurable evaluation criteria. LLM-as-judge scoring, diff size comparison, and test-pass-rate are all built in.</p></div>
+      <div class="feat"><div class="fh">Agent performance dashboard</div><p>Track success rates, latency, token usage, and cost per agent across your team. See which agent performs best for which task type over time - data-driven agent selection instead of gut feel.</p></div>
+      <div class="feat"><div class="fh">Fallback chains</div><p>Define chains like <code>claude-code -> codex -> grok-build</code> so if one agent fails or times out, the task automatically escalates to the next. Resilient pipelines without manual intervention.</p></div>
+      <div class="feat"><div class="fh">Plugin architecture</div><p>Each agent adapter is a plugin with a standard interface. Adding a new agent means implementing <code>AgentAdapter</code> with four methods: <code>configure</code>, <code>run</code>, <code>stream</code>, and <code>health_check</code>.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Agent-agnostic orchestration that actually works</h3>
+      <p>The core insight is that coding agents are converging on similar capabilities but diverging on strengths. Omnigent does not try to replace any agent - it lets you use all of them through one interface, route intelligently, and measure outcomes. Think of it as a <code>load balancer for AI coding agents</code>, except the routing is task-aware, not round-robin.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>multi-agent</em> problem</h2>
+    <p class="sub">There are now at least five serious AI coding agents. They each have a different CLI, different auth, different output format, and different sweet spots. Teams are stuck picking one or juggling many.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Agent sprawl.</strong> Claude Code for complex reasoning, Codex for large-scale refactors, Grok Build for speed, DSH for DeepSeek tasks. Each agent has its own CLI, its own config, its own mental model. Developers switch between them throughout the day.</p>
+        <p><strong>No comparison data.</strong> How do you know which agent is actually better for your codebase? Anecdotal evidence and Twitter threads are not a benchmarking strategy. Teams pick an agent based on hype, not data.</p>
+        <p><strong>Vendor lock-in anxiety.</strong> Standardizing on one agent means missing out on another's strengths. But running multiple agents means multiple credential stores, multiple permission models, and multiple billing dashboards.</p>
+        <p><strong>No fallback path.</strong> When your chosen agent hits a rate limit, goes down, or produces bad output, the developer is stuck. There is no automatic way to try a different agent for the same task.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One control plane.</strong> Configure all your agents once in <code>~/.omnigent/config.yaml</code>. Run tasks through a single CLI. Omnigent handles auth, invocation, and output normalization for every registered agent.</p>
+        <p><strong>Data-driven selection.</strong> Omnigent tracks every task - which agent handled it, how long it took, how many tokens it used, and whether the result was accepted. Over time, your team builds a real performance profile for each agent against your actual codebase.</p>
+        <p><strong>Graceful degradation.</strong> Define fallback chains so a failed Claude Code task retries on Codex automatically. Rate limits on one provider do not halt your workflow - the next agent in the chain picks up the task.</p>
+        <p><strong>Fair comparison.</strong> Best-of-N mode sends the same task to multiple agents and lets you compare outputs side by side. Use LLM-as-judge, diff metrics, or test results to pick the winner objectively.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>orchestrating</em></h2>
+    <p class="sub">Install Omnigent, register your agents, and run your first multi-agent task in under five minutes. You will need active credentials for at least one supported coding agent.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install Omnigent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install from PyPI</span>
+pip install omnigent
+
+<span class="cm"># Or install from source</span>
+git clone https://github.com/omnigent-ai/omnigent.git
+cd omnigent
+pip install -e .</pre>
+        <p>Requires <strong>Python 3.10+</strong>. The package installs the <code>omnigent</code> CLI and the Python SDK. No system dependencies beyond Python itself.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your agents</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Interactive setup - walks you through each agent</span>
+omnigent config
+
+<span class="cm"># Or set up agents individually</span>
+omnigent config add claude-code
+omnigent config add codex
+omnigent config add grok-build
+
+<span class="cm"># Verify all agents are reachable</span>
+omnigent health</pre>
+        <p>Each agent adapter needs its own credentials. <strong>Claude Code</strong> uses your Anthropic API key, <strong>Codex</strong> uses your OpenAI key, and <strong>Grok Build</strong> uses your xAI key. Omnigent stores credentials in <code>~/.omnigent/credentials.enc</code> - encrypted at rest.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Run your first task</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Route automatically to the best agent</span>
+omnigent run "add input validation to the signup form"
+
+<span class="cm"># Force a specific agent</span>
+omnigent run --agent claude-code "explain this error log"
+
+<span class="cm"># Best-of-N - run on multiple agents and compare</span>
+omnigent run --best-of claude-code,codex "refactor the database module"</pre>
+        <p>Without <code>--agent</code>, Omnigent uses its routing model to pick the best agent for the task. The routing model considers task type, codebase language, and historical performance data.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Set up fallback chains</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Define a fallback chain in config</span>
+omnigent config chain default \
+  --agents claude-code,codex,grok-build \
+  --timeout 120 \
+  --retry-on failure,timeout,rate-limit
+
+<span class="cm"># Use the chain</span>
+omnigent run --chain default "fix the failing CI tests"
+
+<span class="cm"># View the performance dashboard</span>
+omnigent dashboard</pre>
+        <p>Fallback chains try each agent in order. If the first agent fails, times out, or hits a rate limit, the task passes to the next. The <code>dashboard</code> command opens a local web UI showing agent performance metrics over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>orchestration</em></h2>
+    <p class="sub">Where Omnigent fits in the growing multi-agent landscape - and the patterns teams are adopting for agent orchestration.</p>
+
+    <div class="story"><div class="metric">Agent Benchmarking</div><p><strong>Measure before you commit.</strong> Teams use Omnigent's best-of-N mode to benchmark agents against their own codebase. Instead of relying on public benchmarks that may not reflect your stack, you run real tasks on real code and see which agent produces the best results for <strong>your</strong> specific project.</p></div>
+    <div class="story"><div class="metric">Best-of-N Selection</div><p><strong>The ensemble approach.</strong> For high-stakes changes - database migrations, security patches, API refactors - teams run the same task on two or three agents and pick the best output. The cost of running three agents is marginal compared to the cost of shipping a bad refactor.</p></div>
+    <div class="story"><div class="metric">Fallback Chains</div><p><strong>Resilient CI pipelines.</strong> Teams building automated code review or test generation pipelines define fallback chains so a single agent's downtime does not block the entire workflow. If Claude Code hits a rate limit at 3am, Codex takes over without human intervention.</p></div>
+    <div class="story"><div class="metric">Enterprise Governance</div><p><strong>Multi-agent policy control.</strong> Enterprise teams use Omnigent's centralized config to enforce which agents can access which repositories, set spending limits per agent per team, and generate audit logs of all agent activity across the organization.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Emerging meta-harness category.</strong> The concept of an orchestration layer above individual coding agents is gaining traction as teams struggle to standardize on a single agent. Omnigent appears to be the most visible open-source project in this space as of September 2026, though evidence of large-scale production deployments is still thin.</li>
+        <li><strong>GitHub discussions.</strong> The repository's Discussions tab shows active threads around agent adapter development, with community members requesting adapters for Cursor, Windsurf, and other IDE-integrated agents. The plugin architecture appears to be attracting contributors.</li>
+        <li><strong>Multi-agent interest on social media.</strong> Developer conversations about "which coding agent should I use" are increasingly answered with "why not use multiple" - a sentiment that aligns with Omnigent's thesis. Several developer influencers have referenced the project when discussing the fragmentation of the coding agent landscape.</li>
+        <li><strong>Enterprise exploration.</strong> Early signals from enterprise engineering blogs suggest that large organizations are evaluating multi-agent strategies rather than committing to a single vendor. Omnigent's governance features - audit logging, spending controls, access policies - directly address this use case, though public case studies are not yet available.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Abstraction overhead.</strong> Omnigent adds a layer between you and the agent. That layer introduces latency (task routing decisions take time), potential bugs (the adapter may not perfectly translate every agent's output), and cognitive overhead (debugging through an orchestration layer is harder than debugging the agent directly).</li>
+        <li><strong>Agents evolve faster than the orchestrator.</strong> Claude Code, Codex, and Grok Build ship new features weekly. Omnigent's adapters may lag behind, meaning you lose access to the latest agent capabilities until the adapter is updated. The plugin architecture helps, but there is always a gap.</li>
+        <li><strong>Credential management complexity.</strong> Storing API keys for five different agent providers in one place is convenient but raises the blast radius of a credential leak. Omnigent encrypts credentials at rest, but any compromise of <code>~/.omnigent/credentials.enc</code> exposes all your agent keys at once.</li>
+        <li><strong>Lowest-common-denominator features.</strong> To provide a unified interface, Omnigent must abstract away each agent's unique features. Claude Code's hooks, Codex's sandbox modes, Grok Build's speed optimizations - these agent-specific capabilities may not be fully exposed through the common <code>AgentAdapter</code> interface.</li>
+        <li><strong>Young project with rapid change.</strong> Created June 2026 - three months old. The API surface is still evolving, breaking changes are expected, and the adapter ecosystem depends on community contributions that may or may not materialize for every agent.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/omnigent-ai/omnigent" target="_blank">omnigent-ai/omnigent GitHub</a> - source, documentation, agent adapters</li>
+      <li>Supports: Claude Code, Codex, Grok Build, DSH, and community-contributed agents</li>
+      <li>Last pushed: September 11, 2026 | Created: June 11, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

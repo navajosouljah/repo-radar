@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cloudflare/computer - Sandboxed Computing for AI Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f5f5;--bg2:#ebebeb;--card:#ffffff;--card2:#fafafa;
+    --primary:#f6821f;--primary-dim:#e0740e;--secondary:#2c2c2c;
+    --accent:#ff9d4d;--accent-light:#ffbe85;
+    --ink:#1a1a1a;--muted:#6b6b6b;--line:#d4d4d4;
+    --sans:system-ui,'Segoe UI','Inter',sans-serif;--mono:'Fira Code','Cascadia Code',monospace;--disp:'Inter',system-ui,sans-serif;
+    --r:8px;--r-top:8px 8px 0 0;--r-bot:0 0 8px 8px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shadow-lg:0 4px 16px rgba(0,0,0,.10);
+    --titlebar:#2c2c2c;--titlebar-text:#e0e0e0;--titlebar-dot-r:#ff5f57;--titlebar-dot-y:#ffbd2e;--titlebar-dot-g:#28c840;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      linear-gradient(90deg, rgba(0,0,0,.018) 1px, transparent 1px),
+      linear-gradient(rgba(0,0,0,.018) 1px, transparent 1px);
+    background-size:24px 24px;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:var(--titlebar);border-bottom:2px solid var(--primary)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--titlebar-text);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--titlebar-text);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:8px 18px;border-radius:var(--r);transition:all .15s}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;background:rgba(246,130,31,.1)}
+
+  .hero{padding:72px 0 50px}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.15em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--shadow)}
+  h1{font-family:var(--disp);font-size:clamp(38px,7.5vw,72px);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;letter-spacing:.04em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:720px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  /* Window chrome card mixin */
+  .wc{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .wc-bar{background:var(--titlebar);padding:10px 16px;display:flex;align-items:center;gap:8px}
+  .wc-dots{display:flex;gap:6px}
+  .wc-dots span{width:10px;height:10px;border-radius:50%}
+  .wc-dots .r{background:var(--titlebar-dot-r)}.wc-dots .y{background:var(--titlebar-dot-y)}.wc-dots .g{background:var(--titlebar-dot-g)}
+  .wc-title{font-family:var(--mono);font-size:11.5px;color:var(--titlebar-text);margin-left:8px;letter-spacing:.03em}
+  .wc-body{background:var(--card);padding:22px}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(245,245,245,.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--shadow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:800;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .bignum .bn-bar{background:var(--titlebar);padding:6px 12px;display:flex;align-items:center;gap:6px}
+  .bignum .bn-bar .bd{width:7px;height:7px;border-radius:50%;background:var(--titlebar-dot-r)}
+  .bignum .bn-bar .bd:nth-child(2){background:var(--titlebar-dot-y)}
+  .bignum .bn-bar .bd:nth-child(3){background:var(--titlebar-dot-g)}
+  .bignum .bn-body{background:var(--card);padding:20px 18px}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .feat .feat-bar{background:var(--titlebar);padding:8px 14px;display:flex;align-items:center;gap:6px}
+  .feat .feat-bar .fd{width:8px;height:8px;border-radius:50%;background:var(--titlebar-dot-r)}
+  .feat .feat-bar .fd:nth-child(2){background:var(--titlebar-dot-y)}
+  .feat .feat-bar .fd:nth-child(3){background:var(--titlebar-dot-g)}
+  .feat .feat-bar .ft{font-family:var(--mono);font-size:11px;color:var(--titlebar-text);margin-left:6px}
+  .feat .feat-body{background:var(--card);padding:20px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--primary)}
+
+  .best-feature{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow-lg);border:2px solid var(--primary)}
+  .best-feature .bf-bar{background:var(--primary);padding:12px 18px;display:flex;align-items:center;gap:8px}
+  .best-feature .bf-bar .bd{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3)}
+  .best-feature .bf-tag{font-family:var(--mono);color:#fff;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-left:8px}
+  .best-feature .bf-body{background:var(--card);padding:30px}
+  .best-feature h3{font-size:23px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:#fff5f5;border-color:#fca5a5}
+  .ba.after{background:#fff7ed;border-color:var(--accent)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.10em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#dc2626}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);margin-bottom:18px}
+  .step-head{padding:14px 20px;background:var(--titlebar);display:flex;align-items:center;gap:12px}
+  .step-dots{display:flex;gap:6px;margin-right:4px}
+  .step-dots span{width:9px;height:9px;border-radius:50%}
+  .step-dots .r{background:var(--titlebar-dot-r)}.step-dots .y{background:var(--titlebar-dot-y)}.step-dots .g{background:var(--titlebar-dot-g)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#fff;font-weight:600;font-size:12px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;color:var(--titlebar-text);font-weight:500}
+  .step-body{padding:20px 24px;background:var(--card)}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:var(--secondary);border:1px solid #444;border-radius:6px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#e8e8e8}
+  pre .cm{color:#888}
+
+  .story{overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;align-items:stretch}
+  .story .metric-wrap{background:var(--titlebar);display:flex;align-items:center;justify-content:center;padding:20px}
+  .story .metric{font-family:var(--disp);font-size:18px;color:var(--primary);line-height:1.3;font-weight:700;text-align:center}
+  .story .story-body{background:var(--card);padding:22px 24px;display:flex;align-items:center}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .itw{margin-top:32px;overflow:hidden;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .itw .itw-bar{background:var(--titlebar);padding:10px 16px;display:flex;align-items:center;gap:6px}
+  .itw .itw-bar .id{width:9px;height:9px;border-radius:50%;background:var(--titlebar-dot-r)}
+  .itw .itw-bar .id:nth-child(2){background:var(--titlebar-dot-y)}
+  .itw .itw-bar .id:nth-child(3){background:var(--titlebar-dot-g)}
+  .itw .itw-bar span.itw-title{font-family:var(--mono);font-size:11.5px;color:var(--titlebar-text);margin-left:8px}
+  .itw .itw-body{background:var(--card);padding:26px 28px}
+  .itw h3{color:var(--primary);font-size:18px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:#fff5f5;border:2px dashed #fca5a5;border-radius:10px;padding:30px;margin-top:32px}
+  .watchout h3{color:#dc2626;font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(252,165,165,.3)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:2px solid var(--line);padding:44px 0 62px;margin-top:20px;background:var(--card2)}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:600;font-size:13.5px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr}.story .metric-wrap{padding:14px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/cloudflare/computer" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Sandboxed Computing for AI Agents</span>
+    <h1><span class="owner">cloudflare /</span><span class="name">computer</span></h1>
+    <p class="tagline">Give your agent a <strong>computer</strong>. Cloudflare's open-source platform for giving AI agents <strong>isolated, sandboxed computing environments</strong> with browsers, file systems, and tools - built on <strong>Workers</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">9.2K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">509</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Give agents a <em>computer</em></h2>
+    <p class="sub">An isolated computing environment where AI agents can run code, browse the web, read and write files, and use tools - without touching your machine. Built on Cloudflare Workers, designed for agent developers.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n lm">9.2K</div><div class="l">GitHub Stars</div></div></div>
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n sc">509</div><div class="l">Forks</div></div></div>
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n">Full</div><div class="l">Browser Included</div></div></div>
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n lm">FS</div><div class="l">File System Access</div></div></div>
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n">3mo</div><div class="l">Project Age</div></div></div>
+      <div class="bignum"><div class="bn-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span></div><div class="bn-body"><div class="n sc">Workers</div><div class="l">Runtime</div></div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">browser.ts</span></div><div class="feat-body"><div class="fh">Full browser environment</div><p>Each agent gets a real Chromium browser instance running in the sandbox. Navigate to pages, fill forms, click buttons, take screenshots, and extract content - all through a clean API. No Puppeteer setup, no browser installation.</p></div></div>
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">filesystem.ts</span></div><div class="feat-body"><div class="fh">Sandboxed file system</div><p>Agents get a writable file system within the sandbox. Read, write, and organize files without any risk to your host machine. Files persist for the session duration or across sessions in persistent mode.</p></div></div>
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">isolation.ts</span></div><div class="feat-body"><div class="fh">Network isolation by default</div><p>Each sandbox runs in its own isolated network namespace. The agent cannot reach your internal services, databases, or host network unless you explicitly open specific endpoints. Security is the default, not an afterthought.</p></div></div>
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">workers.ts</span></div><div class="feat-body"><div class="fh">Cloudflare Workers integration</div><p>Built on the Workers runtime, so you get global edge deployment, automatic scaling, and Cloudflare's infrastructure without managing servers. Spin up hundreds of sandboxes in parallel across 300+ cities.</p></div></div>
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">lifecycle.ts</span></div><div class="feat-body"><div class="fh">Ephemeral or persistent</div><p>Choose between ephemeral sandboxes that disappear after the task (great for one-off code execution) and persistent environments that maintain state between agent sessions (great for development workflows).</p></div></div>
+      <div class="feat"><div class="feat-bar"><span class="fd"></span><span class="fd"></span><span class="fd"></span><span class="ft">tools.ts</span></div><div class="feat-body"><div class="fh">Built-in tool definitions</div><p>Ships with MCP-compatible tool definitions for browser use, file operations, code execution, and shell commands. Connect your agent and the tools are ready - no manual tool schema authoring needed.</p></div></div>
+    </div>
+
+    <div class="best-feature">
+      <div class="bf-bar"><span class="bd"></span><span class="bd"></span><span class="bd"></span><span class="bf-tag">Single Best Feature</span></div>
+      <div class="bf-body">
+        <h3>A real computer for your agent, zero infrastructure</h3>
+        <p>The defining value is that you get a full computing environment - browser, file system, network, shell - without provisioning a VM, container, or cloud instance. One API call and your agent has a machine. Another call and the machine is gone. The entire lifecycle is managed. You write agent logic, not infrastructure code. It is <code>Functions-as-a-Service</code>, but the "function" is an entire computer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>sandbox</em> problem</h2>
+    <p class="sub">AI agents need to do things - run code, browse the web, manipulate files. But giving them access to your actual machine is asking for trouble. There is no standard way to give an agent a safe, isolated compute environment.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Your machine is the sandbox.</strong> Most agent frameworks run code directly on the developer's machine. Your agent has access to your file system, your network, your credentials. A bad prompt injection and your <code>~/.ssh</code> directory is on the internet.</p>
+        <p><strong>DIY container management.</strong> Security-conscious teams spin up Docker containers for agent execution. But that means managing container images, handling networking, dealing with resource limits, and cleaning up after every run. It works, but it is a whole infrastructure project.</p>
+        <p><strong>No browser without pain.</strong> Giving an agent a browser means installing Chromium, configuring Puppeteer or Playwright, handling display servers in headless environments, and dealing with memory leaks from zombie browser processes. For a "simple" web scraping task.</p>
+        <p><strong>No standard for agent compute.</strong> Every agent framework solves sandboxing differently - or does not solve it at all. There is no shared abstraction for "give this agent a computer" that works across providers and frameworks.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Instant isolated environments.</strong> Call <code>computer.spawn()</code> and get a fully isolated sandbox in seconds. Browser, file system, network - all running on Cloudflare's edge, nowhere near your machine or your credentials.</p>
+        <p><strong>Zero infrastructure management.</strong> No Docker files, no container orchestration, no VM provisioning. Cloudflare manages the compute, the isolation, the cleanup. You pay for what you use and nothing runs when your agent is idle.</p>
+        <p><strong>Browser included.</strong> Every sandbox comes with a Chromium instance ready to go. Navigate, click, type, screenshot - through a clean API. No Puppeteer configuration, no display server headaches, no zombie processes.</p>
+        <p><strong>Standard tool interface.</strong> Ships with MCP-compatible tool definitions that work with any agent framework. Whether you use Claude, GPT, or a custom agent, the tools plug in the same way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Install the SDK, connect your Cloudflare account, and give your agent its first sandboxed computer. You will need a Cloudflare account with Workers enabled.</p>
+
+    <div class="step">
+      <div class="step-head"><div class="step-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="step-num">1</span><h3>Install the SDK</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install the Computer SDK</span>
+npm install @cloudflare/computer
+
+<span class="cm"># Or with yarn</span>
+yarn add @cloudflare/computer
+
+<span class="cm"># Or with pnpm</span>
+pnpm add @cloudflare/computer</pre>
+        <p>Requires <strong>Node.js 18+</strong>. The package includes TypeScript types, the client SDK, and MCP tool definitions. No native dependencies.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><div class="step-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="step-num">2</span><h3>Configure your Cloudflare account</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Log in to Cloudflare (if not already)</span>
+npx wrangler login
+
+<span class="cm"># Set your account ID as an environment variable</span>
+export CLOUDFLARE_ACCOUNT_ID="your-account-id"
+
+<span class="cm"># Or add it to your .env file</span>
+echo "CLOUDFLARE_ACCOUNT_ID=your-account-id" >> .env</pre>
+        <p>You need a Cloudflare account with <strong>Workers</strong> enabled. The free tier includes a generous allocation of compute time for development. Production usage is billed based on sandbox duration and resource usage.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><div class="step-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="step-num">3</span><h3>Spawn your first computer</h3></div>
+      <div class="step-body">
+<pre><span class="cm">// spawn-computer.ts</span>
+import { Computer } from "@cloudflare/computer";
+
+const computer = new Computer({
+  accountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+});
+
+<span class="cm">// Create an ephemeral sandbox</span>
+const session = await computer.spawn();
+
+<span class="cm">// Browse the web</span>
+const page = await session.browser.navigate("https://example.com");
+console.log(await page.title());
+
+<span class="cm">// Write a file</span>
+await session.fs.writeFile("/tmp/hello.txt", "Hello from the sandbox!");
+
+<span class="cm">// Run a shell command</span>
+const result = await session.shell.exec("cat /tmp/hello.txt");
+console.log(result.stdout);
+
+<span class="cm">// Clean up</span>
+await session.destroy();</pre>
+        <p>The <code>spawn()</code> call creates an isolated environment in seconds. The session object gives you access to a browser, file system, and shell. Call <code>destroy()</code> when done - or use ephemeral mode and it cleans up automatically.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><div class="step-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="step-num">4</span><h3>Connect to your agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm">// Use the built-in MCP tools with your agent</span>
+import { Computer, getTools } from "@cloudflare/computer";
+
+const computer = new Computer({
+  accountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+});
+
+<span class="cm">// Get MCP-compatible tool definitions</span>
+const tools = getTools(computer);
+
+<span class="cm">// Pass tools to your agent framework</span>
+const response = await agent.run({
+  prompt: "Go to news.ycombinator.com and summarize the top 5 stories",
+  tools: tools,
+});
+
+<span class="cm">// The agent can now browse, write files,</span>
+<span class="cm">// and execute code in the sandbox</span></pre>
+        <p>The <code>getTools()</code> function returns tool definitions compatible with MCP and most agent frameworks. Your agent gets browser, file system, and shell tools - all scoped to the sandbox.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>compute</em></h2>
+    <p class="sub">Where Cloudflare Computer fits in the agent infrastructure landscape - and the patterns emerging around sandboxed agent compute.</p>
+
+    <div class="story"><div class="metric-wrap"><div class="metric">Safe Web Browsing</div></div><div class="story-body"><p><strong>Agents that surf without risk.</strong> The most immediate use case is giving agents browser access without exposing your network. Agents can visit any URL, fill forms, extract data, and take screenshots - all inside the sandbox. A prompt injection on a malicious page cannot reach your local file system or credentials.</p></div></div>
+    <div class="story"><div class="metric-wrap"><div class="metric">Code Execution</div></div><div class="story-body"><p><strong>Run agent-generated code safely.</strong> When an agent writes code, you need to run it somewhere. The sandbox provides a full execution environment - install packages, compile code, run tests - without any risk to your machine. If the agent generates a <code>rm -rf /</code>, the sandbox eats it.</p></div></div>
+    <div class="story"><div class="metric-wrap"><div class="metric">Automated Testing</div></div><div class="story-body"><p><strong>Ephemeral test environments on demand.</strong> Spin up a fresh sandbox for each test run. Install dependencies, run the test suite, capture results, tear down. No test environment drift, no cleanup scripts, no shared state between runs. Each test gets a pristine machine.</p></div></div>
+    <div class="story"><div class="metric-wrap"><div class="metric">Agent Dev &amp; Debug</div></div><div class="story-body"><p><strong>Watch your agent work.</strong> Persistent sandboxes let you connect to a running environment and observe what the agent is doing - inspect the browser state, read the file system, check shell history. Essential for debugging agent behavior without replaying entire conversations.</p></div></div>
+
+    <div class="itw">
+      <div class="itw-bar"><span class="id"></span><span class="id"></span><span class="id"></span><span class="itw-title">in-the-wild.log</span></div>
+      <div class="itw-body">
+        <h3>In the Wild</h3>
+        <ul>
+          <li><strong>Cloudflare's agent infrastructure push.</strong> Computer is part of Cloudflare's broader entry into the agent infrastructure space, building on their Workers platform and edge network. The project positions Cloudflare as a provider of the "compute layer" for AI agents - a natural extension of their serverless platform.</li>
+          <li><strong>Growing "agent compute" category.</strong> Computer enters a nascent but growing category alongside E2B, Modal, and Fly.io's agent sandboxing features. The differentiation is Cloudflare's global edge network and the integration with their existing Workers ecosystem - agents get compute in 300+ cities without additional configuration.</li>
+          <li><strong>Developer community reception.</strong> The repository has attracted steady interest since its June 2026 launch, with GitHub Discussions showing active conversations around browser automation patterns, persistent sandbox use cases, and integration with various agent frameworks. Evidence of large production deployments is still limited this early.</li>
+          <li><strong>MCP tool ecosystem.</strong> The built-in MCP tool definitions make Computer immediately usable with Claude and other MCP-compatible agents. Several community members have shared configurations for connecting Computer to Claude Code, though these remain informal guides rather than official integrations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Requires a Cloudflare account.</strong> Unlike self-hosted alternatives, Computer runs on Cloudflare's infrastructure. That means signing up for their platform, agreeing to their terms, and depending on their uptime. If you need fully self-hosted agent sandboxing, this is not it.</li>
+        <li><strong>Compute costs at scale.</strong> The free tier is generous for development, but production workloads that spawn hundreds of sandboxes per hour will incur meaningful costs. Sandbox duration, browser usage, and network egress all contribute to the bill. Model your expected usage before committing.</li>
+        <li><strong>Cold start latency.</strong> Spawning a new sandbox is not instant. While Cloudflare has optimized the path, creating an isolated environment with a browser still takes seconds - potentially too slow for real-time interactive use cases where sub-second response is expected.</li>
+        <li><strong>Browser automation complexity.</strong> Having a browser available is powerful, but web scraping and browser automation remain inherently fragile. Sites change layouts, CAPTCHAs appear, JavaScript-heavy pages load unpredictably. The sandbox solves the security problem, not the reliability problem of browser automation.</li>
+        <li><strong>Young project, evolving API.</strong> Created June 2026 - three months old. The SDK surface is still evolving, documentation is growing, and best practices are being established by early adopters. Expect breaking changes and pin your dependency version.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/cloudflare/computer" target="_blank">cloudflare/computer GitHub</a> - source, SDK documentation, examples</li>
+      <li>Built on: Cloudflare Workers, TypeScript, Chromium</li>
+      <li>Last pushed: September 11, 2026 | Created: June 5, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

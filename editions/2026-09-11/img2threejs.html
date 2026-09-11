@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>img2threejs/img2threejs - Image to Procedural Three.js Models | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c1d;--bg2:#121230;--card:#16163a;--card2:#1c1c48;
+    --primary:#8b5cf6;--primary-dim:#7c3aed;--secondary:#14b8a6;
+    --accent:#a78bfa;--accent-light:#c4b5fd;
+    --ink:#edeafc;--muted:#9893b8;--line:#2a2a5c;
+    --sans:'Inter',sans-serif;--mono:'Fira Code',monospace;--disp:'Rajdhani',sans-serif;
+    --r:8px;
+    --shadow:0 2px 12px rgba(0,0,0,.35);--shadow-lg:0 6px 24px rgba(0,0,0,.45);
+    --grad:linear-gradient(135deg,#8b5cf6,#14b8a6);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      repeating-linear-gradient(135deg,transparent,transparent 120px,rgba(139,92,246,.015) 120px,rgba(139,92,246,.015) 121px),
+      repeating-linear-gradient(45deg,transparent,transparent 120px,rgba(20,184,166,.012) 120px,rgba(20,184,166,.012) 121px);
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(12,12,29,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(139,92,246,.05) 0%,rgba(20,184,166,.02) 50%,transparent 100%)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:13px;letter-spacing:.12em;text-transform:uppercase;background:var(--grad);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(36px,7.5vw,72px);font-weight:700;line-height:1.08;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--muted);font-weight:500;font-size:.42em;display:block;letter-spacing:.04em;margin-bottom:4px}
+  h1 .name{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--primary)}
+  .chip .cv.lm{color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(12,12,29,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:14px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--accent)}
+  .tab-btn.active{background:var(--grad);border-color:transparent;color:#fff}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid;border-image:var(--grad) 1;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum::before{content:'';position:absolute;top:0;right:0;width:40px;height:40px;background:var(--bg2);clip-path:polygon(100% 0,0 0,100% 100%);opacity:.6}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid;border-image:var(--grad) 1;border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(20,184,166,.04));border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--grad);color:#fff;font-weight:700;font-size:12px;letter-spacing:.10em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:22px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(244,67,54,.04);border-color:rgba(244,67,54,.25)}
+  .ba.after{background:rgba(139,92,246,.04);border-color:rgba(139,92,246,.25)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#f44336}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--grad);color:#fff;font-weight:700;font-size:15px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#080818;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c8c0e8}
+  pre .cm{color:#4a4578}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:22px;color:var(--primary);line-height:1.2;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:18px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:rgba(244,67,54,.04);border:1px dashed rgba(244,67,54,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#f44336;font-size:19px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(244,67,54,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.10em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;font-family:var(--disp);background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/img2threejs/img2threejs" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Token-Efficient Image to 3D</span>
+    <h1><span class="owner">img2threejs/</span><span class="name">img2threejs</span></h1>
+    <p class="tagline"><strong>Rebuild the object in a reference image as a procedural, quality-gated, animation-ready Three.js model.</strong> An AI-powered pipeline that turns photographs into clean, code-only 3D scenes - no mesh files, no manual modeling.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">15.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Photograph in, <em>Three.js out</em></h2>
+    <p class="sub">img2threejs takes a reference image - a product photo, a sketch, a screenshot - and generates clean, procedural Three.js JavaScript code that rebuilds the object as a 3D model. No mesh files. No Blender. Just code you can read, edit, and animate.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">15.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Code</div><div class="l">Output Format</div></div>
+      <div class="bignum"><div class="n lm">Gated</div><div class="l">Quality Checks</div></div>
+      <div class="bignum"><div class="n">58</div><div class="l">Days Since Creation</div></div>
+      <div class="bignum"><div class="n sc">Anim</div><div class="l">Ready Output</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Code output, not mesh files</div><p>Unlike NeRF or photogrammetry tools that produce <code>.obj</code> or <code>.glb</code> mesh files, img2threejs generates <strong>readable JavaScript code</strong> that uses Three.js primitives - <code>BoxGeometry</code>, <code>SphereGeometry</code>, <code>ExtrudeGeometry</code>, and CSG operations. The output is version-controllable, editable, and human-readable.</p></div>
+      <div class="feat"><div class="fh">Quality gates that enforce standards</div><p>The pipeline includes <strong>configurable quality gates</strong> that evaluate the generated model against the reference image. If the output does not meet the similarity threshold, the pipeline retries with adjusted parameters. You set the bar - the system meets it or tells you why it could not.</p></div>
+      <div class="feat"><div class="fh">Animation-ready from the start</div><p>Generated models are structured for animation. Each logical component is a <strong>named, separate Three.js group</strong> - wheels, body, windows for a car; legs, seat, back for a chair. This makes it trivial to add rotation, movement, or physics after generation.</p></div>
+      <div class="feat"><div class="fh">Token-efficient for agent workflows</div><p>The pipeline is designed to work within <strong>LLM context windows</strong>. Generated Three.js code is compact and procedural - no base64-encoded textures, no inlined vertex arrays, no bloated JSON scenes. A typical output is <strong>200-800 lines</strong> of clean JavaScript, well within agent token budgets.</p></div>
+      <div class="feat"><div class="fh">AI-powered image analysis</div><p>The system uses vision models to <strong>decompose the reference image</strong> into geometric primitives, materials, and spatial relationships. It understands that a chair has four legs, a cylinder is a mug handle, and a sphere sits on top of a cone to make an ice cream. This semantic understanding drives the code generation.</p></div>
+      <div class="feat"><div class="fh">Claude Code and agent integration</div><p>img2threejs ships with <strong>first-class support for AI agent workflows</strong>. It can be invoked as a tool call from Claude Code, Cursor, or any agent that can execute Python. The output is designed to drop directly into a Three.js project with zero manual edits.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Code you can read, not meshes you cannot</h3>
+      <p>The fundamental insight of img2threejs is that for many use cases, a <strong>procedural Three.js code file</strong> is more valuable than a high-polygon mesh. Code can be version-controlled with git. Code can be reviewed in a pull request. Code can be modified by an LLM agent. Code can be animated by adding a few lines. Code has zero loading overhead beyond the Three.js runtime. A <code>.glb</code> file gives you none of those properties. For rapid prototyping, e-commerce previews, and agent-driven 3D, code-first beats mesh-first.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>3D modeling</em> bottleneck</h2>
+    <p class="sub">Three.js makes 3D rendering accessible in the browser. But creating the 3D content itself remains a manual, expensive process that sits outside most developers' skill sets. The modeling step is the bottleneck.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Manual modeling is expensive.</strong> Creating a 3D model in Blender, Maya, or Cinema 4D takes hours of skilled work. A simple product model might cost $200-500 from a freelancer. For a startup that needs 3D previews of 50 products, that is $10K-25K before writing a line of rendering code.</p>
+        <p><strong>Existing image-to-3D creates meshes, not code.</strong> Tools like NeRF, Gaussian Splatting, and point-cloud reconstruction produce mesh files - <code>.obj</code>, <code>.glb</code>, <code>.ply</code>. These are opaque binary blobs. You cannot read them, diff them, or modify them programmatically. They also tend to be large and slow to load on the web.</p>
+        <p><strong>Three.js models are hand-coded.</strong> Developers who want procedural 3D - models built from code rather than mesh files - write Three.js geometry by hand. This requires visualizing 3D coordinates in your head, placing primitives manually, and iterating through dozens of refresh cycles. It is tedious even for experienced developers.</p>
+        <p><strong>No quality feedback loop.</strong> When an AI generates a 3D model, how do you know it is any good? Existing pipelines dump output and hope for the best. There is no automated check that the generated model actually looks like the input image. Bad outputs waste compute and developer time.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Image in, code out.</strong> Hand img2threejs a photograph and it returns clean, procedural Three.js JavaScript. No modeling software, no mesh files, no manual coordinate wrangling. The generated code uses standard Three.js primitives that any web developer can read and modify.</p>
+        <p><strong>Version-controllable 3D.</strong> Because the output is code, it lives in your git repo alongside the rest of your application. Pull requests can include 3D model changes with meaningful diffs. Code review catches issues. CI can validate the output. This is how software teams already work - img2threejs makes 3D fit that workflow.</p>
+        <p><strong>Quality gates close the loop.</strong> The pipeline compares the generated model to the reference image and scores the similarity. If the score falls below your configured threshold, it retries with adjusted decomposition. You get a guaranteed minimum quality or a clear failure - no silent bad outputs.</p>
+        <p><strong>Agent-native by design.</strong> The pipeline's token-efficient output is explicitly designed for LLM agent workflows. An agent can generate a model, check the quality score, modify the code, and re-render - all within a single context window. This makes 3D content creation automatable for the first time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>generating</em></h2>
+    <p class="sub">From installation to your first generated Three.js model in under five minutes. You will need Python 3.9 or later and access to a vision-capable LLM API.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install img2threejs via pip</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install from PyPI</span>
+pip install img2threejs
+
+<span class="cm"># Or install from source for the latest</span>
+git clone https://github.com/img2threejs/img2threejs.git
+cd img2threejs
+pip install -e .</pre>
+        <p>The package installs with minimal dependencies. The core pipeline requires <strong>Python 3.9+</strong> and handles vision model API calls, geometric decomposition, and Three.js code generation. No GPU required on your machine - the heavy lifting happens in the vision model API.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your vision model and quality thresholds</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Set your API key for the vision model</span>
+export ANTHROPIC_API_KEY="your-key-here"
+
+<span class="cm"># Or configure via the settings file</span>
+img2threejs init
+<span class="cm"># Creates ~/.img2threejs/config.yaml with defaults:</span>
+<span class="cm">#   model: claude-sonnet        (vision model)</span>
+<span class="cm">#   quality_threshold: 0.75     (0.0 to 1.0)</span>
+<span class="cm">#   max_retries: 3              (retry on quality fail)</span>
+<span class="cm">#   animation_ready: true       (named component groups)</span>
+<span class="cm">#   output_format: esm          (ES module or IIFE)</span></pre>
+        <p>The <strong>quality threshold</strong> is the key setting. At <code>0.75</code>, the pipeline accepts models that are recognizably similar to the reference. Raise it to <code>0.9</code> for higher fidelity at the cost of more retries. Lower it to <code>0.5</code> for fast, rough prototypes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Generate your first Three.js model</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Generate from a reference image</span>
+img2threejs generate photo.jpg -o model.js
+
+<span class="cm"># Python API</span>
+from img2threejs import generate
+
+code = generate("photo.jpg", quality_threshold=0.8)
+with open("model.js", "w") as f:
+    f.write(code)
+
+<span class="cm"># The output is a self-contained Three.js ES module</span>
+<span class="cm"># Import it directly into your scene:</span>
+<span class="cm">#   import { createModel } from './model.js'</span>
+<span class="cm">#   const group = createModel()</span>
+<span class="cm">#   scene.add(group)</span></pre>
+        <p>The generated file exports a <code>createModel()</code> function that returns a Three.js <code>Group</code>. Each logical component - body, wheels, handle, lid - is a <strong>named child group</strong> you can target for animation, color changes, or visibility toggling.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Preview and iterate</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Launch the built-in preview server</span>
+img2threejs preview model.js
+
+<span class="cm"># Opens a browser window with:</span>
+<span class="cm">#   - Orbit controls (drag to rotate)</span>
+<span class="cm">#   - Reference image overlay for comparison</span>
+<span class="cm">#   - Component tree inspector</span>
+<span class="cm">#   - Quality score readout</span>
+
+<span class="cm"># Regenerate with higher quality if needed</span>
+img2threejs generate photo.jpg -o model.js --threshold 0.9 --retries 5</pre>
+        <p>The preview server renders the generated model side-by-side with the reference image. Use the <strong>component inspector</strong> to see the named groups, and edit the generated code directly - changes hot-reload in the preview.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where it <em>renders</em></h2>
+    <p class="sub">img2threejs fills a gap between manual 3D modeling and mesh-based generation. Here are the workflows where procedural, code-only 3D output changes the equation.</p>
+
+    <div class="story"><div class="metric">Rapid Prototyping</div><p><strong>Sketch to 3D in seconds, not hours.</strong> Designers and product teams photograph a whiteboard sketch, a clay model, or an existing product and generate a Three.js preview in under a minute. The output is rough but manipulable - rotate it, show it in context, share a link. For early-stage product exploration, this speed advantage is transformative. A team that previously waited days for a 3D artist can now iterate on spatial ideas within a single meeting.</p></div>
+    <div class="story"><div class="metric">E-Commerce Previews</div><p><strong>Product photos become interactive 3D views.</strong> Online retailers with thousands of SKUs cannot afford to manually model every product. img2threejs can batch-process product photography into Three.js models that power <strong>360-degree interactive viewers</strong> on product pages. The procedural code output keeps file sizes small - typically under 10KB per model - so page load times stay fast. Animation-ready output means you can add spin, explode, or hover effects without touching the model code.</p></div>
+    <div class="story"><div class="metric">Game Dev Pipeline</div><p><strong>Reference art to placeholder assets, automated.</strong> Game developers use reference images - concept art, mood boards, photographs - to communicate what an asset should look like. img2threejs converts those references directly into <strong>usable placeholder 3D assets</strong> that occupy the right space, have the right proportions, and can be dropped into a scene while the real assets are being built. The animation-ready grouping means placeholders can be rigged for basic movement immediately.</p></div>
+    <div class="story"><div class="metric">Educational Content</div><p><strong>3D models from textbook illustrations.</strong> Educators creating interactive learning materials can photograph diagrams - a human heart, a building cross-section, a molecular structure - and generate rotatable 3D models for web-based courseware. Because the output is <strong>standard Three.js code</strong>, it integrates with any web-based learning platform. Students can inspect the code itself to learn how 3D graphics work, turning the tool into both a content creator and a teaching aid.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Three.js community interest.</strong> The project has attracted significant attention in the Three.js and creative coding communities, where procedural geometry is a well-understood technique but automated generation from images is novel. Discussions in Three.js forums have highlighted the code-first approach as a meaningful departure from mesh-based workflows.</li>
+        <li><strong>Agent workflow integration.</strong> img2threejs's integration with Claude Code and AI agent workflows has been flagged as a key differentiator. The ability to generate, evaluate, and iterate on 3D models within a single agent context window positions it as one of the first tools purpose-built for agent-driven 3D content creation.</li>
+        <li><strong>Creative coding experiments.</strong> Developers in the generative art and creative coding space have been experimenting with img2threejs as a starting point for procedural animations - generating a base model from a photograph and then algorithmically transforming it with noise, displacement, and particle effects.</li>
+        <li><strong>Growth trajectory.</strong> Reaching 15.8K stars in under two months signals strong developer interest. The Apache-2.0 license and Python packaging make it accessible to a broad audience beyond the traditional 3D graphics community. Fork activity suggests active experimentation with custom quality gates and alternative vision model backends.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Complex scenes may need manual refinement.</strong> The pipeline excels at single objects with clear geometry - products, furniture, vehicles, simple characters. Multi-object scenes, organic shapes with fine detail, and objects with complex internal structure will often require <strong>manual editing of the generated code</strong>. The output is a starting point, not a final asset, for anything beyond moderate complexity.</li>
+        <li><strong>Quality gates can reject valid outputs.</strong> The quality comparison between generated model and reference image uses perceptual similarity metrics. Stylized or abstract references - concept art, sketches with loose lines - may score poorly even when the 3D model is a reasonable interpretation. You may need to <strong>lower the threshold</strong> or disable quality gating for non-photographic inputs.</li>
+        <li><strong>Python dependency for JavaScript output.</strong> The irony is real: you need a Python environment to generate JavaScript code. For teams that are purely JavaScript/Node.js, adding Python to the toolchain is a friction point. A Node.js port is on the roadmap but not yet available. For now, the workaround is running img2threejs in a Docker container or CI pipeline.</li>
+        <li><strong>Vision model API costs.</strong> Each generation requires one or more calls to a vision-capable LLM. With retries on quality gate failures, a single model might require <strong>3-5 API calls</strong>. At current vision model pricing, that is roughly $0.02-0.10 per generated model. Batch-processing hundreds of product images will accumulate meaningful API costs.</li>
+        <li><strong>Young project, evolving API.</strong> Created July 15, 2026 - less than two months old. The Python API and CLI flags may change between minor versions. The quality gate scoring is under active calibration. Pin your version with <code>pip install img2threejs==X.Y.Z</code> and test before upgrading in production pipelines.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/img2threejs/img2threejs" target="_blank">img2threejs/img2threejs GitHub</a> - source, examples, quality gate docs</li>
+      <li>Pipeline: Reference image to procedural Three.js code with quality gates</li>
+      <li>Last pushed: September 7, 2026 | Created: July 15, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

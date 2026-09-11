@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cobusgreyling/loop-engineering - Loop Engineering for AI Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1a0a;--bg2:#0f220f;--card:#111f11;--card2:#162816;
+    --primary:#22c55e;--primary-dim:#1ba24e;--secondary:#f59e0b;
+    --accent:#3ddc84;--accent-dim:#2eb86d;
+    --ink:#e0f0e0;--muted:#8aab8a;--line:#1e3a1e;
+    --sans:'Inter',sans-serif;--mono:'Space Mono',monospace;--disp:'Space Mono',monospace;
+    --r:0px;
+    --shadow:0 2px 12px rgba(0,0,0,.35);--shadow-lg:0 6px 24px rgba(0,0,0,.5);
+    --trace:rgba(34,197,94,.12);--trace-line:rgba(34,197,94,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      linear-gradient(var(--trace-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--trace-line) 1px, transparent 1px),
+      linear-gradient(var(--trace) 1px, transparent 1px),
+      linear-gradient(90deg, var(--trace) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:rgba(10,26,10,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--primary)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--primary);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow);transition:all .15s}
+  .gh-link:hover{background:var(--primary);color:var(--bg);text-decoration:none}
+
+  .hero{padding:72px 0 50px;position:relative}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),transparent)}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:transparent;color:var(--primary);font-weight:700;border:1px solid var(--primary);padding:8px 22px;margin-bottom:24px;box-shadow:0 0 12px rgba(34,197,94,.2)}
+  h1{font-family:var(--disp);font-size:clamp(34px,7vw,64px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.44em;display:block;letter-spacing:.06em;margin-bottom:6px}
+  h1 .name{color:var(--primary);text-shadow:0 0 30px rgba(34,197,94,.3)}
+  .tagline{font-size:clamp(15px,2.2vw,19px);color:var(--muted);max-width:720px;margin:22px 0 34px;font-weight:400}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,26,10,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:var(--bg);box-shadow:0 0 16px rgba(34,197,94,.25)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(22px,3.6vw,34px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);padding:24px 20px;border-left:3px solid var(--primary);box-shadow:var(--shadow);position:relative}
+  .bignum::before{content:'';position:absolute;top:0;right:0;width:50px;height:2px;background:var(--primary);opacity:.3}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.8vw,38px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono)}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--ink);font-family:var(--mono);font-size:14px}
+  .feat .fh code{font-family:var(--mono);color:var(--primary);font-size:13px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .feat p strong{color:var(--ink)}
+
+  .best-feature{background:var(--card);border:1px solid var(--primary);padding:32px;box-shadow:0 0 20px rgba(34,197,94,.08);position:relative}
+  .best-feature::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--primary))}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--secondary);color:var(--bg);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.9em}
+  .best-feature p strong{color:var(--ink)}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .ba{padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(245,158,11,.04);border-left:3px solid var(--secondary)}
+  .ba.after{background:rgba(34,197,94,.04);border-left:3px solid var(--primary)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.88em;color:var(--primary)}
+
+  .pain-list{margin-bottom:34px}
+  .pain-item{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--secondary);padding:22px 24px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .pain-item h4{font-family:var(--mono);font-size:14px;color:var(--secondary);margin-bottom:8px;font-weight:700}
+  .pain-item p{color:var(--muted);font-size:14px}.pain-item p strong{color:var(--ink)}
+
+  .step{background:var(--card);border:1px solid var(--line);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--bg2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:var(--bg);font-weight:700;font-size:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;font-family:var(--mono)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050d05;border:1px solid var(--line);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--primary)}
+  pre .cm{color:#4a6a4a}
+  pre .kw{color:var(--secondary)}
+  pre .str{color:#86efac}
+
+  .story{background:var(--card);border:1px solid var(--line);padding:24px;margin-bottom:14px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--mono);font-size:18px;color:var(--primary);line-height:1.3;font-weight:700}
+  .story p{color:var(--muted);font-size:14px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.88em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--primary);padding:28px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:17px;margin-bottom:16px;font-family:var(--mono)}
+  .itw ul{list-style:none}.itw li{padding:13px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--accent)}
+
+  .watchout{background:rgba(245,158,11,.04);border:1px dashed var(--secondary);padding:28px;margin-top:28px}
+  .watchout h3{color:var(--secondary);font-size:17px;margin-bottom:16px;font-family:var(--mono)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(245,158,11,.12)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.88em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.15em;color:var(--primary);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";color:var(--primary);font-family:var(--mono);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13px;font-family:var(--mono);background:var(--card);border:1px solid var(--line);padding:11px 22px;color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  .circuit-divider{width:100%;height:20px;margin:30px 0;position:relative;display:flex;align-items:center}
+  .circuit-divider::before{content:'';flex:1;height:1px;background:var(--primary);opacity:.3}
+  .circuit-divider::after{content:'';width:8px;height:8px;background:var(--primary);margin:0 8px;opacity:.5}
+
+  .loop-diagram{background:var(--card);border:1px solid var(--line);padding:24px;margin-bottom:24px;text-align:center;font-family:var(--mono);color:var(--primary);font-size:13px;line-height:2.2}
+  .loop-diagram .arrow{color:var(--secondary)}
+  .loop-diagram .node{display:inline-block;border:1px solid var(--primary);padding:4px 14px;margin:0 4px}
+
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/cobusgreyling/loop-engineering" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Iterative Agent Patterns</span>
+    <h1><span class="owner">cobusgreyling/</span><span class="name">loop-engineering</span></h1>
+    <p class="tagline">Practical patterns, starters, and CLI tools for <strong>loop engineering</strong> with AI coding agents. Designed for <strong>Claude Code</strong>, <strong>Codex</strong>, and any agent that supports loop-based workflows.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">11.2K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.5K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The feedback <em>loop</em>, formalized</h2>
+    <p class="sub">Loop engineering is the discipline of managing how AI agents iterate - retry, escalate, checkpoint, and roll back. This repo turns that discipline into a CLI, a pattern library, and a set of starter templates you can drop into any agent workflow.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">11.2K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.5K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">12</div><div class="l">Loop Patterns</div></div>
+      <div class="bignum"><div class="n lm">4</div><div class="l">Starter Templates</div></div>
+      <div class="bignum"><div class="n">3</div><div class="l">Agent Integrations</div></div>
+      <div class="bignum"><div class="n sc">CLI</div><div class="l">Included Tooling</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> Core capabilities</h3>
+    <div class="feature-list">
+      <div class="feat">
+        <div class="fh">CLI for feedback loops</div>
+        <p>The <code>le</code> CLI manages the full lifecycle of agent loops - start, pause, checkpoint, resume, and terminate. It tracks iteration counts, token usage, and elapsed time so you can see exactly what your agent is doing across each cycle.</p>
+      </div>
+      <div class="feat">
+        <div class="fh">Pattern library</div>
+        <p>Twelve battle-tested loop patterns out of the box: <strong>retry</strong>, <strong>escalate</strong>, <strong>checkpoint</strong>, <strong>rollback</strong>, <strong>fan-out</strong>, <strong>reduce</strong>, <strong>gate</strong>, <strong>timeout</strong>, <strong>backoff</strong>, <strong>approval</strong>, <strong>cascade</strong>, and <strong>tee</strong>. Each pattern is composable and ships with TypeScript types.</p>
+      </div>
+      <div class="feat">
+        <div class="fh">Starter templates</div>
+        <p>Four project scaffolds for common agent workflows: <strong>TDD loop</strong> (write tests, generate code, verify), <strong>review loop</strong> (generate, review, revise), <strong>migration loop</strong> (analyze, transform, validate), and <strong>doc loop</strong> (extract, draft, verify). Run <code>le init --template tdd</code> to get started.</p>
+      </div>
+      <div class="feat">
+        <div class="fh">Multi-agent support</div>
+        <p>Works with <strong>Claude Code</strong>, <strong>OpenAI Codex</strong>, and any agent that reads from stdin and writes to stdout. The integration layer is a thin adapter - add your own agent in about 20 lines of TypeScript.</p>
+      </div>
+      <div class="feat">
+        <div class="fh">Checkpoint and rollback</div>
+        <p>Every loop iteration can snapshot the working directory. If the agent breaks something, <code>le rollback</code> reverts to the last known-good state. Checkpoints are git-based - lightweight and diffable.</p>
+      </div>
+      <div class="feat">
+        <div class="fh">Telemetry dashboard</div>
+        <p>A local web dashboard (runs on <code>localhost:3847</code>) shows real-time loop progress: iteration count, token burn rate, success/fail ratio, and a timeline of agent actions. No data leaves your machine.</p>
+      </div>
+    </div>
+
+    <div class="loop-diagram">
+      <span class="node">PROMPT</span> <span class="arrow">&#8594;</span>
+      <span class="node">EXECUTE</span> <span class="arrow">&#8594;</span>
+      <span class="node">VALIDATE</span> <span class="arrow">&#8594;</span>
+      <span class="node">CHECKPOINT</span> <span class="arrow">&#8594;</span>
+      <span class="node">DECIDE</span> <span class="arrow">&#8635;</span>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Composable loop patterns with typed contracts</h3>
+      <p>The pattern library is where this repo earns its stars. Each pattern - <code>retry</code>, <code>escalate</code>, <code>gate</code>, and nine others - is a typed TypeScript function that wraps an agent call. You compose them like middleware: <code>withRetry(withCheckpoint(withTimeout(agentCall, 30_000)))</code>. The types enforce correct nesting, so a <strong>gate pattern</strong> that requires human approval cannot be accidentally placed inside an unattended <strong>retry</strong>. This is not framework magic - it is plain functions with good types. You can read every pattern's source in under two minutes.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>iteration</em> problem</h2>
+    <p class="sub">AI coding agents are powerful, but they iterate blindly. Without structure around the feedback loop, agents fail silently, loop infinitely, or burn tokens solving the wrong problem. Loop engineering is the missing discipline.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">// Without loop engineering</div>
+        <p><strong>Silent failures.</strong> An agent hits an error, retries the same broken approach three times, and silently produces wrong output. You only find out when the code is already merged. There is no checkpoint, no escalation, no record of what the agent tried.</p>
+        <p><strong>Infinite loops.</strong> The agent keeps "improving" code that was already correct, burning tokens on unnecessary iterations. Without a termination condition or iteration budget, a simple task can cost $20 in API calls before you notice.</p>
+        <p><strong>No rollback.</strong> When an agent breaks a working file on iteration 7, you have no clean way to get back to the state at iteration 5. You end up diffing manually or restarting from scratch.</p>
+        <p><strong>Reinventing the wheel.</strong> Every team builds its own retry logic, its own checkpoint system, its own "should I keep going?" heuristic. The same patterns get reimplemented - badly - across thousands of agent workflows.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">// With loop engineering</div>
+        <p><strong>Structured iteration.</strong> Every agent call goes through a typed pattern - retry with exponential backoff, escalate after N failures, checkpoint before destructive operations. The agent's behavior is predictable and observable.</p>
+        <p><strong>Bounded loops.</strong> Iteration budgets, token limits, and timeout patterns prevent runaway loops. The <code>gate</code> pattern pauses for human approval at critical decision points. You set the boundaries once.</p>
+        <p><strong>Git-based checkpoints.</strong> The <code>checkpoint</code> pattern snapshots the working directory at each iteration using lightweight git commits. Rolling back is one command: <code>le rollback --to 5</code>.</p>
+        <p><strong>Shared pattern library.</strong> Twelve composable patterns cover the most common agent iteration scenarios. Import them, compose them, and move on to the actual problem your agent is solving.</p>
+      </div>
+    </div>
+
+    <div class="circuit-divider"></div>
+
+    <h3><span class="dot">&#9679;</span> The failure modes</h3>
+    <div class="pain-list">
+      <div class="pain-item">
+        <h4>01 - The silent spiral</h4>
+        <p>An agent generates code, runs tests, sees failures, and tries a different approach. But each new approach introduces new bugs. Without a <strong>rollback pattern</strong>, the agent cannot return to a previous working state. Without an <strong>escalation pattern</strong>, it never asks for help. The result: 15 iterations of increasingly broken code, a $12 API bill, and a pull request that does not compile.</p>
+      </div>
+      <div class="pain-item">
+        <h4>02 - The token bonfire</h4>
+        <p>A refactoring task that should take three iterations takes thirty because the agent keeps polishing code that already passes tests. There is no <strong>termination condition</strong> beyond "keep going until you feel done." Every unnecessary iteration costs tokens, time, and context window space that could be spent on actual work.</p>
+      </div>
+      <div class="pain-item">
+        <h4>03 - The black box iteration</h4>
+        <p>The agent ran for four minutes and produced a result. Was it the first attempt or the fourteenth? Did it hit errors along the way? Did it try three different approaches? Without telemetry, you have no idea how the agent arrived at its output - and no way to debug when it arrives at the wrong one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get the <em>loop</em> running</h2>
+    <p class="sub">Install the CLI, scaffold a project from a starter template, configure your loop patterns, and start iterating with structure. The whole setup takes under five minutes.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the CLI</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install globally</span>
+<span class="kw">npm</span> install -g loop-engineering
+
+<span class="cm"># Verify installation</span>
+<span class="kw">le</span> --version
+<span class="cm"># loop-engineering v1.4.2</span></pre>
+        <p>The <code>le</code> CLI is a single Node.js binary. It requires <strong>Node 18+</strong> and <strong>git</strong> (for checkpoint and rollback features). No other dependencies.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Scaffold a project</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Initialize with a starter template</span>
+<span class="kw">le</span> init --template tdd
+
+<span class="cm"># Available templates:</span>
+<span class="cm">#   tdd      - Test-driven development loop</span>
+<span class="cm">#   review   - Generate, review, revise cycle</span>
+<span class="cm">#   migrate  - Analyze, transform, validate pipeline</span>
+<span class="cm">#   doc      - Extract, draft, verify workflow</span>
+
+<span class="cm"># Or start with a blank config</span>
+<span class="kw">le</span> init</pre>
+        <p>The <code>init</code> command creates a <code>loop.config.ts</code> file in your project root. This file defines your loop patterns, iteration limits, and agent configuration. Each template comes with sensible defaults.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Configure loop patterns</h3></div>
+      <div class="step-body">
+<pre><span class="cm">// loop.config.ts</span>
+<span class="kw">import</span> { defineLoop, withRetry, withCheckpoint,
+         withTimeout, withGate } <span class="kw">from</span> <span class="str">'loop-engineering'</span>;
+
+<span class="kw">export default</span> defineLoop({
+  agent: <span class="str">'claude-code'</span>,      <span class="cm">// or 'codex', 'custom'</span>
+  maxIterations: 10,
+  tokenBudget: 50_000,
+  patterns: [
+    withCheckpoint({ every: 2 }),  <span class="cm">// snapshot every 2 iters</span>
+    withRetry({ maxRetries: 3, backoff: <span class="str">'exponential'</span> }),
+    withTimeout({ ms: 120_000 }),  <span class="cm">// 2 min per iteration</span>
+    withGate({ on: <span class="str">'destructive'</span> }), <span class="cm">// pause before deletes</span>
+  ],
+});</pre>
+        <p>Patterns compose from outside in. In this example, the gate fires first (blocking destructive operations), then the timeout wraps each attempt, then retry handles transient failures, and checkpoint snapshots after each successful pair of iterations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Run your agent loop</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start the loop with a task prompt</span>
+<span class="kw">le</span> start <span class="str">"Refactor the auth module to use JWT tokens"</span>
+
+<span class="cm"># Monitor progress in real time</span>
+<span class="kw">le</span> status
+
+<span class="cm"># View the telemetry dashboard</span>
+<span class="kw">le</span> dashboard
+
+<span class="cm"># Roll back to a specific iteration</span>
+<span class="kw">le</span> rollback --to 3
+
+<span class="cm"># Resume from a checkpoint</span>
+<span class="kw">le</span> resume</pre>
+        <p>The <code>le start</code> command kicks off your configured agent with the specified task. The CLI manages iteration counting, pattern application, checkpoint creation, and telemetry collection automatically. Use <code>le status</code> to check progress without interrupting the loop.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>Integrate with your agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm">// Custom agent adapter (about 20 lines)</span>
+<span class="kw">import</span> { AgentAdapter } <span class="kw">from</span> <span class="str">'loop-engineering'</span>;
+
+<span class="kw">export const</span> myAgent: AgentAdapter = {
+  name: <span class="str">'my-custom-agent'</span>,
+  execute: <span class="kw">async</span> (prompt, context) => {
+    <span class="cm">// Call your agent's API here</span>
+    <span class="kw">const</span> result = <span class="kw">await</span> callMyAgent(prompt);
+    <span class="kw">return</span> {
+      output: result.text,
+      tokensUsed: result.usage.total,
+      status: result.success ? <span class="str">'ok'</span> : <span class="str">'error'</span>,
+    };
+  },
+};</pre>
+        <p>Built-in adapters exist for <strong>Claude Code</strong> and <strong>OpenAI Codex</strong>. For other agents, implement the <code>AgentAdapter</code> interface - it is a single <code>execute</code> function that takes a prompt and returns a result. Register your adapter in <code>loop.config.ts</code> and you are done.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Loop patterns <em>in practice</em></h2>
+    <p class="sub">Where loop engineering shines - and where the community is starting to apply structured iteration to real agent workflows.</p>
+
+    <div class="story"><div class="metric">Multi-step refactoring</div><p><strong>The core use case.</strong> Large refactoring tasks - migrating from one ORM to another, converting a codebase from callbacks to async/await, or extracting a monolith into services - are natural fits for loop engineering. The <strong>checkpoint pattern</strong> snapshots after each file is migrated, and the <strong>rollback pattern</strong> lets the agent undo a bad transformation without losing prior progress. Teams report completing migrations that previously required manual babysitting of the agent.</p></div>
+    <div class="story"><div class="metric">Test-driven agent dev</div><p><strong>The TDD loop template.</strong> Write failing tests first, then let the agent iterate until they pass. The <code>tdd</code> starter template configures a loop that runs tests after each iteration, uses the <strong>retry pattern</strong> on test failures, and terminates when all tests go green. If the agent gets stuck after the configured retry limit, the <strong>escalate pattern</strong> pauses and asks for human input before continuing.</p></div>
+    <div class="story"><div class="metric">Progressive code gen</div><p><strong>Building features incrementally.</strong> Instead of asking an agent to generate an entire feature in one shot, loop engineering breaks the task into phases: scaffold, implement, test, refine. Each phase is a loop iteration with its own success criteria. The <strong>gate pattern</strong> pauses between phases for human review, and the <strong>cascade pattern</strong> feeds output from one phase as context to the next.</p></div>
+    <div class="story"><div class="metric">Automated review cycles</div><p><strong>Self-reviewing agents.</strong> The <code>review</code> starter template sets up a loop where one agent generates code and a second agent (or the same agent with a different system prompt) reviews it. Findings feed back into the next generation iteration. The <strong>tee pattern</strong> runs both agents in parallel, and the <strong>reduce pattern</strong> merges their outputs into a final result.</p></div>
+
+    <div class="itw">
+      <h3>> In the Wild</h3>
+      <ul>
+        <li><strong>Growing community interest.</strong> The concept of "loop engineering" as a named discipline has been gaining traction in the AI agent community since mid-2026. Cobus Greyling's writing on the topic - particularly around structured iteration patterns for coding agents - has helped crystallize the conversation around what was previously ad-hoc retry logic.</li>
+        <li><strong>Agent engineering discussions.</strong> Multiple threads on developer forums and social media have debated whether loop engineering is a genuinely new practice or a rebranding of existing control flow patterns. The consensus seems to be that the value is in the composable library and CLI tooling rather than any single pattern being novel.</li>
+        <li><strong>Claude Code and Codex integration.</strong> The repo's first-class support for Claude Code and Codex has made it a natural fit for developers already using those agents. Several community posts describe using loop-engineering to add checkpoint and rollback to their existing Claude Code workflows.</li>
+        <li><strong>Early adoption signals.</strong> With 11.2K stars in roughly three months since creation, the repo has clearly struck a chord - but independent case studies and production usage reports are still sparse. The project is in the "interesting idea, early tooling" phase. Evidence of large-scale production use is thin at this point.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>> Watch out for</h3>
+      <ul>
+        <li><strong>Masking prompt quality issues.</strong> Loop patterns like <code>retry</code> and <code>escalate</code> can paper over bad prompts. If your agent needs 8 retries to produce working code, the fix might be a better prompt - not a more sophisticated retry strategy. Loop engineering is not a substitute for good prompt engineering.</li>
+        <li><strong>Overhead on simple tasks.</strong> Setting up a <code>loop.config.ts</code>, configuring patterns, and running the CLI adds friction to tasks that an agent can handle in one shot. For a quick "rename this variable" task, the loop engineering overhead is not worth it. The sweet spot is multi-step tasks that take 5+ iterations.</li>
+        <li><strong>Pattern library learning curve.</strong> Twelve composable patterns with typed nesting rules means there is real cognitive overhead to getting started. The documentation covers each pattern individually, but the composition rules - which patterns can nest inside which - take time to internalize.</li>
+        <li><strong>Young project, evolving API.</strong> Created June 9, 2026 - about three months old. The pattern API has already changed between v1.0 and v1.4, and breaking changes should be expected. Pin your version and check the changelog before upgrading.</li>
+        <li><strong>Token cost amplification.</strong> Structured loops with checkpoints and retries do not reduce token usage - they can increase it. Every retry costs tokens, every checkpoint adds context. The <code>tokenBudget</code> config option helps set a ceiling, but be aware that loop engineering trades money for reliability.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/cobusgreyling/loop-engineering" target="_blank">cobusgreyling/loop-engineering GitHub</a> - source, pattern docs, starter templates</li>
+      <li>Patterns: retry, escalate, checkpoint, rollback, fan-out, reduce, gate, timeout, backoff, approval, cascade, tee</li>
+      <li>Last pushed: September 11, 2026 | Created: June 9, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

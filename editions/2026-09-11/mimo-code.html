@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XiaomiMiMo/MiMo-Code - Models and Agents Co-Evolve | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--bg2:#f9f9f9;--card:#ffffff;--card2:#fafafa;
+    --primary:#FF6900;--primary-dim:#e05e00;--secondary:#d95700;
+    --accent:#4a4a4a;--accent-light:#717171;
+    --ink:#1a1a1a;--muted:#6b6b6b;--line:#e8e8e8;
+    --sans:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--disp:'Plus Jakarta Sans',system-ui,sans-serif;
+    --r:16px;
+    --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-lg:0 8px 32px rgba(0,0,0,.07);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--sans);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.02em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--bg2);border:none;padding:8px 20px;border-radius:var(--r);font-weight:600;box-shadow:var(--shadow)}
+  .gh-link:hover{background:var(--primary);color:#fff;text-decoration:none}
+
+  .hero{padding:76px 0 52px}
+  .kicker{display:inline-block;font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:calc(var(--r) * 2);padding:8px 22px;margin-bottom:24px}
+  h1{font-family:var(--disp);font-size:clamp(36px,7.5vw,72px);font-weight:800;line-height:1.06;letter-spacing:-.03em;color:var(--ink)}
+  h1 .owner{color:var(--accent-light);font-weight:500;font-size:.38em;display:block;letter-spacing:.02em;margin-bottom:6px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--bg2);border:none;border-radius:var(--r);padding:10px 20px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--sans);font-weight:700;font-size:13px;background:var(--bg2);border:none;color:var(--muted);padding:10px 24px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .2s}
+  .tab-btn:hover{color:var(--ink);background:#f0f0f0}
+  .tab-btn.active{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(255,105,0,.25)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:700px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+  .bignum{background:var(--bg2);border:none;border-radius:var(--r);padding:28px 24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--primary);border-radius:var(--r) var(--r) 0 0}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,42px);line-height:1;color:var(--ink);font-weight:700}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:44px}
+  .feat{background:var(--bg2);border:none;border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(255,105,0,.06),rgba(255,105,0,.02));border:none;border-radius:var(--r);padding:36px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:var(--primary);color:#fff;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:calc(var(--r) * 2);margin-bottom:16px}
+  .best-feature h3{font-size:23px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}
+  .ba{border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+  .ba.before{background:#fff5f5}
+  .ba.after{background:#fff8f0}
+  .ba .ba-tag{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#dc2626}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .pain-points{margin-bottom:38px}
+  .pain{background:var(--bg2);border:none;border-radius:var(--r);padding:24px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .pain .ph{font-weight:700;font-size:15.5px;color:var(--ink);margin-bottom:6px}
+  .pain p{color:var(--muted);font-size:14px}
+
+  .step{background:var(--bg2);border:none;border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:18px 24px;background:linear-gradient(135deg,rgba(255,105,0,.05),transparent);display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#fff;font-weight:700;font-size:14px;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#1a1a1a;border:none;border-radius:12px;padding:18px 22px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#e0e0e0}
+  pre .cm{color:#717171}
+  pre .kw{color:#FF9E4F}
+  pre .st{color:#7dd3a8}
+
+  .story{background:var(--bg2);border:none;border-radius:var(--r);padding:28px;margin-bottom:14px;display:grid;grid-template-columns:170px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:20px;color:var(--primary);line-height:1.2;font-weight:800}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--bg2);border:none;border-radius:var(--r);padding:32px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:19px;margin-bottom:16px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:#fff5f5;border:none;border-radius:var(--r);padding:32px;margin-top:32px;box-shadow:var(--shadow)}
+  .watchout h3{color:#dc2626;font-size:19px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:12px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(220,38,38,.08)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.10em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\2022 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13.5px;background:var(--bg2);border:none;padding:12px 24px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{background:var(--primary);color:#fff;text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/XiaomiMiMo/MiMo-Code" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Models and Agents Co-Evolve</span>
+    <h1><span class="owner">XiaomiMiMo/</span><span class="name">MiMo-Code</span></h1>
+    <p class="tagline">Xiaomi's open-source platform where <strong>language models</strong> and <strong>coding agents</strong> improve together through feedback loops. Open weights, open agent code, and a co-evolutionary training pipeline.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">13.1K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Where models <em>learn from agents</em></h2>
+    <p class="sub">MiMo-Code is not just another coding assistant. It is a platform where the underlying language model and the coding agent that uses it improve each other in a continuous loop. The agent generates coding trajectories, the model learns from them, and the improved model makes the agent better.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">13.1K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Open</div><div class="l">Model Weights</div></div>
+      <div class="bignum"><div class="n lm">Co-Evo</div><div class="l">Training Loop</div></div>
+      <div class="bignum"><div class="n">~3 mo</div><div class="l">Project Age</div></div>
+      <div class="bignum"><div class="n sc">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&bull;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Co-evolutionary training loop</div><p>The agent runs coding tasks and records its successes and failures. These trajectories feed back into model training via reinforcement learning. The improved model then powers a better agent - creating an upward spiral of capability.</p></div>
+      <div class="feat"><div class="fh">Models learn from agent experience</div><p>Traditional fine-tuning uses static datasets. MiMo-Code generates training data from real agent interactions - tool calls, error recovery, multi-step reasoning chains. The model sees what actually works in practice, not what a human annotator imagined would work.</p></div>
+      <div class="feat"><div class="fh">Open weights + open agent code</div><p>Both components are open. The model weights are available for download and fine-tuning. The agent code is MIT-licensed TypeScript. You can run the entire pipeline - model, agent, and training loop - on your own infrastructure.</p></div>
+      <div class="feat"><div class="fh">Strong coding benchmarks</div><p>MiMo-Code's co-evolved models show competitive results on standard coding benchmarks including HumanEval, MBPP, and SWE-bench. The co-evolutionary approach appears to improve practical coding ability more than standard instruction tuning alone.</p></div>
+      <div class="feat"><div class="fh">Reinforcement learning from agent feedback</div><p>The training pipeline uses RL signals derived from agent outcomes - did the code compile, did tests pass, did the edit achieve its goal. This grounds the model's learning in verifiable results rather than human preferences alone.</p></div>
+      <div class="feat"><div class="fh">Xiaomi's research backing</div><p>MiMo-Code comes from Xiaomi's AI research lab, which has been steadily releasing open models (MiMo-7B, MiMo-VL) throughout 2025-2026. This is not a weekend project - it has institutional support and a research roadmap.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Core Insight</span>
+      <h3>The feedback loop is the product</h3>
+      <p>Most coding AI projects improve either the model or the agent. MiMo-Code improves both simultaneously by connecting them in a feedback loop. The agent generates real-world coding trajectories - including failures, recoveries, and tool usage patterns - and feeds them back into model training. The key insight is that agent experience is training data. Every coding task the agent attempts, whether it succeeds or fails, teaches the model something about how code gets written in practice. This is fundamentally different from training on static code corpora or human-written instructions.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>evolution gap</em></h2>
+    <p class="sub">Language models and coding agents are built and improved on separate timelines. Models are trained offline on static data. Agents adapt at runtime with prompts and tools. Nothing connects these two improvement cycles - until now.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Models and agents evolve separately.</strong> Language models are trained on code corpora - GitHub repos, documentation, Stack Overflow. Agents are built on top of frozen models using prompt engineering, tool definitions, and scaffolding. The model never learns from the agent's experience.</p>
+        <p><strong>Static training data.</strong> Models learn to code from existing code. But writing code is not the same as using tools, reading error messages, iterating on failing tests, or navigating a codebase. The distribution of training data does not match the distribution of agent work.</p>
+        <p><strong>Agent improvements do not flow back.</strong> When a team builds a better coding agent - better prompts, better tool use, better error recovery - those improvements live in the agent scaffold. The underlying model does not benefit. Switch the agent framework and you lose all those gains.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Connected improvement loops.</strong> MiMo-Code wires the agent's experience directly into the model's training pipeline. Agent successes become positive training examples. Agent failures become learning opportunities. The model improves from real usage, not just static corpora.</p>
+        <p><strong>Experience-grounded training data.</strong> Instead of training on code in isolation, the model learns from complete agent trajectories - the prompt, the plan, the tool calls, the error messages, the corrections, the final result. This teaches the model how coding actually works in practice.</p>
+        <p><strong>Agent improvements compound.</strong> A better model makes a better agent. A better agent generates better training data. Better training data makes a better model. This virtuous cycle means improvements compound over time rather than plateauing.</p>
+      </div>
+    </div>
+
+    <div class="pain-points">
+      <h3><span class="dot">&bull;</span> Why the gap exists</h3>
+      <div class="pain">
+        <div class="ph">Training and inference are separate worlds</div>
+        <p>In most organizations, the team that trains models is separate from the team that builds agents. Different codebases, different tools, different deployment cycles. MiMo-Code bridges this by making the agent and the training pipeline part of the same system.</p>
+      </div>
+      <div class="pain">
+        <div class="ph">Reinforcement learning from agent outcomes is hard</div>
+        <p>Generating RL signals from coding tasks requires defining what success looks like - does the code compile, do tests pass, does the edit match intent. MiMo-Code's contribution is a pipeline that automates this reward signal generation from agent trajectories.</p>
+      </div>
+      <div class="pain">
+        <div class="ph">Most coding models are closed</div>
+        <p>You cannot run a co-evolution loop with a model you do not control. Closed-source models improve on their own schedule. Open weights are a prerequisite for this approach - and MiMo-Code provides them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">You can use MiMo-Code at two levels: run the pre-trained agents for coding assistance, or launch the full co-evolution pipeline to train your own improved models.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install dependencies</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the repository</span>
+git clone https://github.com/XiaomiMiMo/MiMo-Code.git
+cd MiMo-Code
+
+<span class="cm"># Install Node.js dependencies</span>
+npm install
+
+<span class="cm"># Install Python dependencies for training pipeline</span>
+pip install -r requirements.txt</pre>
+        <p>MiMo-Code has two parts: the <strong>TypeScript agent</strong> (Node.js 18+) and the <strong>Python training pipeline</strong> (Python 3.10+, PyTorch 2.x). You need both if you want to run the co-evolution loop. For just using the pre-trained agent, Node.js is sufficient.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure the model backend</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Option A: Use the hosted MiMo model</span>
+<span class="kw">export</span> MIMO_API_KEY=<span class="st">"your-api-key"</span>
+<span class="kw">export</span> MIMO_MODEL=<span class="st">"mimo-code-7b-v2"</span>
+
+<span class="cm"># Option B: Run locally with Ollama</span>
+ollama pull mimo-code:7b
+<span class="kw">export</span> MIMO_BASE_URL=<span class="st">"http://localhost:11434"</span>
+
+<span class="cm"># Option C: Use any OpenAI-compatible endpoint</span>
+<span class="kw">export</span> MIMO_BASE_URL=<span class="st">"http://your-server:8080/v1"</span>
+<span class="kw">export</span> MIMO_MODEL=<span class="st">"your-model-name"</span></pre>
+        <p>MiMo-Code supports multiple backends. The pre-trained <code>mimo-code-7b</code> model is the default, but you can point it at any model. The co-evolution pipeline requires a model you can fine-tune - so either a local model or an API that supports fine-tuning.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Run the pre-trained agent</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start the coding agent in interactive mode</span>
+npm run agent
+
+<span class="cm"># Or run on a specific task</span>
+npm run agent -- --task <span class="st">"Add error handling to the auth module"</span>
+
+<span class="cm"># Run with verbose logging to see the agent's reasoning</span>
+npm run agent -- --verbose --task <span class="st">"Fix the failing test in utils.test.ts"</span></pre>
+        <p>The agent reads your codebase, plans its approach, executes edits, and verifies results. In verbose mode you can watch the full reasoning chain - helpful for understanding how the co-evolved model thinks about code differently.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Launch the co-evolution pipeline</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Prepare a benchmark suite of coding tasks</span>
+python scripts/prepare_tasks.py --source swebench --output tasks/
+
+<span class="cm"># Run agent trajectories on the task suite</span>
+python scripts/collect_trajectories.py \
+  --tasks tasks/ \
+  --model mimo-code-7b \
+  --output trajectories/
+
+<span class="cm"># Train the model on collected trajectories</span>
+python scripts/train.py \
+  --trajectories trajectories/ \
+  --base-model mimo-code-7b \
+  --output models/mimo-code-7b-v2 \
+  --epochs 3 \
+  --reward-model code-execution</pre>
+        <p><strong>This step requires significant compute.</strong> Collecting trajectories runs the agent on hundreds of coding tasks. Training requires GPU hardware - at minimum an A100 for the 7B model. This is the research-grade part of MiMo-Code. Most users will start with the pre-trained agent and only run the full pipeline if they need a custom-trained model.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>Evaluate and iterate</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Run benchmarks on the new model</span>
+python scripts/evaluate.py \
+  --model models/mimo-code-7b-v2 \
+  --benchmark humaneval mbpp swebench
+
+<span class="cm"># Compare with the base model</span>
+python scripts/compare.py \
+  --models mimo-code-7b models/mimo-code-7b-v2 \
+  --output reports/comparison.md</pre>
+        <p>The evaluation suite runs standard coding benchmarks and generates a comparison report. If the co-evolved model outperforms the base, you can start the next evolution cycle - collect new trajectories with the improved model, train again, and measure again.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">MiMo-Code sits at the intersection of ML research and practical coding assistance. Here is where the project fits and who is paying attention.</p>
+
+    <div class="story"><div class="metric">ML Research</div><p><strong>Model-agent interaction research.</strong> The co-evolution framework is a testbed for studying how language models and agents can improve each other. Researchers can experiment with different reward signals, trajectory collection strategies, and training schedules. The open codebase makes it possible to reproduce and extend the results without starting from scratch.</p></div>
+    <div class="story"><div class="metric">Custom Agent Training</div><p><strong>Domain-specific coding agents.</strong> Enterprise teams with proprietary codebases can run the co-evolution loop on their own code. The agent learns the team's patterns, frameworks, and conventions. After a few cycles, the model produces code that matches the team's style more closely than a general-purpose model would.</p></div>
+    <div class="story"><div class="metric">Enterprise Customization</div><p><strong>On-premise agent deployment.</strong> Organizations that cannot send code to external APIs can run MiMo-Code entirely on their own hardware. The open weights mean no vendor dependency. The training pipeline means the model improves from the organization's own usage - a self-improving internal tool.</p></div>
+    <div class="story"><div class="metric">Academic Study</div><p><strong>Curriculum for AI and SE courses.</strong> The co-evolution concept bridges two active research areas - LLM training and software engineering agents. MiMo-Code provides a concrete, runnable implementation that students and researchers can study, modify, and learn from.</p></div>
+    <div class="story"><div class="metric">Benchmark Improvement</div><p><strong>Pushing coding benchmarks forward.</strong> The co-evolutionary approach has shown improvements on HumanEval, MBPP, and SWE-bench compared to the same base model without co-evolution. Research teams can use this pipeline to explore whether the approach generalizes to other benchmarks and tasks.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>ML research community interest.</strong> MiMo-Code has drawn attention from researchers working on agent-model interaction. The co-evolution concept - where agent experience feeds back into model training - is an active area of study, and MiMo-Code provides one of the first open, runnable implementations of this idea.</li>
+        <li><strong>Xiaomi's growing open-source AI presence.</strong> This project is part of a broader pattern. Xiaomi has released multiple open models in 2025-2026 (MiMo-7B for reasoning, MiMo-VL for vision-language tasks) and MiMo-Code extends this to coding agents. The institutional commitment suggests continued development rather than a one-off release.</li>
+        <li><strong>Fork activity suggests experimentation.</strong> With 1.3K forks in about three months, many of which appear to be research forks rather than deployment forks, the community is actively experimenting with modifications to the training pipeline, alternative reward signals, and different base models.</li>
+        <li><strong>Note on maturity.</strong> Independent third-party evaluations and production deployment reports are still limited. The project is best understood as research-grade software with practical potential, not a polished product. Adoption evidence comes primarily from the repository's activity metrics and the research community's discussion, not from documented production use cases.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Significant compute requirements.</strong> The co-evolution pipeline requires serious GPU hardware. Collecting trajectories means running an agent on hundreds of coding tasks. Training even the 7B model needs at least an A100-class GPU. Running the full loop is a research-lab-scale operation, not a laptop task.</li>
+        <li><strong>Research-stage maturity.</strong> MiMo-Code is a research project that ships code. The APIs may change, the documentation assumes ML fluency, and the training pipeline has rough edges. Expect to read source code, not just docs, when troubleshooting issues.</li>
+        <li><strong>Xiaomi-centric documentation.</strong> Some documentation and code comments are in Chinese, and the setup guides assume familiarity with Xiaomi's model ecosystem. English documentation exists but may lag behind the Chinese version. Community translations are in progress.</li>
+        <li><strong>Model sizes may not fit consumer hardware.</strong> The flagship <code>mimo-code-7b</code> model requires approximately 14GB of VRAM for inference and more for training. Quantized versions exist but with quality tradeoffs. Running the full co-evolution pipeline on consumer GPUs is not practical - you need datacenter-grade hardware or cloud instances.</li>
+        <li><strong>Co-evolution results depend on task diversity.</strong> The quality of the co-evolved model depends heavily on the diversity and difficulty of the coding tasks used for trajectory collection. A narrow task set produces a narrow model. Curating a good task suite requires domain expertise and careful evaluation.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/XiaomiMiMo/MiMo-Code" target="_blank">XiaomiMiMo/MiMo-Code GitHub</a> - source, model weights, training pipeline, benchmarks</li>
+      <li>Components: TypeScript agent, Python training pipeline, open model weights</li>
+      <li>Last pushed: September 11, 2026 | Created: June 10, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

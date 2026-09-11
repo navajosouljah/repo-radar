@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>openai/codex-security - AI Security Scanner | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0c;--bg2:#111111;--card:#161616;--card2:#1a1a1a;
+    --red:#ef4444;--red-dim:#dc2626;--green:#22c55e;--green-dim:#16a34a;
+    --amber:#f59e0b;--amber-dim:#d97706;
+    --primary:#ef4444;--secondary:#22c55e;--warning:#f59e0b;
+    --ink:#e5e5e5;--muted:#888;--line:#2a2a2a;
+    --sans:'Inter',sans-serif;--mono:'Fira Code',monospace;--disp:'Russo One',sans-serif;
+    --r:0px;
+    --shadow:0 2px 12px rgba(0,0,0,.5);--shadow-lg:0 6px 24px rgba(0,0,0,.6);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,.008) 2px,
+      rgba(255,255,255,.008) 4px
+    );
+  }
+  a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:rgba(12,12,12,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--red)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--red);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--red);padding:8px 18px;box-shadow:var(--shadow);transition:all .15s}
+  .gh-link:hover{background:var(--red);color:#fff;text-decoration:none}
+
+  .hero{padding:72px 0 50px;position:relative}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--red);color:#fff;padding:8px 22px;margin-bottom:24px;box-shadow:0 0 20px rgba(239,68,68,.25)}
+  h1{font-family:var(--disp);font-size:clamp(34px,7vw,64px);font-weight:400;line-height:1.1;letter-spacing:.02em;color:var(--ink);text-transform:uppercase}
+  h1 .owner{color:var(--muted);font-size:.42em;display:block;letter-spacing:.06em;margin-bottom:6px;text-transform:none;font-family:var(--mono);font-weight:400}
+  h1 .name{color:var(--red);text-shadow:0 0 40px rgba(239,68,68,.2)}
+  .tagline{font-size:clamp(15px,2.2vw,19px);color:var(--muted);max-width:720px;margin:22px 0 34px;font-weight:400}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--red)}
+  .chip .cv.safe{color:var(--green)}
+  .chip .cv.warn{color:var(--amber)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(12,12,12,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-size:12px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--red)}
+  .tab-btn.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 16px rgba(239,68,68,.2)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(22px,3.6vw,34px);font-weight:400;letter-spacing:.02em;margin-bottom:10px;color:var(--ink);text-transform:uppercase}
+  h2 em{font-style:normal;color:var(--red)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--amber)}
+
+  .severity-bar{display:flex;gap:0;margin-bottom:8px;height:6px;overflow:hidden}
+  .severity-bar .seg{flex:1}
+  .severity-bar .seg.crit{background:var(--red)}.severity-bar .seg.high{background:#f97316}
+  .severity-bar .seg.med{background:var(--amber)}.severity-bar .seg.low{background:var(--green)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);padding:24px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum.sev-crit{border-left:3px solid var(--red)}
+  .bignum.sev-warn{border-left:3px solid var(--amber)}
+  .bignum.sev-safe{border-left:3px solid var(--green)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.8vw,38px);line-height:1;color:var(--ink)}
+  .bignum .n.red{color:var(--red)}.bignum .n.green{color:var(--green)}.bignum .n.amber{color:var(--amber)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono)}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);padding:22px;box-shadow:var(--shadow)}
+  .feat.sev-crit{border-left:3px solid var(--red)}
+  .feat.sev-warn{border-left:3px solid var(--amber)}
+  .feat.sev-safe{border-left:3px solid var(--green)}
+  .feat.sev-info{border-left:3px solid #60a5fa}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--ink)}
+  .feat .fh code{font-family:var(--mono);color:var(--red);font-size:13px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.88em;color:var(--amber)}
+  .feat p strong{color:var(--ink)}
+
+  .best-feature{background:var(--card);border:1px solid var(--red);padding:32px;box-shadow:0 0 24px rgba(239,68,68,.06);position:relative}
+  .best-feature::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--amber),var(--green))}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--amber);color:var(--bg);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--red);font-size:.9em}
+  .best-feature p strong{color:var(--ink)}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .ba{padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.03);border-left:3px solid var(--red)}
+  .ba.after{background:rgba(34,197,94,.03);border-left:3px solid var(--green)}
+  .ba .ba-tag{font-family:var(--disp);font-size:12px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--red)}.ba.after .ba-tag{color:var(--green)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.88em;color:var(--amber)}
+
+  .alert-box{background:var(--card);border:1px solid var(--line);padding:22px 24px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .alert-box.crit{border-left:3px solid var(--red)}
+  .alert-box.warn{border-left:3px solid var(--amber)}
+  .alert-box.info{border-left:3px solid #60a5fa}
+  .alert-box h4{font-family:var(--mono);font-size:13px;margin-bottom:8px;font-weight:600}
+  .alert-box.crit h4{color:var(--red)}.alert-box.warn h4{color:var(--amber)}.alert-box.info h4{color:#60a5fa}
+  .alert-box p{color:var(--muted);font-size:14px}.alert-box p strong{color:var(--ink)}
+
+  .step{background:var(--card);border:1px solid var(--line);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--red);color:#fff;font-size:14px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;font-family:var(--mono)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#080808;border:1px solid var(--line);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--ink)}
+  pre .cm{color:#555}
+  pre .kw{color:var(--red)}
+  pre .str{color:var(--green)}
+  pre .flag{color:var(--amber)}
+
+  .scan-output{background:#080808;border:1px solid var(--line);padding:20px;margin:16px 0;font-family:var(--mono);font-size:12px;line-height:1.9;overflow-x:auto}
+  .scan-output .line-crit{color:var(--red)}.scan-output .line-warn{color:var(--amber)}
+  .scan-output .line-safe{color:var(--green)}.scan-output .line-dim{color:#555}
+
+  .story{background:var(--card);border:1px solid var(--line);padding:24px;margin-bottom:14px;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--red);line-height:1.3;text-transform:uppercase;letter-spacing:.03em}
+  .story p{color:var(--muted);font-size:14px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.88em;color:var(--amber)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--green);padding:28px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--green);font-size:17px;margin-bottom:16px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.05em}
+  .itw ul{list-style:none}.itw li{padding:13px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--red);text-decoration:none;border-bottom:1px dotted var(--red)}.itw a:hover{color:var(--amber)}
+
+  .watchout{background:rgba(245,158,11,.03);border:1px dashed var(--amber);padding:28px;margin-top:28px}
+  .watchout h3{color:var(--amber);font-size:17px;margin-bottom:16px;font-family:var(--disp);text-transform:uppercase;letter-spacing:.05em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(245,158,11,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.88em;color:var(--red)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-size:11px;letter-spacing:.15em;color:var(--red);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"$ ";color:var(--red);font-family:var(--mono);font-weight:600}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13px;font-family:var(--mono);background:var(--card);border:1px solid var(--line);padding:11px 22px;color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--red);color:var(--red);text-decoration:none}
+
+  .scan-divider{width:100%;height:20px;margin:28px 0;position:relative;display:flex;align-items:center}
+  .scan-divider::before{content:'';flex:1;height:1px;background:var(--red);opacity:.2}
+  .scan-divider .pulse{width:8px;height:8px;background:var(--red);margin:0 8px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  .status-badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;margin-left:8px}
+  .status-badge.critical{background:rgba(239,68,68,.15);color:var(--red);border:1px solid var(--red)}
+  .status-badge.safe{background:rgba(34,197,94,.15);color:var(--green);border:1px solid var(--green)}
+  .status-badge.warning{background:rgba(245,158,11,.15);color:var(--amber);border:1px solid var(--amber)}
+
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/openai/codex-security" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI-Powered Security Scanning</span>
+    <h1><span class="owner">openai/</span><span class="name">codex-security</span></h1>
+    <p class="tagline">OpenAI's <strong>Codex Security</strong> CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities. Automated security scanning powered by AI - from detection to remediation.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv">10.6K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">779</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv safe">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv warn">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Security scanning, <em>reimagined</em></h2>
+    <p class="sub">Codex Security is not another rule-based linter. It uses OpenAI's models to understand code semantics, detect vulnerabilities that pattern matchers miss, and generate validated fixes - all from a single CLI command.</p>
+
+    <div class="severity-bar">
+      <div class="seg crit"></div><div class="seg high"></div><div class="seg med"></div><div class="seg low"></div>
+    </div>
+
+    <div class="bignum-grid">
+      <div class="bignum sev-crit"><div class="n red">10.6K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum sev-safe"><div class="n">779</div><div class="l">Forks</div></div>
+      <div class="bignum sev-warn"><div class="n amber">10</div><div class="l">OWASP Categories</div></div>
+      <div class="bignum sev-safe"><div class="n green">SARIF</div><div class="l">Output Format</div></div>
+      <div class="bignum sev-crit"><div class="n red">CLI</div><div class="l">+ TypeScript SDK</div></div>
+      <div class="bignum sev-warn"><div class="n amber">Auto</div><div class="l">Fix Generation</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> Core capabilities</h3>
+    <div class="feature-list">
+      <div class="feat sev-crit">
+        <div class="fh">AI-driven vulnerability detection</div>
+        <p>Goes beyond regex pattern matching. Codex Security uses <strong>OpenAI's models</strong> to understand code flow, trace data from source to sink, and identify vulnerabilities that rule-based scanners miss - including logic errors, authorization bypasses, and unsafe deserialization chains.</p>
+      </div>
+      <div class="feat sev-safe">
+        <div class="fh">Automatic fix generation</div>
+        <p>For each vulnerability found, the scanner generates a <strong>proposed fix</strong> as a code diff. Fixes are validated against the project's test suite when available. The output includes both the vulnerable code and the remediated version for easy review.</p>
+      </div>
+      <div class="feat sev-warn">
+        <div class="fh">SARIF output for CI/CD</div>
+        <p>Results export in <strong>SARIF</strong> (Static Analysis Results Interchange Format), the standard that GitHub, Azure DevOps, and other platforms consume natively. Pipe scan results directly into your existing security dashboard with zero transformation.</p>
+      </div>
+      <div class="feat sev-info">
+        <div class="fh">OWASP Top 10 coverage</div>
+        <p>Covers all ten categories of the <strong>OWASP Top 10</strong>: injection, broken auth, sensitive data exposure, XXE, broken access control, misconfiguration, XSS, insecure deserialization, known vulnerabilities, and insufficient logging. Each finding maps to its OWASP category and CWE ID.</p>
+      </div>
+      <div class="feat sev-crit">
+        <div class="fh">TypeScript SDK</div>
+        <p>The SDK exposes the full scanning engine as a <strong>programmatic API</strong>. Run scans, filter results by severity, apply fixes, and integrate with custom workflows - all from TypeScript. Useful for building custom security gates, internal dashboards, or automated remediation pipelines.</p>
+      </div>
+      <div class="feat sev-safe">
+        <div class="fh">Severity classification</div>
+        <p>Every finding is classified as <strong>Critical</strong>, <strong>High</strong>, <strong>Medium</strong>, or <strong>Low</strong> based on exploitability and impact. The classifier considers the vulnerability type, the application context, and whether the vulnerable path is reachable from user input.</p>
+      </div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Key differentiator</span>
+      <h3>From detection to fix in one command</h3>
+      <p>Traditional SAST tools stop at detection. They tell you line 47 has an SQL injection, and then you are on your own. Codex Security goes further: it generates a <strong>validated fix</strong> for each finding. Run <code>codex-security scan --fix</code> and the output includes both the vulnerability report and a code diff you can apply. The fix is not a generic recommendation - it is actual code, generated from understanding your specific codebase, and validated against the project's types. This collapses what used to be a detect-triage-research-fix cycle into a single step. The catch - and it is an important one - is that <strong>AI-generated fixes still need human review</strong>. But reviewing a proposed fix is faster than writing one from scratch.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>security</em> problem</h2>
+    <p class="sub">Security scanning has been around for decades. The tooling is mature. The problem is not detection - it is everything that happens after the alert fires.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Alert fatigue</div>
+        <p><strong>Too many findings, too little context.</strong> A typical SAST scan on a medium codebase produces hundreds of findings. Most are false positives, informational, or low-severity. Developers learn to ignore the noise, and critical vulnerabilities get buried in a sea of warnings.</p>
+        <p><strong>No fix, just a pointer.</strong> Traditional scanners say "SQL injection on line 47" and link to a generic remediation guide. The developer has to understand the vulnerability class, research the fix, adapt it to their codebase, and test it. This takes 30 minutes per finding at minimum.</p>
+        <p><strong>Security expertise is scarce.</strong> Most teams do not have a dedicated security engineer. Application developers are expected to fix vulnerabilities they may not fully understand. The result: findings sit open for weeks, or get closed with band-aid fixes that miss the root cause.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">Codex Security</div>
+        <p><strong>AI-classified severity.</strong> Instead of dumping every pattern match, Codex Security uses model-based classification to surface only actionable findings. The severity score considers exploitability, reachability from user input, and actual impact - not just the vulnerability category.</p>
+        <p><strong>Fix included.</strong> Each finding ships with a generated code diff. The developer's job shifts from "research and write a fix" to "review and approve a fix." This takes minutes instead of hours, and does not require deep security expertise.</p>
+        <p><strong>Developer-friendly output.</strong> Findings include plain-language explanations of what the vulnerability is, why it matters, and how the proposed fix addresses it. The goal is education alongside remediation - developers learn security patterns by reviewing AI-generated fixes.</p>
+      </div>
+    </div>
+
+    <div class="scan-divider"><span class="pulse"></span></div>
+
+    <h3><span class="dot">&#9679;</span> The triage bottleneck</h3>
+    <div class="alert-box crit">
+      <h4>[CRITICAL] The cost of manual triage</h4>
+      <p>A 2025 industry study found that the average time to triage a single SAST finding is <strong>22 minutes</strong>. For a scan that produces 200 findings, that is 73 hours of developer time just to sort signal from noise - before a single line of code is fixed. Most teams triage fewer than 30% of findings. The rest accumulate as security debt.</p>
+    </div>
+    <div class="alert-box warn">
+      <h4>[WARNING] The ignore reflex</h4>
+      <p><strong>Alert fatigue is real.</strong> When every commit triggers 50 scanner warnings and most are false positives, developers stop reading them. They become the "boy who cried wolf" of the CI pipeline. Critical vulnerabilities slip through not because the scanner missed them, but because the developer did not look at the report.</p>
+    </div>
+    <div class="alert-box info">
+      <h4>[INFO] The expertise gap</h4>
+      <p>Fixing a broken-access-control vulnerability requires understanding authentication flows, session management, and authorization patterns. Fixing an insecure deserialization requires understanding serialization formats and gadget chains. <strong>Most application developers do not have this background.</strong> They need the fix handed to them - or at least a very specific starting point.</p>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Scan your <em>codebase</em></h2>
+    <p class="sub">Install the CLI, run your first scan, review findings, and integrate into your CI pipeline. The first scan takes under a minute on most projects.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the package</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install globally for CLI access</span>
+<span class="kw">npm</span> install -g @openai/codex-security
+
+<span class="cm"># Or add to your project as a dev dependency</span>
+<span class="kw">npm</span> install --save-dev @openai/codex-security
+
+<span class="cm"># Verify installation</span>
+<span class="kw">codex-security</span> --version
+<span class="cm"># @openai/codex-security v2.1.0</span></pre>
+        <p>Requires <strong>Node 18+</strong> and a valid <strong>OpenAI API key</strong> set as the <code>OPENAI_API_KEY</code> environment variable. The scanner sends code snippets to OpenAI's API for analysis - your code is processed under OpenAI's enterprise data policies.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Run your first scan</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Scan a directory</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src
+
+<span class="cm"># Scan with fix generation</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src <span class="flag">--fix</span>
+
+<span class="cm"># Scan specific files</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src/auth.ts ./src/api/users.ts
+
+<span class="cm"># Filter by minimum severity</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src <span class="flag">--min-severity</span> high</pre>
+        <p>The scanner analyzes each file, traces data flows, and reports vulnerabilities with severity classifications. The <code>--fix</code> flag generates remediation diffs for each finding. Use <code>--min-severity</code> to focus on critical and high findings first.</p>
+        <div class="scan-output">
+          <div class="line-dim">Scanning ./src (47 files)...</div>
+          <div class="line-dim">Analyzing data flows...</div>
+          <div class="line-crit">[CRITICAL] SQL Injection in src/api/users.ts:47</div>
+          <div class="line-crit">  User input flows unsanitized into query()</div>
+          <div class="line-warn">[HIGH] XSS in src/views/profile.tsx:112</div>
+          <div class="line-warn">  Unescaped user content rendered in JSX</div>
+          <div class="line-warn">[MEDIUM] Hardcoded secret in src/config.ts:8</div>
+          <div class="line-warn">  API key embedded in source code</div>
+          <div class="line-safe">[LOW] Missing rate limit on src/api/login.ts:23</div>
+          <div class="line-dim">---</div>
+          <div class="line-safe">Scan complete: 4 findings (1 critical, 1 high, 1 medium, 1 low)</div>
+          <div class="line-safe">Fixes generated: 4/4</div>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Export results for CI/CD</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Output as SARIF for GitHub Advanced Security</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src <span class="flag">--format</span> sarif <span class="flag">--output</span> results.sarif
+
+<span class="cm"># Output as JSON for custom processing</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src <span class="flag">--format</span> json <span class="flag">--output</span> results.json
+
+<span class="cm"># Fail CI if critical/high findings exist</span>
+<span class="kw">codex-security</span> scan <span class="flag">--path</span> ./src <span class="flag">--fail-on</span> high</pre>
+        <p>The <code>--fail-on</code> flag sets the exit code to 1 if findings at or above the specified severity are found - perfect for blocking merges in CI. SARIF output plugs directly into <strong>GitHub Code Scanning</strong>, <strong>Azure DevOps</strong>, and other platforms that consume the format.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Use the TypeScript SDK</h3></div>
+      <div class="step-body">
+<pre><span class="kw">import</span> { scan, appliFix } <span class="kw">from</span> <span class="str">'@openai/codex-security'</span>;
+
+<span class="cm">// Programmatic scan</span>
+<span class="kw">const</span> results = <span class="kw">await</span> scan({
+  path: <span class="str">'./src'</span>,
+  minSeverity: <span class="str">'high'</span>,
+  generateFixes: <span class="kw">true</span>,
+});
+
+<span class="cm">// Filter and process findings</span>
+<span class="kw">const</span> critical = results.findings
+  .filter(f => f.severity === <span class="str">'critical'</span>);
+
+<span class="kw">for</span> (<span class="kw">const</span> finding <span class="kw">of</span> critical) {
+  console.log(finding.message);
+  console.log(finding.fix.diff);
+}</pre>
+        <p>The SDK gives you full control over scanning, filtering, and fix application. Use it to build custom security gates, integrate with Slack notifications, or create internal dashboards that track vulnerability trends across your codebase.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>Add to GitHub Actions</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># .github/workflows/security.yml</span>
+name: Security Scan
+on: [push, pull_request]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install -g @openai/codex-security
+      - run: codex-security scan --path ./src
+             --format sarif --output results.sarif
+             --fail-on high
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif</pre>
+        <p>This workflow runs on every push and pull request. Findings appear as <strong>GitHub Code Scanning alerts</strong> in the Security tab, with inline annotations on the PR diff. The pipeline fails if any high or critical findings are detected.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where it <em>fits</em></h2>
+    <p class="sub">Codex Security targets the gap between "scanner found something" and "developer fixed it." Here is where teams are putting it to work - and where the broader ecosystem is watching.</p>
+
+    <div class="story"><div class="metric">Pre-commit checks</div><p><strong>Catch issues before they land.</strong> Run <code>codex-security scan --path ./src --fail-on high</code> as a pre-commit hook or in a local dev script. Developers get immediate feedback on security issues before pushing code. The <code>--fix</code> flag generates remediation diffs they can apply on the spot - no context switching to a security dashboard.</p></div>
+    <div class="story"><div class="metric">CI/CD pipeline gate</div><p><strong>Block unsafe merges automatically.</strong> The SARIF output plugs into GitHub Code Scanning, and the <code>--fail-on</code> flag turns the scanner into a merge gate. Critical or high-severity findings block the PR. The findings appear as inline annotations on the diff, so reviewers see exactly what is wrong and where.</p></div>
+    <div class="story"><div class="metric">Security audit automation</div><p><strong>Baseline an entire codebase.</strong> Point the scanner at your full source tree and export a comprehensive SARIF report. Use the severity classifications to prioritize remediation - fix the criticals this sprint, the highs next sprint, the mediums when bandwidth allows. The generated fixes cut the remediation time per finding significantly.</p></div>
+    <div class="story"><div class="metric">Developer education</div><p><strong>Learn by reviewing fixes.</strong> Every finding includes a plain-language explanation of the vulnerability and a generated code fix. Junior developers reviewing these fixes learn security patterns organically - what a parameterized query looks like, why you escape HTML output, how to handle secrets. The scanner doubles as a teaching tool.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>OpenAI's security tooling push.</strong> Codex Security represents OpenAI's first dedicated entry into the developer security tooling space. The project launched in July 2026 alongside updates to the broader Codex CLI platform, signaling OpenAI's intention to compete not just in code generation but in code quality and security.</li>
+        <li><strong>Comparisons to established SAST tools.</strong> The developer community has been actively comparing Codex Security to established static analysis tools like Snyk Code, Semgrep, and CodeQL. The consensus so far is that the AI-generated fixes are the key differentiator, while detection accuracy is still catching up to mature rule-based engines on certain vulnerability classes.</li>
+        <li><strong>Enterprise interest.</strong> Several discussion threads on developer forums highlight interest from enterprise security teams, particularly around the SARIF output and CI/CD integration. The Apache-2.0 license makes enterprise adoption straightforward. However, the requirement to send code to OpenAI's API is a blocker for some regulated industries.</li>
+        <li><strong>Early benchmarks.</strong> Independent testers have started publishing informal benchmark results comparing Codex Security's detection rates against OWASP Benchmark and known vulnerable applications. Results are promising but incomplete - the project is too young for rigorous, peer-reviewed evaluations. Take early accuracy claims with appropriate skepticism.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>AI-generated fixes need human review.</strong> This cannot be stressed enough. The scanner generates <strong>proposed</strong> fixes, not verified ones. A generated fix might resolve the immediate vulnerability while introducing a logic bug, a performance regression, or a different security issue. Always review the diff before applying it.</li>
+        <li><strong>False positive rate is still being calibrated.</strong> As a young tool, Codex Security's false positive rate has not been independently benchmarked at scale. Early community reports suggest it is better than naive pattern matchers but not yet at the level of mature tools like Semgrep with curated rule sets. Expect some noise in your results.</li>
+        <li><strong>Requires OpenAI API access.</strong> Every scan sends code snippets to OpenAI's API for analysis. This has two implications: you need an <code>OPENAI_API_KEY</code> with sufficient quota, and your source code is transmitted to OpenAI's servers. Review OpenAI's data usage policies before scanning proprietary codebases. Organizations with strict data residency requirements may not be able to use this tool.</li>
+        <li><strong>Cannot replace manual penetration testing.</strong> Static analysis - even AI-powered static analysis - is not a substitute for dynamic testing, threat modeling, or expert penetration testing. Codex Security finds code-level vulnerabilities. It does not test runtime behavior, infrastructure configuration, authentication flows under load, or business logic vulnerabilities that only emerge in context.</li>
+        <li><strong>API cost at scale.</strong> Each scan consumes OpenAI API tokens proportional to the codebase size. Scanning a large monorepo on every commit can add up. Use <code>--path</code> to scope scans to changed files in CI, and run full-codebase scans on a scheduled basis rather than on every push.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/openai/codex-security" target="_blank">openai/codex-security GitHub</a> - source, CLI documentation, SDK reference</li>
+      <li>Covers: OWASP Top 10, CWE mapping, SARIF output, CI/CD integration</li>
+      <li>Last pushed: September 11, 2026 | Created: July 13, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

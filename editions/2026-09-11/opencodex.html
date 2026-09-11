@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lidge-jun/opencodex - Universal Provider Proxy for AI Coding CLIs | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f0f6ff;--bg2:#e4edf8;--card:#ffffff;--card2:#eaf1fb;
+    --primary:#1e40af;--primary-dim:#1a3798;--secondary:#0369a1;
+    --accent:#475569;--accent-light:#64748b;
+    --ink:#0f172a;--muted:#475569;--line:#b8cce4;
+    --sans:'Source Sans 3',sans-serif;--mono:'Roboto Mono',monospace;--disp:'Roboto Mono',monospace;
+    --r:2px;
+    --shadow:0 1px 4px rgba(30,64,175,.06);--shadow-lg:0 3px 12px rgba(30,64,175,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      linear-gradient(rgba(30,64,175,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(30,64,175,.04) 1px,transparent 1px);
+    background-size:28px 28px;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(240,246,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:52px}
+  .radar-link{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.04em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--card);border:1px dashed var(--line);padding:7px 16px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);border-style:solid;color:var(--primary);text-decoration:none}
+
+  .hero{padding:68px 0 48px}
+  .kicker{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:600;border-radius:var(--r);padding:6px 18px;margin-bottom:22px}
+  h1{font-family:var(--disp);font-size:clamp(34px,7vw,68px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary)}
+  .tagline{font-size:clamp(15px,2.2vw,20px);color:var(--muted);max-width:720px;margin:18px 0 30px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:8px 16px;display:flex;align-items:baseline;gap:7px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(240,246,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0}
+  .tabnav .wrap{display:flex;gap:6px;overflow-x:auto}
+  .tab-btn{font-family:var(--mono);font-weight:600;font-size:12px;background:transparent;border:1px dashed var(--line);color:var(--muted);padding:8px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary);border-style:solid}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);border-style:solid;color:#fff;box-shadow:var(--shadow)}
+
+  .tab-panel{display:none;padding:50px 0 66px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(22px,3.6vw,34px);font-weight:700;letter-spacing:-.01em;margin-bottom:8px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:36px;max-width:700px;font-size:16px}
+  h3{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--ink)}
+  h3 .dot{color:var(--secondary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+  .bignum{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:24px 20px;border-left:3px solid var(--primary);box-shadow:var(--shadow);position:relative}
+  .bignum::after{content:'';position:absolute;bottom:4px;right:8px;width:20px;height:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);opacity:.5}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.8vw,38px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;margin-top:8px;text-transform:uppercase;letter-spacing:.10em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+  .feat{background:var(--card);border:1px dashed var(--line);border-left:3px solid var(--primary);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+  .feat .fh{font-family:var(--mono);font-weight:600;font-size:14px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:13px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--mono);background:var(--primary);color:#fff;font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px;border-radius:var(--r);margin-bottom:14px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+  .ba{border-radius:var(--r);padding:26px;border:1px dashed var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.03);border-color:#fca5a5}
+  .ba.after{background:rgba(30,64,175,.03);border-color:var(--primary)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+  .ba.before .ba-tag{color:#dc2626}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:12px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .pain-points{margin-bottom:38px}
+  .pain{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .pain .ph{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--ink);margin-bottom:6px}
+  .pain p{color:var(--muted);font-size:14px}
+
+  .step{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:14px 22px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#fff;font-weight:700;font-size:13px;width:30px;height:30px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-head h3{margin:0;font-size:15px;font-family:var(--mono);font-weight:600}
+  .step-body{padding:18px 22px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:10px}.step-body p strong{color:var(--ink)}
+  pre{background:#0f172a;border:1px solid var(--primary);border-radius:var(--r);padding:14px 18px;overflow-x:auto;margin:0 0 12px;font-family:var(--mono);font-size:12.5px;line-height:1.8;color:#cbd5e1}
+  pre .cm{color:#64748b}
+  pre .kw{color:#93c5fd}
+  pre .st{color:#86efac}
+
+  .story{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:24px;margin-bottom:14px;display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--mono);font-size:18px;color:var(--primary);line-height:1.2;font-weight:600}
+  .story p{color:var(--muted);font-size:14px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:30px;background:var(--card);border:1px dashed var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:17px;margin-bottom:14px;font-family:var(--mono)}
+  .itw ul{list-style:none}.itw li{padding:12px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:rgba(239,68,68,.03);border:1px dashed #fca5a5;border-radius:var(--r);padding:28px;margin-top:30px}
+  .watchout h3{color:#dc2626;font-size:17px;margin-bottom:14px;font-family:var(--mono)}
+  .watchout ul{list-style:none}.watchout li{padding:10px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(252,165,165,.25)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 58px;margin-top:18px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:15px}
+  footer ul{list-style:none}footer li{padding:5px 0;font-size:13px;color:var(--muted);font-family:var(--sans)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:22px;font-family:var(--mono);font-weight:600;font-size:12px;background:var(--card);border:1px dashed var(--line);padding:10px 20px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow)}
+  .backhub:hover{border-color:var(--primary);border-style:solid;color:var(--primary);text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:8px}.hero{padding:48px 0 36px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/lidge-jun/opencodex" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Universal LLM Provider Proxy</span>
+    <h1><span class="owner">lidge-jun/</span><span class="name">opencodex</span></h1>
+    <p class="tagline">Universal provider proxy for <strong>OpenAI Codex</strong> and <strong>Claude Code</strong> - use any LLM (Claude, Gemini, Grok, DeepSeek, local) as the backend. Swap models without changing your workflow.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">14.3K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">1.1K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Route to <em>any model</em></h2>
+    <p class="sub">OpenCodex sits between your AI coding CLI and the LLM provider. It intercepts API calls from Codex or Claude Code and reroutes them to whichever model you choose - Claude, Gemini, Grok, DeepSeek, or a local model running on your own hardware.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">14.3K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.1K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">6+</div><div class="l">Providers Supported</div></div>
+      <div class="bignum"><div class="n lm">2</div><div class="l">CLI Targets</div></div>
+      <div class="bignum"><div class="n">~3 mo</div><div class="l">Project Age</div></div>
+      <div class="bignum"><div class="n sc">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">// </span>What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Transparent provider swapping</div><p>Switch from OpenAI to Claude to Gemini to a local model with a single config change. Your Codex or Claude Code CLI does not know the difference - the proxy translates API formats automatically.</p></div>
+      <div class="feat"><div class="fh">Cost tracking across providers</div><p>OpenCodex logs every API call with token counts and estimated cost. Compare what the same task costs on <code>gpt-4o</code> vs <code>claude-opus-4</code> vs <code>gemini-2.5-pro</code> across real coding sessions.</p></div>
+      <div class="feat"><div class="fh">Model performance comparison</div><p>Run the same coding task through different models and compare results side by side. See which model writes better tests, catches more bugs, or handles your specific codebase more effectively.</p></div>
+      <div class="feat"><div class="fh">Works with CLIs unchanged</div><p>No patches, no forks, no custom builds. OpenCodex works by acting as a local API endpoint. Point your CLI's API base URL at it and everything else stays the same.</p></div>
+      <div class="feat"><div class="fh">Local and air-gapped support</div><p>Route to Ollama, llama.cpp, or any OpenAI-compatible local server. Run your coding assistant entirely offline - useful for classified environments, air-gapped networks, or privacy-sensitive codebases.</p></div>
+      <div class="feat"><div class="fh">YAML-based configuration</div><p>All provider settings live in a single <code>.opencodex.yml</code> file. Define multiple providers, set fallback chains, configure rate limits, and switch the active backend with one line change.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Core Value</span>
+      <h3>Model freedom for AI-assisted coding</h3>
+      <p>The real value of OpenCodex is not any single feature - it is the freedom to choose. Today's best model might not be tomorrow's. A team that starts on GPT-4o might find Claude Opus better for their Rust codebase, or discover that a local 70B model handles their proprietary code without any data leaving the building. OpenCodex means that switching costs nothing - no workflow changes, no retraining, no tool migration. Just update the <code>.opencodex.yml</code> and keep coding.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>lock-in</em> problem</h2>
+    <p class="sub">AI coding assistants are incredible tools - but each one chains you to a single LLM provider. That creates real costs, real limitations, and real frustration when you want to try something different.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Provider lock-in.</strong> OpenAI Codex only talks to OpenAI models. Claude Code only talks to Anthropic models. If you want to compare them, you need two separate tools, two separate workflows, two separate billing accounts.</p>
+        <p><strong>Expensive API costs.</strong> Coding assistants can burn through tokens fast - especially on large codebases. You cannot easily test whether a cheaper model would handle your tasks just as well because switching means changing your entire setup.</p>
+        <p><strong>No model comparison.</strong> Which model writes better code for your specific project? There is no easy way to find out. Running the same prompt through different models requires manual copy-paste or custom scripts.</p>
+        <p><strong>No local option.</strong> Air-gapped environments, security-sensitive codebases, and privacy-conscious teams have no way to use these coding CLIs with local models. The tools assume cloud-only.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One proxy, many models.</strong> OpenCodex sits between your CLI and the provider. Swap from OpenAI to Claude to Gemini to DeepSeek to a local model with a config change. Your workflow stays identical.</p>
+        <p><strong>Cost visibility and arbitrage.</strong> Track token usage and estimated cost per provider. Route simple tasks to cheaper models and complex ones to frontier models. Cut your API bill without cutting quality.</p>
+        <p><strong>Apples-to-apples comparison.</strong> Run the same coding task through multiple models and see the results. Compare code quality, speed, accuracy, and cost on your actual codebase - not on benchmarks.</p>
+        <p><strong>Fully local when needed.</strong> Point OpenCodex at Ollama or any local server. Your coding assistant works offline, your code never leaves your machine, and you comply with even the strictest security policies.</p>
+      </div>
+    </div>
+
+    <div class="pain-points">
+      <h3><span class="dot">// </span>Why this matters now</h3>
+      <div class="pain">
+        <div class="ph">The model landscape changes monthly</div>
+        <p>New models ship constantly. Gemini 2.5 Pro, Claude Opus 4, GPT-5 - each release reshuffles the leaderboard. Being locked to one provider means you miss improvements from everyone else. A proxy layer means you can adopt new models the day they launch.</p>
+      </div>
+      <div class="pain">
+        <div class="ph">Enterprise teams need multi-provider strategies</div>
+        <p>Large organizations cannot depend on a single AI vendor. Outages, pricing changes, and policy shifts create risk. OpenCodex enables a multi-provider strategy where the team can failover between providers or route different projects to different models based on requirements.</p>
+      </div>
+      <div class="pain">
+        <div class="ph">Coding tasks vary in complexity</div>
+        <p>Not every coding task needs a frontier model. Generating boilerplate, writing tests, and formatting code can run on cheaper models. Complex architecture decisions and subtle bug hunts deserve the best available model. OpenCodex lets you match the model to the task.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Install the proxy, configure your providers, and point your CLI at it. Five minutes from zero to model-agnostic coding.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install OpenCodex globally</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install via npm</span>
+npm install -g opencodex
+
+<span class="cm"># Verify installation</span>
+opencodex --version</pre>
+        <p>OpenCodex is a Node.js package that installs a global CLI command. It requires <strong>Node.js 18+</strong> and works on macOS, Linux, and Windows (via WSL or native).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Configure your providers</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Create a config file in your home directory</span>
+<span class="cm"># ~/.opencodex.yml</span>
+
+<span class="kw">providers</span>:
+  <span class="kw">anthropic</span>:
+    <span class="kw">api_key</span>: <span class="st">"sk-ant-..."</span>
+    <span class="kw">default_model</span>: <span class="st">"claude-opus-4-20250918"</span>
+  <span class="kw">openai</span>:
+    <span class="kw">api_key</span>: <span class="st">"sk-..."</span>
+    <span class="kw">default_model</span>: <span class="st">"gpt-4o"</span>
+  <span class="kw">google</span>:
+    <span class="kw">api_key</span>: <span class="st">"AIza..."</span>
+    <span class="kw">default_model</span>: <span class="st">"gemini-2.5-pro"</span>
+  <span class="kw">local</span>:
+    <span class="kw">base_url</span>: <span class="st">"http://localhost:11434/v1"</span>
+    <span class="kw">default_model</span>: <span class="st">"llama3.3:70b"</span>
+
+<span class="kw">active</span>: <span class="st">anthropic</span>
+<span class="kw">cost_tracking</span>: <span class="st">true</span></pre>
+        <p>Define as many providers as you like. The <code>active</code> field controls which one is currently used. Switch providers by changing that one line - or use the CLI: <code>opencodex use google</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Start the proxy server</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start OpenCodex proxy on default port</span>
+opencodex start
+
+<span class="cm"># Or specify a port</span>
+opencodex start --port 8888
+
+<span class="cm"># Run in background</span>
+opencodex start --daemon</pre>
+        <p>The proxy starts a local HTTP server that speaks the OpenAI-compatible API format. It listens on <code>localhost:8080</code> by default. All requests are translated and forwarded to your active provider.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Point your CLI at the proxy</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># For OpenAI Codex CLI</span>
+<span class="kw">export</span> OPENAI_BASE_URL=<span class="st">"http://localhost:8080/v1"</span>
+
+<span class="cm"># For Claude Code</span>
+<span class="kw">export</span> ANTHROPIC_BASE_URL=<span class="st">"http://localhost:8080/v1"</span>
+
+<span class="cm"># Now use your CLI normally - it routes through OpenCodex</span>
+codex "refactor this function"
+claude "write tests for this module"</pre>
+        <p>That is it. Your CLI sends requests to <code>localhost:8080</code>, OpenCodex translates and forwards them to your active provider. Switch providers anytime with <code>opencodex use &lt;provider&gt;</code> - no need to restart anything.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>View cost and usage reports</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># See today's usage</span>
+opencodex stats
+
+<span class="cm"># Compare costs across providers</span>
+opencodex stats --compare
+
+<span class="cm"># Export as CSV</span>
+opencodex stats --export costs.csv</pre>
+        <p>When <code>cost_tracking</code> is enabled, OpenCodex logs every request with token counts, latency, and estimated cost. The <code>--compare</code> flag shows what the same requests would have cost on each configured provider.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>use</em></h2>
+    <p class="sub">Where OpenCodex fits in the AI coding landscape - and how teams are using provider flexibility to their advantage.</p>
+
+    <div class="story"><div class="metric">Cost Optimization</div><p><strong>Right-size your model spend.</strong> Route boilerplate generation, test scaffolding, and documentation tasks to cheaper models like GPT-4o-mini or local Llama 3.3. Reserve frontier models for complex debugging, architecture decisions, and security reviews. Teams report 40-60% cost reduction without noticeable quality loss on routine tasks.</p></div>
+    <div class="story"><div class="metric">Model Benchmarks</div><p><strong>Compare models on your codebase.</strong> Run the same refactoring task through Claude, GPT-4o, and Gemini. Compare output quality, speed, and cost. Find which model handles your language, framework, and coding style best - using your actual code, not synthetic benchmarks.</p></div>
+    <div class="story"><div class="metric">Air-Gapped Dev</div><p><strong>Code with AI offline.</strong> Defense contractors, government agencies, and security-conscious startups route through Ollama or a local inference server. The coding assistant works identically - but no code, no prompts, and no context ever leave the local network.</p></div>
+    <div class="story"><div class="metric">Multi-Provider Strategy</div><p><strong>Enterprise resilience.</strong> Large teams configure multiple providers with automatic failover. If Anthropic's API goes down, requests route to OpenAI. If OpenAI rate-limits, traffic shifts to Google. No single provider outage stops the team from coding.</p></div>
+    <div class="story"><div class="metric">Model Evaluation</div><p><strong>Test new models instantly.</strong> When a new model launches - DeepSeek R2, Gemini 2.5 Flash, the next Claude - add it to the config and try it immediately in your existing workflow. No migration, no new tools, no learning curve. If it is not better, switch back in one command.</p></div>
+
+    <div class="itw">
+      <h3>// In the Wild</h3>
+      <ul>
+        <li><strong>Growing community adoption.</strong> OpenCodex has gained traction among developers who use both Codex and Claude Code and want the flexibility to switch between underlying models. Discussion threads on developer forums show interest particularly from teams managing API costs across multiple projects.</li>
+        <li><strong>Provider proxy as a pattern.</strong> The concept of an LLM provider proxy is becoming a recognized architectural pattern. Several similar projects have emerged, but OpenCodex distinguishes itself by targeting AI coding CLIs specifically rather than general-purpose API proxying.</li>
+        <li><strong>Open-source community contributions.</strong> With 1.1K forks in roughly three months, the project has attracted contributors adding support for new providers, improving API translation accuracy, and building dashboard interfaces for cost tracking.</li>
+        <li><strong>Note on evidence.</strong> As a relatively young project (created June 2026), detailed third-party reviews and case studies are still limited. The star count and fork activity suggest strong interest, but independent benchmarks and production deployment reports are still emerging.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>// Watch out for</h3>
+      <ul>
+        <li><strong>Provider API differences.</strong> Each LLM provider has its own API quirks - different tool calling formats, different streaming behaviors, different error codes. OpenCodex translates between them, but subtle behavior differences may surface. A prompt that works perfectly on Claude might produce slightly different results when routed through Gemini, even with the same text.</li>
+        <li><strong>Latency overhead.</strong> The proxy layer adds a small amount of latency to every request - typically 5-15ms for the translation and forwarding step. For interactive coding sessions this is negligible, but it compounds on high-throughput batch operations.</li>
+        <li><strong>Provider-specific features may not translate.</strong> Features unique to one provider - like Anthropic's extended thinking, OpenAI's function calling nuances, or Gemini's grounding - may not map cleanly through the proxy. Check the compatibility matrix in the docs before relying on advanced features.</li>
+        <li><strong>Configuration complexity.</strong> Managing API keys, rate limits, and model mappings across multiple providers adds operational overhead. For solo developers using a single model, OpenCodex may be more infrastructure than necessary.</li>
+        <li><strong>Young project, evolving API.</strong> Created June 18, 2026 - just under three months old. The configuration format and CLI interface may change between versions. Pin your version in production and watch the changelog before upgrading.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/lidge-jun/opencodex" target="_blank">lidge-jun/opencodex GitHub</a> - source, configuration docs, provider compatibility matrix</li>
+      <li>Supports: OpenAI, Anthropic, Google, DeepSeek, Grok, Ollama, and any OpenAI-compatible endpoint</li>
+      <li>Last pushed: September 11, 2026 | Created: June 18, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

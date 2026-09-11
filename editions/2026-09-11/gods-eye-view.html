@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bilawalsidhu/gods-eye-view - Live Spatial Intelligence in Your Browser | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;--bg2:#0f1428;--card:#131a2e;--card2:#182040;
+    --primary:#f0b429;--primary-dim:#d4a017;--secondary:#4fc3f7;
+    --accent:#7c8db5;--accent-light:#9ab0d4;
+    --ink:#e8ecf4;--muted:#8a95b0;--line:#1e2a4a;
+    --sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Orbitron',sans-serif;
+    --r:2px;
+    --shadow:0 2px 12px rgba(0,0,0,.35);--shadow-lg:0 6px 24px rgba(0,0,0,.45);
+    --glow:0 0 12px rgba(240,180,41,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%,rgba(255,255,255,.12),transparent),
+      radial-gradient(1px 1px at 25% 45%,rgba(255,255,255,.08),transparent),
+      radial-gradient(1px 1px at 40% 10%,rgba(255,255,255,.10),transparent),
+      radial-gradient(1px 1px at 55% 70%,rgba(255,255,255,.06),transparent),
+      radial-gradient(1px 1px at 70% 30%,rgba(255,255,255,.09),transparent),
+      radial-gradient(1px 1px at 85% 60%,rgba(255,255,255,.07),transparent),
+      radial-gradient(1px 1px at 15% 80%,rgba(255,255,255,.11),transparent),
+      radial-gradient(1px 1px at 90% 20%,rgba(255,255,255,.08),transparent),
+      radial-gradient(1px 1px at 50% 50%,rgba(255,255,255,.05),transparent),
+      radial-gradient(1px 1px at 35% 90%,rgba(255,255,255,.07),transparent),
+      radial-gradient(1px 1px at 60% 5%,rgba(255,255,255,.10),transparent),
+      radial-gradient(1px 1px at 80% 85%,rgba(255,255,255,.06),transparent),
+      radial-gradient(1px 1px at 5% 55%,rgba(255,255,255,.09),transparent),
+      radial-gradient(1px 1px at 45% 35%,rgba(255,255,255,.07),transparent),
+      radial-gradient(1px 1px at 95% 45%,rgba(255,255,255,.08),transparent),
+      repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(240,180,41,.02) 80px,rgba(240,180,41,.02) 81px),
+      repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(240,180,41,.02) 80px,rgba(240,180,41,.02) 81px);
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,14,26,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(240,180,41,.03) 0%,transparent 100%)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:10px;letter-spacing:.20em;text-transform:uppercase;background:var(--primary);color:#0a0e1a;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:900;line-height:1.12;letter-spacing:.02em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.lm{color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:var(--disp);font-weight:400}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,14,26,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--accent)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0e1a;box-shadow:var(--glow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.03em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-bottom:3px solid var(--primary);box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .bignum::before{content:'';position:absolute;top:0;right:0;width:40px;height:40px;background:var(--bg2);clip-path:polygon(100% 0,0 0,100% 100%);opacity:.6}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em;font-family:var(--disp)}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(240,180,41,.06),rgba(79,195,247,.04));border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0a0e1a;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(244,67,54,.05);border-color:rgba(244,67,54,.3)}
+  .ba.after{background:rgba(240,180,41,.04);border-color:rgba(240,180,41,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#f44336}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#0a0e1a;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#060914;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c8d0e0}
+  pre .cm{color:#4a5578}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:700;text-shadow:var(--glow);letter-spacing:.02em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:rgba(244,67,54,.04);border:1px dashed rgba(244,67,54,.4);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#f44336;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(244,67,54,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Live Spatial Intelligence - Open Source</span>
+    <h1><span class="owner">bilawalsidhu/</span><span class="name">gods-eye-view</span></h1>
+    <p class="tagline"><strong>A spy satellite simulator in your browser, except the data is real.</strong> Live open-source spatial data visualization with a WebGL-powered 3D globe, real-time aircraft tracking, vessel monitoring, and layered geospatial intelligence.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">25.9K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">5.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">JavaScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Custom</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>The planet, <em>rendered live</em></h2>
+    <p class="sub">Gods Eye View pulls real-time open data feeds - aircraft, ships, weather, satellite imagery - and composites them onto a WebGL globe you can spin, zoom, and query. Think Google Earth, but with live ADS-B and AIS data, running entirely in your browser from open sources.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">25.9K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">5.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">6+</div><div class="l">Data Layers</div></div>
+      <div class="bignum"><div class="n lm">WebGL</div><div class="l">Render Engine</div></div>
+      <div class="bignum"><div class="n">82</div><div class="l">Days Since Creation</div></div>
+      <div class="bignum"><div class="n sc">Live</div><div class="l">Data Feeds</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">WebGL 3D globe with real terrain</div><p>Not a flat map with pins. Gods Eye View renders a <strong>full 3D globe</strong> with elevation data, cloud cover, and day/night terminator - all in the browser using WebGL. Rotate, zoom, tilt. The visual fidelity rivals desktop GIS applications.</p></div>
+      <div class="feat"><div class="fh">Real-time aircraft tracking via ADS-B</div><p>The air traffic layer pulls live <strong>ADS-B transponder data</strong> from open aggregator feeds. You can see commercial flights, their altitude, heading, and speed updating in near real-time - no FlightAware subscription needed.</p></div>
+      <div class="feat"><div class="fh">Ship tracking via AIS feeds</div><p>The maritime layer ingests <strong>AIS vessel data</strong> - cargo ships, tankers, fishing fleets. Each vessel shows position, heading, speed, and vessel type. Watch global shipping lanes light up as thousands of vessels report in.</p></div>
+      <div class="feat"><div class="fh">OpenStreetMap as the base layer</div><p>The underlying map data comes from <strong>OpenStreetMap</strong>, so every road, building footprint, and point of interest is community-maintained and freely available. No Google Maps API key, no usage-based billing.</p></div>
+      <div class="feat"><div class="fh">Composable data layers</div><p>Toggle layers on and off independently - <strong>weather radar, satellite imagery, air traffic, vessel tracking, seismic events</strong>. Each layer is a separate data source that overlays cleanly on the globe. Add your own custom layers via the plugin system.</p></div>
+      <div class="feat"><div class="fh">Open data philosophy, end to end</div><p>Every data feed is <strong>open source or openly licensed</strong>. No proprietary APIs behind the curtain. The project maintains a curated registry of data sources with their update frequencies, coverage areas, and terms of use.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>One globe, every open data feed, zero vendor lock-in</h3>
+      <p>The killer value of Gods Eye View is unification. Today, if you want to see air traffic you open one site, for ship tracking another, for weather a third, for satellite imagery a fourth. This project layers them all onto a single interactive globe - and because every data source is open, you can self-host the entire stack without a single API key from a commercial vendor. For journalists, researchers, and disaster responders, that changes what spatial awareness looks like.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>spatial data</em> problem</h2>
+    <p class="sub">The world produces an enormous amount of freely available geospatial data. The problem is not access - it is assembly. No single tool lets you see it all at once without paying enterprise GIS prices.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Fragmented data sources.</strong> Aircraft positions come from ADS-B Exchange. Ship positions come from MarineTraffic or VesselFinder. Weather comes from NOAA. Satellite imagery from NASA Worldview. Each lives in a different web app with different controls, different projections, and no way to overlay them.</p>
+        <p><strong>Expensive GIS software.</strong> Professional tools like ArcGIS or QGIS can combine these layers, but they carry steep licensing costs, require desktop installation, and demand GIS expertise. A journalist covering a shipping incident should not need a GIS certification to see what is happening.</p>
+        <p><strong>Stale snapshots, not live feeds.</strong> Most open data visualization tools show static datasets - a CSV loaded onto a map. They do not maintain persistent connections to streaming data sources. By the time you see the data, the planes have moved, the ships have docked, and the storm has shifted.</p>
+        <p><strong>Closed-source commercial trackers.</strong> FlightRadar24, MarineTraffic, and similar services do offer live tracking, but their free tiers are limited, their data is proprietary, and you cannot self-host, customize, or integrate them into your own workflows.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Unified live view.</strong> Gods Eye View composites all major open data feeds onto a single WebGL globe. Air traffic, maritime vessels, weather systems, and satellite imagery coexist on the same canvas with consistent controls and a shared coordinate system.</p>
+        <p><strong>Browser-native, no install.</strong> The entire application runs in the browser. No GIS software, no desktop install, no license key. Clone the repo, run the dev server, and you have a spatial intelligence dashboard in your browser tab.</p>
+        <p><strong>Persistent streaming connections.</strong> The application maintains WebSocket and polling connections to live data feeds. Aircraft and vessel positions update in near real-time. Weather layers refresh on their source cadence. The globe is never stale.</p>
+        <p><strong>Fully open, fully forkable.</strong> Every component is open source. Every data feed is documented. If you need to add a custom layer - say, earthquake sensors or wildfire perimeters - the plugin architecture lets you wire in any GeoJSON or tile source without touching the core.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>orbital</em></h2>
+    <p class="sub">From zero to a spinning globe with live data in under five minutes. No API keys required for the default data sources - everything runs from open feeds.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the repository</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone from GitHub</span>
+git clone https://github.com/bilawalsidhu/gods-eye-view.git
+cd gods-eye-view</pre>
+        <p>The repository includes all the WebGL rendering code, data layer adapters, and a development server. The codebase is <strong>pure JavaScript</strong> with no framework dependencies beyond Three.js for the WebGL globe.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Install dependencies and configure data sources</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install Node.js dependencies</span>
+npm install
+
+<span class="cm"># Copy the example configuration</span>
+cp config.example.json config.json
+
+<span class="cm"># The default config points to free, open data feeds</span>
+<span class="cm"># No API keys needed for:</span>
+<span class="cm">#   - OpenStreetMap tiles</span>
+<span class="cm">#   - ADS-B aircraft data (open aggregators)</span>
+<span class="cm">#   - AIS vessel data (community feeds)</span>
+<span class="cm">#   - NOAA weather overlays</span></pre>
+        <p>The default configuration connects to <strong>freely available open data sources</strong>. If you want higher-resolution satellite imagery or faster update rates, you can add optional API keys for providers like Mapbox, Sentinel Hub, or commercial ADS-B feeds - but the base experience works without them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Start the development server</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start the dev server</span>
+npm run dev
+
+<span class="cm"># The application will open at http://localhost:3000</span>
+<span class="cm"># The globe loads with default layers enabled:</span>
+<span class="cm">#   - Base map (OpenStreetMap)</span>
+<span class="cm">#   - Air traffic (ADS-B)</span>
+<span class="cm">#   - Weather overlay (NOAA)</span></pre>
+        <p>On first load, the globe initializes with your approximate location centered. <strong>Aircraft icons begin populating within seconds</strong> as the ADS-B feed connects. Use the layer panel on the right to toggle additional data sources on and off.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Explore the layer controls and customize</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Toggle layers in the browser UI or via config</span>
+<span class="cm"># Available built-in layers:</span>
+<span class="cm">#   air-traffic    - Live ADS-B aircraft positions</span>
+<span class="cm">#   vessels        - AIS maritime vessel tracking</span>
+<span class="cm">#   weather        - NOAA radar and satellite</span>
+<span class="cm">#   satellite-img  - Earth observation imagery</span>
+<span class="cm">#   seismic        - USGS earthquake events</span>
+<span class="cm">#   day-night      - Solar terminator line</span>
+
+<span class="cm"># Add a custom GeoJSON layer</span>
+npm run add-layer -- --name "my-layer" --source ./data/custom.geojson</pre>
+        <p>Each layer can be independently <strong>toggled, filtered, and styled</strong>. Click any aircraft or vessel to see its metadata - callsign, altitude, speed, origin, destination. The layer panel also shows each source's update frequency and last-refreshed timestamp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Mission <em>briefs</em></h2>
+    <p class="sub">Gods Eye View sits at the intersection of open data, spatial intelligence, and browser-based visualization. Here is where it finds its operators.</p>
+
+    <div class="story"><div class="metric">Investigative Journalism</div><p><strong>Track movements without commercial subscriptions.</strong> Journalists investigating sanctions evasion, illegal fishing, or military logistics use open AIS and ADS-B data to track vessels and aircraft. Gods Eye View gives them a visual dashboard to monitor specific routes, flag unusual patterns, and overlay multiple data sources - all without the cost of a FlightRadar24 or MarineTraffic enterprise plan. The "dark fleet" tanker stories at major outlets relied on exactly this kind of open-source spatial analysis.</p></div>
+    <div class="story"><div class="metric">Disaster Response</div><p><strong>Situational awareness when minutes matter.</strong> During hurricanes, earthquakes, or wildfires, responders need to see weather data, affected areas, transportation routes, and asset positions on a single map. Gods Eye View's composable layers let emergency teams overlay <strong>NOAA weather radar, USGS seismic data, and live aircraft positions</strong> simultaneously. Because it runs locally, it works even when commercial services are overloaded or offline.</p></div>
+    <div class="story"><div class="metric">Logistics Monitoring</div><p><strong>Watch your supply chain move in real time.</strong> Shipping companies and freight brokers use AIS vessel data and ADS-B cargo flight data to monitor supply chains. Gods Eye View can display vessel positions along shipping lanes, highlight port congestion by visualizing vessel density, and overlay weather data that might affect delivery timelines. A custom layer with your own fleet GPS data completes the picture.</p></div>
+    <div class="story"><div class="metric">Education and Research</div><p><strong>A teaching globe for spatial data literacy.</strong> Geography, environmental science, and data visualization courses use Gods Eye View as a hands-on lab tool. Students can see how <strong>ADS-B transponder data</strong> reveals flight path patterns, how <strong>AIS data</strong> maps global trade routes, and how weather systems move across the planet - all in an interactive, code-readable, open-source application they can modify and extend.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Rapid community growth.</strong> Real-world coverage for Gods Eye View is emerging rapidly, fueled by its massive growth from zero to 25.9K stars in under three months. The repo's "spy satellite" framing has attracted significant attention across developer and open-data communities.</li>
+        <li><strong>Open data accessibility debate.</strong> The project has sparked conversation about the boundaries of open spatial intelligence. While all data sources are publicly available, the ease of compositing them into a single real-time view raises questions about surveillance and privacy that the community is actively discussing in GitHub issues and on social media.</li>
+        <li><strong>OSINT community adoption.</strong> Open-source intelligence practitioners have flagged the project as a significant development in browser-based spatial analysis, noting that it lowers the technical barrier to the kind of geospatial work previously limited to analysts with GIS training and commercial tool access.</li>
+        <li><strong>Fork activity signals demand.</strong> With 5.3K forks in under three months, the project is seeing significant downstream experimentation. Contributors are adding custom layers for wildfire tracking, border crossing activity, and environmental monitoring - indicating the platform architecture is proving extensible in practice.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Data source reliability.</strong> Open data feeds are maintained by volunteers and community aggregators. ADS-B coverage has gaps over oceans and remote regions. AIS feeds from community receivers do not cover every port. When a feed goes down, the layer goes dark with no SLA to fall back on. You are dependent on the uptime of sources you do not control.</li>
+        <li><strong>Bandwidth requirements.</strong> Streaming live positions for thousands of aircraft and vessels simultaneously is data-intensive. On a default configuration, expect <strong>50-100 MB of data transfer per hour</strong> of active use. Mobile connections and metered plans will feel it. Consider filtering to a geographic bounding box if bandwidth is constrained.</li>
+        <li><strong>Potential misuse concerns.</strong> The project's tagline - "spy satellite simulator" - is deliberately provocative, and the tool does make real-time tracking more accessible. While all data is already public, combining it into a polished UI lowers the effort needed to track specific aircraft or vessels. This has prompted discussion about whether the project should implement any access controls or use-case guidelines.</li>
+        <li><strong>WebGL rendering performance.</strong> The 3D globe with multiple active data layers is <strong>GPU-intensive</strong>. Older machines, integrated graphics, and mobile devices may struggle with frame rates when all layers are enabled simultaneously. The project recommends a dedicated GPU and a modern browser. Safari on macOS has known rendering quirks with certain WebGL features.</li>
+        <li><strong>Custom license.</strong> The repository uses a <code>NOASSERTION</code> license classification, meaning the licensing terms are non-standard. Review the actual license file in the repository before building anything commercial on top of it. This is not MIT or Apache-2.0 - read before you ship.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank">bilawalsidhu/gods-eye-view GitHub</a> - source, data layer docs, contribution guide</li>
+      <li>Data sources: OpenStreetMap, ADS-B Exchange, community AIS, NOAA, USGS, NASA Worldview</li>
+      <li>Last pushed: September 11, 2026 | Created: June 22, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

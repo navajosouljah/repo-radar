@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>deeplethe/utopia - Enterprise World Model in Rust | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08060f;--bg2:#110d1c;--card:rgba(25,18,42,.72);--card2:rgba(35,24,58,.6);
+    --primary:#7c3aed;--primary-dim:#6d28d9;--secondary:#e0a8a0;
+    --accent:#a78bfa;--accent-light:#c4b5fd;
+    --ink:#ede9f6;--muted:#9a8fb8;--line:rgba(124,58,237,.22);
+    --sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'Outfit',sans-serif;
+    --r:12px;
+    --shadow:0 2px 16px rgba(124,58,237,.10);--shadow-lg:0 8px 32px rgba(124,58,237,.15);
+    --glow:0 0 40px rgba(124,58,237,.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,58,237,.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(224,168,160,.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(124,58,237,.03) 0%, transparent 70%);}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;color:var(--accent-light)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(8,6,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:54px}
+  .radar-link{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+  .radar-link:hover{color:var(--accent);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .gh-link:hover{border-color:var(--primary);color:var(--accent);text-decoration:none;box-shadow:var(--glow)}
+
+  .hero{padding:72px 0 50px;position:relative}
+  .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),var(--secondary),var(--primary),transparent)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(135deg,var(--primary),#9333ea);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(36px,7.5vw,70px);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+  h1 .owner{color:var(--muted);font-weight:400;font-size:.42em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .tagline{font-size:clamp(15px,2.2vw,20px);color:var(--muted);max-width:700px;margin:20px 0 32px;font-weight:400;line-height:1.65}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .chip .cv{font-family:var(--mono);font-weight:500;font-size:15px;color:var(--accent)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(8,6,15,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:11px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .2s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--accent);box-shadow:var(--shadow)}
+  .tab-btn.active{background:linear-gradient(135deg,var(--primary),#9333ea);border-color:var(--primary);color:#fff;box-shadow:var(--glow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(24px,3.8vw,36px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16px;line-height:1.7}
+  h3{font-size:18px;font-weight:700;margin-bottom:14px;color:var(--ink);font-family:var(--disp)}
+  h3 .dot{color:var(--secondary)}
+
+  .divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:38px 0}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+  .bignum::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary))}
+  .bignum .n{font-family:var(--mono);font-size:clamp(26px,3.8vw,38px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--accent)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);backdrop-filter:blur(8px);position:relative;overflow:hidden}
+  .feat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--primary),var(--secondary))}
+  .feat .fh{font-weight:600;font-size:15px;margin-bottom:8px;color:var(--ink);font-family:var(--disp);padding-left:4px}.feat .fh code{font-family:var(--mono);color:var(--accent);font-size:13px}
+  .feat p{color:var(--muted);font-size:13.5px;line-height:1.6;padding-left:4px}.feat p code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .best-feature{background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:32px;box-shadow:var(--glow);position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+  .best-feature::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--primary))}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:linear-gradient(135deg,var(--primary),#9333ea);color:#fff;font-weight:700;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15px;max-width:720px;margin-top:10px;line-height:1.7}
+  .best-feature p code{font-family:var(--mono);color:var(--accent);font-size:.9em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .ba.before{background:rgba(224,168,160,.06);border-color:rgba(224,168,160,.3)}
+  .ba.after{background:rgba(124,58,237,.06);border-color:rgba(124,58,237,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.10em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--secondary)}.ba.after .ba-tag{color:var(--accent)}
+  .ba p{color:var(--muted);font-size:14px;margin-bottom:13px;line-height:1.65}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--accent)}
+
+  .concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:34px}
+  .concept{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .concept .c-label{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--accent);margin-bottom:8px}
+  .concept p{color:var(--muted);font-size:13.5px;line-height:1.6}
+  .concept p strong{color:var(--ink)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:linear-gradient(135deg,var(--primary),#9333ea);color:#fff;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:15.5px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:13.5px;margin-bottom:12px;line-height:1.6}.step-body p strong{color:var(--ink)}
+  pre{background:rgba(4,2,10,.8);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:12.5px;line-height:1.8;color:#d4cce8}
+  pre .cm{color:#6b6086}
+  pre .str{color:var(--secondary)}
+  pre .kw{color:var(--accent)}
+  pre .fn{color:#e0a8a0}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:16px;display:grid;grid-template-columns:170px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .story .metric{font-family:var(--disp);font-size:20px;color:var(--accent);line-height:1.2;font-weight:700}
+  .story p{color:var(--muted);font-size:14px;line-height:1.6}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .itw h3{color:var(--accent);font-size:18px;margin-bottom:16px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line);line-height:1.6}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}.itw a:hover{color:var(--accent-light)}
+
+  .watchout{background:rgba(224,168,160,.06);border:1px dashed rgba(224,168,160,.4);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--secondary);font-size:18px;margin-bottom:16px}
+  .watchout ul{list-style:none}.watchout li{padding:12px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(224,168,160,.12);line-height:1.6}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--accent)}
+
+  .arch-diagram{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;margin:24px 0;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .arch-diagram .ad-label{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .arch-row{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .arch-box{background:rgba(124,58,237,.08);border:1px solid var(--line);border-radius:8px;padding:12px 18px;font-family:var(--mono);font-size:12px;color:var(--accent);text-align:center;flex:1;min-width:120px}
+  .arch-box.highlight{background:rgba(124,58,237,.18);border-color:var(--primary);color:var(--ink)}
+  .arch-box.secondary{background:rgba(224,168,160,.08);border-color:rgba(224,168,160,.3);color:var(--secondary)}
+  .arch-arrow{text-align:center;color:var(--muted);font-size:18px;padding:4px 0}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"\25B8 ";color:var(--accent);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:600;font-size:13px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+  .backhub:hover{border-color:var(--primary);color:var(--accent);text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid,.concept-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}.arch-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/deeplethe/utopia" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Open-Source Enterprise World Model</span>
+    <h1><span class="owner">deeplethe /</span><span class="name">utopia</span></h1>
+    <p class="tagline">A <strong>temporal knowledge graph</strong> with bitemporal tracking, <strong>GraphRAG</strong>, semantic search, and ontology management - all in Rust. The first open-source attempt at an enterprise-grade <strong>world model</strong>.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">6.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">590</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Rust</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Knowledge that <em>remembers time</em></h2>
+    <p class="sub">Utopia is a knowledge graph that tracks not just what is true, but when it was true and when you learned it. Combined with GraphRAG and semantic search, it gives enterprises a structured memory layer that LLMs can reason over.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">6.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">590</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">2</div><div class="l">Temporal Axes</div></div>
+      <div class="bignum"><div class="n lm">Rust</div><div class="l">Core Engine</div></div>
+      <div class="bignum"><div class="n sc">pgvector</div><div class="l">Embedding Backend</div></div>
+      <div class="bignum"><div class="n">GraphRAG</div><div class="l">Retrieval Layer</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> Core capabilities</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Bitemporal knowledge tracking</div><p>Every fact in the graph carries two timestamps: <strong>valid time</strong> (when the fact was true in the real world) and <strong>transaction time</strong> (when it was recorded in the system). This means you can query what you knew at any point in time - and what was actually true at any point in time.</p></div>
+      <div class="feat"><div class="fh">GraphRAG retrieval</div><p>Instead of naive vector similarity, Utopia walks the knowledge graph to find context-relevant facts before passing them to an LLM. The graph structure provides relationship-aware retrieval that flat embedding search cannot match.</p></div>
+      <div class="feat"><div class="fh">Ontology-first schema design</div><p>You define entity types, relationship types, and constraints in an ontology before ingesting data. This is not a property graph where anything goes - the schema enforces structure, making queries predictable and the graph navigable.</p></div>
+      <div class="feat"><div class="fh">PostgreSQL + pgvector backend</div><p>Utopia stores the graph in PostgreSQL with pgvector for embeddings. No exotic database to manage - your existing Postgres infrastructure, backup tooling, and operational knowledge all apply.</p></div>
+      <div class="feat"><div class="fh">Pure Rust performance</div><p>The core engine is written in Rust, delivering the memory safety and performance characteristics you would expect. Graph traversals, temporal queries, and embedding lookups all benefit from Rust's zero-cost abstractions.</p></div>
+      <div class="feat"><div class="fh">Semantic search</div><p>Beyond graph traversal, Utopia supports vector similarity search over entity descriptions and relationships. Combine structured graph queries with fuzzy semantic matching for the best of both retrieval paradigms.</p></div>
+    </div>
+
+    <div class="arch-diagram">
+      <div class="ad-label">Architecture Overview</div>
+      <div class="arch-row">
+        <div class="arch-box">Ontology Definition</div>
+        <div class="arch-box">Knowledge Ingestion</div>
+        <div class="arch-box">Temporal Indexing</div>
+      </div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-row">
+        <div class="arch-box highlight">Bitemporal Graph Engine (Rust)</div>
+      </div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-row">
+        <div class="arch-box secondary">GraphRAG</div>
+        <div class="arch-box secondary">Semantic Search</div>
+        <div class="arch-box secondary">Temporal Queries</div>
+      </div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-row">
+        <div class="arch-box">PostgreSQL + pgvector</div>
+      </div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Key differentiator</span>
+      <h3>Bitemporality makes knowledge graphs trustworthy</h3>
+      <p>Most knowledge graphs store only the current state of the world. Utopia tracks when facts became known and when they were true, separately. This means you can answer "What did we believe about this customer on March 15?" and "When did we first learn this regulation changed?" - questions that are critical for compliance, auditing, and debugging AI decisions. It is the difference between a snapshot and a time machine.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>knowledge</em> problem</h2>
+    <p class="sub">Enterprise knowledge is scattered across documents, databases, wikis, and people's heads. It changes constantly, and nobody tracks when or why it changed.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Today's reality</div>
+        <p><strong>Knowledge lives everywhere.</strong> Customer data in the CRM, policies in the wiki, decisions in email threads, context in people's heads. There is no unified graph connecting these entities. When someone leaves, their knowledge walks out the door.</p>
+        <p><strong>No temporal context.</strong> Traditional databases store the current state. When a regulation changes or a customer's status updates, the previous state is overwritten. You cannot answer "What did we know when we made that decision?" - a question auditors and regulators ask constantly.</p>
+        <p><strong>RAG without structure hallucinates.</strong> Flat vector search retrieves text chunks by similarity, but it has no concept of entity relationships, time, or validity. An LLM fed context from naive RAG may confidently cite outdated information or conflate two unrelated entities that happen to share similar descriptions.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">With Utopia</div>
+        <p><strong>One graph, all knowledge.</strong> Entities - people, policies, products, regulations - live in a single knowledge graph with typed relationships. The ontology enforces consistent structure, making the graph queryable and navigable rather than a dump of unstructured triples.</p>
+        <p><strong>Full temporal audit trail.</strong> Every fact records when it was true (valid time) and when the system learned it (transaction time). You can reconstruct the state of knowledge at any historical moment - for compliance, debugging, or simply understanding how things evolved.</p>
+        <p><strong>Graph-aware retrieval.</strong> GraphRAG traverses relationships to find relevant context, not just similar text. When you ask about a customer, it follows edges to their contracts, their industry's regulations, and the team that manages them - structured context an LLM can reason over reliably.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3><span class="dot">&#9679;</span> Key concepts</h3>
+    <div class="concept-grid">
+      <div class="concept">
+        <div class="c-label">Valid Time</div>
+        <p><strong>When a fact was true in the real world.</strong> A customer's address changed on June 1 - that is the valid time. Even if the database was not updated until June 15, the fact was valid from June 1.</p>
+      </div>
+      <div class="concept">
+        <div class="c-label">Transaction Time</div>
+        <p><strong>When the system recorded the fact.</strong> The address update was entered on June 15 - that is the transaction time. This lets you answer "What did the system believe on June 10?" (the old address, because the update had not been entered yet).</p>
+      </div>
+      <div class="concept">
+        <div class="c-label">Ontology</div>
+        <p><strong>The schema for your knowledge graph.</strong> You define entity types (Person, Policy, Product), relationship types (manages, governs, contains), and constraints before ingesting data. The ontology prevents garbage from entering the graph.</p>
+      </div>
+      <div class="concept">
+        <div class="c-label">GraphRAG</div>
+        <p><strong>Graph-structured retrieval for LLMs.</strong> Instead of retrieving text chunks by vector similarity alone, GraphRAG walks the knowledge graph's edges to gather relationship-aware context. The result is more precise, more complete, and less likely to mislead the model.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">Install the CLI, connect to PostgreSQL, define your ontology, and run your first GraphRAG query. Requires a running PostgreSQL instance with pgvector enabled.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the Utopia CLI</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install from crates.io</span>
+cargo install utopia-cli
+
+<span class="cm"># Or build from source</span>
+git clone https://github.com/deeplethe/utopia.git
+cd utopia
+cargo build --release</pre>
+        <p>Requires <strong>Rust 1.75+</strong> and a running <strong>PostgreSQL 15+</strong> instance with the <code>pgvector</code> extension installed.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Initialize the database</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Point Utopia at your PostgreSQL instance</span>
+utopia init --pg-url postgres://user:pass@localhost:5432/utopia_db
+
+<span class="cm"># This creates the schema, enables pgvector,</span>
+<span class="cm"># and sets up bitemporal tracking tables</span></pre>
+        <p>The <code>init</code> command creates all required tables, indexes, and the pgvector extension. It is idempotent - running it twice will not corrupt existing data.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Define your ontology</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># ontology.yaml</span>
+entities:
+  - <span class="kw">name</span>: Person
+    <span class="kw">properties</span>:
+      - { name: full_name, type: string, required: true }
+      - { name: role, type: string }
+      - { name: department, type: string }
+
+  - <span class="kw">name</span>: Policy
+    <span class="kw">properties</span>:
+      - { name: title, type: string, required: true }
+      - { name: effective_date, type: date }
+      - { name: status, type: enum, values: [draft, active, retired] }
+
+relationships:
+  - { name: manages, from: Person, to: Person }
+  - { name: authored, from: Person, to: Policy }
+  - { name: supersedes, from: Policy, to: Policy }
+
+<span class="cm"># Apply the ontology</span>
+utopia ontology apply ontology.yaml</pre>
+        <p>The ontology is versioned. Changing it creates a new version, and the graph tracks which ontology version each fact was ingested under. You can evolve the schema over time without breaking existing data.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">4</span><h3>Ingest knowledge</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Ingest entities and relationships from JSON</span>
+utopia ingest entities.json
+
+<span class="cm"># Or use the Rust API directly</span>
+<span class="kw">use</span> utopia::{Client, Entity, Relationship};
+
+<span class="kw">let</span> client = Client::connect(<span class="str">"postgres://..."</span>).<span class="kw">await</span>?;
+
+client.<span class="fn">upsert_entity</span>(Entity {
+    entity_type: <span class="str">"Person"</span>,
+    properties: json!({
+        <span class="str">"full_name"</span>: <span class="str">"Alice Chen"</span>,
+        <span class="str">"role"</span>: <span class="str">"VP Engineering"</span>,
+    }),
+    valid_from: <span class="str">"2025-03-01"</span>.parse()?,
+}).<span class="kw">await</span>?;</pre>
+        <p>Every ingested fact automatically receives both <strong>valid time</strong> (from the data) and <strong>transaction time</strong> (the moment of ingestion). Embeddings are generated for semantic search on ingest.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">5</span><h3>Query with GraphRAG</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Natural language query via CLI</span>
+utopia query <span class="str">"Who manages the compliance team and what policies did they author?"</span>
+
+<span class="cm"># Temporal query - what did we know on a specific date?</span>
+utopia query <span class="str">"What was the active data retention policy?"</span> \
+  --as-of-valid <span class="str">"2025-06-15"</span> \
+  --as-of-transaction <span class="str">"2025-07-01"</span>
+
+<span class="cm"># The GraphRAG engine:</span>
+<span class="cm"># 1. Embeds the question</span>
+<span class="cm"># 2. Finds seed entities via semantic search</span>
+<span class="cm"># 3. Walks the graph to gather relational context</span>
+<span class="cm"># 4. Returns structured context for LLM consumption</span></pre>
+        <p>The <code>--as-of-valid</code> flag filters by when facts were true. The <code>--as-of-transaction</code> flag filters by when the system knew about them. Combine both for full bitemporal queries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>applications</em></h2>
+    <p class="sub">Where a bitemporal knowledge graph with GraphRAG solves problems that flat databases and naive vector search cannot.</p>
+
+    <div class="story"><div class="metric">Enterprise Knowledge</div><p><strong>Unified organizational memory.</strong> Companies use Utopia to consolidate knowledge scattered across wikis, CRMs, and documents into a single graph. The ontology enforces consistency, and bitemporality means nothing is ever truly lost - you can always reconstruct what was known when.</p></div>
+    <div class="story"><div class="metric">Regulatory Compliance</div><p><strong>Temporal audit trails.</strong> Financial and healthcare organizations need to prove what they knew and when. Utopia's bitemporal tracking provides a complete audit trail: "On June 15, we believed Policy X was active because it was recorded on May 1 with a valid-from date of April 15." Regulators can trace every decision.</p></div>
+    <div class="story"><div class="metric">Research Tracking</div><p><strong>Literature and finding evolution.</strong> Research teams use Utopia to track how findings evolve over time. A paper published in March may be superseded by new results in August. The graph preserves both states and their temporal context, so you can trace how understanding shifted.</p></div>
+    <div class="story"><div class="metric">AI Agent Memory</div><p><strong>Structured long-term memory for agents.</strong> AI agents need more than a vector store - they need structured, temporal knowledge about the world they operate in. Utopia serves as a memory layer that agents can query with <code>--as-of</code> semantics, avoiding the hallucination that comes from flat retrieval over stale embeddings.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Emerging concept, early traction.</strong> The "world model" framing for enterprise knowledge graphs is gaining momentum in technical discussions. Utopia is one of the first open-source projects to combine bitemporal tracking with GraphRAG under this umbrella. The 6.8K stars in just over a month suggest strong early interest, though community adoption is still in its earliest stages.</li>
+        <li><strong>GraphRAG momentum.</strong> Microsoft's research on GraphRAG in 2024 popularized the idea of graph-structured retrieval for LLMs. Utopia builds on this concept by adding bitemporality and ontology management - features the original research did not address but that enterprises need.</li>
+        <li><strong>Bitemporal databases are proven.</strong> The bitemporal data model is not new - it has been used in financial systems for decades. What is new is combining it with a knowledge graph and semantic search in a developer-friendly open-source package. The SQL:2011 standard included temporal support, but few databases implemented it well.</li>
+        <li><strong>Honest assessment.</strong> Evidence of production deployments at scale is thin at this stage. The repo is barely a month old (created August 7, 2026), and while the architecture is ambitious, it is worth watching whether the project can deliver on the scope its "world model" framing implies. Early community engagement on GitHub issues suggests active development.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Complex ontology setup.</strong> Defining a good ontology requires domain expertise and upfront design work. Unlike a property graph where you can throw in untyped data, Utopia's ontology-first approach demands you think about entity types, relationships, and constraints before ingesting anything. This is a feature for data quality but a barrier to quick experiments.</li>
+        <li><strong>PostgreSQL dependency.</strong> Utopia requires PostgreSQL with pgvector. Teams running MySQL, MongoDB, or other databases will need to add a Postgres instance. The upside is that Postgres is well-understood operationally; the downside is another database to manage.</li>
+        <li><strong>Rust ecosystem barrier.</strong> Building from source requires a Rust toolchain. For teams without Rust experience, the installation and any contribution work may feel unfamiliar. Pre-built binaries and container images would lower this barrier if they become available.</li>
+        <li><strong>"World model" is an ambitious claim.</strong> The term "world model" carries expectations from AI research that go beyond what a knowledge graph provides. Utopia is, at its core, a bitemporal knowledge graph with good retrieval features. Calling it a "world model" sets expectations that may overshoot what the software currently delivers. Evaluate it on its concrete capabilities, not the branding.</li>
+        <li><strong>Very new project.</strong> Created August 7, 2026 - just over one month old as of this edition. The API surface, ontology format, and query interface may all change significantly. The project has strong architectural ideas but limited battle-testing. Pin versions and expect breaking changes.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 007 - Week of September 11, 2026</div>
+    <ul>
+      <li><a href="https://github.com/deeplethe/utopia" target="_blank">deeplethe/utopia on GitHub</a> - source, ontology docs, GraphRAG examples</li>
+      <li>Rust | PostgreSQL + pgvector | Apache-2.0 license</li>
+      <li>Last pushed: September 11, 2026 | Created: August 7, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 007</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
