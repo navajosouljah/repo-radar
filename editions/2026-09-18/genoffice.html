@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>genspark-ai/GenOffice - AI-Native Office Suite | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c10;--bg2:#10141a;--card:#151a24;--card2:#1a2030;
+    --primary:#6366f1;--primary-dim:#4f46e5;--secondary:#ec4899;
+    --accent:#6b7280;--accent-light:#9ca3af;
+    --ink:#f3f4f6;--muted:#9ca3af;--line:#1f2937;
+    --sans:'Plus Jakarta Sans',sans-serif;--mono:'Fira Code',monospace;--disp:'Plus Jakarta Sans',sans-serif;
+    --r:8px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #6366f140;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:linear-gradient(135deg,#6366f106 0%,transparent 40%,#ec489906 100%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0a0c10;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0c10;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,#6366f108,#ec489906);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0a0c10;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:#6366f108;border-color:#6366f150}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#0a0c10;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#0a0c10;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
+  pre .cm{color:#6b7280}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#0a0c10;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/genspark-ai/GenOffice" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI-Powered Document Generation - Open Source</span>
+    <h1><span class="owner">genspark-ai/</span><span class="name">GenOffice</span></h1>
+    <p class="tagline"><strong>Office documents from natural language.</strong> GenOffice generates polished Word docs, Excel spreadsheets, and PowerPoint decks from plain-text prompts. Not another template filler - it reasons about document structure, formatting, and data presentation to produce files you would actually send to a client.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">4.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">280</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Documents that <em>write themselves</em></h2>
+    <p class="sub">GenOffice takes a natural language prompt and produces production-ready Office documents - .docx, .xlsx, and .pptx files with proper formatting, charts, tables, and styling. It understands document structure, not just text generation.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">4.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">280</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">.docx</div><div class="l">Word Generation</div></div>
+      <div class="bignum"><div class="n">.xlsx</div><div class="l">Excel Generation</div></div>
+      <div class="bignum"><div class="n sc">.pptx</div><div class="l">PowerPoint Generation</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Three-format output</div><p>Generates <strong>Word documents, Excel spreadsheets, and PowerPoint presentations</strong> from the same natural language input. Each format gets appropriate structure - paragraphs and headings for Word, formulas and charts for Excel, slides and layouts for PowerPoint.</p></div>
+      <div class="feat"><div class="fh">Structural intelligence</div><p>GenOffice does not just dump text into a template. It <strong>reasons about document structure</strong> - when to use a table vs. a list, where to place a chart, how to organize slides for a presentation flow, and which heading levels create a scannable document.</p></div>
+      <div class="feat"><div class="fh">Data-aware spreadsheets</div><p>Excel output includes <strong>proper formulas, conditional formatting, and charts</strong>. Ask for a financial model and you get cells with SUM, VLOOKUP, and pivot-ready data layouts - not just numbers pasted into cells.</p></div>
+      <div class="feat"><div class="fh">Professional formatting</div><p>Output uses <strong>consistent typography, spacing, and color schemes</strong>. Documents look like they were prepared by someone who understands corporate formatting standards, not generated by a script.</p></div>
+      <div class="feat"><div class="fh">Template integration</div><p>Supply your own <strong>company template</strong> and GenOffice applies your branding - logos, color schemes, fonts, and layout standards. The generated content follows your template's structure.</p></div>
+      <div class="feat"><div class="fh">Batch generation</div><p>Generate <strong>multiple variations</strong> from parameterized prompts. Create 50 personalized proposals, weekly reports with different data, or localized versions of the same presentation.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>It thinks in document structure, not just text</h3>
+      <p>The differentiator is structural reasoning. Ask for "a quarterly business review" and GenOffice produces a PowerPoint with an executive summary slide, KPI dashboard slides with charts, department breakdowns with tables, and a forward-looking slide with action items. It does not just pour text into slides - it thinks about what each slide's purpose is and chooses the right layout. The same structural intelligence applies to Word and Excel: documents have proper heading hierarchies, spreadsheets have formula relationships, not just values.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>document creation</em> problem</h2>
+    <p class="sub">Knowledge workers spend hours every week creating documents that follow predictable patterns. The creative part is the content decisions - the tedious part is formatting, structuring, and styling.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Hours spent on formatting.</strong> Creating a polished proposal, report, or presentation takes hours of layout work. Adjusting margins, aligning charts, fixing slide transitions - the formatting takes longer than the content.</p>
+        <p><strong>Templates are rigid.</strong> Company templates help with branding but fight you on structure. Adding a section means breaking the template's flow. Customizing for a specific client means manual adjustments everywhere.</p>
+        <p><strong>Spreadsheets are built manually.</strong> Every financial model, every data analysis, every reporting spreadsheet is built cell by cell. Formulas are typed by hand, charts are configured through menus, and conditional formatting is a click-heavy process.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Describe it, get it.</strong> Tell GenOffice what document you need in plain English. It produces the file with proper structure, formatting, and content organization. Review time replaces creation time.</p>
+        <p><strong>Structure follows content.</strong> GenOffice decides the best way to present your information - tables vs. lists, charts vs. numbers, slide layouts for different content types. The structure serves the content, not the template.</p>
+        <p><strong>Formulas and charts included.</strong> Excel output has real formulas, not just values. Charts reference cell ranges. Conditional formatting highlights what matters. The spreadsheet works as a live document, not a static dump.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set up <em>GenOffice</em></h2>
+    <p class="sub">Generate your first professional document in under three minutes.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install GenOffice</h3></div>
+      <div class="step-body">
+<pre>pip install genoffice
+
+<span class="cm"># Or clone and install from source</span>
+git clone https://github.com/genspark-ai/GenOffice.git
+cd GenOffice &amp;&amp; pip install -e .</pre>
+        <p>Python 3.10+ required. An AI model API key (OpenAI, Anthropic, or Gemini) is needed for document generation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Generate a document</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Generate a Word document</span>
+genoffice create "Quarterly business review for Q3 2026, \
+  covering revenue growth, customer acquisition, and \
+  product roadmap" --format docx
+
+<span class="cm"># Generate a PowerPoint presentation</span>
+genoffice create "Sales pitch deck for enterprise SaaS \
+  product" --format pptx
+
+<span class="cm"># Generate an Excel spreadsheet</span>
+genoffice create "Financial model for a Series A startup \
+  with 3-year projections" --format xlsx</pre>
+        <p>GenOffice parses your prompt, plans the document structure, generates content, and assembles the final file. Output goes to the current directory by default.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Use a company template</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Apply your company's template</span>
+genoffice create "Monthly investor update" \
+  --template ./templates/company-deck.pptx
+
+<span class="cm"># Batch generate with data</span>
+genoffice batch proposals.csv \
+  --template ./templates/proposal.docx \
+  --output ./proposals/</pre>
+        <p>Templates provide branding and layout standards. <strong>Batch mode</strong> reads a CSV of parameters and generates one document per row - perfect for personalized proposals or reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where <em>GenOffice</em> delivers</h2>
+    <p class="sub">Any workflow that produces predictable document types benefits from generation over manual creation.</p>
+
+    <div class="story"><div class="metric">Client Proposals</div><p><strong>Generate proposals in minutes, not days.</strong> Describe the client, their needs, and your solution. GenOffice produces a branded proposal document with executive summary, solution architecture, timeline, and pricing. Customize the generated draft instead of starting from scratch.</p></div>
+    <div class="story"><div class="metric">Executive Reporting</div><p><strong>Weekly and monthly reports on autopilot.</strong> Feed GenOffice your metrics and it produces formatted reports with charts, trend analysis, and executive summaries. Consistent formatting across every reporting period.</p></div>
+    <div class="story"><div class="metric">Financial Modeling</div><p><strong>Excel models with real formulas.</strong> Describe the financial scenario and GenOffice builds a spreadsheet with input assumptions, calculations, projections, and sensitivity analysis. Formulas reference cells properly - change an assumption and the model updates.</p></div>
+    <div class="story"><div class="metric">Sales Enablement</div><p><strong>Pitch decks customized per prospect.</strong> Batch-generate personalized pitch decks that reference each prospect's industry, size, and pain points. Sales reps get tailored materials without the marketing team creating each one manually.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Technical reviews.</strong> MarkTechPost and developer blogs have covered GenOffice's approach to structural document intelligence, noting the formula-aware Excel generation as a standout feature. <a href="https://github.com/genspark-ai/GenOffice" target="_blank">Source: GitHub</a></li>
+        <li><strong>Comparison coverage.</strong> Several reviews compared GenOffice to Microsoft Copilot and Google Workspace AI features, positioning GenOffice as the open-source alternative that can be self-hosted and customized.</li>
+        <li><strong>Active development.</strong> Last pushed September 17, 2026. Regular updates to template handling, chart generation, and multi-language support indicate sustained development effort.</li>
+        <li><strong>Production validation is early.</strong> Most coverage is based on demo output quality. Enterprise-scale case studies with real workflow integration data are not yet widely published.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Output quality varies with prompts.</strong> Vague prompts produce generic documents. Specific, detailed prompts with context about audience and purpose generate significantly better output. Prompt engineering matters here.</li>
+        <li><strong>Complex layouts may need manual polish.</strong> GenOffice handles standard document structures well but may struggle with highly custom layouts - unusual chart types, complex multi-column designs, or non-standard slide arrangements.</li>
+        <li><strong>Template compatibility.</strong> Custom templates need to follow GenOffice's conventions for placeholder positioning. Not every corporate template works out of the box - some adaptation may be needed.</li>
+        <li><strong>API costs per document.</strong> Each document generation requires AI model inference. Batch generation of hundreds of documents adds up. Budget for API costs proportional to volume.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+    <ul>
+      <li><a href="https://github.com/genspark-ai/GenOffice" target="_blank">genspark-ai/GenOffice GitHub</a> - source, docs, template examples</li>
+      <li>Stack: Python, python-docx, openpyxl, python-pptx</li>
+      <li>Last pushed: September 17, 2026 | Created: July 9, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

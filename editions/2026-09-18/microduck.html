@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pollen-robotics/microduck - $250 Open Source Research Robot | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1015;--bg2:#111820;--card:#161e28;--card2:#1c2634;
+    --primary:#f97316;--primary-dim:#ea580c;--secondary:#06b6d4;
+    --accent:#64748b;--accent-light:#94a3b8;
+    --ink:#f1f5f9;--muted:#94a3b8;--line:#1e2d3d;
+    --sans:'Space Grotesk',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'Space Grotesk',sans-serif;
+    --r:6px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #f9731640;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:radial-gradient(circle at 20% 80%,#f9731608 0%,transparent 50%),radial-gradient(circle at 80% 20%,#06b6d408 0%,transparent 50%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0c1015;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0c1015;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,#f9731608,#06b6d406);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0c1015;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:#f9731608;border-color:#f9731650}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#0c1015;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#0c1015;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
+  pre .cm{color:#64748b}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#0c1015;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/pollen-robotics/microduck" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Affordable Robotics Research - Open Source</span>
+    <h1><span class="owner">pollen-robotics/</span><span class="name">microduck</span></h1>
+    <p class="tagline"><strong>A real research robot for $250.</strong> Microduck is a low-cost, open-source robotic arm designed for AI research. Full 6-DOF articulation, force-feedback grippers, and an SDK purpose-built for imitation learning and sim-to-real transfer. Not a toy - a serious research platform at hobby-project prices.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">309</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Research-grade robotics, <em>hobby-project budget</em></h2>
+    <p class="sub">Microduck is a 6-DOF robotic arm with force-feedback grippers that costs $250 in parts to build. Designed by Pollen Robotics specifically for AI researchers who need real hardware for imitation learning, reinforcement learning, and sim-to-real transfer experiments.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">309</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">$250</div><div class="l">Build Cost</div></div>
+      <div class="bignum"><div class="n">6-DOF</div><div class="l">Articulation</div></div>
+      <div class="bignum"><div class="n sc">Force</div><div class="l">Feedback Gripper</div></div>
+      <div class="bignum"><div class="n">Apache</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Six degrees of freedom</div><p>Full <strong>6-DOF articulation</strong> gives microduck the workspace and dexterity needed for meaningful manipulation research. Unlike 3-4 DOF hobby arms, it can approach objects from arbitrary angles and execute complex pick-and-place trajectories.</p></div>
+      <div class="feat"><div class="fh">Force-feedback grippers</div><p>The gripper provides <strong>real-time force sensing</strong>, enabling research on contact-rich manipulation - picking up fragile objects, insertion tasks, and force-controlled assembly. This is the feature that separates research hardware from toys.</p></div>
+      <div class="feat"><div class="fh">Imitation learning SDK</div><p>Purpose-built <strong>Python SDK for imitation learning</strong> workflows. Record demonstrations, replay trajectories, and train policies with a clean API. Compatible with popular IL frameworks like ACT, Diffusion Policy, and ALOHA.</p></div>
+      <div class="feat"><div class="fh">Sim-to-real ready</div><p>URDF and MuJoCo models included. <strong>Train policies in simulation</strong>, then deploy directly to the physical arm. The SDK handles the sim-to-real transfer pipeline, including calibration and domain randomization utilities.</p></div>
+      <div class="feat"><div class="fh">$250 bill of materials</div><p>Complete BOM with sourcing links. <strong>3D-printed structural parts</strong>, off-the-shelf servos, and a standard microcontroller. A university lab can build a fleet of 10 for the price of one commercial research arm.</p></div>
+      <div class="feat"><div class="fh">Dual-arm configurations</div><p>Built to work in <strong>bimanual setups</strong>. Two microduck arms plus cameras create a research station for contact-rich bimanual manipulation - the configuration used in cutting-edge dexterous manipulation research.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Democratizing manipulation research</h3>
+      <p>The real innovation is not any single technical feature - it is the price point. A Franka Emika Panda costs $30,000+. A Universal Robots arm starts at $25,000. Microduck costs $250 and provides enough capability for meaningful research. This means every graduate student, every hobbyist, every lab in a developing country can do real manipulation research. The force-feedback grippers are the specific feature that makes this possible - without them, it would be a toy. With them, it is a research platform.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>robotics access</em> problem</h2>
+    <p class="sub">AI manipulation research requires real hardware. Real hardware costs tens of thousands of dollars. This prices out most of the world's researchers.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Research arms cost $25K-$50K.</strong> A single Franka Panda or UR5e costs more than many graduate student stipends. Building a multi-arm research station means six-figure equipment budgets. Most labs cannot afford even one.</p>
+        <p><strong>Hobby arms lack research capability.</strong> Sub-$500 robot arms exist, but they lack force sensing, have 3-4 DOF, and use imprecise servos. You cannot do serious manipulation research on hardware that cannot feel what it is gripping.</p>
+        <p><strong>Sim-only research hits a wall.</strong> Simulation is cheap but the sim-to-real gap is real. Policies trained purely in simulation fail on physical hardware in unpredictable ways. You need real hardware to validate your research.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>$250 for research-grade hardware.</strong> Microduck provides 6-DOF articulation and force-feedback grippers at a fraction of commercial arm costs. A lab can build a fleet for the price of one commercial arm.</p>
+        <p><strong>Purpose-built for AI research.</strong> The SDK is designed around imitation learning workflows - record, replay, train, deploy. Compatible with ACT, Diffusion Policy, and other popular frameworks out of the box.</p>
+        <p><strong>Real sim-to-real pipeline.</strong> URDF and MuJoCo models ship with the repo. Train in simulation, deploy on hardware, iterate. The full pipeline is documented and tested.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Build your <em>microduck</em></h2>
+    <p class="sub">From parts order to first teleoperation in a weekend. Total cost: approximately $250.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Order parts and print</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Bill of materials at:</span>
+<span class="cm"># github.com/pollen-robotics/microduck/blob/main/BOM.md</span>
+
+<span class="cm"># 3D print structural parts (STL files in /cad)</span>
+<span class="cm"># Order servos, controller board, and gripper components</span>
+<span class="cm"># Total BOM cost: ~$250 USD</span></pre>
+        <p>The BOM lists every part with sourcing links. <strong>3D printing takes about 12 hours</strong> on a standard FDM printer. Servo assembly and wiring is documented with video guides.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Assemble and calibrate</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Flash the controller firmware</span>
+python -m microduck.firmware flash
+
+<span class="cm"># Run the calibration routine</span>
+python -m microduck.calibrate
+
+<span class="cm"># Test basic motion</span>
+python -m microduck.demo wave</pre>
+        <p>Assembly follows a step-by-step guide with photos. <strong>Calibration is automated</strong> - the script moves each joint through its range and records the servo mapping.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Record your first demonstration</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Start teleoperation recording</span>
+from microduck import MicroDuck, Recorder
+
+arm = MicroDuck(port="/dev/ttyUSB0")
+recorder = Recorder(arm, cameras=[0, 1])
+
+<span class="cm"># Teleoperate and record</span>
+recorder.start()
+<span class="cm"># ... move the arm through the task ...</span>
+recorder.stop("pick_and_place_demo")</pre>
+        <p>The recorder captures <strong>joint positions, gripper force, and camera feeds</strong> at 30 Hz. Demonstrations are saved in a format compatible with major imitation learning frameworks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Research <em>applications</em></h2>
+    <p class="sub">Microduck enables research that was previously locked behind five-figure equipment budgets.</p>
+
+    <div class="story"><div class="metric">Imitation Learning</div><p><strong>Teach robots by showing them.</strong> Record human demonstrations of a task, train a policy on the trajectory and visual data, then deploy the learned behavior. Microduck's SDK streamlines this workflow with recording, replay, and training utilities built in.</p></div>
+    <div class="story"><div class="metric">Sim-to-Real Transfer</div><p><strong>Validate simulation policies on real hardware.</strong> Train manipulation policies in MuJoCo or Isaac Gym using microduck's URDF model, then deploy to the physical arm. The gap between sim and real is where real research happens.</p></div>
+    <div class="story"><div class="metric">Classroom Robotics</div><p><strong>Hands-on manipulation for every student.</strong> A class of 30 students can each have their own arm for $7,500 total. Compare that to $750,000 for commercial arms. Universities can teach contact-rich manipulation as a lab course, not a lecture.</p></div>
+    <div class="story"><div class="metric">Bimanual Manipulation</div><p><strong>Two arms, double the research.</strong> Microduck is designed for dual-arm setups. Two arms with cameras create a bimanual manipulation station for research on coordinated grasping, handovers, and assembly tasks.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>TechCrunch coverage.</strong> Highlighted microduck as part of a wave of low-cost robotics platforms making AI manipulation research accessible to smaller labs and individual researchers. <a href="https://github.com/pollen-robotics/microduck" target="_blank">Source: GitHub</a></li>
+        <li><strong>Hacker News discussion (item 49462763).</strong> Active thread with robotics researchers discussing build experiences, servo selection tradeoffs, and comparisons to commercial arms. Several users reported successful builds and initial experiments.</li>
+        <li><strong>Hardware journalism coverage.</strong> The Register and CNX Software covered microduck's $250 price point and open-source approach, positioning it against the Pollen Robotics Reachy line of more expensive research robots.</li>
+        <li><strong>MarkTechPost analysis.</strong> Technical breakdown of the imitation learning SDK and its compatibility with popular research frameworks. Noted the force-feedback gripper as the critical differentiator from hobby-grade hardware.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Not industrial grade.</strong> Microduck uses hobby servos and 3D-printed parts. Payload capacity, precision, and durability are appropriate for research, not production. Do not expect UR5e specifications at $250.</li>
+        <li><strong>Assembly required.</strong> This is a build-it-yourself kit. Budget a weekend for printing, assembly, and calibration. Firmware flashing and servo wiring require basic electronics comfort.</li>
+        <li><strong>Servo limitations.</strong> Hobby servos have limited torque, slower response times, and less precise position control than the actuators in commercial arms. Research requiring sub-millimeter precision may hit hardware limits.</li>
+        <li><strong>Community support, not enterprise support.</strong> Support comes from GitHub issues and the community. There is no phone line, SLA, or guaranteed response time. Pollen Robotics provides guidance but this is an open-source project, not a product.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+    <ul>
+      <li><a href="https://github.com/pollen-robotics/microduck" target="_blank">pollen-robotics/microduck GitHub</a> - source, BOM, assembly guides, SDK</li>
+      <li>Stack: Python SDK, 3D-printed hardware, MuJoCo/URDF models</li>
+      <li>Last pushed: September 16, 2026 | Created: August 5, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shadcn/improve - AI Component Upgrades for shadcn/ui | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#09090b;--bg2:#111113;--card:#18181b;--card2:#1e1e22;
+    --primary:#f4f4f5;--primary-dim:#d4d4d8;--secondary:#a1a1aa;
+    --accent:#71717a;--accent-light:#a1a1aa;
+    --ink:#fafafa;--muted:#a1a1aa;--line:#27272a;
+    --sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'JetBrains Mono',monospace;
+    --r:8px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #f4f4f540;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#09090b;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#09090b;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,#f4f4f508,#a1a1aa06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#09090b;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:#f4f4f508;border-color:#f4f4f550}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#09090b;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#09090b;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
+  pre .cm{color:#71717a}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#09090b;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/shadcn/improve" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI-Powered Component Enhancement - Open Source</span>
+    <h1><span class="owner">shadcn/</span><span class="name">improve</span></h1>
+    <p class="tagline"><strong>AI that rewrites your UI components, correctly.</strong> Improve analyzes your shadcn/ui components, spots accessibility gaps, performance bottlenecks, and missing features, then generates drop-in replacements with explanations. Not a linter - a component rewriter.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">5.4K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">224</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Better components, <em>automatically</em></h2>
+    <p class="sub">Improve takes your existing shadcn/ui components, analyzes them against best practices for accessibility, performance, and UX patterns, and generates improved versions you can drop in directly. It writes the code, explains every change, and respects your existing API surface.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">5.4K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">224</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">a11y</div><div class="l">Accessibility Fixes</div></div>
+      <div class="bignum"><div class="n">Perf</div><div class="l">Optimizations</div></div>
+      <div class="bignum"><div class="n sc">Drop-in</div><div class="l">Replacements</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Accessibility-first analysis</div><p>Improve scans your components for <strong>WCAG violations</strong> - missing ARIA labels, keyboard navigation gaps, focus management issues, color contrast problems. It does not just flag them; it generates fixed components with the right attributes already added.</p></div>
+      <div class="feat"><div class="fh">Performance optimizations</div><p>Identifies <strong>unnecessary re-renders</strong>, missing memoization, heavy bundle imports, and layout thrashing. The generated replacements use React best practices - proper memo boundaries, dynamic imports where beneficial, and CSS containment.</p></div>
+      <div class="feat"><div class="fh">API-compatible output</div><p>Generated components <strong>maintain your existing props interface</strong>. Improve adds new optional props for new features but never breaks existing call sites. Your app keeps working while your components get better.</p></div>
+      <div class="feat"><div class="fh">Explained diffs</div><p>Every change comes with a <strong>human-readable explanation</strong> - why the change was made, what standard it addresses, and what the user-facing impact is. Review the explanation, accept the diff, done.</p></div>
+      <div class="feat"><div class="fh">shadcn/ui native</div><p>Built specifically for the <strong>shadcn/ui component model</strong> - understands the copy-paste pattern, Radix primitives, Tailwind styling, and the conventions that shadcn components follow. Not a generic code transformation tool.</p></div>
+      <div class="feat"><div class="fh">CLI and CI integration</div><p>Run from the command line on individual components or entire directories. <strong>Integrate into CI</strong> to get improvement suggestions on every pull request that touches UI components.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>It writes the fix, not just the warning</h3>
+      <p>Linters tell you what is wrong. Improve tells you what is wrong and hands you a corrected component. The difference between "missing aria-label on line 47" and a complete, tested replacement component with the aria-label already in place is the difference between a warning you close and a fix you ship. The explanations make code review meaningful instead of a rubber stamp.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>component quality</em> problem</h2>
+    <p class="sub">UI components accumulate technical debt silently. Accessibility gaps, performance issues, and missing features pile up because fixing them means rewriting components by hand.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Accessibility is an afterthought.</strong> Components ship without proper ARIA attributes, keyboard navigation, or screen reader support. Fixing it later means touching every component manually - so it never happens.</p>
+        <p><strong>Performance regressions creep in.</strong> Components re-render unnecessarily, load heavy dependencies synchronously, and trigger layout recalculations. Profiling finds the issues but fixing them requires deep React knowledge.</p>
+        <p><strong>Best practices evolve.</strong> What was correct last year has new patterns now. Components written six months ago may miss new Radix primitive features, better Tailwind patterns, or updated WCAG guidelines.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Automated accessibility fixes.</strong> Improve generates components with correct ARIA roles, keyboard handlers, focus management, and screen reader text. Each fix references the specific WCAG criterion it addresses.</p>
+        <p><strong>Optimized by default.</strong> Generated components include proper memoization, code splitting boundaries, and render optimization. The performance fixes come with the accessibility fixes - you do not pick one.</p>
+        <p><strong>Current best practices applied.</strong> Improve stays current with shadcn/ui conventions, Radix updates, and React patterns. Running it periodically keeps your components aligned with the latest standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set up <em>improve</em></h2>
+    <p class="sub">Add AI-powered component improvements to your shadcn/ui project in minutes.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the CLI</h3></div>
+      <div class="step-body">
+<pre>npm install -g @shadcn/improve
+
+<span class="cm"># Or use npx for one-off runs</span>
+npx @shadcn/improve analyze ./src/components</pre>
+        <p>Improve works as a CLI tool. It reads your component files, analyzes them, and outputs improved versions alongside explanations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Analyze a component</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Analyze a single component</span>
+improve analyze ./src/components/ui/button.tsx
+
+<span class="cm"># Analyze all components in a directory</span>
+improve analyze ./src/components/ui/
+
+<span class="cm"># Output includes:</span>
+<span class="cm">#   - Current issues found</span>
+<span class="cm">#   - Generated improved component</span>
+<span class="cm">#   - Change explanations</span></pre>
+        <p>The analysis runs locally using your configured AI provider. Each component gets a report with issues found and a ready-to-use replacement.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Apply improvements</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Review and apply changes</span>
+improve apply ./src/components/ui/button.tsx
+
+<span class="cm"># Apply all improvements in a directory</span>
+improve apply ./src/components/ui/ --all
+
+<span class="cm"># Dry run to preview changes</span>
+improve apply --dry-run ./src/components/ui/</pre>
+        <p>Apply writes the improved component in place, preserving your file structure. Use <strong>dry run</strong> to preview changes before committing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where <em>improve</em> fits</h2>
+    <p class="sub">Component quality is a spectrum, not a checkbox. Improve helps teams move along it continuously.</p>
+
+    <div class="story"><div class="metric">Accessibility Compliance</div><p><strong>Meet WCAG standards without an audit.</strong> Run improve on your component library before an accessibility review. It catches the mechanical issues - missing labels, broken tab order, absent focus indicators - so your human reviewer can focus on UX patterns and user flows.</p></div>
+    <div class="story"><div class="metric">Design System Maintenance</div><p><strong>Keep your component library current.</strong> Run improve quarterly on your full component set. It applies updated patterns from shadcn/ui, catches components that have drifted from conventions, and surfaces newly available Radix primitives.</p></div>
+    <div class="story"><div class="metric">PR Review Automation</div><p><strong>Catch component regressions in CI.</strong> Add improve to your CI pipeline to flag accessibility and performance regressions in pull requests. The explained diffs make review comments actionable instead of vague.</p></div>
+    <div class="story"><div class="metric">Onboarding New Developers</div><p><strong>Teach best practices through code.</strong> When a new developer writes a component, improve shows them exactly what to change and why. The explanations reference specific standards and patterns - it is like a senior reviewer that never gets tired.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Growing shadcn ecosystem tool.</strong> Improve is part of the expanding shadcn/ui tooling ecosystem. With 5.4K stars in under a month, it reflects strong demand for automated component quality tooling in the React community. <a href="https://github.com/shadcn/improve" target="_blank">Source: GitHub</a></li>
+        <li><strong>Blog coverage and tutorials.</strong> Several developer blogs have written walkthroughs of using improve on real component libraries, noting the accessibility fixes as particularly valuable for teams without dedicated a11y engineers.</li>
+        <li><strong>Active development pace.</strong> Last pushed September 17, 2026 - the project is actively maintained with frequent updates to analysis rules and component patterns.</li>
+        <li><strong>Early-stage project.</strong> At under a month old, improve is promising but young. Production case studies and large-scale adoption stories are still emerging.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>AI model dependency.</strong> Analysis quality depends on the underlying AI model. Less capable models may miss subtle issues or generate incorrect fixes. Always review generated components before applying.</li>
+        <li><strong>shadcn/ui specific.</strong> Improve is built for the shadcn/ui component model. It will not work well with Material UI, Chakra, Ant Design, or other component libraries that use different patterns.</li>
+        <li><strong>Not a replacement for human review.</strong> Improve catches mechanical issues - accessibility attributes, performance patterns, API consistency. It does not evaluate design decisions, user experience flows, or business logic in components.</li>
+        <li><strong>Generated code needs testing.</strong> Improved components should pass through your existing test suite. While improve tries to maintain API compatibility, edge cases in complex components may need manual adjustment.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+    <ul>
+      <li><a href="https://github.com/shadcn/improve" target="_blank">shadcn/improve GitHub</a> - source, CLI docs, analysis rules</li>
+      <li>Stack: TypeScript, React, shadcn/ui, Radix primitives</li>
+      <li>Last pushed: September 17, 2026 | Created: August 24, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

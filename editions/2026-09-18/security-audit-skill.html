@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cloudflare/security-audit-skill - Multi-Phase Security Audits for Coding Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0f0a;--bg2:#0f160f;--card:#111a11;--card2:#162016;
+    --primary:#00ff41;--primary-dim:#00cc34;--secondary:#39ff14;
+    --accent:#5a7a5a;--accent-light:#7a9a7a;
+    --ink:#d4e8d4;--muted:#7a9a7a;--line:#1a2e1a;
+    --sans:'Inter',sans-serif;--mono:'Fira Code','Share Tech Mono',monospace;--disp:'Share Tech Mono',monospace;
+    --r:0px;
+    --shadow:0 2px 12px rgba(0,255,65,.06);--shadow-lg:0 6px 24px rgba(0,255,65,.10);
+    --glow:0 0 12px rgba(0,255,65,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,65,.015) 2px,rgba(0,255,65,.015) 3px);
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(10,15,10,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--primary);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{background:var(--primary);color:#0a0f0a;text-decoration:none;box-shadow:var(--glow)}
+
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.20em;text-transform:uppercase;background:var(--primary);color:#0a0f0a;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.04em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:var(--disp)}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,15,10,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:400;font-size:12px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0f0a;box-shadow:var(--glow)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:400;letter-spacing:.04em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em;font-family:var(--disp)}
+
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+
+  .best-feature{background:linear-gradient(135deg,rgba(0,255,65,.04),rgba(57,255,20,.02));border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0a0f0a;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:rgba(0,255,65,.03);border-color:rgba(0,255,65,.3)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#0a0f0a;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050a05;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#a0c8a0}
+  pre .cm{color:#3a5a3a}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:400;text-shadow:var(--glow);letter-spacing:.02em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:400;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#0a0f0a;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Agent Security Auditing - Open Source</span>
+    <h1><span class="owner">cloudflare/</span><span class="name">security-audit-skill</span></h1>
+    <p class="tagline"><strong>Turn your coding agent into a security auditor.</strong> A drop-in skill that runs multi-phase security audits with independently verified, machine-readable findings - built by Cloudflare's security team.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">11.9K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">644</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">JavaScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Your agent learns to <em>find vulnerabilities</em></h2>
+    <p class="sub">Cloudflare's security-audit-skill is a coding-agent skill that adds multi-phase security scanning to Claude Code, Codex, and compatible harnesses. It does not just scan - it independently verifies every finding before reporting it, cutting false positives to near zero.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">11.9K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">644</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">Multi</div><div class="l">Phase Audit</div></div>
+      <div class="bignum"><div class="n lm">Verified</div><div class="l">Findings Only</div></div>
+      <div class="bignum"><div class="n">JSON</div><div class="l">Machine-Readable</div></div>
+      <div class="bignum"><div class="n sc">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Multi-phase scanning architecture</div><p>The skill runs a <strong>discovery phase</strong> to map attack surface, a <strong>deep-dive phase</strong> to probe each vector, and a <strong>verification phase</strong> that independently confirms every finding. Three passes, one command.</p></div>
+      <div class="feat"><div class="fh">Independent verification of every finding</div><p>Each vulnerability is <strong>re-tested from scratch</strong> by a separate verification pass. If the verifier cannot reproduce the issue, it gets dropped. This dramatically reduces false positives that plague traditional static analysis.</p></div>
+      <div class="feat"><div class="fh">Machine-readable JSON output</div><p>Findings come out as <strong>structured JSON</strong> with severity, category, file location, and remediation guidance. Pipe them into CI dashboards, Jira tickets, or downstream agents for automated fixing.</p></div>
+      <div class="feat"><div class="fh">Cloudflare's security pedigree</div><p>Built by the team that secures one of the internet's largest networks. The skill encodes <strong>Cloudflare's internal audit methodology</strong> - the same patterns their security engineers use on production infrastructure.</p></div>
+      <div class="feat"><div class="fh">Drop-in agent skill</div><p>Install it as a skill in Claude Code, Codex, or any compatible harness. <strong>No external services, no API keys, no SaaS dependency.</strong> The skill runs entirely through your agent's existing capabilities.</p></div>
+      <div class="feat"><div class="fh">OWASP coverage out of the box</div><p>Default scan profiles cover <strong>OWASP Top 10</strong>, common injection vectors, auth bypass patterns, and secrets exposure. Custom profiles let you add domain-specific checks for your stack.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Verified findings only - no alert fatigue</h3>
+      <p>The killer differentiator is the independent verification phase. Most security scanners blast you with hundreds of potential issues, most of which are false positives. This skill only reports findings that a separate verification pass confirmed are real. When it says you have a vulnerability, you have a vulnerability. That changes the signal-to-noise ratio from "ignore the scanner" to "fix what it found."</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>security scanning</em> problem</h2>
+    <p class="sub">Security tooling is stuck between two poles: expensive commercial scanners that overwhelm you with false positives, and manual audits that are too slow and expensive to run on every PR.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Alert fatigue from static analysis.</strong> Traditional SAST tools flag hundreds of potential issues per scan. Most are false positives. Teams learn to ignore the scanner, which means real vulnerabilities get buried in noise.</p>
+        <p><strong>Manual audits are a bottleneck.</strong> A proper security review by a human expert takes days and costs thousands. You cannot run one on every pull request. Security reviews become a gate that slows shipping.</p>
+        <p><strong>Point-in-time snapshots.</strong> Most security scans run in CI and give you a snapshot at merge time. They do not catch vulnerabilities introduced between scans, and they do not verify that flagged issues are actually exploitable.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Verified findings only.</strong> The multi-phase architecture scans, verifies, and reports only confirmed vulnerabilities. If the verification phase cannot reproduce it, it does not make the report.</p>
+        <p><strong>Agent-native, runs on every PR.</strong> Because it runs as a skill inside your existing coding agent, you can trigger it on every pull request without adding infrastructure. The agent is already there - now it also audits.</p>
+        <p><strong>Actionable, structured output.</strong> JSON findings with severity, location, and remediation. Feed them to another agent to auto-fix, pipe them to your issue tracker, or review them in your terminal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Install the <em>skill</em></h2>
+    <p class="sub">Add multi-phase security auditing to your coding agent in under two minutes. No external services, no API keys - just a skill your agent loads.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the skill into your project</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Add the skill to your project's .claude/skills directory</span>
+git clone https://github.com/cloudflare/security-audit-skill.git \
+  .claude/skills/security-audit
+
+<span class="cm"># Or install via the skill registry if your harness supports it</span>
+claude skill install cloudflare/security-audit-skill</pre>
+        <p>The skill is a self-contained directory with a <strong>SKILL.md</strong> manifest that your coding agent reads. It works with Claude Code, Codex, and any harness that supports the skills protocol.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Run a security audit</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Ask your agent to run the audit</span>
+"Run a security audit on this codebase"
+
+<span class="cm"># Or target specific directories</span>
+"Run a security audit on src/auth and src/api"
+
+<span class="cm"># The skill handles the multi-phase process automatically</span>
+<span class="cm"># Phase 1: Discovery - maps the attack surface</span>
+<span class="cm"># Phase 2: Deep dive - probes each vector</span>
+<span class="cm"># Phase 3: Verification - confirms each finding</span></pre>
+        <p>The audit runs entirely through your agent. <strong>No external API calls, no cloud services.</strong> The skill provides the methodology; your agent provides the reasoning and code analysis.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Review and act on findings</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Findings are output as structured JSON</span>
+<span class="cm"># Each finding includes:</span>
+<span class="cm">#   - severity (critical/high/medium/low)</span>
+<span class="cm">#   - category (injection, auth, secrets, etc.)</span>
+<span class="cm">#   - file and line number</span>
+<span class="cm">#   - description and remediation</span>
+<span class="cm">#   - verification status (confirmed/plausible)</span>
+
+<span class="cm"># Ask the agent to fix confirmed findings</span>
+"Fix all confirmed high-severity findings"</pre>
+        <p>Because findings are machine-readable, you can <strong>chain the audit into your CI pipeline</strong> - run the skill, parse the JSON, fail the build if critical issues are confirmed, and optionally auto-fix with the same agent.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Threat <em>briefs</em></h2>
+    <p class="sub">Security-audit-skill sits at the intersection of AI-assisted development and application security. Here is where it earns its place in the stack.</p>
+
+    <div class="story"><div class="metric">PR-Level Security Gate</div><p><strong>Catch vulnerabilities before they merge.</strong> Add the skill to your pre-merge workflow and every pull request gets a multi-phase security review. Unlike traditional SAST that floods you with warnings, the verification phase means developers only see confirmed issues. The signal-to-noise ratio makes developers actually read the findings instead of clicking "dismiss all."</p></div>
+    <div class="story"><div class="metric">Startup Security Posture</div><p><strong>Enterprise-grade audits without the enterprise budget.</strong> Early-stage teams cannot afford $50K annual contracts with commercial security vendors. This skill gives them Cloudflare-grade methodology for the cost of their existing coding agent subscription. Run it weekly on the full codebase, or on every PR - the marginal cost is near zero.</p></div>
+    <div class="story"><div class="metric">Compliance Evidence</div><p><strong>Machine-readable proof for SOC 2 and ISO audits.</strong> The structured JSON output with timestamps, severity classifications, and remediation status creates an auditable trail. Feed it into your compliance dashboard to show auditors that every code change gets a security review.</p></div>
+    <div class="story"><div class="metric">Agent-to-Agent Fixing</div><p><strong>Scan and fix in one loop.</strong> Run the security audit, pipe confirmed findings to a second agent pass that implements fixes, then re-run the audit to verify the fixes hold. The machine-readable output makes this loop trivial to automate - no human parsing required between scan and fix.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Cloudflare engineering blog.</strong> The skill was announced alongside Cloudflare's broader push into agent tooling. The blog post details the multi-phase verification architecture and why independent confirmation of findings is central to reducing false positive rates. <a href="https://github.com/cloudflare/security-audit-skill" target="_blank">Source: GitHub repo</a></li>
+        <li><strong>Growing adoption in agent skill ecosystems.</strong> With 644 forks in three months, the skill is seeing significant downstream experimentation. Contributors have adapted the methodology for language-specific scanning profiles - Python web apps, Node.js APIs, and Go microservices.</li>
+        <li><strong>Developer security discourse.</strong> The project has sparked discussion about whether AI-driven security scanning can replace traditional SAST tools. The consensus so far: the verification phase is genuinely novel, but the depth of analysis depends on the underlying model's capability.</li>
+        <li><strong>Evidence is still emerging.</strong> As a relatively new project from a major infrastructure company, most coverage focuses on the announcement and methodology. Detailed case studies with production results are not yet widely published - check back as adoption matures.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Model capability ceiling.</strong> The skill is only as good as the coding agent running it. A less capable model will miss subtle vulnerabilities that a stronger model would catch. The verification phase helps, but it cannot verify what the discovery phase never found.</li>
+        <li><strong>Not a replacement for human review.</strong> Complex business logic vulnerabilities, architectural flaws, and threat modeling require human expertise. This skill excels at pattern-matching known vulnerability classes, not at reasoning about novel attack surfaces.</li>
+        <li><strong>Token cost on large codebases.</strong> Multi-phase scanning means the agent reads the codebase multiple times. On large projects, this can consume significant tokens. Scope your audits to changed files or high-risk directories to manage costs.</li>
+        <li><strong>JavaScript-only skill manifest.</strong> The skill itself is written in JavaScript. While it can audit codebases in any language, extending the skill's own logic requires JavaScript knowledge.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+    <ul>
+      <li><a href="https://github.com/cloudflare/security-audit-skill" target="_blank">cloudflare/security-audit-skill GitHub</a> - source, skill manifest, scan profiles</li>
+      <li>Stack: JavaScript skill for Claude Code, Codex, and compatible agent harnesses</li>
+      <li>Last pushed: September 14, 2026 | Created: June 18, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

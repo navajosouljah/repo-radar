@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StarTrail-org/PixelRAG - The End of Web Parsing | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0014;--bg2:#140020;--card:#1a0030;--card2:#220040;
+    --primary:#e040fb;--primary-dim:#c030d8;--secondary:#7c4dff;
+    --accent:#7a6090;--accent-light:#9a80b0;
+    --ink:#ede0f8;--muted:#9a80b0;--line:#2a1848;
+    --sans:'DM Sans',sans-serif;--mono:'Space Mono',monospace;--disp:'Space Mono',monospace;
+    --r:4px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #e040fb40;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:repeating-conic-gradient(rgba(224,64,251,.03) 0% 25%,transparent 0% 50%) 0 0/16px 16px;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0c0014;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0c0014;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,#e040fb08,#7c4dff06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0c0014;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.3)}
+  .ba.after{background:#e040fb08;border-color:#e040fb50}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ef4444}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#0c0014;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050810;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c0c8d8}
+  pre .cm{color:#4a5578}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:700;text-shadow:var(--glow);letter-spacing:.01em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ef4444;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(239,68,68,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+  <a class="gh-link" href="https://github.com/StarTrail-org/PixelRAG" target="_blank" rel="noopener">GitHub &#8599;</a>
+</div></div>
+<header class="hero"><div class="wrap">
+  <span class="kicker">Pixel-Native Search - Open Source</span>
+  <h1><span class="owner">StarTrail-org/</span><span class="name">PixelRAG</span></h1>
+  <p class="tagline"><strong>Stop parsing HTML. Start searching pixels.</strong> PixelRAG is a pixel-native RAG framework that skips parsing entirely - it sees web pages and documents the way humans do, as rendered pixels, then retrieves and reasons over them directly. Backed by a peer-reviewed paper.</p>
+  <div class="chips">
+    <div class="chip"><span class="cv lm">10K</span><span class="ck">stars</span></div>
+    <div class="chip"><span class="cv">857</span><span class="ck">forks</span></div>
+    <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
+    <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+  </div>
+</div></header>
+<nav class="tabnav"><div class="wrap">
+  <button class="tab-btn active" data-tab="highlights">Highlights</button>
+  <button class="tab-btn" data-tab="problem">The Problem</button>
+  <button class="tab-btn" data-tab="setup">Setup</button>
+  <button class="tab-btn" data-tab="usecases">Use Cases</button>
+</div></nav>
+<main class="wrap">
+  <section id="highlights" class="tab-panel active">
+    <h2>See the page, <em>skip the parser</em></h2>
+    <p class="sub">PixelRAG renders documents and web pages into screenshots, then uses vision-language models to retrieve and reason over them directly. No HTML parsing, no Markdown conversion, no layout heuristics. If a human can read it in a browser, PixelRAG can search it.</p>
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">10K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">857</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">Pixel</div><div class="l">Native Retrieval</div></div>
+      <div class="bignum"><div class="n ">VLM</div><div class="l">Powered</div></div>
+      <div class="bignum"><div class="n sc">Zero</div><div class="l">Parsing Needed</div></div>
+      <div class="bignum"><div class="n ">Paper</div><div class="l">Peer Reviewed</div></div>
+    </div>
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Pixel-native retrieval</div><p>Instead of converting documents to text, PixelRAG <strong>renders them as images</strong> and uses vision-language models to embed and search the visual representation. Tables, charts, code blocks, and mixed layouts are captured exactly as displayed.</p></div>
+      <div class="feat"><div class="fh">No parsing pipeline</div><p>Traditional RAG systems need parsers for every document type - PDF extractors, HTML cleaners, table detectors. PixelRAG <strong>eliminates the entire parsing layer</strong>. If it renders in a browser or viewer, it is searchable.</p></div>
+      <div class="feat"><div class="fh">Research-backed architecture</div><p>The system is based on <strong>arXiv paper 2606.28344</strong>, which demonstrates that pixel-native retrieval matches or exceeds text-based RAG on standard benchmarks while handling visual content that text pipelines miss entirely.</p></div>
+      <div class="feat"><div class="fh">Scalable chunking via screenshots</div><p>Pages and documents are <strong>chunked as visual tiles</strong> - scrolling screenshots of fixed viewport size. Each tile is embedded by a vision model, creating a searchable index of visual content without any text extraction step.</p></div>
+      <div class="feat"><div class="fh">Works with messy real-world content</div><p>Scanned PDFs, image-heavy slides, dashboards with charts, pages with complex CSS layouts - <strong>content that breaks every parser</strong> works out of the box because PixelRAG never tries to extract structure. It just looks at what is rendered.</p></div>
+      <div class="feat"><div class="fh">Multimodal search queries</div><p>Search queries can be text or images. Ask PixelRAG to <strong>find pages that look like a given screenshot</strong>, or search by description. The vision embedding space handles both modalities natively.</p></div>
+    </div>
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Parse nothing, search everything</h3>
+      <p>The insight behind PixelRAG is that parsing is a lossy, brittle step that every RAG pipeline struggles with. Tables get mangled, charts become gibberish, CSS layouts lose their meaning. By operating on pixels instead of text, PixelRAG sidesteps every parsing failure mode at once. The tradeoff is compute - vision models cost more per token than text embeddings - but the accuracy gains on visual content are dramatic, and the engineering simplicity of "just screenshot it" is hard to overstate.</p>
+    </div>
+  </section>
+  <section id="problem" class="tab-panel">
+    <h2>The <em>parsing</em> problem</h2>
+    <p class="sub">Every RAG system today relies on extracting text from documents. That extraction step is where quality goes to die.</p>
+    <div class="ba-grid">
+      <div class="ba before"><div class="ba-tag">Before</div>
+        <p><strong>Parsing is the bottleneck.</strong> PDF extraction misses tables. HTML cleaners destroy layout. Markdown converters hallucinate structure. Every document type needs its own parser, and every parser has failure modes.</p>
+        <p><strong>Visual content is invisible.</strong> Charts, diagrams, screenshots, and infographics contain critical information that text extraction cannot capture. A bar chart becomes a list of numbers - if you are lucky. Usually it becomes nothing.</p>
+        <p><strong>Layout carries meaning.</strong> A two-column comparison, a sidebar with caveats, a footnote that qualifies the main text - spatial relationships that humans read instantly are lost when content is flattened to a text stream.</p>
+      </div>
+      <div class="ba after"><div class="ba-tag">After</div>
+        <p><strong>No parsing, no loss.</strong> PixelRAG screenshots the rendered page. Whatever a human would see is exactly what gets indexed. Tables stay tables, charts stay charts, layouts stay layouts.</p>
+        <p><strong>Universal document support.</strong> If it renders in a browser or viewer, it is searchable. No per-format parsers to maintain, no extraction heuristics to tune. One pipeline handles every document type.</p>
+        <p><strong>Spatial understanding preserved.</strong> Vision-language models understand spatial relationships natively. A comparison table, a sidebar callout, a header-grouped section - the visual structure is part of the embedding.</p>
+      </div>
+    </div>
+  </section>
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">From zero to a working setup in minutes.</p>
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
+      <div class="step-body">
+<pre>git clone https://github.com/StarTrail-org/PixelRAG.git
+cd PixelRAG
+pip install -e .</pre>
+        <p>The repository includes the core library, indexing pipeline, and a demo search interface. Python 3.10+ required. A <strong>vision-language model</strong> (local or API) is needed for embedding.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Index your documents</h3></div>
+      <div class="step-body">
+<pre># Index a directory of PDFs, web pages, or any renderable files
+pixelrag index ./documents --viewport 1280x720
+
+# The indexer renders each page as a screenshot,
+# chunks it into tiles, and embeds each tile
+# using your configured vision model.</pre>
+        <p>The indexing step renders each document, tiles the screenshots, and creates vision embeddings. <strong>GPU recommended</strong> for local models; API-based models work but cost per-image.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Search your index</h3></div>
+      <div class="step-body">
+<pre># Text search
+pixelrag search "quarterly revenue breakdown by region"
+
+# The system returns matching visual tiles
+# with highlighted regions and source documents</pre>
+        <p>Search returns the visual tiles that match your query, along with source document references and confidence scores. Results include the <strong>rendered visual context</strong>, not extracted text.</p>
+      </div>
+    </div>
+  </section>
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>scenarios</em></h2>
+    <p class="sub">Where this project earns its place in your stack.</p>
+    <div class="story"><div class="metric">Financial Document Search</div><p><strong>Find data in complex financial reports.</strong> Annual reports, earnings presentations, and regulatory filings are full of tables, charts, and multi-column layouts that text extraction mangles. PixelRAG indexes them as rendered pages, so searching for "Q3 revenue by segment" returns the actual chart or table, correctly formatted, from the right slide.</p></div>
+    <div class="story"><div class="metric">Enterprise Knowledge Bases</div><p><strong>Search across mixed-format internal docs.</strong> Confluence pages with embedded diagrams, Google Slides decks, PDF specifications with technical drawings - enterprise knowledge lives in visual formats. PixelRAG handles them all without format-specific parsers.</p></div>
+    <div class="story"><div class="metric">Research Paper Analysis</div><p><strong>Find figures, tables, and equations across papers.</strong> Academic papers are dense with visual content that text extraction destroys. PixelRAG can find the figure that shows a specific architecture, the table comparing benchmark results, or the equation defining a loss function.</p></div>
+    <div class="story"><div class="metric">Web Content Archival</div><p><strong>Index and search web pages as they appeared.</strong> Web pages are designed for visual consumption. Instead of stripping HTML to text and losing the design, PixelRAG captures the rendered page and makes it searchable with full visual context.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Peer-reviewed research.</strong> PixelRAG is backed by arXiv paper 2606.28344, establishing its theoretical foundation and benchmark results against traditional text-based RAG systems.</li>
+        <li><strong>Rapid community adoption.</strong> Nearly 10K stars and 857 forks in under four months signal strong developer interest in the pixel-native approach. The repo's topics - agent, AI, memory, multimodal, RAG, search, vision - show its positioning at the intersection of multiple hot areas.</li>
+        <li><strong>Vision-language model momentum.</strong> PixelRAG rides the wave of increasingly capable VLMs. As models like GPT-4V, Claude's vision, and open-source alternatives improve, the pixel-native approach becomes more practical and accurate.</li>
+        <li><strong>Coverage is research-focused.</strong> Most discussion centers on the paper and methodology rather than production deployments. Real-world case studies at scale are emerging but not yet widely published.</li>
+      </ul>
+    </div>
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Compute cost.</strong> Vision embeddings are significantly more expensive than text embeddings. Indexing a large document corpus requires substantial GPU time or API spend. The pixel-native approach trades engineering complexity for compute cost.</li>
+        <li><strong>Latency at query time.</strong> Vision model inference is slower than text embedding lookup. For real-time search applications, expect higher latency than traditional vector search. Caching and pre-computation help but do not eliminate the gap.</li>
+        <li><strong>Viewport dependency.</strong> Results depend on how documents render at the chosen viewport size. A responsive web page looks different at 1280px vs 768px. Mobile-optimized content may need separate indexing passes.</li>
+        <li><strong>No text-level granularity.</strong> PixelRAG returns visual tiles, not specific text spans. If you need to extract and manipulate the text content of results, you still need OCR or a text extraction step downstream.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">
+  <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+  <ul>
+    <li><a href="https://github.com/StarTrail-org/PixelRAG" target="_blank">StarTrail-org/PixelRAG GitHub</a> - source, docs, contribution guide</li>
+    <li>Stack: Python | License: Apache-2.0</li>
+    <li>Last pushed: September 14, 2026 | Created: May 29, 2026</li>
+  </ul>
+  <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+</div></footer>
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

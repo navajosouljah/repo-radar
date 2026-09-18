@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hypit-ai/hypit - Clone Any Viral Video with AI Agents | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0019;--bg2:#1a0028;--card:#1f0033;--card2:#2a0044;
+    --primary:#ff2d78;--primary-dim:#d91e63;--secondary:#8b5cf6;
+    --accent:#8060a0;--accent-light:#a080c0;
+    --ink:#f0e4f8;--muted:#a080c0;--line:#30184a;
+    --sans:'Poppins',sans-serif;--mono:'Fira Code',monospace;--disp:'Poppins',sans-serif;
+    --r:16px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #ff2d7840;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:linear-gradient(135deg,rgba(255,45,120,.04) 0%,transparent 50%,rgba(139,92,246,.04) 100%);}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0f0019;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0f0019;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,#ff2d7808,#8b5cf606);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0f0019;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.3)}
+  .ba.after{background:#ff2d7808;border-color:#ff2d7850}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ef4444}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#0f0019;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050810;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c0c8d8}
+  pre .cm{color:#4a5578}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:700;text-shadow:var(--glow);letter-spacing:.01em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ef4444;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(239,68,68,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+  <a class="gh-link" href="https://github.com/hypit-ai/hypit" target="_blank" rel="noopener">GitHub &#8599;</a>
+</div></div>
+<header class="hero"><div class="wrap">
+  <span class="kicker">AI Video Automation - Open Source</span>
+  <h1><span class="owner">hypit-ai/</span><span class="name">hypit</span></h1>
+  <p class="tagline"><strong>Clone any viral video with AI agents.</strong> Not just a script, the whole workflow: swap the face, the words, the B-roll, ship 100 variants in one command. A complete video production pipeline driven by AI agents with a custom DSL.</p>
+  <div class="chips">
+    <div class="chip"><span class="cv lm">9.7K</span><span class="ck">stars</span></div>
+    <div class="chip"><span class="cv">1.2K</span><span class="ck">forks</span></div>
+    <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+    <div class="chip"><span class="cv sc">Custom</span><span class="ck">license</span></div>
+  </div>
+</div></header>
+<nav class="tabnav"><div class="wrap">
+  <button class="tab-btn active" data-tab="highlights">Highlights</button>
+  <button class="tab-btn" data-tab="problem">The Problem</button>
+  <button class="tab-btn" data-tab="setup">Setup</button>
+  <button class="tab-btn" data-tab="usecases">Use Cases</button>
+</div></nav>
+<main class="wrap">
+  <section id="highlights" class="tab-panel active">
+    <h2>One command, <em>100 video variants</em></h2>
+    <p class="sub">Hypit is a video production DSL and agent pipeline. Give it a reference video and it decomposes the edit - face swap, voiceover, B-roll, captions, music - then ships 100 variants tuned for different audiences. Built for content teams that need volume without sacrificing quality.</p>
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">9.7K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">1.2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">DSL</div><div class="l">Video Language</div></div>
+      <div class="bignum"><div class="n ">100+</div><div class="l">Variants Per Run</div></div>
+      <div class="bignum"><div class="n sc">Plugin</div><div class="l">Architecture</div></div>
+      <div class="bignum"><div class="n ">FFmpeg</div><div class="l">Under the Hood</div></div>
+    </div>
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Custom video DSL</div><p>Hypit defines a <strong>domain-specific language for video production</strong>. Describe edits declaratively - cuts, transitions, overlays, text, audio swaps - and the compiler turns your spec into an FFmpeg pipeline.</p></div>
+      <div class="feat"><div class="fh">AI agent decomposition</div><p>Give hypit a reference video and it <strong>reverse-engineers the edit</strong> using vision models: shot boundaries, text overlays, audio segments, B-roll timing. Then it generates a plan to replicate the structure with your content.</p></div>
+      <div class="feat"><div class="fh">Multi-variant batch production</div><p>The pipeline generates <strong>multiple variants in a single run</strong> - different hooks, different CTAs, different aspect ratios, different languages. One shoot, many outputs.</p></div>
+      <div class="feat"><div class="fh">Plugin system for effects</div><p>Extensible via a <strong>plugin architecture</strong> for face swap, voice cloning, background removal, caption generation, and music scoring. Bring your own models or use the built-in integrations.</p></div>
+      <div class="feat"><div class="fh">Monorepo with compiler core</div><p>The project ships as a <strong>TypeScript monorepo</strong> with the DSL compiler, plugin system, CLI, and reference implementations. Fork it, extend it, self-host it.</p></div>
+      <div class="feat"><div class="fh">Built on FFmpeg</div><p>Under the hood, everything compiles down to <strong>FFmpeg commands</strong>. No proprietary video engine. If FFmpeg can do it, hypit can script it - and it handles the complexity of multi-pass rendering for you.</p></div>
+    </div>
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>A programming language for video editing</h3>
+      <p>The core innovation is the DSL. Instead of clicking through a timeline editor or writing raw FFmpeg commands, you describe your video edit in a declarative language that AI agents can read, write, and modify. This makes video editing composable, version-controllable, and automatable. An agent can generate a hypit script, another agent can review it, and the compiler handles the rendering. Video production becomes software engineering.</p>
+    </div>
+  </section>
+  <section id="problem" class="tab-panel">
+    <h2>The <em>content volume</em> problem</h2>
+    <p class="sub">Social media demands volume. Creating one video is a creative act. Creating 100 variants for A/B testing, localization, and platform optimization is a production nightmare.</p>
+    <div class="ba-grid">
+      <div class="ba before"><div class="ba-tag">Before</div>
+        <p><strong>Manual editing does not scale.</strong> Every variant requires a human editor to open a project, swap assets, re-render, and export. Ten variants takes a day. A hundred takes a week.</p>
+        <p><strong>Templates are too rigid.</strong> Template-based video tools let you swap text and images, but they cannot adapt the edit structure - timing, transitions, shot composition - to different content. The output looks templated.</p>
+        <p><strong>No version control for video.</strong> Video project files are binary blobs. You cannot diff them, review them, or merge them. Collaboration happens through screen shares and Slack messages, not pull requests.</p>
+      </div>
+      <div class="ba after"><div class="ba-tag">After</div>
+        <p><strong>Declarative video specs.</strong> Write the edit once as a hypit script. Generate variants by parameterizing the inputs - different hooks, CTAs, voiceovers, aspect ratios. The compiler handles rendering.</p>
+        <p><strong>Agent-assisted decomposition.</strong> Give hypit a reference video and it reverse-engineers the edit into a script. Modify the script to suit your brand, then batch-render variants.</p>
+        <p><strong>Version-controlled, reviewable edits.</strong> Hypit scripts are text files. Diff them in git, review them in PRs, automate them in CI. Video production gets the same tooling as software development.</p>
+      </div>
+    </div>
+  </section>
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">From zero to a working setup in minutes.</p>
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the CLI</h3></div>
+      <div class="step-body">
+<pre>npm install -g @hypit/cli
+
+# Or clone the monorepo
+git clone https://github.com/hypit-ai/hypit.git
+cd hypit &amp;&amp; npm install</pre>
+        <p>The CLI requires <strong>Node.js 18+</strong> and <strong>FFmpeg</strong> installed on your system. GPU recommended for AI-powered features like face swap and voice cloning.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Decompose a reference video</h3></div>
+      <div class="step-body">
+<pre># Analyze a reference video
+hypit decompose ./reference.mp4 --output ./spec.hyp
+
+# The decomposer identifies:
+#   - Shot boundaries and transitions
+#   - Text overlays and captions
+#   - Audio segments (speech, music, SFX)
+#   - B-roll vs hero shots</pre>
+        <p>The decomposition step uses vision and audio models to <strong>reverse-engineer the edit structure</strong> into a hypit script. Review and modify the script before rendering.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Render variants</h3></div>
+      <div class="step-body">
+<pre># Render a single variant
+hypit render ./spec.hyp --output ./output.mp4
+
+# Batch render with parameter variations
+hypit batch ./spec.hyp \
+  --hooks hooks.csv \
+  --voices en,es,fr \
+  --ratios 16:9,9:16,1:1 \
+  --output ./variants/</pre>
+        <p>Batch rendering generates all combinations of your parameters. <strong>Each variant gets its own FFmpeg pipeline</strong>, parallelized across available cores.</p>
+      </div>
+    </div>
+  </section>
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>scenarios</em></h2>
+    <p class="sub">Where this project earns its place in your stack.</p>
+    <div class="story"><div class="metric">Content Team Scaling</div><p><strong>Ship 100 variants without 100 editors.</strong> Content teams at growth-stage companies need volume for A/B testing across platforms. Hypit lets one producer define the edit structure, then batch-render variants with different hooks, CTAs, and aspect ratios. Test which opening hook gets the best retention, at scale.</p></div>
+    <div class="story"><div class="metric">Localization Pipeline</div><p><strong>Same video, every language.</strong> Swap the voiceover, regenerate captions, adjust text overlays - all parameterized in the hypit script. A single reference video becomes a localized variant for every target market.</p></div>
+    <div class="story"><div class="metric">UGC-Style Ad Production</div><p><strong>Authentic-looking content at agency scale.</strong> The decomposer can analyze trending UGC-style videos and extract their edit patterns - quick cuts, text overlays, reaction shots. Apply those patterns to product footage for content that feels native to the platform.</p></div>
+    <div class="story"><div class="metric">Internal Video Automation</div><p><strong>Recurring reports and updates.</strong> Weekly product update videos, sales enablement clips, onboarding walkthroughs - any video that follows a repeatable structure can be templated as a hypit script and regenerated with fresh data.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Rapid growth from zero.</strong> 9.7K stars in under two months, with 1.2K forks, signals strong demand for programmatic video production tooling. The repo's topic tags span video automation, DSL, and generative AI.</li>
+        <li><strong>TypeScript monorepo architecture.</strong> The project's structure as a monorepo with a compiler core, plugin system, and CLI shows engineering maturity beyond a typical side project. Active development with daily pushes.</li>
+        <li><strong>Content creator interest.</strong> The positioning around viral video cloning has attracted attention from content creation communities, though detailed public case studies of production use are still emerging.</li>
+        <li><strong>Custom license.</strong> The repo uses a NOASSERTION license - not MIT, not Apache. Review the actual license file before building commercial products on top of it.</li>
+      </ul>
+    </div>
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Custom license terms.</strong> The repository's license is listed as NOASSERTION. Before using hypit in a commercial product, read the actual LICENSE file carefully. This is not a standard open-source license.</li>
+        <li><strong>AI model dependencies.</strong> The full feature set (face swap, voice cloning, auto-decomposition) requires AI models that may have their own licensing terms and compute requirements. The DSL compiler itself is lightweight, but the AI features need GPU.</li>
+        <li><strong>FFmpeg complexity surface.</strong> While hypit abstracts FFmpeg, complex edits can produce FFmpeg command chains that are hard to debug when they fail. Understanding FFmpeg basics helps when things go wrong.</li>
+        <li><strong>Ethical considerations.</strong> Video cloning and face swapping tools have obvious misuse potential. The project's framing around "cloning viral videos" is provocative. Consider the ethical and legal implications of your use case.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">
+  <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+  <ul>
+    <li><a href="https://github.com/hypit-ai/hypit" target="_blank">hypit-ai/hypit GitHub</a> - source, docs, contribution guide</li>
+    <li>Stack: TypeScript | License: Custom</li>
+    <li>Last pushed: September 18, 2026 | Created: July 29, 2026</li>
+  </ul>
+  <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+</div></footer>
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

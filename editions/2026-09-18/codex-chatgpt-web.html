@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>miuuyy/codex-chatgpt-web - ChatGPT Web as a Native Codex Model | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117;--bg2:#161b22;--card:#1c2128;--card2:#21262d;
+    --primary:#10b981;--primary-dim:#059669;--secondary:#06b6d4;
+    --accent:#6b7280;--accent-light:#9ca3af;
+    --ink:#e6edf3;--muted:#8b949e;--line:#30363d;
+    --sans:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'DM Sans',sans-serif;
+    --r:8px;
+    --shadow:0 2px 12px rgba(0,0,0,.2);--shadow-lg:0 6px 24px rgba(0,0,0,.3);
+    --glow:0 0 12px #10b98140;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:none;}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0d1117;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0d1117;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}.feat .fh code{font-family:var(--mono);color:var(--primary);font-size:14px}
+  .feat p{color:var(--muted);font-size:14px}.feat p code{font-family:var(--mono);font-size:.92em;color:var(--secondary)}
+  .best-feature{background:linear-gradient(135deg,#10b98108,#06b6d406);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0d1117;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .best-feature p code{font-family:var(--mono);color:var(--primary);font-size:.92em}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.3)}
+  .ba.after{background:#10b98108;border-color:#10b98150}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ef4444}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}.ba code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--mono);background:var(--primary);color:#0d1117;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#050810;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#c0c8d8}
+  pre .cm{color:#4a5578}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:700;text-shadow:var(--glow);letter-spacing:.01em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}.story code{font-family:var(--mono);font-size:.9em;color:var(--secondary)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ef4444;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(239,68,68,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}.watchout li code{font-family:var(--mono);font-size:.9em;color:var(--primary)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+  <a class="gh-link" href="https://github.com/miuuyy/codex-chatgpt-web" target="_blank" rel="noopener">GitHub &#8599;</a>
+</div></div>
+<header class="hero"><div class="wrap">
+  <span class="kicker">Model Bridge - Open Source</span>
+  <h1><span class="owner">miuuyy/</span><span class="name">codex-chatgpt-web</span></h1>
+  <p class="tagline"><strong>ChatGPT thinks. Codex works.</strong> Use ChatGPT Web (including Pro) as a native model in OpenAI's Codex CLI - with context, tools, streaming and images, without burning Codex API quota. A browser bridge that makes your ChatGPT subscription power your coding agent.</p>
+  <div class="chips">
+    <div class="chip"><span class="cv lm">9.3K</span><span class="ck">stars</span></div>
+    <div class="chip"><span class="cv">762</span><span class="ck">forks</span></div>
+    <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+    <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+  </div>
+</div></header>
+<nav class="tabnav"><div class="wrap">
+  <button class="tab-btn active" data-tab="highlights">Highlights</button>
+  <button class="tab-btn" data-tab="problem">The Problem</button>
+  <button class="tab-btn" data-tab="setup">Setup</button>
+  <button class="tab-btn" data-tab="usecases">Use Cases</button>
+</div></nav>
+<main class="wrap">
+  <section id="highlights" class="tab-panel active">
+    <h2>Your ChatGPT Pro, <em>inside Codex</em></h2>
+    <p class="sub">codex-chatgpt-web is a browser-based bridge that exposes your ChatGPT Web session as a local API endpoint. Point Codex at it, and your ChatGPT subscription becomes the model backend - with full context windows, tool use, streaming, and image support. Zero API quota consumed.</p>
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">9.3K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">762</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">Zero</div><div class="l">API Quota Used</div></div>
+      <div class="bignum"><div class="n ">Pro</div><div class="l">Tier Supported</div></div>
+      <div class="bignum"><div class="n sc">Stream</div><div class="l">Native Support</div></div>
+      <div class="bignum"><div class="n ">MIT</div><div class="l">License</div></div>
+    </div>
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Browser bridge architecture</div><p>A Playwright-driven browser session maintains your <strong>authenticated ChatGPT Web session</strong> and exposes it as a local OpenAI-compatible API. Codex connects to localhost and gets full model access through your existing subscription.</p></div>
+      <div class="feat"><div class="fh">Zero API quota consumption</div><p>Because requests go through the web interface, not the API, <strong>no API credits are consumed</strong>. If you have a ChatGPT Pro subscription, you get Pro-tier model access for your coding agent at no additional cost.</p></div>
+      <div class="feat"><div class="fh">Full feature parity</div><p>The bridge supports <strong>context, tools, streaming, and images</strong> - the same capabilities as the native API. Codex does not know or care that the backend is a web session instead of an API endpoint.</p></div>
+      <div class="feat"><div class="fh">Streaming responses</div><p>Responses stream token-by-token through the bridge, so <strong>Codex sees output in real time</strong>. No waiting for the full response to complete before the agent can start processing.</p></div>
+      <div class="feat"><div class="fh">Image input support</div><p>The bridge handles <strong>image uploads through the web interface</strong>, enabling vision capabilities in Codex without API-level vision access. Screenshot your UI, paste it, and your coding agent sees it.</p></div>
+      <div class="feat"><div class="fh">Quick setup</div><p>Install, authenticate once via the browser popup, and point Codex at <code>localhost</code>. <strong>Under five minutes</strong> from clone to a working coding agent powered by your ChatGPT subscription.</p></div>
+    </div>
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Unlimited coding agent, no API bill</h3>
+      <p>The value proposition is straightforward: if you already pay for ChatGPT Pro, codex-chatgpt-web lets you use that subscription to power Codex without any additional API spend. For developers who want a capable coding agent but do not want to manage API budgets, this is the path of least resistance. The model is the same, the capabilities are the same, but the billing is your existing flat-rate subscription.</p>
+    </div>
+  </section>
+  <section id="problem" class="tab-panel">
+    <h2>The <em>API cost</em> problem</h2>
+    <p class="sub">AI coding agents are powerful but expensive. API usage adds up fast when your agent reads, reasons about, and writes code across an entire codebase.</p>
+    <div class="ba-grid">
+      <div class="ba before"><div class="ba-tag">Before</div>
+        <p><strong>API costs scale with usage.</strong> Every token your coding agent processes costs money. Large codebases, long sessions, and iterative debugging can burn through hundreds of dollars in API credits per month.</p>
+        <p><strong>Subscription and API are separate worlds.</strong> Your ChatGPT Pro subscription gives you unlimited web access to the same models, but coding agents cannot use the web interface. You pay twice - once for chat, once for the agent.</p>
+        <p><strong>Budget anxiety limits agent use.</strong> When every prompt has a dollar cost, developers self-censor. They avoid running the agent on large files, skip iterative debugging loops, and manually do work the agent could handle - all to control costs.</p>
+      </div>
+      <div class="ba after"><div class="ba-tag">After</div>
+        <p><strong>Flat-rate coding agent.</strong> Your existing ChatGPT subscription powers the coding agent. No per-token billing, no surprise invoices, no budget anxiety. Use the agent as much as you want.</p>
+        <p><strong>Same model, same capabilities.</strong> ChatGPT Pro gives access to the same frontier models available through the API. The bridge provides full feature parity - context, tools, streaming, images.</p>
+        <p><strong>Trivial setup.</strong> Clone, authenticate once, point Codex at localhost. No API key management, no billing dashboard, no usage monitoring. Just a working coding agent.</p>
+      </div>
+    </div>
+  </section>
+  <section id="setup" class="tab-panel">
+    <h2>Get <em>started</em></h2>
+    <p class="sub">From zero to a working setup in minutes.</p>
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
+      <div class="step-body">
+<pre>git clone https://github.com/miuuyy/codex-chatgpt-web.git
+cd codex-chatgpt-web
+npm install</pre>
+        <p>Requires <strong>Node.js 18+</strong>. The project uses Playwright to drive a browser session, which it will install automatically.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Authenticate</h3></div>
+      <div class="step-body">
+<pre>npm run auth
+
+# A browser window opens
+# Log in to ChatGPT with your account
+# The session is saved locally</pre>
+        <p>You authenticate once. The bridge <strong>saves your session locally</strong> and reuses it. If the session expires, re-run the auth step.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Start the bridge and connect Codex</h3></div>
+      <div class="step-body">
+<pre># Start the local API server
+npm start
+
+# In another terminal, point Codex at the bridge
+export OPENAI_BASE_URL=http://localhost:3100/v1
+codex</pre>
+        <p>The bridge runs on <strong>localhost:3100</strong> by default. Codex connects to it as if it were the OpenAI API. All requests route through your ChatGPT Web session.</p>
+      </div>
+    </div>
+  </section>
+  <section id="usecases" class="tab-panel">
+    <h2>Real-world <em>scenarios</em></h2>
+    <p class="sub">Where this project earns its place in your stack.</p>
+    <div class="story"><div class="metric">Budget-Free Agent Usage</div><p><strong>Stop watching the meter.</strong> Developers with ChatGPT Pro subscriptions can run Codex without worrying about per-token costs. Use the agent for exploratory coding, large refactors, and iterative debugging without budget anxiety.</p></div>
+    <div class="story"><div class="metric">Team Adoption</div><p><strong>Lower the barrier to coding agents.</strong> Teams where each developer already has a ChatGPT subscription can adopt Codex without negotiating an API budget. The per-seat cost is already paid.</p></div>
+    <div class="story"><div class="metric">Learning and Experimentation</div><p><strong>Explore agent capabilities without financial risk.</strong> New users can experiment with Codex's full feature set - tool use, multi-file editing, iterative problem solving - without the stress of a growing API bill.</p></div>
+    <div class="story"><div class="metric">Offline-First Workflows</div><p><strong>Works wherever ChatGPT Web works.</strong> The bridge only needs browser access to ChatGPT. No separate API endpoint, no VPN requirements for API access, no corporate proxy issues with API calls.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Strong community signal.</strong> 9.3K stars and 762 forks in under two months, with active discussions (55 open issues, GitHub Discussions enabled). The project addresses a clear pain point for Codex users.</li>
+        <li><strong>Active development.</strong> Daily commits through September 2026, with topics spanning ChatGPT, Codex, Playwright, and MCP integration. The maintainer is responsive to issues and feature requests.</li>
+        <li><strong>Part of a broader trend.</strong> Multiple projects in this space (opencodex, codex-with-chatgpt) are bridging commercial web interfaces to coding agent harnesses. The demand for flat-rate agent access is real.</li>
+        <li><strong>Production case studies are limited.</strong> Most discussion is around setup and configuration rather than long-term production use. The bridge's reliability over extended sessions is an open question in the community.</li>
+      </ul>
+    </div>
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Terms of service gray area.</strong> Automating the ChatGPT web interface may or may not be permitted by OpenAI's terms of service. The project operates in a gray area. Review the terms before relying on it for production work.</li>
+        <li><strong>Session stability.</strong> Browser-based bridges can break when OpenAI updates the ChatGPT web interface. Expect occasional maintenance when the UI changes. The project's active development helps, but interruptions are possible.</li>
+        <li><strong>Rate limiting.</strong> ChatGPT Web has its own rate limits, especially for Pro users during peak hours. Your coding agent may hit these limits during intensive sessions, causing delays or temporary blocks.</li>
+        <li><strong>No guaranteed uptime.</strong> Unlike the API, the web interface has no SLA. Outages, maintenance windows, and A/B tests on the UI can all affect the bridge's reliability.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">
+  <div class="fmeta">Repo Radar - Edition 008 - Week of September 18, 2026</div>
+  <ul>
+    <li><a href="https://github.com/miuuyy/codex-chatgpt-web" target="_blank">miuuyy/codex-chatgpt-web GitHub</a> - source, docs, contribution guide</li>
+    <li>Stack: TypeScript | License: MIT</li>
+    <li>Last pushed: September 16, 2026 | Created: July 26, 2026</li>
+  </ul>
+  <a class="backhub" href="../../index.html">&#8592; Back to Edition 008</a>
+</div></footer>
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
