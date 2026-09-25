@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zai-org/ZCode - Z.ai's Coding Agent Harness | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08060e;--bg2:#0e0b18;--card:#110e1a;--card2:#1a1528;
+    --primary:#00e5ff;--primary-dim:#00b8d4;--secondary:#e040fb;
+    --accent:#5a5a7a;--accent-light:#8888aa;
+    --ink:#e8e6f0;--muted:#8888aa;--line:#1f1a30;
+    --sans:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--disp:'Rajdhani',sans-serif;
+    --r:2px;
+    --shadow:0 2px 12px rgba(0,0,0,.4);--shadow-lg:0 6px 24px rgba(0,0,0,.5);
+    --glow:0 0 14px #00e5ff30;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      radial-gradient(ellipse at 50% 0%,#00e5ff06 0%,transparent 50%),
+      linear-gradient(90deg,transparent 49.5%,#1f1a3012 49.5%,#1f1a3012 50.5%,transparent 50.5%),
+      linear-gradient(0deg,transparent 49.5%,#1f1a3012 49.5%,#1f1a3012 50.5%,transparent 50.5%);
+    background-size:100% 100%,60px 60px,60px 60px;
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(8,6,14,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#08060e;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(34px,7vw,68px);font-weight:700;line-height:1.08;letter-spacing:.02em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(8,6,14,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#08060e;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(22px,3.4vw,32px);font-weight:700;letter-spacing:.02em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink);font-family:var(--disp);letter-spacing:.02em}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,#00e5ff06,#e040fb06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#08060e;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:#00e5ff06;border-color:#00e5ff40}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#08060e;font-weight:700;font-size:14px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px;font-family:var(--disp);letter-spacing:.02em}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#06050a;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
+  pre .cm{color:#5a5a7a}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:17px;color:var(--primary);line-height:1.3;font-weight:600;letter-spacing:.02em}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp);letter-spacing:.04em}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:13px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.06em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#08060e;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/zai-org/ZCode" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI Coding Workspace - Open Source</span>
+    <h1><span class="owner">zai-org/</span><span class="name">ZCode</span></h1>
+    <p class="tagline"><strong>Z.ai's all-in-one coding agent harness.</strong> Desktop app, web client, and terminal agent unified in a single open-source repository. Built around Z.ai's GLM-5.2 model with Goal Mode for long-running agentic tasks - and fresh off a privacy controversy that forced the team to open-source everything.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">6.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">2K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>One harness, <em>three surfaces</em></h2>
+    <p class="sub">ZCode bundles a desktop app, a browser-based client, and a terminal agent CLI into a single monorepo. It is purpose-built for Z.ai's GLM-5.2 model but supports external providers. The entire stack went open-source on September 20, 2026 - five days old and already at 6.8K stars.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">6.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">2K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">5 days</div><div class="l">Since Open-Source</div></div>
+      <div class="bignum"><div class="n">3</div><div class="l">Interfaces</div></div>
+      <div class="bignum"><div class="n sc">GLM-5.2</div><div class="l">Default Model</div></div>
+      <div class="bignum"><div class="n">Apache</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Goal Mode</div><p>Set an objective and a token budget. ZCode runs the agent in repeated rounds - <strong>planning, executing, verifying</strong> - until the goal passes or the budget runs out. No babysitting required for multi-step refactors.</p></div>
+      <div class="feat"><div class="fh">Three-surface monorepo</div><p>Desktop app, web client, and Agent CLI all live in one repo. <strong>Shared UI components and backend services</strong> mean the experience is consistent whether you work in Electron, a browser tab, or the terminal.</p></div>
+      <div class="feat"><div class="fh">Deep GLM-5.2 integration</div><p>First-party model integration that <strong>no third-party editor can replicate</strong>. Z.ai's own model gets optimized prompting, tool routing, and latency tuning baked into the harness.</p></div>
+      <div class="feat"><div class="fh">Remote task control</div><p>Kick off and monitor agent tasks from <strong>WeChat, Feishu, or Telegram</strong>. Start a long refactoring job from your phone and check back when it finishes.</p></div>
+      <div class="feat"><div class="fh">Integrated workspace</div><p>File manager, terminal, Git panel, and browser preview sit alongside the agent chat. <strong>Everything in one window</strong> - no context switching between editor and terminal.</p></div>
+      <div class="feat"><div class="fh">Free daily token budget</div><p>Z.ai's free tier provides <strong>3 million GLM-5.2 tokens and 2 million GLM-5 Turbo tokens per day</strong>. Enough for serious agent work without a credit card.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>Goal Mode turns coding into a fire-and-forget loop</h3>
+      <p>Most coding agents run one turn at a time. You prompt, the agent acts, you review, you prompt again. Goal Mode changes the loop entirely. You describe the end state - "migrate all API routes from Express to Hono and make the test suite pass" - set a budget, and walk away. ZCode plans the work, executes in rounds, runs your tests after each pass, and stops only when the goal is verified or the budget is gone. For large mechanical refactors, this saves hours of back-and-forth supervision.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>fragmented workspace</em> problem</h2>
+    <p class="sub">AI coding tools keep multiplying, but most of them require you to stitch together an editor, a terminal, a model provider, and an agent harness separately. ZCode ships them as a single integrated package.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Editor plus agent is a two-tool workflow.</strong> You run Claude Code or Codex in a terminal, then switch to VS Code to read the changes, then switch back to the terminal to continue. Context stays in your head.</p>
+        <p><strong>Long tasks need constant supervision.</strong> A multi-file refactoring takes dozens of prompts. Each turn requires you to review output, decide the next step, and type the next instruction. You are the orchestrator.</p>
+        <p><strong>Model lock-in or adapter tax.</strong> Want to try a different model? You need to swap API keys, adjust prompting strategies, and hope the harness supports the provider. Most do not make switching easy.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One window, full context.</strong> Files, terminal, Git, browser preview, and agent chat live side by side. Changes appear in real time as the agent writes them. No switching, no mental juggling.</p>
+        <p><strong>Goal Mode handles orchestration.</strong> Define the outcome, set a budget, and let the agent loop through plan-execute-verify cycles on its own. You review the result, not each intermediate step.</p>
+        <p><strong>First-party GLM support with provider flexibility.</strong> GLM-5.2 is optimized out of the box. Other providers work through configuration. The harness adapts its tool routing to the model in use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set up <em>ZCode</em></h2>
+    <p class="sub">Clone, install dependencies, and run the desktop app or CLI locally. Requires Git, Node.js 24.14.0 or later, and pnpm 10.33.2 or later.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the monorepo</span>
+git clone https://github.com/zai-org/ZCode.git
+cd ZCode
+
+<span class="cm"># Install dependencies with pnpm</span>
+pnpm install</pre>
+        <p>The repo includes the desktop app, web client, shared packages, backend services, and the Agent CLI. <strong>No submodule initialization needed</strong> - everything is a regular directory.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Run the Agent CLI</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># The CLI lives in apps/zcode-cli/</span>
+cd apps/zcode-cli
+pnpm dev
+
+<span class="cm"># Or build and run the desktop app</span>
+cd apps/desktop
+pnpm build
+pnpm start</pre>
+        <p>The CLI gives you a terminal-based agent experience. The desktop app launches an Electron window with the full integrated workspace - <strong>file manager, terminal, Git, and agent chat</strong>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Connect a model provider</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Default: Z.ai's GLM-5.2 (free tier available)</span>
+<span class="cm"># Sign up at z.ai for an API key</span>
+export ZAI_API_KEY="your-api-key-here"
+
+<span class="cm"># Or connect third-party providers via settings</span>
+<span class="cm"># Anthropic, OpenAI, and other providers supported</span></pre>
+        <p>Z.ai's free tier gives you <strong>3M GLM-5.2 tokens per day</strong>. For heavier workloads, paid plans are available. Third-party model providers can be configured through the settings panel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where <em>ZCode</em> fits</h2>
+    <p class="sub">ZCode targets developers who want an integrated agent workspace rather than an agent bolted onto an existing editor.</p>
+
+    <div class="story"><div class="metric">Large refactors</div><p><strong>Goal Mode shines on mechanical multi-file changes.</strong> Migrating a framework, renaming a domain concept across 200 files, or converting a codebase from CommonJS to ESM - set the goal, set the budget, let ZCode loop until the tests pass.</p></div>
+    <div class="story"><div class="metric">GLM-first teams</div><p><strong>If your organization already uses GLM models, ZCode is the native IDE.</strong> First-party optimizations mean lower latency, better tool routing, and tighter integration than any third-party harness can offer for GLM-5.2.</p></div>
+    <div class="story"><div class="metric">Remote monitoring</div><p><strong>Kick off agent tasks and monitor them from your phone.</strong> Start a refactoring job before lunch, check progress via Telegram or Feishu, and review the results when you get back. Useful for tasks that take 20 to 60 minutes of agent time.</p></div>
+    <div class="story"><div class="metric">Zero-cost prototyping</div><p><strong>The free tier is generous enough for real prototyping.</strong> 3M tokens per day of GLM-5.2 means you can build and iterate on a side project without entering a credit card. Ideal for weekend experiments and hackathon projects.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>VentureBeat launch coverage.</strong> VentureBeat covered ZCode's launch with "Z.ai launches ZCode to challenge Cursor, Claude Code and GitHub Copilot in AI coding," positioning it as a direct competitor in the agent IDE space. <a href="https://venturebeat.com/technology/z-ai-launches-zcode-to-challenge-cursor-claude-code-and-github-copilot-in-ai-coding" target="_blank">VentureBeat</a></li>
+        <li><strong>Hacker News privacy controversy.</strong> A thread titled "ZCode, the GLM coding agent, silently uploads your Git history" reached the HN front page in September 2026. Researchers found ZCode was uploading entire .git directories - including reflogs, deleted branches, and LFS assets - to Aliyun cloud storage. Z.ai apologized and attributed it to a repo-indexing feature enabled by default. <a href="https://news.ycombinator.com/item?id=49752422" target="_blank">Hacker News</a></li>
+        <li><strong>The Register follow-up.</strong> The Register ran a piece titled "Z.ai says sorry for slurping up your code, open sources ZCode," covering the company's decision to open-source the full codebase as a response to the trust fallout. <a href="https://www.theregister.com/security/2026/09/22/zai-says-sorry-for-slurping-up-your-code-open-sources-zcode/5298300" target="_blank">The Register</a></li>
+        <li><strong>YouTube reviews.</strong> Multiple YouTubers published reviews comparing ZCode to Cursor and Claude Code. Bitdoze's detailed review covers Goal Mode, the free tier, and a direct feature comparison. <a href="https://www.bitdoze.com/zcode-ai-review/" target="_blank">Bitdoze</a></li>
+        <li><strong>DEV Community write-ups.</strong> Several posts on dev.to dissect the Git-upload incident in detail, including a forensic analysis showing one snapshot reached 313 MB and 42,411 files with 86.6% being the .git directory. <a href="https://dev.to/jamilxt/an-ai-coding-app-was-silently-uploading-your-entire-git-history-inside-the-zcode-incident-15j" target="_blank">DEV Community</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>The Git-upload incident is recent and real.</strong> ZCode was caught silently uploading entire Git histories - including .git directories, reflogs, and LFS assets - to Aliyun Object Storage. The encryption keys were held solely by Z.ai's servers. The behavior has been attributed to a now-disabled default feature, but the trust damage is fresh. Audit your network traffic if you use ZCode on sensitive repos.</li>
+        <li><strong>Five days old as open source.</strong> The repo was created on September 20, 2026. The codebase was proprietary before that. Community governance, contribution norms, and code review practices are still forming. Treat it as early-stage open source.</li>
+        <li><strong>GLM-5.2 dependency.</strong> ZCode is optimized for Z.ai's own model. If you use a third-party provider, some features - like Goal Mode's verification loop - may not work as smoothly. The first-party integration is the selling point and the lock-in risk.</li>
+        <li><strong>Hacker News flagged UI similarity to Codex.</strong> Multiple commenters noted that ZCode's interface closely resembles OpenAI's Codex UI. Whether this is convergent design or something else, it is worth noting if originality matters to you.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
+    <ul>
+      <li><a href="https://github.com/zai-org/ZCode" target="_blank">zai-org/ZCode GitHub</a> - source, desktop app, CLI, web client</li>
+      <li>Stack: TypeScript, Electron, pnpm monorepo, GLM-5.2</li>
+      <li>Last pushed: September 24, 2026 | Created: September 20, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
