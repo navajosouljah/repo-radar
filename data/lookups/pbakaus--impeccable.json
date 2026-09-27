@@ -74,7 +74,7 @@
     "One setup step writes down your product's audience and existing design system, so every later command builds on it instead of guessing.",
     "A live-browser mode lets the AI try real variants of one element and show you how each one actually renders, not just describe it."
   ],
-  "uses_note": "No independent named use found yet. The one detailed before/after (the Neo Mirai case study) is published by Impeccable itself, not an outside user - real outside recognition so far is press coverage and Anthropic's own Claude Code account, listed below.",
+  "uses_note": "No independent named use found yet. The one detailed before/after (the Neo Mirai case study) is published by Impeccable itself, not an outside user - real outside recognition so far is press coverage and a tip from the Claude Code Community account on X, listed below.",
   "uses": [],
   "pulse": {
     "gain": "+2.4K stars in the last 7 days, about 341 a day - findarepo rates the growth organic",
