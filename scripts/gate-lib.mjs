@@ -24,6 +24,10 @@ export function tiedToRepo(adv, o, r) {
   return text.includes(o.toLowerCase()) && new RegExp(`(?<![\\w-])${name}(?![\\w-])`).test(text);
 }
 
+// A CVE published before the repo existed can't be about it: a 2007 CVE for some other "Dagger"
+// turned up in the CVE-database search for dagger/dagger (created 2019) on Sep 27 2026.
+export const predates = (published, created) => !!(published && created && String(published).slice(0, 10) < String(created).slice(0, 10));
+
 // A fixed version stated in words: "fixed in 1.2.3", "before 1.2.3", "upgrade to 1.2.3",
 // "1.2.3 is the first patched version". An affected range like "up to 1.2.3" is NOT a fix.
 const FIX_TEXT = /(?:fixed|patched|resolved|addressed|remediated)\s+(?:in|with|by)\s+(?:version\s+|release\s+|v)?(\d+\.\d+(?:\.\d+)?)|upgrad\w*\s+to\s+(?:version\s+|v)?(\d+\.\d+(?:\.\d+)?)|(?:version|release)\s+v?(\d+\.\d+(?:\.\d+)?)\s+(?:contains|includes|fixes|patches|addresses)|(?:before|prior to)\s+(?:version\s+|v)?(\d+\.\d+(?:\.\d+)?)|:?v?(\d+\.\d+(?:\.\d+)?)`?\s+is the first (?:patched|fixed) version/gi;

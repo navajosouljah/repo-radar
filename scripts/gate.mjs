@@ -23,7 +23,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { ver, cmp, maxVer, tiedToRepo, advisoryStatus, activityFlags, newConcerns } from './gate-lib.mjs';
+import { ver, cmp, maxVer, tiedToRepo, advisoryStatus, activityFlags, newConcerns, predates } from './gate-lib.mjs';
 import * as web from './public-pages.mjs';
 
 const run = promisify(execFile);
@@ -271,7 +271,11 @@ async function gate(repo, { reuse } = {}) {
   const ids = [...new Set(srch.hits.filter(h => h.kind === 'cve-record').flatMap(h => (h.title + ' ' + h.url).match(/CVE-\d{4}-\d+|GHSA-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}/gi) || []).map(x => x.toUpperCase()))];
   const known = new Set((adv.items || []).flatMap(i => [i.ghsa, i.cve]).filter(Boolean).map(x => x.toUpperCase()));
   srch.cves = [];
-  for (const id of ids.filter(x => !known.has(x))) srch.cves.push(await cveStatus(id.startsWith('GHSA') ? id.toLowerCase().replace(/^ghsa/, 'GHSA') : id, o, r, latest));
+  const nvdDate = new Map(srch.hits.filter(h => /nvd\.nist\.gov/.test(h.url)).map(h => [(h.url.match(/CVE-\d{4}-\d+/i) || [''])[0].toUpperCase(), h.published]));
+  for (const id of ids.filter(x => !known.has(x))) {
+    if (predates(nvdDate.get(id), act.created)) { srch.cves.push({ id, status: 'other-project', note: `published ${nvdDate.get(id)}, before the repo existed (${act.created})` }); continue; }
+    srch.cves.push(await cveStatus(id.startsWith('GHSA') ? id.toLowerCase().replace(/^ghsa/, 'GHSA') : id, o, r, latest));
+  }
   const reasons = [];
   let verdict = 'PASS';
   if (adv.error) { verdict = 'REVIEW'; reasons.push(`advisories check failed: ${adv.error}`); }

@@ -3,7 +3,7 @@
 // reopens a hole that already let something through, or wrongly failed a safe repo.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tiedToRepo, fixFromText, fixFromRanges, commitsFromText, prsFromRefs, ver, cmp, newConcerns, activityFlags } from './gate-lib.mjs';
+import { tiedToRepo, fixFromText, fixFromRanges, commitsFromText, prsFromRefs, ver, cmp, newConcerns, activityFlags, predates } from './gate-lib.mjs';
 
 test('a record that names the repo counts against it, even with no package or source', () => {
   // CVE-2026-7595, VulDB-sourced, unreviewed on GitHub: no package, no source, but it names the project.
@@ -107,4 +107,12 @@ test('activity flags: star farms, code drops, archived repos', () => {
     ['22000 stars on 1 contributor(s)', '22000 stars on only 14 commit(s)']);
   assert.deepEqual(activityFlags({ canonical: 'new/name', stars: 12000, contributors: null, commits: null, watchers: 5, hasIssues: true, openIssues: 0, ageDays: null, archived: true }, 'o', 'r'),
     ['renamed/moved to new/name', 'very few watchers for the stars (5)', 'archived']);
+});
+
+test('a CVE published before the repo existed is not about it', () => {
+  // dagger/dagger was created in 2019; CVE-2007-3431 is about an older product also called Dagger.
+  assert.equal(predates('2007-06-27T00:00:00', '2019-11-11'), true);
+  assert.equal(predates('2026-03-26', '2019-11-11'), false);
+  assert.equal(predates(null, '2019-11-11'), false);
+  assert.equal(predates('2007-06-27', null), false);
 });

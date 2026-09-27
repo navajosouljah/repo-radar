@@ -22,11 +22,14 @@ anything ships.
 }
 ```
 
-- `fit` is `you` (a non-coder can install or use it with Claude Code), `developers` (it needs someone
-  who writes code), or `news` (a model or research result: it goes on the "Also this week" line, not
-  in the 10).
-- `thumb` is only for #1 to #3, and only a real screenshot or demo frame of the product. No
-  auto-generated GitHub cards.
+- `fit` is one of:
+  - `you`: JJ can install it himself or drive it by asking Claude Code: a skill, a plugin, a desktop
+    app, or a tool built for AI agents (HyperFrames, which Claude Code uses to make videos, is `you`).
+  - `developers`: someone who writes code has to set it up or build it into something: a library, an
+    SDK, a framework, a server to host.
+  - `news`: a model or research result. It goes on the "Also this week" line, not in the 10.
+- `thumb` is only for #1 to #3, and only a real screenshot or demo frame of the product (the same
+  picture as the page's `visual`). No auto-generated GitHub cards.
 
 ## `data/editions/<date>/<slug>.json`: one repo's answer sheet
 
@@ -42,11 +45,11 @@ state to say so.
 | `fit` | `you`, `developers` or `news` |
 | `replaces` | Optional: a product or bill the reader knows ("TypeSafe's paid Jev service"). Only if sourced |
 | `links` | `website` (the homepage, if it has one), `demo` (a live demo or video), `docs` |
-| `visual` | `src` (a real screenshot or demo frame in `assets/shots/`, or a README image URL), `width`, `height`, `alt` (what it shows, with the real numbers), `caption` |
+| `visual` | Found with `node scripts/shots.mjs owner/repo --site <website>`, and looked at before choosing. `src` (under 2 MB: a copy in `assets/shots/`; bigger: the printed URL), `width`, `height`, `alt` (what it really shows, with its real numbers and words), `caption` |
 | `board` | Exactly 4 notes, in order `problem`, `input`, `does`, `result`. Each has `say` (a short sentence) and `eg` (a real example: the product's own demo or docs) |
 | `before`, `after` | 2-3 bullets each: the pain without it, then what you get with it |
 | `uses_note` | Optional one line of context ("It's 9 days old, so real use is early") |
-| `uses` | 2-4 real uses: `who`, `what`, `result`, `stat` (the headline number: "37 of 40", "178 pts"), `source {title, url, date}` |
+| `uses` | 2-4 real uses: a named person, team or publication that used it for a specific thing. `who`, `what`, `result`, `stat` (the headline number: "37 of 40", "178 pts"), `source {title, url, date}`. Not a use: an adopters list, a crowd ("2,300 issues filed"), the maker's own announcement. Fewer than 2 real ones: write those and a `uses_note` |
 | `pulse` | `gain` (a plain line), `history` ([[date, stars], ...] measured points only), `history_note`, `facts` (2-4 `{value, label}`) |
 | `coverage` | 3-6 independent write-ups or threads: `plat`, `title`, `url`, `meta` ("178 points · Sep 20"), `tone: "critical"` for critical takes |
 | `trending` | Optional short chips ("findarepo: star growth looks organic") |

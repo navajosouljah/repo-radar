@@ -14,10 +14,12 @@ Sep 27 2026 after the purge was silently undone and ZCode was ranked #5.
      maintainers shipped fixes).
    - `conduct` (malware, scam, secret data upload, impersonation): only JJ can take it off.
 2. **Advisories.** List the repo's published security advisories.
-   - Local: `gh api repos/OWNER/REPO/security-advisories`.
-   - Cloud routine (direct GitHub API calls are blocked there): WebFetch
-     `https://github.com/OWNER/REPO/security/advisories`. This public page lists the same advisories
-     (checked Sep 27 2026: CowAgent 1, pi 4, impeccable 0 on both).
+   - `scripts/gate.mjs` does this. On a Mac with `gh` signed in it uses the GitHub API. In the cloud
+     routine (no API, no `gh`) it reads the public pages instead:
+     `https://github.com/OWNER/REPO/security/advisories` and each advisory's own page. Same
+     advisories, same rules (checked Sep 27 2026 against the API).
+   - The public list shows 10 advisories per page. Reading it by hand in the Sep 27 2026 dry run
+     missed one of OpenMAIC's 11, which is why the script, not a person, reads it.
    - For each advisory, find its **fix**. Any of these counts:
      - a patched version in the advisory data;
      - a version in the text ("fixed in 1.2.3", "before 1.2.3", "1.2.3 is the first patched
@@ -46,15 +48,23 @@ Sep 27 2026 after the purge was silently undone and ZCode was ranked #5.
      must name, even when all are fixed.
    - When two checks disagree (a helper agent says FAIL, the log says PASS), the evidence decides:
      re-read the advisories and issues, record which way it went and why in the log's
-     `settled.note`.
+     `settled.note`. An older log entry is never evidence on its own: in the Sep 27 2026 dry run
+     the cloud agent dismissed a fresh FAIL because "the existing entry says PASS".
 3. **Searches.** Search `OWNER/REPO CVE`, `OWNER/REPO vulnerability`, `OWNER/REPO malware` and
    `OWNER/REPO scam`.
-   - A CVE record that names this repo is checked the same way as an advisory (GitHub's global
-     advisory database first: `gh api "advisories?cve_id=CVE-..."`).
+   - The national CVE database (NVD) is also searched for every repo, locally and in the cloud.
+     Web search alone missed firecrawl's CVE-2026-32857 (a high-severity flaw) on Sep 27 2026. If
+     the CVE database can't be reached, the verdict is REVIEW, never PASS.
+   - Hacker News is a keyword search, so a hit there counts only when it names the repo's owner or
+     links the repo (a repo called "atlas" otherwise matches news about "Cloud Atlas" hackers).
+   - A CVE record that names this repo is checked the same way as an advisory, through GitHub's
+     global advisory database (the API on a Mac, `github.com/advisories` in the cloud).
    - A record counts against the repo when its source repo is this project, or when its own words or
      links name the project. A record about something else does not count, and the log says so; for
-     example, a Go standard-library issue that turned up in a search for dagger. The rule lives in
-     `scripts/gate-lib.mjs` and is tested in `scripts/gate-lib.test.mjs`.
+     example, a Go standard-library issue that turned up in a search for dagger. A record that links
+     only a sibling repo of the same owner is about the sibling (firecrawl-mcp-server's CVE is not
+     firecrawl's). The rule lives in `scripts/gate-lib.mjs` and is tested in
+     `scripts/gate-lib.test.mjs`.
    - News or community reports of malware, a scam, a supply-chain compromise, or silent data upload
      are read in full, and a credible one is a FAIL.
    - Automated scanner scores (Mondoo, ClawSecure, Socket and similar) are recorded as information
@@ -100,10 +110,35 @@ Every published repo page shows a **Safe to install** block with:
 - the four searches and what came back;
 - the activity numbers and any flags.
 
+## Rulings
+
+A REVIEW is settled by a ruling: `node scripts/gate.mjs --settle owner/repo PASS|FAIL "why"`. A
+ruling carries over later re-gates only while nothing new turns up: every advisory, CVE, report and
+activity flag behind the new automatic verdict must already have been in front of whoever ruled,
+and every check must have run. Anything new sends it back for a new ruling. (The rule is
+`newConcerns` in `scripts/gate-lib.mjs`, with tests.)
+
+### What the Friday routine may settle
+
+The cloud routine runs unattended, so it may rule only on the harmless kind of REVIEW:
+
+- **May settle PASS** when every reason is a search hit or an activity flag, and each hit is the
+  repo's own page, an automated scanner score, or text that isn't about a security problem in this
+  repo. The note cites each hit and why it doesn't count, and the command ends with `--by routine`.
+  Every such ruling goes in the Friday report.
+- **May settle FAIL** on a credible report of malware, a scam, or code or data taken without consent,
+  citing it (`--by routine`).
+- **Never settles** an advisory or CVE reason, a check that failed to run, or a fresh FAIL that an
+  older log entry disagrees with. Those repos don't appear that week: a new pick is replaced by the
+  next candidate, and a listed repo comes down (not blocklisted). The report names each one for JJ.
+
 ## Re-checks
 
-- **Every Friday:** re-check advisories for every repo currently shown anywhere on the site.
-- **First Friday of the month:** the full four-check gate for every listed repo.
+- **Every Friday:** `node scripts/gate.mjs --recheck` re-reads the advisories of every repo shown
+  anywhere on the site. A repo with a new advisory is gated again in full.
+- **Rolling full gate:** the same run fully re-gates up to 60 listed repos whose last full gate is
+  14 or more days old, oldest first. The build refuses a gate older than 30 days, so every listed
+  repo is fully re-checked at least monthly.
 - A new FAIL comes down everywhere it appears and goes on the blocklist.
 
 ## Shipping
@@ -115,8 +150,12 @@ Every published repo page shows a **Safe to install** block with:
 
 ## Tools
 
-- `node scripts/gate.mjs owner/repo` gates repos locally and writes evidence.
-- `node scripts/gate-recheck.mjs` re-reads open items against registries and releases.
-- `node scripts/gate.mjs --settle owner/repo PASS|FAIL "why"` records a human verdict on a REVIEW.
+- `node scripts/gate.mjs owner/repo` gates repos and writes evidence (API or public pages,
+  automatically; `--web` forces the public pages).
+- `node scripts/gate.mjs --recheck` is the weekly re-check described above.
+- `node scripts/gate.mjs --settle owner/repo PASS|FAIL "why"` records a ruling (`--by routine` when
+  the Friday routine makes it).
+- `node scripts/gate-recheck.mjs` re-reads open items against registries, releases, fix commits and
+  fix pull requests. It needs the GitHub API, so it runs on a Mac only; in the cloud it refuses.
 - `node scripts/catalog.mjs` lists every repo the live site recommends.
 - `node --test scripts/*.test.mjs` runs the gate rule tests (they must pass before any ship).

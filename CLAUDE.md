@@ -27,8 +27,10 @@ rebuild. Design context: `PRODUCT.md` (who it's for and the principles).
   on-demand briefings. `index.html` is the hub. `archive.html` lists every edition.
 - `docs/SECURITY_GATE.md` is the gate. `docs/routine-prompt-v1.md` and `v2.md` record the Friday cloud
   routine's instructions.
-- `scripts/catalog.mjs` lists every repo the site recommends. `gate.mjs` and `gate-recheck.mjs` run
-  the gate. `candidates.mjs` gathers and scores the week's candidates. `build.mjs` makes pages from
+- `scripts/catalog.mjs` lists every repo the site recommends. `gate.mjs` runs the gate (and the
+  weekly `--recheck`); `gate-recheck.mjs` is its Mac-only second look. `public-pages.mjs` reads
+  GitHub's public pages when the API isn't there (the cloud). `candidates.mjs` gathers and scores
+  the week's candidates. `shots.mjs` finds a real picture of a product. `build.mjs` makes pages from
   data. `verify.mjs` and the `*.test.mjs` tests must pass. `ship.sh` deploys.
 - `data/tips.md`: repos JJ spotted himself. When he says "add <repo> to the radar tips", append it
   there; the Friday run must evaluate it.
