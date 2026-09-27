@@ -153,5 +153,35 @@
     "repo": "Tencent/WeKnora",
     "date": "2026-09-27",
     "reason": "2 open advisory(ies): GHSA-pcwc-3fw3-8cqv medium (unpatched), GHSA-78h3-63c4-5fqc critical (unpatched) | 2 open CVE(s) found by search: CVE-2025-11046 medium (unpatched), CVE-2026-8786 low (unpatched)"
+  },
+  {
+    "repo": "CherryHQ/cherry-studio",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open CVE(s) found by search: CVE-2026-13524 low (unpatched), CVE-2026-13534 low (unpatched)"
+  },
+  {
+    "repo": "excalidraw/excalidraw",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "1 open advisory(ies): GHSA-39h7-pwv7-rc3x medium (fix-unreleased) | 1 open CVE(s) found by search: CVE-2026-97224 low (unpatched)"
+  },
+  {
+    "repo": "firecrawl/firecrawl",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open advisory(ies): GHSA-3p54-jg6f-68r8 high (fix-unreleased), GHSA-7843-ffpq-5f9p critical (fix-unreleased) | 1 open CVE(s) found by search: CVE-2026-32857 high (unpatched) | new since the 2026-09-27 ruling: CVE CVE-2026-32857 (unpatched); report https://news.ycombinator.com/item?id=49503542"
+  },
+  {
+    "repo": "frappe/erpnext",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "20 open CVE(s) found by search: CVE-2018-20061 high (unpatched), CVE-2020-6145 medium (unpatched), CVE-2022-28598 medium (unpatched), CVE-2025-52044 high (unpatched), CVE-2025-52043 medium (unpatched), CVE-2025-52047 medium (unpatched), CVE-2025-52049 medium (unpatched), CVE-2025-52050 medium (unpatched), CVE-2025-52039 high (unpatched), CVE-2025-52041 high (unpatched), CVE-2025-52042 high (unpatched), CVE-2025-65267 critical (unpatched), CVE-2025-66434 critical (unpatched), CVE-2025-66435 medium (unpatched), CVE-2025-66436 medium (unpatched), CVE-2025-66437 high (unpatched), CVE-2025-66438 critical (unpatched), CVE-2026-31017 critical (unpatched), CVE-2026-94113 high (unpatched), CVE-2026-96672 medium (unpatched)"
+  },
+  {
+    "repo": "penpot/penpot",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open CVE(s) found by search: CVE-2026-17613 high (unpatched), CVE-2026-100868 medium (unpatched) | new since the 2026-09-27 ruling: CVE CVE-2026-100868 (unpatched)"
   }
 ]

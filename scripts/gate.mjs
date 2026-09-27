@@ -266,7 +266,7 @@ async function gate(repo, { reuse } = {}) {
   const [o, r] = repo.split('/');
   const [adv, act] = reuse ? [reuse.checks.advisories, reuse.checks.activity] : await Promise.all([advisories(o, r), activity(o, r)]);
   const srch = await searches(o, r);
-  for (const h of srch.hits) h.kind = kind(h, o, r);
+  for (const h of srch.hits) h.kind = predates(h.published, act.created) ? 'before-repo' : kind(h, o, r); // can't be about a repo that didn't exist yet
   const latest = adv.latestRelease ? ver(adv.latestRelease) : null;
   const ids = [...new Set(srch.hits.filter(h => h.kind === 'cve-record').flatMap(h => (h.title + ' ' + h.url).match(/CVE-\d{4}-\d+|GHSA-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}/gi) || []).map(x => x.toUpperCase()))];
   const known = new Set((adv.items || []).flatMap(i => [i.ghsa, i.cve]).filter(Boolean).map(x => x.toUpperCase()));
