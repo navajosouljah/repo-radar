@@ -1,0 +1,247 @@
+{
+  "repo": "Human-Agent-Society/reef",
+  "name": "reef",
+  "tagline": "An AI agent's own on-the-job training: **every real answer becomes a lesson**, instead of being thrown away the moment it's given.",
+  "sentence": "Point your AI agent's questions through Reef and every correction, thumbs-down or failed test becomes practice: Reef builds a better version of the agent and tests it before it replaces the old one.",
+  "fit": "developers",
+  "links": {
+    "website": "https://www.reefinfra.ai/",
+    "docs": "https://www.reefinfra.ai/docs/getting-started/intro/"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI agent answers the same way today as it did on day one. Every real conversation holds lessons - a correction, a thumbs-down, a failed test - but normal setups throw all of that away the moment they answer.",
+      "eg": "Asking a big AI company's model to grade or fix its own mistakes still costs money every single time, and nothing carries over to tomorrow."
+    },
+    {
+      "role": "trigger",
+      "say": "Every time your app or agent would normally ask the AI model a question, it asks through Reef instead.",
+      "eg": "You start Reef pointed at a model you already use - your own computer running Ollama, or a hosted one - and it quietly begins keeping a record."
+    },
+    {
+      "role": "input",
+      "say": "The question itself, plus whatever feedback shows up afterward: a thumbs up, a correction, a passed or failed test.",
+      "eg": "Reef's own tutorial: ask an AI to fix a bug in a small file (a sum function that \"stops one short\"), first writing a test that fails, then fixing it, then having a second AI check the fix."
+    },
+    {
+      "role": "does",
+      "say": "It answers like normal, then works through the feedback in stages to build and check a better version.",
+      "steps": [
+        "Answers the question and tags that exact exchange with a receipt number, so feedback about it can be found later",
+        "Matches any feedback you send back to the right receipt",
+        "Turns matched examples into a candidate improvement - either to the model itself (needs a graphics card) or to the agent's own instructions (Reef's free Reefine option, no graphics card needed)"
+      ],
+      "eg": "Reefine's own demo also tries a research question - \"what is the best known lower bound for sorting by comparisons, with a source?\" - and checks whether the agent actually found real sources."
+    },
+    {
+      "role": "result",
+      "say": "A checked, versioned improvement, not just a pile of logs.",
+      "outputs": [
+        {
+          "what": "A candidate update that's scored against the version it would replace",
+          "eg": "Only a candidate that clears the bar gets published; the rest are thrown away automatically"
+        },
+        {
+          "what": "A score for every proposed change",
+          "eg": "Each candidate is tested against the version it would replace before anything is published"
+        },
+        {
+          "what": "Older versions kept on hand",
+          "eg": "So you can go back to an earlier version if a new one turns out worse"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "A wrong answer or a bad call gets logged somewhere, and forgotten. Tomorrow the agent makes the same mistake.",
+    "Turning feedback into a smarter agent means a separate, multi-week project: pull the logs, build a training set, retrain, test, and carefully roll it out.",
+    "If the new version turns out worse, there's no clean way back to the old one."
+  ],
+  "after": [
+    "Every answer can carry a receipt; when feedback comes in, it finds its way back to the exact question it was about, automatically.",
+    "A built-in option (called Reefine) rewrites the agent's own instructions from that feedback using a plain model connection - no graphics card needed. A heavier option retrains the model itself, which does need a graphics card.",
+    "Every candidate is checked against the version it would replace before anything changes, and older versions stay on hand to go back to."
+  ],
+  "uses_note": "It's about 4 weeks old (created August 31, 2026). What's been written about it so far covers the launch and the team behind it, not yet a named person or team using it for a specific job - so there's nothing real to report here yet.",
+  "uses": [],
+  "pulse": {
+    "gain": "+2.5K stars in the last 7 days; 6,325 total after less than a month",
+    "history": [
+      [
+        "2026-08-31",
+        0
+      ],
+      [
+        "2026-09-02",
+        153
+      ],
+      [
+        "2026-09-27",
+        6325
+      ]
+    ],
+    "history_note": "Measured points only: the day it was created (zero stars, by definition), findarepo's reading on Sep 2, and GitHub's own count today (Sep 27).",
+    "facts": [
+      {
+        "value": "32",
+        "label": "people have contributed code"
+      },
+      {
+        "value": "375",
+        "label": "pull requests merged so far"
+      },
+      {
+        "value": "370",
+        "label": "commits in its first 27 days"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "Ao Qu and collaborators open-source Reef for learning from live agent interactions",
+      "url": "https://runtimewire.com/article/ao-qu-reef-inference-server-continual-learning-agents",
+      "meta": "Sep 15"
+    },
+    {
+      "plat": "Newsletter",
+      "title": "Human-Agent-Society/reef - GitHub launch roundup",
+      "url": "https://thedailycommit.in/story/2026-09-04/06-github-human-agent-society-reef",
+      "meta": "Sep 4"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Human-Agent-Society/reef hits #3 Python repo of the day",
+      "url": "https://trendshift.io/repositories/204783",
+      "meta": "Sep 16"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic (100/100)",
+    "Trendshift: #3 Python repo of the day, Sep 16"
+  ],
+  "star_check": "findarepo's star check: 100 out of 100, \"nothing unusual across the checks we ran\" (fork-to-star ratio, issue activity, growth pace versus age, repo completeness), as of Sep 27.",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Skim the four-stage idea and the ready-made options on Reef's own [documentation site](https://www.reefinfra.ai/docs/getting-started/intro/) - nothing to install yet.",
+      "A developer installs it with one line and follows the [quickstart guide](https://www.reefinfra.ai/docs/getting-started/quickstart/) to point it at a model they already have and watch it record its first request.",
+      "To see it actually produce an improvement, run the built-in [Reefine tutorial](https://www.reefinfra.ai/docs/user-guide/recipes/reefine/), which walks through a real bug fix end to end using a plain AI connection - no graphics card needed."
+    ],
+    "paste": "/skillspector https://github.com/Human-Agent-Society/reef\n\nIf that scan passes: in a scratch folder, install reef (pip install reef-infra), follow the README's quickstart to point it at a model you already have, send it one sample request, and show me what comes back (the answer plus its receipt header). 10 minutes max, then stop and report back in plain English."
+  },
+  "footprint": {
+    "disk": "About 10 MB for Reef itself (the reef-infra package on [PyPI](https://pypi.org/project/reef-infra/): a 1.2 MB pre-built copy plus an 8 MB source copy). It calls out to a model that lives somewhere else, so nothing else downloads unless you turn on the option that retrains a model's own weights, which needs extra software (SGLang, Slime) with no published size.",
+    "memory": "no data found for the basic setup. Reef's docs give no memory number; they only say retraining a model's weights needs a graphics-card server, without saying how much memory that server needs.",
+    "runs_on": "A Mac, Windows or Linux computer with Python 3.12 or newer. No graphics card needed for the free option (Reefine) or for just recording and serving answers; a graphics card is only needed if you retrain a model's actual weights.",
+    "source": {
+      "title": "reef-infra on PyPI, and Reef's installation docs",
+      "url": "https://pypi.org/project/reef-infra/"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "You're building or running an AI agent that makes the same kind of call over and over, and you want it to improve from real feedback instead of staying frozen",
+      "You'd rather rewrite your agent's own instructions for free (no graphics card) than pay to retrain a model, at least to start"
+    ],
+    "skip_if": [
+      "You just want to use an AI agent, not build one - there's nothing here for a non-coder to click on",
+      "It needs to work well today, out of the box: it's about a month old, and in its own recorded test run none of the proposed fixes cleared the evaluation bar on their own - they were published only because that run used a testing setting that publishes everything",
+      "You want to retrain a model's actual weights: that path needs a graphics-card server this setup doesn't include"
+    ],
+    "alternatives": [
+      {
+        "name": "SkillOpt",
+        "repo": "microsoft/SkillOpt",
+        "url": "https://github.com/microsoft/SkillOpt",
+        "line": "Also rewrites an agent's own instructions from scored feedback, but only that one piece - it doesn't run the serving connection or collect feedback from production the way Reef does."
+      }
+    ]
+  },
+  "watch": [
+    "**A month old, and still finding its shape.** Reef's repository was created August 31, 2026. Commands, settings and even the four-stage design could still change.",
+    "**In its own recorded test run, nothing actually passed on merit.** Reef's tutorial reports 10 proposed fixes and 0 that cleared the evaluation bar - all 10 were published anyway only because that run used a testing setting that publishes everything regardless.",
+    "**Out of the box, it does nothing but record.** Reef's own docs say that without turning on a real learning option, \"the chain will stay at one: this deployment's recipe is the core recipe, which records and trains nothing.\"",
+    "**Retraining the model itself needs a graphics-card server.** The free, no-graphics-card option (Reefine) only rewrites the agent's own instructions, not the model."
+  ],
+  "sources": [
+    {
+      "title": "Human-Agent-Society/reef on GitHub (README, releases, tutorials)",
+      "url": "https://github.com/Human-Agent-Society/reef",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef homepage (reefinfra.ai)",
+      "url": "https://www.reefinfra.ai/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef docs: Getting Started intro",
+      "url": "https://www.reefinfra.ai/docs/getting-started/intro/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef docs: Quickstart - serve inference and report feedback",
+      "url": "https://www.reefinfra.ai/docs/getting-started/quickstart/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef docs: install on a laptop or GPU server",
+      "url": "https://www.reefinfra.ai/docs/getting-started/installation/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef docs: Reefine recipe",
+      "url": "https://www.reefinfra.ai/docs/user-guide/recipes/reefine/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef's Reefine tutorial (bug-fix and research demos, recorded measurements)",
+      "url": "https://github.com/Human-Agent-Society/reef/tree/main/tutorials/reefine",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "reef-infra on PyPI (package size)",
+      "url": "https://pypi.org/project/reef-infra/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Reef's GitHub Releases (version 0.1.1)",
+      "url": "https://github.com/Human-Agent-Society/reef/releases",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "findarepo: reef's star growth and star check",
+      "url": "https://findarepo.com/repo/Human-Agent-Society/reef/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "RuntimeWire: Ao Qu and collaborators open-source Reef",
+      "url": "https://runtimewire.com/article/ao-qu-reef-inference-server-continual-learning-agents",
+      "date": "2026-09-15"
+    },
+    {
+      "title": "The Daily Commit: Human-Agent-Society/reef launches on GitHub",
+      "url": "https://thedailycommit.in/story/2026-09-04/06-github-human-agent-society-reef",
+      "date": "2026-09-04"
+    },
+    {
+      "title": "Trendshift: Human-Agent-Society/reef trending",
+      "url": "https://trendshift.io/repositories/204783",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "microsoft/SkillOpt on GitHub (named as an alternative)",
+      "url": "https://github.com/microsoft/SkillOpt",
+      "date": "2026-09-27"
+    }
+  ],
+  "visual": {
+    "src": "assets/shots/reef.png",
+    "width": 1760,
+    "height": 600,
+    "alt": "Reef's own diagram. On the left, a circle of four steps: serve, observe (agent trajectories plus feedback), grow (filter and process what to learn from, then new weights or a new harness) and commit (publish a new version if it passes eval), with 'keeps serving' in the middle. On the right, each lap makes a new version: v1, v2, v3, v4; a v5 attempt that 'didn't pass eval' is crossed out, and a dashed arrow shows you can roll back to a past version.",
+    "caption": "Reef's own diagram (a still from its README): every lap it serves, watches, learns and commits, and a new version goes live only if it passes the test."
+  }
+}

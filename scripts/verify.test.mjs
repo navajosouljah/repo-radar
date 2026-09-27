@@ -116,3 +116,14 @@ test('a try-it step that sends you somewhere must link there', () => {
   const ok = verify(withSheet({ try: { steps: ['Open the [live demo](https://example.com/demo) and press Ask.'] } }));
   assert.equal(ok.status, 0, ok.stderr);
 });
+
+test('an alternative linked by its GitHub address must be cleared, even without a repo field', () => {
+  refuses(withSheet({ verdict: { alternatives: [{ name: 'b', url: 'https://github.com/unchecked/alt', line: 'x' }] } }), /unchecked\/alt was never gated/);
+});
+
+test('--sheet checks one answer sheet on its own', () => {
+  const root = withSheet({ try: { steps: ['Visit the website to sign up.'] } });
+  const r = spawnSync('node', [VERIFY, '--root', root, '--sheet', 'data/editions/2026-09-25/a.json'], { encoding: 'utf8' });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /try step 1 sends the reader somewhere but has no link/);
+});

@@ -1,0 +1,233 @@
+{
+  "repo": "lnkiai/m3e-canvas",
+  "name": "M3E Canvas",
+  "tagline": "A browser sketchpad for app screens that turns your drawing into a prompt (written instructions) an AI coding tool can build from.",
+  "sentence": "Drag real app parts (buttons, cards, menus) onto phone screens in your browser, connect the screens, and press Export: it writes a plain-English brief you paste into Claude Code or another AI coding tool to build the real app.",
+  "fit": "you",
+  "links": {
+    "website": "https://lnkiai.github.io/m3e-canvas/"
+  },
+  "visual": {
+    "src": "assets/shots/m3e-canvas.png",
+    "width": 1600,
+    "height": 1000,
+    "alt": "M3E Canvas's own screenshot: two connected phone screens for a notes app (a home list called 'メモ' and a meeting-detail screen) sketched on the canvas, with the right-hand panel showing the exported prompt written out in Japanese - it names the app, describes it as a simple notes app opened from a list to edit, lists the Material 3 purple color theme by hex code (primary #6750A4 and more), and ends in a 'Copy prompt' button.",
+    "caption": "From the README's own docs folder: sketch the screens on the left, get the finished prompt on the right. This demo happens to be in Japanese, one of the four languages it can write in."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You can tell an AI coding tool what app screen you want in plain words, but words alone get the layout wrong.",
+      "eg": "\"Make me an app with a bottom nav and a card list\" comes out differently every time you ask - you end up fixing the result instead of describing it better."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the free web app and start dragging parts onto a screen - no sign-up, nothing to install.",
+      "eg": "It runs at lnkiai.github.io/m3e-canvas - open it in Chrome, Firefox, Safari or Edge and you're sketching."
+    },
+    {
+      "role": "input",
+      "say": "The screens you want, and which button leads to which screen.",
+      "eg": "Buttons, cards, list items, navigation bars, search bars and dozens of other Material 3 Expressive parts, arranged across as many screens as you like."
+    },
+    {
+      "role": "does",
+      "say": "It watches how you arrange the parts and connect the screens, then turns that into words.",
+      "steps": [
+        "You drag parts onto the canvas and arrange them the way you want the screen to look",
+        "You give buttons a target screen (or \"back\") and pick a look: color theme, corner shape, type and motion style",
+        "The Tidy button auto-aligns everything - bars to the edges, buttons and list items joined up - so a sloppy layout doesn't turn into a sloppy prompt",
+        "You press Export and it writes the whole thing out as a plain-language brief, including what each part does, not just what it looks like"
+      ],
+      "eg": "The README's own demo: sketch a recipes app, change its color theme, copy the prompt, hand it to an AI coding tool, and run the result on Android."
+    },
+    {
+      "role": "result",
+      "say": "A brief you can hand straight to an AI coding tool.",
+      "outputs": [
+        {
+          "what": "A ready-to-paste prompt in your choice of language",
+          "eg": "English, Japanese, Chinese or Korean - describing every screen, color and behavior"
+        },
+        {
+          "what": "A picture of your sketch",
+          "eg": "Save any screen as a PNG file"
+        },
+        {
+          "what": "A link that hands your design straight to an AI coding agent",
+          "eg": "The beta \"AI draft\" link has an agent read the sketch and reply with a link to what it built"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Describing a screen in plain words to an AI coding tool gets the layout wrong more often than it gets it right.",
+    "Figma and other design tools export pictures or files aimed at human developers - nothing an AI coding tool can read as instructions.",
+    "Material 3 Expressive is new enough that most AI coding tools don't know its specific shapes and rules unless you spell them out."
+  ],
+  "after": [
+    "Sketch it instead of describing it, and the tool writes the words for you - including what each part should do, not just what it looks like.",
+    "The output is one plain-text prompt any AI coding tool accepts: Claude Code, Codex, Cursor and more.",
+    "It's free and open source, and runs entirely in your browser - nothing to install, and your sketches never leave your own computer."
+  ],
+  "uses_note": "It's 25 days old, and the coverage so far describes what it does rather than a documented story of someone using it to ship something specific - real use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "About +8.1K stars in its first 25 days, per findarepo's own tracking (Sep 3 to Sep 27).",
+    "history": [
+      [
+        "2026-09-03",
+        205
+      ],
+      [
+        "2026-09-27",
+        8346
+      ]
+    ],
+    "history_note": "Two measured points: findarepo's tracking start (Sep 3, 205 stars) and GitHub's live count today (Sep 27, 8,346). The line between them is drawn straight, not a real daily log.",
+    "facts": [
+      {
+        "value": "88 stars/day",
+        "label": "findarepo's measured pace over the last 7 days"
+      },
+      {
+        "value": "10",
+        "label": "people who have contributed code, per GitHub"
+      },
+      {
+        "value": "#1",
+        "label": "Trendshift's top repo of the day, across every language, on Sep 4"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Trendshift",
+      "title": "lnkiai/m3e-canvas - trending stats",
+      "url": "https://trendshift.io/repositories/208608",
+      "meta": "#1 repo of the day (all languages), Sep 4"
+    },
+    {
+      "plat": "Blog",
+      "title": "The Daily Commit: daily roundup feature",
+      "url": "https://thedailycommit.in/story/2026-09-04/08-github-lnkiai-m3e-canvas",
+      "meta": "890 stars at the time - Sep 4"
+    },
+    {
+      "plat": "Blog",
+      "title": "GithubAwesome: \"a Material 3 mockup tool that writes the coding prompt for you\"",
+      "url": "https://githubawesome.com/m3e-canvas-a-material-3-mockup-tool-that-writes-the-coding-prompt-for-you-when-youre-done/",
+      "meta": "Sep 8"
+    },
+    {
+      "plat": "Blog",
+      "title": "Zentor: \"What Is M3E Canvas? Sketch UIs, Get AI Prompts\"",
+      "url": "https://zentor.ai/blog/what-is-m3e-canvas",
+      "meta": "Sep 4, updated Sep 24"
+    },
+    {
+      "plat": "Dev.to",
+      "title": "M3E Canvas: Visual Material 3 Expressive Prototyping for AI Coding Agents",
+      "url": "https://dev.to/terminalchai/m3e-canvas-visual-material-3-expressive-prototyping-for-ai-coding-agents-2ca2",
+      "meta": "Sep 15"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "Trendshift: #1 repo of the day across all languages, Sep 4"
+  ],
+  "star_check": "findarepo's star check: looks organic - nothing unusual across fork ratio, issue activity and growth pace.",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Open the live app](https://lnkiai.github.io/m3e-canvas/) in your browser - free, no sign-up, nothing to install.",
+      "Drag a few parts onto the canvas (a button, a card, a nav bar) and connect them with tap-through navigation.",
+      "Click Export, pick English, copy the prompt, and paste it into Claude Code (or any AI coding tool) and ask it to build the app."
+    ],
+    "paste": "/skillspector https://github.com/lnkiai/m3e-canvas\n\nIf that scan passes: open the live app, sketch a two-screen mock (a list screen and a detail screen), connect them with tap-through navigation, export the prompt, and show me exactly what the exported text says. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You want to hand an AI coding tool a real design instead of a paragraph, and you don't have Figma skills",
+      "You're prototyping an Android or web screen and want Material 3 Expressive done right without learning its rules by hand"
+    ],
+    "skip_if": [
+      "You need a different design system - Fluent, Carbon, Ant Design or your own - this only knows Material 3 Expressive",
+      "You need your sketches backed up or shared with a team - everything lives only in your own browser's storage, with no cloud sync yet"
+    ],
+    "alternatives": [
+      {
+        "name": "Google Stitch",
+        "url": "https://stitch.withgoogle.com/",
+        "line": "Google's AI tool that generates app and web screens from a written description, instead of you arranging the parts by hand."
+      },
+      {
+        "name": "Figma",
+        "url": "https://www.figma.com/",
+        "line": "The design app most product teams use: you draw every screen yourself, with far more control and far more to learn."
+      }
+    ]
+  },
+  "watch": [
+    "**Only Material 3 Expressive.** A different design system - Fluent, Carbon, your own brand system - isn't supported at all.",
+    "**No cloud save yet.** Everything lives in your browser's local storage; clear your browser data and your sketches are gone. There's no export-to-file backup.",
+    "**The optional AI helper sends your design to whichever provider you pick.** Turn on the AI tab and your design description goes from your browser straight to OpenAI, Anthropic, Google or DeepSeek using your own key. Normal use - dragging parts, exporting a prompt - sends nothing anywhere.",
+    "**25 days old, with a small team.** 10 contributors so far and fast-moving weekly changes - expect rough edges and quick changes to how things look."
+  ],
+  "sources": [
+    {
+      "title": "m3e-canvas on GitHub (README, credits, See also)",
+      "url": "https://github.com/lnkiai/m3e-canvas",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "M3E Canvas live app",
+      "url": "https://lnkiai.github.io/m3e-canvas/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "findarepo: m3e-canvas stats, growth and star check",
+      "url": "https://findarepo.com/repo/lnkiai/m3e-canvas/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Trendshift: lnkiai/m3e-canvas trending stats",
+      "url": "https://trendshift.io/repositories/208608",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "The Daily Commit: lnkiai/m3e-canvas roundup entry",
+      "url": "https://thedailycommit.in/story/2026-09-04/08-github-lnkiai-m3e-canvas",
+      "date": "2026-09-04"
+    },
+    {
+      "title": "GithubAwesome: M3E Canvas feature",
+      "url": "https://githubawesome.com/m3e-canvas-a-material-3-mockup-tool-that-writes-the-coding-prompt-for-you-when-youre-done/",
+      "date": "2026-09-08"
+    },
+    {
+      "title": "Zentor: What Is M3E Canvas? Sketch UIs, Get AI Prompts",
+      "url": "https://zentor.ai/blog/what-is-m3e-canvas",
+      "date": "2026-09-04"
+    },
+    {
+      "title": "Dev.to: M3E Canvas - Visual Material 3 Expressive Prototyping for AI Coding Agents",
+      "url": "https://dev.to/terminalchai/m3e-canvas-visual-material-3-expressive-prototyping-for-ai-coding-agents-2ca2",
+      "date": "2026-09-15"
+    },
+    {
+      "title": "Beer CSS",
+      "url": "https://www.beercss.com/",
+      "date": "2026-09-27"
+    }
+  ],
+  "footprint": {
+    "disk": "Zero to use the [hosted app](https://lnkiai.github.io/m3e-canvas/) - it opens straight in your browser and nothing downloads to your computer. Running your own local copy needs Node.js and `npm install`; no source states an exact size for that download.",
+    "memory": "No data found for an exact number. It's a normal browser tab running a static website, not a separate program on your computer.",
+    "runs_on": "Any modern browser - Chrome, Firefox, Safari or Edge - on Mac, Windows or Linux. No install and no graphics card needed. Running your own copy to develop it further needs Node.js.",
+    "source": {
+      "title": "m3e-canvas README: no backend, local storage, Develop section",
+      "url": "https://github.com/lnkiai/m3e-canvas#develop"
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "repo": "browser-use/jev-ultrafast",
+  "name": "jev-ultrafast",
+  "tagline": "A browser-clicking AI that **picks from a numbered list** instead of writing paragraphs about what it sees, so it finishes in seconds instead of minutes.",
+  "sentence": "Give it a goal and a starting webpage - \"search Google Flights from Zurich to London\" - and it clicks, types and scrolls its way there itself, finishing a real search in about 7 seconds for well under half a cent.",
+  "fit": "developers",
+  "links": {
+    "website": "https://browser-use.com/ultrafast",
+    "docs": "https://docs.typesafe.ai"
+  },
+  "visual": {
+    "src": "assets/shots/jev-ultrafast.webp",
+    "width": 1152,
+    "height": 750,
+    "alt": "The last frame of jev-ultrafast's own demo: 'Zurich to London. In 7.1 seconds.' A Google Flights window shows a one-way Zurich to London search for Sunday, September 20, with top options such as easyJet 4:45 PM to 5:35 PM for $216 and British Airways from $265. Beside it, a checklist with One way, Zurich, London, 20 September and Search flights all ticked, 07.07 seconds elapsed, 'Flights found', and a 178 ms median decision time.",
+    "caption": "The last frame of its own demo: the flight search done in 7.1 seconds. The full run plays on its website."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Software that needs an AI to click through a website usually does it the slow way: take a picture of the page, ask an AI to write out what it sees and plans to do, then act on that paragraph.",
+      "eg": "jev-ultrafast's own before-and-after test needed 1,092 back-and-forth calls to the browser doing it that way, for one flight search."
+    },
+    {
+      "role": "trigger",
+      "say": "You run it as a one-line command with a goal and a starting page, or a script kicks it off whenever a job needs a browser.",
+      "eg": "python -m jev_ultrafast --url \"https://www.google.com/travel/flights\" --goal \"Search for a one-way flight from Zurich to London next Friday\""
+    },
+    {
+      "role": "input",
+      "say": "A web address to start on, and your goal written in plain English.",
+      "eg": "URL: google.com/travel/flights. Goal: \"Search for a one-way flight from Zurich to London next Friday.\""
+    },
+    {
+      "role": "does",
+      "say": "It turns the page into a numbered list of clickable things and lets TypeSafe's Jev decision AI pick the action and the number, over and over, until it's done.",
+      "steps": [
+        "Reads the current page into a numbered list of buttons, links and boxes instead of taking a picture of it",
+        "Sends that list plus your goal to Jev in one request; Jev picks both the action (click, type, scroll, wait or done) and which numbered item",
+        "Only when it needs to type something, like a date, does a separate everyday AI write the actual words",
+        "Repeats on the new page until the goal is met, or it flags itself as stuck"
+      ],
+      "eg": "The Google Flights run took 17 of these decisions and 101 total browser calls to finish, instead of 1,092."
+    },
+    {
+      "role": "result",
+      "say": "A finished task, timed and priced.",
+      "outputs": [
+        {
+          "what": "A completed real task, not a demo trick",
+          "eg": "A genuine Zurich-to-London Google Flights search, done in 7.1 seconds"
+        },
+        {
+          "what": "Far fewer round trips to the browser",
+          "eg": "101 browser calls instead of 1,092 for the same job - 91% fewer, and the run itself was 25% faster (9.45s down to 7.09s median)"
+        },
+        {
+          "what": "A tiny bill for the whole run",
+          "eg": "About $0.004: the equivalent of roughly 90,000 words read in at TypeSafe's $0.042-per-million price, plus $0.00006 for the two bits of text it had to type - the reply itself is free"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Screenshot every step, then wait on a vision AI to write out its reasoning before it clicks anything.",
+    "1,092 back-and-forth calls to the browser for one flight search, by jev-ultrafast's own measurement of the old way.",
+    "Every single step bills you for a full image-reading AI call, even for a plain click."
+  ],
+  "after": [
+    "Reads the page as a numbered list instead of a picture; one request decides the click.",
+    "101 browser calls for the same search - 91% fewer - finished in 7.1 seconds instead of 9.45.",
+    "About $0.004 for the whole run, because the only AI that gets paid per word is reading a short list, not a picture."
+  ],
+  "uses_note": "It's 9 days old (created September 16, 2026), so most of what's out there is people testing, explaining or picking apart the README's own benchmark rather than shipping something with it. The clearest independent build so far is below.",
+  "uses": [
+    {
+      "who": "A developer building agent tools (GitHub user danielnc)",
+      "what": "Packaged jev-ultrafast's same one-call decision loop as a tool other coding agents (Claude, Cursor, Codex) can call mid-task to hand off a browser step, publishing it as the separate project \"jev-browse\" with its own MCP server (a standard way other AI agents can plug into it directly) and a public release.",
+      "result": "In the author's own benchmark, an agent calling this tool finished the same jobs 1.6 to 3.0 times faster and 2.1 to 5.3 times cheaper than having the agent drive the browser directly itself, with the same success rate.",
+      "source": {
+        "title": "danielnc/jev-browse README",
+        "url": "https://github.com/danielnc/jev-browse",
+        "date": "2026-09-24"
+      },
+      "stat": "1.6-3.0x faster"
+    }
+  ],
+  "pulse": {
+    "gain": "+20K stars in its first 11 days",
+    "history": [
+      [
+        "2026-09-17",
+        642
+      ],
+      [
+        "2026-09-27",
+        21000
+      ]
+    ],
+    "history_note": "Measured points only: findarepo's own daily snapshots on Sep 17 and Sep 27. The line between them is drawn straight, not measured day by day.",
+    "facts": [
+      {
+        "value": "1.4K",
+        "label": "forks"
+      },
+      {
+        "value": "145",
+        "label": "open issues"
+      },
+      {
+        "value": "1,490",
+        "label": "new stars a day, measured by findarepo"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Jev Ultrafast: A browser agent with a dynamic, indexed action space",
+      "url": "https://news.ycombinator.com/item?id=49735979",
+      "meta": "93 points - Sep 17"
+    },
+    {
+      "plat": "Blog",
+      "title": "AgentBreaking: the Jev Ultrafast guide",
+      "url": "https://agentbreaking.com/blog/browser-use-jev-ultrafast-guide/",
+      "meta": "Sep 19"
+    },
+    {
+      "plat": "Blog",
+      "title": "explainx.ai: Jev Ultrafast, Browser Use puts Jev in the browser agent loop",
+      "url": "https://www.explainx.ai/blog/jev-ultrafast-browser-use-typesafe-2026",
+      "meta": "Sep 21"
+    },
+    {
+      "plat": "Blog",
+      "tone": "critical",
+      "title": "Jev Ultrafast Explained: the engineering reality behind the benchmark",
+      "url": "https://hoangyell.com/jev-ultrafast-explained/",
+      "meta": "Sep 21"
+    },
+    {
+      "plat": "Blog",
+      "tone": "critical",
+      "title": "Is Jev Ultrafast safe to use?",
+      "url": "https://greenlitbooks.com/field-notes/is-jev-ultrafast-safe",
+      "meta": "Sep 24"
+    },
+    {
+      "plat": "Blog",
+      "title": "Zilmac: Jev Ultrafast as a browser-agent design pattern",
+      "url": "https://zilmac.com/en/blog/articles/jev-ultrafast-browser-agent.html",
+      "meta": "Sep 26"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic"
+  ],
+  "star_check": "findarepo's star check: looks organic",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Watch it work first: [its website](https://browser-use.com/ultrafast) shows the real Zurich-to-London flight search finishing in 7.1 seconds. Nothing to install.",
+      "To run it yourself, a developer clones the repo, runs its setup command, adds a [TypeSafe](https://typesafe.ai) API key and a text-AI key, then points it at any website with a goal written in plain English.",
+      "Add the `--inspector` flag, documented on the [GitHub page](https://github.com/browser-use/jev-ultrafast), to see every choice it makes as it makes it - useful for checking it on your own sites before trusting it with something real."
+    ],
+    "paste": "/skillspector https://github.com/browser-use/jev-ultrafast\n\nIf that scan passes: in a scratch folder, install jev-ultrafast, add a TypeSafe API key, and run its own Google Flights quickstart command in a throwaway Chrome profile (not your everyday signed-in one). Show me what it actually did and how long it took. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You're building software that needs an AI to click through websites fast and cheap, and you're fine depending on TypeSafe's paid Jev service",
+      "Your tasks are simple, repeatable browser jobs on ordinary pages: searches, form fills, price checks"
+    ],
+    "skip_if": [
+      "You need it to get through a real checkout, a \"prove you're human\" picture puzzle, or a page with more than about 250 clickable things - it goes blind past that point",
+      "You don't want a tool driving your everyday, signed-in Chrome and sending page content to TypeSafe and a second AI",
+      "You want something with no ongoing per-use cost - this bills you a small amount every time it runs"
+    ],
+    "alternatives": [
+      {
+        "name": "agent-browser",
+        "repo": "vercel-labs/agent-browser",
+        "url": "https://agent-browser.dev",
+        "line": "Vercel's free, open browser-automation tool for AI agents: a fast command-line tool rather than a full decision-making agent, and it doesn't depend on a paid decision AI to pick each click."
+      },
+      {
+        "name": "TypeSafe Jev",
+        "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+        "line": "The paid decision AI jev-ultrafast is built on. Using it directly means writing your own browser-control code instead of getting jev-ultrafast's ready-made loop."
+      }
+    ]
+  },
+  "watch": [
+    "**It drives your everyday, signed-in Chrome with no approval step.** It sends the page's text and field values to TypeSafe, and to a second AI provider for anything it has to type, and it can act on every site you're already logged into. A safety review put it plainly: nothing stops it before a purchase or a form submission except how carefully you word the goal. Use a separate Chrome profile with nothing important in it.",
+    "**It installs Browser Use's browser-harness, whose own command reports your tasks by default.** jev-ultrafast itself doesn't use that command (we checked its code). But if you or your AI agent ever run `browser-harness` directly, it sends the whole task script and the end of its output to Browser Use's analytics service (PostHog), switched on by default and not mentioned in its README. Turn it off once with `browser-harness telemetry disable`.",
+    "**The 7.1-second demo never finished a real booking.** It typed the cities, picked a date, and stopped once the flight list appeared. By the README's own account this is one task tested three times, not a general reliability check, and real checkout pages add security steps like \"prove you're human\" screens that stop it cold.",
+    "**It goes blind past a page's first 250 clickable things, and can't see picture-based human checks at all.** On a busy screen, like a dashboard with 350 buttons and fields, anything past the 250th is invisible to it.",
+    "**Depends entirely on TypeSafe's paid, closed Jev service, and it's brand new.** If TypeSafe's pricing changes or the service goes down, the automation stops. Created September 16, 2026, still at version 0.1.0 - expect breaking changes."
+  ],
+  "sources": [
+    {
+      "title": "jev-ultrafast on GitHub (README, setup, benchmark)",
+      "url": "https://github.com/browser-use/jev-ultrafast",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "jev-ultrafast: docs/performance.md (full benchmark detail)",
+      "url": "https://github.com/browser-use/jev-ultrafast/blob/main/docs/performance.md",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "browser-use.com/ultrafast (Browser Use Cloud waitlist page)",
+      "url": "https://browser-use.com/ultrafast",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "findarepo: jev-ultrafast stats, growth and star check",
+      "url": "https://findarepo.com/repo/browser-use/jev-ultrafast/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "TypeSafe: introducing System One models and Jev (pricing)",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+    },
+    {
+      "title": "browser-harness on PyPI (package size)",
+      "url": "https://pypi.org/project/browser-harness/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Hacker News: Jev Ultrafast launch thread",
+      "url": "https://news.ycombinator.com/item?id=49735979",
+      "date": "2026-09-17"
+    },
+    {
+      "title": "AgentBreaking: the Jev Ultrafast guide",
+      "url": "https://agentbreaking.com/blog/browser-use-jev-ultrafast-guide/",
+      "date": "2026-09-19"
+    },
+    {
+      "title": "explainx.ai: Jev Ultrafast, Browser Use puts Jev in the browser agent loop",
+      "url": "https://www.explainx.ai/blog/jev-ultrafast-browser-use-typesafe-2026",
+      "date": "2026-09-21"
+    },
+    {
+      "title": "Jev Ultrafast Explained (critical technical review)",
+      "url": "https://hoangyell.com/jev-ultrafast-explained/",
+      "date": "2026-09-21"
+    },
+    {
+      "title": "Is Jev Ultrafast safe to use? (Greenlit Books field notes)",
+      "url": "https://greenlitbooks.com/field-notes/is-jev-ultrafast-safe",
+      "date": "2026-09-24"
+    },
+    {
+      "title": "Zilmac: Jev Ultrafast as a browser-agent design pattern",
+      "url": "https://zilmac.com/en/blog/articles/jev-ultrafast-browser-agent.html",
+      "date": "2026-09-26"
+    },
+    {
+      "title": "danielnc/jev-browse on GitHub (independent build on jev-ultrafast)",
+      "url": "https://github.com/danielnc/jev-browse",
+      "date": "2026-09-24"
+    },
+    {
+      "title": "vercel-labs/agent-browser on GitHub (alternative)",
+      "url": "https://agent-browser.dev",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "browser-harness 0.1.13 source: its analytics code (task and output upload, opt-out)",
+      "url": "https://github.com/browser-use/browser-harness/blob/v0.1.13/src/browser_harness/telemetry.py",
+      "date": "2026-09-27"
+    }
+  ],
+  "footprint": {
+    "disk": "About 1 MB for jev-ultrafast and the Browser Harness library it runs on combined (Browser Harness alone is 236 KB). There's no AI model to download - decisions run through TypeSafe's hosted Jev service, not on your machine.",
+    "memory": "No data found for an exact number. It doesn't load any AI model itself, so it should need little beyond what its small Python process and your already-open Chrome use.",
+    "runs_on": "Mac, Windows or Linux, with Python 3.12 or newer and Chrome already installed - it connects to your own browser rather than downloading one. No graphics card needed: every decision happens through hosted APIs, not on your machine.",
+    "source": {
+      "title": "jev-ultrafast README (setup) and the browser-harness package page on PyPI",
+      "url": "https://github.com/browser-use/jev-ultrafast#readme"
+    }
+  }
+}

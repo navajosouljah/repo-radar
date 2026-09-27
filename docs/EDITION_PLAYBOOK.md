@@ -109,6 +109,9 @@ order:
    - bigger: use the printed `url` as `visual.src`;
    - `alt` says what the picture really shows, with its real numbers and words;
    - for #1 to #3, the same picture is the `thumb` in edition.json.
+   It also lists the README's own diagrams (SVG). A still diagram can be used by its link, with the
+   maker's alt text as a starting point. An animated one loops with no pause button, so skip it in
+   the cloud (on a Mac it can be rendered to a still frame).
    Only if the script finds nothing usable, leave `visual` out; the page then says so honestly.
    A demo video it finds goes in `links.demo`.
 3. **The board:** 5 notes: *your problem* across the top, then *when it kicks in -> you give it

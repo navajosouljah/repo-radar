@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T20:59:14+00:00",
+  "title": "Design System: Repo Radar",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(0.975 0.007 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.002 95)",
+          "oklch(0.264 0.004 95)",
+          "oklch(0.379 0.006 95)",
+          "oklch(0.493 0.007 95)",
+          "oklch(0.607 0.007 95)",
+          "oklch(0.721 0.007 95)",
+          "oklch(0.836 0.006 95)",
+          "oklch(0.950 0.004 95)"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Paper Deep",
+        "canonical": "oklch(0.955 0.009 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.003 95)",
+          "oklch(0.264 0.006 95)",
+          "oklch(0.379 0.008 95)",
+          "oklch(0.493 0.009 95)",
+          "oklch(0.607 0.009 95)",
+          "oklch(0.721 0.009 95)",
+          "oklch(0.836 0.008 95)",
+          "oklch(0.950 0.005 95)"
+        ]
+      },
+      "dot-grid": {
+        "role": "neutral",
+        "displayName": "Dot Grid",
+        "canonical": "oklch(0.86 0.012 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.004 95)",
+          "oklch(0.264 0.007 95)",
+          "oklch(0.379 0.011 95)",
+          "oklch(0.493 0.012 95)",
+          "oklch(0.607 0.012 95)",
+          "oklch(0.721 0.012 95)",
+          "oklch(0.836 0.010 95)",
+          "oklch(0.950 0.007 95)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card",
+        "canonical": "oklch(0.992 0.004 95)",
+        "tonalRamp": [
+          "oklch(0.150 0.001 95)",
+          "oklch(0.264 0.002 95)",
+          "oklch(0.379 0.004 95)",
+          "oklch(0.493 0.004 95)",
+          "oklch(0.607 0.004 95)",
+          "oklch(0.721 0.004 95)",
+          "oklch(0.836 0.003 95)",
+          "oklch(0.950 0.002 95)"
+        ]
+      },
+      "marker-ink": {
+        "role": "primary",
+        "displayName": "Marker Ink",
+        "canonical": "oklch(0.25 0.025 265)",
+        "tonalRamp": [
+          "oklch(0.150 0.009 265)",
+          "oklch(0.264 0.015 265)",
+          "oklch(0.379 0.022 265)",
+          "oklch(0.493 0.025 265)",
+          "oklch(0.607 0.025 265)",
+          "oklch(0.721 0.025 265)",
+          "oklch(0.836 0.021 265)",
+          "oklch(0.950 0.015 265)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "oklch(0.43 0.022 265)",
+        "tonalRamp": [
+          "oklch(0.150 0.008 265)",
+          "oklch(0.264 0.014 265)",
+          "oklch(0.379 0.019 265)",
+          "oklch(0.493 0.022 265)",
+          "oklch(0.607 0.022 265)",
+          "oklch(0.721 0.022 265)",
+          "oklch(0.836 0.019 265)",
+          "oklch(0.950 0.013 265)"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "canonical": "oklch(0.58 0.018 265)",
+        "tonalRamp": [
+          "oklch(0.150 0.006 265)",
+          "oklch(0.264 0.011 265)",
+          "oklch(0.379 0.016 265)",
+          "oklch(0.493 0.018 265)",
+          "oklch(0.607 0.018 265)",
+          "oklch(0.721 0.018 265)",
+          "oklch(0.836 0.015 265)",
+          "oklch(0.950 0.010 265)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "oklch(0.87 0.012 265)",
+        "tonalRamp": [
+          "oklch(0.150 0.004 265)",
+          "oklch(0.264 0.007 265)",
+          "oklch(0.379 0.011 265)",
+          "oklch(0.493 0.012 265)",
+          "oklch(0.607 0.012 265)",
+          "oklch(0.721 0.012 265)",
+          "oklch(0.836 0.010 265)",
+          "oklch(0.950 0.007 265)"
+        ]
+      },
+      "problem-yellow": {
+        "role": "secondary",
+        "displayName": "Problem Yellow",
+        "canonical": "oklch(0.945 0.095 97)",
+        "tonalRamp": [
+          "oklch(0.150 0.033 97)",
+          "oklch(0.264 0.059 97)",
+          "oklch(0.379 0.084 97)",
+          "oklch(0.493 0.095 97)",
+          "oklch(0.607 0.095 97)",
+          "oklch(0.721 0.095 97)",
+          "oklch(0.836 0.081 97)",
+          "oklch(0.950 0.055 97)"
+        ]
+      },
+      "problem-yellow-edge": {
+        "role": "secondary",
+        "displayName": "Problem Yellow Edge",
+        "canonical": "oklch(0.83 0.125 92)",
+        "tonalRamp": [
+          "oklch(0.150 0.044 92)",
+          "oklch(0.264 0.077 92)",
+          "oklch(0.379 0.110 92)",
+          "oklch(0.493 0.125 92)",
+          "oklch(0.607 0.125 92)",
+          "oklch(0.721 0.125 92)",
+          "oklch(0.836 0.106 92)",
+          "oklch(0.950 0.073 92)"
+        ]
+      },
+      "problem-yellow-ink": {
+        "role": "secondary",
+        "displayName": "Problem Yellow Ink",
+        "canonical": "oklch(0.42 0.09 78)",
+        "tonalRamp": [
+          "oklch(0.150 0.032 78)",
+          "oklch(0.264 0.055 78)",
+          "oklch(0.379 0.079 78)",
+          "oklch(0.493 0.090 78)",
+          "oklch(0.607 0.090 78)",
+          "oklch(0.721 0.090 78)",
+          "oklch(0.836 0.076 78)",
+          "oklch(0.950 0.052 78)"
+        ]
+      },
+      "how-blue": {
+        "role": "secondary",
+        "displayName": "How Blue",
+        "canonical": "oklch(0.925 0.05 238)",
+        "tonalRamp": [
+          "oklch(0.150 0.017 238)",
+          "oklch(0.264 0.031 238)",
+          "oklch(0.379 0.044 238)",
+          "oklch(0.493 0.050 238)",
+          "oklch(0.607 0.050 238)",
+          "oklch(0.721 0.050 238)",
+          "oklch(0.836 0.042 238)",
+          "oklch(0.950 0.029 238)"
+        ]
+      },
+      "how-blue-light": {
+        "role": "secondary",
+        "displayName": "How Blue Light",
+        "canonical": "oklch(0.955 0.03 238)",
+        "tonalRamp": [
+          "oklch(0.150 0.010 238)",
+          "oklch(0.264 0.018 238)",
+          "oklch(0.379 0.026 238)",
+          "oklch(0.493 0.030 238)",
+          "oklch(0.607 0.030 238)",
+          "oklch(0.721 0.030 238)",
+          "oklch(0.836 0.025 238)",
+          "oklch(0.950 0.017 238)"
+        ]
+      },
+      "how-blue-edge": {
+        "role": "secondary",
+        "displayName": "How Blue Edge",
+        "canonical": "oklch(0.74 0.095 242)",
+        "tonalRamp": [
+          "oklch(0.150 0.033 242)",
+          "oklch(0.264 0.059 242)",
+          "oklch(0.379 0.084 242)",
+          "oklch(0.493 0.095 242)",
+          "oklch(0.607 0.095 242)",
+          "oklch(0.721 0.095 242)",
+          "oklch(0.836 0.081 242)",
+          "oklch(0.950 0.055 242)"
+        ]
+      },
+      "how-blue-ink": {
+        "role": "secondary",
+        "displayName": "How Blue Ink",
+        "canonical": "oklch(0.40 0.13 255)",
+        "tonalRamp": [
+          "oklch(0.150 0.045 255)",
+          "oklch(0.264 0.080 255)",
+          "oklch(0.379 0.115 255)",
+          "oklch(0.493 0.130 255)",
+          "oklch(0.607 0.130 255)",
+          "oklch(0.721 0.130 255)",
+          "oklch(0.836 0.110 255)",
+          "oklch(0.950 0.076 255)"
+        ]
+      },
+      "result-green": {
+        "role": "tertiary",
+        "displayName": "Result Green",
+        "canonical": "oklch(0.925 0.075 152)",
+        "tonalRamp": [
+          "oklch(0.150 0.026 152)",
+          "oklch(0.264 0.046 152)",
+          "oklch(0.379 0.066 152)",
+          "oklch(0.493 0.075 152)",
+          "oklch(0.607 0.075 152)",
+          "oklch(0.721 0.075 152)",
+          "oklch(0.836 0.064 152)",
+          "oklch(0.950 0.044 152)"
+        ]
+      },
+      "result-green-edge": {
+        "role": "tertiary",
+        "displayName": "Result Green Edge",
+        "canonical": "oklch(0.75 0.12 152)",
+        "tonalRamp": [
+          "oklch(0.150 0.042 152)",
+          "oklch(0.264 0.074 152)",
+          "oklch(0.379 0.106 152)",
+          "oklch(0.493 0.120 152)",
+          "oklch(0.607 0.120 152)",
+          "oklch(0.721 0.120 152)",
+          "oklch(0.836 0.102 152)",
+          "oklch(0.950 0.070 152)"
+        ]
+      },
+      "result-green-ink": {
+        "role": "tertiary",
+        "displayName": "Result Green Ink",
+        "canonical": "oklch(0.39 0.11 153)",
+        "tonalRamp": [
+          "oklch(0.150 0.038 153)",
+          "oklch(0.264 0.068 153)",
+          "oklch(0.379 0.097 153)",
+          "oklch(0.493 0.110 153)",
+          "oklch(0.607 0.110 153)",
+          "oklch(0.721 0.110 153)",
+          "oklch(0.836 0.093 153)",
+          "oklch(0.950 0.064 153)"
+        ]
+      },
+      "watch-coral": {
+        "role": "tertiary",
+        "displayName": "Watch Coral",
+        "canonical": "oklch(0.925 0.055 32)",
+        "tonalRamp": [
+          "oklch(0.150 0.019 32)",
+          "oklch(0.264 0.034 32)",
+          "oklch(0.379 0.049 32)",
+          "oklch(0.493 0.055 32)",
+          "oklch(0.607 0.055 32)",
+          "oklch(0.721 0.055 32)",
+          "oklch(0.836 0.047 32)",
+          "oklch(0.950 0.032 32)"
+        ]
+      },
+      "watch-coral-edge": {
+        "role": "tertiary",
+        "displayName": "Watch Coral Edge",
+        "canonical": "oklch(0.72 0.14 30)",
+        "tonalRamp": [
+          "oklch(0.150 0.049 30)",
+          "oklch(0.264 0.086 30)",
+          "oklch(0.379 0.124 30)",
+          "oklch(0.493 0.140 30)",
+          "oklch(0.607 0.140 30)",
+          "oklch(0.721 0.140 30)",
+          "oklch(0.836 0.119 30)",
+          "oklch(0.950 0.082 30)"
+        ]
+      },
+      "watch-coral-ink": {
+        "role": "tertiary",
+        "displayName": "Watch Coral Ink",
+        "canonical": "oklch(0.47 0.16 29)",
+        "tonalRamp": [
+          "oklch(0.150 0.056 29)",
+          "oklch(0.264 0.099 29)",
+          "oklch(0.379 0.141 29)",
+          "oklch(0.493 0.160 29)",
+          "oklch(0.607 0.160 29)",
+          "oklch(0.721 0.160 29)",
+          "oklch(0.836 0.136 29)",
+          "oklch(0.950 0.093 29)"
+        ]
+      },
+      "link-blue": {
+        "role": "primary",
+        "displayName": "Link Blue",
+        "canonical": "oklch(0.44 0.16 262)",
+        "tonalRamp": [
+          "oklch(0.150 0.056 262)",
+          "oklch(0.264 0.099 262)",
+          "oklch(0.379 0.141 262)",
+          "oklch(0.493 0.160 262)",
+          "oklch(0.607 0.160 262)",
+          "oklch(0.721 0.160 262)",
+          "oklch(0.836 0.136 262)",
+          "oklch(0.950 0.093 262)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The repo's name at the top of its page; the hub masthead."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section questions, each with a numbered ink dot."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "The tagline under the name; card headings at 1.125rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, 66ch max, never below 16px."
+      },
+      "marker": {
+        "displayName": "Marker",
+        "purpose": "The one sentence on each sticky note, photo captions. Never paragraphs."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase role labels on notes, vitals and the footprint card."
+      }
+    },
+    "shadows": [
+      {
+        "name": "stuck-on-note",
+        "value": "0 1px 0 oklch(0.25 0.025 265 / 0.06), 0 6px 18px -8px oklch(0.25 0.025 265 / 0.22)",
+        "purpose": "Sticky notes, the pinned product photo, watch-out notes."
+      },
+      {
+        "name": "button-lift",
+        "value": "0 4px 0 oklch(0.25 0.025 265)",
+        "purpose": "Buttons on hover, with a 2px upward move."
+      },
+      {
+        "name": "board-rim",
+        "value": "inset 0 0 0 6px oklch(0.975 0.007 95)",
+        "purpose": "The board's whiteboard frame."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(.22,1,.36,1)",
+        "purpose": "Button lift on hover (0.15s). Nothing else moves; reduced motion removes it and every rotation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "880px"
+      },
+      {
+        "name": "phone",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on a repo page: Visit the website.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Visit the website <span aria-hidden=\"true\">&#8599;</span></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:10px;font-family:var(--f-display);font-weight:700;font-size:1rem;text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:var(--paper);transition:transform .15s cubic-bezier(.22,1,.36,1),box-shadow .15s}.ds-btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}.ds-btn-primary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The second action: See it work.",
+      "html": "<a class=\"ds-btn\" href=\"#\">See it work <span aria-hidden=\"true\">&#8599;</span></a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:10px;font-family:var(--f-display);font-weight:700;font-size:1rem;text-decoration:none;border:2px solid var(--ink);background:var(--card);color:var(--ink);transition:transform .15s cubic-bezier(.22,1,.36,1),box-shadow .15s}.ds-btn:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}.ds-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}"
+    },
+    {
+      "name": "Fit Chip",
+      "kind": "chip",
+      "refersTo": "chip-fit-you",
+      "description": "Who a repo is for: Use it yourself (green) or For developers (blue).",
+      "html": "<span class=\"ds-chip ds-you\"><span class=\"ds-dot\"></span>Use it yourself</span> <span class=\"ds-chip ds-dev\"><span class=\"ds-dot\"></span>For developers</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:700;padding:5px 10px;border-radius:999px;border:1.5px solid var(--rule)}.ds-dot{width:8px;height:8px;border-radius:50%;background:currentColor}.ds-you{background:var(--green);border-color:var(--green-edge);color:var(--green-ink)}.ds-dev{background:var(--blue-2);border-color:var(--blue-edge);color:var(--blue-ink)}"
+    },
+    {
+      "name": "Sticky Note",
+      "kind": "custom",
+      "refersTo": "note-how",
+      "description": "One step of the board: a role label, one marker sentence, a real example.",
+      "html": "<div class=\"ds-note\"><span class=\"ds-role\">It does</span><p class=\"ds-say\">It reads the message once and scores every answer at the same time</p><p class=\"ds-eg\">It never writes sentences, so it can't ramble.</p></div>",
+      "css": ".ds-note{max-width:260px;padding:16px 16px 24px;border-radius:3px;background:var(--blue);border-top:6px solid var(--blue-edge);box-shadow:var(--shadow);transform:rotate(-1.1deg);display:flex;flex-direction:column;gap:8px}.ds-role{font-size:.8125rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue-ink)}.ds-say{margin:0;font-family:var(--f-marker);font-weight:600;font-size:1.1875rem;line-height:1.3;color:var(--ink)}.ds-eg{margin:0;font-size:.9375rem;line-height:1.4;color:var(--ink-2);background:oklch(1 0 0 / .55);border-radius:6px;padding:8px 10px}"
+    },
+    {
+      "name": "Vital",
+      "kind": "card",
+      "refersTo": "vital",
+      "description": "One at-a-glance number under the hero; the safety vital turns green or coral.",
+      "html": "<div class=\"ds-vital ds-safe\"><span class=\"ds-vlabel\">Safety check</span><span class=\"ds-vbig\">Passed</span><span class=\"ds-vnote\">Checked Sep 27: no open security issues</span></div>",
+      "css": ".ds-vital{width:220px;min-height:132px;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card)}.ds-vlabel{font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}.ds-vbig{font-family:var(--f-display);font-weight:800;font-size:1.75rem;line-height:1}.ds-vnote{font-size:.9375rem;color:var(--ink-2);line-height:1.35}.ds-safe{background:var(--green);border-color:var(--green-edge)}.ds-safe .ds-vlabel,.ds-safe .ds-vbig{color:var(--green-ink)}"
+    },
+    {
+      "name": "DO NOT INSTALL Stamp",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "The rotated stamp on a repo that failed the safety check.",
+      "html": "<span class=\"ds-stamp\">DO NOT INSTALL</span>",
+      "css": ".ds-stamp{display:inline-block;font-family:var(--f-display);font-weight:800;letter-spacing:.12em;font-size:1.5rem;padding:6px 16px;border:3px solid currentColor;border-radius:6px;transform:rotate(-2deg);color:var(--coral-ink)}"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Wordmark in marker type, four quiet links.",
+      "html": "<nav class=\"ds-top\"><a class=\"ds-brand\" href=\"#\">Repo <span>Radar</span></a><span class=\"ds-links\"><a href=\"#\">This week's 10</a><a href=\"#\">Categories</a><a href=\"#\">Archive</a><a href=\"#\">Look up a repo</a></span></nav>",
+      "css": ".ds-top{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:.9375rem}.ds-brand{font-family:var(--f-marker);font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none}.ds-brand span{color:var(--blue-ink)}.ds-links{display:flex;gap:16px;flex-wrap:wrap}.ds-links a{color:var(--ink-2);text-decoration:none}.ds-links a:hover{color:var(--ink);text-decoration:underline}.ds-links a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Workshop Whiteboard",
+    "overview": "Every page is a whiteboard after a good working session: a dotted board, sticky notes in four colors, a pinned photo of the real product, and a marker-drawn arrow from the problem to the result. PRODUCT.md's personality line is the brief: \"A sharp friend at a whiteboard: **clear, visual, candid.**\" The reader is a non-coder executive who skims ten tools in fifteen minutes, on a desk monitor or a phone, in a bright room, so the system is light, high-contrast and legible before it is clever.\n\nThe page is one scroll, in the same order every time, and its headers are the reader's own questions: What is it? How does it work? What changes for me? How hard is it to try? Should I? Is it safe? Who's using it? Structure carries meaning, so skimming becomes pattern recognition. Density is generous: one idea per note, one fact per line, big numbers only where they decide something.\n\nIt rejects, by name, everything in PRODUCT.md's anti-references: the old dark \"terminal\" pages with a random skin per page and four tabs hiding the content; SaaS landing templates with a big-number hero, identical icon-heading-text card grids and gradient accents; GitHub READMEs that lead with walls of text and install commands; and hype newsletters with \"game-changer\" language and star counts presented as proof.",
+    "keyCharacteristics": [
+      "A warm dotted paper canvas; ink is a deep blue-black, never pure black.",
+      "Four legend colors with fixed meanings on every page, always paired with a label.",
+      "Hand-lettered marker type only on sticky notes and captions; a sturdy grotesque for headings; a legibility-first sans for reading.",
+      "Slight rotations (about 1 degree) and soft shadows make notes feel stuck on, not rendered.",
+      "The same section order on every page, numbered, with question headers.",
+      "Phone-first: every row stacks to one column, and every arrow turns to point down."
+    ],
+    "rules": [
+      {
+        "name": "The Legend Rule",
+        "body": "Yellow is the problem, blue is how it works, green is what you get, coral is watch out, on every page, forever. A color never appears in another role, and it never appears without its label.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Pure Black Rule",
+        "body": "No #000 and no #fff anywhere. Every neutral is tinted: paper toward warm, ink toward blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Marker Is For Notes Rule",
+        "body": "Shantell Sans appears only on sticky notes, captions and small tags. A paragraph in marker type is prohibited.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "There is one shadow for things stuck on the board. If a card needs a shadow to be noticed, it should be a note, or it should not be there.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Steady Hand Rule",
+        "body": "Rotations stay between -1.1 and 1 degree, and every rotation is removed when the reader prefers reduced motion.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep the legend fixed: Problem Yellow (oklch(0.945 0.095 97)) for the problem, How Blue for how it works, Result Green for what you get, Watch Coral for watch out, each with its label.",
+      "**Do** show the product working first: a real screenshot pinned in the hero, before any paragraph.",
+      "**Do** keep the same section order on every page, with the reader's questions as headers.",
+      "**Do** keep body text at 1.0625rem (17px) or larger, with lines capped at 66ch.",
+      "**Do** make every step that sends the reader somewhere a link.",
+      "**Do** stack every row to one column below 880px, with arrows pointing down."
+    ],
+    "donts": [
+      "**Don't** bring back the old pages: a dark \"terminal\" look, a different random skin on every page, or four tabs hiding most of the content.",
+      "**Don't** use SaaS landing templates: a big-number hero, identical icon-heading-text card grids, gradient accents.",
+      "**Don't** open like a GitHub README: walls of text and install commands before any \"why\".",
+      "**Don't** write like a hype newsletter: \"game-changer\" language, uncited claims, star counts presented as proof.",
+      "**Don't** use a legend color outside its role, or a color without its label.",
+      "**Don't** use pure black or pure white, gradient text, or colored side-stripe borders on cards or notes.",
+      "**Don't** set paragraphs in the marker font, or rotate anything more than about 1 degree."
+    ]
+  }
+}

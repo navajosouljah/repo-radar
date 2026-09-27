@@ -3,77 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DO NOT INSTALL: zai-org/ZCode | Repo Radar</title>
-<meta name="description" content="Removed from Repo Radar Edition 009 after a security review: ZCode was caught silently uploading users' entire code history to its maker's cloud.">
-<style>
-  :root{--bg:#160d0e;--panel:#221415;--ink:#f6ecec;--dim:#c9b3b3;--red:#ff5a5a;--red-soft:rgba(255,90,90,.14);--line:rgba(255,90,90,.35)}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-  a{color:#ffb3b3}
-  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 64px}
-  .top{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin-bottom:36px}
-  .top a{text-decoration:none;color:var(--dim)}
-  .stamp{display:inline-block;border:3px solid var(--red);color:var(--red);font-weight:800;letter-spacing:.12em;font-size:clamp(28px,7vw,48px);padding:6px 18px;border-radius:6px;transform:rotate(-2deg);margin-bottom:22px}
-  h1{font-size:clamp(26px,5vw,36px);line-height:1.2;margin-bottom:10px}
-  h1 span{color:var(--dim);font-weight:500}
-  .lede{font-size:19px;color:var(--dim);margin-bottom:34px;max-width:62ch}
-  h2{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:34px 0 12px}
-  ul{padding-left:20px}
-  li{margin:8px 0;max-width:66ch}
-  .box{background:var(--red-soft);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
-  .log{font-size:15px;color:var(--dim)}
-  .log b{color:var(--ink)}
-  .src li{font-size:15px}
-  .foot{margin-top:48px;font-size:13px;color:var(--dim)}
-</style>
+<title>DO NOT INSTALL: ZCode | Repo Radar</title>
+<meta name="description" content="It was caught silently uploading users' entire code history to its maker's cloud.">
+<meta property="og:title" content="DO NOT INSTALL: ZCode | Repo Radar">
+<meta property="og:description" content="It was caught silently uploading users' entire code history to its maker's cloud.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-  <div class="top"><a href="./">&larr; Edition 009</a><a href="../../index.html">Repo Radar</a></div>
-
-  <div class="stamp">DO NOT INSTALL</div>
-  <h1><span>zai-org/</span>ZCode</h1>
-  <p class="lede">Z.ai's AI coding app. We ranked it #5 in Edition 009, then removed it after our security review on September 27, 2026. It was caught silently uploading users' entire code history to its maker's cloud.</p>
-
-  <h2>What happened</h2>
-  <ul>
-    <li>A developer's reverse-engineering report (September 18) found ZCode packing whole workspaces, including the full Git history, into encrypted archives and uploading them to Alibaba Cloud storage. Only Z.ai held the key to decrypt them.</li>
-    <li>In one examined install, a single upload was 313 MB covering 42,411 files, and 86.6% of it was the Git history.</li>
-    <li>It kept doing this with the two settings that looked relevant switched off.</li>
-    <li>Z.ai apologized, said it fixed the problem, and published the app's code on GitHub on September 21.</li>
-  </ul>
-
-  <h2>Why it still fails our check</h2>
-  <div class="box">
-    <ul>
-      <li><b>The fix can't be verified.</b> The published code can show what the app does now. It can't show what happened to code already uploaded to Z.ai's servers.</li>
-      <li><b>The repo can't be matched to the app people install.</b> It launched as a 3-commit code drop from 2 contributors, with no development history.</li>
-      <li><b>The popularity isn't earned history.</b> 6.9K stars in 7 days, on that same 3-commit history.</li>
-    </ul>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
+<main class="wrap">
+<section class="answer danger" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="stamp fail">DO NOT INSTALL</span><span class="repo-id">zai-org/ZCode</span></div>
+    <h1 id="name">ZCode</h1>
+    <p class="tagline">Z.ai's AI coding app. We ranked it #5 in Edition 009, then pulled it after our security review on September 27, 2026.</p>
+    <p class="sentence">It was caught silently uploading users' entire code history to its maker's cloud.</p>
   </div>
-
-  <h2>If you already used it</h2>
-  <ul>
-    <li>Treat anything in the history of repos you opened with ZCode (API keys, tokens, passwords) as exposed, and rotate it.</li>
-    <li>Uninstall it until an independent review confirms the app no longer uploads workspaces.</li>
-  </ul>
-
-  <h2>Safety check record</h2>
-  <p class="log"><b>Checked:</b> September 27, 2026. <b>Verdict:</b> FAIL (credible data-upload reports; unverifiable remediation).<br>
-  <b>Advisories:</b> none published; the repo launched without a security policy.<br>
-  <b>Searches:</b> CVE, vulnerability, malware and scam searches surfaced the reports below.<br>
-  <b>Activity:</b> 6.9K stars, 2 contributors, 3 commits, created September 20, 2026.</p>
-
-  <h2>Sources</h2>
-  <ul class="src">
-    <li><a href="https://runtimewire.com/article/zai-open-sources-zcode-security-remediation-git-history-upload">RuntimeWire: Z.ai open-sources ZCode after its coding agent uploaded Git histories</a> (Sep 21, 2026)</li>
-    <li><a href="https://www.theregister.com/security/2026/09/22/zai-says-sorry-for-slurping-up-your-code-open-sources-zcode/5298300">The Register: Z.ai says sorry for slurping up your code, open sources ZCode</a> (Sep 22, 2026)</li>
-    <li><a href="https://dev.to/jamilxt/an-ai-coding-app-was-silently-uploading-your-entire-git-history-inside-the-zcode-incident-15j">DEV Community: An AI coding app was silently uploading your entire Git history</a></li>
-    <li><a href="https://news.ycombinator.com/item?id=49752422">Hacker News discussion</a></li>
-    <li><a href="https://github.com/zai-org/ZCode">The ZCode repository</a> (for reference only)</li>
-  </ul>
-
-  <p class="foot">Repo Radar - Edition 009 - Week of September 25, 2026. Removed after security review, September 27, 2026.</p>
-</div>
+</section>
+<section class="q" id="what" aria-labelledby="what-h"><header><span class="q-num">1</span><h2 id="what-h">What happened?</h2></header><ul class="watch"><li>A developer's reverse-engineering report (September 18) found ZCode packing whole workspaces, including the full Git history, into encrypted archives and uploading them to Alibaba Cloud storage. Only Z.ai held the key to decrypt them.</li><li>In one examined install, a single upload was <b>313 MB covering 42,411 files</b>, and 86.6% of it was the Git history.</li><li>It kept doing this with the two settings that looked relevant <b>switched off</b>.</li><li>Z.ai apologized, said it fixed the problem, and published the app's code on GitHub on September 21.</li></ul></section>
+<section class="q" id="why" aria-labelledby="why-h"><header><span class="q-num">2</span><h2 id="why-h">Why it still fails our check</h2></header><div class="should one"><div class="no"><ul><li><b>The fix can't be verified.</b> The published code can show what the app does now. It can't show what happened to code already uploaded to Z.ai's servers.</li><li><b>The repo can't be matched to the app people install.</b> It launched as a 3-commit code drop from 2 contributors, with no development history.</li><li><b>The popularity isn't earned history.</b> 6.9K stars in 7 days, on that same 3-commit history.</li></ul></div></div></section>
+<section class="q" id="used" aria-labelledby="used-h"><header><span class="q-num">3</span><h2 id="used-h">If you already used it</h2></header><ol class="steps"><li>Treat anything in the history of projects you opened with ZCode (API keys, tokens, passwords) as exposed, and change it.</li><li>Uninstall it until an independent review confirms the app no longer uploads workspaces.</li></ol></section>
+<section class="q" id="record" aria-labelledby="record-h"><header><span class="q-num">4</span><h2 id="record-h">Safety check record</h2></header><ul class="checks">
+  <li class="flag"><div><b>Checked September 27, 2026: FAIL</b><span>Credible reports (The Register, RuntimeWire, SCMP, Sep 18-22 2026) that ZCode silently packaged and uploaded users' entire workspaces including .git history to vendor cloud storage, even with the relevant settings off. Vendor claims remediation, but server-side retention is unverifiable and the repo is a 3-commit code drop (2 contributors, 6.9K stars in 7 days), so the published code can't be verified against the distributed app.</span></div></li>
+  <li><div><b>Security advisories: 0</b><span><a href="https://github.com/zai-org/ZCode/security/advisories" rel="noopener">GitHub's advisory list</a></span></div></li>
+  <li class="flag"><div><b>Activity</b><span>6.9K stars, 2 contributors, 3 commits, created September 20, 2026</span></div></li>
+</ul></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://runtimewire.com/article/zai-open-sources-zcode-security-remediation-git-history-upload" rel="noopener">RuntimeWire: Z.ai open-sources ZCode after its coding agent uploaded Git histories</a>, Sep 21</li><li><a href="https://www.theregister.com/security/2026/09/22/zai-says-sorry-for-slurping-up-your-code-open-sources-zcode/5298300" rel="noopener">The Register: Z.ai says sorry for slurping up your code, open sources ZCode</a>, Sep 22</li><li><a href="https://dev.to/jamilxt/an-ai-coding-app-was-silently-uploading-your-entire-git-history-inside-the-zcode-incident-15j" rel="noopener">DEV Community: An AI coding app was silently uploading your entire Git history</a></li><li><a href="https://news.ycombinator.com/item?id=49752422" rel="noopener">Hacker News discussion</a></li><li><a href="https://github.com/zai-org/ZCode" rel="noopener">The ZCode repository (for reference only)</a></li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026. Pulled after our security review.</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

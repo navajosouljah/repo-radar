@@ -16,6 +16,9 @@ import { join, dirname, normalize, relative } from 'node:path';
 const argv = process.argv.slice(2);
 const IMPORTED = !process.argv[1]?.endsWith('verify.mjs');
 const ROOT = argv.includes('--root') ? argv[argv.indexOf('--root') + 1] : new URL('..', import.meta.url).pathname;
+// --sheet data/editions/<date>/<slug>.json checks that one answer sheet alone (fields, board,
+// footprint, links, jargon, dates, dashes, gated alternatives), so several pages can be written at once.
+const SHEET = argv.includes('--sheet') ? argv[argv.indexOf('--sheet') + 1] : null;
 const problems = [];
 const bad = (where, what) => problems.push(`${where}: ${what}`);
 const readJSON = p => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
@@ -29,7 +32,7 @@ function walk(dir, out = []) {
   }
   return out;
 }
-const files = IMPORTED ? [] : walk('');
+const files = IMPORTED || SHEET ? [] : walk('');
 const html = files.filter(f => f.endsWith('.html'));
 
 // ---- 1 + 2: links and dashes -------------------------------------------------------------
@@ -53,6 +56,8 @@ for (const f of files.filter(f => f.startsWith('data/') && f.endsWith('.json')))
 const GATE = existsSync(join(ROOT, 'data/gate-log.json')) ? readJSON('data/gate-log.json') : {};
 const BLOCK = new Set((existsSync(join(ROOT, 'data/blocklist.json')) ? readJSON('data/blocklist.json') : []).map(b => key(b.repo)));
 const gateOf = r => Object.values(GATE).find(e => key(e.repo) === key(r));
+// An alternative that links a GitHub project recommends it, whether or not it has a repo field.
+export const altRepo = a => a?.repo || (String(a?.url || '').match(/^https?:\/\/github\.com\/([\w.-]+\/[\w.-]+?)(?:\.git)?\/?(?:[#?].*)?$/) || [])[1] || null;
 function cleared(repo, where, maxAgeDays = 45) {
   if (BLOCK.has(key(repo))) return bad(where, `${repo} is on the blocklist`);
   const g = gateOf(repo);
@@ -64,15 +69,15 @@ function cleared(repo, where, maxAgeDays = 45) {
 }
 // a) repos rendered from data (new pages, lists, board, alternatives)
 const edDirs = existsSync(join(ROOT, 'data/editions')) ? readdirSync(join(ROOT, 'data/editions')).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)) : [];
-for (const d of edDirs) {
+for (const d of SHEET ? [] : edDirs) {
   const ed = readJSON(`data/editions/${d}/edition.json`);
   for (const p of ed.picks) if (p.status !== 'fail') cleared(p.repo, `data/editions/${d}/edition.json`);
   for (const f of readdirSync(join(ROOT, `data/editions/${d}`)).filter(f => f.endsWith('.json') && f !== 'edition.json')) {
     const r = readJSON(`data/editions/${d}/${f}`);
-    for (const a of r.verdict?.alternatives || []) if (a.repo) cleared(a.repo, `data/editions/${d}/${f} (alternative)`);
+    for (const a of r.verdict?.alternatives || []) if (altRepo(a)) cleared(altRepo(a), `data/editions/${d}/${f} (alternative)`);
   }
 }
-if (existsSync(join(ROOT, 'data/hub.json'))) {
+if (!SHEET && existsSync(join(ROOT, 'data/hub.json'))) {
   const hub = readJSON('data/hub.json');
   for (const c of hub.categories || []) for (const p of c.picks || []) cleared(p.repo, `data/hub.json (${c.name})`);
   for (const p of hub.claude_board || []) cleared(p.repo, 'data/hub.json (Claude Board)');
@@ -101,13 +106,19 @@ export function jargonProblem(text) {
   for (const m of String(text || '').matchAll(re)) if (!explainedAt(text, m.index, m[0].length)) return m[0];
   return null;
 }
-const dataFiles = [
+const dataFiles = SHEET ? [SHEET] : [
   ...edDirs.flatMap(d => readdirSync(join(ROOT, `data/editions/${d}`)).filter(f => f.endsWith('.json') && f !== 'edition.json').map(f => `data/editions/${d}/${f}`)),
   ...(existsSync(join(ROOT, 'data/lookups')) ? readdirSync(join(ROOT, 'data/lookups')).filter(f => f.endsWith('.json')).map(f => `data/lookups/${f}`) : []),
 ];
 for (const where of dataFiles) {
   const r = readJSON(where);
-  if (where.startsWith('data/lookups/')) { cleared(r.repo, where); for (const a of r.verdict?.alternatives || []) if (a.repo) cleared(a.repo, `${where} (alternative)`); }
+  if (r.status === 'fail') { // a DO NOT INSTALL page: the evidence, not a recommendation
+    for (const k of ['repo', 'name', 'tagline', 'sentence', 'what_happened', 'why_fail', 'if_used', 'sources']) if (r[k] == null || (Array.isArray(r[k]) && !r[k].length)) bad(where, `missing ${k}`);
+    if (gateOf(r.repo)?.verdict !== 'FAIL') bad(where, `a DO NOT INSTALL page needs a FAIL in the gate log (${r.repo} is ${gateOf(r.repo)?.verdict || 'not gated'})`);
+    continue;
+  }
+  if (where.startsWith('data/lookups/') || SHEET) { cleared(r.repo, where); for (const a of r.verdict?.alternatives || []) if (altRepo(a)) cleared(altRepo(a), `${where} (alternative)`); }
+  if (SHEET && /[—–]/.test(readFileSync(join(ROOT, where), 'utf8'))) bad(where, 'contains an em or en dash');
   for (const k of REQUIRED) if (r[k] == null || (Array.isArray(r[k]) && !r[k].length && k !== 'uses' && k !== 'coverage')) bad(where, `missing ${k}`);
   const board = r.board || [];
   if (board.map(n => n.role).join() !== BOARD.join()) bad(where, `board needs 5 notes in this order: ${BOARD.join(', ')}`);
@@ -133,4 +144,4 @@ if (IMPORTED) { /* imported by a test: expose helpers only */ }
 else if (problems.length) {
   console.error(`VERIFY FAILED - ${problems.length} problem(s):\n  ${[...new Set(problems)].join('\n  ')}`);
   process.exit(1);
-} else console.log(`verify ok: ${html.length} pages, ${edDirs.length} edition data folder(s), every recommended repo cleared`);
+} else console.log(SHEET ? `sheet ok: ${SHEET}` : `verify ok: ${html.length} pages, ${edDirs.length} edition data folder(s), every recommended repo cleared`);

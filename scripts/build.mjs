@@ -26,8 +26,8 @@ const errors = [];
 
 // ---------- helpers ----------
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-// Two kinds of markup are allowed inside data strings: **bold** and [a link](https://...).
-const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
+// Markup allowed inside data strings: **bold**, [a link](https://...), and `a tool name`.
+const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
 const human = n => {
   if (n == null || n === '') return 'no data';
   const v = Number(n);
@@ -123,7 +123,9 @@ function repoPage(ed, r, ctx = {}) {
   const effort = EFFORT[r.try?.effort] ?? 2;
   const q = (n, id, title, lede, body) => `<section class="q" id="${id}" aria-labelledby="${id}-h"><header><span class="q-num">${n}</span><h2 id="${id}-h">${title}</h2></header>${lede ? `<p class="lede">${lede}</p>` : ''}${body}</section>`;
 
-  for (const a of r.verdict?.alternatives || []) if (a.repo) requireGate(a.repo, `${where} (alternative)`);
+  // An alternative that links a GitHub project recommends it, whether or not it has a repo field.
+  const altRepo = a => a?.repo || (String(a?.url || '').match(/^https?:\/\/github\.com\/([\w.-]+\/[\w.-]+?)(?:\.git)?\/?(?:[#?].*)?$/) || [])[1] || null;
+  for (const a of r.verdict?.alternatives || []) if (altRepo(a)) requireGate(altRepo(a), `${where} (alternative)`);
 
   const links = r.links || {};
   const actions = [
@@ -260,6 +262,41 @@ ${sources}
 }
 const stripB = s => String(s || '').replace(/\*\*/g, '');
 
+// ---------- the DO NOT INSTALL page: a pick that failed the gate after it was published ----------
+// Red, with the evidence and what to do if you already used it. No picture, no board, no try box.
+function failPage(ed, r) {
+  const where = `editions/${ed.date}/${r.slug}.html`;
+  const g = Object.values(GATE).find(e => key(e.repo) === key(r.repo));
+  if (!g || g.verdict !== 'FAIL') errors.push(`${where}: a DO NOT INSTALL page needs a FAIL in the gate log (${r.repo} is ${g ? g.verdict : 'not gated'})`);
+  const act = g?.checks?.activity || {}, adv = g?.checks?.advisories || {};
+  const q = (n, id, title, body) => `<section class="q" id="${id}" aria-labelledby="${id}-h"><header><span class="q-num">${n}</span><h2 id="${id}-h">${title}</h2></header>${body}</section>`;
+  return `${head({ title: `DO NOT INSTALL: ${r.name} | Repo Radar`, description: stripB(r.sentence), depth: 2 })}
+${topbar(2, `Edition ${ed.number} &middot; Week of ${dLong(ed.date)}`)}
+<main class="wrap">
+<section class="answer danger" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="stamp fail">DO NOT INSTALL</span><span class="repo-id">${esc(r.repo)}</span></div>
+    <h1 id="name">${esc(r.name)}</h1>
+    <p class="tagline">${rich(r.tagline)}</p>
+    <p class="sentence">${rich(r.sentence)}</p>
+  </div>
+</section>
+${q(1, 'what', 'What happened?', `<ul class="watch">${(r.what_happened || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul>`)}
+${q(2, 'why', 'Why it still fails our check', `<div class="should one"><div class="no"><ul>${(r.why_fail || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div></div>`)}
+${q(3, 'used', 'If you already used it', `<ol class="steps">${(r.if_used || []).map(x => `<li>${rich(x)}</li>`).join('')}</ol>`)}
+${q(4, 'record', 'Safety check record', `<ul class="checks">
+  <li class="flag"><div><b>Checked ${g ? dLong(g.checked) : ''}: ${g ? g.verdict : 'not gated'}</b><span>${esc(g?.settled?.note || (g?.reasons || []).join('; '))}</span></div></li>
+  <li><div><b>Security advisories: ${adv.count ?? 'not checked'}</b><span>${adv.url ? `<a href="${esc(adv.url)}" rel="noopener">GitHub's advisory list</a>` : ''}</span></div></li>
+  <li class="${(act.flags || []).length ? 'flag' : ''}"><div><b>Activity</b><span>${human(act.stars)} stars, ${human(act.contributors)} contributors, ${human(act.commits)} commits${act.created ? `, created ${dLong(act.created)}` : ''}</span></div></li>
+</ul>`)}
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${(r.sources || []).map(x => `<li><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a>${x.date ? `, ${dShort(x.date)}` : ''}</li>`).join('')}</ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition ${ed.number} &middot; ${dLong(ed.date)}. Pulled after our security review.</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>
+`;
+}
+
 // ---------- edition index + hub ----------
 function pickCard(ed, p, i, depth) {
   const up = '../'.repeat(depth);
@@ -348,10 +385,10 @@ for (const date of editions) {
   for (const p of ed.picks) {
     if (only && p.slug !== only) continue;
     const f = `data/editions/${date}/${p.slug}.json`;
-    if (p.status === 'fail' || !existsSync(join(ROOT, f))) continue;
+    if (!existsSync(join(ROOT, f))) continue;
     const r = { ...read(f), rank: p.rank, slug: p.slug };
     const out = `editions/${date}/${p.slug}.html`;
-    outputs.push([out, repoPage(ed, r)]);
+    outputs.push([out, p.status === 'fail' || r.status === 'fail' ? failPage(ed, r) : repoPage(ed, r)]);
   }
   if (!only && ed.picks.every(p => p.status === 'fail' || p.oneliner)) {
     outputs.push([`editions/${date}/index.html`, editionIndex(ed)]);

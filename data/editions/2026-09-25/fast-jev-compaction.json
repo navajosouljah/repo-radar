@@ -1,0 +1,159 @@
+{
+  "repo": "tamaratran/fast-jev-compaction",
+  "name": "fast-jev-compaction",
+  "tagline": "A Claude Code add-on that makes room in a long chat by **deleting** old tool calls instead of summarizing them, so what it keeps never changes a word.",
+  "sentence": "When your Claude Code session gets too full, it asks TypeSafe's Jev decision AI which old file reads and command outputs are safe to throw away, deletes only those, and leaves everything you and Claude actually typed exactly as written.",
+  "fit": "you",
+  "replaces": "Claude Code's own built-in /compact summary",
+  "links": {
+    "docs": "https://github.com/tamaratran/fast-jev-compaction/blob/main/hooks/README.md"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Claude Code's normal way of making room in a long session is to have an AI write a shorter summary of the old parts - and summaries quietly drop exact file paths, error messages and rules you stated once.",
+      "eg": "The maker's own words: \"a file path, exact error, constraint, or command can disappear even when it matters later.\""
+    },
+    {
+      "role": "trigger",
+      "say": "It kicks in on its own once your session gets close to full (60% by default), or whenever you run /compact yourself.",
+      "eg": "Its own setting for this, compactAtPercent, is set to 60 out of the box."
+    },
+    {
+      "role": "input",
+      "say": "Your whole session so far: every message, plus every tool call (a file read, a terminal command) and its result.",
+      "eg": "Old results aren't hidden, just shortened to a note first, like \"ok, 4213 chars (omitted)\", so the decision is made with the full conversation in view."
+    },
+    {
+      "role": "does",
+      "say": "It pairs up every tool call with its result, then asks Jev two quick questions about each older one: should we still know this happened, and do we still need its exact result?",
+      "steps": [
+        "Leaves your very first message and your most recent messages alone, untouched",
+        "Sends everything else to Jev and asks, for each tool call: keep it, and keep its full result?",
+        "Deletes anything Jev says is safe to drop, and shortens (rather than fully deletes) results it says are only half-needed"
+      ],
+      "eg": "One real, public example: a session dropped from nearly 1,000,000 down to 86,000 on Claude Code's own context-used count, in about one second."
+    },
+    {
+      "role": "result",
+      "say": "More room to keep working, and a plain note telling you what happened.",
+      "outputs": [
+        { "what": "A session with real room left, not a rewritten one", "eg": "The viral example: nearly 1,000,000 down to 86,000 on the context-used count, in about a second" },
+        { "what": "Everything kept reads exactly as it happened", "eg": "The README's own promise: nothing kept \"is ever rewritten or summarized\"" },
+        { "what": "A plain on-screen note of what it did", "eg": "\"fast-jev-compaction: kept N/M messages, no summary\" when it works, or \"fallback to built-in summary\" on a short session it can't shrink enough" }
+      ]
+    }
+  ],
+  "before": [
+    "The normal way trims a long session by having an AI write a shorter summary - and a summary can quietly drop an exact file path, error message or rule you stated once.",
+    "Once something is gone from a summary, there's no way to check whether it mattered."
+  ],
+  "after": [
+    "Nothing kept is ever rewritten - the maker's own words are that it \"never rewrites anything.\"",
+    "Every deletion carries Jev's own confidence number attached, so what got cut (and how sure the AI was) can be checked.",
+    "In one real, public example, a session went from nearly 1,000,000 down to 86,000 on the context-used count, in about a second."
+  ],
+  "uses_note": "This rides on an early-access Claude Code feature (\"function hooks\") on a plugin that's about 10 days old, so what's out there so far is one dramatic public demo plus write-ups explaining how it works, not a track record of daily use yet.",
+  "uses": [
+    {
+      "who": "AI researcher Alex Volkov, as reported by developer Sebastien Dubois",
+      "what": "Ran fast-jev-compaction on one of his own real Claude Code sessions and posted the result publicly.",
+      "result": "Cut that session from nearly 1,000,000 down to 86,000 on Claude Code's context-used count, in about one second.",
+      "source": {
+        "title": "dsebastien.net: fast-jev-compaction",
+        "url": "https://www.dsebastien.net/fast-jev-compaction/",
+        "date": "2026-09-23"
+      },
+      "stat": "1M to 86K"
+    }
+  ],
+  "pulse": {
+    "gain": "+4.1K stars in its first 10 days",
+    "history": [
+      ["2026-09-18", 2800],
+      ["2026-09-27", 7000]
+    ],
+    "history_note": "Measured points only: findarepo's daily snapshots on Sep 18 and Sep 27. The line between them is drawn straight, not measured day by day.",
+    "facts": [
+      { "value": "346", "label": "new stars a day, measured by findarepo" },
+      { "value": "433", "label": "forks" },
+      { "value": "0", "label": "other packages it depends on - the npm package has no dependencies" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "JevStation: fast-jev-compaction deep dive",
+      "url": "https://jevstation.com/blog/fast-jev-compaction",
+      "meta": "Sep 20"
+    },
+    {
+      "plat": "Blog",
+      "title": "explainx.ai: fast-jev-compaction, a Claude Code plugin",
+      "url": "https://www.explainx.ai/blog/fast-jev-compaction-claude-code-plugin-2026",
+      "meta": "Sep 20"
+    },
+    {
+      "plat": "Blog",
+      "title": "Sebastien Dubois: fast-jev-compaction (with the Alex Volkov demo)",
+      "url": "https://www.dsebastien.net/fast-jev-compaction/",
+      "meta": "Sep 23"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic"
+  ],
+  "star_check": "findarepo's star check: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Read the [plugin setup notes](https://github.com/tamaratran/fast-jev-compaction/blob/main/hooks/README.md) first - this turns on an early-access Claude Code feature, it isn't a one-click install.",
+      "Turn on Claude Code's function hooks and add a TypeSafe API key in your settings, then install it from the [GitHub repo](https://github.com/tamaratran/fast-jev-compaction) with `claude plugin marketplace add tamaratran/fast-jev-compaction` followed by `claude plugin install fast-jev-compaction@fast-jev-compaction`.",
+      "Restart Claude Code (or run /reload-plugins) and keep working as normal - next time your session fills up, or you run /compact, watch for its on-screen message telling you what it kept."
+    ],
+    "paste": "/skillspector https://github.com/tamaratran/fast-jev-compaction\n\nIf that scan passes: read hooks/README.md, then in a throwaway Claude Code session turn on function hooks, install the plugin with a TypeSafe API key, do a few file reads to fill it up, and run /compact. Show me the exact on-screen message it gives you. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You run long Claude Code sessions and have watched Claude forget a file path or an exact error from earlier in the same conversation",
+      "You're comfortable turning on an early-access Claude Code feature and adding a TypeSafe API key"
+    ],
+    "skip_if": [
+      "Your sessions are mostly back-and-forth conversation rather than file reads and command output - this only trims tool calls, so it won't free up much room",
+      "You don't want your session's tool-call history leaving your machine, even in shortened form",
+      "You'd rather wait until this is out of early access"
+    ],
+    "alternatives": [
+      {
+        "name": "Claude Code's built-in /compact",
+        "url": "https://code.claude.com/docs/en/overview",
+        "line": "The plain summary-based compaction already built into Claude Code. Free and needs nothing extra to turn on, but more likely to lose an exact detail from earlier in the session."
+      }
+    ]
+  },
+  "watch": [
+    "**Every compaction sends your tool-call history to TypeSafe's servers.** The maker's own words: Jev is shown \"the whole conversation so far\" (with tool results shortened to a note first, not left out). If a session touches anything sensitive, that leaves your machine every time this runs.",
+    "**It only helps sessions heavy on tool calls.** By design it never removes or shortens the words you or Claude actually typed - only tool calls and their results. A long session that's mostly conversation won't shrink much.",
+    "**It rides on another early-access feature.** Claude Code's \"function hooks\" are themselves opt-in and can change between releases; the plugin's own type definitions are pinned to Claude Code 2.1.274 and need regenerating after an upgrade.",
+    "**Brand new, with one big public demo so far.** Created September 17, 2026. The viral 1-million-to-86,000 result is real, but it's one person's one session, not an average you should expect."
+  ],
+  "sources": [
+    { "title": "fast-jev-compaction on GitHub (README)", "url": "https://github.com/tamaratran/fast-jev-compaction", "date": "2026-09-27" },
+    { "title": "fast-jev-compaction: plugin setup and configuration (hooks/README.md)", "url": "https://github.com/tamaratran/fast-jev-compaction/blob/main/hooks/README.md", "date": "2026-09-27" },
+    { "title": "fast-jev-compaction on the npm registry (package size)", "url": "https://registry.npmjs.org/fast-jev-compaction/latest", "date": "2026-09-27" },
+    { "title": "findarepo: fast-jev-compaction stats, growth and star check", "url": "https://findarepo.com/repo/tamaratran/fast-jev-compaction/", "date": "2026-09-27" },
+    { "title": "JevStation: fast-jev-compaction deep dive", "url": "https://jevstation.com/blog/fast-jev-compaction", "date": "2026-09-20" },
+    { "title": "explainx.ai: fast-jev-compaction, a Claude Code plugin", "url": "https://www.explainx.ai/blog/fast-jev-compaction-claude-code-plugin-2026", "date": "2026-09-20" },
+    { "title": "Sebastien Dubois: fast-jev-compaction (reports the Alex Volkov demo)", "url": "https://www.dsebastien.net/fast-jev-compaction/", "date": "2026-09-23" },
+    { "title": "BuildWithJev: fast-jev-compaction listing", "url": "https://buildwithjev.com/builds/fast-jev-compaction", "date": "2026-09-27" }
+  ],
+  "footprint": {
+    "disk": "About 0.7 MB (57 files) for the npm package itself, with no other packages it depends on. No AI model to download - all the deciding happens through TypeSafe's hosted Jev service.",
+    "memory": "No data found for an exact number. It has no local AI model, so it should add very little on top of Node.js and Claude Code, which you're already running.",
+    "runs_on": "Needs Node.js 18 or newer, Claude Code 2.1.274 or later with its early-access \"function hooks\" turned on, and a TypeSafe API key. No graphics card needed - it doesn't run any AI itself, it only calls TypeSafe's hosted one.",
+    "source": {
+      "title": "fast-jev-compaction on the npm registry, and its GitHub setup docs",
+      "url": "https://registry.npmjs.org/fast-jev-compaction/latest"
+    }
+  }
+}

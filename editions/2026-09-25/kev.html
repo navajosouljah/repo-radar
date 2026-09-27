@@ -3,285 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jaredpalmer/kev - Open Decision Models on Qwen3.5 | Repo Radar</title>
+<title>kev: A free, four-size family of Jev-style decision AIs, from one that runs on a laptop to one that needs a data-center chip. | Repo Radar</title>
+<meta name="description" content="Point kev at examples of a decision you make over and over, run its training script for about a dollar of computer time, and get your own private version of TypeSafe's paid Jev - answering the same way, over the same kind of connection, so nothing else in your code has to change.">
+<meta property="og:title" content="kev: A free, four-size family of Jev-style decision AIs, from one that runs on a laptop to one that needs a data-center chip. | Repo Radar">
+<meta property="og:description" content="Point kev at examples of a decision you make over and over, run its training script for about a dollar of computer time, and get your own private version of TypeSafe's paid Jev - answering the same way, over the same kind of connection, so nothing else in your code has to change.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/kev.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0d0f12;--bg2:#121619;--card:#171b22;--card2:#1e232c;
-    --primary:#e5a536;--primary-dim:#c97d2a;--secondary:#c97d2a;
-    --accent:#7a7568;--accent-light:#a09882;
-    --ink:#ece5d5;--muted:#a09882;--line:#2a2820;
-    --sans:'Source Sans 3',sans-serif;--mono:'Fira Code',monospace;--disp:'Playfair Display',serif;
-    --r:6px;
-    --shadow:0 2px 10px rgba(0,0,0,.35);--shadow-lg:0 6px 28px rgba(0,0,0,.45);
-    --glow:0 0 16px #e5a53625;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;background-image:radial-gradient(circle,#2a282018 1px,transparent 1px);background-size:20px 20px}
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(13,15,18,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line);background:linear-gradient(175deg,#1a160e 0%,#0d0f12 50%)}
-  .kicker{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0d0f12;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:400}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(13,15,18,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0d0f12;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:italic;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#e5a53608,#c97d2a06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--sans);background:var(--primary);color:#0d0f12;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink);font-family:var(--disp)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.25)}
-  .ba.after{background:#e5a53608;border-color:#e5a53640}
-  .ba .ba-tag{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#ff5252}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--sans);background:var(--primary);color:#0d0f12;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#090b0e;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#5a5448}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.25);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#ff5252;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"\2022  ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--sans);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#0d0f12;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/jaredpalmer/kev" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Decision Models - Open Weights - Apache 2.0</span>
-    <h1><span class="owner">jaredpalmer/</span><span class="name">kev</span></h1>
-    <p class="tagline"><strong>Jev-like decision models you can train and run on your own hardware.</strong> Kev is a family of three open-weight models - 0.8B, 4B, and 9B - built on Qwen3.5 bases. Feed it one document and a set of typed questions, and it returns calibrated probabilities in a single forward pass. No text generation, no chain-of-thought. Trained for roughly $95 in H100 time on Modal.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">6.9K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">402</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>Open-weight <em>decision models</em></h2>
-    <p class="sub">Kev puts the Jev idea - typed questions in, calibrated probabilities out - into Apache-2.0 weights you own. A rank-16 LoRA adapter plus a pointer head sits on top of Qwen3.5 bases at three scales. One document goes in, a probability distribution comes out.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">6.9K</div><div class="l">GitHub Stars</div></div>
-      <div class="bignum"><div class="n sc">402</div><div class="l">Forks</div></div>
-      <div class="bignum"><div class="n lm">3</div><div class="l">Model Sizes</div></div>
-      <div class="bignum"><div class="n">0.837</div><div class="l">9B Accuracy</div></div>
-      <div class="bignum"><div class="n sc">$95</div><div class="l">Training Cost</div></div>
-      <div class="bignum"><div class="n">8</div><div class="l">Days Old</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#4 this week</span><span class="repo-id">jaredpalmer/kev</span></div>
+    <h1 id="name">kev</h1>
+    <p class="tagline">A free, four-size family of Jev-style decision AIs, from one that runs on a laptop to one that needs a data-center chip.</p>
+    <p class="sentence">Point kev at examples of a decision you make over and over, run its training script for about a dollar of computer time, and get your own private version of TypeSafe's paid Jev - answering the same way, over the same kind of connection, so nothing else in your code has to change.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      <span class="chip replaces">Replaces: TypeSafe's paid Jev service</span>
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Three model scales</div><p>Kev ships at <strong>0.8B, 4B, and 9B parameters</strong>. The 0.8B model runs on a MacBook. The 9B model scores 0.837 accuracy on the locked test set - within 2 points of hosted Jev at 0.857.</p></div>
-      <div class="feat"><div class="fh">No text generation</div><p>Kev is not a chatbot. It takes one document and typed questions, then returns <strong>probability distributions in a single forward pass</strong>. The pointer head scores each option's hidden state against the question's hidden state; a softmax turns those scores into probabilities.</p></div>
-      <div class="feat"><div class="fh">TypeSafe-compatible API</div><p>Kev serves TypeSafe's own <strong>POST /v1/systemone contract</strong>, so the official typesafe-sdk works against it by changing a base URL. Drop it into existing Jev-consuming code without rewriting the client.</p></div>
-      <div class="feat"><div class="fh">LoRA + pointer head architecture</div><p>A <strong>rank-16 LoRA adapter</strong> plus a small pointer head sits on the Qwen3.5 base. The adapter is tiny - you can store all three model adapters in a few hundred megabytes. The base weights come from Qwen and are frozen.</p></div>
-      <div class="feat"><div class="fh">$95 training cost</div><p>The entire Qwen3.5 port cost <strong>roughly $95 in Modal H100 time</strong> plus $0.03 in Jev API calls for generating calibration data. The repo includes the training script so you can reproduce or fine-tune on your own data.</p></div>
-      <div class="feat"><div class="fh">Calibration pass included</div><p>All three models received a <strong>second training pass on generated examples</strong> - policy cases with explicit day counts and cases whose deciding evidence was removed - trained toward uniform answers. This reduces overconfidence on ambiguous inputs.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>Decision intelligence without vendor lock-in</h3>
-      <p>The real value of Kev is not any single accuracy number. It is the fact that decision models - a category TypeSafe introduced with Jev - now exist as open weights under Apache-2.0. You can run Kev on your own GPU, fine-tune it on your domain data, and deploy it behind your own API without paying per-call pricing or sending sensitive documents to a third party. The 9B model trails Jev by only 2 points on the test set. For many use cases - policy screening, triage, routing - that delta does not matter, and the cost difference is enormous. One forward pass on a consumer GPU versus an API call to a hosted model.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>decision model</em> problem</h2>
-    <p class="sub">Jev proved that decision models work. But Jev is a hosted API with proprietary weights. If you need to run locally, fine-tune on domain data, or avoid sending sensitive documents to a third party, you are stuck.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Jev is hosted and proprietary.</strong> You send your document to TypeSafe's API and get probabilities back. You cannot inspect the weights, fine-tune on your data, or run it on your own hardware. Every call costs money and sends data off-premises.</p>
-        <p><strong>LLMs are overkill for yes-or-no questions.</strong> Using GPT-4 or Claude to answer "is this claim eligible?" generates paragraphs of reasoning when you just need a probability. You pay for tokens you do not need and introduce latency from text generation.</p>
-        <p><strong>Fine-tuned BERT is manual work.</strong> You can train a classifier, but you need labeled data, a training pipeline, and ongoing maintenance. Every new question type requires a new model or a retrain. There is no standard API shape.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Open weights under Apache-2.0.</strong> Kev's adapters and pointer head are yours. Run them on your GPU, behind your firewall, on your terms. No per-call pricing, no data leaving your infrastructure.</p>
-        <p><strong>One forward pass, one probability.</strong> No text generation, no chain-of-thought, no token counting. Send a document and typed questions, get calibrated probabilities back in milliseconds. The 0.8B model runs in under 2 seconds on an M4 Mac.</p>
-        <p><strong>Fine-tune with the included script.</strong> The repo ships a training script that works with Modal. Add your own labeled examples - the training instructions show that 50 to 100 examples can reach 95% accuracy in under 5 minutes on a CPU.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Run your own <em>decision model</em></h2>
-    <p class="sub">From clone to first inference in under 10 minutes. Weights download automatically from Hugging Face.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Clone the repository</span>
-git clone https://github.com/jaredpalmer/kev.git
-cd kev
-
-<span class="cm"># Install dependencies</span>
-pip install -e .
-
-<span class="cm"># Weights download automatically from Hugging Face</span>
-<span class="cm"># on first run (0.8B, 4B, or 9B)</span></pre>
-        <p>Kev requires <strong>Python 3.10+</strong> and PyTorch. The 0.8B model needs about 2 GB of VRAM; the 9B model needs about 20 GB. CPU inference works but is slower.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Run inference</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Start the server (TypeSafe-compatible API)</span>
-kev serve --model 0.8b --port 8080
-
-<span class="cm"># Or run a single prediction</span>
-kev predict \
-  --model 0.8b \
-  --document "Patient presented with..." \
-  --question "Is this claim eligible?" \
-  --options "yes,no"</pre>
-        <p>The server exposes the <strong>POST /v1/systemone endpoint</strong>. Point the typesafe-sdk at http://localhost:8080 and your existing Jev client code works without changes.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Fine-tune on your data</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Prepare training data (JSONL format)</span>
-<span class="cm"># Each line: {"document": "...", "question": "...",</span>
-<span class="cm">#            "options": [...], "answer": "..."}</span>
-
-<span class="cm"># Fine-tune with Modal</span>
-modal run train.py \
-  --base-model qwen3.5-0.8b \
-  --data my_training_data.jsonl \
-  --output ./my-kev-adapter</pre>
-        <p>Training uses <strong>LoRA rank 16</strong> by default. A dataset of 100 examples trains in about 5 minutes on an H100. The output is a small adapter you load alongside the base Qwen3.5 weights.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>decisions</em> beat generation</h2>
-    <p class="sub">Kev shines when you need a probability, not a paragraph. Fast, cheap, and calibrated.</p>
-
-    <div class="story"><div class="metric">Policy Screening</div><p><strong>Is this insurance claim eligible?</strong> Feed the policy document and a set of eligibility questions. Kev returns probabilities for each option in one forward pass. A threshold triggers auto-approval, manual review, or rejection. No LLM chain-of-thought needed for a binary decision.</p></div>
-    <div class="story"><div class="metric">Ticket Triage</div><p><strong>Route support tickets by severity.</strong> The document is the ticket text; the question is "what is the severity?" with options like critical, high, medium, low. Kev returns calibrated probabilities that feed directly into routing logic. Sub-second latency means real-time triage.</p></div>
-    <div class="story"><div class="metric">Content Moderation</div><p><strong>Flag or pass in milliseconds.</strong> Run each piece of user-generated content through Kev with questions like "does this contain hate speech?" and "is this spam?" The 0.8B model handles this on a single CPU core, keeping moderation costs near zero at scale.</p></div>
-    <div class="story"><div class="metric">Agent Tool Selection</div><p><strong>Help an AI agent pick the right tool.</strong> When an LLM agent needs to decide which tool to call, Kev can score the options in one forward pass - faster and cheaper than asking the LLM itself to reason about tool selection. The probability distribution gives a confidence signal the agent can act on.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>Hacker News front page.</strong> "Kev: Tiny Jev-like family of decision models built on top of Qwen3.5" reached the front page with 400+ points and extensive discussion about whether decision models are a new category or rebranded classification. <a href="https://news.ycombinator.com/item?id=49783999" target="_blank">news.ycombinator.com/item?id=49783999</a></li>
-        <li><strong>AI Weekly coverage.</strong> "Jared Palmer Ports Kev to Qwen3.5 for Roughly $95 in H100" - covered the training cost breakdown and architecture decisions. <a href="https://aiweekly.co/alerts/jared-palmer-ships-kev-an-apache-20-jev-style-decision-model-family-built-on" target="_blank">aiweekly.co</a></li>
-        <li><strong>Jared Palmer's announcement thread.</strong> The original announcement on X detailing the Qwen3.5 port, new checkpoints at 0.8B, 4B, and 9B, and the Modal fine-tuning script. <a href="https://x.com/jaredpalmer/status/2102048412841517495" target="_blank">x.com/jaredpalmer</a></li>
-        <li><strong>Hack-Log M4 Mac benchmark.</strong> Independent benchmark running Kev on an M4 Mac with 16 GB RAM - the 0.8B model took 1.96 seconds per run, the older 0.6B model took 0.20 seconds. <a href="https://note.com/hacklog_stealth/n/n06be89240983?hl=en" target="_blank">note.com/hacklog_stealth</a></li>
-        <li><strong>Hugging Face model collection.</strong> All three model weights published as a collection on Hugging Face under the jaredpalmer namespace. <a href="https://huggingface.co/collections/jaredpalmer/kev" target="_blank">huggingface.co/collections/jaredpalmer/kev</a></li>
-        <li><strong>Pinggy Blog roundup.</strong> Listed as one of the top five open-source Jev alternatives in a comparative analysis of self-hosted decision models. <a href="https://pinggy.io/blog/best_open_source_jev_alternatives_self_hosted_decision_models/" target="_blank">pinggy.io</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Still trails Jev on accuracy.</strong> Kev-9B scores 0.837 on the locked test set versus Jev's 0.857. That 2-point gap may matter in high-stakes applications. Evaluate on your own data before replacing a production Jev integration.</li>
-        <li><strong>Calibration is not perfect.</strong> Jared Palmer noted on X that Kev is "still a bit overconfident at the moment." The second calibration pass helped, but you should validate probability calibration on your specific domain before trusting the numbers for anything critical.</li>
-        <li><strong>Only 8 days old.</strong> Created September 17, 2026. The project is moving fast - three architecture changes in the first week - but it has not been battle-tested in production. Expect breaking changes.</li>
-        <li><strong>The "decision model" category is debated.</strong> The Hacker News thread spent significant time arguing whether this is genuinely new or just classification with a fresh vocabulary. If you already have a fine-tuned BERT classifier that works, Kev may not add enough to justify a switch.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/jaredpalmer/kev" target="_blank">jaredpalmer/kev GitHub</a> - source, training scripts, model cards</li>
-      <li>Stack: Python, PyTorch, LoRA, Qwen3.5, Modal for training</li>
-      <li>Last pushed: September 25, 2026 | Created: September 17, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn" href="https://huggingface.co/spaces/jaredpalmer/kev" rel="noopener">See it work <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/jaredpalmer/kev" rel="noopener">GitHub</a><span class="no-site">No website yet: the GitHub page is its home.</span></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/kev.png" alt="kev's own demo playground answering a support message ('Shoes arrived two weeks late and in the wrong size. Also I see two charges on my card...') with four probability answers at once: department = returns (0.91), return_reason = wrong_size (0.55), requested_resolution = refund (0.53), tone = frustrated (0.61). Ran in 670 ms on 253 words of input across 6 questions." width="1440" height="900" loading="eager">
+    <figcaption>Our look at the live demo: one message in, four separate answers back, each with its own confidence.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">7.4K</span><span class="v-note">GitHub stars, <b>+7.1K stars in its first 10 days</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 29.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>461 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want a fast, cheap AI answer to a multiple-choice question your software asks over and over, but a hosted decision AI charges per use and never learns your specific rules.</p><p class="eg">The README's own example: an out-of-the-box model scored 67.7% on a support-ticket test built from the maker's rules - fine, but not great.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Your code calls the small server kev starts on your own computer, the same way it would call TypeSafe's hosted Jev.</p><p class="eg"><code>uv run --extra serve python -m kev.serve --run jaredpalmer/kev-4b --port 8009</code> starts it; from then on your code sends it requests over the same kind of web address Jev uses.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A block of text, plus your own questions and their possible answers.</p><p class="eg">The demo's support-ticket example: a customer's message, plus questions like &quot;which team should handle this?&quot; and &quot;what is the customer's tone?&quot;, each with a short list of options.</p></div><div class="note does"><span class="role">It does</span><p class="say">It reads the text once and answers every question at the same time, as a percentage split across only the options you gave it - it never writes a sentence.</p><ol class="steps-in"><li>Reads the whole block of text once</li><li>Scores every option of every question in parallel, instead of writing an answer word by word</li><li>Applies a built-in correction so its confidence numbers better match how often it's actually right</li></ol><p class="eg">On the live demo, six questions about a short support ticket came back in 670 milliseconds.</p></div><div class="note result"><span class="role">You get</span><p class="say">Answers your software can act on immediately, plus the option to make them sharper on your own data.</p><ul class="outputs"><li><b>One answer per question, always one of your own listed options</b><span>department: <b>returns</b>, 91% sure; tone: <b>frustrated</b>, 61% sure</span></li><li><b>A confidence score for every option, not just the winner</b><span>return_reason: wrong_size 0.55, other 0.34, wrong_item 0.08, changed_mind 0.02, damaged 0.01</span></li><li><b>Better accuracy after a cheap training run on your own examples</b><span>one real test the maker documents: 0.804 to 0.904 accuracy on complaints the model had never seen, after training on 5,219 labelled examples</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>A hosted decision AI charges money on every call and sends your document to someone else's servers.</li><li>It doesn't know your specific rules, so its accuracy on your exact kind of decision is a guess until you test it.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Four free, Apache-2.0 sizes to pick from - a laptop-friendly 0.8B up to a 27B that beats or matches Jev on 9 of 11 tested question types.</li><li>A training run on your own examples costs about $1 of rented computer time and can turn a mediocre out-of-the-box score into a strong one.</li><li>It answers over the same kind of connection Jev does, so software already wired up for Jev can often switch by changing one web address.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Try it with nothing to install: the <a href="https://huggingface.co/spaces/jaredpalmer/kev" rel="noopener">Hugging Face demo</a> runs the two smallest sizes and lets you type your own text and questions.</li><li>To run it yourself, a developer clones the <a href="https://github.com/jaredpalmer/kev" rel="noopener">repo</a> and starts the built-in server with one command, pointed at whichever size fits their computer.</li><li>To make it more accurate on your own decision, a developer runs the included training script on examples they provide - the maker's own test took one size from 67.7% to 73.6% accuracy in about 15 minutes.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Ranges a lot by size: the 0.8B model is the only laptop-friendly one; the 27B model alone is about 55 GB of weights on disk. Each size downloads separately from Hugging Face the first time you run it - kev's own code is tiny.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>About 2 GB of GPU memory for the smallest (0.8B) model, roughly 17 GB for the 9B model, and about 66 GB for the 27B model once it's serving requests (its 55 GB of weights plus room for handling several requests at once).</dd></div>
+    <div><dt>Runs on</dt><dd>A Mac with Apple Silicon (using its own MLX speed-up), or Windows/Linux with an NVIDIA graphics card, depending on the size you pick: the 0.8B model runs on any Apple Silicon Mac or a small cloud graphics card (an L4); the 4B and 9B want a 32 GB Mac or a bigger cloud graphics card; the 27B model wants a data-center-class one. Needs Python 3.12 or 3.13.</dd></div>
+  </dl><a class="src" href="https://github.com/jaredpalmer/kev#readme" rel="noopener">Source: kev README: the model table and serving-performance sections</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-kev">/skillspector https://github.com/jaredpalmer/kev
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: in a scratch folder, install kev, start the server with the smallest model (kev-0.8b), and run the README's own example question against it. Show me the actual answer and confidence scores it returns. 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-kev">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You're already calling TypeSafe's Jev and want a free version you can run yourself or retrain on your own data</li><li>You want to try a decision-model AI without paying per call, and you have at least a modern Mac or a cloud GPU account</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You need the single most accurate answer available and are fine just paying for hosted Jev - only the largest, most hardware-hungry kev size gets close</li><li>You have no GPU and no modern Mac - even the smallest size needs real computer power to answer quickly</li><li>You want a finished product rather than a piece of infrastructure you wire into your own software</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="laya.html" rel="noopener"><b>laya</b></a><span>This week's #1 pick, and the other free Jev-style decision AI: one size instead of four, no training script, but claims over 100 languages by the author's own measurement.</span></li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener"><b>TypeSafe Jev</b></a><span>The paid, hosted original kev is built to match. No hardware to manage, but it costs money per use and your documents leave your machine.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/jaredpalmer/kev/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>7.4K stars, 10 contributors, 296 commits. findarepo's star check: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>It's changed fast in its first two weeks - check the live numbers, not old ones.</b> It launched with three sizes on Sep 17; a stronger fourth size on a different base model was added Sep 24, and the accuracy figures moved as the recipe changed, including the ones on this page.</li><li><b>Even after its own correction, kev is still more often confidently wrong than Jev.</b> On the maker's own test using questions the model never trained on, that correction cuts the 9B model's rate of being at least 90% sure and still wrong from 8.7% down to 4.0% - but hosted Jev sits at 3.7% on the same test.</li><li><b>Smaller sizes fall further behind on world knowledge and on dates.</b> The 9B model scores 0.74 on a general-knowledge test (MMLU) against Jev's 0.90, and none of the sizes can reliably subtract dates without an extra setting turned on.</li><li><b>The bigger sizes need real hardware.</b> The 27B model needs about 66 GB of GPU memory to serve, and even the 9B model wants roughly 17 GB - only the smallest, least accurate size is realistically a laptop model.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's 10 days old and moving fast: it launched with three sizes on one AI base, then added a stronger fourth size on a different base within the week, and the accuracy numbers shifted as the recipe changed. Nobody has published a production rollout yet - the real-world reports so far are both hands-on speed checks on a Mac.</p><ol class="uses">
+  <li class="use"><span class="who-mark long" aria-hidden="true">10x slower</span><div><h3>A developer testing local AI on Apple hardware (Hack-Log, note.com)</h3><p>Measured kev's new 0.8B model against its older 0.6B predecessor on the same M4 Mac, sending the same request 13 times to each.</p><p class="result">The new model came back in a median of 1,958 milliseconds versus 197 milliseconds for the old one - about 10 times slower - which the author traced to the new model's core layer missing a fast path for that chip.</p><a class="src" href="https://note.com/hacklog_stealth/n/n06be89240983?hl=en" rel="noopener">Hack-Log: benchmarking kev on Qwen vs the older kev, on an M4 Mac, Sep 21</a></div></li>
+  <li class="use"><span class="who-mark long" aria-hidden="true">47ms repeated</span><div><h3>Pinggy (developer blog)</h3><p>Ran kev's smallest model on their own M3 Pro Mac through its new Apple-chip speed-up, routing a sample customer-service ticket.</p><p class="result">The same request dropped from 213 milliseconds on the old path to 77 milliseconds on a fresh question and 47 milliseconds when asked again, after one slower 3.2-second first load.</p><a class="src" href="https://pinggy.io/blog/best_open_source_jev_alternatives_self_hosted_decision_models/" rel="noopener">Pinggy: best open-source Jev alternatives, Sep 23</a></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49783999" rel="noopener">Kev: Tiny Jev-like family of decision models built on top of Qwen3.5</a><span class="meta">461 points - Sep 21</span></li><li class=""><span class="plat">Blog</span><a href="https://runtimewire.com/article/jared-palmer-kev-qwen35-decision-models" rel="noopener">RuntimeWire: Jared Palmer ports Kev to Qwen3.5 for roughly $95 in H100 time</a><span class="meta">Sep 21</span></li><li class=""><span class="plat">Newsletter</span><a href="https://aiweekly.co/alerts/jared-palmer-ships-kev-an-apache-20-jev-style-decision-model-family-built-on" rel="noopener">AI Weekly: Jared Palmer ships Kev, an Apache-2.0 Jev-style decision model family</a><span class="meta">Sep 21</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/jaredpalmer/kev" rel="noopener">kev on GitHub (README, model table, benchmarks)</a>, Sep 27</li><li><a href="https://huggingface.co/spaces/jaredpalmer/kev" rel="noopener">kev live demo on Hugging Face (our test)</a>, Sep 27</li><li><a href="https://huggingface.co/collections/jaredpalmer/kev-6aad9d0ea49f2589665e07cd" rel="noopener">kev model collection on Hugging Face</a>, Sep 27</li><li><a href="https://findarepo.com/repo/jaredpalmer/kev/" rel="noopener">findarepo: kev stats, growth and star check</a>, Sep 27</li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener">TypeSafe: introducing System One models and Jev (pricing, background)</a></li><li><a href="https://news.ycombinator.com/item?id=49783999" rel="noopener">Hacker News: Kev launch thread</a>, Sep 21</li><li><a href="https://runtimewire.com/article/jared-palmer-kev-qwen35-decision-models" rel="noopener">RuntimeWire: Jared Palmer ports Kev to Qwen3.5</a>, Sep 21</li><li><a href="https://aiweekly.co/alerts/jared-palmer-ships-kev-an-apache-20-jev-style-decision-model-family-built-on" rel="noopener">AI Weekly: Kev launch alert</a>, Sep 21</li><li><a href="https://note.com/hacklog_stealth/n/n06be89240983?hl=en" rel="noopener">Hack-Log: kev on an M4 Mac</a>, Sep 21</li><li><a href="https://pinggy.io/blog/best_open_source_jev_alternatives_self_hosted_decision_models/" rel="noopener">Pinggy: best open-source Jev alternatives</a>, Sep 23</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

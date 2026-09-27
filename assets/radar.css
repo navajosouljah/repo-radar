@@ -72,6 +72,7 @@ a:hover { text-decoration-thickness: 2.5px; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3 { font-family: var(--f-display); line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
 p { margin: 0; text-wrap: pretty; }
+code { font-family: var(--f-mono); font-size: 0.88em; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; }
 ul, ol { margin: 0; padding: 0; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -281,6 +282,9 @@ ul, ol { margin: 0; padding: 0; }
 .stamp { display: inline-block; font-family: var(--f-display); font-weight: 800; letter-spacing: 0.12em; font-size: 1.5rem; padding: 6px 16px; border: 3px solid currentColor; border-radius: 6px; transform: rotate(-2deg); }
 .stamp.pass { color: var(--green-ink); }
 .stamp.fail { color: var(--coral-ink); }
+.should.one { grid-template-columns: 1fr; }
+.answer.danger { grid-template-columns: 1fr; background: var(--coral); border: 2px solid var(--coral-edge); border-radius: var(--radius); padding: var(--s-6); margin-top: var(--s-6); }
+.answer.danger .kicker { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); }
 .checks { list-style: none; display: grid; gap: var(--s-3); margin-top: var(--s-5); }
 .checks li { display: grid; grid-template-columns: 24px 1fr; gap: var(--s-2); }
 .checks li::before { content: "\2713"; color: var(--green-ink); font-weight: 800; }

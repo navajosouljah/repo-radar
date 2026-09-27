@@ -3,277 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>robbietilton/Compositor - The Photoshop Alternative for Mac | Repo Radar</title>
+<title>Compositor: A free, open-source Photoshop-style photo editor for Mac, built by one designer to escape his own Adobe bill. | Repo Radar</title>
+<meta name="description" content="Layer, mask and retouch a photo the way you would in Photoshop: Compositor opens in under a second, reads your old Photoshop files, and costs nothing, ever.">
+<meta property="og:title" content="Compositor: A free, open-source Photoshop-style photo editor for Mac, built by one designer to escape his own Adobe bill. | Repo Radar">
+<meta property="og:description" content="Layer, mask and retouch a photo the way you would in Photoshop: Compositor opens in under a second, reads your old Photoshop files, and costs nothing, ever.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/compositor.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0e0c0c;--bg2:#141111;--card:#1a1616;--card2:#211c1c;
-    --primary:#e63e6d;--primary-dim:#c43359;--secondary:#00b8d4;
-    --accent:#7a6e6e;--accent-light:#a89999;
-    --ink:#ede5e5;--muted:#8c7e7e;--line:#2e2727;
-    --sans:'Lato',sans-serif;--mono:'Source Code Pro',monospace;--disp:'Libre Baskerville',serif;
-    --r:4px;
-    --shadow:0 2px 12px rgba(0,0,0,.4);--shadow-lg:0 6px 24px rgba(0,0,0,.5);
-    --glow:0 0 16px #e63e6d30;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;position:relative}
-  body::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px 200px}
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(14,12,12,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px;font-family:var(--sans)}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:400;font-family:var(--disp);font-style:italic}
-  .tagline strong{color:var(--ink);font-style:normal}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(14,12,12,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:italic;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#e63e6d08,#00b8d406);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(230,62,109,.04);border-color:rgba(230,62,109,.3)}
-  .ba.after{background:#00b8d408;border-color:#00b8d450}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:var(--primary)}.ba.after .ba-tag{color:var(--secondary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#080606;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#5a4e4e}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:700}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--secondary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--secondary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(230,62,109,.04);border:1px solid rgba(230,62,109,.3);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:var(--primary);font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(230,62,109,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:700;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"\25B8 ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--sans);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.06em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#fff;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/robbietilton/Compositor" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Image Editor - Open Source - macOS Native</span>
-    <h1><span class="owner">robbietilton /</span><span class="name">Compositor</span></h1>
-    <p class="tagline"><strong>The Photoshop alternative for Mac.</strong> A free, open-source image compositing editor built in native Swift. Layers, masks, blend modes, adjustment layers, and professional filters - all in 12 MB. Built by one designer who wanted off his Adobe subscription.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">5.5K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">593</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Swift</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>A <em>darkroom</em> that fits in 12 MB</h2>
-    <p class="sub">Compositor is a native macOS image editor that covers the compositing workflow most designers actually need - layers, masks, blend modes, adjustments, and filters - without the 6 GB install, the subscription, or the feature bloat.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">5.5K</div><div class="l">GitHub Stars</div></div>
-      <div class="bignum"><div class="n sc">593</div><div class="l">Forks</div></div>
-      <div class="bignum"><div class="n lm">12 MB</div><div class="l">App Size</div></div>
-      <div class="bignum"><div class="n">6,455</div><div class="l">MB Photoshop</div></div>
-      <div class="bignum"><div class="n sc">$0</div><div class="l">Price Forever</div></div>
-      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#8 this week</span><span class="repo-id">robbietilton/Compositor</span></div>
+    <h1 id="name">Compositor</h1>
+    <p class="tagline">A free, open-source Photoshop-style photo editor for Mac, built by one designer to escape his own Adobe bill.</p>
+    <p class="sentence">Layer, mask and retouch a photo the way you would in Photoshop: Compositor opens in under a second, reads your old Photoshop files, and costs nothing, ever.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: Adobe Photoshop, for compositing, retouching and photo post-processing work</span>
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Full layer compositing</div><p>Layers, folders, opacity, and <strong>every Photoshop blend mode</strong>. Layer masks and clipping masks for non-destructive editing. Adjustment layers for Hue/Saturation, Levels, Curves, Exposure, Gradient Map, and more.</p></div>
-      <div class="feat"><div class="fh">Professional brush tools</div><p><strong>Clone stamp, spot healing, liquify, and smear.</strong> The retouching tools you actually use in daily compositing work, without the 40 brushes you never open.</p></div>
-      <div class="feat"><div class="fh">AI background removal</div><p>Built-in background removal using macOS Vision framework. <strong>No cloud upload, no API key.</strong> The model runs entirely on your Mac, keeping your images private and the workflow fast.</p></div>
-      <div class="feat"><div class="fh">Real filters, not gimmicks</div><p><strong>Gaussian blur, motion blur, lens correction, grain, and noise.</strong> The filters a compositor actually needs for professional post-processing and finishing work.</p></div>
-      <div class="feat"><div class="fh">Selection tools</div><p>Marquee, lasso, and magic wand selections. <strong>Precise control over what you edit</strong> - the foundation of any serious compositing workflow.</p></div>
-      <div class="feat"><div class="fh">Native Swift performance</div><p>Not Electron. Not a web wrapper. <strong>Pure Swift with Metal rendering.</strong> The app launches instantly, scrolls at 120fps on ProMotion displays, and uses a fraction of the memory Photoshop demands.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single Best Feature</span>
-      <h3>12 MB vs. 6,455 MB</h3>
-      <p>The most telling number is the app size. Compositor is 12 MB. Photoshop, on the creator's machine, is 6,455 MB. That 538x difference is not just disk space - it represents the difference between a tool built for one workflow done well versus a tool that has accumulated 35 years of features most users never touch. Compositor opens in under a second. It does not need Creative Cloud running in the background. It does not phone home. It is just an image editor.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>Adobe subscription</em> problem</h2>
-    <p class="sub">You need to composite images. Adobe charges you $23 a month for Photoshop, installs 6 GB on your drive, runs background services, and makes you sign in to use the tools you already paid for.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>$276 per year, minimum.</strong> Adobe's Photography Plan costs $23/month. Cancel your subscription and you lose access to the tool and your workflow. You are renting software you depend on for your livelihood.</p>
-        <p><strong>6 GB install with background services.</strong> Creative Cloud runs at startup, syncing, updating, and phoning home. Photoshop itself takes minutes to launch and consumes gigabytes of RAM even for simple edits.</p>
-        <p><strong>Feature overload.</strong> You need layers, masks, and blend modes. Photoshop gives you 3D modeling, video editing, generative fill, and a toolbar with 70+ tools. The features you need are buried under the ones you do not.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Free forever.</strong> Compositor is MIT-licensed. No subscription, no trial, no "free tier with watermarks." Download it, use it, modify it if you want. The code is yours.</p>
-        <p><strong>12 MB, launches instantly.</strong> No Creative Cloud. No background processes. No sign-in. Double-click the app and you are editing in under a second. Native Swift means it uses the resources your Mac actually has.</p>
-        <p><strong>Just the compositing tools.</strong> Layers, masks, blend modes, adjustment layers, brushes, and filters. The workflow a compositor needs, without the feature archaeology of finding them inside a 35-year-old application.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Install <em>Compositor</em></h2>
-    <p class="sub">Download the app or build from source. No account, no activation, no Creative Cloud.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Download the app</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Option A: Download from the website</span>
-open https://robbietilton.com/compositor
-
-<span class="cm"># Option B: Download from GitHub Releases</span>
-open https://github.com/robbietilton/Compositor/releases</pre>
-        <p>Download the latest <strong>.dmg</strong> from either source. Drag Compositor to your Applications folder. That is it - no installer, no account creation, no activation key.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Build from source (optional)</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Clone the repository</span>
-git clone https://github.com/robbietilton/Compositor.git
-cd Compositor
-
-<span class="cm"># Open in Xcode and build</span>
-open Compositor.xcodeproj
-
-<span class="cm"># Or build from the command line</span>
-xcodebuild -scheme Compositor -configuration Release</pre>
-        <p>Requires <strong>Xcode 15+</strong> and macOS 14 Sonoma or later. The project has no external dependencies - everything is built with Apple frameworks.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Start editing</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Open an image from the command line</span>
-open -a Compositor photo.png
-
-<span class="cm"># Supported formats: PNG, JPEG, TIFF, PSD, HEIC</span>
-<span class="cm"># Compositor reads Photoshop layer files</span></pre>
-        <p>Compositor opens standard image formats including <strong>PSD files with layers preserved</strong>. If you are migrating from Photoshop, your existing project files are a starting point, not a dead end.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>Compositor</em> fits</h2>
-    <p class="sub">Compositor is not trying to replace every Adobe product. It replaces the Photoshop workflow for designers who composite, retouch, and post-process images.</p>
-
-    <div class="story"><div class="metric">Photo Post-Processing</div><p><strong>Adjustment layers, curves, and color grading.</strong> Import your RAW exports from Lightroom or Capture One, then finish the work with layers, masks, and non-destructive adjustments. The workflow photographers actually do in Photoshop.</p></div>
-    <div class="story"><div class="metric">Design Compositing</div><p><strong>Layer multiple images, mask edges, blend seamlessly.</strong> Product photography composites, social media graphics, marketing materials - the bread and butter of a designer's Photoshop usage. Compositor handles the layer stack, blend modes, and masking that make this work.</p></div>
-    <div class="story"><div class="metric">Quick Retouching</div><p><strong>Clone stamp, spot healing, and liquify.</strong> Remove blemishes, fix backgrounds, clean up product shots. The retouching tools that get used daily, without waiting for Photoshop to launch and load its 200 plugins.</p></div>
-    <div class="story"><div class="metric">Open-Source Workflows</div><p><strong>MIT-licensed, modify freely.</strong> Teams that cannot or will not pay Adobe subscriptions - open-source projects, non-profits, educational institutions, indie studios - get a professional compositing tool with no licensing anxiety.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>Creator's viral announcement.</strong> Robbie Tilton announced Compositor on X (Twitter) on September 18, 2026, saying he built it to get himself off his Adobe subscription. The post generated significant engagement and drove the repo to trending on GitHub within days. <a href="https://x.com/robbietilton/status/2100946395972976843" target="_blank">Source: X / Twitter</a></li>
-        <li><strong>OS X Daily feature.</strong> OS X Daily published a review titled "Check Out Compositor for Mac, a Free Lightweight Photoshop Alternative" covering the feature set, the 12 MB app size, and the MIT license. <a href="https://osxdaily.com/2026/09/21/check-out-compositor-for-mac-a-free-lightweight-photoshop-alternative/" target="_blank">Source: OS X Daily</a></li>
-        <li><strong>GotBurnout writeup.</strong> GotBurnout covered Compositor as "A Lightweight Open-Source Photoshop Alternative," highlighting the compositing workflow and the native Swift performance. <a href="https://gotburnout.io/en/news/compositor-a-lightweight-open-source-photoshop-alternative-3427" target="_blank">Source: GotBurnout</a></li>
-        <li><strong>ExplainX technical overview.</strong> ExplainX published an in-depth blog post about Compositor's architecture and its use of GPT-6 Astra for feature planning before hand-tuning the implementation. <a href="https://explainx.ai/blog/compositor-open-source-image-editor-astra-2026" target="_blank">Source: ExplainX</a></li>
-        <li><strong>GitHub trending.</strong> Compositor trended on GitHub's daily and weekly charts for Swift on September 19, 2026, reaching 5.5K stars within its first week and a half. <a href="https://trendshift.io/repositories/246426" target="_blank">Source: TrendShift</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch Out For</h3>
-      <ul>
-        <li><strong>macOS only.</strong> Compositor is a native Swift app built with Apple frameworks. There is no Windows version, no Linux version, and no web version. If your team is cross-platform, this is a non-starter for shared workflows.</li>
-        <li><strong>Nine days old.</strong> The repo was created September 16, 2026. This is extremely early-stage software. Expect missing features, rough edges, and bugs. Do not migrate your production workflow to it yet - test it alongside Photoshop first.</li>
-        <li><strong>Solo developer.</strong> Compositor is built by one person. Bus factor is 1. If Robbie Tilton moves on, the project depends on whether a community forms around it. The MIT license helps here, but momentum matters.</li>
-        <li><strong>Not a full Photoshop replacement.</strong> No text tool, no vector shapes, no 3D, no video timeline, no content-aware fill (beyond basic spot healing). If you need those features, Compositor is not the answer. It covers compositing, not everything Photoshop does.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/robbietilton/Compositor" target="_blank">robbietilton/Compositor GitHub</a> - source, releases, issue tracker</li>
-      <li>Stack: Swift, Metal, macOS native (Apple frameworks only)</li>
-      <li>Last pushed: September 25, 2026 | Created: September 16, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://robbietilton.com/compositor" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/robbietilton/Compositor" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/compositor.png" alt="Compositor's own screenshot: the app editing a portrait photo (a model in a white ruffled top against a dark teal background), with the Freehand Lasso tool selected and a Layers panel showing Hue/Saturation, Levels, 'extra hair strand,' 'touch-up,' a 'model' layer and a 'bg' background layer with a Grain effect clipped to it." width="1200" height="630" loading="eager">
+    <figcaption>The app's own screenshot, from robbietilton.com: a real retouching session, layers panel and all.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">5.9K</span><span class="v-note">GitHub stars, <b>About +5.6K stars in its first 10 tracked days, per findarepo (Sep 18 to Sep 27).</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 28.9 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You need to layer, mask and retouch a photo, but Photoshop is a monthly bill and a multi-gigabyte install with background services always running.</p><p class="eg">Adobe's own system requirements ask for 10 GB of free disk space just to install it, before you've opened a single photo.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You double-click Compositor, or open a photo with it straight from the command line.</p><p class="eg"><code>open -a Compositor photo.png</code> opens that file directly in the app.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A photo - or an old Photoshop project file - plus the edit you want.</p><p class="eg">PNG, JPEG, TIFF, HEIC, camera RAW, or a Photoshop PSD/PSB file with its layers and masks intact.</p></div><div class="note does"><span class="role">It does</span><p class="say">It opens instantly and gives you the same layered editing workflow as Photoshop.</p><ol class="steps-in"><li>Opens in under a second - no sign-in, no Creative Cloud service running in the background</li><li>You build the image up in layers: masks, blend modes and adjustment layers like Curves and Hue/Saturation, the same toolset Photoshop uses</li><li>You retouch with the Clone Stamp, the Spot Healing brush, or the built-in background remover, which runs right on your Mac with nothing uploaded</li></ol><p class="eg">The README's own example: remove a background with the on-device tool - no cloud upload and no API key (a code some other tools make you sign up for).</p></div><div class="note result"><span class="role">You get</span><p class="say">A finished image, from an app a fraction of Photoshop's size.</p><ul class="outputs"><li><b>A finished, edited image</b><span>Export as a JPEG with a live preview, or Copy Merged to paste it elsewhere</span></li><li><b>A small, fast app instead of a giant one</b><span>The newest download is about 6.3 MB, next to Photoshop's own 10 GB minimum install</span></li><li><b>Your old Photoshop files opened, not abandoned</b><span>PSD and PSB files open with their layers, masks and blend modes preserved</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Photoshop is a recurring subscription, plus a multi-gigabyte install with Creative Cloud running in the background.</li><li>Most of Photoshop's toolbar is for jobs you don't do - 3D, video editing, generative fill - while the layer and retouching tools you actually use are buried under them.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Free forever and open source (MIT license) - download it, use it, no account and no trial that runs out.</li><li>A few megabytes, and it opens in under a second with no background services.</li><li>Just the compositing workflow: layers, masks, blend modes, adjustments and retouching brushes - the parts of Photoshop people who composite images actually use daily.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://github.com/robbietilton/Compositor/releases/latest" rel="noopener">Download the .dmg</a> from GitHub Releases (or from <a href="https://robbietilton.com/compositor" rel="noopener">robbietilton.com/compositor</a>) and drag Compositor into Applications - no account, no installer.</li><li>Load a photo into it - JPEG, PNG, HEIC, TIFF or an old Photoshop PSD file - and try the Clone Stamp or the on-device background remover.</li><li>Save your result as a JPEG, or keep working on the layered project - Compositor saves it in the background without getting in your way.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About <b>6.3 MB</b> to download - the size of the latest release's disk image, today. Early releases ran closer to 7 to 9 MB; the app has been shrinking as it matures. Several press write-ups repeat a rounder &quot;12 MB&quot; figure that doesn't match any of its 30 GitHub releases, so this page uses the measured current download instead.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found for an exact number. It's a native Mac app (Swift and Metal, Apple's own graphics tools) rather than a heavier cross-platform wrapper, so it should be light, but no source states a figure.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac only: macOS 26 or later, on a Mac with Apple silicon (no Intel Mac support). Building it yourself needs Xcode 26 or later.</dd></div>
+  </dl><a class="src" href="https://github.com/robbietilton/Compositor#requirements" rel="noopener">Source: Compositor README: Requirements, and GitHub Releases file sizes</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-compositor">/skillspector https://github.com/robbietilton/Compositor
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: download the latest release, load a photo into it, and try the background remover plus one adjustment layer (Curves or Hue/Saturation). Show me what the result looks like and anything that felt rough for an 11-day-old app. 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-compositor">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You composite, retouch or color-grade photos on a Mac and don't need Photoshop's full toolbox</li><li>You want off the Adobe subscription and are fine with software that's 11 days old and still moving fast</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You're on Windows or Linux - it's Mac-only, built with Apple's own tools, and needs a recent Mac with Apple silicon</li><li>You need text layout, vector shapes, 3D or video editing - Compositor only does layered image compositing</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://www.gimp.org/" rel="noopener"><b>GIMP</b></a><span>The long-running free image editor Compositor's own README names as the alternative its creator found too unfamiliar to stay in flow with - free on Mac, Windows and Linux.</span></li><li><a href="https://affinity.serif.com/" rel="noopener"><b>Affinity Photo</b></a><span>A paid, full-featured editor named in press coverage of Compositor as the closer comparison - it also does vector and text work Compositor leaves out, at a much larger install size.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/robbietilton/Compositor/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>5.9K stars, 15 contributors, 267 commits. findarepo's star check: looks organic - nothing unusual across fork ratio, issue activity and growth pace.</span></div></li>
+    </ul>
+    <p class="lede" style="margin:var(--s-4) 0 0">The flagged hits were unrelated Hacker News comments that use the word 'compositor'.</p>
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Mac only, and a recent one.</b> Needs macOS 26 or later on Apple silicon - no Intel Mac, Windows or Linux version.</li><li><b>Not a full Photoshop replacement.</b> No text tool, no vector shapes, no video timeline - it covers layered compositing and retouching, not everything Photoshop does.</li><li><b>11 days old and one main developer.</b> Fast-moving - 30 releases already - but built and maintained by one person so far.</li><li><b>A couple of rough edges showed up in reader comments</b> on one blog post: one person could only export JPEGs and not save a project file, and another flagged a compatibility issue on an older Mac. Given how fast releases are shipping, these may already be fixed.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's 11 days old. Reviewers have written about it and a few readers left quick compatibility notes in blog comments, but nobody has published a named, verifiable account yet of using it to finish real work - real use is still early.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Blog</span><a href="https://osxdaily.com/2026/09/21/check-out-compositor-for-mac-a-free-lightweight-photoshop-alternative/" rel="noopener">OS X Daily: Check Out Compositor for Mac, a Free Lightweight Photoshop Alternative</a><span class="meta">Sep 21</span></li><li class=""><span class="plat">Blog</span><a href="https://gotburnout.io/en/news/compositor-a-lightweight-open-source-photoshop-alternative-3427" rel="noopener">GotBurnout: A Lightweight Open-Source Photoshop Alternative</a><span class="meta">Sep 19</span></li><li class=""><span class="plat">Blog</span><a href="https://explainx.ai/blog/compositor-open-source-image-editor-astra-2026" rel="noopener">ExplainX: on Compositor and how Robbie Tilton planned it with an AI tool before hand-tuning the details</a><span class="meta">Sep 19</span></li><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io/repositories/246426" rel="noopener">robbietilton/Compositor - trending stats</a><span class="meta">#1 Swift repo of the day, #2 overall, Sep 19</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span><span class="chip">Trendshift: #1 Swift repo of the day, Sep 19</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/robbietilton/Compositor" rel="noopener">Compositor on GitHub (README, requirements, releases)</a>, Sep 27</li><li><a href="https://robbietilton.com/compositor" rel="noopener">Compositor - robbietilton.com</a>, Sep 27</li><li><a href="https://github.com/robbietilton/Compositor/releases" rel="noopener">Compositor Releases (download sizes)</a>, Sep 27</li><li><a href="https://findarepo.com/repo/robbietilton/Compositor/" rel="noopener">findarepo: Compositor stats, growth and star check</a>, Sep 27</li><li><a href="https://trendshift.io/repositories/246426" rel="noopener">Trendshift: robbietilton/Compositor trending stats</a>, Sep 27</li><li><a href="https://osxdaily.com/2026/09/21/check-out-compositor-for-mac-a-free-lightweight-photoshop-alternative/" rel="noopener">OS X Daily: Check Out Compositor for Mac</a>, Sep 21</li><li><a href="https://gotburnout.io/en/news/compositor-a-lightweight-open-source-photoshop-alternative-3427" rel="noopener">GotBurnout: A Lightweight Open-Source Photoshop Alternative</a>, Sep 19</li><li><a href="https://explainx.ai/blog/compositor-open-source-image-editor-astra-2026" rel="noopener">ExplainX: Compositor - open-source image editor</a>, Sep 19</li><li><a href="https://helpx.adobe.com/photoshop/system-requirements.html" rel="noopener">Adobe Photoshop system requirements</a>, Sep 27</li><li><a href="https://www.gimp.org/" rel="noopener">GIMP</a>, Sep 27</li><li><a href="https://affinity.serif.com/" rel="noopener">Affinity Photo</a>, Sep 27</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

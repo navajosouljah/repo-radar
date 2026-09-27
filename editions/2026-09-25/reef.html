@@ -3,278 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Human-Agent-Society/reef - Continual Learning for Self-Improving Agents | Repo Radar</title>
+<title>reef: An AI agent's own on-the-job training: every real answer becomes a lesson, instead of being thrown away the moment it's given. | Repo Radar</title>
+<meta name="description" content="Point your AI agent's questions through Reef and every correction, thumbs-down or failed test becomes practice: Reef builds a better version of the agent and tests it before it replaces the old one.">
+<meta property="og:title" content="reef: An AI agent's own on-the-job training: every real answer becomes a lesson, instead of being thrown away the moment it's given. | Repo Radar">
+<meta property="og:description" content="Point your AI agent's questions through Reef and every correction, thumbs-down or failed test becomes practice: Reef builds a better version of the agent and tests it before it replaces the old one.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/reef.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#040d14;--bg2:#061219;--card:#081a24;--card2:#0a2230;
-    --primary:#00e5c8;--primary-dim:#00b8a0;--secondary:#0099ff;
-    --accent:#3a7a8a;--accent-light:#5aa0b0;
-    --ink:#e0f7f4;--muted:#7aafb8;--line:#0d3040;
-    --sans:'Nunito Sans',sans-serif;--mono:'Inconsolata',monospace;--disp:'Josefin Sans',sans-serif;
-    --r:12px;
-    --shadow:0 2px 12px rgba(0,0,0,.3);--shadow-lg:0 6px 24px rgba(0,0,0,.4);
-    --glow:0 0 14px #00e5c830;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'%3E%3Cpath d='M0 30 Q25 18 50 30 T100 30 T150 30 T200 30' fill='none' stroke='%2300e5c806' stroke-width='1'/%3E%3Cpath d='M0 40 Q25 28 50 40 T100 40 T150 40 T200 40' fill='none' stroke='%230099ff05' stroke-width='1'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse at 50% 0%,#00e5c808 0%,transparent 60%);
-  }
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(4,13,20,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#040d14;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(4,13,20,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#040d14;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#00e5c808,#0099ff06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#040d14;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
-  .ba.after{background:#00e5c808;border-color:#00e5c850}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#040d14;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#030a10;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#3a6a7a}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#040d14;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/Human-Agent-Society/reef" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Continual Learning Infrastructure - Open Source</span>
-    <h1><span class="owner">Human-Agent-Society/</span><span class="name">reef</span></h1>
-    <p class="tagline"><strong>Teach your agents to keep getting better.</strong> Reef is the first open-source infrastructure that connects agent inference, feedback, learning, and versioned delivery into a single loop. Instead of discarding interactions after returning an answer, Reef turns them into training signal - improving model weights or agent harness across four stages: serve, observe, grow, and commit.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">5.1K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">451</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>Agents that <em>learn</em> from every interaction</h2>
-    <p class="sub">Reef sits between your agent's harness and the model it calls, recording each request, response, and the feedback that follows. It processes this signal through four stages and produces a better version of the model weights or the agent's harness - whichever learning surface you target.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">5.1K</div><div class="l">GitHub Stars</div></div>
-      <div class="bignum"><div class="n sc">451</div><div class="l">Forks</div></div>
-      <div class="bignum"><div class="n lm">4</div><div class="l">Pipeline Stages</div></div>
-      <div class="bignum"><div class="n">2</div><div class="l">Learning Surfaces</div></div>
-      <div class="bignum"><div class="n sc">25 days</div><div class="l">Since Creation</div></div>
-      <div class="bignum"><div class="n">Apache-2.0</div><div class="l">License</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#9 this week</span><span class="repo-id">Human-Agent-Society/reef</span></div>
+    <h1 id="name">reef</h1>
+    <p class="tagline">An AI agent's own on-the-job training: <b>every real answer becomes a lesson</b>, instead of being thrown away the moment it's given.</p>
+    <p class="sentence">Point your AI agent's questions through Reef and every correction, thumbs-down or failed test becomes practice: Reef builds a better version of the agent and tests it before it replaces the old one.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Serve-Observe-Grow-Commit cycle</div><p>Reef processes learning in four distinct stages. <strong>Serve</strong> handles inference via an OpenAI-compatible endpoint. <strong>Observe</strong> matches feedback to recorded interactions. <strong>Grow</strong> trains a candidate update. <strong>Commit</strong> evaluates and publishes the winner.</p></div>
-      <div class="feat"><div class="fh">Two learning surfaces</div><p>You can improve <strong>model weights</strong> using Slime and SGLang, or improve the <strong>agent harness</strong> - its prompts, rules, and skills. Most agent frameworks only let you do one. Reef supports both in the same pipeline.</p></div>
-      <div class="feat"><div class="fh">Versioned delivery with rollback</div><p>Reef versions every model and harness artifact. A candidate update that fails evaluation is <strong>rejected automatically</strong> and the serving version stays unchanged. Think git for your agent's brain.</p></div>
-      <div class="feat"><div class="fh">Feedback-native inference server</div><p>The inference endpoint returns an <strong>x-reef-agent-record-id</strong> header. Applications attach rewards, evaluator scores, or user corrections to that record. No separate logging pipeline needed.</p></div>
-      <div class="feat"><div class="fh">OpenAI-format compatibility</div><p>Reef exposes a <strong>standard OpenAI-format endpoint</strong> for inference. Drop it in front of any agent framework that speaks the OpenAI API. No custom client libraries or protocol changes required.</p></div>
-      <div class="feat"><div class="fh">Reefine tutorial included</div><p>The repo ships with <strong>Reefine</strong>, a guided tutorial that walks through the full path from requesting a harness change to installation. Run it against a local Ollama model to see the entire cycle end to end.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>Learning baked into the inference server itself</h3>
-      <p>The core insight behind Reef is that an inference server should collect learning material instead of discarding each interaction after returning an answer. Every request flowing through Reef is a potential training example. Attach a reward signal - a test passing, a user thumbs-up, a rubric score - and Reef uses it to produce a candidate improvement. This happens inside the serving infrastructure, not in a separate offline pipeline you have to build and maintain. The result is an agent that genuinely improves from use, with versioned checkpoints so you can always roll back.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>stagnant agent</em> problem</h2>
-    <p class="sub">Your agent accumulates valuable feedback every day - test results, user corrections, rubric scores - but none of it makes the agent smarter. Turning that signal into improvement requires a painful offline pipeline.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Feedback goes nowhere.</strong> Your agent fails a test, a user corrects it, a rubric scores it low. All of that signal is logged somewhere and forgotten. The agent makes the same mistakes tomorrow.</p>
-        <p><strong>Improvement requires a separate pipeline.</strong> To actually make your agent better, you have to export logs, build datasets, retrain, evaluate, and redeploy. This is a multi-week engineering project - so it almost never happens.</p>
-        <p><strong>No safe rollback.</strong> When you do manage to ship an improved model or harness, there is no versioning. If the new version is worse on some tasks, you are stuck with manual debugging and ad-hoc rollbacks.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Feedback drives improvement automatically.</strong> Every interaction through Reef can receive a reward or correction. The system matches feedback to the original request and queues it for the learning pipeline. No export step, no dataset curation.</p>
-        <p><strong>Learning is part of serving.</strong> Reef integrates the entire cycle - inference, feedback collection, candidate training, evaluation, and versioned deployment - into a single infrastructure layer. The offline pipeline disappears.</p>
-        <p><strong>Safe, versioned delivery.</strong> Every candidate update is evaluated against the current version on your tasks. The winner gets published. Losers are rejected automatically, and the serving version stays stable. Roll back to any checkpoint.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Set up <em>Reef</em></h2>
-    <p class="sub">Get the continual learning loop running locally in a few minutes. Reef connects to SGLang or Ollama for inference and uses its own pipeline for the learning cycle.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
-      <div class="step-body">
-<pre>git clone https://github.com/Human-Agent-Society/reef.git
-cd reef
-
-<span class="cm"># Install dependencies (Python 3.10+)</span>
-pip install -e .</pre>
-        <p>Reef is a Python package. Install it in a virtual environment or use the provided <strong>Docker setup</strong> for a fully isolated deployment. The repo includes configuration templates for common setups.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Start the inference server</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Start Reef with a local model via Ollama</span>
-reef serve --model ollama/gemma4:26b
-
-<span class="cm"># Or connect to an SGLang-served model</span>
-reef serve --model sglang/your-model --sglang-url http://localhost:30000</pre>
-        <p>Reef exposes an <strong>OpenAI-compatible endpoint</strong> that your agent framework connects to. Requests flow through Reef's recording layer, which captures each interaction for the learning pipeline.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Run the Reefine tutorial</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Walk through the full harness-improvement cycle</span>
-reef serve --recipe reefine --model ollama/gemma4:26b
-
-<span class="cm"># This walks you through:</span>
-<span class="cm"># 1. Sending requests and recording interactions</span>
-<span class="cm"># 2. Attaching feedback (rewards, corrections)</span>
-<span class="cm"># 3. Training a candidate harness update</span>
-<span class="cm"># 4. Evaluating and committing the improvement</span></pre>
-        <p>The Reefine tutorial shows the <strong>complete path from feedback to improvement</strong>. You will see a harness change proposed, evaluated against the current version, and published as a new release if it wins.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>Reef</em> fits</h2>
-    <p class="sub">Any agent that runs repeatedly on similar tasks benefits from continual improvement. Reef handles the infrastructure so you can focus on the agent itself.</p>
-
-    <div class="story"><div class="metric">Coding Agents</div><p><strong>A coding agent that learns from test results.</strong> Every time your coding agent's output passes or fails tests, that signal feeds back into Reef. Over time, the agent learns your project's patterns - which libraries to use, how to structure tests, what error handling your codebase expects. The harness surface lets Reef improve prompts and rules without retraining the model.</p></div>
-    <div class="story"><div class="metric">Customer Support</div><p><strong>Support bots that improve from human corrections.</strong> When a support agent gives a wrong answer and a human corrects it, Reef captures that correction as a feedback signal. The next candidate update incorporates the fix. Over weeks, the agent's accuracy on your domain improves continuously.</p></div>
-    <div class="story"><div class="metric">Research Assistants</div><p><strong>Lab assistants that refine their methodology.</strong> Research agents that search literature, summarize findings, or draft analyses can improve from rubric-based evaluation. Score each output, let Reef train a candidate, and the assistant learns what quality means in your domain.</p></div>
-    <div class="story"><div class="metric">Internal Tools</div><p><strong>Enterprise agents that adapt to your workflows.</strong> Internal agents for document processing, data extraction, or workflow automation accumulate domain-specific feedback. Reef turns this into incremental improvement without requiring your ML team to build and maintain a training pipeline.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>RuntimeWire coverage.</strong> RuntimeWire published a detailed article on MIT researcher Ao Qu and collaborators open-sourcing Reef, covering the serve-observe-grow-commit architecture and the design decision to embed learning inside the inference server. <a href="https://runtimewire.com/article/ao-qu-reef-inference-server-continual-learning-agents" target="_blank">runtimewire.com</a></li>
-        <li><strong>The Daily Commit feature.</strong> The Daily Commit covered Reef's GitHub launch on September 4, highlighting its position as the first open-source continual learning infrastructure for agents. <a href="https://thedailycommit.in/story/2026-09-04/06-github-human-agent-society-reef" target="_blank">thedailycommit.in</a></li>
-        <li><strong>Official documentation site.</strong> The Reef team maintains a dedicated docs site at reefinfra.ai with getting-started guides, architecture overviews, and tutorials for both model-weight and harness learning surfaces. <a href="https://www.reefinfra.ai/docs/getting-started/intro/" target="_blank">reefinfra.ai</a></li>
-        <li><strong>Active community.</strong> The project runs a Discord server and WeChat group for developers exploring continual agent improvement. Multiple forks (451 at time of writing) indicate strong interest from the research community and production teams alike.</li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Very young project.</strong> Reef was created on August 31, 2026 - less than a month old. The API surface, configuration format, and pipeline architecture may change significantly. Pin your version and watch the releases closely.</li>
-        <li><strong>Feedback quality matters.</strong> Reef can only learn from the signal you provide. Noisy rewards, inconsistent rubrics, or sparse corrections will produce mediocre candidates. Invest in your feedback pipeline as much as in Reef itself.</li>
-        <li><strong>Evaluation is your responsibility.</strong> While Reef automates candidate evaluation, you define what "better" means. Poorly designed eval tasks will approve bad candidates or reject good ones. Design your evaluation suite carefully.</li>
-        <li><strong>Compute requirements for model-weight learning.</strong> Harness improvements (prompts, rules, skills) are lightweight, but training model weights via Slime and SGLang requires GPU resources. The harness surface is the easier starting point for most teams.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/Human-Agent-Society/reef" target="_blank">Human-Agent-Society/reef GitHub</a> - source, tutorials, docs</li>
-      <li>Stack: Python, SGLang, Slime, OpenAI-compatible API</li>
-      <li>Last pushed: September 25, 2026 | Created: August 31, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://www.reefinfra.ai/" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/Human-Agent-Society/reef" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/reef.png" alt="Reef's own diagram. On the left, a circle of four steps: serve, observe (agent trajectories plus feedback), grow (filter and process what to learn from, then new weights or a new harness) and commit (publish a new version if it passes eval), with 'keeps serving' in the middle. On the right, each lap makes a new version: v1, v2, v3, v4; a v5 attempt that 'didn't pass eval' is crossed out, and a dashed arrow shows you can roll back to a past version." width="1760" height="600" loading="eager">
+    <figcaption>Reef's own diagram (a still from its README): every lap it serves, watches, learns and commits, and a new version goes live only if it passes the test.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">6.3K</span><span class="v-note">GitHub stars, <b>+2.5K stars in the last 7 days; 6,325 total after less than a month</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 29.4 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Your AI agent answers the same way today as it did on day one. Every real conversation holds lessons - a correction, a thumbs-down, a failed test - but normal setups throw all of that away the moment they answer.</p><p class="eg">Asking a big AI company's model to grade or fix its own mistakes still costs money every single time, and nothing carries over to tomorrow.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Every time your app or agent would normally ask the AI model a question, it asks through Reef instead.</p><p class="eg">You start Reef pointed at a model you already use - your own computer running Ollama, or a hosted one - and it quietly begins keeping a record.</p></div><div class="note input"><span class="role">You give it</span><p class="say">The question itself, plus whatever feedback shows up afterward: a thumbs up, a correction, a passed or failed test.</p><p class="eg">Reef's own tutorial: ask an AI to fix a bug in a small file (a sum function that &quot;stops one short&quot;), first writing a test that fails, then fixing it, then having a second AI check the fix.</p></div><div class="note does"><span class="role">It does</span><p class="say">It answers like normal, then works through the feedback in stages to build and check a better version.</p><ol class="steps-in"><li>Answers the question and tags that exact exchange with a receipt number, so feedback about it can be found later</li><li>Matches any feedback you send back to the right receipt</li><li>Turns matched examples into a candidate improvement - either to the model itself (needs a graphics card) or to the agent's own instructions (Reef's free Reefine option, no graphics card needed)</li></ol><p class="eg">Reefine's own demo also tries a research question - &quot;what is the best known lower bound for sorting by comparisons, with a source?&quot; - and checks whether the agent actually found real sources.</p></div><div class="note result"><span class="role">You get</span><p class="say">A checked, versioned improvement, not just a pile of logs.</p><ul class="outputs"><li><b>A candidate update that's scored against the version it would replace</b><span>Only a candidate that clears the bar gets published; the rest are thrown away automatically</span></li><li><b>A score for every proposed change</b><span>Each candidate is tested against the version it would replace before anything is published</span></li><li><b>Older versions kept on hand</b><span>So you can go back to an earlier version if a new one turns out worse</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>A wrong answer or a bad call gets logged somewhere, and forgotten. Tomorrow the agent makes the same mistake.</li><li>Turning feedback into a smarter agent means a separate, multi-week project: pull the logs, build a training set, retrain, test, and carefully roll it out.</li><li>If the new version turns out worse, there's no clean way back to the old one.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Every answer can carry a receipt; when feedback comes in, it finds its way back to the exact question it was about, automatically.</li><li>A built-in option (called Reefine) rewrites the agent's own instructions from that feedback using a plain model connection - no graphics card needed. A heavier option retrains the model itself, which does need a graphics card.</li><li>Every candidate is checked against the version it would replace before anything changes, and older versions stay on hand to go back to.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Skim the four-stage idea and the ready-made options on Reef's own <a href="https://www.reefinfra.ai/docs/getting-started/intro/" rel="noopener">documentation site</a> - nothing to install yet.</li><li>A developer installs it with one line and follows the <a href="https://www.reefinfra.ai/docs/getting-started/quickstart/" rel="noopener">quickstart guide</a> to point it at a model they already have and watch it record its first request.</li><li>To see it actually produce an improvement, run the built-in <a href="https://www.reefinfra.ai/docs/user-guide/recipes/reefine/" rel="noopener">Reefine tutorial</a>, which walks through a real bug fix end to end using a plain AI connection - no graphics card needed.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About 10 MB for Reef itself (the reef-infra package on <a href="https://pypi.org/project/reef-infra/" rel="noopener">PyPI</a>: a 1.2 MB pre-built copy plus an 8 MB source copy). It calls out to a model that lives somewhere else, so nothing else downloads unless you turn on the option that retrains a model's own weights, which needs extra software (SGLang, Slime) with no published size.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>no data found for the basic setup. Reef's docs give no memory number; they only say retraining a model's weights needs a graphics-card server, without saying how much memory that server needs.</dd></div>
+    <div><dt>Runs on</dt><dd>A Mac, Windows or Linux computer with Python 3.12 or newer. No graphics card needed for the free option (Reefine) or for just recording and serving answers; a graphics card is only needed if you retrain a model's actual weights.</dd></div>
+  </dl><a class="src" href="https://pypi.org/project/reef-infra/" rel="noopener">Source: reef-infra on PyPI, and Reef's installation docs</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-reef">/skillspector https://github.com/Human-Agent-Society/reef
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: in a scratch folder, install reef (pip install reef-infra), follow the README's quickstart to point it at a model you already have, send it one sample request, and show me what comes back (the answer plus its receipt header). 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-reef">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You're building or running an AI agent that makes the same kind of call over and over, and you want it to improve from real feedback instead of staying frozen</li><li>You'd rather rewrite your agent's own instructions for free (no graphics card) than pay to retrain a model, at least to start</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You just want to use an AI agent, not build one - there's nothing here for a non-coder to click on</li><li>It needs to work well today, out of the box: it's about a month old, and in its own recorded test run none of the proposed fixes cleared the evaluation bar on their own - they were published only because that run used a testing setting that publishes everything</li><li>You want to retrain a model's actual weights: that path needs a graphics-card server this setup doesn't include</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://github.com/microsoft/SkillOpt" rel="noopener"><b>SkillOpt</b></a><span>Also rewrites an agent's own instructions from scored feedback, but only that one piece - it doesn't run the serving connection or collect feedback from production the way Reef does.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/Human-Agent-Society/reef/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>6.3K stars, 32 contributors, 370 commits. findarepo's star check: 100 out of 100, &quot;nothing unusual across the checks we ran&quot; (fork-to-star ratio, issue activity, growth pace versus age, repo completeness), as of Sep 27.</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>A month old, and still finding its shape.</b> Reef's repository was created August 31, 2026. Commands, settings and even the four-stage design could still change.</li><li><b>In its own recorded test run, nothing actually passed on merit.</b> Reef's tutorial reports 10 proposed fixes and 0 that cleared the evaluation bar - all 10 were published anyway only because that run used a testing setting that publishes everything regardless.</li><li><b>Out of the box, it does nothing but record.</b> Reef's own docs say that without turning on a real learning option, &quot;the chain will stay at one: this deployment's recipe is the core recipe, which records and trains nothing.&quot;</li><li><b>Retraining the model itself needs a graphics-card server.</b> The free, no-graphics-card option (Reefine) only rewrites the agent's own instructions, not the model.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's about 4 weeks old (created August 31, 2026). What's been written about it so far covers the launch and the team behind it, not yet a named person or team using it for a specific job - so there's nothing real to report here yet.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Blog</span><a href="https://runtimewire.com/article/ao-qu-reef-inference-server-continual-learning-agents" rel="noopener">Ao Qu and collaborators open-source Reef for learning from live agent interactions</a><span class="meta">Sep 15</span></li><li class=""><span class="plat">Newsletter</span><a href="https://thedailycommit.in/story/2026-09-04/06-github-human-agent-society-reef" rel="noopener">Human-Agent-Society/reef - GitHub launch roundup</a><span class="meta">Sep 4</span></li><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io/repositories/204783" rel="noopener">Human-Agent-Society/reef hits #3 Python repo of the day</a><span class="meta">Sep 16</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic (100/100)</span><span class="chip">Trendshift: #3 Python repo of the day, Sep 16</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/Human-Agent-Society/reef" rel="noopener">Human-Agent-Society/reef on GitHub (README, releases, tutorials)</a>, Sep 27</li><li><a href="https://www.reefinfra.ai/" rel="noopener">Reef homepage (reefinfra.ai)</a>, Sep 27</li><li><a href="https://www.reefinfra.ai/docs/getting-started/intro/" rel="noopener">Reef docs: Getting Started intro</a>, Sep 27</li><li><a href="https://www.reefinfra.ai/docs/getting-started/quickstart/" rel="noopener">Reef docs: Quickstart - serve inference and report feedback</a>, Sep 27</li><li><a href="https://www.reefinfra.ai/docs/getting-started/installation/" rel="noopener">Reef docs: install on a laptop or GPU server</a>, Sep 27</li><li><a href="https://www.reefinfra.ai/docs/user-guide/recipes/reefine/" rel="noopener">Reef docs: Reefine recipe</a>, Sep 27</li><li><a href="https://github.com/Human-Agent-Society/reef/tree/main/tutorials/reefine" rel="noopener">Reef's Reefine tutorial (bug-fix and research demos, recorded measurements)</a>, Sep 27</li><li><a href="https://pypi.org/project/reef-infra/" rel="noopener">reef-infra on PyPI (package size)</a>, Sep 27</li><li><a href="https://github.com/Human-Agent-Society/reef/releases" rel="noopener">Reef's GitHub Releases (version 0.1.1)</a>, Sep 27</li><li><a href="https://findarepo.com/repo/Human-Agent-Society/reef/" rel="noopener">findarepo: reef's star growth and star check</a>, Sep 27</li><li><a href="https://runtimewire.com/article/ao-qu-reef-inference-server-continual-learning-agents" rel="noopener">RuntimeWire: Ao Qu and collaborators open-source Reef</a>, Sep 15</li><li><a href="https://thedailycommit.in/story/2026-09-04/06-github-human-agent-society-reef" rel="noopener">The Daily Commit: Human-Agent-Society/reef launches on GitHub</a>, Sep 4</li><li><a href="https://trendshift.io/repositories/204783" rel="noopener">Trendshift: Human-Agent-Society/reef trending</a>, Sep 27</li><li><a href="https://github.com/microsoft/SkillOpt" rel="noopener">microsoft/SkillOpt on GitHub (named as an alternative)</a>, Sep 27</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

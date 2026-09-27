@@ -1,0 +1,236 @@
+{
+  "repo": "CopilotKit/OpenBot",
+  "name": "OpenBot",
+  "tagline": "A control room you run yourself, where each AI helper gets its own locked-down computer instead of the run of your machine.",
+  "sentence": "Give one of its AI coworkers a job, and your own rules approve every click and file it touches before it happens, on its own sealed-off computer, with a plain record of what it did and why.",
+  "fit": "developers",
+  "replaces": "xAI's hosted Grok Bot, and similar hosted AI teammate products",
+  "links": {
+    "website": "https://www.copilotkit.ai/openbot",
+    "demo": "https://github.com/user-attachments/assets/535ef7ee-1631-4a69-b839-564c56cf90b4",
+    "docs": "https://github.com/CopilotKit/OpenBot/blob/main/docs/README.md"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Turning an AI helper loose on your browser and files is risky: one wrong click can hit the wrong website or the wrong file, and afterward it's hard to say exactly what it did.",
+      "eg": "Most AI agent setups run right inside your own browser and file system, so a mistake there is a mistake on your real machine."
+    },
+    {
+      "role": "trigger",
+      "say": "You start a conversation with one of your coworkers in its own channel, or a schedule starts it for you.",
+      "eg": "Message it directly, or set it on a repeating schedule and it starts itself in that same channel at the time you picked."
+    },
+    {
+      "role": "input",
+      "say": "A plain-language job, plus whichever tools you already decided that coworker may use.",
+      "eg": "For example: a browser limited to your own company's sites, files it may read but not change, or a connection to Google Drive or Notion. Any agent that speaks AG-UI (an open standard for how an agent talks to its interface) can fill the coworker role, whatever framework built it."
+    },
+    {
+      "role": "does",
+      "say": "It plans its next move and checks with your rules before doing anything.",
+      "steps": [
+        "It decides what it wants to do next - open a page, click something, read or save a file",
+        "That plan goes to one gatekeeper first, which compares it against the rules you wrote",
+        "An allowed action runs on that coworker's own computer, its own browser and files, never yours, and gets written to a record before it happens",
+        "If it hits a login wall or a two-factor prompt, it stops and asks a person to take over"
+      ],
+      "eg": "Try it yourself: ask a coworker to open news.ycombinator.com and tell you the top story, then read the record of exactly what it did."
+    },
+    {
+      "role": "result",
+      "say": "Work you can watch happen, and a record of exactly what happened.",
+      "outputs": [
+        {
+          "what": "Work carried out where you can watch it",
+          "eg": "A live view of the coworker's own screen while it works, in its channel"
+        },
+        {
+          "what": "A complete, readable record of every action",
+          "eg": "A list of what was allowed, what was refused, and which rule caused it"
+        },
+        {
+          "what": "A coworker you can safely hand real logins to",
+          "eg": "Its browser, files and tool access all stay inside its own locked-down computer, not yours"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Most AI agent setups run right inside your own browser and files, so one bad action is a mistake on your real machine.",
+    "It's hard to know exactly what an agent did after the fact, or to stop it before it does something you'd have refused.",
+    "Picking one agent framework to build on usually locks you into it."
+  ],
+  "after": [
+    "Each coworker gets its own computer: its own browser, its own files, only the tools you specifically allow.",
+    "Every action is checked against your rules before it happens, and written to a record you can read afterward.",
+    "Any agent that speaks the same open connection standard can be a coworker here, so switching frameworks doesn't mean starting over."
+  ],
+  "uses_note": "It's 41 days old and still alpha (an early, still-changing release). We found real coverage of its launch, but no independent, verified report yet of a team running it day to day - real use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "From 0 to about 5.6K stars in its first 41 days - no day-by-day tracker covers this repo yet.",
+    "history": [
+      [
+        "2026-08-17",
+        0
+      ],
+      [
+        "2026-09-27",
+        5640
+      ]
+    ],
+    "history_note": "Only two points are measured: the day it was created (0 stars, by definition) and GitHub's live count today. findarepo does not track this repo, so there's no daily line in between.",
+    "facts": [
+      {
+        "value": "3,500",
+        "label": "stars by Sep 1, 2026, per CopilotKit's own blog"
+      },
+      {
+        "value": "31",
+        "label": "people who have contributed code, per GitHub"
+      },
+      {
+        "value": "438.5K",
+        "label": "views on the launch post in its first day, per ExplainX's report"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Show HN: Open Bot - an open-source Grok Bot that works with any agent harness",
+      "url": "https://news.ycombinator.com/item?id=49365575",
+      "meta": "12 points - Aug 19"
+    },
+    {
+      "plat": "Blog",
+      "title": "ExplainX: OpenBot - Open-Source Grok Bot for Any Harness",
+      "url": "https://explainx.ai/blog/copilotkit-openbot-open-source-grok-bot-august-2026",
+      "meta": "Aug 20"
+    },
+    {
+      "plat": "Blog",
+      "title": "Zentor (formerly MoClaw Blog): CopilotKit OpenBot Gives Each Agent a Computer",
+      "url": "https://zentor.ai/blog/copilotkit-openbot",
+      "meta": "Aug 20, updated Sep 24"
+    },
+    {
+      "plat": "Blog",
+      "title": "RuntimeWire: CopilotKit founders pitch self-hosted OpenBot directly against Grok Bot",
+      "url": "https://runtimewire.com/article/copilotkit-founders-pitch-self-hosted-openbot-directly-against-grok-bot",
+      "meta": "Sep 22"
+    },
+    {
+      "plat": "Blog",
+      "title": "CopilotKit: OpenBot updates, v0.0.5",
+      "url": "https://www.copilotkit.ai/blog/openbot-updates-v0.0.5",
+      "meta": "the maker's own post - Sep 1"
+    }
+  ],
+  "trending": [
+    "Trendshift: #3 repo of the day across all languages, Aug 20"
+  ],
+  "star_check": "No data found - findarepo does not track this repo.",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "A developer clones [the repository](https://github.com/CopilotKit/OpenBot), copies `.env.example` to `.env`, and follows the README's [Quick start](https://github.com/CopilotKit/OpenBot#quick-start) to connect a free CopilotKit Intelligence project and add a model key.",
+      "Run `bash scripts/start.sh` to bring up the database, the API and the app, then watch the [demo video](https://github.com/user-attachments/assets/535ef7ee-1631-4a69-b839-564c56cf90b4) to see what a working setup looks like.",
+      "In your running copy, message a coworker to check a page online and report back, then read `/admin/audit` to see exactly what it did and why it was allowed."
+    ],
+    "paste": "/skillspector https://github.com/CopilotKit/OpenBot\n\nIf that scan passes: in a scratch folder, follow the README's Quick start with a throwaway OpenAI key and CopilotKit's free Intelligence plan, run `bash scripts/start.sh`, and ask the built-in coworker to open news.ycombinator.com and report the top story. Show me what it did and what /admin/audit recorded. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You have a developer who can run Docker (a tool for packaging software to run the same way anywhere) and wants AI agents that can touch real tools without touching your production systems",
+      "You need to show your boss or an auditor exactly what an AI agent did and why it was allowed to"
+    ],
+    "skip_if": [
+      "You want something to sign up for today - this is a template you run and maintain yourself, not a hosted product",
+      "You're not comfortable running a database and a model API key (a code the AI provider issues you) yourself - there's real setup here"
+    ],
+    "alternatives": [
+      {
+        "name": "Grok Bot (xAI)",
+        "url": "https://x.ai/news/introducing-grok-bot",
+        "line": "The closed, hosted product OpenBot's own launch post positioned itself against - AI teammates you subscribe to (through a SuperGrok or Cursor plan) rather than run and govern yourself."
+      },
+      {
+        "name": "KiroCrew",
+        "repo": "kirodotdev/KiroCrew",
+        "url": "kirocrew.html",
+        "line": "Another open-source way to run multiple AI agents, built for preserving context across sessions and scheduled work rather than OpenBot's per-agent sandboxing and audit trail."
+      }
+    ]
+  },
+  "watch": [
+    "**A template, not a hosted product.** Nothing to sign up for - you clone it, configure it, and run and maintain it yourself.",
+    "**Alpha, and it needs more than its own free code.** It also needs a CopilotKit Intelligence project (a free plan exists, and you can run that part yourself too) for memory and lasting conversations - it isn't fully stand-alone yet.",
+    "**41 days old and moving fast.** 15 releases already, at v0.0.15 - expect breaking changes between versions.",
+    "**We found no independent report yet of a team actually running this day to day.** The coverage so far is about the launch, not about results."
+  ],
+  "sources": [
+    {
+      "title": "OpenBot on GitHub (README, requirements, releases)",
+      "url": "https://github.com/CopilotKit/OpenBot",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "OpenBot docs: Deployment - minimum size",
+      "url": "https://github.com/CopilotKit/OpenBot/blob/main/docs/deployment.md",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "OpenBot - copilotkit.ai",
+      "url": "https://www.copilotkit.ai/openbot",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Hacker News: Show HN - Open Bot",
+      "url": "https://news.ycombinator.com/item?id=49365575",
+      "date": "2026-08-19"
+    },
+    {
+      "title": "ExplainX: OpenBot - Open-Source Grok Bot for Any Harness",
+      "url": "https://explainx.ai/blog/copilotkit-openbot-open-source-grok-bot-august-2026",
+      "date": "2026-08-20"
+    },
+    {
+      "title": "Zentor: CopilotKit OpenBot Gives Each Agent a Computer",
+      "url": "https://zentor.ai/blog/copilotkit-openbot",
+      "date": "2026-08-20"
+    },
+    {
+      "title": "RuntimeWire: CopilotKit founders pitch self-hosted OpenBot against Grok Bot",
+      "url": "https://runtimewire.com/article/copilotkit-founders-pitch-self-hosted-openbot-directly-against-grok-bot",
+      "date": "2026-09-22"
+    },
+    {
+      "title": "CopilotKit blog: OpenBot updates v0.0.5",
+      "url": "https://www.copilotkit.ai/blog/openbot-updates-v0.0.5",
+      "date": "2026-09-01"
+    },
+    {
+      "title": "Trendshift: CopilotKit/OpenBot trending stats",
+      "url": "https://trendshift.io/repositories/175080",
+      "date": "2026-09-27"
+    }
+  ],
+  "footprint": {
+    "disk": "About **1.4 GB** for the container image itself (the app, the API and one coworker's browser together), per OpenBot's own measurement. Its docs recommend 4 GB free minimum, 8 GB so a coworker has room to save files.",
+    "memory": "**409 MB** just idling, growing to about **550 MB** with one coworker's browser active (OpenBot's own measurement, on an Apple-chip machine). Its docs recommend at least 2 GB, 4 GB if several coworkers work at once.",
+    "runs_on": "Mac, Windows or Linux with Docker (a tool for packaging software to run the same way anywhere) installed. Also needs Bun 1.3+ to build the app, a PostgreSQL database (or let OpenBot run one for you), a model API key (OpenAI, Anthropic or others - none is bundled), and a CopilotKit Intelligence project (a free plan exists, and it can be run on your own server too).",
+    "source": {
+      "title": "OpenBot docs: Deployment - Minimum size, and README Requirements",
+      "url": "https://github.com/CopilotKit/OpenBot/blob/main/docs/deployment.md"
+    }
+  },
+  "visual": {
+    "src": "assets/shots/openbot.jpg",
+    "width": 1600,
+    "height": 952,
+    "alt": "A still from OpenBot's own demo video: the app window, with a list of AI coworkers' channels on the left (Email Manager, My Agent and others) and an Email Manager conversation open. Asked 'What is my inbox status so far', it answers: cleared 24 newsletters and receipts, responded to 8 routine threads (scheduling and intros), prepared 5 drafts in your voice ready for review, flagged 2 that need attention (contract follow-ups), and notes that Maxim is asking if the last client meeting was successful.",
+    "caption": "A still from OpenBot's own demo: its email coworker reports what it cleared, answered, drafted and flagged."
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "repo": "robbietilton/Compositor",
+  "name": "Compositor",
+  "tagline": "A free, open-source Photoshop-style photo editor for Mac, built by one designer to escape his own Adobe bill.",
+  "sentence": "Layer, mask and retouch a photo the way you would in Photoshop: Compositor opens in under a second, reads your old Photoshop files, and costs nothing, ever.",
+  "fit": "you",
+  "replaces": "Adobe Photoshop, for compositing, retouching and photo post-processing work",
+  "links": {
+    "website": "https://robbietilton.com/compositor"
+  },
+  "visual": {
+    "src": "assets/shots/compositor.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Compositor's own screenshot: the app editing a portrait photo (a model in a white ruffled top against a dark teal background), with the Freehand Lasso tool selected and a Layers panel showing Hue/Saturation, Levels, 'extra hair strand,' 'touch-up,' a 'model' layer and a 'bg' background layer with a Grain effect clipped to it.",
+    "caption": "The app's own screenshot, from robbietilton.com: a real retouching session, layers panel and all."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need to layer, mask and retouch a photo, but Photoshop is a monthly bill and a multi-gigabyte install with background services always running.",
+      "eg": "Adobe's own system requirements ask for 10 GB of free disk space just to install it, before you've opened a single photo."
+    },
+    {
+      "role": "trigger",
+      "say": "You double-click Compositor, or open a photo with it straight from the command line.",
+      "eg": "`open -a Compositor photo.png` opens that file directly in the app."
+    },
+    {
+      "role": "input",
+      "say": "A photo - or an old Photoshop project file - plus the edit you want.",
+      "eg": "PNG, JPEG, TIFF, HEIC, camera RAW, or a Photoshop PSD/PSB file with its layers and masks intact."
+    },
+    {
+      "role": "does",
+      "say": "It opens instantly and gives you the same layered editing workflow as Photoshop.",
+      "steps": [
+        "Opens in under a second - no sign-in, no Creative Cloud service running in the background",
+        "You build the image up in layers: masks, blend modes and adjustment layers like Curves and Hue/Saturation, the same toolset Photoshop uses",
+        "You retouch with the Clone Stamp, the Spot Healing brush, or the built-in background remover, which runs right on your Mac with nothing uploaded"
+      ],
+      "eg": "The README's own example: remove a background with the on-device tool - no cloud upload and no API key (a code some other tools make you sign up for)."
+    },
+    {
+      "role": "result",
+      "say": "A finished image, from an app a fraction of Photoshop's size.",
+      "outputs": [
+        { "what": "A finished, edited image", "eg": "Export as a JPEG with a live preview, or Copy Merged to paste it elsewhere" },
+        { "what": "A small, fast app instead of a giant one", "eg": "The newest download is about 6.3 MB, next to Photoshop's own 10 GB minimum install" },
+        { "what": "Your old Photoshop files opened, not abandoned", "eg": "PSD and PSB files open with their layers, masks and blend modes preserved" }
+      ]
+    }
+  ],
+  "before": [
+    "Photoshop is a recurring subscription, plus a multi-gigabyte install with Creative Cloud running in the background.",
+    "Most of Photoshop's toolbar is for jobs you don't do - 3D, video editing, generative fill - while the layer and retouching tools you actually use are buried under them."
+  ],
+  "after": [
+    "Free forever and open source (MIT license) - download it, use it, no account and no trial that runs out.",
+    "A few megabytes, and it opens in under a second with no background services.",
+    "Just the compositing workflow: layers, masks, blend modes, adjustments and retouching brushes - the parts of Photoshop people who composite images actually use daily."
+  ],
+  "uses_note": "It's 11 days old. Reviewers have written about it and a few readers left quick compatibility notes in blog comments, but nobody has published a named, verifiable account yet of using it to finish real work - real use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "About +5.6K stars in its first 10 tracked days, per findarepo (Sep 18 to Sep 27).",
+    "history": [
+      ["2026-09-18", 250],
+      ["2026-09-27", 5862]
+    ],
+    "history_note": "Two measured points: findarepo's tracking start (Sep 18, 250 stars) and GitHub's live count today (Sep 27, 5,862). The line between them is drawn straight, not a real daily log.",
+    "facts": [
+      { "value": "378 stars/day", "label": "findarepo's measured pace over the last 7 days" },
+      { "value": "16", "label": "people who have contributed code, per GitHub" },
+      { "value": "30", "label": "releases shipped in its first 11 days, per GitHub Releases" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "OS X Daily: Check Out Compositor for Mac, a Free Lightweight Photoshop Alternative",
+      "url": "https://osxdaily.com/2026/09/21/check-out-compositor-for-mac-a-free-lightweight-photoshop-alternative/",
+      "meta": "Sep 21"
+    },
+    {
+      "plat": "Blog",
+      "title": "GotBurnout: A Lightweight Open-Source Photoshop Alternative",
+      "url": "https://gotburnout.io/en/news/compositor-a-lightweight-open-source-photoshop-alternative-3427",
+      "meta": "Sep 19"
+    },
+    {
+      "plat": "Blog",
+      "title": "ExplainX: on Compositor and how Robbie Tilton planned it with an AI tool before hand-tuning the details",
+      "url": "https://explainx.ai/blog/compositor-open-source-image-editor-astra-2026",
+      "meta": "Sep 19"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "robbietilton/Compositor - trending stats",
+      "url": "https://trendshift.io/repositories/246426",
+      "meta": "#1 Swift repo of the day, #2 overall, Sep 19"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "Trendshift: #1 Swift repo of the day, Sep 19"
+  ],
+  "star_check": "findarepo's star check: looks organic - nothing unusual across fork ratio, issue activity and growth pace.",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download the .dmg](https://github.com/robbietilton/Compositor/releases/latest) from GitHub Releases (or from [robbietilton.com/compositor](https://robbietilton.com/compositor)) and drag Compositor into Applications - no account, no installer.",
+      "Load a photo into it - JPEG, PNG, HEIC, TIFF or an old Photoshop PSD file - and try the Clone Stamp or the on-device background remover.",
+      "Save your result as a JPEG, or keep working on the layered project - Compositor saves it in the background without getting in your way."
+    ],
+    "paste": "/skillspector https://github.com/robbietilton/Compositor\n\nIf that scan passes: download the latest release, load a photo into it, and try the background remover plus one adjustment layer (Curves or Hue/Saturation). Show me what the result looks like and anything that felt rough for an 11-day-old app. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You composite, retouch or color-grade photos on a Mac and don't need Photoshop's full toolbox",
+      "You want off the Adobe subscription and are fine with software that's 11 days old and still moving fast"
+    ],
+    "skip_if": [
+      "You're on Windows or Linux - it's Mac-only, built with Apple's own tools, and needs a recent Mac with Apple silicon",
+      "You need text layout, vector shapes, 3D or video editing - Compositor only does layered image compositing"
+    ],
+    "alternatives": [
+      {
+        "name": "GIMP",
+        "url": "https://www.gimp.org/",
+        "line": "The long-running free image editor Compositor's own README names as the alternative its creator found too unfamiliar to stay in flow with - free on Mac, Windows and Linux."
+      },
+      {
+        "name": "Affinity Photo",
+        "url": "https://affinity.serif.com/",
+        "line": "A paid, full-featured editor named in press coverage of Compositor as the closer comparison - it also does vector and text work Compositor leaves out, at a much larger install size."
+      }
+    ]
+  },
+  "watch": [
+    "**Mac only, and a recent one.** Needs macOS 26 or later on Apple silicon - no Intel Mac, Windows or Linux version.",
+    "**Not a full Photoshop replacement.** No text tool, no vector shapes, no video timeline - it covers layered compositing and retouching, not everything Photoshop does.",
+    "**11 days old and one main developer.** Fast-moving - 30 releases already - but built and maintained by one person so far.",
+    "**A couple of rough edges showed up in reader comments** on one blog post: one person could only export JPEGs and not save a project file, and another flagged a compatibility issue on an older Mac. Given how fast releases are shipping, these may already be fixed."
+  ],
+  "sources": [
+    { "title": "Compositor on GitHub (README, requirements, releases)", "url": "https://github.com/robbietilton/Compositor", "date": "2026-09-27" },
+    { "title": "Compositor - robbietilton.com", "url": "https://robbietilton.com/compositor", "date": "2026-09-27" },
+    { "title": "Compositor Releases (download sizes)", "url": "https://github.com/robbietilton/Compositor/releases", "date": "2026-09-27" },
+    { "title": "findarepo: Compositor stats, growth and star check", "url": "https://findarepo.com/repo/robbietilton/Compositor/", "date": "2026-09-27" },
+    { "title": "Trendshift: robbietilton/Compositor trending stats", "url": "https://trendshift.io/repositories/246426", "date": "2026-09-27" },
+    { "title": "OS X Daily: Check Out Compositor for Mac", "url": "https://osxdaily.com/2026/09/21/check-out-compositor-for-mac-a-free-lightweight-photoshop-alternative/", "date": "2026-09-21" },
+    { "title": "GotBurnout: A Lightweight Open-Source Photoshop Alternative", "url": "https://gotburnout.io/en/news/compositor-a-lightweight-open-source-photoshop-alternative-3427", "date": "2026-09-19" },
+    { "title": "ExplainX: Compositor - open-source image editor", "url": "https://explainx.ai/blog/compositor-open-source-image-editor-astra-2026", "date": "2026-09-19" },
+    { "title": "Adobe Photoshop system requirements", "url": "https://helpx.adobe.com/photoshop/system-requirements.html", "date": "2026-09-27" },
+    { "title": "GIMP", "url": "https://www.gimp.org/", "date": "2026-09-27" },
+    { "title": "Affinity Photo", "url": "https://affinity.serif.com/", "date": "2026-09-27" }
+  ],
+  "footprint": {
+    "disk": "About **6.3 MB** to download - the size of the latest release's disk image, today. Early releases ran closer to 7 to 9 MB; the app has been shrinking as it matures. Several press write-ups repeat a rounder \"12 MB\" figure that doesn't match any of its 30 GitHub releases, so this page uses the measured current download instead.",
+    "memory": "No data found for an exact number. It's a native Mac app (Swift and Metal, Apple's own graphics tools) rather than a heavier cross-platform wrapper, so it should be light, but no source states a figure.",
+    "runs_on": "Mac only: macOS 26 or later, on a Mac with Apple silicon (no Intel Mac support). Building it yourself needs Xcode 26 or later.",
+    "source": { "title": "Compositor README: Requirements, and GitHub Releases file sizes", "url": "https://github.com/robbietilton/Compositor#requirements" }
+  }
+}

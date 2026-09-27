@@ -1,0 +1,46 @@
+{
+  "repo": "zai-org/ZCode",
+  "name": "ZCode",
+  "status": "fail",
+  "tagline": "Z.ai's AI coding app. We ranked it #5 in Edition 009, then pulled it after our security review on September 27, 2026.",
+  "sentence": "It was caught silently uploading users' entire code history to its maker's cloud.",
+  "what_happened": [
+    "A developer's reverse-engineering report (September 18) found ZCode packing whole workspaces, including the full Git history, into encrypted archives and uploading them to Alibaba Cloud storage. Only Z.ai held the key to decrypt them.",
+    "In one examined install, a single upload was **313 MB covering 42,411 files**, and 86.6% of it was the Git history.",
+    "It kept doing this with the two settings that looked relevant **switched off**.",
+    "Z.ai apologized, said it fixed the problem, and published the app's code on GitHub on September 21."
+  ],
+  "why_fail": [
+    "**The fix can't be verified.** The published code can show what the app does now. It can't show what happened to code already uploaded to Z.ai's servers.",
+    "**The repo can't be matched to the app people install.** It launched as a 3-commit code drop from 2 contributors, with no development history.",
+    "**The popularity isn't earned history.** 6.9K stars in 7 days, on that same 3-commit history."
+  ],
+  "if_used": [
+    "Treat anything in the history of projects you opened with ZCode (API keys, tokens, passwords) as exposed, and change it.",
+    "Uninstall it until an independent review confirms the app no longer uploads workspaces."
+  ],
+  "sources": [
+    {
+      "title": "RuntimeWire: Z.ai open-sources ZCode after its coding agent uploaded Git histories",
+      "url": "https://runtimewire.com/article/zai-open-sources-zcode-security-remediation-git-history-upload",
+      "date": "2026-09-21"
+    },
+    {
+      "title": "The Register: Z.ai says sorry for slurping up your code, open sources ZCode",
+      "url": "https://www.theregister.com/security/2026/09/22/zai-says-sorry-for-slurping-up-your-code-open-sources-zcode/5298300",
+      "date": "2026-09-22"
+    },
+    {
+      "title": "DEV Community: An AI coding app was silently uploading your entire Git history",
+      "url": "https://dev.to/jamilxt/an-ai-coding-app-was-silently-uploading-your-entire-git-history-inside-the-zcode-incident-15j"
+    },
+    {
+      "title": "Hacker News discussion",
+      "url": "https://news.ycombinator.com/item?id=49752422"
+    },
+    {
+      "title": "The ZCode repository (for reference only)",
+      "url": "https://github.com/zai-org/ZCode"
+    }
+  ]
+}

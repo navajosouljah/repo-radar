@@ -3,278 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>lnkiai/m3e-canvas - Sketch M3 Expressive Screens Into Vibe-Coding Prompts | Repo Radar</title>
+<title>M3E Canvas: A browser sketchpad for app screens that turns your drawing into a prompt (written instructions) an AI coding tool can build from. | Repo Radar</title>
+<meta name="description" content="Drag real app parts (buttons, cards, menus) onto phone screens in your browser, connect the screens, and press Export: it writes a plain-English brief you paste into Claude Code or another AI coding tool to build the real app.">
+<meta property="og:title" content="M3E Canvas: A browser sketchpad for app screens that turns your drawing into a prompt (written instructions) an AI coding tool can build from. | Repo Radar">
+<meta property="og:description" content="Drag real app parts (buttons, cards, menus) onto phone screens in your browser, connect the screens, and press Export: it writes a plain-English brief you paste into Claude Code or another AI coding tool to build the real app.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/m3e-canvas.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#fafafa;--bg2:#f0f0f0;--card:#ffffff;--card2:#f5f0ff;
-    --primary:#6750A4;--primary-dim:#53408a;--secondary:#625B71;
-    --accent:#79747E;--accent-light:#49454F;
-    --ink:#1C1B1F;--muted:#49454F;--line:#CAC4D0;
-    --sans:'Roboto',sans-serif;--mono:'Roboto Mono',monospace;--disp:'Outfit',sans-serif;
-    --r:16px;
-    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--shadow-lg:0 4px 16px rgba(0,0,0,.10);
-    --glow:0 0 0 3px #6750A420;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65}
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:var(--card);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line);background:linear-gradient(165deg,#f5f0ff 0%,#fafafa 60%)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#fff;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:800;line-height:1.12;letter-spacing:-.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.04em;margin-bottom:4px}
-  h1 .name{color:var(--primary)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:400}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(250,250,250,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:normal;color:var(--primary)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:4px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:var(--card2);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:#fff0f0;border-color:#e0b0b0}
-  .ba.after{background:#f5f0ff;border-color:#c4b5e0}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#b91c1c}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#fff;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#1C1B1F;border:1px solid var(--line);border-radius:12px;padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#E6E1E5}
-  pre .cm{color:#938F99}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:#fff7ed;border:1px solid #e0b0b0;border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#b91c1c;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid #f0d0d0}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"\25B8  ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--primary);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#fff;text-decoration:none}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/lnkiai/m3e-canvas" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Material 3 Expressive - Vibe-Coding Bridge</span>
-    <h1><span class="owner">lnkiai/</span><span class="name">m3e-canvas</span></h1>
-    <p class="tagline"><strong>Sketch Material 3 Expressive screens in the browser, then press one button to get a coding prompt.</strong> Drag and drop real M3 Expressive components - buttons, FABs, nav bars, cards - wire up tap-through navigation, and export a precise natural-language brief you paste straight into Claude Code, Codex, Gemini CLI, or Cursor. No backend, no install, everything lives in local storage.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">8.2K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">861</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>Design meets <em>prompt engineering</em></h2>
-    <p class="sub">M3E Canvas is a browser-based whiteboard for sketching Material 3 Expressive app screens. Drag components, arrange layouts, then export a structured prompt any AI coding agent can build from. No Figma account, no design skills, no backend.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">8.2K</div><div class="l">GitHub Stars</div></div>
-      <div class="bignum"><div class="n sc">861</div><div class="l">Forks</div></div>
-      <div class="bignum"><div class="n lm">23</div><div class="l">Days Old</div></div>
-      <div class="bignum"><div class="n">40+</div><div class="l">M3E Components</div></div>
-      <div class="bignum"><div class="n sc">4</div><div class="l">Languages</div></div>
-      <div class="bignum"><div class="n">0</div><div class="l">Backend Required</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#3 this week</span><span class="repo-id">lnkiai/m3e-canvas</span></div>
+    <h1 id="name">M3E Canvas</h1>
+    <p class="tagline">A browser sketchpad for app screens that turns your drawing into a prompt (written instructions) an AI coding tool can build from.</p>
+    <p class="sentence">Drag real app parts (buttons, cards, menus) onto phone screens in your browser, connect the screens, and press Export: it writes a plain-English brief you paste into Claude Code or another AI coding tool to build the real app.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Drag-and-drop M3 Expressive parts</div><p>Over <strong>40 real Material 3 Expressive components</strong> - buttons, icon buttons, FABs, split buttons, FAB menus, chips, app bars, navigation bars, cards, text fields, and more. Each part looks and behaves like the actual M3E specification.</p></div>
-      <div class="feat"><div class="fh">One-click prompt export</div><p>Press the export button and get a <strong>structured natural-language brief</strong> with behavioral notes per component. The prompt includes layout relationships, navigation flows, and interaction details - not just a list of widgets.</p></div>
-      <div class="feat"><div class="fh">Multi-language prompts</div><p>Export prompts in <strong>English, Japanese, Chinese, or Korean</strong>. The language toggle applies to all behavioral notes and component descriptions, so your AI coding agent gets instructions in the language you think in.</p></div>
-      <div class="feat"><div class="fh">Magnetic snapping and Tidy</div><p>Components <strong>snap together magnetically</strong>. The Tidy feature snaps bars to edges, the FAB to corners, joins neighboring list items and buttons, and stacks the rest on 16dp margins. Press again to undo.</p></div>
-      <div class="feat"><div class="fh">Tap-through navigation</div><p>Wire up <strong>multi-screen flows</strong> with tap-through navigation. Define which button goes to which screen, and the exported prompt includes the full navigation graph so your AI agent builds the routing correctly.</p></div>
-      <div class="feat"><div class="fh">Optional AI helper</div><p>Bring your own API key - <strong>OpenAI, Claude, Gemini, or DeepSeek</strong> - and have the model write behavior notes or screen descriptions in your language. The key stays in your browser; requests go directly to the provider.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>The prompt is the product</h3>
-      <p>Most design tools produce images or design tokens. M3E Canvas produces something fundamentally different - a structured prompt that an AI coding agent can execute. The exported brief is not a vague description. It includes the exact component hierarchy, spacing relationships, color roles, navigation targets, and behavioral notes per widget. When you paste it into Claude Code or Cursor, the agent builds something that matches your sketch because the prompt carries enough context. The gap between "I sketched something" and "the AI built what I meant" shrinks to nearly nothing.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>design-to-prompt</em> gap</h2>
-    <p class="sub">Vibe coding works when the prompt is good. Most people cannot write a prompt that describes a UI well enough for an AI agent to build it correctly.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Prompts are too vague.</strong> "Make me an app with a bottom nav and a card list" produces wildly different results depending on the AI agent, its mood, and the phase of the moon. You spend more time correcting the output than you would have spent building it manually.</p>
-        <p><strong>Design tools export the wrong thing.</strong> Figma and Sketch export images, design tokens, or component specs aimed at human developers. None of that is a prompt. Converting a Figma frame into instructions an AI agent can follow is a manual, error-prone translation step.</p>
-        <p><strong>Material 3 Expressive is new and complex.</strong> M3E introduced new component shapes, motion patterns, and layout rules. Most developers - and most AI agents - do not know the spec well enough to get the details right without explicit guidance.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Sketch your intent, export precision.</strong> Drag M3E components onto a canvas, arrange them the way you want, and the exported prompt captures exactly what you drew - component types, positions, nesting, colors, and behaviors.</p>
-        <p><strong>Prompts carry behavioral notes.</strong> Each component in the export includes what it does, not just what it looks like. A FAB menu export says "expands to show three actions on tap" rather than just "floating action button." The AI agent builds the interaction, not just the shape.</p>
-        <p><strong>Works with any AI coding tool.</strong> The output is plain text. Paste it into Claude Code, Codex, Gemini CLI, Cursor, or anything else that accepts a prompt. No plugins, no integrations, no vendor lock-in.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Start <em>sketching</em></h2>
-    <p class="sub">No install required for the hosted version. Run it locally if you want to hack on it.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Use the hosted version</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># No install needed - open in your browser:</span>
-https://lnkiai.github.io/m3e-canvas/
-
-<span class="cm"># Everything runs client-side.</span>
-<span class="cm"># Your sketches are saved in local storage.</span>
-<span class="cm"># Nothing is sent to a server.</span></pre>
-        <p>The hosted version is always up to date. <strong>Works in any modern browser</strong> - Chrome, Firefox, Safari, Edge. No account, no sign-up, no backend.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Or run locally</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Clone and install</span>
-git clone https://github.com/lnkiai/m3e-canvas.git
-cd m3e-canvas
-npm install
-
-<span class="cm"># Start the dev server</span>
-npm run dev</pre>
-        <p>Local development uses a standard <strong>TypeScript + Vite</strong> setup. Hot-reload is enabled by default. Contributions welcome under the MIT license.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Sketch and export</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># 1. Drag M3E components onto the canvas</span>
-<span class="cm"># 2. Arrange, resize, connect screens</span>
-<span class="cm"># 3. Click "Export Prompt"</span>
-<span class="cm"># 4. Choose language (EN / JA / ZH / KO)</span>
-<span class="cm"># 5. Paste into your AI coding tool</span>
-
-<span class="cm"># Optional: choose Android or Web target</span>
-<span class="cm"># The prompt adjusts for the matching stack</span></pre>
-        <p>The export button generates a <strong>structured prompt with behavioral notes</strong> for every component. The Tidy button auto-aligns your layout before export. You can also export a PNG screenshot of your sketch.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>How people <em>use it</em></h2>
-    <p class="sub">M3E Canvas sits between design and code. Here is where that position pays off.</p>
-
-    <div class="story"><div class="metric">Solo Vibe Coding</div><p><strong>Sketch what you want, then let the AI build it.</strong> A solo developer with no design background drags components onto a canvas, hits export, and pastes the prompt into Claude Code. The output follows Material 3 Expressive conventions because the prompt specifies them - no guessing, no "make it look like Material Design."</p></div>
-    <div class="story"><div class="metric">Client Communication</div><p><strong>Replace wireframe meetings with interactive sketches.</strong> Sketch two or three screens, connect them with navigation, and show the client a clickable prototype in the browser. When the client says "yes," press export and hand the prompt to your AI coding agent. The spec is already written.</p></div>
-    <div class="story"><div class="metric">Android Prototyping</div><p><strong>Go from idea to running Compose code in minutes.</strong> Set the target to Android, sketch your screens using M3E parts, export the prompt, and paste it into Gemini CLI or Claude Code. The prompt includes Compose-specific instructions, so the generated code uses Material 3 Expressive composables.</p></div>
-    <div class="story"><div class="metric">Design Education</div><p><strong>Learn M3E by building with it.</strong> Students drag real Material 3 Expressive components and see how they relate. The behavioral notes in the exported prompt teach what each component does - a navigation rail is not just a sidebar, it has specific selection and expansion behaviors.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>Zentor Blog explainer.</strong> Published a walkthrough titled "What Is M3E Canvas? Sketch UIs, Get AI Prompts" covering the full workflow from drag-and-drop to prompt export. <a href="https://zentor.ai/blog/what-is-m3e-canvas" target="_blank">zentor.ai/blog/what-is-m3e-canvas</a></li>
-        <li><strong>GitHub Awesome feature.</strong> Listed as "a Material 3 mockup tool that writes the coding prompt for you when you're done." <a href="https://githubawesome.com/m3e-canvas-a-material-3-mockup-tool-that-writes-the-coding-prompt-for-you-when-youre-done/" target="_blank">githubawesome.com</a></li>
-        <li><strong>The Daily Commit.</strong> Covered in the September 4 roundup when the project hit 512 stars in its first two days. <a href="https://thedailycommit.in/story/2026-09-04/08-github-lnkiai-m3e-canvas" target="_blank">thedailycommit.in</a></li>
-        <li><strong>AI Daily Digest (Japanese).</strong> Included in a Japanese-language AI tools digest alongside other design-to-code tools. <a href="https://github.com/onlyjco/daily-ai-digest/issues/89" target="_blank">daily-ai-digest Issue #89</a></li>
-        <li><strong>TrendShift trending tracker.</strong> Tracked the project's growth trajectory on the GitHub trending repositories dashboard. <a href="https://trendshift.io/repositories/208608" target="_blank">trendshift.io</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Only Material 3 Expressive.</strong> If your project uses a different design system - Fluent, Carbon, Ant Design, custom - M3E Canvas will not help. The components and the exported prompts are specific to M3E.</li>
-        <li><strong>Prompt quality depends on your sketch.</strong> The tool exports what you draw. A sloppy layout produces a sloppy prompt. Use the Tidy button to clean up alignment before exporting.</li>
-        <li><strong>No real data binding.</strong> The canvas deals in static screens and navigation flows. It does not model data sources, API calls, or state management. You still need to specify those in your prompt manually or let the AI agent infer them.</li>
-        <li><strong>Local storage only.</strong> Your sketches live in the browser's local storage. Clear your browser data and they are gone. There is no cloud sync, no team sharing, and no export-to-file for backups yet.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/lnkiai/m3e-canvas" target="_blank">lnkiai/m3e-canvas GitHub</a> - source, docs, live demo</li>
-      <li>Stack: TypeScript, Vite, runs entirely client-side</li>
-      <li>Last pushed: September 24, 2026 | Created: September 2, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://lnkiai.github.io/m3e-canvas/" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/lnkiai/m3e-canvas" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/m3e-canvas.png" alt="M3E Canvas's own screenshot: two connected phone screens for a notes app (a home list called 'メモ' and a meeting-detail screen) sketched on the canvas, with the right-hand panel showing the exported prompt written out in Japanese - it names the app, describes it as a simple notes app opened from a list to edit, lists the Material 3 purple color theme by hex code (primary #6750A4 and more), and ends in a 'Copy prompt' button." width="1600" height="1000" loading="eager">
+    <figcaption>From the README's own docs folder: sketch the screens on the left, get the finished prompt on the right. This demo happens to be in Japanese, one of the four languages it can write in.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">8.3K</span><span class="v-note">GitHub stars, <b>About +8.1K stars in its first 25 days, per findarepo's own tracking (Sep 3 to Sep 27).</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 29.4 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">5</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You can tell an AI coding tool what app screen you want in plain words, but words alone get the layout wrong.</p><p class="eg">&quot;Make me an app with a bottom nav and a card list&quot; comes out differently every time you ask - you end up fixing the result instead of describing it better.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You open the free web app and start dragging parts onto a screen - no sign-up, nothing to install.</p><p class="eg">It runs at lnkiai.github.io/m3e-canvas - open it in Chrome, Firefox, Safari or Edge and you're sketching.</p></div><div class="note input"><span class="role">You give it</span><p class="say">The screens you want, and which button leads to which screen.</p><p class="eg">Buttons, cards, list items, navigation bars, search bars and dozens of other Material 3 Expressive parts, arranged across as many screens as you like.</p></div><div class="note does"><span class="role">It does</span><p class="say">It watches how you arrange the parts and connect the screens, then turns that into words.</p><ol class="steps-in"><li>You drag parts onto the canvas and arrange them the way you want the screen to look</li><li>You give buttons a target screen (or &quot;back&quot;) and pick a look: color theme, corner shape, type and motion style</li><li>The Tidy button auto-aligns everything - bars to the edges, buttons and list items joined up - so a sloppy layout doesn't turn into a sloppy prompt</li><li>You press Export and it writes the whole thing out as a plain-language brief, including what each part does, not just what it looks like</li></ol><p class="eg">The README's own demo: sketch a recipes app, change its color theme, copy the prompt, hand it to an AI coding tool, and run the result on Android.</p></div><div class="note result"><span class="role">You get</span><p class="say">A brief you can hand straight to an AI coding tool.</p><ul class="outputs"><li><b>A ready-to-paste prompt in your choice of language</b><span>English, Japanese, Chinese or Korean - describing every screen, color and behavior</span></li><li><b>A picture of your sketch</b><span>Save any screen as a PNG file</span></li><li><b>A link that hands your design straight to an AI coding agent</b><span>The beta &quot;AI draft&quot; link has an agent read the sketch and reply with a link to what it built</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Describing a screen in plain words to an AI coding tool gets the layout wrong more often than it gets it right.</li><li>Figma and other design tools export pictures or files aimed at human developers - nothing an AI coding tool can read as instructions.</li><li>Material 3 Expressive is new enough that most AI coding tools don't know its specific shapes and rules unless you spell them out.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Sketch it instead of describing it, and the tool writes the words for you - including what each part should do, not just what it looks like.</li><li>The output is one plain-text prompt any AI coding tool accepts: Claude Code, Codex, Cursor and more.</li><li>It's free and open source, and runs entirely in your browser - nothing to install, and your sketches never leave your own computer.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://lnkiai.github.io/m3e-canvas/" rel="noopener">Open the live app</a> in your browser - free, no sign-up, nothing to install.</li><li>Drag a few parts onto the canvas (a button, a card, a nav bar) and connect them with tap-through navigation.</li><li>Click Export, pick English, copy the prompt, and paste it into Claude Code (or any AI coding tool) and ask it to build the app.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Zero to use the <a href="https://lnkiai.github.io/m3e-canvas/" rel="noopener">hosted app</a> - it opens straight in your browser and nothing downloads to your computer. Running your own local copy needs Node.js and <code>npm install</code>; no source states an exact size for that download.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found for an exact number. It's a normal browser tab running a static website, not a separate program on your computer.</dd></div>
+    <div><dt>Runs on</dt><dd>Any modern browser - Chrome, Firefox, Safari or Edge - on Mac, Windows or Linux. No install and no graphics card needed. Running your own copy to develop it further needs Node.js.</dd></div>
+  </dl><a class="src" href="https://github.com/lnkiai/m3e-canvas#develop" rel="noopener">Source: m3e-canvas README: no backend, local storage, Develop section</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-m3e-canvas">/skillspector https://github.com/lnkiai/m3e-canvas
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: open the live app, sketch a two-screen mock (a list screen and a detail screen), connect them with tap-through navigation, export the prompt, and show me exactly what the exported text says. 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-m3e-canvas">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You want to hand an AI coding tool a real design instead of a paragraph, and you don't have Figma skills</li><li>You're prototyping an Android or web screen and want Material 3 Expressive done right without learning its rules by hand</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You need a different design system - Fluent, Carbon, Ant Design or your own - this only knows Material 3 Expressive</li><li>You need your sketches backed up or shared with a team - everything lives only in your own browser's storage, with no cloud sync yet</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://stitch.withgoogle.com/" rel="noopener"><b>Google Stitch</b></a><span>Google's AI tool that generates app and web screens from a written description, instead of you arranging the parts by hand.</span></li><li><a href="https://www.figma.com/" rel="noopener"><b>Figma</b></a><span>The design app most product teams use: you draw every screen yourself, with far more control and far more to learn.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/lnkiai/m3e-canvas/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>1 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>8.3K stars, 10 contributors, 174 commits. findarepo's star check: looks organic - nothing unusual across fork ratio, issue activity and growth pace.</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Only Material 3 Expressive.</b> A different design system - Fluent, Carbon, your own brand system - isn't supported at all.</li><li><b>No cloud save yet.</b> Everything lives in your browser's local storage; clear your browser data and your sketches are gone. There's no export-to-file backup.</li><li><b>The optional AI helper sends your design to whichever provider you pick.</b> Turn on the AI tab and your design description goes from your browser straight to OpenAI, Anthropic, Google or DeepSeek using your own key. Normal use - dragging parts, exporting a prompt - sends nothing anywhere.</li><li><b>25 days old, with a small team.</b> 10 contributors so far and fast-moving weekly changes - expect rough edges and quick changes to how things look.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's 25 days old, and the coverage so far describes what it does rather than a documented story of someone using it to ship something specific - real use is still early.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io/repositories/208608" rel="noopener">lnkiai/m3e-canvas - trending stats</a><span class="meta">#1 repo of the day (all languages), Sep 4</span></li><li class=""><span class="plat">Blog</span><a href="https://thedailycommit.in/story/2026-09-04/08-github-lnkiai-m3e-canvas" rel="noopener">The Daily Commit: daily roundup feature</a><span class="meta">890 stars at the time - Sep 4</span></li><li class=""><span class="plat">Blog</span><a href="https://githubawesome.com/m3e-canvas-a-material-3-mockup-tool-that-writes-the-coding-prompt-for-you-when-youre-done/" rel="noopener">GithubAwesome: &quot;a Material 3 mockup tool that writes the coding prompt for you&quot;</a><span class="meta">Sep 8</span></li><li class=""><span class="plat">Blog</span><a href="https://zentor.ai/blog/what-is-m3e-canvas" rel="noopener">Zentor: &quot;What Is M3E Canvas? Sketch UIs, Get AI Prompts&quot;</a><span class="meta">Sep 4, updated Sep 24</span></li><li class=""><span class="plat">Dev.to</span><a href="https://dev.to/terminalchai/m3e-canvas-visual-material-3-expressive-prototyping-for-ai-coding-agents-2ca2" rel="noopener">M3E Canvas: Visual Material 3 Expressive Prototyping for AI Coding Agents</a><span class="meta">Sep 15</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span><span class="chip">Trendshift: #1 repo of the day across all languages, Sep 4</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/lnkiai/m3e-canvas" rel="noopener">m3e-canvas on GitHub (README, credits, See also)</a>, Sep 27</li><li><a href="https://lnkiai.github.io/m3e-canvas/" rel="noopener">M3E Canvas live app</a>, Sep 27</li><li><a href="https://findarepo.com/repo/lnkiai/m3e-canvas/" rel="noopener">findarepo: m3e-canvas stats, growth and star check</a>, Sep 27</li><li><a href="https://trendshift.io/repositories/208608" rel="noopener">Trendshift: lnkiai/m3e-canvas trending stats</a>, Sep 27</li><li><a href="https://thedailycommit.in/story/2026-09-04/08-github-lnkiai-m3e-canvas" rel="noopener">The Daily Commit: lnkiai/m3e-canvas roundup entry</a>, Sep 4</li><li><a href="https://githubawesome.com/m3e-canvas-a-material-3-mockup-tool-that-writes-the-coding-prompt-for-you-when-youre-done/" rel="noopener">GithubAwesome: M3E Canvas feature</a>, Sep 8</li><li><a href="https://zentor.ai/blog/what-is-m3e-canvas" rel="noopener">Zentor: What Is M3E Canvas? Sketch UIs, Get AI Prompts</a>, Sep 4</li><li><a href="https://dev.to/terminalchai/m3e-canvas-visual-material-3-expressive-prototyping-for-ai-coding-agents-2ca2" rel="noopener">Dev.to: M3E Canvas - Visual Material 3 Expressive Prototyping for AI Coding Agents</a>, Sep 15</li><li><a href="https://www.beercss.com/" rel="noopener">Beer CSS</a>, Sep 27</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

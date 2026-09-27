@@ -3,292 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>kirodotdev/KiroCrew - Persistent Workspace for Self-Improving Agents | Repo Radar</title>
+<title>KiroCrew: A work computer for your AI agents that never clocks out: a task keeps running long after you close your laptop. | Repo Radar</title>
+<meta name="description" content="Type a task in plain English and walk away: KiroCrew keeps working on it after you close the window, so you come back to a finished answer instead of a stalled chat.">
+<meta property="og:title" content="KiroCrew: A work computer for your AI agents that never clocks out: a task keeps running long after you close your laptop. | Repo Radar">
+<meta property="og:description" content="Type a task in plain English and walk away: KiroCrew keeps working on it after you close the window, so you come back to a finished answer instead of a stalled chat.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/kirocrew.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a0c18;--bg2:#0e1028;--card:#121630;--card2:#181e42;
-    --primary:#ff9f1c;--primary-dim:#e08a10;--secondary:#4361ee;
-    --accent:#5a6080;--accent-light:#8088b0;
-    --ink:#e8eaf0;--muted:#8a90b8;--line:#1e2248;
-    --sans:'Inter',sans-serif;--mono:'Space Mono',monospace;--disp:'Exo 2',sans-serif;
-    --r:3px;
-    --shadow:0 2px 12px rgba(0,0,0,.3);--shadow-lg:0 6px 24px rgba(0,0,0,.4);
-    --glow:0 0 12px #ff9f1c30;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
-    background-image:
-      radial-gradient(1px 1px at 10% 15%,#ffffff10,transparent),
-      radial-gradient(1px 1px at 25% 45%,#ffffff08,transparent),
-      radial-gradient(1px 1px at 40% 80%,#ffffff0a,transparent),
-      radial-gradient(1px 1px at 55% 25%,#ffffff06,transparent),
-      radial-gradient(1px 1px at 70% 60%,#ffffff0c,transparent),
-      radial-gradient(1px 1px at 85% 10%,#ffffff08,transparent),
-      radial-gradient(1px 1px at 90% 70%,#ffffff06,transparent),
-      radial-gradient(1.5px 1.5px at 15% 55%,#ffffff0a,transparent),
-      radial-gradient(1px 1px at 60% 90%,#ffffff08,transparent),
-      radial-gradient(1.5px 1.5px at 35% 30%,#ffffff06,transparent),
-      radial-gradient(1px 1px at 80% 40%,#ffffff0a,transparent),
-      radial-gradient(1px 1px at 50% 5%,#ffffff08,transparent),
-      radial-gradient(ellipse at 50% 0%,#4361ee08 0%,transparent 60%);
-  }
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(10,12,24,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0a0c18;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,12,24,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a0c18;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#ff9f1c08,#4361ee06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0a0c18;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
-  .ba.after{background:#ff9f1c08;border-color:#ff9f1c50}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#0a0c18;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#060820;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#5a6080}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#0a0c18;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/kirodotdev/KiroCrew" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Persistent Agent Workspace - Open Source</span>
-    <h1><span class="owner">kirodotdev/</span><span class="name">KiroCrew</span></h1>
-    <p class="tagline"><strong>A development workspace that never clocks out.</strong> KiroCrew is an open-source orchestration layer that coordinates multiple AI agents, preserves context across sessions, schedules recurring work, and keeps running while you are offline. Born inside Amazon as MeshClaw, adopted by 39K+ internal builders, now Apache-2.0 for everyone.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">4.1K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">676</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>Agents that <em>persist</em> beyond one session</h2>
-    <p class="sub">Most agent sessions end when the chat closes. KiroCrew runs continuously on hardware you control, keeping sessions alive, memory intact, and scheduled work running - whether you are at the terminal or not. Connect from the desktop app, web dashboard, CLI, Slack, or Discord.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">4.1K</div><div class="l">GitHub Stars</div></div>
-      <div class="bignum"><div class="n sc">676</div><div class="l">Forks</div></div>
-      <div class="bignum"><div class="n lm">39K+</div><div class="l">Amazon Builders</div></div>
-      <div class="bignum"><div class="n">597</div><div class="l">Updates Shipped</div></div>
-      <div class="bignum"><div class="n sc">143</div><div class="l">Weekly Commits</div></div>
-      <div class="bignum"><div class="n">Apache-2.0</div><div class="l">License</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#10 this week</span><span class="repo-id">kirodotdev/KiroCrew</span></div>
+    <h1 id="name">KiroCrew</h1>
+    <p class="tagline">A work computer for your AI agents that <b>never clocks out</b>: a task keeps running long after you close your laptop.</p>
+    <p class="sentence">Type a task in plain English and walk away: KiroCrew keeps working on it after you close the window, so you come back to a finished answer instead of a stalled chat.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Persistent sessions and memory</div><p>Sessions, memory, schedules, and task checkpoints <strong>survive gateway restarts</strong>. Your agent crew continues working between conversations. Incognito and temporary session modes let you opt out when a conversation should not persist.</p></div>
-      <div class="feat"><div class="fh">Multi-agent orchestration</div><p>Coordinate <strong>multiple AI agents</strong> working on different tasks simultaneously. Run several tasks at once instead of babysitting one prompt at a time. Each agent operates in its own context with shared memory across the crew.</p></div>
-      <div class="feat"><div class="fh">Scheduled and reactive work</div><p>Cron schedules, webhook triggers, and <strong>heartbeat monitors</strong> keep your agent crews productive whether you are online or off. Long-running tasks move through checkpoints, validation, and retries automatically.</p></div>
-      <div class="feat"><div class="fh">Self-improving skills</div><p>Memory, lessons, and skills <strong>carry across sessions</strong> so your crew evolves to fit your work. The workspace learns how you work and adapts its coordination patterns over time.</p></div>
-      <div class="feat"><div class="fh">Multi-surface access</div><p>Work with your crew from the <strong>desktop app, web dashboard, and CLI</strong>, or continue the same work through connection tools like Slack and Discord. Same state, any interface.</p></div>
-      <div class="feat"><div class="fh">Self-hosted, no AWS required</div><p>Deploy entirely on <strong>your own hardware</strong> - laptop, container, VM, or EC2 instance. No AWS account or managed control plane required. Your code, your data, your infrastructure.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>Kick off a task, walk away, come back to something reviewable</h3>
-      <p>This was the original design goal from the three Amazon engineers who built MeshClaw. You describe a task, the crew works on it asynchronously - through checkpoints, validation, and retries - and when you come back, you have a reviewable result waiting. Not a half-finished chat thread, not a stale context window, but an actual deliverable. Multi-step tasks run unattended, recurring jobs run on schedule, and heartbeats monitor systems until something needs attention. This is what "persistent" actually means: your agents keep working when you stop watching.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>ephemeral agent</em> problem</h2>
-    <p class="sub">AI coding agents are powerful in the moment but amnesiacs between sessions. Every conversation starts from scratch, long tasks die when the window closes, and running multiple agents means juggling multiple chat windows.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Sessions die with the chat window.</strong> Close the terminal and your agent forgets everything. Context, progress, decisions, and half-finished work vanish. Tomorrow you start over from zero, re-explaining the same project and re-establishing the same patterns.</p>
-        <p><strong>One task at a time.</strong> Most agent tools let you work on one task in one window. Running a migration, a test suite, and a code review simultaneously means three separate sessions with no shared context between them.</p>
-        <p><strong>No unattended work.</strong> If a task takes two hours, you babysit it for two hours. There is no way to kick off a long-running job and come back when it is done. No scheduling, no retries, no checkpoints.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Sessions that survive everything.</strong> Sessions, memory, and task state persist across gateway restarts, network interruptions, and laptop reboots. Pick up exactly where you left off from any device or interface.</p>
-        <p><strong>Multi-agent orchestration.</strong> Run several agents on different tasks concurrently. They share memory and lessons learned while operating in isolated contexts. One crew, many tasks, one state.</p>
-        <p><strong>Async, scheduled, and reactive.</strong> Long-running tasks checkpoint their progress and retry on failure. Cron schedules handle recurring work. Webhooks trigger reactive jobs. Heartbeats monitor systems. Your crew works the night shift.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Set up <em>KiroCrew</em></h2>
-    <p class="sub">Get a persistent agent workspace running on your machine. Requires Python 3.12+, Node.js 22+ (24 LTS recommended), and npm.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
-      <div class="step-body">
-<pre>git clone https://github.com/kirodotdev/KiroCrew.git
-cd KiroCrew
-
-<span class="cm"># Install dependencies</span>
-npm install</pre>
-        <p>KiroCrew supports <strong>macOS, Linux, and Windows</strong>. Docker images are also available for containerized deployments. The setup installs the gateway, dashboard, and CLI tooling.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Start the gateway</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Start the persistent gateway</span>
-npm run start
-
-<span class="cm"># Or run via Docker</span>
-docker compose up -d</pre>
-        <p>The gateway is the persistent process that <strong>keeps your agents alive</strong>. It manages sessions, memory, schedules, and task checkpoints. Access it via the web dashboard at localhost or the CLI.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Create your first crew and task</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Open the web dashboard and create a crew</span>
-<span class="cm"># Or use the CLI:</span>
-kiro crew create --name "my-project"
-
-<span class="cm"># Assign a task</span>
-kiro task start "Investigate the P1 latency spike in the
-  payments service and set up prevention automation"
-
-<span class="cm"># Walk away. Come back later to review results.</span>
-kiro task status</pre>
-        <p>Tasks run through <strong>checkpoints, validation, and retries</strong> automatically. The crew persists memory and lessons learned, so the next task benefits from everything the crew has seen before.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>KiroCrew</em> fits</h2>
-    <p class="sub">Any workflow where agent work spans sessions, schedules, or team boundaries benefits from a persistent orchestration layer.</p>
-
-    <div class="story"><div class="metric">Incident Response</div><p><strong>Autonomous P1 investigation.</strong> Kick off an incident investigation, walk into the war room, and come back to a structured report. The crew traces the issue across logs, metrics, and recent deploys, sets up prevention automation, and documents tribal knowledge - all for about <strong>$0.04 per incident</strong> in one reported case.</p></div>
-    <div class="story"><div class="metric">Recurring Ops</div><p><strong>Scheduled maintenance on autopilot.</strong> Set up cron jobs for dependency updates, security scans, stale-branch cleanup, and test suite health checks. The crew runs them on your schedule, retries on failure, and only pages you when human judgment is needed.</p></div>
-    <div class="story"><div class="metric">Multi-Repo Work</div><p><strong>Cross-repo changes with shared context.</strong> A feature that touches three services needs coordinated changes. One crew, one task, three repos. The crew shares context across all of them and produces reviewable PRs in each - without you context-switching between windows.</p></div>
-    <div class="story"><div class="metric">Team Onboarding</div><p><strong>A crew that remembers so new hires do not have to.</strong> Your crew's memory accumulates project patterns, gotchas, and decisions over time. New team members inherit months of institutional knowledge from their first session. The crew evolves to fit how your team works.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>DEV Community deep dive.</strong> "I Spent a Day With Kiro Crew. Here's What It Actually Does." walks through a 4-minute demo of an agent investigating a P1 latency spike, setting up prevention, and documenting tribal knowledge. <a href="https://dev.to/aws-builders/i-spent-a-day-with-kiro-crew-heres-what-it-actually-does-fk0" target="_blank">dev.to</a></li>
-        <li><strong>DEV Community tutorial.</strong> "How I Built a Kiro Crew App in 5 Minutes" demonstrates a custom agent, skill, cron job, and dashboard page installed live with one curl command. <a href="https://dev.to/aws-builders/how-i-built-a-kiro-crew-app-in-5-minutes-full-tutorial-with-code-3el0" target="_blank">dev.to</a></li>
-        <li><strong>InfoWorld coverage.</strong> "AWS's Kiro Crew aims to turn AI coding agents into autonomous engineering teams" covers the architecture, origins as MeshClaw inside Amazon, and the open-source release. <a href="https://www.infoworld.com/article/4204961/awss-kiro-crew-aims-to-turn-ai-coding-agents-into-autonomous-engineering-teams.html" target="_blank">infoworld.com</a></li>
-        <li><strong>Forbes analysis.</strong> "AWS Open Sources Kiro Crew But Keeps The Agent Harness Closed" examines what is open versus proprietary and the implications for the developer tools ecosystem. <a href="https://www.forbes.com/sites/janakirammsv/2026/08/06/aws-open-sources-kiro-crew-but-keeps-the-agent-harness-closed/" target="_blank">forbes.com</a></li>
-        <li><strong>YouTube walkthroughs.</strong> Multiple video guides exist, including "Introducing Kiro Crew" from the official team and a deep-dive from Darko covering ACP, Apps, Memory, and Remote Workflows. <a href="https://www.youtube.com/watch?v=iOIS1OZLkI0" target="_blank">youtube.com</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Persistent agents can persist mistakes.</strong> A crew that remembers everything also remembers bad patterns. Memory and recurring jobs need regular review and pruning to avoid compounding errors over time.</li>
-        <li><strong>Operational responsibility is on you.</strong> Self-hosted software means you manage updates, network access, secrets, and sandbox rules. KiroCrew is not a managed service - it is infrastructure you run.</li>
-        <li><strong>Agent harness is not fully open.</strong> Forbes noted that AWS keeps the agent harness itself closed while open-sourcing the orchestration layer. Understand which parts are open and which depend on Kiro's proprietary components.</li>
-        <li><strong>Resource consumption adds up.</strong> Persistent agents running scheduled tasks, heartbeats, and multi-agent workflows consume compute continuously. Monitor costs and set resource limits, especially when running on cloud infrastructure.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/kirodotdev/KiroCrew" target="_blank">kirodotdev/KiroCrew GitHub</a> - source, docs, releases</li>
-      <li>Stack: Python, Node.js, multi-agent orchestration, persistent gateway</li>
-      <li>Last pushed: September 25, 2026 | Created: July 16, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://kiro.dev/crew/" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/kirodotdev/KiroCrew" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/kirocrew.png" alt="KiroCrew's own preview picture: a dark app window showing a 'Sessions' sidebar with a '+ New' button and a search box, a group of sessions labeled 'In Review', and an open session titled 'Async subprocess timeout bug in gateway', shown next to the product's ghost mascot, a stylized laptop, and the wordmark 'Crew'." width="2400" height="1260" loading="eager">
+    <figcaption>KiroCrew's own preview picture: its session list, with an example task, 'Async subprocess timeout bug in gateway.'</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">4.2K</span><span class="v-note">GitHub stars, <b>4,166 stars as of Sep 27, since its public launch in early August 2026</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>9 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">AI coding agents are powerful for a few minutes at a time, then they forget everything. Close the window and the whole conversation - and any half-finished work - is gone.</p><p class="eg">Running three tasks at once today means three separate chat windows, each starting from zero, with nothing shared between them.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You type a task into KiroCrew - from its dashboard, a command line, or even a chat app like Slack or Discord - and it keeps working on its own computer, online or not.</p><p class="eg">One independent developer just typed a made-up outage straight in: &quot;Payment service latency spiked from 200ms to 4,500ms at 3:12 AM.&quot;</p></div><div class="note input"><span class="role">You give it</span><p class="say">A task written in plain English, plus whatever files, past notes or tools you've connected.</p><p class="eg">Just that one sentence about the slowdown - the developer didn't set up anything extra beyond pointing it at his own project.</p></div><div class="note does"><span class="role">It does</span><p class="say">It runs multiple checks at once instead of one at a time, saves its progress as it goes, and sets up its own follow-up work.</p><ol class="steps-in"><li>Runs several checks on the problem at the same time, instead of one after another</li><li>Saves its progress constantly, so closing the laptop or losing the connection doesn't lose the work</li><li>Once it has an answer, sets up its own automation to catch the same problem again</li></ol><p class="eg">In the real test: 7 checks ran at once - git history, scheduled jobs, system resources and more - all inside one 33-second run.</p></div><div class="note result"><span class="role">You get</span><p class="say">A finished, reviewable answer waiting for you, plus new automation it built along the way.</p><ul class="outputs"><li><b>A specific answer, not a chat transcript</b><span>A root-cause guess: a misconfigured database connection setting, found in 33 seconds</span></li><li><b>New automation left running</b><span>Two new scheduled checks set up on their own, to catch the same problem next time</span></li><li><b>A rough cost per job</b><span>About 2 to 4 cents for that one test, by the developer's own accounting</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Close the chat window and the agent forgets everything - the project, the progress, the plan - and tomorrow you start over from scratch.</li><li>One task, one chat window. Running three jobs at once means three separate conversations with nothing shared between them.</li><li>A task that takes two hours means you sit there for two hours. There's no way to start something and check back later.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>The work keeps running on its own computer in the background, even after you close the window; open it again from your phone, a web page, or apps like Slack, and pick up exactly where it left off.</li><li>One crew, several agents: they can work on different jobs at the same time and share what they've learned.</li><li>Start a job and walk away. In one independent developer's test, it investigated a mock outage, found a likely cause, and set up new monitoring for it, all in 33 seconds.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Watch what it actually does in <a href="https://dev.to/aws-builders/i-spent-a-day-with-kiro-crew-heres-what-it-actually-does-fk0" rel="noopener">an independent developer's walkthrough</a> before installing anything.</li><li>Install it with the one-line installer on its <a href="https://github.com/kirodotdev/KiroCrew" rel="noopener">GitHub page</a>, or download a ready-made version from the <a href="https://github.com/kirodotdev/KiroCrew/releases" rel="noopener">Releases page</a>, then open the dashboard it starts on your own computer.</li><li>Give it one small, real task in plain English and walk away; check back on the same dashboard, following the <a href="https://github.com/kirodotdev/KiroCrew" rel="noopener">install guide</a> for how to connect it to Slack or Discord if you want updates there.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About 737 MB for the Mac installer (a universal .dmg), 273 MB for the Windows installer, and 259 to 372 MB for Linux (.deb, .rpm or AppImage, depending on chip and format) - current sizes from its <a href="https://github.com/kirodotdev/KiroCrew/releases" rel="noopener">GitHub Releases page</a> (version 0.7.1). Building it yourself from source instead downloads about 80 MB for the program itself, plus Python and Node.js's own tools.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>no data found. Neither the README nor the release notes give a memory number for running it.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows or Linux. Building from source needs Python 3.12 or newer and Node.js 22 or newer; the ready-made installers don't need either. No graphics card needed - it calls out to an AI model rather than running one itself.</dd></div>
+  </dl><a class="src" href="https://github.com/kirodotdev/KiroCrew/releases" rel="noopener">Source: KiroCrew's GitHub Releases (version 0.7.1 file sizes)</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-kirocrew">/skillspector https://github.com/kirodotdev/KiroCrew
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: in a scratch folder, install KiroCrew with its one-line installer, open its dashboard, and give it one small real task in plain English (nothing tied to anything important). Show me what it reports back. 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-kirocrew">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You run AI coding agents and want a task to keep working after you close your laptop, with a result waiting when you get back</li><li>You want several agents working on different jobs at once, reachable from your desktop, a web page, or apps like Slack or Discord</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You just want a single AI chat for quick questions - this is a whole always-on workspace to set up and run, not a quick tool</li><li>You're not comfortable being responsible for updates, access and cleanup yourself: it runs on your own computer, not as a service someone else maintains for you</li><li>You need the AI decision-making itself to be open: by default it connects through a separate program (kiro-cli) that you install and log into on its own</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="openbot.html" rel="noopener"><b>OpenBot</b></a><span>A similar idea - AI coworkers that each get their own computer and a set list of tools - reviewed elsewhere in this edition.</span></li><li><a href="https://devin.ai/" rel="noopener"><b>Devin</b></a><span>A paid, ready-to-use version of the same idea: a hosted AI engineer that works unattended on scheduled and triggered jobs, with nothing to install or run yourself.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/kirodotdev/KiroCrew/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>0 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>4.2K stars, 248 contributors, 7.7K commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>A lot of open activity to sift through.</b> 2,308 issues are open on GitHub right now, against 248 people who've contributed code - normal for a fast-growing project, but worth a look before you lean on it for something critical.</li><li><b>You run it, so you maintain it.</b> This isn't a service someone else keeps updated for you: updates, access and cleanup are on you, since it runs on your own computer.</li><li><b>Its default brain is a separate program.</b> By default it connects through <code>kiro-cli</code>, a separate tool you install and log into on its own; check that tool's own terms and account before you rely on this for something sensitive.</li><li><b>Persistent memory can also persist mistakes.</b> KiroCrew's own site says it turns corrections into lasting lessons - which cuts both ways: a bad pattern it learns will also stick around until someone catches and corrects it.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Both real, hands-on tests we could verify come from the same independent reviewer, Sarvar Nadaf. That's a solid, detailed vote of confidence, but not yet a trend across different people.</p><ol class="uses">
+  <li class="use"><span class="who-mark long" aria-hidden="true">33 seconds</span><div><h3>Sarvar Nadaf, an independent developer writing for the AWS Builders community</h3><p>Pointed KiroCrew at his own DevOps project and gave it a made-up P1 incident: a payment service's latency spiking from 200ms to 4,500ms.</p><p class="result">It ran 7 checks in parallel, landed on a likely root cause (a misconfigured database connection setting) in 33 seconds, and set up 2 new monitoring jobs on its own.</p><a class="src" href="https://dev.to/aws-builders/i-spent-a-day-with-kiro-crew-heres-what-it-actually-does-fk0" rel="noopener">I Spent a Day With Kiro Crew. Here's What It Actually Does., Aug 6</a></div></li>
+  <li class="use"><span class="who-mark long" aria-hidden="true">9 seconds</span><div><h3>Sarvar Nadaf, the same developer, in a follow-up write-up</h3><p>Built a custom &quot;Daily Standup Bot&quot; inside KiroCrew from five small files (an agent, a skill, a dashboard page and a scheduled job) that reads the day's git commits and writes a standup note.</p><p class="result">It read 11 real commits and produced a formatted standup note in about 9 seconds, added as a new page in KiroCrew's own dashboard.</p><a class="src" href="https://dev.to/aws-builders/how-i-built-a-kiro-crew-app-in-5-minutes-full-tutorial-with-code-3el0" rel="noopener">How I Built a Kiro Crew App in 5 Minutes, Aug 18</a></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49172209" rel="noopener">Kiro Crew</a><span class="meta">9 points · Aug 4</span></li><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49173962" rel="noopener">Introducing Kiro Crew</a><span class="meta">7 points · Aug 4</span></li><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49657363" rel="noopener">Kiro Crew: persistent workspace that self-improves, continues beyond one session</a><span class="meta">2 points · Sep 11</span></li><li class=""><span class="plat">InfoWorld</span><a href="https://www.infoworld.com/article/4204961/awss-kiro-crew-aims-to-turn-ai-coding-agents-into-autonomous-engineering-teams.html" rel="noopener">AWS's Kiro Crew aims to turn AI coding agents into autonomous engineering teams</a><span class="meta">Aug 4</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/kirodotdev/KiroCrew" rel="noopener">kirodotdev/KiroCrew on GitHub (README, releases)</a>, Sep 27</li><li><a href="https://kiro.dev/crew/" rel="noopener">KiroCrew homepage (kiro.dev/crew)</a>, Sep 27</li><li><a href="https://github.com/kirodotdev/KiroCrew/releases" rel="noopener">KiroCrew's GitHub Releases (version 0.7.1, file sizes)</a>, Sep 27</li><li><a href="https://dev.to/aws-builders/i-spent-a-day-with-kiro-crew-heres-what-it-actually-does-fk0" rel="noopener">Sarvar Nadaf: I Spent a Day With Kiro Crew. Here's What It Actually Does.</a>, Aug 6</li><li><a href="https://dev.to/aws-builders/how-i-built-a-kiro-crew-app-in-5-minutes-full-tutorial-with-code-3el0" rel="noopener">Sarvar Nadaf: How I Built a Kiro Crew App in 5 Minutes</a>, Aug 18</li><li><a href="https://www.infoworld.com/article/4204961/awss-kiro-crew-aims-to-turn-ai-coding-agents-into-autonomous-engineering-teams.html" rel="noopener">InfoWorld: AWS's Kiro Crew aims to turn AI coding agents into autonomous engineering teams</a>, Aug 4</li><li><a href="https://news.ycombinator.com/item?id=49172209" rel="noopener">Hacker News: Kiro Crew</a>, Aug 4</li><li><a href="https://news.ycombinator.com/item?id=49173962" rel="noopener">Hacker News: Introducing Kiro Crew</a>, Aug 4</li><li><a href="https://news.ycombinator.com/item?id=49657363" rel="noopener">Hacker News: Kiro Crew persistent workspace that self-improves, continues beyond one session</a>, Sep 11</li><li><a href="https://kiro.dev/images/opengraph/crew.png" rel="noopener">KiroCrew's own website preview picture (used on this page)</a>, Sep 27</li><li><a href="https://devin.ai/" rel="noopener">Devin (devin.ai), named as an alternative</a>, Sep 27</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

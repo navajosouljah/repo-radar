@@ -58,6 +58,17 @@ for (const m of readme.matchAll(/<img[^>]*>/g)) {
   if (!src || NOT_A_SHOT.test(src) || /\.svg(\?|$)/i.test(src)) continue;
   if (!found.some(f => f.shown === shown)) found.push({ from: 'README image', src, shown: shown.startsWith('/') ? `https://github.com${shown}` : shown });
 }
+// Diagrams drawn as SVG in the README, hosted by the repo itself. They can't be measured like a
+// photo, so they are listed separately: a still one can be used by its link; an animated one loops
+// forever with no pause button, so use it only as a still frame (render it on a Mac).
+const diagrams = [];
+for (const m of readme.matchAll(/<img[^>]*>/g)) {
+  const src = amp((m[0].match(/\ssrc="([^"]+)"/) || [])[1] || '');
+  if (!/\.svg(\?|$)/i.test(src) || NOT_A_SHOT.test(src)) continue;
+  const url = src.startsWith('/') ? `https://github.com${src}` : src;
+  if (!new RegExp(`github\\.com/${o}/${r}/|githubusercontent\\.com/${o}/${r}/`, 'i').test(url) || diagrams.some(d => d.url === url)) continue;
+  diagrams.push({ url, alt: amp((m[0].match(/alt="([^"]*)"/) || [])[1] || '') });
+}
 const videos = [...new Set([...readme.matchAll(/<(?:video|source)[^>]*\ssrc="([^"]+)"/g)].map(m => amp(m[1])).concat([...readme.matchAll(/https:\/\/github\.com\/user-attachments\/assets\/[0-9a-f-]{36}/g)].map(m => m[0])))];
 
 // 2. The website's own preview image.
@@ -86,5 +97,12 @@ for (const [i, f] of found.slice(0, 8).entries()) {
 
 console.log(`${repo}: ${rows.length} picture(s) found${site ? (siteNote ? ` (${siteNote})` : '') : ' (no --site given, so no website preview image)'}${videos.length ? `, ${videos.length} demo video(s)` : ''}.`);
 for (const x of rows) console.log(`- ${x.from}${x.width ? `, ${x.width}x${x.height} ${x.type}, ${x.mb} MB` : ''}\n    look at it: ${x.file || '(not downloaded)'}\n    url: ${lasting(x.shown)}\n    ${x.note}`);
+for (const d of diagrams.slice(0, 4)) {
+  const p = await fetchPage(d.url, { tries: 2 });
+  if (p.error) { console.log(`- README diagram (SVG): could not read ${d.url}`); continue; }
+  const w = (p.text.match(/<svg[^>]*\swidth="([\d.]+)/) || [])[1], h = (p.text.match(/<svg[^>]*\sheight="([\d.]+)/) || [])[1];
+  const moving = /<animate|@keyframes|animation\s*:/i.test(p.text);
+  console.log(`- README diagram (SVG)${w && h ? `, ${Math.round(w)}x${Math.round(h)}` : ''}${d.alt ? `: "${d.alt.slice(0, 140)}"` : ''}\n    url: ${d.url}\n    ${moving ? 'animated: it loops with no pause button, so use it only as a still frame (render it on a Mac), or skip it' : 'still: can be used by link (src = the url); the alt text above is the maker\'s own description'}`);
+}
 for (const v of videos.slice(0, 3)) console.log(`- demo video: ${v}\n    can go in links.demo ("See it work")`);
-if (!rows.some(x => x.file && !/too/.test(x.note))) console.log('No usable picture: leave `visual` out and the page says so honestly.');
+if (!rows.some(x => x.file && !/too/.test(x.note)) && !diagrams.length) console.log('No usable picture: leave `visual` out and the page says so honestly.');

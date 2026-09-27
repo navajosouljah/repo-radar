@@ -20,9 +20,10 @@ context than he does.
 
 Repo Radar is a weekly radar of the open-source tools worth knowing: this week's Top 10, a
 leaderboard per category, and a Claude Board of the most-installed Claude skills and plugins. Each
-repo gets a one-page answer sheet: what it is, what it looks like, how it works, what changes for
-you, who uses it and how, how popular it really is, how hard it is to try, whether you should, and
-whether it's safe.
+repo gets a one-page answer sheet, in this order (set by JJ, Sep 27 2026): what it is, with a real
+picture and the key numbers; how it works; what changes for you; how hard it is to try and what it
+takes on your computer; whether you should; whether it's safe; and last, who's using it and who's
+talking about it.
 
 The Top 10 is picked for tools a non-coder can install or use with Claude Code. Developer-only
 launches are labeled and never crowd those out.

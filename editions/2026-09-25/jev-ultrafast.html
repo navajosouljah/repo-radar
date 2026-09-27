@@ -3,293 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>browser-use/jev-ultrafast - Fastest Web Agent | Repo Radar</title>
+<title>jev-ultrafast: A browser-clicking AI that picks from a numbered list instead of writing paragraphs about what it sees, so it finishes in seconds instead of minutes. | Repo Radar</title>
+<meta name="description" content="Give it a goal and a starting webpage - &quot;search Google Flights from Zurich to London&quot; - and it clicks, types and scrolls its way there itself, finishing a real search in about 7 seconds for well under half a cent.">
+<meta property="og:title" content="jev-ultrafast: A browser-clicking AI that picks from a numbered list instead of writing paragraphs about what it sees, so it finishes in seconds instead of minutes. | Repo Radar">
+<meta property="og:description" content="Give it a goal and a starting webpage - &quot;search Google Flights from Zurich to London&quot; - and it clicks, types and scrolls its way there itself, finishing a real search in about 7 seconds for well under half a cent.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/jev-ultrafast.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0f0a00;--bg2:#151000;--card:#1a1200;--card2:#241a00;
-    --primary:#ff8c00;--primary-dim:#e07800;--secondary:#ffd700;
-    --accent:#b08c40;--accent-light:#ddc070;
-    --ink:#f5ead0;--muted:#b08c40;--line:#2a1e00;
-    --sans:'Inter',sans-serif;--mono:'Source Code Pro',monospace;--disp:'Orbitron',sans-serif;
-    --r:2px;
-    --shadow:0 2px 12px rgba(0,0,0,.4);--shadow-lg:0 6px 24px rgba(0,0,0,.5);
-    --glow:0 0 14px #ff8c0040;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
-    background-image:
-      repeating-linear-gradient(
-        135deg,
-        transparent,
-        transparent 60px,
-        rgba(255,140,0,.02) 60px,
-        rgba(255,140,0,.02) 61px
-      );
-  }
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(15,10,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0f0a00;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(28px,6.5vw,58px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.lm{color:var(--primary);text-shadow:var(--glow)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(15,10,0,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0f0a00;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(18px,3.2vw,28px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#ff8c0008,#ffd70006);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0f0a00;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
-  .ba.after{background:#ff8c0008;border-color:#ff8c0050}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#0f0a00;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#0a0700;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#6b5520}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:14px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#0f0a00;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/browser-use/jev-ultrafast" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Browser Automation - Open Source</span>
-    <h1><span class="owner">browser-use/</span><span class="name">jev-ultrafast</span></h1>
-    <p class="tagline"><strong>Book a flight in 7.1 seconds for less than half a cent.</strong> Jev-ultrafast is a browser automation agent that replaces the slow screenshot-and-reason loop with a structured action table. Each page becomes a numbered list of elements. One Jev API call picks both the operation and the target. A separate small model types text only when needed. The result: a 91% drop in browser protocol calls and a 25% cut in wall-clock time.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">20K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">1.4K</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>Choose, don't <em>generate</em></h2>
-    <p class="sub">Most browser agents take a screenshot, send it to a vision model, wait for a paragraph of reasoning, parse the action, and repeat. Jev-ultrafast skips the screenshot entirely. It reads the page into a structured action table and lets TypeSafe's Jev model pick the right action and element in a single API round trip.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">7.1s</div><div class="l">Google Flights benchmark</div></div>
-      <div class="bignum"><div class="n sc">$0.004</div><div class="l">Cost per run</div></div>
-      <div class="bignum"><div class="n lm">91%</div><div class="l">Fewer protocol calls</div></div>
-      <div class="bignum"><div class="n">101</div><div class="l">Browser calls (vs. 1,092)</div></div>
-      <div class="bignum"><div class="n sc">25%</div><div class="l">Wall-clock time saved</div></div>
-      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#2 this week</span><span class="repo-id">browser-use/jev-ultrafast</span></div>
+    <h1 id="name">jev-ultrafast</h1>
+    <p class="tagline">A browser-clicking AI that <b>picks from a numbered list</b> instead of writing paragraphs about what it sees, so it finishes in seconds instead of minutes.</p>
+    <p class="sentence">Give it a goal and a starting webpage - &quot;search Google Flights from Zurich to London&quot; - and it clicks, types and scrolls its way there itself, finishing a real search in about 7 seconds for well under half a cent.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Dynamic indexed action space</div><p>Every page observation is converted into a <strong>numbered element table</strong> - buttons, links, inputs, dropdowns, each with an index. Jev picks the operation (click, type, scroll, wait) AND the element index in a single request. No screenshots, no bounding boxes, no coordinate math.</p></div>
-      <div class="feat"><div class="fh">One round trip per step</div><p>Traditional agents need multiple LLM calls per step: understand the page, decide the action, generate parameters. Jev-ultrafast collapses this to <strong>one Jev API call</strong>. The action and its target come back together, eliminating round-trip latency.</p></div>
-      <div class="feat"><div class="fh">Text generation only when typing</div><p>A separate small LLM is invoked <strong>only for TYPE_TEXT actions</strong> - when the agent needs to fill a form field or search box. All other actions are pure selection from the indexed table. This cuts token usage by an order of magnitude.</p></div>
-      <div class="feat"><div class="fh">Real benchmark, not a demo</div><p>The headline 7.1-second result is a <strong>real Google Flights search</strong> from Zurich to London at 1x playback speed, including actual page loads and network waits. The timer starts after the first page observation. Independently verified, not cherry-picked.</p></div>
-      <div class="feat"><div class="fh">Built on Browser Use</div><p>Jev-ultrafast inherits <strong>Browser Use's battle-tested browser control layer</strong> - session management, cookie handling, proxy support, and error recovery. It replaces only the decision-making layer, keeping the reliable infrastructure underneath.</p></div>
-      <div class="feat"><div class="fh">Local inspector interface</div><p>A <strong>built-in inspector UI</strong> lets you watch the agent in real time - see the action table it constructed, the action it chose, and why. Essential for debugging and understanding agent behavior on your specific workflows.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>The economics of choosing over generating</h3>
-      <p>The fundamental insight is that browser actions are a closed set. On any given page, there are a finite number of things you can do: click this button, type in that field, scroll down. You do not need a large language model to generate a novel action - you need a fast decision model to pick from a list. Jev-ultrafast proves this thesis: at $0.042 per million input tokens with free outputs, a full multi-step web task costs less than half a cent. That price point makes browser automation viable for high-volume use cases that were previously cost-prohibitive.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>Why browser agents are <em>too slow</em></h2>
-    <p class="sub">The current generation of browser agents works, but it is too slow and too expensive for anything beyond demos. The bottleneck is not the browser - it is the decision loop.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Screenshot, reason, act, repeat.</strong> Typical browser agents take a screenshot of the page, send it to a vision LLM (GPT-4o, Claude), wait 2-5 seconds for a reasoning response, parse the action from natural language, execute it, and take another screenshot. A 10-step task takes 30-50 seconds.</p>
-        <p><strong>1,092 browser protocol calls per task.</strong> The screenshot-based approach generates enormous amounts of browser protocol chatter - capturing renders, encoding images, coordinating viewport state. Most of this bandwidth is wasted on pixels the model barely uses.</p>
-        <p><strong>Dollars per task, not cents.</strong> Each step burns a vision model call with a full-resolution screenshot. A 10-step task on GPT-4o can cost $0.50-$2.00. At that price, automated web tasks are a novelty, not a tool.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Read the table, pick the action.</strong> Jev-ultrafast reads the page DOM into a structured element table - no screenshots needed. Jev picks the action and target in one call that returns in milliseconds. A 10-step task completes in under 10 seconds.</p>
-        <p><strong>101 browser protocol calls.</strong> Without screenshots, browser protocol usage drops by 91%. The agent communicates with the browser only for DOM reads and action execution - nothing wasted on rendering and image encoding.</p>
-        <p><strong>Under half a cent per task.</strong> At Jev's pricing of $0.042 per million input tokens with free outputs, the Google Flights benchmark costs roughly $0.004. That is 100-500x cheaper than vision-model approaches. Browser automation at this price scales to production volumes.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Set up <em>jev-ultrafast</em></h2>
-    <p class="sub">From clone to your first automated web task in under five minutes.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Clone and install</h3></div>
-      <div class="step-body">
-<pre>git clone https://github.com/browser-use/jev-ultrafast.git
-cd jev-ultrafast
-
-<span class="cm"># Install dependencies (Python 3.12+)</span>
-pip install -e .
-
-<span class="cm"># Install browser driver</span>
-playwright install chromium</pre>
-        <p>Jev-ultrafast requires Python 3.12+ and a Chromium browser managed by Playwright. You will also need a <strong>Jev API key</strong> from TypeSafe for the decision model.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Configure API keys</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Set your Jev API key</span>
-export JEV_API_KEY="your-jev-api-key"
-
-<span class="cm"># Optional: set a text model for TYPE_TEXT actions</span>
-export OPENAI_API_KEY="your-openai-key"
-
-<span class="cm"># Or use a local text model</span>
-export TEXT_MODEL="local:llama3"</pre>
-        <p>The Jev API key is required for action selection. A separate text model is needed only for steps that require typing - you can use OpenAI, Anthropic, or a local model. Most tasks have few typing steps, so the text model cost is minimal.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Run your first task</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Run the Google Flights benchmark</span>
-python -m jev_ultrafast \
-  --url "https://www.google.com/travel/flights" \
-  --goal "Search for a one-way flight from Zurich to London next Friday"
-
-<span class="cm"># Open the local inspector to watch the agent</span>
-python -m jev_ultrafast \
-  --url "https://news.ycombinator.com" \
-  --goal "Find the top story and open it" \
-  --inspector</pre>
-        <p>The <strong>--inspector</strong> flag opens a local web UI where you can see the element table, the agent's action choices, and step-by-step execution. Use it to debug and understand how the agent navigates your target pages.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>jev-ultrafast</em> fits</h2>
-    <p class="sub">Fast, cheap browser automation unlocks use cases that were previously impractical.</p>
-
-    <div class="story"><div class="metric">Price Monitoring</div><p><strong>Check thousands of product pages per hour.</strong> At under $0.01 per task, you can monitor competitor pricing across hundreds of SKUs multiple times per day. The speed means you can react to price changes in near real-time rather than on a daily batch schedule.</p></div>
-    <div class="story"><div class="metric">Form Filling</div><p><strong>Automate repetitive web forms at scale.</strong> Insurance quotes, job applications, government filings - any workflow that involves filling forms across multiple sites. The structured action space handles dropdowns, date pickers, and multi-step forms reliably.</p></div>
-    <div class="story"><div class="metric">QA and Testing</div><p><strong>Natural language test scripts.</strong> Describe what a user should do in plain English and let the agent execute it. "Log in, navigate to settings, change the display name, and verify the change appears on the profile page." Faster to write than Selenium, more robust to UI changes.</p></div>
-    <div class="story"><div class="metric">Data Collection</div><p><strong>Scrape sites that resist traditional scrapers.</strong> Sites with heavy JavaScript rendering, login walls, or dynamic loading are hard to scrape with requests and BeautifulSoup. A browser agent navigates them like a human would - clicking through pagination, expanding collapsed sections, handling cookie banners - at a cost that scales.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>YouTube tutorial walkthrough.</strong> A tutorial video covers installation, configuration, and running the Google Flights benchmark end-to-end, showing the inspector UI and explaining the action table architecture. <a href="https://www.youtube.com/watch?v=vutehw_sMM4" target="_blank">Source: YouTube</a></li>
-        <li><strong>daily.dev feature.</strong> Covered as "the FASTEST AI Agent I've tried yet," with hands-on testing confirming the sub-10-second Google Flights result and noting the inspector UI as a standout feature for debugging agent workflows. <a href="https://daily.dev/posts/jev-fully-tested-browser-use-fastest-ai-agent-i-ve-tried-yet--h8msxhrxp" target="_blank">Source: daily.dev</a></li>
-        <li><strong>AgentBreaking technical guide.</strong> A deep dive into the choose-vs-generate architecture, explaining how the dynamic indexed action space works and comparing protocol call counts to traditional screenshot-based agents. <a href="https://agentbreaking.com/blog/browser-use-jev-ultrafast-guide/" target="_blank">Source: AgentBreaking Blog</a></li>
-        <li><strong>explainx.ai performance analysis.</strong> A detailed breakdown of the 7.1-second benchmark, including the per-step timing, token counts, and cost calculation at Jev's published pricing tier. <a href="https://www.explainx.ai/blog/jev-ultrafast-browser-use-typesafe-2026" target="_blank">Source: explainx.ai</a></li>
-        <li><strong>Zilmac installation guide.</strong> A practical tutorial covering installation, web automation patterns, structured page state, and integration with Claude Code for AI agent workflows. <a href="https://zilmac.com/en/blog/articles/jev-ultrafast-browser-agent.html" target="_blank">Source: Zilmac</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Jev is a closed API.</strong> The speed comes from TypeSafe's Jev model, which is a paid API service. Your agent depends on TypeSafe's uptime, pricing, and continued availability. If Jev's pricing changes or the service goes down, your automation stops.</li>
-        <li><strong>The benchmark is narrow.</strong> The 7.1-second Google Flights result is real but specific. Complex multi-page workflows with authentication, CAPTCHAs, or unusual UI patterns will take longer and may not work at all. Test on your actual target sites before committing.</li>
-        <li><strong>Nine days old.</strong> Created September 16, 2026. The API surface, configuration format, and supported actions are all subject to change. Pin your dependency and expect breaking changes in the coming weeks.</li>
-        <li><strong>Ethical and legal considerations.</strong> Automated browser agents that navigate sites as users raise questions about terms of service compliance, rate limiting, and data scraping legality. Ensure your use case complies with each target site's terms before deploying at scale.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/browser-use/jev-ultrafast" target="_blank">browser-use/jev-ultrafast GitHub</a> - source, docs, benchmarks</li>
-      <li>Stack: Python 3.12+ | Playwright | TypeSafe Jev API | Browser Use</li>
-      <li>Last pushed: September 25, 2026 | Created: September 16, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://browser-use.com/ultrafast" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/browser-use/jev-ultrafast" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/jev-ultrafast.webp" alt="The last frame of jev-ultrafast's own demo: 'Zurich to London. In 7.1 seconds.' A Google Flights window shows a one-way Zurich to London search for Sunday, September 20, with top options such as easyJet 4:45 PM to 5:35 PM for $216 and British Airways from $265. Beside it, a checklist with One way, Zurich, London, 20 September and Search flights all ticked, 07.07 seconds elapsed, 'Flights found', and a 178 ms median decision time." width="1152" height="750" loading="eager">
+    <figcaption>The last frame of its own demo: the flight search done in 7.1 seconds. The full run plays on its website.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">20.8K</span><span class="v-note">GitHub stars, <b>+20K stars in its first 11 days</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 29.2 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">6</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>93 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Software that needs an AI to click through a website usually does it the slow way: take a picture of the page, ask an AI to write out what it sees and plans to do, then act on that paragraph.</p><p class="eg">jev-ultrafast's own before-and-after test needed 1,092 back-and-forth calls to the browser doing it that way, for one flight search.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You run it as a one-line command with a goal and a starting page, or a script kicks it off whenever a job needs a browser.</p><p class="eg">python -m jev_ultrafast --url &quot;https://www.google.com/travel/flights&quot; --goal &quot;Search for a one-way flight from Zurich to London next Friday&quot;</p></div><div class="note input"><span class="role">You give it</span><p class="say">A web address to start on, and your goal written in plain English.</p><p class="eg">URL: google.com/travel/flights. Goal: &quot;Search for a one-way flight from Zurich to London next Friday.&quot;</p></div><div class="note does"><span class="role">It does</span><p class="say">It turns the page into a numbered list of clickable things and lets TypeSafe's Jev decision AI pick the action and the number, over and over, until it's done.</p><ol class="steps-in"><li>Reads the current page into a numbered list of buttons, links and boxes instead of taking a picture of it</li><li>Sends that list plus your goal to Jev in one request; Jev picks both the action (click, type, scroll, wait or done) and which numbered item</li><li>Only when it needs to type something, like a date, does a separate everyday AI write the actual words</li><li>Repeats on the new page until the goal is met, or it flags itself as stuck</li></ol><p class="eg">The Google Flights run took 17 of these decisions and 101 total browser calls to finish, instead of 1,092.</p></div><div class="note result"><span class="role">You get</span><p class="say">A finished task, timed and priced.</p><ul class="outputs"><li><b>A completed real task, not a demo trick</b><span>A genuine Zurich-to-London Google Flights search, done in 7.1 seconds</span></li><li><b>Far fewer round trips to the browser</b><span>101 browser calls instead of 1,092 for the same job - 91% fewer, and the run itself was 25% faster (9.45s down to 7.09s median)</span></li><li><b>A tiny bill for the whole run</b><span>About $0.004: the equivalent of roughly 90,000 words read in at TypeSafe's $0.042-per-million price, plus $0.00006 for the two bits of text it had to type - the reply itself is free</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Screenshot every step, then wait on a vision AI to write out its reasoning before it clicks anything.</li><li>1,092 back-and-forth calls to the browser for one flight search, by jev-ultrafast's own measurement of the old way.</li><li>Every single step bills you for a full image-reading AI call, even for a plain click.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Reads the page as a numbered list instead of a picture; one request decides the click.</li><li>101 browser calls for the same search - 91% fewer - finished in 7.1 seconds instead of 9.45.</li><li>About $0.004 for the whole run, because the only AI that gets paid per word is reading a short list, not a picture.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Watch it work first: <a href="https://browser-use.com/ultrafast" rel="noopener">its website</a> shows the real Zurich-to-London flight search finishing in 7.1 seconds. Nothing to install.</li><li>To run it yourself, a developer clones the repo, runs its setup command, adds a <a href="https://typesafe.ai" rel="noopener">TypeSafe</a> API key and a text-AI key, then points it at any website with a goal written in plain English.</li><li>Add the <code>--inspector</code> flag, documented on the <a href="https://github.com/browser-use/jev-ultrafast" rel="noopener">GitHub page</a>, to see every choice it makes as it makes it - useful for checking it on your own sites before trusting it with something real.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About 1 MB for jev-ultrafast and the Browser Harness library it runs on combined (Browser Harness alone is 236 KB). There's no AI model to download - decisions run through TypeSafe's hosted Jev service, not on your machine.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found for an exact number. It doesn't load any AI model itself, so it should need little beyond what its small Python process and your already-open Chrome use.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows or Linux, with Python 3.12 or newer and Chrome already installed - it connects to your own browser rather than downloading one. No graphics card needed: every decision happens through hosted APIs, not on your machine.</dd></div>
+  </dl><a class="src" href="https://github.com/browser-use/jev-ultrafast#readme" rel="noopener">Source: jev-ultrafast README (setup) and the browser-harness package page on PyPI</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-jev-ultrafast">/skillspector https://github.com/browser-use/jev-ultrafast
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: in a scratch folder, install jev-ultrafast, add a TypeSafe API key, and run its own Google Flights quickstart command in a throwaway Chrome profile (not your everyday signed-in one). Show me what it actually did and how long it took. 10 minutes max, then stop and report back in plain English.</pre>
+      <button class="copy" type="button" data-copy="paste-jev-ultrafast">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You're building software that needs an AI to click through websites fast and cheap, and you're fine depending on TypeSafe's paid Jev service</li><li>Your tasks are simple, repeatable browser jobs on ordinary pages: searches, form fills, price checks</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You need it to get through a real checkout, a &quot;prove you're human&quot; picture puzzle, or a page with more than about 250 clickable things - it goes blind past that point</li><li>You don't want a tool driving your everyday, signed-in Chrome and sending page content to TypeSafe and a second AI</li><li>You want something with no ongoing per-use cost - this bills you a small amount every time it runs</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://agent-browser.dev" rel="noopener"><b>agent-browser</b></a><span>Vercel's free, open browser-automation tool for AI agents: a fast command-line tool rather than a full decision-making agent, and it doesn't depend on a paid decision AI to pick each click.</span></li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener"><b>TypeSafe Jev</b></a><span>The paid decision AI jev-ultrafast is built on. Using it directly means writing your own browser-control code instead of getting jev-ultrafast's ready-made loop.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/browser-use/jev-ultrafast/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>0 results read, including the national CVE database: nothing found</span></div></li>
+      <li class="flag"><div><b>Are the stars earned?</b><span>20.8K stars, 1 contributors, 3 commits. Flag: 20752 stars on 1 contributor(s); 20752 stars on only 3 commit(s)</span></div></li>
+    </ul>
+    <p class="lede" style="margin:var(--s-4) 0 0">Company code drop from Browser Use (1 contributor, 3 commits); findarepo's star check says it looks organic. Flag named on the page. Sep 27 review of a Hacker News claim that its browser component leaks data to PostHog: browser-harness 0.1.13 (which it installs) uploads the full task script (up to 20,000 characters) and the end of the output to PostHog from its own command line tool, on by default, not mentioned in its README; jev-ultrafast only uses the library parts (admin.ensure_daemon, helpers.cdp), which contain no analytics code, so its own runs send nothing there. Named as a watch-out on the page, with the off switch.</p>
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>It drives your everyday, signed-in Chrome with no approval step.</b> It sends the page's text and field values to TypeSafe, and to a second AI provider for anything it has to type, and it can act on every site you're already logged into. A safety review put it plainly: nothing stops it before a purchase or a form submission except how carefully you word the goal. Use a separate Chrome profile with nothing important in it.</li><li><b>It installs Browser Use's browser-harness, whose own command reports your tasks by default.</b> jev-ultrafast itself doesn't use that command (we checked its code). But if you or your AI agent ever run <code>browser-harness</code> directly, it sends the whole task script and the end of its output to Browser Use's analytics service (PostHog), switched on by default and not mentioned in its README. Turn it off once with <code>browser-harness telemetry disable</code>.</li><li><b>The 7.1-second demo never finished a real booking.</b> It typed the cities, picked a date, and stopped once the flight list appeared. By the README's own account this is one task tested three times, not a general reliability check, and real checkout pages add security steps like &quot;prove you're human&quot; screens that stop it cold.</li><li><b>It goes blind past a page's first 250 clickable things, and can't see picture-based human checks at all.</b> On a busy screen, like a dashboard with 350 buttons and fields, anything past the 250th is invisible to it.</li><li><b>Depends entirely on TypeSafe's paid, closed Jev service, and it's brand new.</b> If TypeSafe's pricing changes or the service goes down, the automation stops. Created September 16, 2026, still at version 0.1.0 - expect breaking changes.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's 9 days old (created September 16, 2026), so most of what's out there is people testing, explaining or picking apart the README's own benchmark rather than shipping something with it. The clearest independent build so far is below.</p><ol class="uses">
+  <li class="use"><span class="who-mark long" aria-hidden="true">1.6-3.0x faster</span><div><h3>A developer building agent tools (GitHub user danielnc)</h3><p>Packaged jev-ultrafast's same one-call decision loop as a tool other coding agents (Claude, Cursor, Codex) can call mid-task to hand off a browser step, publishing it as the separate project &quot;jev-browse&quot; with its own MCP server (a standard way other AI agents can plug into it directly) and a public release.</p><p class="result">In the author's own benchmark, an agent calling this tool finished the same jobs 1.6 to 3.0 times faster and 2.1 to 5.3 times cheaper than having the agent drive the browser directly itself, with the same success rate.</p><a class="src" href="https://github.com/danielnc/jev-browse" rel="noopener">danielnc/jev-browse README, Sep 24</a></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49735979" rel="noopener">Jev Ultrafast: A browser agent with a dynamic, indexed action space</a><span class="meta">93 points - Sep 17</span></li><li class=""><span class="plat">Blog</span><a href="https://agentbreaking.com/blog/browser-use-jev-ultrafast-guide/" rel="noopener">AgentBreaking: the Jev Ultrafast guide</a><span class="meta">Sep 19</span></li><li class=""><span class="plat">Blog</span><a href="https://www.explainx.ai/blog/jev-ultrafast-browser-use-typesafe-2026" rel="noopener">explainx.ai: Jev Ultrafast, Browser Use puts Jev in the browser agent loop</a><span class="meta">Sep 21</span></li><li class="tone-critical"><span class="plat">Blog</span><a href="https://hoangyell.com/jev-ultrafast-explained/" rel="noopener">Jev Ultrafast Explained: the engineering reality behind the benchmark</a><span class="meta">Sep 21</span></li><li class="tone-critical"><span class="plat">Blog</span><a href="https://greenlitbooks.com/field-notes/is-jev-ultrafast-safe" rel="noopener">Is Jev Ultrafast safe to use?</a><span class="meta">Sep 24</span></li><li class=""><span class="plat">Blog</span><a href="https://zilmac.com/en/blog/articles/jev-ultrafast-browser-agent.html" rel="noopener">Zilmac: Jev Ultrafast as a browser-agent design pattern</a><span class="meta">Sep 26</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/browser-use/jev-ultrafast" rel="noopener">jev-ultrafast on GitHub (README, setup, benchmark)</a>, Sep 27</li><li><a href="https://github.com/browser-use/jev-ultrafast/blob/main/docs/performance.md" rel="noopener">jev-ultrafast: docs/performance.md (full benchmark detail)</a>, Sep 27</li><li><a href="https://browser-use.com/ultrafast" rel="noopener">browser-use.com/ultrafast (Browser Use Cloud waitlist page)</a>, Sep 27</li><li><a href="https://findarepo.com/repo/browser-use/jev-ultrafast/" rel="noopener">findarepo: jev-ultrafast stats, growth and star check</a>, Sep 27</li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener">TypeSafe: introducing System One models and Jev (pricing)</a></li><li><a href="https://pypi.org/project/browser-harness/" rel="noopener">browser-harness on PyPI (package size)</a>, Sep 27</li><li><a href="https://news.ycombinator.com/item?id=49735979" rel="noopener">Hacker News: Jev Ultrafast launch thread</a>, Sep 17</li><li><a href="https://agentbreaking.com/blog/browser-use-jev-ultrafast-guide/" rel="noopener">AgentBreaking: the Jev Ultrafast guide</a>, Sep 19</li><li><a href="https://www.explainx.ai/blog/jev-ultrafast-browser-use-typesafe-2026" rel="noopener">explainx.ai: Jev Ultrafast, Browser Use puts Jev in the browser agent loop</a>, Sep 21</li><li><a href="https://hoangyell.com/jev-ultrafast-explained/" rel="noopener">Jev Ultrafast Explained (critical technical review)</a>, Sep 21</li><li><a href="https://greenlitbooks.com/field-notes/is-jev-ultrafast-safe" rel="noopener">Is Jev Ultrafast safe to use? (Greenlit Books field notes)</a>, Sep 24</li><li><a href="https://zilmac.com/en/blog/articles/jev-ultrafast-browser-agent.html" rel="noopener">Zilmac: Jev Ultrafast as a browser-agent design pattern</a>, Sep 26</li><li><a href="https://github.com/danielnc/jev-browse" rel="noopener">danielnc/jev-browse on GitHub (independent build on jev-ultrafast)</a>, Sep 24</li><li><a href="https://agent-browser.dev" rel="noopener">vercel-labs/agent-browser on GitHub (alternative)</a>, Sep 27</li><li><a href="https://github.com/browser-use/browser-harness/blob/v0.1.13/src/browser_harness/telemetry.py" rel="noopener">browser-harness 0.1.13 source: its analytics code (task and output upload, opt-out)</a>, Sep 27</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

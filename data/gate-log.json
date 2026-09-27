@@ -2692,10 +2692,10 @@
       ]
     },
     "settled": {
-      "by": "human review",
+      "by": "local review",
       "date": "2026-09-27",
-      "note": "Company code drop from Browser Use (1 contributor, 3 commits); findarepo's star check says it looks organic. Flag named on the page.",
-      "carried": "2026-09-27"
+      "note": "Company code drop from Browser Use (1 contributor, 3 commits); findarepo's star check says it looks organic. Flag named on the page. Sep 27 review of a Hacker News claim that its browser component leaks data to PostHog: browser-harness 0.1.13 (which it installs) uploads the full task script (up to 20,000 characters) and the end of the output to PostHog from its own command line tool, on by default, not mentioned in its README; jev-ultrafast only uses the library parts (admin.ensure_daemon, helpers.cdp), which contain no analytics code, so its own runs send nothing there. Named as a watch-out on the page, with the off switch.",
+      "reasons": []
     }
   },
   "bytedance/deer-flow": {
