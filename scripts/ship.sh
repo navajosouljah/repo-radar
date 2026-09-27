@@ -8,7 +8,9 @@ msg="${1:?usage: scripts/ship.sh \"commit message\"}"
 branch="$(git rev-parse --abbrev-ref HEAD)"
 [ "$branch" = "main" ] || { echo "ship.sh ships main only (on $branch)"; exit 1; }
 git fetch -q origin
-git pull -q --rebase --autostash origin main
+# Merge, never rebase: a rebase replays local commits and breaks on merged branches (Sep 27 2026,
+# the v3 launch stopped on conflicts). Ahead of GitHub: nothing to do. Behind: fast-forward.
+git pull -q --no-rebase --no-edit --autostash origin main
 if [ -f scripts/build.mjs ]; then node scripts/build.mjs --hub; fi
 node --test scripts/*.test.mjs >/tmp/rr-ship-tests.log 2>&1 || { tail -30 /tmp/rr-ship-tests.log; echo "ship.sh: tests failed, nothing pushed"; exit 1; }
 node scripts/verify.mjs
