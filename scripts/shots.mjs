@@ -61,10 +61,12 @@ for (const m of readme.matchAll(/<img[^>]*>/g)) {
 const videos = [...new Set([...readme.matchAll(/<(?:video|source)[^>]*\ssrc="([^"]+)"/g)].map(m => amp(m[1])).concat([...readme.matchAll(/https:\/\/github\.com\/user-attachments\/assets\/[0-9a-f-]{36}/g)].map(m => m[0])))];
 
 // 2. The website's own preview image.
+let siteNote = '';
 if (site) {
   const s = await fetchPage(site);
   const og = (s.text || '').match(/<meta[^>]+(?:property|name)="(?:og:image|twitter:image)"[^>]+content="([^"]+)"/i) || (s.text || '').match(/<meta[^>]+content="([^"]+)"[^>]+(?:property|name)="(?:og:image|twitter:image)"/i);
-  if (og) { const u = new URL(amp(og[1]), site).href; found.push({ from: 'website preview image', src: u, shown: u }); }
+  if (og) { const u = new URL(amp(og[1]), site).href; found.unshift({ from: 'website preview image', src: u, shown: u }); } // first, so a long README can't crowd it out
+  else siteNote = s.error ? `website not read (${s.error})` : 'the website has no preview image';
 }
 
 // 3. Download each (first 8) to look at, and measure it.
@@ -82,7 +84,7 @@ for (const [i, f] of found.slice(0, 8).entries()) {
   rows.push({ ...f, file, type: d.type, width: d.w, height: d.h, mb: +mb.toFixed(2), note: !usable ? 'too small for the page' : mb > 8 ? 'too heavy to show (over 8 MB)' : mb > 2 ? 'use by link (src = the URL): too big to copy into the site' : `copy it: cp ${file} assets/shots/<slug>.${d.type}` });
 }
 
-console.log(`${repo}: ${rows.length} picture(s) found${site ? '' : ' (no --site given, so no website preview image)'}${videos.length ? `, ${videos.length} demo video(s)` : ''}.`);
+console.log(`${repo}: ${rows.length} picture(s) found${site ? (siteNote ? ` (${siteNote})` : '') : ' (no --site given, so no website preview image)'}${videos.length ? `, ${videos.length} demo video(s)` : ''}.`);
 for (const x of rows) console.log(`- ${x.from}${x.width ? `, ${x.width}x${x.height} ${x.type}, ${x.mb} MB` : ''}\n    look at it: ${x.file || '(not downloaded)'}\n    url: ${lasting(x.shown)}\n    ${x.note}`);
 for (const v of videos.slice(0, 3)) console.log(`- demo video: ${v}\n    can go in links.demo ("See it work")`);
 if (!rows.some(x => x.file && !/too/.test(x.note))) console.log('No usable picture: leave `visual` out and the page says so honestly.');
