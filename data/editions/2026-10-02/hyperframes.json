@@ -1,0 +1,183 @@
+{
+  "repo": "heygen-com/hyperframes",
+  "name": "HyperFrames",
+  "tagline": "A video factory for your AI agent: write what you see in code, and it hands you a finished movie",
+  "sentence": "Give it a web page with animations and it records a pixel-perfect MP4 - so an AI coding agent can make a product demo, a tutorial or an ad without opening a video editor.",
+  "fit": "developers",
+  "links": {
+    "website": "https://www.hyperframes.dev",
+    "docs": "https://hyperframes.heygen.com/introduction"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI agent can write code and build websites, but it cannot make a video.",
+      "eg": "To get a product demo, someone still has to open a screen recorder or an editor like Premiere."
+    },
+    {
+      "role": "input",
+      "say": "You give it an HTML page with animations - the same code your agent already writes.",
+      "eg": "An HTML page with a GSAP animation showing a dashboard filling in, or a Lottie icon spinning."
+    },
+    {
+      "role": "does",
+      "say": "It opens the page in a hidden browser, plays every animation frame by frame, and records each one.",
+      "eg": "Headless Chrome renders each frame, FFmpeg stitches them into a video at the frame rate you set."
+    },
+    {
+      "role": "result",
+      "say": "You get a finished MP4 that looks exactly like the page, with smooth animations at any resolution.",
+      "eg": "A 1080p demo video of your product, made from code, with no manual editing."
+    }
+  ],
+  "before": [
+    "Making a product video means opening screen-recording software or hiring an editor.",
+    "AI coding agents can build apps and websites, but they stop at \"here's a screenshot\".",
+    "Automated video tools often stutter or miss animations because they capture in real time."
+  ],
+  "after": [
+    "Your AI agent writes an HTML page, runs one command, and gets a finished MP4 back.",
+    "Frame-by-frame capture means **every animation plays perfectly**, even complex ones with GSAP or Three.js.",
+    "The same page renders at any resolution - 1080p, 4K, vertical for phone - without re-editing."
+  ],
+  "uses_note": "It is about 6 months old. Mostly used by developers and AI agent builders so far, but several creators have published tutorial videos made with it.",
+  "uses": [
+    {
+      "who": "Jerrod Lew (content creator)",
+      "what": "Created an entire video using Claude Code and HyperFrames to produce graphics for video content.",
+      "result": "Published the video and shared the workflow on X, calling it a new way to make videos from code.",
+      "source": {
+        "title": "Jerrod Lew on X",
+        "url": "https://x.com/jerrod_lew/status/2044834195713794245",
+        "date": "2026-04-17"
+      },
+      "stat": "no data found"
+    },
+    {
+      "who": "Sabrina Ramonov (AI creator)",
+      "what": "Made multiple video types - an 8-second explainer, a 30-second product investigation, a branded launch video, and a talking-head-to-motion-graphics transformation.",
+      "result": "Called it \"a video team you speak to\" and published a tutorial on her blog.",
+      "source": {
+        "title": "Sabrina Ramonov: HyperFrames makes unlimited free videos",
+        "url": "https://www.sabrina.dev/p/hyperframes-makes-unlimited-free-videos",
+        "date": "2026-07-04"
+      },
+      "stat": "no data found"
+    },
+    {
+      "who": "tldraw and TanStack (open-source projects)",
+      "what": "Listed as early production adopters in the project's ADOPTERS.md file.",
+      "result": "Using HyperFrames in their video production pipelines.",
+      "source": {
+        "title": "HyperFrames ADOPTERS.md",
+        "url": "https://github.com/heygen-com/hyperframes",
+        "date": "2026-09-27"
+      },
+      "stat": "no data found"
+    }
+  ],
+  "pulse": {
+    "gain": "+10.8K stars in the last 30 days",
+    "history": [
+      ["2026-04-17", 0],
+      ["2026-09-27", 53539]
+    ],
+    "history_note": "Launched April 17 2026. 0 to 53.5K stars in about 5 months. Growth measured by findarepo and GitHub.",
+    "facts": [
+      { "value": "53.5K", "label": "GitHub stars" },
+      { "value": "4.9K", "label": "forks" },
+      { "value": "83+", "label": "contributors" },
+      { "value": "400+", "label": "releases (v0.8.80, still pre-1.0)" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Creator Economy",
+      "title": "Full tutorial: make professional launch videos for free with HyperFrames",
+      "url": "https://creatoreconomy.so/p/full-tutorial-make-professional-launch-videos-for-free-hyperframes-ai",
+      "meta": "Jun 21 2026"
+    },
+    {
+      "plat": "Blog",
+      "title": "10 GitHub Repos Quietly Changing What AI Can Do (Luca Berton)",
+      "url": "https://lucaberton.com/blog/10-github-repos-quietly-changing-ai-2026/",
+      "meta": "Sep 13 2026"
+    },
+    {
+      "plat": "Blog",
+      "title": "Video as Code: A Deep Dive into HeyGen's Hyperframes (Nidhin)",
+      "url": "https://blog.nidhin.dev/video-as-code-a-deep-dive-into-heygen-s-hyperframes",
+      "meta": "2026"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Show HN: HyperFrames",
+      "url": "https://news.ycombinator.com/item?id=47902856",
+      "meta": "Apr 26 2026"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "GitHub Trending daily and monthly",
+    "skills.sh trending and all-time"
+  ],
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Run `npx hyperframes init my-video` to scaffold a starter project.",
+      "Run `npx hyperframes preview` inside the folder to see a live preview with hot reload.",
+      "Run `npx hyperframes render` to produce a finished MP4 from your HTML."
+    ],
+    "paste": "/skillspector https://github.com/heygen-com/hyperframes\n\nIf that scan passes: run `npx hyperframes init my-video`, then `cd my-video && npx hyperframes preview` to see the live preview, then `npx hyperframes render` to produce the MP4. 10 minutes max."
+  },
+  "verdict": {
+    "best_for": [
+      "You build AI agents or tools that need to produce video output automatically",
+      "You want pixel-perfect recordings of web animations without screen capture"
+    ],
+    "skip_if": [
+      "You want to edit videos by hand - this is for automated, code-driven production",
+      "You need talking-head or camera-based video, not animated web content",
+      "You are not a developer: there is no visual interface"
+    ],
+    "alternatives": [
+      {
+        "name": "Remotion",
+        "url": "https://remotion.dev",
+        "line": "React-based video creation: write React components and render them to video. More mature but React-only, and freemium (free for teams of 3 or fewer)."
+      },
+      {
+        "name": "Revideo",
+        "url": "https://re.video",
+        "line": "MIT-licensed library for batch video generation from code. Community fork of Motion Canvas."
+      }
+    ]
+  },
+  "watch": [
+    "**Developer-only tool.** There is no visual interface: you write HTML and run a command. This is for developers and AI agents, not for someone who wants to drag and drop.",
+    "**Pre-1.0 with rapid churn.** 400+ releases in 5 months, currently v0.8.80. The API may change, and users report the AI gets you about 80% of the way - human polish is still needed.",
+    "**Made by HeyGen.** HeyGen is a well-funded video AI company. HyperFrames is open-source (Apache 2.0), but HeyGen's core product is paid and cloud rendering ties into their platform."
+  ],
+  "sources": [
+    {
+      "title": "HyperFrames on GitHub",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Sabrina Ramonov: HyperFrames makes unlimited free videos",
+      "url": "https://www.sabrina.dev/p/hyperframes-makes-unlimited-free-videos",
+      "date": "2026-07-04"
+    },
+    {
+      "title": "Creator Economy: full tutorial",
+      "url": "https://creatoreconomy.so/p/full-tutorial-make-professional-launch-videos-for-free-hyperframes-ai",
+      "date": "2026-06-21"
+    },
+    {
+      "title": "findarepo growth data",
+      "url": "https://findarepo.com/repo/heygen-com/hyperframes/",
+      "date": "2026-09-27"
+    }
+  ]
+}

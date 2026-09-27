@@ -1,0 +1,19 @@
+{
+  "number": "010",
+  "date": "2026-10-02",
+  "theme_short": "The tools your agent needs",
+  "theme": "**The week the tools started working for the tools.** This week's ten are dominated by skills, studios and dashboards that make AI coding agents smarter, safer and more productive - and three of them are things JJ can install himself.",
+  "method": "**How this week was picked:** 5 of 7 sources scanned (GitHub Trending, Trendshift, skills.sh, findarepo, Hacker News). YouTube was unreachable (CAPTCHA). GitHub API enrichment used the GitHub MCP tool for the top 40. No repos in data/tips.md this week. 12 candidates cleared every floor; 10 picked. No candidates under 45 days old were available for the 'new this week' slots. **Every repo here passed our safety check on Sep 27.** Tencent/WeKnora was on the blocklist (2 unpatched advisories including 1 critical).",
+  "picks": [
+    { "rank": 1, "slug": "hyperframes", "repo": "heygen-com/hyperframes", "name": "HyperFrames", "fit": "developers", "stars": 53539, "oneliner": "Write HTML and CSS, and it renders a finished MP4 video - built for AI coding agents to make videos without a video editor." },
+    { "rank": 2, "slug": "archify", "repo": "tt-a1i/archify", "name": "archify", "fit": "you", "stars": 72620, "oneliner": "Describe a system or process in plain English and your AI agent draws an interactive diagram you can export." },
+    { "rank": 3, "slug": "voicestudio", "repo": "debpalash/VoiceStudio", "name": "VoiceStudio", "fit": "you", "stars": 39099, "oneliner": "A free, local alternative to ElevenLabs: clone voices, dub videos, transcribe audio and make audiobooks in 646 languages." },
+    { "rank": 4, "slug": "ecc", "repo": "affaan-m/ECC", "name": "ECC", "fit": "you", "stars": 268205, "oneliner": "A set of skills that makes your AI coding agent faster, smarter and more secure - install them and it just works better." },
+    { "rank": 5, "slug": "open-code-review", "repo": "alibaba/open-code-review", "name": "open-code-review", "fit": "developers", "stars": 41834, "oneliner": "Alibaba's code-review tool that reads your changes and leaves precise, line-by-line comments - like a tireless reviewer." },
+    { "rank": 6, "slug": "ponytail", "repo": "DietrichGebert/ponytail", "name": "ponytail", "fit": "you", "stars": 146802, "oneliner": "A skill that makes your AI agent think like the laziest senior dev: the best code is the code you never wrote." },
+    { "rank": 7, "slug": "univer", "repo": "dream-num/univer", "name": "Univer", "fit": "developers", "stars": 19977, "oneliner": "Spreadsheets, docs, slides, tables and PDF in one open-source kit that AI agents can read and write." },
+    { "rank": 8, "slug": "i-have-adhd", "repo": "ayghri/i-have-adhd", "name": "i-have-adhd", "fit": "you", "stars": 51527, "oneliner": "A skill that stops your AI coding agent from burying the answer in paragraphs - it gives you the action, then the why." },
+    { "rank": 9, "slug": "openmaic", "repo": "THU-MAIC/OpenMAIC", "name": "OpenMAIC", "fit": "you", "stars": 39243, "oneliner": "Type a topic and it builds you an interactive classroom - slides, quizzes, simulations and projects - in one click." },
+    { "rank": 10, "slug": "atlas", "repo": "pacifio/atlas", "name": "Atlas", "fit": "you", "stars": 7915, "oneliner": "A dashboard that tracks what your AI coding agents changed, when, and why - like version control for the AI era." }
+  ]
+}

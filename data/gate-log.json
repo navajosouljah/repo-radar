@@ -94,7 +94,7 @@
           },
           {
             "query": "zhayujie/CowAgent malware",
-            "title": "A vulnerability was detected in zhayujie CowAgent up to 2... · CVE-2026-18992 · GitHub Advisory Database · GitHub",
+            "title": "A vulnerability was detected in zhayujie CowAgent up to 2... \u00b7 CVE-2026-18992 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/GHSA-wjcq-xp37-c947",
             "published": "2026-08-06",
             "matched": "vulnerab",
@@ -372,7 +372,7 @@
         "hits": [
           {
             "query": "earendil-works/pi CVE",
-            "title": "Pi loads project-local extensions without approval · Advisory · earendil-works/pi · GitHub",
+            "title": "Pi loads project-local extensions without approval \u00b7 Advisory \u00b7 earendil-works/pi \u00b7 GitHub",
             "url": "https://github.com/earendil-works/pi/security/advisories/GHSA-mqxh-6gq7-558m",
             "published": "2026-06-08",
             "matched": "vulnerab",
@@ -428,7 +428,7 @@
           },
           {
             "query": "earendil-works/pi malware",
-            "title": "Security Policy - Overview · earendil-works/pi",
+            "title": "Security Policy - Overview \u00b7 earendil-works/pi",
             "url": "https://github.com/earendil-works/pi/security",
             "published": "N/A",
             "matched": "vulnerab",
@@ -452,7 +452,7 @@
           },
           {
             "query": "earendil-works/pi scam",
-            "title": "Pi's agent harness ships without a permission system, and that is the point — Tessera",
+            "title": "Pi's agent harness ships without a permission system, and that is the point \u2014 Tessera",
             "url": "https://thetesserapress.com/articles/earendil-workspi",
             "published": "2026-09-16",
             "matched": "compromis",
@@ -615,7 +615,7 @@
           },
           {
             "query": "pbakaus/impeccable scam",
-            "title": "&gt; it’s been damn near impossible to scam someone via eBay… I got scammed by an eBay seller with thousands of transact",
+            "title": "&gt; it\u2019s been damn near impossible to scam someone via eBay\u2026 I got scammed by an eBay seller with thousands of transact",
             "url": "https://news.ycombinator.com/item?id=34144625",
             "published": "2022-12-27",
             "matched": "scam",
@@ -639,7 +639,7 @@
           },
           {
             "query": "pbakaus/impeccable scam",
-            "title": "&gt;It turns out it’s all true. The cars are impressive and their flaws get covered up. Musk is a lying ignorant grifter",
+            "title": "&gt;It turns out it\u2019s all true. The cars are impressive and their flaws get covered up. Musk is a lying ignorant grifter",
             "url": "https://news.ycombinator.com/item?id=26852940",
             "published": "2021-04-18",
             "matched": "scam",
@@ -655,7 +655,7 @@
           },
           {
             "query": "pbakaus/impeccable scam",
-            "title": "In 2009-2013 Facebook was under a lot of pressure to share their data with academic researchers. They didn’t have the re",
+            "title": "In 2009-2013 Facebook was under a lot of pressure to share their data with academic researchers. They didn\u2019t have the re",
             "url": "https://news.ycombinator.com/item?id=21379153",
             "published": "2019-10-28",
             "matched": "data leak",
@@ -880,7 +880,7 @@
         "hits": [
           {
             "query": "activepieces/activepieces vulnerability",
-            "title": "Cross-tenant data exposure and code injection via the Code piece sandbox cache · Advisory · activepieces/activepieces · GitHub",
+            "title": "Cross-tenant data exposure and code injection via the Code piece sandbox cache \u00b7 Advisory \u00b7 activepieces/activepieces \u00b7 GitHub",
             "url": "https://github.com/activepieces/activepieces/security/advisories/GHSA-5h2x-g6m3-grmq",
             "published": "2026-07-17",
             "matched": "compromis",
@@ -888,7 +888,7 @@
           },
           {
             "query": "activepieces/activepieces vulnerability",
-            "title": "Remote Code Execution via Command Injection in Code Step Name · Advisory · activepieces/activepieces · GitHub",
+            "title": "Remote Code Execution via Command Injection in Code Step Name \u00b7 Advisory \u00b7 activepieces/activepieces \u00b7 GitHub",
             "url": "https://github.com/activepieces/activepieces/security/advisories/GHSA-3pfv-m69p-5fv5",
             "published": "2026-07-17",
             "matched": "Remote Code Execution",
@@ -904,7 +904,7 @@
           },
           {
             "query": "activepieces/activepieces vulnerability",
-            "title": "Arbitrary file write in git-sync via path traversal and symlinks · Advisory · activepieces/activepieces · GitHub",
+            "title": "Arbitrary file write in git-sync via path traversal and symlinks \u00b7 Advisory \u00b7 activepieces/activepieces \u00b7 GitHub",
             "url": "https://github.com/activepieces/activepieces/security/advisories/GHSA-qqcr-rg2x-97mm",
             "published": "N/A",
             "matched": "remote code execution",
@@ -912,7 +912,7 @@
           },
           {
             "query": "activepieces/activepieces vulnerability",
-            "title": "Cross-tenant file download via missing JWT audience check on step-files signed URL · Advisory · activepieces/activepieces · GitHub",
+            "title": "Cross-tenant file download via missing JWT audience check on step-files signed URL \u00b7 Advisory \u00b7 activepieces/activepieces \u00b7 GitHub",
             "url": "https://github.com/activepieces/activepieces/security/advisories/GHSA-9723-fmff-mc24",
             "published": "N/A",
             "matched": "CVE-2026-53536",
@@ -920,7 +920,7 @@
           },
           {
             "query": "activepieces/activepieces malware",
-            "title": "V8 Isolate Sandbox Bypass via importFresh Module Loading · Advisory · activepieces/activepieces · GitHub",
+            "title": "V8 Isolate Sandbox Bypass via importFresh Module Loading \u00b7 Advisory \u00b7 activepieces/activepieces \u00b7 GitHub",
             "url": "https://github.com/activepieces/activepieces/security/advisories/GHSA-gr3h-c2j7-r52g",
             "published": "2026-07-17",
             "matched": "exfiltrat",
@@ -1152,7 +1152,7 @@
         "hits": [
           {
             "query": "AgriciDaniel/claude-obsidian malware",
-            "title": "claude-obsidian — Plugin for Claude Code by AgriciDaniel: A Claude Code plugin for keeping an Obsidian knowledge…",
+            "title": "claude-obsidian \u2014 Plugin for Claude Code by AgriciDaniel: A Claude Code plugin for keeping an Obsidian knowledge\u2026",
             "url": "https://agentmods.dev/plugins/agricidaniel/claude-obsidian/claude-obsidian",
             "published": "N/A",
             "matched": "exfiltrat",
@@ -1393,7 +1393,7 @@
           },
           {
             "query": "anomalyco/opencode CVE",
-            "title": "Malicious website can execute commands on the local system through XSS in the OpenCode web UI · Advisory · anomalyco/opencode · GitHub",
+            "title": "Malicious website can execute commands on the local system through XSS in the OpenCode web UI \u00b7 Advisory \u00b7 anomalyco/opencode \u00b7 GitHub",
             "url": "https://github.com/anomalyco/opencode/security/advisories/GHSA-c83v-7274-4vgp",
             "published": "N/A",
             "matched": "Malicious",
@@ -1957,7 +1957,7 @@
         "hits": [
           {
             "query": "anywhere-labs/dsh-desktop scam",
-            "title": "anywhere-labs/dsh-desktop — health index 81/100, Excellent — inspect.software",
+            "title": "anywhere-labs/dsh-desktop \u2014 health index 81/100, Excellent \u2014 inspect.software",
             "url": "https://inspect.software/software/anywhere-labs/dsh-desktop",
             "published": "N/A",
             "matched": "vulnerab",
@@ -2059,7 +2059,7 @@
           },
           {
             "query": "apache/superset malware",
-            "title": "Malware in apache-superset-docs · GHSA-q35c-q38v-2xjv · GitHub Advisory Database · GitHub",
+            "title": "Malware in apache-superset-docs \u00b7 GHSA-q35c-q38v-2xjv \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/GHSA-q35c-q38v-2xjv",
             "published": "2025-03-14",
             "matched": "Malware",
@@ -2075,7 +2075,7 @@
           },
           {
             "query": "apache/superset malware",
-            "title": "Overview · apache/superset · GitHub",
+            "title": "Overview \u00b7 apache/superset \u00b7 GitHub",
             "url": "https://github.com/apache/superset/security",
             "published": "N/A",
             "matched": "vulnerab",
@@ -2170,7 +2170,7 @@
         "hits": [
           {
             "query": "apify/crawlee CVE",
-            "title": "SSRF via sitemap-derived URLs in Crawlee for Python · Advisory · apify/crawlee-python · GitHub",
+            "title": "SSRF via sitemap-derived URLs in Crawlee for Python \u00b7 Advisory \u00b7 apify/crawlee-python \u00b7 GitHub",
             "url": "https://github.com/apify/crawlee-python/security/advisories/GHSA-3r75-xc34-5f44",
             "published": "N/A",
             "matched": "Vulnerab",
@@ -2210,7 +2210,7 @@
           },
           {
             "query": "apify/crawlee vulnerability",
-            "title": "Crawlee for Python: SSRF via sitemap-derived URLs · CVE-2026-46497 · GitHub Advisory Database · GitHub",
+            "title": "Crawlee for Python: SSRF via sitemap-derived URLs \u00b7 CVE-2026-46497 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/GHSA-3R75-XC34-5F44",
             "published": "N/A",
             "matched": "CVE-2026-46497",
@@ -2321,7 +2321,7 @@
           },
           {
             "query": "AppFlowy-IO/AppFlowy CVE",
-            "title": "CVE-2026-52097<!-- --> | Tenable®",
+            "title": "CVE-2026-52097<!-- --> | Tenable\u00ae",
             "url": "https://www.tenable.com/cve/CVE-2026-52097",
             "published": "2026-09-10",
             "matched": "CVE-2026-52097",
@@ -2518,7 +2518,7 @@
         "hits": [
           {
             "query": "bilawalsidhu/gods-eye-view CVE",
-            "title": "Overview · bilawalsidhu/gods-eye-view · GitHub",
+            "title": "Overview \u00b7 bilawalsidhu/gods-eye-view \u00b7 GitHub",
             "url": "https://github.com/bilawalsidhu/gods-eye-view/security",
             "published": "N/A",
             "matched": "vulnerab",
@@ -2587,7 +2587,7 @@
         "hits": [
           {
             "query": "assafelovic/gpt-researcher CVE",
-            "title": "A vulnerability was found in assafelovic gpt-researcher... · CVE-2026-5632 · GitHub Advisory Database · GitHub",
+            "title": "A vulnerability was found in assafelovic gpt-researcher... \u00b7 CVE-2026-5632 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/ghsa-w624-2cff-x5w8",
             "published": "2026-04-06",
             "matched": "vulnerab",
@@ -2611,7 +2611,7 @@
           },
           {
             "query": "assafelovic/gpt-researcher CVE",
-            "title": "A vulnerability has been found in assafelovic gpt... · CVE-2026-5631 · GitHub Advisory Database · GitHub",
+            "title": "A vulnerability has been found in assafelovic gpt... \u00b7 CVE-2026-5631 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/ghsa-2q6q-x2rq-67q4",
             "published": "2026-04-06",
             "matched": "vulnerab",
@@ -2619,7 +2619,7 @@
           },
           {
             "query": "assafelovic/gpt-researcher CVE",
-            "title": "A vulnerability was determined in assafelovic gpt... · CVE-2026-5633 · GitHub Advisory Database · GitHub",
+            "title": "A vulnerability was determined in assafelovic gpt... \u00b7 CVE-2026-5633 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/ghsa-8p84-j4x4-c993",
             "published": "2026-04-06",
             "matched": "vulnerab",
@@ -2627,7 +2627,7 @@
           },
           {
             "query": "assafelovic/gpt-researcher vulnerability",
-            "title": "A weakness has been identified in assafelovic gpt... · CVE-2026-5625 · GitHub Advisory Database · GitHub",
+            "title": "A weakness has been identified in assafelovic gpt... \u00b7 CVE-2026-5625 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/ghsa-9v4r-x2jq-w7jg",
             "published": "2026-04-06",
             "matched": "CVE-2026-5625",
@@ -2912,7 +2912,7 @@
           },
           {
             "query": "bytedance/deer-flow vulnerability",
-            "title": "ByteDance DeerFlow before commit 2176b2b contains a path... · CVE-2026-40518 · GitHub Advisory Database · GitHub",
+            "title": "ByteDance DeerFlow before commit\u00a02176b2b contains a path... \u00b7 CVE-2026-40518 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/ghsa-54pv-34f9-m4mq",
             "published": "2026-04-17",
             "matched": "CVE-2026-40518",
@@ -2928,7 +2928,7 @@
           },
           {
             "query": "bytedance/deer-flow vulnerability",
-            "title": "ByteDance Deer-Flow versions prior to commit 92c7a20... · CVE-2026-34430 · GitHub Advisory Database · GitHub",
+            "title": "ByteDance Deer-Flow versions prior to commit 92c7a20... \u00b7 CVE-2026-34430 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/GHSA-gxx6-2vwg-3gc3",
             "published": "2026-04-01",
             "matched": "CVE-2026-34430",
@@ -3177,7 +3177,7 @@
         "hits": [
           {
             "query": "CherryHQ/cherry-studio CVE",
-            "title": "One-click on a specific URL to cause a command to execute · Advisory · CherryHQ/cherry-studio · GitHub",
+            "title": "One-click on a specific URL to cause a command to execute \u00b7 Advisory \u00b7 CherryHQ/cherry-studio \u00b7 GitHub",
             "url": "https://github.com/CherryHQ/cherry-studio/security/advisories/GHSA-hh6w-rmjc-26f6",
             "published": "N/A",
             "matched": "exploit",
@@ -3201,7 +3201,7 @@
           },
           {
             "query": "CherryHQ/cherry-studio CVE",
-            "title": "One-click Remote Code Execution through Custom URL Handling in Cherry Studio v1.4.11 · Advisory · CherryHQ/cherry-studio · GitHub",
+            "title": "One-click Remote Code Execution through Custom URL Handling in Cherry Studio v1.4.11 \u00b7 Advisory \u00b7 CherryHQ/cherry-studio \u00b7 GitHub",
             "url": "https://github.com/CherryHQ/cherry-studio/security/advisories/GHSA-p6vw-w3p8-4g72",
             "published": "N/A",
             "matched": "Remote Code Execution",
@@ -3209,7 +3209,7 @@
           },
           {
             "query": "CherryHQ/cherry-studio CVE",
-            "title": "Cherry Studio is Vulnerable to OS Command Injection during Connection with a Malicious MCP Server · Advisory · CherryHQ/cherry-studio · GitH",
+            "title": "Cherry Studio is Vulnerable to OS Command Injection during Connection with a Malicious MCP Server \u00b7 Advisory \u00b7 CherryHQ/cherry-studio \u00b7 GitH",
             "url": "https://github.com/CherryHQ/cherry-studio/security/advisories/GHSA-8xr5-732g-84px",
             "published": "N/A",
             "matched": "Vulnerab",
@@ -3225,7 +3225,7 @@
           },
           {
             "query": "CherryHQ/cherry-studio vulnerability",
-            "title": "Cherry Studio versions 1.2.2 through 1.9.12, fixed in... · CVE-2026-40501 · GitHub Advisory Database · GitHub",
+            "title": "Cherry Studio versions 1.2.2 through 1.9.12, fixed in... \u00b7 CVE-2026-40501 \u00b7 GitHub Advisory Database \u00b7 GitHub",
             "url": "https://github.com/advisories/GHSA-5c46-rj6r-wvm8",
             "published": "2026-07-15",
             "matched": "CVE-2026-40501",
@@ -3404,7 +3404,7 @@
           },
           {
             "query": "cobusgreyling/loop-engineering CVE",
-            "title": "tags/loop-audit-v1.3.0/SECURITY.md at refs · cobusgreyling/loop-engineering",
+            "title": "tags/loop-audit-v1.3.0/SECURITY.md at refs \u00b7 cobusgreyling/loop-engineering",
             "url": "https://github.com/cobusgreyling/loop-engineering/blob/refs/tags/loop-audit-v1.3.0/SECURITY.md",
             "published": "N/A",
             "matched": "vulnerab",
@@ -3412,7 +3412,7 @@
           },
           {
             "query": "cobusgreyling/loop-engineering CVE",
-            "title": "dependency-triage • loop-engineering • cobusgreyling • Skills",
+            "title": "dependency-triage \u2022 loop-engineering \u2022 cobusgreyling \u2022 Skills",
             "url": "https://tessl.io/registry/skills/github/cobusgreyling/loop-engineering/dependency-triage",
             "published": "N/A",
             "matched": "vulnerab",
@@ -3420,7 +3420,7 @@
           },
           {
             "query": "cobusgreyling/loop-engineering vulnerability",
-            "title": "Security - Overview · cobusgreyling/loop-engineering",
+            "title": "Security - Overview \u00b7 cobusgreyling/loop-engineering",
             "url": "https://github.com/cobusgreyling/loop-engineering/security",
             "published": "N/A",
             "matched": "vulnerab",
@@ -3605,7 +3605,7 @@
             "cve": "CVE-2026-42204",
             "severity": "high",
             "published": "2026-07-02",
-            "summary": "Authenticated RCE via SHELL_SAFE_COMMAND_PATTERN regression → host root",
+            "summary": "Authenticated RCE via SHELL_SAFE_COMMAND_PATTERN regression \u2192 host root",
             "patched": "4.0.0-beta.474",
             "openPackages": [],
             "status": "patched"
@@ -3635,7 +3635,7 @@
             "cve": "CVE-2026-57498",
             "severity": "critical",
             "published": "2026-06-28",
-            "summary": "Cross-Team IDOR: Livewire Components Accept Unscoped server_id and destination_uuid — Deploy to Other Teams' Servers",
+            "summary": "Cross-Team IDOR: Livewire Components Accept Unscoped server_id and destination_uuid \u2014 Deploy to Other Teams' Servers",
             "patched": "v4.0.0-beta.474",
             "openPackages": [],
             "status": "patched"
@@ -3645,7 +3645,7 @@
             "cve": "CVE-2026-42172",
             "severity": "low",
             "published": "2026-07-02",
-            "summary": "Sanctum API Tokens Have No Expiration — Leaked Tokens Grant Permanent Access",
+            "summary": "Sanctum API Tokens Have No Expiration \u2014 Leaked Tokens Grant Permanent Access",
             "patched": "4.0.0-beta.474",
             "openPackages": [],
             "status": "patched"
@@ -4323,7 +4323,7 @@
         "hits": [
           {
             "query": "coollabsio/coolify CVE",
-            "title": "OS Command Injection via Persistent Volume Names - Root RCE on Managed Servers · Advisory · coollabsio/coolify · GitHub",
+            "title": "OS Command Injection via Persistent Volume Names - Root RCE on Managed Servers \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-6pmw-6m96-4v4m",
             "published": "N/A",
             "matched": "RCE",
@@ -4331,7 +4331,7 @@
           },
           {
             "query": "coollabsio/coolify CVE",
-            "title": "Authenticated RCE via SHELL_SAFE_COMMAND_PATTERN regression → host root · Advisory · coollabsio/coolify · GitHub",
+            "title": "Authenticated RCE via SHELL_SAFE_COMMAND_PATTERN regression \u2192 host root \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-chg4-63hm-xv9x",
             "published": "N/A",
             "matched": "RCE",
@@ -4355,7 +4355,7 @@
           },
           {
             "query": "coollabsio/coolify CVE",
-            "title": "OS Command Injection via Unmanaged Container Operations - Remote Code Execution · Advisory · coollabsio/coolify · GitHub",
+            "title": "OS Command Injection via Unmanaged Container Operations - Remote Code Execution \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-rh5x-qx77-fq9v",
             "published": "N/A",
             "matched": "Remote Code Execution",
@@ -4371,7 +4371,7 @@
           },
           {
             "query": "coollabsio/coolify vulnerability",
-            "title": "Authenticated Host RCE in Coolify v4 · Advisory · coollabsio/coolify · GitHub",
+            "title": "Authenticated Host RCE in Coolify v4 \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-9pp4-wcmj-rq73",
             "published": "2026-06-25",
             "matched": "RCE",
@@ -4379,7 +4379,7 @@
           },
           {
             "query": "coollabsio/coolify vulnerability",
-            "title": "Authenticated RCE via command injection in CA certificate management feature · Advisory · coollabsio/coolify · GitHub",
+            "title": "Authenticated RCE via command injection in CA certificate management feature \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-7g97-c4xv-3cjx",
             "published": "2026-06-25",
             "matched": "RCE",
@@ -4387,7 +4387,7 @@
           },
           {
             "query": "coollabsio/coolify vulnerability",
-            "title": "Authenticated Remote Code Execution via Command Injection in Destination Network Management · Advisory · coollabsio/coolify · GitHub",
+            "title": "Authenticated Remote Code Execution via Command Injection in Destination Network Management \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-mf8p-rj62-9f9m",
             "published": "2026-06-25",
             "matched": "Remote Code Execution",
@@ -4395,7 +4395,7 @@
           },
           {
             "query": "coollabsio/coolify vulnerability",
-            "title": "Command injection in project git source · Advisory · coollabsio/coolify · GitHub",
+            "title": "Command injection in project git source \u00b7 Advisory \u00b7 coollabsio/coolify \u00b7 GitHub",
             "url": "https://github.com/coollabsio/coolify/security/advisories/GHSA-qx24-jhwj-8w6x",
             "published": "2026-01-03",
             "matched": "vulnerab",
@@ -5017,7 +5017,7 @@
           },
           {
             "query": "dagger/dagger malware",
-            "title": "Android Toast Overlay Attack: “Cloak and Dagger” with No ...",
+            "title": "Android Toast Overlay Attack: \u201cCloak and Dagger\u201d with No ...",
             "url": "https://unit42.paloaltonetworks.com/unit42-android-toast-overlay-attack-cloak-and-dagger-with-no-permissions/",
             "published": "2017-09-07",
             "matched": "vulnerab",
@@ -5041,7 +5041,7 @@
           },
           {
             "query": "dagger/dagger scam",
-            "title": "dagger.io Reviews: Is this site a scam or legit? – Scam Detector",
+            "title": "dagger.io Reviews: Is this site a scam or legit? \u2013 Scam Detector",
             "url": "https://www.scam-detector.com/validator/dagger-io-review/",
             "published": "N/A",
             "matched": "scam",
@@ -5120,7 +5120,7 @@
             "cve": "CVE-2026-72862",
             "severity": "high",
             "published": "2026-07-21",
-            "summary": "OS Command Injection via dockerImage field in 6 database service deployment functions → HOST RCE",
+            "summary": "OS Command Injection via dockerImage field in 6 database service deployment functions \u2192 HOST RCE",
             "patched": null,
             "openPackages": [
               "dokploy"
@@ -5132,7 +5132,7 @@
             "cve": "CVE-2026-72736",
             "severity": "high",
             "published": "2026-07-21",
-            "summary": "OS Command Injection in registry credential testing and Swarm cluster management → HOST RCE",
+            "summary": "OS Command Injection in registry credential testing and Swarm cluster management \u2192 HOST RCE",
             "patched": null,
             "openPackages": [
               "dokploy"
@@ -5838,7 +5838,7 @@
           },
           {
             "query": "Dokploy/dokploy CVE",
-            "title": "OS Command Injection via compose `composePath` · Advisory · Dokploy/dokploy · GitHub",
+            "title": "OS Command Injection via compose `composePath` \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-8r5w-vqjr-8c44",
             "published": "2026-07-21",
             "matched": "vulnerab",
@@ -5846,7 +5846,7 @@
           },
           {
             "query": "Dokploy/dokploy CVE",
-            "title": "OS Command Injection in backup/restore pipeline via unescaped user-controlled shell arguments · Advisory · Dokploy/dokploy · GitHub",
+            "title": "OS Command Injection in backup/restore pipeline via unescaped user-controlled shell arguments \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-p2c7-8j28-c7gq",
             "published": "N/A",
             "matched": "RCE",
@@ -5854,7 +5854,7 @@
           },
           {
             "query": "Dokploy/dokploy CVE",
-            "title": "Command Injection via dockerImage in buildRemoteDocker · Advisory · Dokploy/dokploy · GitHub",
+            "title": "Command Injection via dockerImage in buildRemoteDocker \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-jxxj-gmpx-h5rj",
             "published": "2026-07-21",
             "matched": "RCE",
@@ -5870,7 +5870,7 @@
           },
           {
             "query": "Dokploy/dokploy vulnerability",
-            "title": "Authenticated blind command injection via file mounts leads to direct remote host RCE on managed servers · Advisory · Dokploy/dokploy · GitH",
+            "title": "Authenticated blind command injection via file mounts leads to direct remote host RCE on managed servers \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitH",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-qcf5-jjjp-7794",
             "published": "2026-07-21",
             "matched": "RCE",
@@ -5886,7 +5886,7 @@
           },
           {
             "query": "Dokploy/dokploy vulnerability",
-            "title": "Missing authorization in WebSocket handlers allows a low-privilege member to gain root on the Docker host · Advisory · Dokploy/dokploy · Git",
+            "title": "Missing authorization in WebSocket handlers allows a low-privilege member to gain root on the Docker host \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 Git",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-7r6p-v9gw-pwc8",
             "published": "2026-07-21",
             "matched": "Vulnerab",
@@ -5902,7 +5902,7 @@
           },
           {
             "query": "Dokploy/dokploy malware",
-            "title": "Remote Code Execution through Path Traversal · Advisory · Dokploy/dokploy · GitHub",
+            "title": "Remote Code Execution through Path Traversal \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-66v7-g3fh-47h3",
             "published": "N/A",
             "matched": "Remote Code Execution",
@@ -5910,7 +5910,7 @@
           },
           {
             "query": "Dokploy/dokploy malware",
-            "title": "Remote Code Execution via destinationPath in Container File Upload · Advisory · Dokploy/dokploy · GitHub",
+            "title": "Remote Code Execution via destinationPath in Container File Upload \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-9m66-74x3-5mwr",
             "published": "N/A",
             "matched": "Remote Code Execution",
@@ -5918,7 +5918,7 @@
           },
           {
             "query": "Dokploy/dokploy malware",
-            "title": "Command Injection via Docker Credentials in buildRemoteDocker · Advisory · Dokploy/dokploy · GitHub",
+            "title": "Command Injection via Docker Credentials in buildRemoteDocker \u00b7 Advisory \u00b7 Dokploy/dokploy \u00b7 GitHub",
             "url": "https://github.com/Dokploy/dokploy/security/advisories/GHSA-g9cg-4mmj-mh7p",
             "published": "2026-07-21",
             "matched": "vulnerab",
@@ -5953,7 +5953,7 @@
           "cve": "CVE-2026-72862",
           "severity": "high",
           "published": "2026-07-21",
-          "summary": "OS Command Injection via dockerImage field in 6 database service deployment functions → HOST RCE",
+          "summary": "OS Command Injection via dockerImage field in 6 database service deployment functions \u2192 HOST RCE",
           "patched": null,
           "openPackages": [
             "dokploy"
@@ -5970,7 +5970,7 @@
           "cve": "CVE-2026-72736",
           "severity": "high",
           "published": "2026-07-21",
-          "summary": "OS Command Injection in registry credential testing and Swarm cluster management → HOST RCE",
+          "summary": "OS Command Injection in registry credential testing and Swarm cluster management \u2192 HOST RCE",
           "patched": null,
           "openPackages": [
             "dokploy"
@@ -9058,7 +9058,7 @@
         "hits": [
           {
             "query": "google/artemis malware",
-            "title": "&gt; The rising threat of spyware has prompted both Apple and Google to introduce indicators when a device’s microphone ",
+            "title": "&gt; The rising threat of spyware has prompted both Apple and Google to introduce indicators when a device\u2019s microphone ",
             "url": "https://news.ycombinator.com/item?id=28685677",
             "published": "2021-09-28",
             "matched": "malware",
@@ -10353,7 +10353,7 @@
             "cve": "CVE-2026-55844",
             "severity": "high",
             "published": "2026-06-25",
-            "summary": "iOS Companion App 2023.471 ignores internal SSID allowlist for connections – possible leak of access token and sensor data",
+            "summary": "iOS Companion App 2023.471 ignores internal SSID allowlist for connections \u2013 possible leak of access token and sensor data",
             "patched": "2025.5.0",
             "openPackages": [],
             "status": "patched"
@@ -10797,7 +10797,7 @@
             "cve": "CVE-2026-35455",
             "severity": "high",
             "published": "2026-04-08",
-            "summary": "Stored XSS via OCR Text in 360° Panorama Viewer",
+            "summary": "Stored XSS via OCR Text in 360\u00b0 Panorama Viewer",
             "patched": "2.7.0",
             "openPackages": [],
             "status": "patched"
@@ -11334,7 +11334,7 @@
             "cve": null,
             "severity": "high",
             "published": "2026-08-05",
-            "summary": "inkling engine `load_scalar()`: stack buffer overflow via crafted safetensors tensor — attacker controls RSP",
+            "summary": "inkling engine `load_scalar()`: stack buffer overflow via crafted safetensors tensor \u2014 attacker controls RSP",
             "patched": null,
             "openPackages": [
               "JustVugg/colibri"
@@ -11463,7 +11463,7 @@
           "cve": null,
           "severity": "high",
           "published": "2026-08-05",
-          "summary": "inkling engine `load_scalar()`: stack buffer overflow via crafted safetensors tensor — attacker controls RSP",
+          "summary": "inkling engine `load_scalar()`: stack buffer overflow via crafted safetensors tensor \u2014 attacker controls RSP",
           "patched": null,
           "openPackages": [
             "JustVugg/colibri"
@@ -14366,7 +14366,7 @@
             "cve": null,
             "severity": "high",
             "published": "2026-09-16",
-            "summary": "omnigent single-file YAML function: policy key bypasses handler allowlist → import-and-call RCE",
+            "summary": "omnigent single-file YAML function: policy key bypasses handler allowlist \u2192 import-and-call RCE",
             "patched": "0.14.0",
             "openPackages": [],
             "status": "patched"
@@ -14690,7 +14690,7 @@
           },
           {
             "query": "openai/codex malware",
-            "title": "Wait – is this even Codex, or is it malware?",
+            "title": "Wait \u2013 is this even Codex, or is it malware?",
             "url": "https://grith.ai/blog/codex-credential-sweep-syscall-trace?t=2",
             "published": "2026-07-24",
             "matched": "malware",
@@ -14746,7 +14746,7 @@
           },
           {
             "query": "openai/codex malware",
-            "title": "Show HN: Agensi – Curated marketplace for AI agent skills (SKILL.md)",
+            "title": "Show HN: Agensi \u2013 Curated marketplace for AI agent skills (SKILL.md)",
             "url": "https://www.agensi.io",
             "published": "2026-04-21",
             "matched": "malware",
@@ -15163,7 +15163,7 @@
             "cve": null,
             "severity": "medium",
             "published": "2026-09-25",
-            "summary": "A team admin (non-owner) can remove the team owner via ::delete-team-member — missing owner-protection",
+            "summary": "A team admin (non-owner) can remove the team owner via ::delete-team-member \u2014 missing owner-protection",
             "patched": "2.18.0",
             "openPackages": [],
             "status": "patched"
@@ -15173,7 +15173,7 @@
             "cve": null,
             "severity": "medium",
             "published": "2026-09-25",
-            "summary": "Share-link page-scope escape — comment RPCs leak comment content, author identity, and all page-ids for pages outside the share scope",
+            "summary": "Share-link page-scope escape \u2014 comment RPCs leak comment content, author identity, and all page-ids for pages outside the share scope",
             "patched": "2.18.0",
             "openPackages": [],
             "status": "patched"
@@ -15323,7 +15323,7 @@
             "cve": "CVE-2026-47666",
             "severity": "high",
             "published": "2026-08-19",
-            "summary": "CSS injection / XSS via custom font family name — unsanitized into innerHTML",
+            "summary": "CSS injection / XSS via custom font family name \u2014 unsanitized into innerHTML",
             "patched": "2.15.3",
             "openPackages": [],
             "status": "patched"
@@ -15333,7 +15333,7 @@
             "cve": "CVE-2026-45805",
             "severity": "high",
             "published": "2026-05-19",
-            "summary": "MCP REPL server binds to 0.0.0.0 with unauthenticated /execute endpoint — RCE",
+            "summary": "MCP REPL server binds to 0.0.0.0 with unauthenticated /execute endpoint \u2014 RCE",
             "patched": "2.15.0",
             "openPackages": [],
             "status": "patched"
@@ -16538,7 +16538,7 @@
             "cve": null,
             "severity": "critical",
             "published": "2026-09-14",
-            "summary": "Stored XSS via Unsanitized Bookmark Label from Crafted Notebook Import in Bookmark Dock Tree Renderer → Remote Code Execution",
+            "summary": "Stored XSS via Unsanitized Bookmark Label from Crafted Notebook Import in Bookmark Dock Tree Renderer \u2192 Remote Code Execution",
             "patched": "v3.8.4",
             "openPackages": [],
             "status": "patched"
@@ -16548,7 +16548,7 @@
             "cve": null,
             "severity": "critical",
             "published": "2026-09-14",
-            "summary": "Stored XSS via Unsanitized Document Title in Backlink Dock Tree Renderer → Remote Code Execution",
+            "summary": "Stored XSS via Unsanitized Document Title in Backlink Dock Tree Renderer \u2192 Remote Code Execution",
             "patched": "v3.8.4",
             "openPackages": [],
             "status": "patched"
@@ -16668,7 +16668,7 @@
             "cve": null,
             "severity": "high",
             "published": "2026-09-10",
-            "summary": "Lock-screen pass-through branch of `CheckAuth` skips Origin validation — any web page can force-exit a lock-screen-protected SiYuan kernel a",
+            "summary": "Lock-screen pass-through branch of `CheckAuth` skips Origin validation \u2014 any web page can force-exit a lock-screen-protected SiYuan kernel a",
             "patched": "v3.8.4",
             "openPackages": [],
             "status": "patched"
@@ -19180,7 +19180,7 @@
             "cve": "CVE-2026-30857",
             "severity": "medium",
             "published": "2026-03-06",
-            "summary": "Unauthorized Cross‑Tenant Knowledge Base Cloning",
+            "summary": "Unauthorized Cross\u2011Tenant Knowledge Base Cloning",
             "patched": "0.3.0",
             "openPackages": [],
             "status": "patched"
@@ -19240,7 +19240,7 @@
             "cve": "CVE-2026-22687",
             "severity": "medium",
             "published": "2026-01-09",
-            "summary": "WeKnora数据库查询工具存在sql注入漏洞",
+            "summary": "WeKnora\u6570\u636e\u5e93\u67e5\u8be2\u5de5\u5177\u5b58\u5728sql\u6ce8\u5165\u6f0f\u6d1e",
             "patched": null,
             "openPackages": [
               "WeKnora"
@@ -19252,7 +19252,7 @@
             "cve": "CVE-2026-22688",
             "severity": "critical",
             "published": "2026-01-09",
-            "summary": "Command Injection in (MCP stdio test) in Tencent/WeKnora",
+            "summary": "Command\u00a0Injection\u00a0in\u00a0(MCP stdio\u00a0test) in Tencent/WeKnora",
             "patched": null,
             "openPackages": [
               "internal/mcp/client.go"
@@ -19333,7 +19333,7 @@
           "cve": "CVE-2026-22687",
           "severity": "medium",
           "published": "2026-01-09",
-          "summary": "WeKnora数据库查询工具存在sql注入漏洞",
+          "summary": "WeKnora\u6570\u636e\u5e93\u67e5\u8be2\u5de5\u5177\u5b58\u5728sql\u6ce8\u5165\u6f0f\u6d1e",
           "patched": null,
           "openPackages": [
             "WeKnora"
@@ -19350,7 +19350,7 @@
           "cve": "CVE-2026-22688",
           "severity": "critical",
           "published": "2026-01-09",
-          "summary": "Command Injection in (MCP stdio test) in Tencent/WeKnora",
+          "summary": "Command\u00a0Injection\u00a0in\u00a0(MCP stdio\u00a0test) in Tencent/WeKnora",
           "patched": null,
           "openPackages": [
             "internal/mcp/client.go"
@@ -19519,6 +19519,37 @@
         "ageDays": 332,
         "homepage": "https://hindsight.vectorize.io/",
         "license": "MIT",
+        "flags": []
+      }
+    }
+  },
+  "pacifio/atlas": {
+    "repo": "pacifio/atlas",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/pacifio/atlas/security/advisories",
+        "count": 0,
+        "items": []
+      },
+      "searches": {
+        "queries": [
+          "pacifio/atlas CVE",
+          "pacifio/atlas vulnerability",
+          "pacifio/atlas malware",
+          "pacifio/atlas scam"
+        ],
+        "results": 0,
+        "hits": [],
+        "notes": "No CVE, vulnerability, malware or scam results found. Security hardening fixes shipped in v0.3.4 (ACP token scope, UNC path NTLM leak, control character injection) but no formal advisories or CVEs."
+      },
+      "activity": {
+        "stars": 7915,
+        "contributors": 0,
+        "commits": 1208,
         "flags": []
       }
     }
