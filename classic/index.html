@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repo Radar · The 10 Best Repos This Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#080b0f;--panel:#0e131a;--panel2:#131a23;--line:#1c2530;--text:#e9edf2;--dim:#8593a5;--radar:#4ade80;--radar-dim:rgba(74,222,128,.12);}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;gap:10px}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:var(--radar);box-shadow:0 0 12px var(--radar);animation:ping 2s infinite}
+  @keyframes ping{0%,100%{opacity:1}50%{opacity:.45}}
+  nav .links a{color:var(--dim);text-decoration:none;font-size:13.5px;margin-left:24px}
+  nav .links a:hover{color:var(--text)}
+  .hero{padding:88px 0 64px;position:relative}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--radar);margin-bottom:20px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,62px);line-height:1.04;font-weight:700;max-width:780px;margin-bottom:22px}
+  h1 span{color:var(--radar)}
+  .hero p{font-size:18px;color:var(--dim);max-width:660px;margin-bottom:18px}
+  .why{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--radar);border-radius:12px;padding:24px 28px;max-width:760px;margin-top:30px}
+  .why h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:8px}
+  .why p{color:#bac3d0;font-size:14.5px;margin:0}
+  section{padding:56px 0}
+  .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--radar);margin-bottom:10px}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:700;margin-bottom:8px}
+  .sub{color:var(--dim);font-size:15.5px;margin-bottom:36px;max-width:640px}
+  .repo-list{display:flex;flex-direction:column;gap:14px}
+  .repo{display:grid;grid-template-columns:56px 1fr auto;gap:22px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 26px;text-decoration:none;color:var(--text);transition:border-color .15s,transform .15s}
+  .repo:hover{border-color:var(--radar);transform:translateX(4px)}
+  .rank{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--radar);opacity:.85}
+  .repo h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:3px}
+  .repo h3 .org{color:var(--dim);font-weight:500}
+  .repo .desc{color:var(--dim);font-size:13.5px;max-width:560px}
+  .stats{text-align:right;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim);line-height:1.9;white-space:nowrap}
+  .stats .stars{color:var(--radar);font-weight:500}
+  .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--radar-dim);color:var(--radar);border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+  .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .cat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px 12px}
+  .cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .cat-head h3{font-family:'Space Grotesk',sans-serif;font-size:16.5px}
+  .cat-head .ctag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .crepo{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:11px 2px;border-top:1px solid var(--line);text-decoration:none;color:var(--text);transition:background .12s}
+  .crepo:hover{background:var(--radar-dim)}
+  .crepo .cname{font-size:14px;font-weight:600}
+  .crepo .cname .org{color:var(--dim);font-weight:400}
+  .crepo .cdesc{color:var(--dim);font-size:12.5px;line-height:1.45}
+  .crepo .cstat{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);text-align:right;line-height:1.7;white-space:nowrap}
+  .crepo .cstat .stars{color:var(--radar)}
+  @media(max-width:820px){.cat-grid{grid-template-columns:1fr}}
+  .listen-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .listen-card h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:14px}
+  audio{width:100%}
+  footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:13px}
+  footer a{color:var(--radar);text-decoration:none}
+  @media(max-width:720px){.repo{grid-template-columns:40px 1fr}.stats{display:none}.rank{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="logo"><span class="dot"></span>Repo Radar</div>
+    <div class="links"><a href="#top10">This Week's 10</a><a href="#categories">Categories</a><a href="#listen">Audio Digest</a><a href="../lookup.html">Lookup</a><a href="../archive.html">Archive</a></div>
+  </nav>
+
+  <div class="hero">
+    <div class="kicker">Edition 009 · Week of September 25, 2026</div>
+    <h1>The 10 open-source repos <span>actually worth</span> your week.</h1>
+    <p>Every week, thousands of repos fight for your attention. Ten earn it. We scan GitHub's fastest-rising open-source projects, verify them against real community usage - YouTube walkthroughs, honest reviews, star velocity, engagement - and build each one a full briefing: what problem it solves, how to set it up on your LLM of choice, and how real users are winning with it.</p>
+    <div class="why">
+      <h3>Why this exists</h3>
+      <p>Stars tell you a repo is popular. They don't tell you whether it will survive contact with your workflow. Repo Radar exists to close that gap: every repo here has a proven track record of measurably improving how people work - grounded in cited sources, not hype. New edition every week, so you stay current without living on GitHub Trending.</p>
+    </div>
+  </div>
+
+  <section id="top10">
+    <div class="label">This Week's Top 10</div>
+    <h2>Edition 009</h2>
+    <p class="sub">Ranked by community traction: star velocity, total stars, and depth of real-world coverage. Click any repo for its full briefing - highlights, the problem it solves, setup for your LLM, and real use cases.</p>
+    <div class="repo-list">
+      <a class="repo" href="editions/2026-09-25/laya.html"><div class="rank">01</div><div><h3><span class="org">NandhaKishorM/</span>laya</h3><div class="desc">Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass.</div></div><div class="stats"><div class="stars">★ 23.9K</div><div>2.1K forks · Python · Apache-2.0</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/jev-ultrafast.html"><div class="rank">02</div><div><h3><span class="org">browser-use/</span>jev-ultrafast</h3><div class="desc">Fastest and cheapest web agent - browser automation that actually works at production scale.</div></div><div class="stats"><div class="stars">★ 20K</div><div>1.4K forks · Python · MIT</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/m3e-canvas.html"><div class="rank">03</div><div><h3><span class="org">lnkiai/</span>m3e-canvas</h3><div class="desc">Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts.</div></div><div class="stats"><div class="stars">★ 8.2K</div><div>861 forks · TS · MIT</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/kev.html"><div class="rank">04</div><div><h3><span class="org">jaredpalmer/</span>kev</h3><div class="desc">Jev-like family of decision models built on Qwen3.5/3.8 you can train and run on your own hardware.</div></div><div class="stats"><div class="stars">★ 6.9K</div><div>402 forks · Python · Apache-2.0</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/zcode.html" style="border-color:#d64545;background:rgba(214,69,69,.10)"><div class="rank" style="color:#ff6b6b">!</div><div><h3><span class="org">zai-org/</span>ZCode <span class="badge" style="background:rgba(214,69,69,.22);color:#ffb3b3">Do not install</span></h3><div class="desc">Removed after our Sep 27 security review: caught silently uploading users' entire code history to its maker's cloud. See why.</div></div><div class="stats"><div class="stars" style="color:#ff8a8a">Safety fail</div><div>Reviewed Sep 27</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/fast-jev-compaction.html"><div class="rank">06</div><div><h3><span class="org">tamaratran/</span>fast-jev-compaction</h3><div class="desc">Claude Code plugin that replaces compaction summaries with Jev decisions - every tool call distilled into typed decisions.</div></div><div class="stats"><div class="stars">★ 6.8K</div><div>405 forks · TS · MIT</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/openbot.html"><div class="rank">07</div><div><h3><span class="org">CopilotKit/</span>OpenBot</h3><div class="desc">Open-source AI coworkers that each get a computer of their own - a browser, files and tools, fully transparent.</div></div><div class="stats"><div class="stars">★ 5.5K</div><div>725 forks · TS · MIT</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/compositor.html"><div class="rank">08</div><div><h3><span class="org">robbietilton/</span>Compositor</h3><div class="desc">The Photoshop alternative for Mac - native Swift, fast layers, non-destructive editing.</div></div><div class="stats"><div class="stars">★ 5.5K</div><div>593 forks · Swift · MIT</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/reef.html"><div class="rank">09</div><div><h3><span class="org">Human-Agent-Society/</span>reef</h3><div class="desc">Continual learning infra for self-improving agents - agents that get better every run.</div></div><div class="stats"><div class="stars">★ 5.1K</div><div>451 forks · Python · Apache-2.0</div></div></a>
+      <a class="repo" href="../editions/2026-09-25/kirocrew.html"><div class="rank">10</div><div><h3><span class="org">kirodotdev/</span>KiroCrew</h3><div class="desc">A persistent workspace for development work that self-improves and continues beyond one session.</div></div><div class="stats"><div class="stars">★ 4.1K</div><div>676 forks · Python · Apache-2.0</div></div></a>
+    </div>
+  </section>
+
+  <section id="categories">
+    <div class="label">Category Radar</div>
+    <h2>Top 3 by category</h2>
+    <p class="sub">The best of every lane, not just the loudest. Each pick is verified against the live GitHub API and required to have shipped commits in the last 30 days - up to date or it doesn't make the board. Rows link straight to GitHub.</p>
+    <div class="cat-grid">
+
+      <div class="cat">
+        <div class="cat-head"><h3>Development &amp; Coding Agents</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/anomalyco/opencode"><div><div class="cname"><span class="org">anomalyco/</span>opencode</div><div class="cdesc">The open-source coding agent, terminal-native.</div></div><div class="cstat"><div class="stars">★ 210K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/openai/codex"><div><div class="cname"><span class="org">openai/</span>codex</div><div class="cdesc">OpenAI's lightweight coding agent that runs in your terminal.</div></div><div class="cstat"><div class="stars">★ 126.4K</div><div>Rust · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>AI Updates</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/antirez/ds4"><div><div class="cname"><span class="org">antirez/</span>ds4</div><div class="cdesc">Pure-C local inference for the new DeepSeek 4 open models, by the creator of Redis.</div></div><div class="cstat"><div class="stars">★ 22.7K</div><div>C · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/drumih/turbo-fieldfare"><div><div class="cname"><span class="org">drumih/</span>turbo-fieldfare</div><div class="cdesc">Runs Gemma 4 26B in ~2GB of RAM on any M-series Mac.</div></div><div class="cstat"><div class="stars">★ 6.8K</div><div>Swift · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/Michael-A-Kuykendall/shimmy"><div><div class="cname"><span class="org">Michael-A-Kuykendall/</span>shimmy</div><div class="cdesc">Single-binary Rust WebGPU inference engine.</div></div><div class="cstat"><div class="stars">★ 5.9K</div><div>Rust · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Automation &amp; Agent Orchestration</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/bytedance/deer-flow"><div><div class="cname"><span class="org">bytedance/</span>deer-flow</div><div class="cdesc">ByteDance's open long-horizon SuperAgent harness - researches, codes, creates.</div></div><div class="cstat"><div class="stars">★ 83K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/ruvnet/ruflo"><div><div class="cname"><span class="org">ruvnet/</span>ruflo</div><div class="cdesc">The de facto standard for deploying and coordinating multi-agent swarms.</div></div><div class="cstat"><div class="stars">★ 73.2K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/HKUDS/nanobot"><div><div class="cname"><span class="org">HKUDS/</span>nanobot</div><div class="cdesc">Ultra-light self-hosted personal AI agent framework.</div></div><div class="cstat"><div class="stars">★ 48.6K</div><div>Python · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Research &amp; Knowledge</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/HKUDS/RAG-Anything"><div><div class="cname"><span class="org">HKUDS/</span>RAG-Anything</div><div class="cdesc">All-in-one RAG framework - text, tables, images, equations, one pipeline.</div></div><div class="cstat"><div class="stars">★ 23.4K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/AgriciDaniel/claude-obsidian"><div><div class="cname"><span class="org">AgriciDaniel/</span>claude-obsidian</div><div class="cdesc">Self-organizing AI second brain for Obsidian + Claude Code.</div></div><div class="cstat"><div class="stars">★ 15.2K</div><div>Python · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Web Scraping &amp; Data Extraction</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/firecrawl/firecrawl"><div><div class="cname"><span class="org">firecrawl/</span>firecrawl</div><div class="cdesc">The web data API to search, scrape, and interact at scale.</div></div><div class="cstat"><div class="stars">★ 184.5K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/D4Vinci/Scrapling"><div><div class="cname"><span class="org">D4Vinci/</span>Scrapling</div><div class="cdesc">Adaptive scraping framework - from a single request to a full-scale crawl.</div></div><div class="cstat"><div class="stars">★ 83.6K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/vercel-labs/agent-browser"><div><div class="cname"><span class="org">vercel-labs/</span>agent-browser</div><div class="cdesc">Browser automation CLI built for AI agents.</div></div><div class="cstat"><div class="stars">★ 43.2K</div><div>Rust · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Website Builders</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/GrapesJS/grapesjs"><div><div class="cname"><span class="org">GrapesJS/</span>grapesjs</div><div class="cdesc">The classic embeddable drag-and-drop web builder framework.</div></div><div class="cstat"><div class="stars">★ 26.3K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/webstudio-is/webstudio"><div><div class="cname"><span class="org">webstudio-is/</span>webstudio</div><div class="cdesc">Open-source visual builder - the Webflow alternative.</div></div><div class="cstat"><div class="stars">★ 9K</div><div>TS · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Design &amp; Branding</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/excalidraw/excalidraw"><div><div class="cname"><span class="org">excalidraw/</span>excalidraw</div><div class="cdesc">The virtual whiteboard for hand-drawn style diagrams.</div></div><div class="cstat"><div class="stars">★ 132.9K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/penpot/penpot"><div><div class="cname"><span class="org">penpot/</span>penpot</div><div class="cdesc">Open-source design and prototyping platform for teams.</div></div><div class="cstat"><div class="stars">★ 60.4K</div><div>Clojure · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/ZSeven-W/openpencil"><div><div class="cname"><span class="org">ZSeven-W/</span>openpencil</div><div class="cdesc">First open AI-native vector design tool with concurrent agent teams.</div></div><div class="cstat"><div class="stars">★ 6K</div><div>Rust · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Build &amp; DevOps</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/dagger/dagger"><div><div class="cname"><span class="org">dagger/</span>dagger</div><div class="cdesc">Portable, programmable CI/CD pipelines as code.</div></div><div class="cstat"><div class="stars">★ 16.3K</div><div>Go · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Sales &amp; CRM</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/frappe/erpnext"><div><div class="cname"><span class="org">frappe/</span>erpnext</div><div class="cdesc">Free open-source ERP with a full CRM and sales pipeline inside.</div></div><div class="cstat"><div class="stars">★ 39.5K</div><div>Python · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Finance</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/TauricResearch/TradingAgents"><div><div class="cname"><span class="org">TauricResearch/</span>TradingAgents</div><div class="cdesc">Multi-agent LLM financial trading framework for research and execution.</div></div><div class="cstat"><div class="stars">★ 108.6K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/virattt/ai-hedge-fund"><div><div class="cname"><span class="org">virattt/</span>ai-hedge-fund</div><div class="cdesc">Multi-agent AI hedge fund team for research and trading.</div></div><div class="cstat"><div class="stars">★ 63.7K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/freqtrade/freqtrade"><div><div class="cname"><span class="org">freqtrade/</span>freqtrade</div><div class="cdesc">The free, open-source crypto trading bot.</div></div><div class="cstat"><div class="stars">★ 54.8K</div><div>Python · Sep 25</div></div></a>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head"><h3>Security &amp; Privacy</h3><span class="ctag">verified 09-25</span></div>
+        <a class="crepo" href="https://github.com/usestrix/strix"><div><div class="cname"><span class="org">usestrix/</span>strix</div><div class="cdesc">AI pentesting agent - finds, validates, and fixes vulnerabilities autonomously.</div></div><div class="cstat"><div class="stars">★ 64.7K</div><div>Python · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/KeygraphHQ/shannon"><div><div class="cname"><span class="org">KeygraphHQ/</span>shannon</div><div class="cdesc">AI pentester for web applications - analyzes source, identifies vectors, executes real exploits.</div></div><div class="cstat"><div class="stars">★ 48.4K</div><div>TS · Sep 25</div></div></a>
+        <a class="crepo" href="https://github.com/projectdiscovery/nuclei"><div><div class="cname"><span class="org">projectdiscovery/</span>nuclei</div><div class="cdesc">Template-driven vulnerability scanner - the backbone of open appsec.</div></div><div class="cstat"><div class="stars">★ 31.5K</div><div>Go · Sep 25</div></div></a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="listen">
+    <div class="label">Audio Digest</div>
+    <h2>All 10 repos, one listen</h2>
+    <p class="sub">The weekly NotebookLM deep dive covering every repo in this edition - what it does, why it's rising, and what users report.</p>
+    <div class="listen-card">
+      <h3>Repo Radar · Edition 009 Digest</h3>
+      <p style="color:var(--dim);font-size:14px;margin-top:8px">Audio digest coming soon.</p>
+    </div>
+  </section>
+
+  <footer>
+    Repo Radar · New edition weekly · Grounded in GitHub metrics + cited community sources via NotebookLM<br><br>
+    <a href="../archive.html">All editions</a> · Top 10 metrics captured 2026-09-25, category picks verified 2026-09-25 - all from the GitHub API, never estimated.
+  </footer>
+</div>
+</body>
+</html>

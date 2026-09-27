@@ -3,298 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NandhaKishorM/laya - 33ms Decision Engine | Repo Radar</title>
+<title>laya: A tiny AI sorting clerk: it reads a message and answers multiple-choice questions about it in a blink | Repo Radar</title>
+<meta name="description" content="Give it a customer email and ask &quot;which team?&quot;, &quot;how urgent?&quot;, &quot;will they cancel?&quot;. It answers them all at once, in milliseconds, on your own machine, instead of waiting on a chat AI you pay for each time.">
+<meta property="og:title" content="laya: A tiny AI sorting clerk: it reads a message and answers multiple-choice questions about it in a blink | Repo Radar">
+<meta property="og:description" content="Give it a customer email and ask &quot;which team?&quot;, &quot;how urgent?&quot;, &quot;will they cancel?&quot;. It answers them all at once, in milliseconds, on your own machine, instead of waiting on a chat AI you pay for each time.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/laya-demo.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a1628;--bg2:#0e1c32;--card:#1a2d4a;--card2:#213759;
-    --primary:#3b82f6;--primary-dim:#2563eb;--secondary:#60a5fa;
-    --accent:#7c9cc4;--accent-light:#b8d0eb;
-    --ink:#e2eaf4;--muted:#7c9cc4;--line:#1e3a5f;
-    --sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--disp:'IBM Plex Mono',monospace;
-    --r:0px;
-    --shadow:0 2px 12px rgba(0,0,0,.3);--shadow-lg:0 6px 24px rgba(0,0,0,.4);
-    --glow:0 0 12px #3b82f640;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
-    background-image:
-      linear-gradient(rgba(59,130,246,.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,.04) 1px, transparent 1px);
-    background-size:40px 40px;
-  }
-  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .topbar{background:rgba(10,22,40,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
-  .radar-link:hover{color:var(--primary);text-decoration:none}
-  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
-  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
-  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
-  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:var(--primary);color:#0a1628;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
-  h1{font-family:var(--disp);font-size:clamp(32px,7vw,64px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
-  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.06em;margin-bottom:4px}
-  h1 .name{color:var(--primary);text-shadow:var(--glow)}
-  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
-  .tagline strong{color:var(--ink)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
-  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
-  .chip .cv.lm{color:var(--primary);text-shadow:var(--glow)}
-  .chip .cv.sc{color:var(--secondary)}
-  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .tabnav{position:sticky;top:0;z-index:50;background:rgba(10,22,40,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
-  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
-  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
-  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
-  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#0a1628;box-shadow:var(--glow)}
-  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
-  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
-  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
-  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
-  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
-  h3 .dot{color:var(--primary)}
-  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
-  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
-  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
-  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
-  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
-  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
-  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
-  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
-  .feat p{color:var(--muted);font-size:14px}
-  .best-feature{background:linear-gradient(135deg,#3b82f608,#60a5fa06);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
-  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#0a1628;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
-  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
-  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
-  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
-  .ba.after{background:#3b82f608;border-color:#3b82f650}
-  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
-  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
-  .ba p strong{color:var(--ink)}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
-  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
-  .step-num{font-family:var(--disp);background:var(--primary);color:#0a1628;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
-  .step-head h3{margin:0;font-size:16px}
-  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
-  pre{background:#060d18;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
-  pre .cm{color:#4a6a8f}
-  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
-  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
-  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
-  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
-  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
-  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
-  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
-  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
-  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
-  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
-  .watchout li strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
-  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
-  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
-  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
-  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
-  .backhub:hover{background:var(--primary);color:#0a1628;text-decoration:none;box-shadow:var(--glow)}
-  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
-    <a class="gh-link" href="https://github.com/NandhaKishorM/laya" target="_blank" rel="noopener">GitHub &#8599;</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">AI Decision Engine - Open Source</span>
-    <h1><span class="owner">NandhaKishorM/</span><span class="name">laya</span></h1>
-    <p class="tagline"><strong>Decisions in 33 milliseconds, not 3 seconds.</strong> Laya is a non-autoregressive System 1 decision engine built on a 421M ModernBERT backbone. Feed it any text and a typed question - choice, score, or yes/no - and it returns a calibrated answer in a single forward pass. No token generation, no streaming, no hallucination. 100+ languages out of the box.</p>
-    <div class="chips">
-      <div class="chip"><span class="cv lm">23.9K</span><span class="ck">stars</span></div>
-      <div class="chip"><span class="cv">2.1K</span><span class="ck">forks</span></div>
-      <div class="chip"><span class="cv">Python</span><span class="ck">language</span></div>
-      <div class="chip"><span class="cv sc">Apache-2.0</span><span class="ck">license</span></div>
-    </div>
-  </div>
-</header>
-
-<nav class="tabnav">
-  <div class="wrap">
-    <button class="tab-btn active" data-tab="highlights">Highlights</button>
-    <button class="tab-btn" data-tab="problem">The Problem</button>
-    <button class="tab-btn" data-tab="setup">Setup</button>
-    <button class="tab-btn" data-tab="usecases">Use Cases</button>
-  </div>
-</nav>
-
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 009 &middot; Week of September 25, 2026</p></div>
 <main class="wrap">
-
-  <section id="highlights" class="tab-panel active">
-    <h2>One pass. <em>One answer.</em></h2>
-    <p class="sub">Laya replaces autoregressive LLM calls for structured decisions. Instead of generating tokens to arrive at "Option B," it evaluates all options simultaneously through a bidirectional encoder and returns calibrated probabilities. The result is a 7.8x latency reduction over comparable LLM-based approaches.</p>
-
-    <div class="bignum-grid">
-      <div class="bignum"><div class="n lm">33ms</div><div class="l">Single-query latency</div></div>
-      <div class="bignum"><div class="n sc">7.2ms</div><div class="l">Per question (batched)</div></div>
-      <div class="bignum"><div class="n lm">421M</div><div class="l">Parameters (ModernBERT)</div></div>
-      <div class="bignum"><div class="n">100+</div><div class="l">Languages supported</div></div>
-      <div class="bignum"><div class="n sc">3</div><div class="l">Decision primitives</div></div>
-      <div class="bignum"><div class="n">8,192</div><div class="l">Max token length</div></div>
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#1 this week</span><span class="repo-id">NandhaKishorM/laya</span></div>
+    <h1 id="name">laya</h1>
+    <p class="tagline">A tiny AI sorting clerk: it reads a message and answers <b>multiple-choice questions</b> about it in a blink</p>
+    <p class="sentence">Give it a customer email and ask &quot;which team?&quot;, &quot;how urgent?&quot;, &quot;will they cancel?&quot;. It answers them all at once, in milliseconds, on your own machine, instead of waiting on a chat AI you pay for each time.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      <span class="chip replaces">Replaces: TypeSafe's paid Jev service</span>
+      
     </div>
-
-    <h3><span class="dot">&#9679;</span> What makes it different</h3>
-    <div class="feature-list">
-      <div class="feat"><div class="fh">Three typed primitives</div><p>Every decision fits one of three schemas: <strong>choice</strong> (pick one option from a list), <strong>score</strong> (place text on a numeric scale), or <strong>noul</strong> (calibrated yes/no probability). The API enforces the schema, so the model cannot return malformed output.</p></div>
-      <div class="feat"><div class="fh">Script-aware router</div><p>A built-in router detects the input script in under 2ms and dispatches to the right checkpoint - <strong>English, multilingual, or enterprise</strong>. You do not need to know what language your input is in. The router handles it.</p></div>
-      <div class="feat"><div class="fh">Calibrated probabilities</div><p>Laya is trained with proper scoring rules, so its confidence values are <strong>actually meaningful</strong>. When it says 0.85 probability, it is right roughly 85% of the time. This matters for downstream decision pipelines that need to threshold or rank.</p></div>
-      <div class="feat"><div class="fh">Fine-tune friendly</div><p>The base model is a starting point. On the typed-decisions benchmark, the fine-tuned checkpoint scores <strong>0.766 accuracy vs. 0.362 for the base</strong>. A Kaggle notebook shows fine-tuning on 2x T4 GPUs with the included training scripts.</p></div>
-      <div class="feat"><div class="fh">No hallucination possible</div><p>Because Laya does not generate text, it <strong>cannot hallucinate</strong>. A choice question returns one of the options you provided. A score returns a number on your scale. A noul returns a probability between 0 and 1. The output space is always bounded.</p></div>
-      <div class="feat"><div class="fh">LangChain and LangGraph integration</div><p>Official adapters let you <strong>drop Laya into existing agent pipelines</strong> as a fast decision node. Use it for routing, scoring, or gating without burning tokens on a full LLM call.</p></div>
-    </div>
-
-    <div class="best-feature">
-      <span class="bf-tag">Single best feature</span>
-      <h3>System 1 thinking for your pipeline</h3>
-      <p>The most compelling aspect of Laya is its position in the architecture. Autoregressive models are System 2 - slow, deliberate, expensive. Laya is System 1 - fast, intuitive, cheap. Use it for the hundreds of small decisions in a pipeline that do not need chain-of-thought reasoning: is this email spam? Which department should handle this ticket? Is this review positive or negative? Each of those calls drops from seconds and cents to milliseconds and fractions of a cent. At scale, that changes what is architecturally possible.</p>
-    </div>
-  </section>
-
-  <section id="problem" class="tab-panel">
-    <h2>The <em>decision bottleneck</em></h2>
-    <p class="sub">Every production AI pipeline has dozens of classification and routing decisions. Today, most of them burn a full LLM call. That is slow, expensive, and architecturally fragile.</p>
-
-    <div class="ba-grid">
-      <div class="ba before">
-        <div class="ba-tag">Before</div>
-        <p><strong>Every decision is an LLM call.</strong> Classifying a support ticket? That is a GPT-4 call. Routing an email? Another call. Scoring sentiment? Another. Each one takes 1-3 seconds and costs real money. The pipeline is bottlenecked by the slowest link in a chain of autoregressive calls.</p>
-        <p><strong>Output parsing is fragile.</strong> You prompt the LLM to return "Option A" or "Option B," but sometimes it returns "I think Option A is best because..." and your parser breaks. Structured output modes help, but they add latency and still generate tokens you do not need.</p>
-        <p><strong>Confidence is uncalibrated.</strong> When an LLM says it is 90% confident, that number is not meaningful. You cannot build reliable thresholding or escalation logic on top of uncalibrated confidence scores.</p>
-      </div>
-      <div class="ba after">
-        <div class="ba-tag">After</div>
-        <p><strong>Decisions in 33ms, not 3 seconds.</strong> Laya replaces each slow LLM classification with a single forward pass through a 421M-parameter encoder. Batch multiple questions and the per-decision cost drops to 7.2ms. Your pipeline runs at the speed of the work, not the speed of token generation.</p>
-        <p><strong>Typed output by construction.</strong> A choice question returns exactly one of your options. A score returns a number. A noul returns a probability. There is no parsing step because there is nothing to parse - the output schema is enforced by the model architecture itself.</p>
-        <p><strong>Calibrated confidence for real decisions.</strong> Trained with proper scoring rules, Laya's probability outputs are calibrated. Build thresholds, escalation logic, and multi-stage pipelines on numbers that actually mean what they say.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="setup" class="tab-panel">
-    <h2>Set up <em>Laya</em></h2>
-    <p class="sub">From pip install to your first decision in under two minutes.</p>
-
-    <div class="step">
-      <div class="step-head"><span class="step-num">1</span><h3>Install from PyPI</h3></div>
-      <div class="step-body">
-<pre>pip install laya
-
-<span class="cm"># Or install from source for development</span>
-git clone https://github.com/NandhaKishorM/laya.git
-cd laya &amp;&amp; pip install -e ".[dev]"</pre>
-        <p>Laya requires Python 3.10+. The package pulls the base checkpoint from Hugging Face on first use. For air-gapped environments, pre-download the <strong>convaiinnovations/laya</strong> model from Hugging Face Hub.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">2</span><h3>Make your first decision</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># A simple choice decision</span>
-from laya import Laya
-
-engine = Laya()
-
-result = engine.predict(
-    state="The customer is asking about a refund for a broken item",
-    questions=[
-        {"type": "choice",
-         "prompt": "Which department should handle this?",
-         "options": ["billing", "support", "returns", "shipping"]}
-    ]
-)
-
-print(result)
-<span class="cm"># [{"answer": "returns", "confidence": 0.87}]</span></pre>
-        <p>The <strong>state</strong> is any text - an email, a ticket, a document, a JSON blob. The <strong>questions</strong> list can contain choice, score, or noul questions. Batch multiple questions against the same state for maximum throughput.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-head"><span class="step-num">3</span><h3>Fine-tune for your domain</h3></div>
-      <div class="step-body">
-<pre><span class="cm"># Fine-tune on your labeled decisions</span>
-<span class="cm"># See: notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb</span>
-
-from laya.train import Trainer
-
-trainer = Trainer(
-    base_model="convaiinnovations/laya",
-    train_data="my_decisions.jsonl",
-    output_dir="./laya-my-domain"
-)
-
-trainer.train(epochs=5, batch_size=32)
-
-<span class="cm"># Base accuracy: ~0.36 | Fine-tuned: ~0.77</span></pre>
-        <p>Zero-shot accuracy on the base model is near random for domain-specific tasks. Fine-tuning is where Laya shines - the included Kaggle notebook runs on <strong>2x T4 GPUs</strong> and takes the typed-decisions benchmark from 0.362 to 0.766 accuracy.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="usecases" class="tab-panel">
-    <h2>Where <em>Laya</em> fits</h2>
-    <p class="sub">Laya is not a general-purpose LLM. It is a specialized decision engine for structured classification at scale.</p>
-
-    <div class="story"><div class="metric">Ticket Routing</div><p><strong>Route support tickets in milliseconds.</strong> A fine-tuned Laya model classifies incoming tickets by department, priority, and category. At 7.2ms per decision batched, you can process thousands of tickets per second on a single T4 GPU - replacing what would otherwise be thousands of LLM calls.</p></div>
-    <div class="story"><div class="metric">Content Moderation</div><p><strong>Flag content without generating text.</strong> Use noul questions to get calibrated probabilities for policy violations. "Is this comment toxic?" returns a probability, not a paragraph. Threshold at 0.8 for auto-removal, 0.5-0.8 for human review - and trust the numbers because they are calibrated.</p></div>
-    <div class="story"><div class="metric">Agent Decision Nodes</div><p><strong>Drop fast decisions into LangChain/LangGraph pipelines.</strong> Use Laya for routing and gating decisions within an agent loop. "Should the agent search the web or query the database?" does not need chain-of-thought - it needs a fast, reliable choice. Laya provides that in 33ms instead of 2 seconds.</p></div>
-    <div class="story"><div class="metric">Multilingual Classification</div><p><strong>Classify text in 100+ languages without separate models.</strong> The script-aware router automatically detects the input language and dispatches to the appropriate checkpoint. Build one classification pipeline that handles English, Hindi, Arabic, and Mandarin without language detection boilerplate.</p></div>
-
-    <div class="itw">
-      <h3>In the Wild</h3>
-      <ul>
-        <li><strong>Hacker News discussion.</strong> A Show HN thread demonstrated Laya running on AWS Lambda with SnapStart, showing cold-start latency under 400ms and warm invocations at the expected 33ms range. <a href="https://news.ycombinator.com/item?id=49794281" target="_blank">Source: Hacker News</a></li>
-        <li><strong>Laya vs. Jev debate.</strong> A separate HN thread discussed Laya's relationship to TypeSafe's closed Jev model, noting that Laya's author proposed the architecture in March 2025 before Jev shipped. The thread debated whether Laya is prior art or a reimplementation. <a href="https://news.ycombinator.com/item?id=49765878" target="_blank">Source: Hacker News</a></li>
-        <li><strong>Lobsters front page.</strong> Laya reached the Lobsters front page under the title "Laya - 33ms Multilingual System 1 Decision Engine," drawing discussion about calibration quality and fine-tuning requirements. <a href="https://lobste.rs/s/ojukrw" target="_blank">Source: Lobsters</a></li>
-        <li><strong>Medium deep dive.</strong> A Medium article on Data Science in Your Pocket compared Laya to TypeSafe's Jev, concluding that Laya is the open-source, self-hosted alternative with comparable performance at zero API cost. <a href="https://medium.com/data-science-in-your-pocket/laya-bye-bye-typescript-jev-ai-bdefd25149e0" target="_blank">Source: Medium</a></li>
-        <li><strong>AI Weekly coverage.</strong> AI Weekly covered the launch, noting the 7.8x latency improvement and the Apache-2.0 licensing as significant for production adoption. <a href="https://aiweekly.co/alerts/laya-open-sources-a-33ms-multilingual-typed-decision-engine" target="_blank">Source: AI Weekly</a></li>
-      </ul>
-    </div>
-
-    <div class="watchout">
-      <h3>Watch out for</h3>
-      <ul>
-        <li><strong>Zero-shot accuracy is near random.</strong> Do not expect Laya to work well out of the box on your specific task. The base model scores 0.362 on the typed-decisions benchmark - barely above chance. You need to fine-tune it on labeled data from your domain to get useful accuracy.</li>
-        <li><strong>Confidence calibration needs refitting.</strong> While the training procedure uses proper scoring rules, the calibration curves shift when you fine-tune. Re-calibrate on a held-out validation set from your own data before trusting the probability outputs for production thresholding.</li>
-        <li><strong>Long documents degrade past 4K tokens.</strong> Laya supports up to 8,192 tokens, but accuracy becomes variable beyond roughly 4,000 tokens. For long documents, consider chunking and aggregating decisions rather than feeding the full text.</li>
-        <li><strong>One week old.</strong> Created September 18, 2026. The API surface, checkpoint names, and training scripts may change. Pin your dependency version and watch the changelog before upgrading.</li>
-      </ul>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
-    <ul>
-      <li><a href="https://github.com/NandhaKishorM/laya" target="_blank">NandhaKishorM/laya GitHub</a> - source, docs, fine-tuning notebooks</li>
-      <li>Stack: Python | ModernBERT 421M | Hugging Face Hub | LangChain/LangGraph adapters</li>
-      <li>Last pushed: September 25, 2026 | Created: September 18, 2026</li>
-    </ul>
-    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+    <div class="actions"><a class="btn primary" href="https://huggingface.co/convaiinnovations/laya" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn" href="https://huggingface.co/spaces/convaiinnovations/laya-demo" rel="noopener">See it work <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/NandhaKishorM/laya" rel="noopener">GitHub</a></div>
   </div>
-</footer>
+  <figure class="pinned">
+    <img src="../../assets/shots/laya-demo.webp" alt="laya's live demo on Hugging Face. The customer message: 'I was charged twice for invoice 4411 and nobody has answered for three days. Refund the duplicate today or we are cancelling our plan.' laya's answers: refund requested 0.87, frustration 1.85 out of 3, urgent 0.20, churn risk 0.17, intent refund at 98% confidence. Decision: route to billing, flagged for manager approval, in 586 milliseconds." width="1000" height="843" loading="eager">
+    <figcaption>Our test of the live demo, Sep 27: it caught the refund request and routed it to billing in about half a second.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">26.1K</span><span class="v-note">GitHub stars, <b>+25K stars in its first 9 days</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 29.9 L50.0 5.1 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">5</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>178 points on Hacker News</b></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Sep 27: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board">
+  <div class="note problem"><span class="role">Your problem</span><p class="say">Your software makes hundreds of small calls a day: which team gets this email? Is it urgent? Will they cancel?</p><p class="eg">Asking a chat AI each time means a fee per call, a wait, and a paragraph your software has to decode.</p></div>
+  <div class="note input"><span class="role">You give it</span><p class="say">You hand it the message and your multiple-choice questions</p><p class="eg">&quot;I was charged twice for invoice 4411... Refund the duplicate today or we are cancelling our plan.&quot;</p></div>
+  <div class="note does"><span class="role">It does</span><p class="say">It reads everything once and scores every option at the same time</p><p class="eg">It never writes sentences, so it can't ramble or answer with something that isn't on your list.</p></div>
+  <div class="note result"><span class="role">You get</span><p class="say">You get a typed answer, with a confidence score for each</p><p class="eg"><b>Refund request</b> (98% sure), so: route to <b>billing</b> and flag for manager approval, in about half a second in the live demo.</p></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Every small decision is a full chat-AI call: billed per use, and slower than it needs to be.</li><li>The answer comes back as sentences your software has to decode, and it can go off-script.</li><li>Customer data leaves your building for someone else's servers.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>About <b>33 milliseconds</b> per decision, in <b>100+ languages</b> (the author's measurement).</li><li>The answer is always one of your options, with a probability you can set rules on.</li><li>It runs on your own machine: free to use (Apache-2.0 license), and the data stays put.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">3</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">It's 9 days old, so real use is early, and so far it's developers.</p><ol class="uses">
+  <li class="use"><span class="who-mark long" aria-hidden="true">37 of 40</span><div><h3>A developer running AI agents on a Mac Studio</h3><p>Swapped the hosted Jev service for laya on the agent's routine calls: which specialist gets a job, whether an alert needs a human, which local model can take a request.</p><p class="result">37 of 40 routing decisions judged acceptable in a replay test, with no data leaving the machine.</p><a class="src" href="https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions" rel="noopener">As The Geek Learns: Local Laya vs Hosted Jev, Sep 22</a></div></li>
+  <li class="use"><span class="who-mark long" aria-hidden="true">178 pts</span><div><h3>A developer with an M4 Mac</h3><p>Got laya running fully offline with Apple's CoreML, and published the recipe.</p><p class="result">178 points on Hacker News, the biggest laya thread so far.</p><a class="src" href="https://news.ycombinator.com/item?id=49777106" rel="noopener">Hacker News: Laya on Mac M4 CoreML Offline, Sep 20</a></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">71x</span><div><h3>Open-source builders, in the first week</h3><p>Built five add-ons: an Apple silicon runtime, Huawei chip support, tools for Google's agent kit, a plugin for the oh-my-pi coding agent, and a local stand-in for Jev's API.</p><p class="result">On Huawei's AI chips it ran 34x to 71x faster than on a regular processor.</p><a class="src" href="https://github.com/NandhaKishorM/laya#community-tools" rel="noopener">laya README: Community Tools, Sep 26</a></div></li></ol></section>
+<section class="q" id="popular" aria-labelledby="popular-h"><header><span class="q-num">4</span><h2 id="popular-h">Is it actually popular?</h2></header><div class="pulse">
+  <div class="stars-card">
+    <div class="big">26.1K<small>GitHub stars</small></div>
+    <p class="gain">+25K stars in its first 9 days</p>
+    <svg viewBox="0 0 520 150" role="img" aria-label="Stars over time: Sep 18 136, Sep 26 25K, Sep 27 26.1K">
+<line x1="8" y1="140" x2="512" y2="140" stroke="var(--rule)" stroke-width="1.5"/>
+<path d="M8.0 139.4 L456.0 28.2 L512.0 23.3 L512.0 140 L8.0 140 Z" fill="var(--green)" opacity=".75"/>
+<path d="M8.0 139.4 L456.0 28.2 L512.0 23.3" fill="none" stroke="var(--green-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<circle cx="8.0" cy="139.4" r="4.5" fill="var(--ink)"><title>Sep 18: 136 stars</title></circle><circle cx="456.0" cy="28.2" r="4.5" fill="var(--ink)"><title>Sep 26: 25K stars</title></circle><circle cx="512.0" cy="23.3" r="4.5" fill="var(--ink)"><title>Sep 27: 26.1K stars</title></circle></svg>
+    <div class="axis"><span>Sep 18</span><span>Sep 27</span></div>
+    <p class="foot">Measured points only: findarepo's daily log (Sep 18 to 26) and GitHub on Sep 27. The dashed line between them is drawn straight.</p>
+    <div class="facts"><div class="fact"><b>3.5K</b><span>new stars a day, measured by findarepo</span></div><div class="fact"><b>86</b><span>people have contributed code</span></div><div class="fact"><b>3.9K</b><span>likes on its Hugging Face model page</span></div><div class="fact"><b>2.3K</b><span>copies (forks) people made to build on</span></div></div>
+  </div>
+  <div>
+    <h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Who's talking about it</h3>
+    <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49777106" rel="noopener">Laya on Mac M4 CoreML Offline</a><span class="meta">178 points · Sep 20</span></li><li class=""><span class="plat">Blog</span><a href="https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions" rel="noopener">Local Laya vs Hosted Jev: why my agents make typed decisions on my Mac</a><span class="meta">Sep 22</span></li><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=49806080" rel="noopener">Does an open-weight decision model beat a hosted one? Jev vs. Laya</a><span class="meta">15 points · Sep 22</span></li><li class="tone-critical"><span class="plat">Blog</span><a href="https://xtxinversexty.com/layas-prior-art-claim-is-absurd/" rel="noopener">Laya's Prior Art Claim Is Absurd</a><span class="meta">Sep 23</span></li><li class=""><span class="plat">Dev.to</span><a href="https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me" rel="noopener">The author's story: he built this a year before a big lab called it new</a><span class="meta">by the author</span></li></ul>
+    <div class="trending"><span class="chip">findarepo: star growth looks organic</span><span class="chip">Live demo: 220 likes on Hugging Face</span></div>
+  </div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">5</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Try it in your browser first: open the live demo, paste any customer message and press <b>Ask</b>. Nothing to install.</li><li>To use it for real, a developer installs it with one line and asks it questions from their code.</li><li>For better accuracy, they fine-tune it on your own past decisions, using a free notebook the author provides.</li></ol>
+  </div>
+  <div class="paste">
+    <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+    <pre id="paste-laya">/skillspector https://github.com/NandhaKishorM/laya
 
-<script>
-  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
-  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-</script>
+If that scan passes: in a scratch folder, install laya (pip install laya), run the README quickstart on its sample customer email, and show me the answers it returns. 10 minutes max, then stop and report back in plain English.</pre>
+    <button class="copy" type="button" data-copy="paste-laya">Copy the prompt</button>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">6</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You're building a support inbox, an AI agent or an app that makes lots of small, repeatable decisions</li><li>You want those decisions to stay on your own machine, for privacy or to avoid per-call fees</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You're not building software: there's nothing here to use day to day</li><li>Your choices have more than about 20 options (accuracy drops, by the author's own test)</li><li>You need written answers or explanations, not a pick from a list</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener"><b>TypeSafe Jev</b></a><span>The paid, hosted original that laya takes on: priced per use, and it handles up to 255 options.</span></li><li><a href="kev.html" rel="noopener"><b>kev</b></a><span>Tiny Jev-style models you train and run yourself (#4 this week).</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">7</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/NandhaKishorM/laya/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Sep 27</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>26.1K stars, 86 contributors, 413 commits. findarepo's star check: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>In our test it missed the obvious churn risk.</b> On the demo's own sample (a customer threatening to cancel), it scored churn risk at 17% and urgency at 20%. The demo says this preview model saw no email data.</li><li><b>More than about 20 options and accuracy drops:</b> 0.425 versus Jev's 0.870 on the Banking77 test, by the author's own benchmark.</li><li><b>Overconfident out of the box.</b> Its model card says to calibrate it on your own data before trusting the probabilities.</li><li><b>Brand new, with a disputed backstory.</b> The author says he invented the approach first; a critic calls that absurd. Judge the tool, not the story.</li></ul></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/NandhaKishorM/laya" rel="noopener">laya on GitHub (README, benchmarks, community tools)</a>, Sep 27</li><li><a href="https://huggingface.co/spaces/convaiinnovations/laya-demo" rel="noopener">laya live demo on Hugging Face (our test)</a>, Sep 27</li><li><a href="https://huggingface.co/convaiinnovations/laya" rel="noopener">laya model page on Hugging Face</a>, Sep 27</li><li><a href="https://findarepo.com/repo/NandhaKishorM/laya/" rel="noopener">findarepo: laya stats, growth and star check</a>, Sep 27</li><li><a href="https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions" rel="noopener">As The Geek Learns: Local Laya vs Hosted Jev</a>, Sep 22</li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" rel="noopener">TypeSafe: introducing System One models and Jev</a></li><li><a href="https://news.ycombinator.com/item?id=49777106" rel="noopener">Hacker News: Laya on Mac M4 CoreML Offline</a>, Sep 20</li><li><a href="https://news.ycombinator.com/item?id=49806080" rel="noopener">Hacker News: Jev vs. Laya</a>, Sep 22</li><li><a href="https://xtxinversexty.com/layas-prior-art-claim-is-absurd/" rel="noopener">Laya's Prior Art Claim Is Absurd</a>, Sep 23</li><li><a href="https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me" rel="noopener">Dev.to: the author's engineering write-up</a></li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 009 &middot; September 25, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
 </body>
 </html>

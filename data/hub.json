@@ -1,0 +1,244 @@
+{
+  "categories_note": "The top 3 in each lane, checked for safety on Sep 27. Design now counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. The full re-ranking by measured growth arrives with the new picking recipe.",
+  "categories": [
+    {
+      "name": "Development & Coding Agents",
+      "picks": [
+        {
+          "repo": "anomalyco/opencode",
+          "name": "opencode",
+          "stars": 210000,
+          "oneliner": "The open-source coding agent, terminal-native."
+        },
+        {
+          "repo": "openai/codex",
+          "name": "codex",
+          "stars": 126400,
+          "oneliner": "OpenAI's lightweight coding agent that runs in your terminal."
+        }
+      ],
+      "id": "development-coding-agents",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "AI Updates",
+      "picks": [
+        {
+          "repo": "antirez/ds4",
+          "name": "ds4",
+          "stars": 22700,
+          "oneliner": "Pure-C local inference for the new DeepSeek 4 open models, by the creator of Redis."
+        },
+        {
+          "repo": "drumih/turbo-fieldfare",
+          "name": "turbo-fieldfare",
+          "stars": 6800,
+          "oneliner": "Runs Gemma 4 26B in ~2GB of RAM on any M-series Mac."
+        },
+        {
+          "repo": "Michael-A-Kuykendall/shimmy",
+          "name": "shimmy",
+          "stars": 5900,
+          "oneliner": "Single-binary Rust WebGPU inference engine."
+        }
+      ],
+      "id": "ai-updates",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Automation & Agent Orchestration",
+      "picks": [
+        {
+          "repo": "bytedance/deer-flow",
+          "name": "deer-flow",
+          "stars": 83000,
+          "oneliner": "ByteDance's open long-horizon SuperAgent harness - researches, codes, creates."
+        },
+        {
+          "repo": "ruvnet/ruflo",
+          "name": "ruflo",
+          "stars": 73200,
+          "oneliner": "The de facto standard for deploying and coordinating multi-agent swarms."
+        },
+        {
+          "repo": "HKUDS/nanobot",
+          "name": "nanobot",
+          "stars": 48600,
+          "oneliner": "Ultra-light self-hosted personal AI agent framework."
+        }
+      ],
+      "id": "automation-agent-orchestration",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Research & Knowledge",
+      "picks": [
+        {
+          "repo": "HKUDS/RAG-Anything",
+          "name": "RAG-Anything",
+          "stars": 23400,
+          "oneliner": "All-in-one RAG framework - text, tables, images, equations, one pipeline."
+        },
+        {
+          "repo": "AgriciDaniel/claude-obsidian",
+          "name": "claude-obsidian",
+          "stars": 15200,
+          "oneliner": "Self-organizing AI second brain for Obsidian + Claude Code."
+        }
+      ],
+      "id": "research-knowledge",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Web Scraping & Data Extraction",
+      "picks": [
+        {
+          "repo": "firecrawl/firecrawl",
+          "name": "firecrawl",
+          "stars": 184500,
+          "oneliner": "The web data API to search, scrape, and interact at scale."
+        },
+        {
+          "repo": "D4Vinci/Scrapling",
+          "name": "Scrapling",
+          "stars": 83600,
+          "oneliner": "Adaptive scraping framework - from a single request to a full-scale crawl."
+        },
+        {
+          "repo": "vercel-labs/agent-browser",
+          "name": "agent-browser",
+          "stars": 43200,
+          "oneliner": "Browser automation CLI built for AI agents."
+        }
+      ],
+      "id": "web-scraping-data-extraction",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Website Builders",
+      "picks": [
+        {
+          "repo": "GrapesJS/grapesjs",
+          "name": "grapesjs",
+          "stars": 26300,
+          "oneliner": "The classic embeddable drag-and-drop web builder framework."
+        },
+        {
+          "repo": "webstudio-is/webstudio",
+          "name": "webstudio",
+          "stars": 9000,
+          "oneliner": "Open-source visual builder - the Webflow alternative."
+        }
+      ],
+      "id": "website-builders",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Design & Branding",
+      "picks": [
+        {
+          "repo": "pbakaus/impeccable",
+          "name": "impeccable",
+          "stars": 71645,
+          "perday": 332,
+          "url": "https://impeccable.style",
+          "oneliner": "Teaches your AI coding tool real design sense, so what it builds doesn't look AI-made."
+        },
+        {
+          "repo": "Leonxlnx/taste-skill",
+          "name": "taste-skill",
+          "stars": 90450,
+          "perday": 270,
+          "url": "https://tasteskill.dev",
+          "oneliner": "Gives your AI good taste: stops it from producing boring, generic designs."
+        },
+        {
+          "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+          "name": "ui-ux-pro-max",
+          "stars": 130906,
+          "perday": 256,
+          "url": "https://www.uupm.cc/",
+          "oneliner": "A design playbook your AI follows to build professional screens for web and mobile."
+        }
+      ],
+      "id": "design-branding",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Build & DevOps",
+      "picks": [
+        {
+          "repo": "dagger/dagger",
+          "name": "dagger",
+          "stars": 16300,
+          "oneliner": "Portable, programmable CI/CD pipelines as code."
+        }
+      ],
+      "id": "build-devops",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Sales & CRM",
+      "picks": [
+        {
+          "repo": "frappe/erpnext",
+          "name": "erpnext",
+          "stars": 39500,
+          "oneliner": "Free open-source ERP with a full CRM and sales pipeline inside."
+        }
+      ],
+      "id": "sales-crm",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Finance",
+      "picks": [
+        {
+          "repo": "TauricResearch/TradingAgents",
+          "name": "TradingAgents",
+          "stars": 108600,
+          "oneliner": "Multi-agent LLM financial trading framework for research and execution."
+        },
+        {
+          "repo": "virattt/ai-hedge-fund",
+          "name": "ai-hedge-fund",
+          "stars": 63700,
+          "oneliner": "Multi-agent AI hedge fund team for research and trading."
+        },
+        {
+          "repo": "freqtrade/freqtrade",
+          "name": "freqtrade",
+          "stars": 54800,
+          "oneliner": "The free, open-source crypto trading bot."
+        }
+      ],
+      "id": "finance",
+      "checked": "2026-09-27"
+    },
+    {
+      "name": "Security & Privacy",
+      "picks": [
+        {
+          "repo": "usestrix/strix",
+          "name": "strix",
+          "stars": 64700,
+          "oneliner": "AI pentesting agent - finds, validates, and fixes vulnerabilities autonomously."
+        },
+        {
+          "repo": "KeygraphHQ/shannon",
+          "name": "shannon",
+          "stars": 48400,
+          "oneliner": "AI pentester for web applications - analyzes source, identifies vectors, executes real exploits."
+        },
+        {
+          "repo": "projectdiscovery/nuclei",
+          "name": "nuclei",
+          "stars": 31500,
+          "oneliner": "Template-driven vulnerability scanner - the backbone of open appsec."
+        }
+      ],
+      "id": "security-privacy",
+      "checked": "2026-09-27"
+    }
+  ]
+}

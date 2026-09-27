@@ -1,0 +1,19 @@
+{
+  "number": "009",
+  "date": "2026-09-25",
+  "theme_short": "The week everyone built on Jev",
+  "theme": "**The week everyone built on Jev.** TypeSafe launched Jev, a paid AI that makes instant multiple-choice decisions. Within days, four of this week's ten were built on it or around it: laya and kev copy it for free, and jev-ultrafast and fast-jev-compaction put it to work.",
+  "method": "**How this week was picked:** Edition 009 used our old method (the newest repos, sorted by stars). Starting Friday Oct 2, picks come from 7 sources and are ranked by measured growth and independent coverage, for tools you can use. **Every repo here passed our safety check on Sep 27,** and one was pulled: ZCode.",
+  "picks": [
+    { "rank": 1, "slug": "laya", "repo": "NandhaKishorM/laya", "name": "laya", "fit": "developers", "stars": 26096, "thumb": "assets/shots/laya-demo.webp", "oneliner": "A tiny AI sorting clerk: it answers multiple-choice questions about any message in milliseconds, free, on your own machine." },
+    { "rank": 2, "slug": "jev-ultrafast", "repo": "browser-use/jev-ultrafast", "name": "jev-ultrafast", "fit": "developers", "stars": 20642, "oneliner": "An AI that clicks through websites for you, using Jev to choose each click. Built by Browser Use with TypeSafe." },
+    { "rank": 3, "slug": "m3e-canvas", "repo": "lnkiai/m3e-canvas", "name": "m3e-canvas", "fit": "you", "stars": 8309, "oneliner": "Sketch an app screen in your browser, and it writes the prompt that tells an AI to build it." },
+    { "rank": 4, "slug": "kev", "repo": "jaredpalmer/kev", "name": "kev", "fit": "developers", "stars": 7285, "oneliner": "Small do-it-yourself decision AIs in the style of Jev, which you train on your own examples." },
+    { "rank": 5, "slug": "zcode", "repo": "zai-org/ZCode", "name": "ZCode", "status": "fail", "oneliner": "Pulled after our Sep 27 review: caught silently uploading users' entire code history to its maker's cloud." },
+    { "rank": 6, "slug": "fast-jev-compaction", "repo": "tamaratran/fast-jev-compaction", "name": "fast-jev-compaction", "fit": "you", "stars": 6983, "oneliner": "A Claude Code add-on that keeps long sessions sharp: it drops stale steps instead of squashing the whole chat into a summary." },
+    { "rank": 7, "slug": "openbot", "repo": "CopilotKit/OpenBot", "name": "OpenBot", "fit": "developers", "stars": 5616, "oneliner": "Open-source AI coworkers, each with its own walled-off computer: a browser, files and tools you can watch." },
+    { "rank": 8, "slug": "compositor", "repo": "robbietilton/Compositor", "name": "Compositor", "fit": "you", "stars": 5792, "oneliner": "A free, fast, Photoshop-style image editor made for the Mac." },
+    { "rank": 9, "slug": "reef", "repo": "Human-Agent-Society/reef", "name": "reef", "fit": "developers", "stars": 6256, "oneliner": "Plumbing that lets AI agents learn from every job and get better over time." },
+    { "rank": 10, "slug": "kirocrew", "repo": "kirodotdev/KiroCrew", "name": "KiroCrew", "fit": "developers", "stars": 4161, "oneliner": "A workspace from AWS's Kiro team where AI coding agents keep working across sessions and improve as they go." }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "repo": "NandhaKishorM/laya",
+  "name": "laya",
+  "tagline": "A tiny AI sorting clerk: it reads a message and answers **multiple-choice questions** about it in a blink",
+  "sentence": "Give it a customer email and ask \"which team?\", \"how urgent?\", \"will they cancel?\". It answers them all at once, in milliseconds, on your own machine, instead of waiting on a chat AI you pay for each time.",
+  "fit": "developers",
+  "replaces": "TypeSafe's paid Jev service",
+  "links": {
+    "website": "https://huggingface.co/convaiinnovations/laya",
+    "demo": "https://huggingface.co/spaces/convaiinnovations/laya-demo",
+    "docs": "https://nandhakishorm.github.io/laya/"
+  },
+  "visual": {
+    "src": "assets/shots/laya-demo.webp",
+    "width": 1000,
+    "height": 843,
+    "alt": "laya's live demo on Hugging Face. The customer message: 'I was charged twice for invoice 4411 and nobody has answered for three days. Refund the duplicate today or we are cancelling our plan.' laya's answers: refund requested 0.87, frustration 1.85 out of 3, urgent 0.20, churn risk 0.17, intent refund at 98% confidence. Decision: route to billing, flagged for manager approval, in 586 milliseconds.",
+    "caption": "Our test of the live demo, Sep 27: it caught the refund request and routed it to billing in about half a second."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your software makes hundreds of small calls a day: which team gets this email? Is it urgent? Will they cancel?",
+      "eg": "Asking a chat AI each time means a fee per call, a wait, and a paragraph your software has to decode."
+    },
+    {
+      "role": "input",
+      "say": "You hand it the message and your multiple-choice questions",
+      "eg": "\"I was charged twice for invoice 4411... Refund the duplicate today or we are cancelling our plan.\""
+    },
+    {
+      "role": "does",
+      "say": "It reads everything once and scores every option at the same time",
+      "eg": "It never writes sentences, so it can't ramble or answer with something that isn't on your list."
+    },
+    {
+      "role": "result",
+      "say": "You get a typed answer, with a confidence score for each",
+      "eg": "**Refund request** (98% sure), so: route to **billing** and flag for manager approval, in about half a second in the live demo."
+    }
+  ],
+  "before": [
+    "Every small decision is a full chat-AI call: billed per use, and slower than it needs to be.",
+    "The answer comes back as sentences your software has to decode, and it can go off-script.",
+    "Customer data leaves your building for someone else's servers."
+  ],
+  "after": [
+    "About **33 milliseconds** per decision, in **100+ languages** (the author's measurement).",
+    "The answer is always one of your options, with a probability you can set rules on.",
+    "It runs on your own machine: free to use (Apache-2.0 license), and the data stays put."
+  ],
+  "uses_note": "It's 9 days old, so real use is early, and so far it's developers.",
+  "uses": [
+    {
+      "who": "A developer running AI agents on a Mac Studio",
+      "what": "Swapped the hosted Jev service for laya on the agent's routine calls: which specialist gets a job, whether an alert needs a human, which local model can take a request.",
+      "result": "37 of 40 routing decisions judged acceptable in a replay test, with no data leaving the machine.",
+      "source": {
+        "title": "As The Geek Learns: Local Laya vs Hosted Jev",
+        "url": "https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions",
+        "date": "2026-09-22"
+      },
+      "stat": "37 of 40"
+    },
+    {
+      "who": "A developer with an M4 Mac",
+      "what": "Got laya running fully offline with Apple's CoreML, and published the recipe.",
+      "result": "178 points on Hacker News, the biggest laya thread so far.",
+      "source": {
+        "title": "Hacker News: Laya on Mac M4 CoreML Offline",
+        "url": "https://news.ycombinator.com/item?id=49777106",
+        "date": "2026-09-20"
+      },
+      "stat": "178 pts"
+    },
+    {
+      "who": "Open-source builders, in the first week",
+      "what": "Built five add-ons: an Apple silicon runtime, Huawei chip support, tools for Google's agent kit, a plugin for the oh-my-pi coding agent, and a local stand-in for Jev's API.",
+      "result": "On Huawei's AI chips it ran 34x to 71x faster than on a regular processor.",
+      "source": {
+        "title": "laya README: Community Tools",
+        "url": "https://github.com/NandhaKishorM/laya#community-tools",
+        "date": "2026-09-26"
+      },
+      "stat": "71x"
+    }
+  ],
+  "pulse": {
+    "gain": "+25K stars in its first 9 days",
+    "history": [
+      [
+        "2026-09-18",
+        136
+      ],
+      [
+        "2026-09-26",
+        25000
+      ],
+      [
+        "2026-09-27",
+        26096
+      ]
+    ],
+    "history_note": "Measured points only: findarepo's daily log (Sep 18 to 26) and GitHub on Sep 27. The dashed line between them is drawn straight.",
+    "facts": [
+      {
+        "value": "3.5K",
+        "label": "new stars a day, measured by findarepo"
+      },
+      {
+        "value": "86",
+        "label": "people have contributed code"
+      },
+      {
+        "value": "3.9K",
+        "label": "likes on its Hugging Face model page"
+      },
+      {
+        "value": "2.3K",
+        "label": "copies (forks) people made to build on"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Laya on Mac M4 CoreML Offline",
+      "url": "https://news.ycombinator.com/item?id=49777106",
+      "meta": "178 points · Sep 20"
+    },
+    {
+      "plat": "Blog",
+      "title": "Local Laya vs Hosted Jev: why my agents make typed decisions on my Mac",
+      "url": "https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions",
+      "meta": "Sep 22"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Does an open-weight decision model beat a hosted one? Jev vs. Laya",
+      "url": "https://news.ycombinator.com/item?id=49806080",
+      "meta": "15 points · Sep 22"
+    },
+    {
+      "plat": "Blog",
+      "tone": "critical",
+      "title": "Laya's Prior Art Claim Is Absurd",
+      "url": "https://xtxinversexty.com/layas-prior-art-claim-is-absurd/",
+      "meta": "Sep 23"
+    },
+    {
+      "plat": "Dev.to",
+      "title": "The author's story: he built this a year before a big lab called it new",
+      "url": "https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me",
+      "meta": "by the author"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "Live demo: 220 likes on Hugging Face"
+  ],
+  "star_check": "findarepo's star check: looks organic",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Try it in your browser first: open the live demo, paste any customer message and press **Ask**. Nothing to install.",
+      "To use it for real, a developer installs it with one line and asks it questions from their code.",
+      "For better accuracy, they fine-tune it on your own past decisions, using a free notebook the author provides."
+    ],
+    "paste": "/skillspector https://github.com/NandhaKishorM/laya\n\nIf that scan passes: in a scratch folder, install laya (pip install laya), run the README quickstart on its sample customer email, and show me the answers it returns. 10 minutes max, then stop and report back in plain English."
+  },
+  "verdict": {
+    "best_for": [
+      "You're building a support inbox, an AI agent or an app that makes lots of small, repeatable decisions",
+      "You want those decisions to stay on your own machine, for privacy or to avoid per-call fees"
+    ],
+    "skip_if": [
+      "You're not building software: there's nothing here to use day to day",
+      "Your choices have more than about 20 options (accuracy drops, by the author's own test)",
+      "You need written answers or explanations, not a pick from a list"
+    ],
+    "alternatives": [
+      {
+        "name": "TypeSafe Jev",
+        "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+        "line": "The paid, hosted original that laya takes on: priced per use, and it handles up to 255 options."
+      },
+      {
+        "name": "kev",
+        "repo": "jaredpalmer/kev",
+        "url": "kev.html",
+        "line": "Tiny Jev-style models you train and run yourself (#4 this week)."
+      }
+    ]
+  },
+  "watch": [
+    "**In our test it missed the obvious churn risk.** On the demo's own sample (a customer threatening to cancel), it scored churn risk at 17% and urgency at 20%. The demo says this preview model saw no email data.",
+    "**More than about 20 options and accuracy drops:** 0.425 versus Jev's 0.870 on the Banking77 test, by the author's own benchmark.",
+    "**Overconfident out of the box.** Its model card says to calibrate it on your own data before trusting the probabilities.",
+    "**Brand new, with a disputed backstory.** The author says he invented the approach first; a critic calls that absurd. Judge the tool, not the story."
+  ],
+  "sources": [
+    {
+      "title": "laya on GitHub (README, benchmarks, community tools)",
+      "url": "https://github.com/NandhaKishorM/laya",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "laya live demo on Hugging Face (our test)",
+      "url": "https://huggingface.co/spaces/convaiinnovations/laya-demo",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "laya model page on Hugging Face",
+      "url": "https://huggingface.co/convaiinnovations/laya",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "findarepo: laya stats, growth and star check",
+      "url": "https://findarepo.com/repo/NandhaKishorM/laya/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "As The Geek Learns: Local Laya vs Hosted Jev",
+      "url": "https://astgl.com/p/local-laya-vs-hosted-jev-typed-decisions",
+      "date": "2026-09-22"
+    },
+    {
+      "title": "TypeSafe: introducing System One models and Jev",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+    },
+    {
+      "title": "Hacker News: Laya on Mac M4 CoreML Offline",
+      "url": "https://news.ycombinator.com/item?id=49777106",
+      "date": "2026-09-20"
+    },
+    {
+      "title": "Hacker News: Jev vs. Laya",
+      "url": "https://news.ycombinator.com/item?id=49806080",
+      "date": "2026-09-22"
+    },
+    {
+      "title": "Laya's Prior Art Claim Is Absurd",
+      "url": "https://xtxinversexty.com/layas-prior-art-claim-is-absurd/",
+      "date": "2026-09-23"
+    },
+    {
+      "title": "Dev.to: the author's engineering write-up",
+      "url": "https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me"
+    }
+  ]
+}
