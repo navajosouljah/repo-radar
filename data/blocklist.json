@@ -1,0 +1,152 @@
+[
+  {
+    "repo": "AppFlowy-IO/AppFlowy",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open after registry recheck: GHSA-jhw3-xg32-wf56 high (no fixed version in the advisory data or text); GHSA-7fmm-xcgh-ggrf medium (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "Dokploy/dokploy",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "43 open after registry recheck: GHSA-6jrh-8qmg-jj3p high (no fixed version in the advisory data or text); GHSA-4mfc-grxw-6858 high (no fixed version in the advisory data or text); GHSA-p2c7-8j28-c7gq high (no fixed version in the advisory data or text); GHSA-3rpx-c3j9-q99x high (no fixed version in the advisory data or text); GHSA-cg8g-x23v-5fw8 critical (no fixed version in the advisory data or t"
+  },
+  {
+    "repo": "JustVugg/colibri",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "6 open after registry recheck: GHSA-pmq2-6f2p-hjvf high (no fixed version in the advisory data or text); GHSA-c84r-hmpc-qg8h high (no fixed version in the advisory data or text); GHSA-2h73-p2rc-4796 high (no fixed version in the advisory data or text); GHSA-5xpg-vw35-2687 high (no fixed version in the advisory data or text); GHSA-25w8-8c74-g9c8 medium (no fixed version in the advisory data or text"
+  },
+  {
+    "repo": "NousResearch/hermes-agent",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "Two advisories (CVE-2026-10221 injection, CVE-2026-10224 resource exhaustion) affect everything up to the latest release. The maintainers never responded to the report, and no fix is listed."
+  },
+  {
+    "repo": "assafelovic/gpt-researcher",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "8 open after registry recheck: GHSA-w624-2cff-x5w8 medium (no fixed version in the advisory data or text); GHSA-w624-2cff-x5w8 medium (no fixed version in the advisory data or text); GHSA-2q6q-x2rq-67q4 medium (no fixed version in the advisory data or text); GHSA-8p84-j4x4-c993 medium (no fixed version in the advisory data or text); GHSA-2q6q-x2rq-67q4 medium (no fixed version in the advisory data"
+  },
+  {
+    "repo": "coollabsio/coolify",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "4 open after registry recheck: GHSA-qwxj-qch7-whpc critical (no fixed version in the advisory data or text); GHSA-4p6r-m39m-9cm9 high (no fixed version in the advisory data or text); GHSA-4fqm-797g-7m6j high (no fixed version in the advisory data or text); GHSA-qx24-jhwj-8w6x critical (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "grafana/grafana",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "5 open after registry recheck: GHSA-7rqg-hjwc-6mjf medium (no fixed version in the advisory data or text); GHSA-8xmm-x63g-f6xv high (no fixed version in the advisory data or text); GHSA-4724-7jwc-3fpw medium (no fixed version in the advisory data or text); GHSA-2x6g-h2hg-rq84 medium (no fixed version in the advisory data or text); GHSA-8wjh-59cw-9xh4 medium (no fixed version in the advisory data o"
+  },
+  {
+    "repo": "home-assistant/core",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "1 open after registry recheck: GHSA-jff5-5j3g-vhqc low (no fixed version in the advisory data or text); all searches failed"
+  },
+  {
+    "repo": "immich-app/immich",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open after registry recheck: GHSA-h5w4-vjv4-9r5q low (no fixed version in the advisory data or text); GHSA-8244-8vpr-vp9c critical (no fixed version in the advisory data or text); all searches failed"
+  },
+  {
+    "repo": "jellyfin/jellyfin",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "1 open after registry recheck: GHSA-4vx8-xhc9-qg6x medium (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "khoj-ai/khoj",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open after registry recheck: GHSA-62mm-xwmv-crhg low (no fixed version in the advisory data or text); GHSA-6whj-7qmg-86qj medium (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "krayin/laravel-crm",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "XSS advisory CVE-2026-5370 has no fix: the proposed fix, PR #2466, was never merged."
+  },
+  {
+    "repo": "metabase/metabase",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than l"
+  },
+  {
+    "repo": "onlook-dev/onlook",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "3 open after registry recheck: GHSA-q42p-j3fm-rvq8 medium (no fixed version in the advisory data or text); GHSA-w73g-vc27-2pg2 medium (fix commit(s) 4dc2c0a305d384b6a016520d583514d73f224d50 not in latest release v0.2.32); GHSA-82m4-w39c-pgq6 high (fix commit(s) 6138b0cb2199d042236b3cc11964a35a5744ec7c not in latest release v0.2.32)"
+  },
+  {
+    "repo": "rtk-ai/rtk",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open after registry recheck: GHSA-fqgj-m2gp-mr3q medium (no fixed version in the advisory data or text); GHSA-7gxq-fvfc-g327 high (fix 42.2.0 newer than latest published 0.50.0)"
+  },
+  {
+    "repo": "siyuan-note/siyuan",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "4 open after registry recheck: GHSA-phmw-4rgv-r4xv high (fix 3.8.6 newer than latest published 3.8.5); GHSA-cxwr-r7cq-xw52 medium (fix 3.8.6 newer than latest published 3.8.5); GHSA-8ggq-wq3f-vxrw medium (no fixed version in the advisory data or text); GHSA-5prr-vgxq-69g9 high (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "twentyhq/twenty",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "2 open after registry recheck: GHSA-7w89-7q26-gj7q medium (no fixed version in the advisory data or text); GHSA-vrcj-hv2q-c58m medium (no fixed version in the advisory data or text)"
+  },
+  {
+    "repo": "zai-org/ZCode",
+    "date": "2026-09-27",
+    "kind": "conduct",
+    "reason": "Credible reports (The Register, RuntimeWire, SCMP, Sep 18-22 2026) that ZCode silently packaged and uploaded users' entire workspaces including .git history to vendor cloud storage, even with the relevant settings off. Vendor claims remediation, but server-side retention is unverifiable and the repo is a 3-commit code drop (2 contributors, 6.9K stars in 7 days), so the published code can't be veri"
+  },
+  {
+    "repo": "zhayujie/CowAgent",
+    "date": "2026-09-27",
+    "kind": "open-advisories",
+    "reason": "6 open after registry recheck: GHSA-33c2-g8hf-fxjf low (no fixed version in the advisory data or text); GHSA-wh78-4m24-7957 low (no fixed version in the advisory data or text); GHSA-wjcq-xp37-c947 low (no fixed version in the advisory data or text); GHSA-wjcq-xp37-c947 low (no fixed version in the advisory data or text); GHSA-xgqv-jcxf-qp28 low (no fixed version in the advisory data or text); GHSA"
+  },
+  {
+    "repo": "paperclipai/paperclip",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "10 advisories, several Critical: unauth RCE, DNS-rebinding RCE, command injection, cross-tenant API key IDOR"
+  },
+  {
+    "repo": "headroomlabs-ai/headroom",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "High CSWSH advisory, unconfirmed patch"
+  },
+  {
+    "repo": "openclaw/openclaw",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "65 pages of advisories, multiple High, no confirmed patch status"
+  },
+  {
+    "repo": "koala73/worldmonitor",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "8 advisories, 3 High: RCE, cross-tenant data exposure, secret cache leak"
+  },
+  {
+    "repo": "santifer/career-ops",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "High unauthenticated command execution"
+  },
+  {
+    "repo": "Hmbown/CodeWhale",
+    "date": "2026-08-29",
+    "kind": "open-advisories",
+    "reason": "10 advisories, mostly High/Critical: arbitrary file write, shell execution bypasses"
+  }
+]

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>codecrafters-io/build-your-own-x - Master Programming From Scratch | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a12;
+    --bg2:#100e1a;
+    --card:#171226;
+    --card2:#1d1730;
+    --violet:#c4b5fd;
+    --violet-dim:#8b7cc4;
+    --amber:#fbbf24;
+    --ink:#eee9f7;
+    --muted:#948db0;
+    --line:#2a2440;
+    --sans:'Space Grotesk',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(ellipse at 15% -5%,rgba(196,181,253,.10),transparent 45%),
+                     radial-gradient(ellipse at 95% 20%,rgba(251,191,36,.05),transparent 40%);}
+  a{color:var(--violet);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:rgba(11,10,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;gap:16px}
+  .backlinks{display:flex;gap:18px;align-items:center}
+  .radar-link{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .radar-link:hover{color:var(--violet);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:8px}
+  .gh-link:hover{border-color:var(--violet);color:var(--violet);text-decoration:none}
+
+  .hero{padding:72px 0 42px}
+  .kicker{display:inline-block;font-family:var(--mono);background:transparent;color:var(--violet);border:1px solid var(--violet-dim);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border-radius:6px;margin-bottom:24px}
+  .kicker::before{content:"$ ";color:var(--amber)}
+  h1{font-size:clamp(34px,6.5vw,66px);font-weight:700;line-height:1.04;letter-spacing:-.03em}
+  h1 .owner{color:var(--muted);font-weight:500}
+  h1 .name{color:var(--violet)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 26px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .verdict{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--violet);border-radius:var(--r);padding:18px 24px;max-width:760px;margin-bottom:30px}
+  .verdict .vl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+  .verdict p{font-size:15px;color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 18px;display:flex;align-items:baseline;gap:8px}
+  .chip .cv{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--violet)}
+  .chip .cv.am{color:var(--amber)}
+  .chip .ck{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(11,10,18,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--mono);font-weight:600;font-size:13px;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .tab-btn:hover{color:var(--ink);border-color:var(--violet-dim)}
+  .tab-btn.active{background:var(--violet);border-color:var(--violet);color:#0b0a12;box-shadow:0 4px 18px rgba(196,181,253,.25)}
+
+  .tab-panel{display:none;padding:54px 0 70px}
+  .tab-panel.active{display:block}
+  h2{font-size:clamp(27px,4.2vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  h2 em{font-style:normal;color:var(--violet)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:700px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px}
+  h3 .dot{color:var(--amber)}
+
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;position:relative}
+  .bignum::before{content:">";position:absolute;top:14px;right:18px;font-family:var(--mono);color:var(--line);font-weight:700}
+  .bignum .n{font-family:var(--mono);font-size:clamp(24px,4vw,36px);font-weight:700;line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--violet)}
+  .bignum .n.am{color:var(--amber)}
+  .bignum .l{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+
+  .feat-list{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--violet-dim);border-radius:var(--r);padding:20px 24px}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .feat p{color:var(--muted);font-size:14px}
+  .feat p strong{color:var(--ink)}
+  .feat .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:3px 10px}
+  .badge.ok{background:rgba(196,181,253,.14);color:var(--violet)}
+  .badge.na{background:rgba(148,141,176,.14);color:var(--muted)}
+
+  .honest-read{background:linear-gradient(135deg,rgba(196,181,253,.10),rgba(251,191,36,.06));border:1px solid var(--violet);border-radius:18px;padding:30px;margin-bottom:36px}
+  .honest-read .bf-tag{display:inline-block;font-family:var(--mono);background:var(--violet);color:#0b0a12;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:6px;margin-bottom:16px}
+  .honest-read h3{font-size:21px}
+  .honest-read p{color:var(--ink);font-size:15px;max-width:740px;margin-top:8px}
+
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+  .ba.before{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.35)}
+  .ba.after{background:rgba(196,181,253,.05);border-color:rgba(196,181,253,.35)}
+  .ba .ba-tag{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--amber)}
+  .ba.after .ba-tag{color:var(--violet)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
+  .ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+
+  .whyinstall{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+  @media(max-width:760px){.whyinstall{grid-template-columns:1fr}}
+  .why-col h3{margin-bottom:16px}
+  .watchout{background:rgba(251,191,36,.05);border:2px dashed var(--amber);border-radius:18px;padding:26px}
+  .watchout h3{color:var(--amber);font-size:17px;margin-bottom:14px}
+  .watchout ul,.pros ul{list-style:none}
+  .watchout li,.pros li{padding:10px 0;color:var(--muted);font-size:14px;border-bottom:1px solid rgba(251,191,36,.15)}
+  .watchout li:last-child,.pros li:last-child{border-bottom:none}
+  .watchout li strong,.pros li strong{color:var(--ink)}
+  .watchout li::before{content:"! ";font-family:var(--mono);color:var(--amber);font-weight:700}
+  .pros{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .pros li{border-bottom:1px solid var(--line)}
+  .pros li::before{content:"+ ";font-family:var(--mono);color:var(--violet);font-weight:700}
+
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center}
+  .story .metric{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--violet);line-height:1.15}
+  .story p{color:var(--muted);font-size:14.5px}
+  .story p strong{color:var(--ink)}
+  @media(max-width:760px){.story{grid-template-columns:1fr;gap:10px}}
+
+  footer{border-top:1px solid var(--line);padding:42px 0 60px;margin-top:20px}
+  footer .fmeta{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none}
+  footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--violet);font-weight:700}
+  footer li a{color:var(--muted)}
+  footer li a:hover{color:var(--violet)}
+  .backhub{display:inline-block;margin-top:24px;font-family:var(--mono);font-weight:600;font-size:13px;background:var(--card);border:1px solid var(--line);padding:11px 22px;border-radius:8px;color:var(--ink)}
+  .backhub:hover{border-color:var(--violet);color:var(--violet);text-decoration:none}
+
+  @media(max-width:760px){
+    .bignum-grid{grid-template-columns:repeat(2,1fr)}
+    .ba-grid{grid-template-columns:1fr}
+    .hero{padding:50px 0 30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="backlinks">
+      <a class="radar-link" href="../lookup.html">&larr; Lookup</a>
+      <a class="radar-link" href="index.html">Library</a>
+    </div>
+    <a class="gh-link" href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Master programming by recreating your favorite technologies</span>
+    <h1><span class="owner">codecrafters-io/</span><span class="name">build-your-own-x</span></h1>
+    <p class="tagline">Not a library, not a tool - a <strong>curated index of step-by-step guides</strong> for building your own Redis, Git, Docker, SQLite, shell, compiler, and dozens more, entirely from scratch.</p>
+    <div class="verdict">
+      <div class="vl">Verdict</div>
+      <p>Safe to browse (there's nothing to install), 8 years old and still shipping, and the single best-known jumping-off point for "build it yourself" tutorials on the internet - the tradeoff is that quality depends on whichever external guide you click, since this repo is an index, not original content.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><span class="cv">543.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv am">51.3K</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">Markdown</span><span class="ck">index repo</span></div>
+      <div class="chip"><span class="cv">2018</span><span class="ck">created</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="safe">Safe to Install?</button>
+    <button class="tab-btn" data-tab="adoption">Adoption</button>
+    <button class="tab-btn" data-tab="voices">Verified Voices</button>
+    <button class="tab-btn" data-tab="problem">Problem It Solves</button>
+    <button class="tab-btn" data-tab="why">Why + Watchouts</button>
+    <button class="tab-btn" data-tab="built">Built With It</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- SAFE TO INSTALL -->
+  <section id="safe" class="tab-panel active">
+    <h2>Nothing to <em>install</em></h2>
+    <p class="sub">This repo is a single curated README of links out to external tutorials - there is no package, no dependency tree, and no code from this repo that runs on your machine.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">0</div><div class="l">Security Advisories Filed</div></div>
+      <div class="bignum"><div class="n">0</div><div class="l">Releases (index repo, none expected)</div></div>
+      <div class="bignum"><div class="n am">No license file</div><div class="l">GitHub API reports "license: none"</div></div>
+    </div>
+
+    <div class="feat-list">
+      <div class="feat"><div class="fh">No install-script risk <span class="badge ok">verified</span></div><p>There is no <code>package.json</code>, no postinstall hook, no curl-pipe-bash setup script in this repo - it's Markdown. Classic supply-chain vectors don't apply to the repo itself.</p></div>
+      <div class="feat"><div class="fh">Risk moves to the linked tutorials <span class="badge na">not this repo's control</span></div><p>Each entry links out to a third-party guide, blog post, or repo. This repo doesn't audit, sandbox, or vouch for what's on the other end of those links - treat each linked tutorial on its own merits.</p></div>
+      <div class="feat"><div class="fh">Actively maintained <span class="badge ok">verified</span></div><p>Last push 2026-07-14, not archived. 639 open issues is normal upkeep for a repo this size (broken links, new tutorial submissions), not a sign of neglect.</p></div>
+      <div class="feat"><div class="fh">No LICENSE file on record</div><p>The GitHub API reports no detected license. Low-stakes for personal reading, but worth knowing before reusing the list itself elsewhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ADOPTION -->
+  <section id="adoption" class="tab-panel">
+    <h2>About as <em>big</em> as GitHub gets</h2>
+    <p class="sub">No package, so no npm/PyPI download counts apply - adoption here is read through stars, forks, and community pickup instead.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">543.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n am">51.3K</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n">6,850</div><div class="l">Watchers</div></div>
+      <div class="bignum"><div class="n lm">~10.6:1</div><div class="l">Star-to-Fork Ratio</div></div>
+      <div class="bignum"><div class="n am">#1</div><div class="l">GitHub Trending, Jun 23 2024 (reported)</div></div>
+      <div class="bignum"><div class="n">8 yrs</div><div class="l">Since Creation (May 2018)</div></div>
+    </div>
+
+    <div class="feat-list">
+      <div class="feat"><div class="fh">No package downloads to measure</div><p>This isn't a library you <code>npm install</code> or <code>pip install</code> - there's no download-count metric that applies. Stars and forks are the honest adoption signal for an index repo.</p></div>
+      <div class="feat"><div class="fh">Reported top-15 all-time repo</div><p>Coverage found in search (trendshift.io, Hacker News discussion threads) describes it as having reached roughly GitHub's 15th most-starred repository at points - reported by those sources, not independently re-ranked by us live against the full GitHub leaderboard.</p></div>
+    </div>
+  </section>
+
+  <!-- VERIFIED VOICES -->
+  <section id="voices" class="tab-panel">
+    <h2>What the <em>community</em> says</h2>
+    <p class="sub">Multiple Hacker News threads, YouTube walkthroughs, and a commercial platform (CodeCrafters) all point back to this repo as the source.</p>
+
+    <div class="feat-list">
+      <div class="feat"><div class="fh">Hacker News (multiple threads)</div><p>Discussed repeatedly on HN - <a href="https://news.ycombinator.com/item?id=35667367" target="_blank" rel="noopener">item 35667367</a>, <a href="https://news.ycombinator.com/item?id=32157759" target="_blank" rel="noopener">item 32157759</a>, and a follow-up thread on "Build your own X" projects generally, <a href="https://news.ycombinator.com/item?id=37977174" target="_blank" rel="noopener">item 37977174</a>.</p></div>
+      <div class="feat"><div class="fh">YouTube walkthroughs exist</div><p>Creators have published step-by-step video walkthroughs following entries from the list - for example a "build your own git" implementation walkthrough. Coverage is real but scattered across individual creators rather than one dominant channel; treat this as light coverage, not a wave.</p></div>
+      <div class="feat"><div class="fh">CodeCrafters, Inc. (YC-backed) <span class="badge na">their own marketing</span></div><p>The original list (started by Daniel Stefanovic) is now maintained by CodeCrafters, a Y Combinator company that sells a paid platform built on the same "build it yourself" premise. CodeCrafters' own site claims users at Google, OpenAI, and Vercel - that's their marketing copy, not something we independently verified.</p></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="tab-panel">
+    <h2>The <em>problem</em> it solves</h2>
+    <p class="sub">Good "build X from scratch" tutorials exist, but they're scattered across the internet with no consistent way to find one that matches your target technology and your language.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Scattered, uneven tutorials.</strong> Guides to building a database, a shell, a compiler, or a network stack from scratch exist, but they're spread across random blogs and repos of wildly varying quality.</p>
+        <p><strong>No filter by stack.</strong> Finding one in your specific language, for the specific technology you want to understand, usually means a lot of manual searching.</p>
+        <p><strong>Black-box tools.</strong> Most developers use Redis, Docker, Git, and SQLite daily without ever seeing how they actually work under the hood.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>One index, hundreds of guides.</strong> Tutorials are grouped by target technology (build your own Redis, Git, Docker, shell, etc.) and cross-referenced by programming language.</p>
+        <p><strong>Pick your stack, go straight to internals.</strong> Choose the technology and the language you want to practice in, and jump directly to a vetted starting point.</p>
+        <p><strong>Learning by building, not reading.</strong> The format forces you to implement the real mechanics instead of consuming another explainer article.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY + WATCHOUTS -->
+  <section id="why" class="tab-panel">
+    <h2>Why <em>use it</em> - and what to watch</h2>
+    <p class="sub">Zero cost, zero install risk to browse. The honest limits are about content quality and commercial framing, not security.</p>
+
+    <div class="whyinstall">
+      <div class="why-col">
+        <h3><span class="dot">+</span> Why it's worth your time</h3>
+        <div class="pros">
+          <ul>
+            <li><strong>Free and instant.</strong> No signup, no install - it's a README you read on GitHub.</li>
+            <li><strong>Genuinely comprehensive.</strong> Covers databases, shells, compilers, web servers, regex engines, neural networks, and more.</li>
+            <li><strong>Still maintained.</strong> Last updated 2026-07-14, not archived, actively taking new submissions via its open issues.</li>
+            <li><strong>The best-known entry point.</strong> Reported top-15-ever GitHub star count means it's usually the first result when searching for this format of tutorial.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="why-col">
+        <h3><span class="dot">!</span> Watchouts</h3>
+        <div class="watchout">
+          <ul>
+            <li><strong>Quality varies by link.</strong> This repo curates but doesn't author most content - individual tutorial quality depends entirely on whoever wrote it.</li>
+            <li><strong>Commercially entangled.</strong> Now maintained by CodeCrafters, whose paid platform promotes the same format - expect their product referenced throughout.</li>
+            <li><strong>No LICENSE file.</strong> Worth knowing if you intend to reuse or redistribute the list itself, not just read it.</li>
+            <li><strong>No freshness audit per link.</strong> The repo doesn't verify each external tutorial is still accurate - check the individual guide's own update date yourself.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT WITH IT -->
+  <section id="built" class="tab-panel">
+    <h2>What people have <em>built</em> following it</h2>
+    <p class="sub">This is an index, not a dependency - "built with it" here means real learning projects people shipped by following one of its linked guides, not production software built on top of this repo.</p>
+
+    <div class="story">
+      <div class="metric">Build Your Own Git</div>
+      <p><strong>Personal from-scratch implementations.</strong> Developers have published working "build your own Git" projects (in Rust and other languages) following this style of guide, walking through the real internals of Git's object model.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">CodeCrafters platform</div>
+      <p><strong>Spawned a full commercial product.</strong> CodeCrafters built paid, graded "build your own Redis / Git / Docker / SQLite" challenge tracks directly on this repo's premise, and now maintains the free list itself.</p>
+    </div>
+
+    <div class="story">
+      <div class="metric">No data found</div>
+      <p><strong>Production software built from this repo specifically:</strong> not something we could verify - by design, this is a learning index, not a library other projects depend on.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar · Lookup Library · Snapshot 2026-08-29</div>
+    <ul>
+      <li>GitHub API: <a href="https://api.github.com/repos/codecrafters-io/build-your-own-x" target="_blank" rel="noopener">/repos/codecrafters-io/build-your-own-x</a> - stars, forks, license, push date, contributors, releases, security advisories</li>
+      <li>Hacker News threads: <a href="https://news.ycombinator.com/item?id=35667367" target="_blank" rel="noopener">35667367</a>, <a href="https://news.ycombinator.com/item?id=32157759" target="_blank" rel="noopener">32157759</a>, <a href="https://news.ycombinator.com/item?id=37977174" target="_blank" rel="noopener">37977174</a></li>
+      <li>CodeCrafters, Inc. company page and codecrafters.io marketing copy (cited as their own claims, not independently verified)</li>
+    </ul>
+    <a class="backhub" href="index.html">&larr; Back to Lookup Library</a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+</script>
+</body>
+</html>

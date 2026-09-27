@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { ver, cmp, maxVer, fixFromText, fixFromRanges, commitsFromText, prsFromRefs } from './gate-lib.mjs';
 
 const run = promisify(execFile);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -21,9 +22,6 @@ const BLOCK = `${ROOT}data/blocklist.json`;
 const log = JSON.parse(readFileSync(LOG, 'utf8'));
 const OPEN = new Set(['unpatched', 'fix-unreleased', 'patch-unconfirmed', 'partly-patched', 'unknown']);
 
-const ver = s => { const m = String(s || '').match(/(\d+)\.(\d+)(?:\.(\d+))?/); return m ? [+m[1], +m[2], +(m[3] || 0)] : null; };
-const cmp = (a, b) => { for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] - b[i]; return 0; };
-const maxVer = l => l.map(ver).filter(Boolean).sort(cmp).pop() || null;
 const vs = v => (v ? v.join('.') : null);
 
 async function gh(path) {
@@ -56,18 +54,6 @@ async function registryLatest(eco, name) {
   registryCache.set(key, v || null);
   return v || null;
 }
-// "fixed in 1.2.3", "patched in version 1.2.3", "upgrade to 1.2.3", "1.2.3 contains a fix", "resolved in v1.2.3"
-const FIX_TEXT = /(?:fixed|patched|resolved|addressed|remediated)\s+(?:in|with|by)\s+(?:version\s+|release\s+|v)?(\d+\.\d+(?:\.\d+)?)|upgrad\w*\s+to\s+(?:version\s+|v)?(\d+\.\d+(?:\.\d+)?)|(?:version|release)\s+v?(\d+\.\d+(?:\.\d+)?)\s+(?:contains|includes|fixes|patches|addresses)|(?:before|prior to)\s+(?:version\s+|v)?(\d+\.\d+(?:\.\d+)?)|:?v?(\d+\.\d+(?:\.\d+)?)`?\s+is the first (?:patched|fixed) version/gi;
-function fixFromText(text) {
-  const found = [];
-  for (const m of String(text || '').matchAll(FIX_TEXT)) found.push(m[1] || m[2] || m[3] || m[4] || m[5]);
-  return maxVer(found);
-}
-// "prior to commit 92c7a20", "fixed in commit 1518530", "patched in commit `4dc2c0a...`"
-const FIX_COMMIT = /(?:prior to|before|fixed in|patched in|fixed by|addressed in)\s+commit\s+`?([0-9a-f]{7,40})`?/gi;
-const commitsFromText = text => [...new Set([...String(text || '').matchAll(FIX_COMMIT)].map(m => m[1]))];
-// GitHub convention: a strict "< X" range bound means X is the first fixed version ("<= X" means X is still affected).
-const fixFromRanges = vulns => maxVer(vulns.map(v => (String(v.vulnerable_version_range || '').match(/(?:^|,\s*)<\s*v?(\d+\.\d+(?:\.\d+)?)/) || [])[1]).filter(Boolean));
 async function commitInRelease(o, r, sha, tag) {
   if (!tag) return false;
   const inTag = async s => { const c = await gh(`repos/${o}/${r}/compare/${s}...${encodeURIComponent(tag)}`); return !!c && (c.status === 'ahead' || c.status === 'identical'); };
@@ -88,6 +74,18 @@ async function recheckItem(o, r, item, githubLatest) {
   const structured = vulns.map(v => v.patched_versions || v.first_patched_version).filter(Boolean).flatMap(p => String(p).split(','));
   const text = `${adv.description || ''} ${adv.summary || ''}`;
   const fix = maxVer(structured) || fixFromText(text) || fixFromRanges(vulns);
+  // A fix shipped through a pull request counts only if the latest release contains its merge commit.
+  const prs = prsFromRefs(adv.references, o, r);
+  if (!fix && prs.length) {
+    const tag = await latestTag(o, r);
+    const shipped = [];
+    for (const n of prs) {
+      const pr = await gh(`repos/${o}/${r}/pulls/${n}`);
+      shipped.push(!!(pr?.merged_at && pr.merge_commit_sha && (await commitInRelease(o, r, pr.merge_commit_sha, tag))));
+    }
+    if (shipped.every(Boolean)) return { ...item, recheck: 'patched', why: `fix PR(s) #${prs.join(', #')} merged and in release ${tag}` };
+    return { ...item, recheck: 'fix-unreleased', why: `fix PR(s) #${prs.filter((n, i) => !shipped[i]).join(', #')} not merged or not in latest release ${tag || '(none)'}` };
+  }
   // A fix shipped as a commit counts only if the latest release actually contains that commit.
   const commits = commitsFromText(text);
   if (!fix && commits.length) {
@@ -112,6 +110,7 @@ async function recheckItem(o, r, item, githubLatest) {
 const block = JSON.parse(readFileSync(BLOCK, 'utf8'));
 const changed = [];
 for (const [repo, e] of Object.entries(log)) {
+  if (e.settled) continue; // a human verdict stands until a human changes it
   const [o, r] = repo.split('/');
   const adv = e.checks?.advisories || {};
   const githubLatest = adv.latestRelease ? ver(adv.latestRelease) : null;

@@ -51,6 +51,7 @@
 
   <div class="label">Completed briefings</div>
   <div id="done">
+    <a class="row" href="codecrafters-io--build-your-own-x.html"><div><h2><span>codecrafters-io/</span>build-your-own-x</h2><div class="meta">briefed Aug 29, 2026</div></div><div class="tag">Repo Brief</div></a>
     <!-- AGENT: insert completed lookup rows here, newest first. Row template:
     <a class="row" href="SLUG.html"><div><h2><span>owner/</span>repo</h2><div class="meta">briefed Mon D, YYYY</div></div><div class="tag">Repo Brief</div></a>
     <a class="row" href="search-SLUG.html"><div><h2>Top 3: query</h2><div class="meta">hunted Mon D, YYYY</div></div><div class="tag">Top 3</div></a>
@@ -67,7 +68,9 @@
 <script type="module">
   import { QUEUE_ENDPOINT } from '../lookup.js';
   // Completed lookups baked in by the agent at publish time (lowercased "type:query" strings):
-  window.RR_COMPLETED = [];
+  window.RR_COMPLETED = [
+    'url:codecrafters-io/build-your-own-x'
+  ];
   const esc = (s) => (s || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const doneRows = document.querySelectorAll('#done .row');
   if (doneRows.length) document.getElementById('doneEmpty').style.display = 'none';

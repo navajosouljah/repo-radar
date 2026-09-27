@@ -9,29 +9,41 @@ Sep 27 2026 after the purge was silently undone and ZCode was ranked #5.
 ## The four checks
 
 1. **Blocklist.** Read `data/blocklist.json`. A repo listed there can never appear anywhere on the
-   site: not picked, not listed, not linked as a recommendation. Removing a repo from the blocklist is
-   JJ's call only.
+   site: not picked, not listed, not linked as a recommendation. Each entry has a `kind`:
+   - `open-advisories`: it comes off the list automatically when a later full gate passes (the
+     maintainers shipped fixes).
+   - `conduct` (malware, scam, secret data upload, impersonation): only JJ can take it off.
 2. **Advisories.** List the repo's published security advisories.
    - Local: `gh api repos/OWNER/REPO/security-advisories`.
    - Cloud routine (direct GitHub API calls are blocked there): WebFetch
      `https://github.com/OWNER/REPO/security/advisories`. This public page lists the same advisories
      (checked Sep 27 2026: CowAgent 1, pi 4, impeccable 0 on both).
-   - For each advisory, find its **fix**: a patched version in the advisory data; a version in the
-     text ("fixed in 1.2.3", "before 1.2.3", "1.2.3 is the first patched version"); a strict `< 1.2.3`
-     affected range; or a fix commit ("prior to commit abc1234").
+   - For each advisory, find its **fix**. Any of these counts:
+     - a patched version in the advisory data;
+     - a version in the text ("fixed in 1.2.3", "before 1.2.3", "1.2.3 is the first patched
+       version");
+     - a strict `< 1.2.3` affected range;
+     - a fix commit ("prior to commit abc1234");
+     - a fix pull request linked from the record.
+   - A fix confirmed by the original researcher's public disclosure also counts. Cite the disclosure
+     (example: Check Point confirmed Codex CLI 0.23.0 fixed CVE-2025-61260).
    - The fix must already be **published**:
      - The latest version on the package registry the advisory names (npm, PyPI, crates.io, Go,
        Packagist, RubyGems), a GitHub release, or a published Docker image tag counts.
      - For a fix commit, the latest release must contain that commit, or the merge commit of the PR
        that carried it (a squash merge changes the commit ID).
+     - For a fix pull request, the PR must be merged and its merge commit must be in the latest
+       release. An unmerged PR is not a fix (for example laravel-crm's PR #2466).
    - An affected range written as `<= X` with no fix listed is **not** a fix.
    - A pre-release (alpha, beta) is not a published fix.
 3. **Searches.** Search `OWNER/REPO CVE`, `OWNER/REPO vulnerability`, `OWNER/REPO malware` and
    `OWNER/REPO scam`.
    - A CVE record that names this repo is checked the same way as an advisory (GitHub's global
      advisory database first: `gh api "advisories?cve_id=CVE-..."`).
-   - An unreviewed record with no package and no source repo (for example a Go standard-library
-     issue that happens to mention the project) does not count against the repo. Say so in the log.
+   - A record counts against the repo when its source repo is this project, or when its own words or
+     links name the project. A record about something else does not count, and the log says so; for
+     example, a Go standard-library issue that turned up in a search for dagger. The rule lives in
+     `scripts/gate-lib.mjs` and is tested in `scripts/gate-lib.test.mjs`.
    - News or community reports of malware, a scam, a supply-chain compromise, or silent data upload
      are read in full, and a credible one is a FAIL.
    - Automated scanner scores (Mondoo, ClawSecure, Socket and similar) are recorded as information
@@ -96,3 +108,4 @@ Every published repo page shows a **Safe to install** block with:
 - `node scripts/gate-recheck.mjs` re-reads open items against registries and releases.
 - `node scripts/gate.mjs --settle owner/repo PASS|FAIL "why"` records a human verdict on a REVIEW.
 - `node scripts/catalog.mjs` lists every repo the live site recommends.
+- `node --test scripts/*.test.mjs` runs the gate rule tests (they must pass before any ship).

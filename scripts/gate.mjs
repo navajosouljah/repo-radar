@@ -15,6 +15,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { ver, cmp, maxVer, tiedToRepo } from './gate-lib.mjs';
 
 const run = promisify(execFile);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -38,9 +39,7 @@ const lastPage = raw => {
 };
 
 // ---- versions -------------------------------------------------------------------------------
-const ver = s => { const m = String(s || '').match(/(\d+)\.(\d+)(?:\.(\d+))?/); return m ? [+m[1], +m[2], +(m[3] || 0)] : null; };
-const cmp = (a, b) => { for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] - b[i]; return 0; };
-const maxVer = list => list.map(ver).filter(Boolean).sort(cmp).pop() || null;
+// version helpers live in gate-lib.mjs
 
 // ---- check 1: advisories ---------------------------------------------------------------------
 async function advisories(o, r) {
@@ -112,10 +111,7 @@ async function cveStatus(id, o, r, latest) {
   if (raw.error) return { id, status: 'unknown', note: raw.error };
   const adv = JSON.parse(raw)[0];
   if (!adv) return { id, status: 'unknown', note: 'not in GitHub advisory database' };
-  const src = (adv.source_code_location || '').toLowerCase();
-  // An unreviewed record with no package and no source repo can't be tied to this project.
-  if (!src && !(adv.vulnerabilities || []).length) return { id, ghsa: adv.ghsa_id, severity: adv.severity, status: 'other-project', note: 'unreviewed record not tied to this repo' };
-  const ours = !src || src.includes(`github.com/${o}/${r}`.toLowerCase());
+  const ours = tiedToRepo(adv, o, r);
   const fixes = (adv.vulnerabilities || []).map(v => v.first_patched_version).filter(Boolean);
   const fix = maxVer(fixes);
   let status;
@@ -151,6 +147,9 @@ async function searches(o, r) {
     if (res.error) { out.errors++; continue; }
     out.results += res.length;
     for (const x of res) {
+      // Hacker News comments are free text: a repo named with an everyday word ("impeccable") only
+      // counts when the comment also names the owner or links GitHub.
+      if (/news\.ycombinator\.com\/item/.test(x.url) && !new RegExp(`${o}|github\\.com`, 'i').test(x.text)) continue;
       const ownRepoPage = x.url.toLowerCase().startsWith(`https://github.com/${o}/${r}`.toLowerCase()) && !/security|advisor/i.test(x.url);
       if (!ownRepoPage && mentions(x.text, o, r) && RISK.test(x.text)) {
         const hit = x.text.match(RISK)[0];
