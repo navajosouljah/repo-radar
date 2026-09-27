@@ -1,0 +1,4730 @@
+{
+  "date": "2026-09-27",
+  "sources": {
+    "github-trending": {
+      "reached": true,
+      "detail": "180 rows"
+    },
+    "trendshift": {
+      "reached": true,
+      "detail": "62 rows"
+    },
+    "skills.sh": {
+      "reached": true,
+      "detail": "33 repos"
+    },
+    "findarepo": {
+      "reached": true,
+      "detail": "7 digest(s)"
+    },
+    "hacker-news": {
+      "reached": true,
+      "detail": "29 stories"
+    },
+    "youtube": {
+      "reached": false,
+      "detail": "skipped (run with --youtube on a machine with yt-dlp)"
+    },
+    "findarepo-growth": {
+      "reached": true,
+      "detail": "5 repos filled"
+    }
+  },
+  "count": 216,
+  "candidates": [
+    {
+      "repo": "heygen-com/hyperframes",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        },
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "stars": 53535,
+        "gain1": 306,
+        "gain30": 10757,
+        "installs": 3653200,
+        "skills": 9,
+        "gain7": 1700,
+        "gain7_source": "findarepo"
+      },
+      "description": "Write HTML. Render video. Built for agents.",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 49.2,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "debpalash/VoiceStudio",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 4,
+          "monthly": 1
+        }
+      },
+      "signals": {
+        "stars": 39073,
+        "gain1": 3060,
+        "gain30": 24241
+      },
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
+      "last_featured": null,
+      "score": 41,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "cloudflare/security-audit-skill",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 6
+        },
+        "hacker-news": {
+          "points": 213,
+          "id": "49736466",
+          "date": "2026-09-17"
+        }
+      },
+      "signals": {
+        "stars": 22227,
+        "gain7": 6474,
+        "gain30": 19124
+      },
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "last_featured": "2026-09-18",
+      "score": 39.6,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": [
+        "featured 2026-09-18 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "alibaba/open-code-review",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 5
+        },
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        },
+        "findarepo": {
+          "2026-09-24": 7,
+          "2026-09-23": 6,
+          "2026-09-22": 5
+        }
+      },
+      "signals": {
+        "stars": 41830,
+        "gain7": 4310,
+        "gain30": 20421,
+        "installs": 4,
+        "skills": 1
+      },
+      "description": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI &amp; Anthropic compatible.",
+      "last_featured": "2026-08-07",
+      "score": 38.6,
+      "independent_sources": 4,
+      "age_days": null,
+      "floors_failed": [
+        "featured 2026-08-07 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "tt-a1i/archify",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 7
+        },
+        "findarepo": {
+          "2026-09-26": 10,
+          "2026-09-21": 9
+        }
+      },
+      "signals": {
+        "stars": 72615,
+        "gain30": 55722,
+        "gain7": 4600,
+        "gain7_source": "findarepo"
+      },
+      "description": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 38.2,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "bilawalsidhu/gods-eye-view",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 2
+        },
+        "findarepo": {
+          "2026-09-26": 9,
+          "2026-09-25": 10,
+          "2026-09-24": 10,
+          "2026-09-23": 10,
+          "2026-09-21": 8
+        }
+      },
+      "signals": {
+        "stars": 43869,
+        "gain30": 38582,
+        "gain7": 4800,
+        "gain7_source": "findarepo"
+      },
+      "description": "A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.",
+      "last_featured": "2026-09-11",
+      "star_check": "findarepo: looks organic",
+      "score": 38,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": [
+        "featured 2026-09-11 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "affaan-m/ECC",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 3
+        },
+        "findarepo": {
+          "2026-09-27": 11,
+          "2026-09-26": 8,
+          "2026-09-25": 8,
+          "2026-09-24": 9,
+          "2026-09-23": 11,
+          "2026-09-22": 11,
+          "2026-09-21": 10
+        }
+      },
+      "signals": {
+        "stars": 268199,
+        "gain7": 5522,
+        "gain30": 25983
+      },
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "last_featured": "2026-07-31",
+      "score": 36.7,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "DietrichGebert/ponytail",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 9
+        }
+      },
+      "signals": {
+        "stars": 146799,
+        "gain1": 520,
+        "gain30": 35097,
+        "gain7": 3927,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "last_featured": "2026-07-31",
+      "star_check": "findarepo: looks organic",
+      "score": 34.8,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "dream-num/univer",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 16
+        }
+      },
+      "signals": {
+        "stars": 19971,
+        "gain1": 920,
+        "gain7": 4660,
+        "gain30": 4845
+      },
+      "description": "The Office Harness for AI Agents — Spreadsheets, Docs, Slides, Canvas, Relational Tables, and PDF in one runtime.",
+      "last_featured": null,
+      "score": 33.2,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "Tencent/WeKnora",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 19
+        }
+      },
+      "signals": {
+        "stars": 30516,
+        "gain7": 3015,
+        "gain30": 9808
+      },
+      "description": "Open-source LLM knowledge platform: turn raw documents into a queryable RAG, an autonomous reasoning agent, and a self-maintaining Wiki.",
+      "last_featured": null,
+      "score": 32.7,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "superdesigndev/treg",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3560,
+        "gain7": 1773,
+        "gain30": 2846
+      },
+      "description": "OpenRouter for agent tools. Join community here: https://discord.gg/6mQYYfFMAn",
+      "last_featured": null,
+      "score": 31.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Tencent/BrowserSkill",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 7466,
+        "gain7": 1716,
+        "gain30": 6030
+      },
+      "description": "Let AI agents use your real, logged-in browser without interrupting your work. CLI + extension for browser automation across any shell-capable AI agent.",
+      "last_featured": null,
+      "score": 31,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/financial-services",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 37796,
+        "gain7": 2633,
+        "gain30": 3205
+      },
+      "last_featured": null,
+      "score": 29.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "melgarafael/DeskcommCRM",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 4105,
+        "gain1": 130,
+        "gain30": 3489
+      },
+      "description": "Open-source AI sales OS — self-hosted CRM with native AI agents + WhatsApp (WAHA). Open alternative to Kommo, Octadesk &amp; Intercom for any business that sells by chat. MCP-ready, multi-tenant, LGPD.",
+      "last_featured": null,
+      "score": 29,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "TencentCloud/Octop",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 5220,
+        "gain7": 951,
+        "gain30": 3932
+      },
+      "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+      "last_featured": null,
+      "score": 29,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "derv82/wifit3",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 1370,
+        "gain1": 357
+      },
+      "description": "Wifite but USB-only &amp; cross-platform.",
+      "last_featured": null,
+      "score": 28.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel-labs/json-render",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 18331,
+        "gain7": 1561,
+        "gain30": 2299
+      },
+      "description": "The Generative UI framework",
+      "last_featured": null,
+      "score": 27.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "strands-agents/harness-sdk",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8478,
+        "gain7": 1097,
+        "gain30": 1456
+      },
+      "description": "Build an agent harness and control it end-to-end. Open-source SDK for production AI agents in Python &amp; TypeScript - any model, any cloud.",
+      "last_featured": null,
+      "score": 26.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "willfaust/Madeira",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 727,
+        "gain1": 171
+      },
+      "description": "Run x86-64 Windows PC games on jailed iOS via FEX-Emu + Wine + DXMT",
+      "last_featured": null,
+      "score": 26.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mnfst/awesome-free-llm-apis",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8458,
+        "gain7": 651,
+        "gain30": 1399
+      },
+      "description": "List of Permanent Free LLM API (API Keys)",
+      "last_featured": null,
+      "score": 25.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "darkzOGx/youtube-automation-agent",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3869,
+        "gain1": 59,
+        "gain30": 1424
+      },
+      "description": "🎬 Fully automated YouTube channel management with AI agents. Creates, optimizes &amp; publishes videos 24/7. Works with FREE Gemini API or OpenAI. No coding required!",
+      "last_featured": null,
+      "score": 25.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "FxEmbed/FxEmbed",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 5488,
+        "gain7": 417,
+        "gain30": 534
+      },
+      "description": "Fix X/Twitter and Bluesky embeds! Use multiple images, videos, polls, translations and more on Discord, Telegram and others",
+      "last_featured": null,
+      "score": 23.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ayghri/i-have-adhd",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 4
+        }
+      },
+      "signals": {
+        "stars": 51521,
+        "gain30": 27092
+      },
+      "description": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+      "last_featured": null,
+      "score": 21.7,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "mvschwarz/openrig",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 713,
+        "gain1": 114
+      },
+      "description": "Multi-agent harness that runs Claude Code and Codex together as one system",
+      "last_featured": null,
+      "score": 21.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "THU-MAIC/OpenMAIC",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 25
+        }
+      },
+      "signals": {
+        "stars": 39242,
+        "gain30": 18374
+      },
+      "description": "Open Multi-Agent Interactive Classroom — Get an immersive, multi-agent learning experience in just one click",
+      "last_featured": null,
+      "score": 21,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "mattpocock/skills",
+      "sources": {
+        "trendshift": {
+          "monthly": 14
+        },
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9569900,
+        "skills": 16
+      },
+      "last_featured": "2026-07-31",
+      "score": 21,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "mlmvpn/mlmvpn_windows",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 149,
+        "gain1": 27
+      },
+      "description": "MLMVPN - Ultimate Anti-Filter &amp; IP Scanner",
+      "last_featured": null,
+      "score": 20.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "pacifio/atlas",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        },
+        "trendshift": {
+          "daily": 22
+        },
+        "findarepo": {
+          "2026-09-22": 10
+        }
+      },
+      "signals": {
+        "stars": 7901,
+        "gain1": 490,
+        "gain7": 3000,
+        "gain7_source": "findarepo"
+      },
+      "description": "Source control for agents. Use multiple coding agents, track their changes and query them in one place",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 20.2,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "SinaXhpm/Submarine",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 358,
+        "gain1": 57
+      },
+      "description": "Modern SSH &amp; SFTP client — terminal, SFTP, port forwarding, folder mirror, encrypted sync. Windows · macOS · Linux · Android.",
+      "last_featured": null,
+      "score": 20.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 46813,
+        "gain30": 12316
+      },
+      "description": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.",
+      "last_featured": null,
+      "score": 19.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "stablyai/orca",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        },
+        "trendshift": {
+          "monthly": 16
+        },
+        "findarepo": {
+          "2026-09-27": 8,
+          "2026-09-26": 6,
+          "2026-09-25": 6,
+          "2026-09-24": 8
+        }
+      },
+      "signals": {
+        "stars": 79350,
+        "gain7": 6503
+      },
+      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "last_featured": "2026-08-21",
+      "star_check": "findarepo: looks organic",
+      "score": 18.9,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": [
+        "featured 2026-08-21 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "miuuyy/codex-chatgpt-web",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 11947,
+        "gain30": 10457
+      },
+      "description": "Use ChatGPT Web (including Pro) as a native model in Codex — with context, tools, streaming and images, without using Codex quota.",
+      "last_featured": "2026-09-18",
+      "score": 18.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-09-18 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "vercel-labs/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 3600000,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 18.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "tashfeenahmed/freellmapi",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 29190,
+        "gain30": 8664
+      },
+      "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint. Smart routing, automatic failover, encrypted keys. Personal experimentation only.",
+      "last_featured": null,
+      "score": 18.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "paperclipai/paperclip",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 6
+        },
+        "findarepo": {
+          "2026-09-27": 4
+        }
+      },
+      "signals": {
+        "stars": 88906,
+        "gain1": 2527,
+        "gain7": 5376
+      },
+      "description": "The open-source app everyone uses to manage agents at work",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 18.4,
+      "independent_sources": 3,
+      "age_days": null,
+      "floors_failed": [
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "every-app/open-seo",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 21333,
+        "gain30": 7749
+      },
+      "description": "Open source alternative to Semrush and Ahrefs",
+      "last_featured": null,
+      "score": 18.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jingyaogong/minimind",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 62736,
+        "gain30": 7813
+      },
+      "description": "🧠 Train a 64M-parameter LLM from scratch in just 2h!",
+      "last_featured": null,
+      "score": 18.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "experientiallabs/experiential",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 7154,
+        "gain30": 6707
+      },
+      "description": "Experiential is the open source, zero markup gateway for BYOK, self-hosted and 1000+ marketplace models. It learns from your traffic to cut costs, recommend better models, and train a specialized model you own.",
+      "last_featured": null,
+      "score": 18.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vectorize-io/hindsight",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 1,
+          "monthly": 11
+        }
+      },
+      "signals": {
+        "stars": 35946,
+        "gain1": 4463,
+        "gain7": 7282
+      },
+      "description": "Hindsight: Agent Memory That Learns",
+      "last_featured": null,
+      "score": 18,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "androoAGI/starnet",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 659,
+        "gain1": 212,
+        "gain7": 517
+      },
+      "description": "A living pixel-art station where real AI agents do real work. Local-first desktop agent harness - bring your own key, watch your crew actually run.",
+      "last_featured": null,
+      "score": 17.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "microsoft/azure-skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 1753300,
+        "skills": 3
+      },
+      "last_featured": null,
+      "score": 17.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "google-research/timesfm",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 33836,
+        "gain30": 5607
+      },
+      "description": "TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.",
+      "last_featured": null,
+      "score": 17.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "abi/screenshot-to-code",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 79767,
+        "gain30": 5332
+      },
+      "description": "Drop in a screenshot and convert it to clean code (HTML/Tailwind/React/Vue)",
+      "last_featured": null,
+      "score": 17.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "petergyang/no-ai-slop",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 11418,
+        "gain30": 5342
+      },
+      "description": "Removes 20+ patterns of AI slop from any piece of writing.",
+      "last_featured": "2026-09-11",
+      "score": 17.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-09-11 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "genmedia-labs/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 1454900,
+        "skills": 6
+      },
+      "last_featured": null,
+      "score": 17.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "handsomestWei/patent-disclosure-skill",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 10380,
+        "gain30": 5093
+      },
+      "description": "中国专利.skill：专利点挖掘与交底书（发明/实用/外观）编写，通俗解读专利，嗅探政策动向，辅助审查答复。",
+      "last_featured": null,
+      "score": 17.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 1418900,
+        "skills": 2
+      },
+      "last_featured": null,
+      "score": 17.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "p-e-w/heretic",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 32428,
+        "gain30": 4407
+      },
+      "description": "Fully automatic censorship removal for language models",
+      "last_featured": null,
+      "score": 17.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "MakazhanAlpamys/Soup",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 7382,
+        "gain30": 4232
+      },
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "last_featured": null,
+      "score": 17.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ever-co/ever-gauzy",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8119,
+        "gain30": 3946
+      },
+      "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+      "last_featured": null,
+      "score": 17.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mksglu/context-mode",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 24124,
+        "gain30": 4028
+      },
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "last_featured": null,
+      "score": 17.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel-labs/agent-browser",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 954800,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 17.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 927900,
+        "skills": 1
+      },
+      "last_featured": "2026-08-21",
+      "score": 17.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-08-21 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "NVIDIA/Model-Optimizer",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 4915,
+        "gain1": 301
+      },
+      "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed.",
+      "last_featured": null,
+      "score": 17,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "magnitudedev/magnitude",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 5225,
+        "gain30": 3675
+      },
+      "description": "Open source inference engine for the hardware you already own. Profiles your machine, recommends the best open models for it, and tunes them for your exact hardware. Works on Apple Silicon, NVIDIA, AMD, or nothing but a CPU.",
+      "last_featured": null,
+      "score": 17,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cursor/plugins",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8783,
+        "gain30": 3601
+      },
+      "description": "Cursor plugin specification and official plugins",
+      "last_featured": null,
+      "score": 17,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "NVIDIA/SkillSpector",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 18417,
+        "gain30": 3412
+      },
+      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
+      "last_featured": null,
+      "score": 16.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "flowkit-labs/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time",
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 662300,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 16.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "InfinityLoop1308/PipePipe",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        },
+        "hacker-news": {
+          "points": 462,
+          "id": "49842764",
+          "date": "2026-09-25"
+        }
+      },
+      "signals": {
+        "stars": 6442,
+        "gain1": 139
+      },
+      "description": "An open-source Android app to let you browse YouTube and other services freely.",
+      "last_featured": null,
+      "score": 16.6,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "OpenWhispr/openwhispr",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8678,
+        "gain30": 2901
+      },
+      "description": "Voice-to-text dictation app with local (Nvidia Parakeet/Whisper) and cloud models (BYOK). Privacy-first and available cross-platform.",
+      "last_featured": null,
+      "score": 16.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Gitlawb/openclaude",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 33551,
+        "gain30": 2885
+      },
+      "description": "runs anywhere. uses anything",
+      "last_featured": null,
+      "score": 16.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "linshenkx/prompt-optimizer",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 35880,
+        "gain30": 2545
+      },
+      "description": "An AI prompt optimizer for writing better prompts and getting better AI results.",
+      "last_featured": null,
+      "score": 16.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jiji262/douyin-downloader",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 12093,
+        "gain30": 2676
+      },
+      "description": "A practical Douyin downloader for both single-item and profile batch downloads, with progress display, retries, SQLite deduplication, and browser fallback support. 抖音批量下载工具，去水印，支持视频、图集、合集、音乐(原声)。",
+      "last_featured": null,
+      "score": 16.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "remotion-dev/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 547100,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 16.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "juliusbrussee/caveman",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "all-time"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 541600,
+        "skills": 1
+      },
+      "last_featured": "2026-08-14",
+      "score": 16.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-08-14 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "pollen-robotics/microduck_rl",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 2286,
+        "gain30": 2282
+      },
+      "description": "RL training environments for Microduck (mjlab)",
+      "last_featured": null,
+      "score": 16.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jo-inc/camofox-browser",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 11239,
+        "gain30": 2396
+      },
+      "description": "Stealth headless browser for AI agents — bypass Cloudflare, bot detection, and anti-scraping. Drop-in Puppeteer/Playwright replacement.",
+      "last_featured": null,
+      "score": 16.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "aipoch/open-science",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 5048,
+        "gain30": 2078
+      },
+      "description": "The open-source AI research workbench for scientific research and agent workflows. Local-first, model-agnostic desktop app with extensible skills, MCP tools and connectors, Python/R execution and traceable artifacts for reproducible research on macOS, Windows and Linux.",
+      "last_featured": null,
+      "score": 16,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Open-Dev-Society/OpenStock",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 19365,
+        "gain7": 3528
+      },
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "last_featured": null,
+      "score": 15.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "tech-leads-club/agent-skills",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 6887,
+        "gain30": 1907
+      },
+      "description": "The secure, validated skill registry for professional AI coding agents. Extend Antigravity, Claude Code, Cursor, Copilot and more with absolute confidence.",
+      "last_featured": null,
+      "score": 15.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "WorldFlowAI/everything-claude-code",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3647,
+        "gain30": 1883
+      },
+      "description": "Claude Code toolkit - agents, commands, skills, rules, and hooks for productive AI-assisted development",
+      "last_featured": null,
+      "score": 15.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rlaope/oh-my-hermes",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 2987,
+        "gain30": 1874
+      },
+      "description": "All in one plugin for Hermes Agent ⚚ the coding intelligence, a long-term memory system and model optimized workflow packages",
+      "last_featured": null,
+      "score": 15.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 19
+        }
+      },
+      "signals": {
+        "stars": 58922,
+        "gain1": 848,
+        "gain7": 3207
+      },
+      "description": "Learn it. Build it. Ship it for others.",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 15.6,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "fleetbase/fleetbase",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3933,
+        "gain30": 1653
+      },
+      "description": "Modular logistics and supply chain operating system (LSOS)",
+      "last_featured": null,
+      "score": 15.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/claude-code",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        },
+        "findarepo": {
+          "2026-09-22": 15
+        }
+      },
+      "signals": {
+        "stars": 148304,
+        "gain7": 1744
+      },
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "last_featured": null,
+      "star_check": "findarepo: looks organic",
+      "score": 15.3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": []
+    },
+    {
+      "repo": "Stremio/stremio-web",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 13971,
+        "gain30": 1325
+      },
+      "description": "Stremio - Freedom to Stream",
+      "last_featured": null,
+      "score": 15.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "louislam/uptime-kuma",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 91874,
+        "gain30": 1379
+      },
+      "description": "A fancy self-hosted monitoring tool",
+      "last_featured": null,
+      "score": 15.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "dgtlmoon/changedetection.io",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 34590,
+        "gain30": 1373
+      },
+      "description": "Best and simplest tool for website change detection, web page monitoring, and website change alerts. Perfect for tracking content changes, price drops, restock alerts, and website defacement monitoring—all for free or enjoy our SaaS plan!",
+      "last_featured": null,
+      "score": 15.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "zhouxiaoka/autoclip",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 8981,
+        "gain7": 1541
+      },
+      "description": "AutoClip : AI-powered video clipping and highlight generation · 一款智能高光提取与剪辑的二创工具",
+      "last_featured": null,
+      "score": 14.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "JoeanAmier/TikTokDownloader",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 16335,
+        "gain30": 895
+      },
+      "description": "抖音 / TikTok 平台作品下载/数据采集工具",
+      "last_featured": null,
+      "score": 14.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mobile-next/mobile-mcp",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 14
+        }
+      },
+      "signals": {
+        "stars": 7726,
+        "gain1": 573,
+        "gain7": 895
+      },
+      "description": "Model Context Protocol Server for Mobile Automation and Scraping (iOS, Android, Emulators, Simulators and Real Devices)",
+      "last_featured": null,
+      "score": 14.2,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "mvt-project/mvt",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 14904,
+        "gain7": 1769
+      },
+      "description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
+      "last_featured": null,
+      "score": 14.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "laoma2053/awesome-zhuiju-free",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 10440,
+        "gain7": 1439
+      },
+      "description": "免费无广告的追剧资源指南，人工精选资源、每天检测资源有效性。收录在线影视、影视APP、网盘搜索、磁力BT、字幕、TVBox / 影视仓空壳软件/配置地址、IPTV直播源、会员拼团、影视相关开源项目。开源，社区共同维护。",
+      "last_featured": null,
+      "score": 14.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 99410,
+        "gain7": 2510
+      },
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "last_featured": "2026-08-21",
+      "score": 14,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-08-21 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 71733,
+        "gain7": 2448
+      },
+      "description": "The design language that makes your AI harness better at design.",
+      "last_featured": null,
+      "score": 14,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "FareedKhan-dev/train-llm-from-scratch",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 11333,
+        "gain7": 1356
+      },
+      "description": "A straightforward method for training your LLM, from downloading data to generating text.",
+      "last_featured": null,
+      "score": 13.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "DuarteSantos8/openGym",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 1449,
+        "gain7": 414
+      },
+      "description": "Self-hosted gym &amp; body-weight tracker — plan routines, log workouts (supersets, warm-ups, cardio), see which muscles are trained, fatigued or detrained, import from FitNotes/Strong/Hevy, passkey login. Your data, your server.",
+      "last_featured": null,
+      "score": 13.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "bendlang/bend",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 22982,
+        "gain7": 1361
+      },
+      "description": "Bend 2: a fast language that blocks AI mistakes via proof. Install: curl -fsSL https://bend-lang.com/install.sh | sh",
+      "last_featured": null,
+      "score": 13.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Crosstalk-Solutions/project-nomad",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 38562,
+        "gain7": 1365
+      },
+      "description": "Project NOMAD is an offline-first knowledge and education server. Wikipedia, thousands of books, courses, maps, and optional local AI, all running on hardware you own with no internet required.",
+      "last_featured": null,
+      "score": 13.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "facebook/stylex",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 10363,
+        "gain30": 466
+      },
+      "description": "StyleX is the styling system for ambitious user interfaces.",
+      "last_featured": null,
+      "score": 13.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "playcanvas/engine",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 16937,
+        "gain30": 432
+      },
+      "description": "Powerful web graphics runtime built on WebGL, WebGPU, WebXR and glTF",
+      "last_featured": null,
+      "score": 13.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "davila7/claude-code-templates",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 31969,
+        "gain7": 1142
+      },
+      "description": "CLI tool for configuring and monitoring Claude Code",
+      "last_featured": null,
+      "score": 12.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "101-skills/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 31500,
+        "skills": 2
+      },
+      "last_featured": null,
+      "score": 12.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "is-a-dev/register",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 11398,
+        "gain30": 356
+      },
+      "description": "Grab your own sweet-looking '.is-a.dev' subdomain.",
+      "last_featured": null,
+      "score": 12.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "EbookFoundation/free-programming-books",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 397945,
+        "gain1": 169
+      },
+      "description": "📚 Freely available programming books",
+      "last_featured": null,
+      "score": 12.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "HKUDS/CLI-Anything",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 50699,
+        "gain7": 1055
+      },
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "last_featured": null,
+      "score": 12.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "gchq/CyberChef",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 35963,
+        "gain30": 330
+      },
+      "description": "The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis",
+      "last_featured": null,
+      "score": 12.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "krillinai/OpenCreator",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 12454,
+        "gain7": 780
+      },
+      "description": "Formerly KrillinAI. Open-source AI workspace for creators, powered by Codex. Create videos, images, voice, avatars, video translation, and edits with Agents in one place.",
+      "last_featured": null,
+      "score": 12.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "qu-skills/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 23200,
+        "skills": 2
+      },
+      "last_featured": null,
+      "score": 12.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "microsoft/data-formulator",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 17408,
+        "gain1": 111
+      },
+      "description": "🪄 Data Formulator is an interactive AI-powered data analysis system makes it easy to connect, explore and visualize data.",
+      "last_featured": null,
+      "score": 12.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cloudflare/quiche",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 12642,
+        "gain7": 736
+      },
+      "description": "🥧 Savoury implementation of the QUIC transport protocol and HTTP/3",
+      "last_featured": null,
+      "score": 12.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "google/agents-cli",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 21500,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 12.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel-labs/scriptc",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 5272,
+        "gain1": 76
+      },
+      "description": "TypeScript-to-Native Compiler",
+      "last_featured": null,
+      "score": 12.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "designed-by-ai/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 16500,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 12.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 25723,
+        "gain7": 664
+      },
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "last_featured": null,
+      "score": 12,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 456326,
+        "gain1": 100
+      },
+      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "last_featured": null,
+      "score": 11.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ahmedkhaleel2004/gitdiagram",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 17219,
+        "gain7": 569
+      },
+      "description": "Free, simple, fast interactive diagrams and videos for any GitHub repository",
+      "last_featured": null,
+      "score": 11.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rafaelbressan/masterzap",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 105,
+        "gain7": 49
+      },
+      "description": "Visualizador das conversas vazadas do WhatsApp do Daniel Vorcaro (Banco Master) com a Martha Graeff.",
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "hmjz100/LinkSwift",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 20954,
+        "gain1": 68
+      },
+      "description": "一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘",
+      "last_featured": null,
+      "score": 11.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "skills-shell/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9800,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 11.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "magentosh/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9800,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 11.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "bankai-skills/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9800,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 11.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "its-a-skill-issue/superpowers",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9600,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 11.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "yikart/AiToEarn",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 26472,
+        "gain7": 391
+      },
+      "description": "Let's use AI to Earn!",
+      "last_featured": null,
+      "score": 11.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "suitenumerique/docs",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 16866,
+        "gain30": 143
+      },
+      "description": "Docs is an open-source text editor: web-native, made for real-time collaboration, cleanly structured documents and sub-documents with full ownership of your data. Built to scale with Django and React.",
+      "last_featured": null,
+      "score": 11.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 115975,
+        "gain1": 55
+      },
+      "description": "JavaScript 3D Library.",
+      "last_featured": null,
+      "score": 11,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "chuspeeism/dashi-ppt-skill",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 8872,
+        "gain1": 46
+      },
+      "description": "An AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
+      "last_featured": null,
+      "score": 11,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Mathieu2301/TradingView-API",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 5380,
+        "gain7": 301
+      },
+      "description": "📈 Get real-time stocks from TradingView",
+      "last_featured": null,
+      "score": 11,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "pdone/lx-music-source",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 9271,
+        "gain7": 279
+      },
+      "description": "洛雪音乐源",
+      "last_featured": null,
+      "score": 10.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "calesthio/Crucix",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 12031,
+        "gain7": 280
+      },
+      "description": "Your personal intelligence agent. Watches the world from multiple data sources and pings you when something changes.",
+      "last_featured": null,
+      "score": 10.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "pytorch/pytorch",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 103405,
+        "gain1": 56,
+        "gain7": 295
+      },
+      "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+      "last_featured": null,
+      "score": 10.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "nodejs/node",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 122135,
+        "gain1": 40
+      },
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "last_featured": null,
+      "score": 10.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel/next.js",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 142771,
+        "gain1": 317,
+        "gain7": 280
+      },
+      "description": "The React Framework",
+      "last_featured": null,
+      "score": 10.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "freemocap/freemocap",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 10321,
+        "gain1": 35
+      },
+      "description": "Free Motion Capture for Everyone 💀✨",
+      "last_featured": null,
+      "score": 10.5,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "leonxlnx/taste-skill",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "trending"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 4200,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 10.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "django/django",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 91209,
+        "gain1": 27
+      },
+      "description": "The Web framework for perfectionists with deadlines.",
+      "last_featured": null,
+      "score": 9.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "qist/tvbox",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 11509,
+        "gain1": 24
+      },
+      "description": "OK影视、tvbox配置文件，如果喜欢，请Fork自用。使用前请仔细阅读仓库说明，一旦使用将被视为你已了解。",
+      "last_featured": null,
+      "score": 9.8,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "fishjar/kiss-translator",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 12653,
+        "gain1": 21
+      },
+      "description": "A simple, open source bilingual translation extension &amp; Greasemonkey script (一个简约、开源的 双语对照翻译扩展 &amp; 油猴脚本)",
+      "last_featured": null,
+      "score": 9.6,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ulsklyc/yuvomi",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 1585,
+        "gain1": 13
+      },
+      "description": "Self-hosted family planner - tasks, calendars, shopping, meals, budget. Your data, your server.",
+      "last_featured": null,
+      "score": 9.3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "atomicstrata/llm-wiki-compiler",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 2141,
+        "gain7": 96
+      },
+      "description": "The knowledge compiler. Raw sources in, interlinked wiki out. Inspired by Karpathy's LLM Wiki pattern.",
+      "last_featured": null,
+      "score": 9.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "expo/expo",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 52459,
+        "gain1": 15
+      },
+      "description": "An open-source framework for making universal native apps with React. Expo runs on Android, iOS, and the web.",
+      "last_featured": null,
+      "score": 9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "calcom/cal.diy",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 48680,
+        "gain1": 14
+      },
+      "description": "Scheduling infrastructure for absolutely everyone.",
+      "last_featured": null,
+      "score": 8.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "wwebjs/whatsapp-web.js",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 22648,
+        "gain7": 60
+      },
+      "description": "A WhatsApp client library for NodeJS that connects through the WhatsApp Web browser app",
+      "last_featured": null,
+      "score": 8.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "expressjs/express",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 69489,
+        "gain1": 7
+      },
+      "description": "Fast, unopinionated, minimalist web framework for node.",
+      "last_featured": null,
+      "score": 7.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "preactjs/preact",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 38890,
+        "gain1": 2
+      },
+      "description": "⚛️ Fast 3kB React alternative with the same modern API. Components &amp; Virtual DOM.",
+      "last_featured": null,
+      "score": 6.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jaredpalmer/kev",
+      "sources": {
+        "findarepo": {
+          "2026-09-27": 5,
+          "2026-09-26": 5,
+          "2026-09-24": 4,
+          "2026-09-23": 3,
+          "2026-09-22": 8
+        },
+        "hacker-news": {
+          "points": 461,
+          "id": "49783999",
+          "date": "2026-09-21"
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 5,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "googleworkspace/cli",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 52,
+        "skills": 15
+      },
+      "last_featured": "2026-08-28",
+      "score": 4.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-08-28 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "reladraw/reladraw",
+      "sources": {
+        "trendshift": {
+          "daily": 10
+        },
+        "hacker-news": {
+          "points": 357,
+          "id": "49858513",
+          "date": "2026-09-26"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 4,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "grafana/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 15,
+        "skills": 4
+      },
+      "last_featured": null,
+      "score": 3.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "slackapi/slack-skills-plugin",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 12,
+        "skills": 4
+      },
+      "last_featured": null,
+      "score": 3.2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mitsuhiko/gh-issue-sync",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 11,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 3.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "samber/cc-skills-golang",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 11,
+        "skills": 2
+      },
+      "last_featured": null,
+      "score": 3.1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rocketride-org/rocketride-server",
+      "sources": {
+        "trendshift": {
+          "daily": 2
+        },
+        "findarepo": {
+          "2026-09-27": 7
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "eternity4719/HowToLiveBetter",
+      "sources": {
+        "trendshift": {
+          "daily": 7,
+          "monthly": 12
+        },
+        "findarepo": {
+          "2026-09-27": 2,
+          "2026-09-26": 3,
+          "2026-09-25": 3,
+          "2026-09-24": 3,
+          "2026-09-23": 4,
+          "2026-09-22": 4,
+          "2026-09-21": 2
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "dzhng/jevgrep",
+      "sources": {
+        "trendshift": {
+          "daily": 25
+        },
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 4,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "NandhaKishorM/laya",
+      "sources": {
+        "trendshift": {
+          "monthly": 8
+        },
+        "findarepo": {
+          "2026-09-27": 1,
+          "2026-09-26": 1,
+          "2026-09-25": 1,
+          "2026-09-24": 1,
+          "2026-09-23": 1,
+          "2026-09-22": 1,
+          "2026-09-21": 1
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "hypit-ai/hypit",
+      "sources": {
+        "trendshift": {
+          "monthly": 10
+        },
+        "findarepo": {
+          "2026-09-27": 10,
+          "2026-09-26": 7,
+          "2026-09-25": 5,
+          "2026-09-24": 5,
+          "2026-09-23": 7,
+          "2026-09-22": 6,
+          "2026-09-21": 5
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-18",
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-18 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "browser-use/jev-ultrafast",
+      "sources": {
+        "trendshift": {
+          "monthly": 13
+        },
+        "findarepo": {
+          "2026-09-27": 3,
+          "2026-09-26": 2,
+          "2026-09-25": 2,
+          "2026-09-24": 2,
+          "2026-09-23": 5,
+          "2026-09-22": 2,
+          "2026-09-21": 3
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "google/artemis",
+      "sources": {
+        "trendshift": {
+          "monthly": 15
+        },
+        "findarepo": {
+          "2026-09-27": 14,
+          "2026-09-26": 13,
+          "2026-09-25": 13,
+          "2026-09-24": 11,
+          "2026-09-23": 12,
+          "2026-09-22": 12,
+          "2026-09-21": 11
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-18",
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-18 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "deepseek-ai/deepseek-harness",
+      "sources": {
+        "trendshift": {
+          "monthly": 22
+        },
+        "findarepo": {
+          "2026-09-27": 6,
+          "2026-09-26": 4,
+          "2026-09-25": 4,
+          "2026-09-24": 6,
+          "2026-09-23": 8,
+          "2026-09-21": 6
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-08-14",
+      "score": 3,
+      "independent_sources": 2,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-08-14 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "devdotfast/whiteboard",
+      "sources": {
+        "hacker-news": {
+          "points": 413,
+          "id": "49833867",
+          "date": "2026-09-24"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "volotat/mini-AGI",
+      "sources": {
+        "hacker-news": {
+          "points": 277,
+          "id": "49783133",
+          "date": "2026-09-21"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "callbacked/kinesis",
+      "sources": {
+        "hacker-news": {
+          "points": 122,
+          "id": "49695408",
+          "date": "2026-09-14"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "arnegiacomo/fugleramme",
+      "sources": {
+        "hacker-news": {
+          "points": 2390,
+          "id": "49711544",
+          "date": "2026-09-15"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "asciimoo/hister",
+      "sources": {
+        "hacker-news": {
+          "points": 741,
+          "id": "49743097",
+          "date": "2026-09-17"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "git-bug/git-bug",
+      "sources": {
+        "hacker-news": {
+          "points": 357,
+          "id": "49843174",
+          "date": "2026-09-25"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jemalloc/jemalloc",
+      "sources": {
+        "hacker-news": {
+          "points": 339,
+          "id": "49750152",
+          "date": "2026-09-18"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "xCuri0/ReBarUEFI",
+      "sources": {
+        "hacker-news": {
+          "points": 243,
+          "id": "49781862",
+          "date": "2026-09-21"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "WordPress/wordpress-develop",
+      "sources": {
+        "hacker-news": {
+          "points": 239,
+          "id": "49803959",
+          "date": "2026-09-22"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "f/jev-leftpad",
+      "sources": {
+        "hacker-news": {
+          "points": 234,
+          "id": "49784706",
+          "date": "2026-09-21"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rh1tech/frank-386",
+      "sources": {
+        "hacker-news": {
+          "points": 222,
+          "id": "49693613",
+          "date": "2026-09-14"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "enactic/OpenArm",
+      "sources": {
+        "hacker-news": {
+          "points": 215,
+          "id": "49684289",
+          "date": "2026-09-13"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "GraafHenk/numberwang",
+      "sources": {
+        "hacker-news": {
+          "points": 182,
+          "id": "49717605",
+          "date": "2026-09-15"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "fordnox/e592d0f68b543fd044be8e6d040863a0",
+      "sources": {
+        "hacker-news": {
+          "points": 178,
+          "id": "49777106",
+          "date": "2026-09-20"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "kyle-pena-nlp/jevchat",
+      "sources": {
+        "hacker-news": {
+          "points": 177,
+          "id": "49778162",
+          "date": "2026-09-20"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Speedstu/CUDA-for-AMD-Windows",
+      "sources": {
+        "hacker-news": {
+          "points": 175,
+          "id": "49684356",
+          "date": "2026-09-13"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vinnylarouge/jevlike",
+      "sources": {
+        "hacker-news": {
+          "points": 169,
+          "id": "49731282",
+          "date": "2026-09-16"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "browserbase/stagehand",
+      "sources": {
+        "hacker-news": {
+          "points": 155,
+          "id": "49756671",
+          "date": "2026-09-18"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "nestrilabs/virtio-nvgpu",
+      "sources": {
+        "hacker-news": {
+          "points": 154,
+          "id": "49824864",
+          "date": "2026-09-24"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "adonis-singh/re4",
+      "sources": {
+        "hacker-news": {
+          "points": 140,
+          "id": "49778022",
+          "date": "2026-09-20"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anuj0456/OpenArch",
+      "sources": {
+        "hacker-news": {
+          "points": 140,
+          "id": "49693384",
+          "date": "2026-09-14"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "christianrowlands/wavedigger",
+      "sources": {
+        "hacker-news": {
+          "points": 137,
+          "id": "49815370",
+          "date": "2026-09-23"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mindbox77/zxdesk",
+      "sources": {
+        "hacker-news": {
+          "points": 131,
+          "id": "49766676",
+          "date": "2026-09-19"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "geastack/examples",
+      "sources": {
+        "hacker-news": {
+          "points": 130,
+          "id": "49807021",
+          "date": "2026-09-22"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "lfarroco/ogre-battle-64-recomp",
+      "sources": {
+        "hacker-news": {
+          "points": 113,
+          "id": "49780022",
+          "date": "2026-09-20"
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel/eve",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 9,
+        "skills": 3
+      },
+      "last_featured": null,
+      "score": 2.9,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "dbpolito/skills",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 6,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 2.4,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "hugohe3/ppt-master",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 4,
+        "skills": 1
+      },
+      "last_featured": "2026-08-28",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-08-28 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "mizorewww/laya-mlx",
+      "sources": {
+        "findarepo": {
+          "2026-09-27": 9,
+          "2026-09-23": 9,
+          "2026-09-22": 3,
+          "2026-09-21": 4
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "farion1231/cc-switch",
+      "sources": {
+        "findarepo": {
+          "2026-09-27": 12,
+          "2026-09-26": 11,
+          "2026-09-25": 12,
+          "2026-09-24": 13
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-08-21",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-08-21 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "cortex-docs/cortex",
+      "sources": {
+        "findarepo": {
+          "2026-09-27": 13,
+          "2026-09-26": 12,
+          "2026-09-25": 11,
+          "2026-09-24": 12,
+          "2026-09-23": 13
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "diegosouzapw/OmniRoute",
+      "sources": {
+        "findarepo": {
+          "2026-09-27": 15,
+          "2026-09-26": 14,
+          "2026-09-25": 14,
+          "2026-09-24": 14,
+          "2026-09-23": 14,
+          "2026-09-22": 14,
+          "2026-09-21": 13
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jev-chat/jev-chat-jarvis",
+      "sources": {
+        "findarepo": {
+          "2026-09-25": 7,
+          "2026-09-23": 2
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "robbietilton/Compositor",
+      "sources": {
+        "findarepo": {
+          "2026-09-25": 9
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "Graphify-Labs/graphify",
+      "sources": {
+        "findarepo": {
+          "2026-09-23": 15,
+          "2026-09-22": 13,
+          "2026-09-21": 12
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-07-31",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Mak5er/AirCard",
+      "sources": {
+        "findarepo": {
+          "2026-09-22": 7
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "zai-org/ZCode",
+      "sources": {
+        "findarepo": {
+          "2026-09-22": 9
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "tamaratran/fast-jev-compaction",
+      "sources": {
+        "findarepo": {
+          "2026-09-21": 7
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "SnailSploit/Claude-Red",
+      "sources": {
+        "findarepo": {
+          "2026-09-21": 14
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 2,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "b3sty191/b3sty-skill",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 3,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 1.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "paymog/groundcover-cli",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 3,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 1.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "logicrw/gh-cli-skill",
+      "sources": {
+        "skills.sh": {
+          "lists": [
+            "hot"
+          ]
+        }
+      },
+      "signals": {
+        "installs": 3,
+        "skills": 1
+      },
+      "last_featured": null,
+      "score": 1.7,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "hydra-db/hydradb",
+      "sources": {
+        "trendshift": {
+          "daily": 3,
+          "monthly": 24
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cdyforever/how-to-live-better",
+      "sources": {
+        "trendshift": {
+          "daily": 5
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mexicat/pdoom-video",
+      "sources": {
+        "trendshift": {
+          "daily": 8
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "juspay/hyperswitch",
+      "sources": {
+        "trendshift": {
+          "daily": 9
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "newliver666/apk-reverse",
+      "sources": {
+        "trendshift": {
+          "daily": 11
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Human-Agent-Society/reef",
+      "sources": {
+        "trendshift": {
+          "daily": 12
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-25",
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "satnaing/shadcn-admin",
+      "sources": {
+        "trendshift": {
+          "daily": 13
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "dream-num/univer-workspace",
+      "sources": {
+        "trendshift": {
+          "daily": 15
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "latent-spaces/brag",
+      "sources": {
+        "trendshift": {
+          "daily": 17,
+          "monthly": 21
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "togg53192-cmd/jailbreaks",
+      "sources": {
+        "trendshift": {
+          "daily": 18
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "feitangyuan/onetake",
+      "sources": {
+        "trendshift": {
+          "daily": 20
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "open-slide/open-slide",
+      "sources": {
+        "trendshift": {
+          "daily": 21
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "tigerless-labs/cost-xray",
+      "sources": {
+        "trendshift": {
+          "daily": 23
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ccch1mneyyy/dsh-TUI",
+      "sources": {
+        "trendshift": {
+          "daily": 24
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cortrix/cortrix",
+      "sources": {
+        "trendshift": {
+          "daily": 27,
+          "monthly": 27
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "win4r/MuseAI-Skills",
+      "sources": {
+        "trendshift": {
+          "daily": 28,
+          "monthly": 28
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "shidenkai0/pi-readable-edits",
+      "sources": {
+        "trendshift": {
+          "daily": 29,
+          "monthly": 29
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "hooosberg/DockTouchBar",
+      "sources": {
+        "trendshift": {
+          "daily": 30,
+          "monthly": 30
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "AaronCWacker/AI-UI-UX-JS",
+      "sources": {
+        "trendshift": {
+          "daily": 31,
+          "monthly": 31
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "deeplethe/utopia",
+      "sources": {
+        "trendshift": {
+          "monthly": 17
+        }
+      },
+      "signals": {},
+      "last_featured": "2026-09-11",
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-11 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "google/ax",
+      "sources": {
+        "trendshift": {
+          "monthly": 18
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "blader/humanizer",
+      "sources": {
+        "trendshift": {
+          "monthly": 20
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "JustVugg/colibri",
+      "sources": {
+        "trendshift": {
+          "monthly": 23
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "owner/repo",
+      "sources": {
+        "tips": {
+          "yes": true
+        }
+      },
+      "signals": {},
+      "last_featured": null,
+      "score": 0,
+      "independent_sources": 0,
+      "age_days": null,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    }
+  ]
+}

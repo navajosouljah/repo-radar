@@ -127,8 +127,9 @@ const EFFORT = { minutes: 0, hour: 1, developer: 2 };
 const EFFORT_LABEL = ['5 minutes', 'About an hour', 'Needs a developer'];
 const PLAT_COLORS = ['oklch(0.55 0.13 255)', 'oklch(0.55 0.14 30)', 'oklch(0.52 0.12 152)', 'oklch(0.55 0.12 300)', 'oklch(0.50 0.10 90)'];
 
-function repoPage(ed, r) {
-  const where = `editions/${ed.date}/${r.slug}.html`;
+function repoPage(ed, r, ctx = {}) {
+  const where = ctx.where || `editions/${ed.date}/${r.slug}.html`;
+  const depth = ctx.depth ?? 2;
   const gate = requireGate(r.repo, where);
   const g = gate.g || {};
   const act = g.checks?.activity || {};
@@ -163,7 +164,7 @@ function repoPage(ed, r) {
 
   const hero = `<section class="answer" aria-labelledby="name">
   <div>
-    <div class="kicker"><span class="rank-tag">#${r.rank} this week</span><span class="repo-id">${esc(r.repo)}</span></div>
+    <div class="kicker"><span class="rank-tag">${ctx.tag || `#${r.rank} this week`}</span><span class="repo-id">${esc(r.repo)}</span></div>
     <h1 id="name">${esc(r.name)}</h1>
     <p class="tagline">${rich(r.tagline)}</p>
     <p class="sentence">${rich(r.sentence)}</p>
@@ -175,7 +176,7 @@ function repoPage(ed, r) {
     <div class="actions">${actions}</div>
   </div>
   <figure class="pinned">
-    <img src="${esc(srcAt(r.visual?.src, 2) || `https://opengraph.githubassets.com/1/${r.repo}`)}" alt="${esc(r.visual?.alt || `${r.name} on GitHub`)}" width="${r.visual?.width || 1200}" height="${r.visual?.height || 600}" loading="eager">
+    <img src="${esc(srcAt(r.visual?.src, depth) || `https://opengraph.githubassets.com/1/${r.repo}`)}" alt="${esc(r.visual?.alt || `${r.name} on GitHub`)}" width="${r.visual?.width || 1200}" height="${r.visual?.height || 600}" loading="eager">
     <figcaption>${esc(r.visual?.caption || 'No demo published yet: this is its GitHub card.')}</figcaption>
   </figure>
 </section>
@@ -248,8 +249,8 @@ ${(v.alternatives || []).length ? `<div class="alts"><h3>Instead, you could look
 
   const sources = `<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${(r.sources || []).map(s => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a>${s.date ? `, ${dShort(s.date)}` : ''}</li>`).join('')}</ol></section>`;
 
-  const html = `${head({ title: `${r.name}: ${stripB(r.tagline)} | Repo Radar`, description: stripB(r.sentence), depth: 2, image: absSrc(r.visual?.src) || `https://opengraph.githubassets.com/1/${r.repo}` })}
-${topbar(2, `Edition ${ed.number} &middot; Week of ${dLong(ed.date)}`)}
+  const html = `${head({ title: `${r.name}: ${stripB(r.tagline)} | Repo Radar`, description: stripB(r.sentence), depth, image: absSrc(r.visual?.src) || `https://opengraph.githubassets.com/1/${r.repo}` })}
+${topbar(depth, ctx.crumb || `Edition ${ed.number} &middot; Week of ${dLong(ed.date)}`)}
 <main class="wrap">
 ${hero}
 ${board}
@@ -260,7 +261,7 @@ ${tryIt}
 ${should}
 ${safe}
 ${sources}
-<footer class="site-foot"><span>Repo Radar &middot; Edition ${ed.number} &middot; ${dLong(ed.date)}</span><a href="./">&larr; Back to this week's 10</a></footer>
+<footer class="site-foot"><span>${ctx.footLeft || `Repo Radar &middot; Edition ${ed.number} &middot; ${dLong(ed.date)}`}</span><a href="${ctx.backHref || './'}">&larr; ${ctx.backLabel || "Back to this week's 10"}</a></footer>
 </main>
 </body>
 </html>
@@ -364,6 +365,18 @@ for (const date of editions) {
   }
   if (!only && ed.picks.every(p => p.status === 'fail' || p.oneliner)) {
     outputs.push([`editions/${date}/index.html`, editionIndex(ed)]);
+  }
+}
+// Lookups: data/lookups/<owner>--<repo>.json -> lookups/<owner>--<repo>.html, same template.
+if (existsSync(join(ROOT, 'data/lookups')) && !argv.includes('--only')) {
+  for (const f of readdirSync(join(ROOT, 'data/lookups')).filter(f => f.endsWith('.json'))) {
+    const r = { ...read(`data/lookups/${f}`), slug: f.replace(/\.json$/, '') };
+    const date = r.looked_up || new Date().toISOString().slice(0, 10);
+    outputs.push([`lookups/${r.slug}.html`, repoPage({ number: '', date }, r, {
+      where: `lookups/${r.slug}.html`, depth: 1, tag: `Looked up ${dShort(date)}`,
+      crumb: `Lookup &middot; ${dLong(date)}`, footLeft: `Repo Radar &middot; Lookup &middot; ${dLong(date)}`,
+      backHref: 'index.html', backLabel: 'Lookup library',
+    })]);
   }
 }
 if (argv.includes('--hub') && latest) {

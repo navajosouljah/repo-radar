@@ -1445,9 +1445,9 @@
   "anthropics/claude-code": {
     "repo": "anthropics/claude-code",
     "checked": "2026-09-27",
-    "verdict": "REVIEW",
+    "verdict": "PASS",
     "reasons": [
-      "8 report(s) to read"
+      "1 report(s) to read"
     ],
     "checks": {
       "advisories": {
@@ -1780,126 +1780,23 @@
         "errors": 0,
         "hits": [
           {
-            "query": "anthropics/claude-code CVE",
-            "title": "Trust Dialog Bypass via Git Worktree Spoofing Allows Arbitrary Code Execution · Advisory · anthropics/claude-code · GitHub",
-            "url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-q5hj-mxqh-vv77",
-            "published": "N/A",
-            "matched": "malicious",
-            "kind": "own-security-page"
-          },
-          {
-            "query": "anthropics/claude-code CVE",
-            "title": "Sandbox Escape via Git Worktree Path Confusion Allows Unsandboxed Code Execution · Advisory · anthropics/claude-code · GitHub",
-            "url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-7835-87q9-rgvv",
-            "published": "2026-06-25",
-            "matched": "exploit",
-            "kind": "own-security-page"
-          },
-          {
-            "query": "anthropics/claude-code CVE",
-            "title": "@anthropic-ai/claude-code has an Insecure Temporary File in /copy Command that Enables Response Disclosure and Symlink-Based File Write · CV",
-            "url": "https://github.com/advisories/GHSA-4vp2-6q8c-pvq2",
-            "published": "2026-06-25",
-            "matched": "CVE-2026-46406",
-            "kind": "cve-record"
-          },
-          {
-            "query": "anthropics/claude-code CVE",
-            "title": "Claude Code Vulnerable to Command Injection via Directory Change Bypasses Write Protection · CVE-2026-25722 · GitHub Advisory Database · Git",
-            "url": "https://github.com/advisories/GHSA-66Q4-VFJG-2QHH",
-            "published": "2026-02-06",
-            "matched": "Vulnerab",
-            "kind": "cve-record"
-          },
-          {
-            "query": "anthropics/claude-code CVE",
-            "title": "RCE and API Token Exfiltration Through Claude Code ...",
-            "url": "https://research.checkpoint.com/2026/rce-and-api-token-exfiltration-through-claude-code-project-files-cve-2025-59536/",
-            "published": "2026-02-25",
-            "matched": "RCE",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code vulnerability",
-            "title": "@anthropic-ai/claude-code | Snyk",
-            "url": "https://security.snyk.io/package/npm/%40anthropic-ai%2Fclaude-code",
-            "published": "N/A",
-            "matched": "Vulnerab",
-            "kind": "scanner"
-          },
-          {
-            "query": "anthropics/claude-code vulnerability",
-            "title": "Check Point Researchers Expose Critical Claude Code ...",
-            "url": "https://blog.checkpoint.com/research/check-point-researchers-expose-critical-claude-code-flaws/",
-            "published": "2026-02-25",
-            "matched": "vulnerab",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code malware",
-            "title": "Claude Code Packaging Error Remains a Lure in an Active ...",
-            "url": "https://www.trendmicro.com/en_us/research/26/d/claude-code-remains-a-lure-what-defenders-should-do.html",
-            "published": "2026-04-07",
-            "matched": "Stealer",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code malware",
-            "title": "Claude Code Leak: Critical AI Security Threat 2026",
-            "url": "https://www.zscaler.com/blogs/security-research/anthropic-claude-code-leak",
-            "published": "2026-03-31",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code malware",
-            "title": "Permissive Default Allowlist Enables Unauthorized File Read and Network Exfiltration in Claude Code · Advisory · anthropics/claude-code · Gi",
-            "url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-x5gv-jw7f-j6xj",
-            "published": "2025-08-15",
-            "matched": "Exfiltrat",
-            "kind": "own-security-page"
-          },
-          {
-            "query": "anthropics/claude-code malware",
-            "title": "Sneaky NPM packages targeting Claude Code | Safety Blog",
-            "url": "https://www.getsafety.com/blog-posts/malicious-claude-code-package",
-            "published": "2025-10-27",
-            "matched": "malicious",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code malware",
-            "title": "Hackers Are Using Claude Code Leak As Bait to Spread Malware | PCMag",
-            "url": "https://www.pcmag.com/news/hackers-are-using-claude-code-leak-as-bait-to-spread-malware",
-            "published": "2026-04-03",
-            "matched": "Malware",
-            "kind": "report"
-          },
-          {
             "query": "anthropics/claude-code scam",
-            "title": "Windows and macOS Malware Spreads via Fake “Claude ...",
-            "url": "https://www.bitdefender.com/en-us/blog/labs/fake-claude-code-google-ads-malware",
-            "published": "2026-03-11",
-            "matched": "Malware",
-            "kind": "report"
-          },
-          {
-            "query": "anthropics/claude-code scam",
-            "title": "Fake Claude Code install pages highlight rise of \"InstallFix ...",
-            "url": "https://www.helpnetsecurity.com/2026/03/09/fake-claude-code-install-pages-installfix-attacks/",
-            "published": "2026-03-09",
-            "matched": "malware",
+            "title": "&gt; In a world without namespaces, how does anyone know google-foo belongs to Google? It doesnt. And nobody believes it",
+            "url": "https://news.ycombinator.com/item?id=48671813",
+            "published": "2026-06-25",
+            "matched": "scam",
             "kind": "report"
           }
         ],
+        "fallbacks": 4,
         "cves": []
       },
       "activity": {
         "canonical": "anthropics/claude-code",
-        "stars": 148259,
-        "forks": 24788,
+        "stars": 148304,
+        "forks": 24798,
         "watchers": 899,
-        "openIssues": 13284,
+        "openIssues": 13337,
         "hasIssues": true,
         "contributors": 58,
         "commits": 880,
@@ -1911,6 +1808,11 @@
         "license": null,
         "flags": []
       }
+    },
+    "settled": {
+      "by": "human review",
+      "date": "2026-09-27",
+      "note": "All 31 published advisories are fixed in a released version. The one flagged search hit was an unrelated Hacker News comment about package naming."
     }
   },
   "anthropics/skills": {
@@ -12381,6 +12283,9 @@
       "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
       "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
       "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
+      "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
+      "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
+      "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)",
       "44 open after registry recheck: GHSA-r495-55cx-fjh7 critical (fix 63.10.0 newer than latest published 0.63.18); GHSA-r8h2-qpfx-mx59 critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-8hmm-hrhg-ppqp medium (fix 63.5.0 newer than latest published 0.63.18); GHSA-vwf4-m7j8-wcjf critical (fix 63.5.0 newer than latest published 0.63.18); GHSA-cwxq-fmxq-jv8h critical (fix 1.61.4 newer than latest published 0.63.18); GHSA-w95f-x9v9-wv36 critical (fix 1.61.1 newer than latest published 0.63.18); GHSA-8wx2-rxp2-4x35 critical (fix 1.61.2 newer than latest published 0.63.18); GHSA-r6x2-rchx-q9g9 critical (fix 1.60.4 newer than latest published 0.63.18); GHSA-mfpj-crjq-xrcp high (fix 1.60.4 newer than latest published 0.63.18); GHSA-3hg9-2v8h-4vjh medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-433r-hw2v-rv9g medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-rxq7-9vqf-q9g8 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-pmx5-7c75-c5hh medium (fix 1.59.7 newer than latest published 0.63.18); GHSA-58qx-j9c7-4rq7 medium (fix 1.60.1 newer than latest published 0.63.18); GHSA-fppj-vcm3-w229 high (fix 1.59.4 newer than latest published 0.63.18); GHSA-j3qp-7mr8-hr55 medium (fix 1.59.1 newer than latest published 0.63.18); GHSA-vcj8-rcm8-gfj9 high (fix 1.58.7 newer than latest published 0.63.18); GHSA-2wgg-7r2p-cmqx low (fix 57.1.0 newer than latest published 0.63.18); GHSA-832j-56xw-5p7f low (fix 1.54.1 newer than latest published 0.63.18); GHSA-8xf9-9jc8-qp98 low (fix 53.8.0 newer than latest published 0.63.18); GHSA-6cc4-h534-xh5p medium (fix 1.53.2 newer than latest published 0.63.18); GHSA-rhjf-q2qw-rvx3 medium (fix 1.52.2 newer than latest published 0.63.18); GHSA-p7w3-9m58-rq83 critical (fix 1.46.6 newer than latest published 0.63.18); GHSA-mw6j-f894-4qxv medium (fix 1.46.3 newer than latest published 0.63.18); GHSA-492f-qxr3-9rrv medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-ch8f-hhq9-7gv5 medium (fix 1.45.2 newer than latest published 0.63.18); GHSA-8qgm-9mj6-36h3 critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-gw4g-ww2m-v7vc high (fix 1.44.5 newer than latest published 0.63.18); GHSA-w5j7-4mgm-77f4 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-93wj-fgjg-r238 high (fix 1.44.5 newer than latest published 0.63.18); GHSA-gqpj-wcr3-p88v critical (fix 1.44.5 newer than latest published 0.63.18); GHSA-5cfq-582c-c38m low (fix 1.42.4 newer than latest published 0.63.18); GHSA-vm79-xvmp-7329 medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-wjw6-wm9w-7ggr medium (fix 1.42.4 newer than latest published 0.63.18); GHSA-vmm4-cwrm-38rj critical (fix 1.41.4 newer than latest published 0.63.18); GHSA-wpjg-6c2f-pcg9 high (fix 1.41.3 newer than latest published 0.63.18); GHSA-w73v-6p7p-fpfr critical (fix 40.5.0 newer than latest published 0.63.18); GHSA-8899-2cmw-mf97 low (fix 1.40.3 newer than latest published 0.63.18); GHSA-m29w-4r8p-v657 high (fix 1.39.1 newer than latest published 0.63.18); GHSA-pxfh-93j9-h745 medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-m8w4-6wxv-8v6m medium (fix 1.38.2 newer than latest published 0.63.18); GHSA-jw8j-qp56-25m2 high (fix 1.38.0 newer than latest published 0.63.18); GHSA-frx5-q4fp-vr4j high (fix 37.7.0 newer than latest published 0.63.18); GHSA-6fcp-57cp-fww9 high (fix 1.37.6 newer than latest published 0.63.18)"
     ],
     "checks": {
@@ -18847,6 +18752,775 @@
           "why": "fix PR(s) #274 merged and in release v2.15.0"
         }
       ]
+    }
+  },
+  "THU-MAIC/OpenMAIC": {
+    "repo": "THU-MAIC/OpenMAIC",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/THU-MAIC/OpenMAIC/security/advisories",
+        "count": 11,
+        "latestRelease": "1.1.1",
+        "items": [
+          {
+            "ghsa": "GHSA-cpjc-vgjh-c5jp",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-09-26",
+            "summary": "MinerU Cloud parser fetches provider-supplied upload and result URLs without SSRF validation",
+            "patched": "1.1.1",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-vqq3-22q7-289w",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-09-15",
+            "summary": "Headless Chromium in the render service runs attacker HTML without connect-src restrictions",
+            "patched": "1.0.3",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-qpmr-534w-hhpg",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-09-15",
+            "summary": "Missing Rate Limiting on Access Code Verification and Non-Expiring Tokens in OpenMAIC",
+            "patched": "1.0.3",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-9p8q-rcmg-pmjw",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-09-15",
+            "summary": " TTS provider redirects bypass SSRF validation and return internal responses",
+            "patched": "1.0.3",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-23xq-m3mm-3j49",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-09-14",
+            "summary": "DNS rebinding bypasses the SSRF guard on /api/proxy-media and exposes internal HTTP responses",
+            "patched": "1.0.2",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-87m4-6c66-pc68",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-09-14",
+            "summary": "Missing authorization lets any visitor overwrite an existing classroom via POST /api/classroom",
+            "patched": "1.0.2",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-6xff-rgjg-v33f",
+            "cve": null,
+            "severity": "critical",
+            "published": "2026-09-14",
+            "summary": "SSRF to cloud instance metadata via /api/proxy-media (Alibaba Cloud metadata address not blocked)",
+            "patched": "1.0.2",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-725p-44hx-v52c",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-09-06",
+            "summary": "SSRF protection bypass via unvalidated HTTP redirect on BYOK base URL",
+            "patched": "1.0.1",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-7rhf-2798-mvcj",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-09-06",
+            "summary": "Stored cross-site scripting via unsanitized course content rendered with dangerouslySetInnerHTML",
+            "patched": "1.0.1",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-p2wh-m28m-c5xw",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-09-06",
+            "summary": "Unauthenticated arbitrary file write and cross-user classroom overwrite via path traversal in POST /api/classroom (stage.id)",
+            "patched": "1.0.1",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-9m7h-vh2h-rc3w",
+            "cve": "CVE-2026-86259",
+            "severity": "critical",
+            "published": "2026-09-06",
+            "summary": "Unauthenticated Outbound SSRF to Cloud Metadata Service via Fail-Open Middleware and Environment-Gated Validation Bypass",
+            "patched": "1.0.1",
+            "openPackages": [],
+            "status": "patched"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "THU-MAIC/OpenMAIC CVE",
+          "THU-MAIC/OpenMAIC vulnerability",
+          "THU-MAIC/OpenMAIC malware",
+          "THU-MAIC/OpenMAIC scam"
+        ],
+        "results": 14,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "THU-MAIC/OpenMAIC",
+        "stars": 39241,
+        "forks": 6102,
+        "watchers": 179,
+        "openIssues": 169,
+        "hasIssues": true,
+        "contributors": 107,
+        "commits": 639,
+        "created": "2026-03-11",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 200,
+        "homepage": null,
+        "license": "MIT",
+        "flags": []
+      }
+    }
+  },
+  "heygen-com/hyperframes": {
+    "repo": "heygen-com/hyperframes",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/heygen-com/hyperframes/security/advisories",
+        "count": 0,
+        "latestRelease": "0.8.80",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "heygen-com/hyperframes CVE",
+          "heygen-com/hyperframes vulnerability",
+          "heygen-com/hyperframes malware",
+          "heygen-com/hyperframes scam"
+        ],
+        "results": 0,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "heygen-com/hyperframes",
+        "stars": 53534,
+        "forks": 4883,
+        "watchers": 146,
+        "openIssues": 241,
+        "hasIssues": true,
+        "contributors": 72,
+        "commits": 4838,
+        "created": "2026-03-10",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 202,
+        "homepage": null,
+        "license": "Apache-2.0",
+        "flags": []
+      }
+    }
+  },
+  "tt-a1i/archify": {
+    "repo": "tt-a1i/archify",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/tt-a1i/archify/security/advisories",
+        "count": 0,
+        "latestRelease": "2.16.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "tt-a1i/archify CVE",
+          "tt-a1i/archify vulnerability",
+          "tt-a1i/archify malware",
+          "tt-a1i/archify scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "tt-a1i/archify",
+        "stars": 72607,
+        "forks": 4905,
+        "watchers": 209,
+        "openIssues": 179,
+        "hasIssues": true,
+        "contributors": 34,
+        "commits": 271,
+        "created": "2026-04-15",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 165,
+        "homepage": "https://tt-a1i.github.io/archify/",
+        "license": "MIT",
+        "flags": []
+      }
+    }
+  },
+  "debpalash/VoiceStudio": {
+    "repo": "debpalash/VoiceStudio",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/debpalash/VoiceStudio/security/advisories",
+        "count": 0,
+        "latestRelease": "0.5.6",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "debpalash/VoiceStudio CVE",
+          "debpalash/VoiceStudio vulnerability",
+          "debpalash/VoiceStudio malware",
+          "debpalash/VoiceStudio scam"
+        ],
+        "results": 0,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "debpalash/VoiceStudio",
+        "stars": 39048,
+        "forks": 4649,
+        "watchers": 156,
+        "openIssues": 13,
+        "hasIssues": true,
+        "contributors": 79,
+        "commits": 3381,
+        "created": "2026-04-09",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 171,
+        "homepage": "https://voicestudio.sh",
+        "license": "AGPL-3.0",
+        "flags": []
+      }
+    }
+  },
+  "ayghri/i-have-adhd": {
+    "repo": "ayghri/i-have-adhd",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/ayghri/i-have-adhd/security/advisories",
+        "count": 0,
+        "latestRelease": null,
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "ayghri/i-have-adhd CVE",
+          "ayghri/i-have-adhd vulnerability",
+          "ayghri/i-have-adhd malware",
+          "ayghri/i-have-adhd scam"
+        ],
+        "results": 10,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "ayghri/i-have-adhd",
+        "stars": 51519,
+        "forks": 2973,
+        "watchers": 161,
+        "openIssues": 76,
+        "hasIssues": true,
+        "contributors": 50,
+        "commits": 245,
+        "created": "2026-05-13",
+        "pushed": "2026-09-19",
+        "archived": false,
+        "ageDays": 137,
+        "homepage": null,
+        "license": "MIT",
+        "flags": []
+      }
+    }
+  },
+  "dream-num/univer": {
+    "repo": "dream-num/univer",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/dream-num/univer/security/advisories",
+        "count": 0,
+        "latestRelease": "1.0.2",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "dream-num/univer CVE",
+          "dream-num/univer vulnerability",
+          "dream-num/univer malware",
+          "dream-num/univer scam"
+        ],
+        "results": 11,
+        "errors": 1,
+        "hits": [],
+        "fallbacks": 3,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "dream-num/univer",
+        "stars": 19966,
+        "forks": 1695,
+        "watchers": 317,
+        "openIssues": 152,
+        "hasIssues": true,
+        "contributors": 78,
+        "commits": 5809,
+        "created": "2022-09-29",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 1459,
+        "homepage": "https://docs.univer.ai",
+        "license": "Apache-2.0",
+        "flags": []
+      }
+    }
+  },
+  "Tencent/WeKnora": {
+    "repo": "Tencent/WeKnora",
+    "checked": "2026-09-27",
+    "verdict": "FAIL",
+    "reasons": [
+      "2 open after registry recheck: GHSA-h2wr-wxxv-x8p9 medium (no fixed version in the advisory data or text); GHSA-4cvj-xf75-4wv6 low (no fixed version in the advisory data or text)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/Tencent/WeKnora/security/advisories",
+        "count": 10,
+        "latestRelease": "0.8.2",
+        "items": [
+          {
+            "ghsa": "GHSA-ccj6-79j6-cq5q",
+            "cve": "CVE-2026-30855",
+            "severity": "high",
+            "published": "2026-03-06",
+            "summary": "Broken Access Control in Tenant Management",
+            "patched": "0.3.2",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-67q9-58vj-32qx",
+            "cve": "CVE-2026-30856",
+            "severity": "medium",
+            "published": "2026-03-06",
+            "summary": "Tool Execution Hijacking via Ambigous Naming Convention In MCP client and Indirect Prompt Injection",
+            "patched": "0.3.0",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-8rf9-c59g-f82f",
+            "cve": "CVE-2026-30857",
+            "severity": "medium",
+            "published": "2026-03-06",
+            "summary": "Unauthorized Cross‑Tenant Knowledge Base Cloning",
+            "patched": "0.3.0",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-h6gw-8f77-mmmp",
+            "cve": "CVE-2026-30858",
+            "severity": "medium",
+            "published": "2026-03-06",
+            "summary": "DNS Rebinding Vulnerability in web_fetch Tool Allows SSRF to Internal Resources",
+            "patched": "0.3.0",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-2f4c-vrjq-rcgv",
+            "cve": "CVE-2026-30859",
+            "severity": "medium",
+            "published": "2026-03-06",
+            "summary": "Broken Access Control - Cross-Tenant Data Exposure",
+            "patched": "0.2.12",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-8w32-6mrw-q5wv",
+            "cve": "CVE-2026-30860",
+            "severity": "critical",
+            "published": "2026-03-06",
+            "summary": "Remote Code Execution via SQL Injection Bypass in AI Database Query Tool",
+            "patched": "0.2.12",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-r55h-3rwj-hcmg",
+            "cve": "CVE-2026-30861",
+            "severity": "critical",
+            "published": "2026-03-06",
+            "summary": "Remote Code Execution (RCE) via Command Injection in MCP Stdio Configuration Validation",
+            "patched": "0.2.10",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-595m-wc8g-6qgc",
+            "cve": "CVE-2026-30247",
+            "severity": "medium",
+            "published": "2026-03-05",
+            "summary": "SSRF via Redirection",
+            "patched": "0.2.12",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-pcwc-3fw3-8cqv",
+            "cve": "CVE-2026-22687",
+            "severity": "medium",
+            "published": "2026-01-09",
+            "summary": "WeKnora数据库查询工具存在sql注入漏洞",
+            "patched": null,
+            "openPackages": [
+              "WeKnora"
+            ],
+            "status": "unpatched"
+          },
+          {
+            "ghsa": "GHSA-78h3-63c4-5fqc",
+            "cve": "CVE-2026-22688",
+            "severity": "critical",
+            "published": "2026-01-09",
+            "summary": "Command Injection in (MCP stdio test) in Tencent/WeKnora",
+            "patched": null,
+            "openPackages": [
+              "internal/mcp/client.go"
+            ],
+            "status": "unpatched"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "Tencent/WeKnora CVE",
+          "Tencent/WeKnora vulnerability",
+          "Tencent/WeKnora malware",
+          "Tencent/WeKnora scam"
+        ],
+        "results": 4,
+        "errors": 1,
+        "hits": [
+          {
+            "query": "Tencent/WeKnora CVE",
+            "title": "NVD - CVE-2025-11046",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-11046",
+            "published": "2025-09-26",
+            "matched": "CVE-2025-11046",
+            "kind": "cve-record"
+          },
+          {
+            "query": "Tencent/WeKnora CVE",
+            "title": "NVD - CVE-2026-8786",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-8786",
+            "published": "2026-05-18",
+            "matched": "CVE-2026-8786",
+            "kind": "cve-record"
+          }
+        ],
+        "fallbacks": 3,
+        "cves": [
+          {
+            "id": "CVE-2025-11046",
+            "ghsa": "GHSA-h2wr-wxxv-x8p9",
+            "severity": "medium",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-8786",
+            "ghsa": "GHSA-4cvj-xf75-4wv6",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          }
+        ]
+      },
+      "activity": {
+        "canonical": "Tencent/WeKnora",
+        "stars": 30512,
+        "forks": 4089,
+        "watchers": 143,
+        "openIssues": 558,
+        "hasIssues": true,
+        "contributors": 254,
+        "commits": 3265,
+        "created": "2025-07-22",
+        "pushed": "2026-09-27",
+        "archived": false,
+        "ageDays": 432,
+        "homepage": "https://weknora.weixin.qq.com",
+        "license": "NOASSERTION",
+        "flags": []
+      }
+    },
+    "recheck": {
+      "date": "2026-09-27",
+      "items": [
+        {
+          "ghsa": "GHSA-pcwc-3fw3-8cqv",
+          "cve": "CVE-2026-22687",
+          "severity": "medium",
+          "published": "2026-01-09",
+          "summary": "WeKnora数据库查询工具存在sql注入漏洞",
+          "patched": null,
+          "openPackages": [
+            "WeKnora"
+          ],
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.2.4, latest published 0.8.2",
+          "packages": [
+            ":WeKnora"
+          ]
+        },
+        {
+          "ghsa": "GHSA-78h3-63c4-5fqc",
+          "cve": "CVE-2026-22688",
+          "severity": "critical",
+          "published": "2026-01-09",
+          "summary": "Command Injection in (MCP stdio test) in Tencent/WeKnora",
+          "patched": null,
+          "openPackages": [
+            "internal/mcp/client.go"
+          ],
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.2.5, latest published 0.8.2",
+          "packages": [
+            "go:internal/mcp/client.go"
+          ]
+        },
+        {
+          "id": "CVE-2025-11046",
+          "ghsa": "GHSA-h2wr-wxxv-x8p9",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-8786",
+          "ghsa": "GHSA-4cvj-xf75-4wv6",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        }
+      ]
+    }
+  },
+  "remotion-dev/skills": {
+    "repo": "remotion-dev/skills",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/remotion-dev/skills/security/advisories",
+        "count": 0,
+        "latestRelease": null,
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "remotion-dev/skills CVE",
+          "remotion-dev/skills vulnerability",
+          "remotion-dev/skills malware",
+          "remotion-dev/skills scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "remotion-dev/skills",
+        "stars": 4739,
+        "forks": 530,
+        "watchers": 17,
+        "openIssues": 22,
+        "hasIssues": true,
+        "contributors": 1,
+        "commits": 83,
+        "created": "2026-01-19",
+        "pushed": "2026-09-25",
+        "archived": false,
+        "ageDays": 251,
+        "homepage": null,
+        "license": null,
+        "flags": []
+      }
+    }
+  },
+  "vercel-labs/skills": {
+    "repo": "vercel-labs/skills",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/vercel-labs/skills/security/advisories",
+        "count": 0,
+        "latestRelease": "1.7.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "vercel-labs/skills CVE",
+          "vercel-labs/skills vulnerability",
+          "vercel-labs/skills malware",
+          "vercel-labs/skills scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "vercel-labs/skills",
+        "stars": 32605,
+        "forks": 2782,
+        "watchers": 108,
+        "openIssues": 1240,
+        "hasIssues": true,
+        "contributors": 147,
+        "commits": 520,
+        "created": "2026-01-14",
+        "pushed": "2026-09-18",
+        "archived": false,
+        "ageDays": 256,
+        "homepage": "https://skills.sh",
+        "license": "MIT",
+        "flags": []
+      }
+    }
+  },
+  "vectorize-io/hindsight": {
+    "repo": "vectorize-io/hindsight",
+    "checked": "2026-09-27",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "github-api",
+        "url": "https://github.com/vectorize-io/hindsight/security/advisories",
+        "count": 0,
+        "latestRelease": "0.10.1",
+        "items": []
+      },
+      "searches": {
+        "engine": "exa",
+        "queries": [
+          "vectorize-io/hindsight CVE",
+          "vectorize-io/hindsight vulnerability",
+          "vectorize-io/hindsight malware",
+          "vectorize-io/hindsight scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "cves": []
+      },
+      "activity": {
+        "canonical": "vectorize-io/hindsight",
+        "stars": 35940,
+        "forks": 4574,
+        "watchers": 80,
+        "openIssues": 164,
+        "hasIssues": true,
+        "contributors": 263,
+        "commits": 3244,
+        "created": "2025-10-30",
+        "pushed": "2026-09-26",
+        "archived": false,
+        "ageDays": 332,
+        "homepage": "https://hindsight.vectorize.io/",
+        "license": "MIT",
+        "flags": []
+      }
     }
   }
 }

@@ -1,0 +1,76 @@
+# Repo Radar data format
+
+Pages are built from data by `scripts/build.mjs`. Nobody writes page HTML by hand any more. One file
+per repo, one file per edition, one hub file. `scripts/verify.mjs` checks every rule below before
+anything ships.
+
+## `data/editions/<YYYY-MM-DD>/edition.json`
+
+```json
+{
+  "number": "010",
+  "date": "2026-10-02",
+  "theme_short": "5-7 words",
+  "theme": "**The story of the week in one bold line.** Then two plain sentences that tie the picks together.",
+  "method": "**How this week was picked:** sources scanned, how many cleared, anything pulled for safety.",
+  "picks": [
+    { "rank": 1, "slug": "laya", "repo": "owner/name", "name": "laya", "fit": "you | developers | news",
+      "stars": 26096, "thumb": "assets/shots/laya-demo.webp", "oneliner": "Plain-English line, max about 20 words." },
+    { "rank": 5, "slug": "zcode", "repo": "owner/name", "name": "ZCode", "status": "fail",
+      "oneliner": "Why it was pulled, in one line." }
+  ]
+}
+```
+
+- `fit` is `you` (a non-coder can install or use it with Claude Code), `developers` (it needs someone
+  who writes code), or `news` (a model or research result: it goes on the "Also this week" line, not
+  in the 10).
+- `thumb` is only for #1 to #3, and only a real screenshot or demo frame of the product. No
+  auto-generated GitHub cards.
+
+## `data/editions/<date>/<slug>.json`: one repo's answer sheet
+
+Every string is plain English. `**bold**` is the only markup allowed. Every number, person, post and
+URL is real and cited; if something is missing, say "no data found" or leave the section's empty
+state to say so.
+
+| Field | What goes in it |
+|---|---|
+| `repo`, `name` | `owner/name` and the display name |
+| `tagline` | "A [thing you know] that [one twist]." Max about 20 words, no jargon |
+| `sentence` | One verb-first sentence on what it does for the reader, with a concrete example |
+| `fit` | `you`, `developers` or `news` |
+| `replaces` | Optional: a product or bill the reader knows ("TypeSafe's paid Jev service"). Only if sourced |
+| `links` | `website` (the homepage, if it has one), `demo` (a live demo or video), `docs` |
+| `visual` | `src` (a real screenshot or demo frame in `assets/shots/`, or a README image URL), `width`, `height`, `alt` (what it shows, with the real numbers), `caption` |
+| `board` | Exactly 4 notes, in order `problem`, `input`, `does`, `result`. Each has `say` (a short sentence) and `eg` (a real example: the product's own demo or docs) |
+| `before`, `after` | 2-3 bullets each: the pain without it, then what you get with it |
+| `uses_note` | Optional one line of context ("It's 9 days old, so real use is early") |
+| `uses` | 2-4 real uses: `who`, `what`, `result`, `stat` (the headline number: "37 of 40", "178 pts"), `source {title, url, date}` |
+| `pulse` | `gain` (a plain line), `history` ([[date, stars], ...] measured points only), `history_note`, `facts` (2-4 `{value, label}`) |
+| `coverage` | 3-6 independent write-ups or threads: `plat`, `title`, `url`, `meta` ("178 points · Sep 20"), `tone: "critical"` for critical takes |
+| `trending` | Optional short chips ("findarepo: star growth looks organic") |
+| `star_check` | Optional one line from findarepo's star check |
+| `try` | `effort` (`minutes`, `hour` or `developer`), `steps` (3 plain steps), `paste` (the Claude Code prompt: always `/skillspector <url>` first, then install and run its own demo, 10 minutes max) |
+| `verdict` | `best_for` (2-3), `skip_if` (2-3), `alternatives` (2-3: `name`, `repo` if it is a GitHub repo, which must be gated, `url`, `line`) |
+| `watch` | 2-4 watch-outs, each starting with a **bold** summary |
+| `sources` | Every source used, with a date where known |
+
+The safety block on every page comes from `data/gate-log.json`, not from this file.
+
+## Plain-English rules (verify enforces the first)
+- These words may not appear in `tagline`, `sentence`, `board` or `before`/`after` unless explained
+  right next to them (in brackets or after a colon): autoregressive, inference, embeddings, vector,
+  RAG, LLM, orchestration, harness, SDK, CLI, latency, tokens, fine-tune, MCP, agentic, runtime,
+  backbone, parameters, checkpoint, forward pass, calibrated, repo, dependency, deploy, endpoint,
+  webhook, Docker, Kubernetes, monorepo, self-hosted.
+- Compare to things people know: a product, a bill, a job ("a tiny AI sorting clerk").
+- Say what is thin, early or disputed, plainly.
+
+## `data/hub.json`
+- `categories`: `[{id, name, checked, picks: [{repo, name, stars, perday?, url?, oneliner}]}]`, with
+  3 picks per lane, all gated. Fewer than 3 cleared means the page says the slot is open.
+- `claude_board`: `[{repo, name, installs_label, url, oneliner}]`, the top 10 Claude skills and
+  plugins by skills.sh installs. A repo needs 1K+ GitHub stars (so install counts can't be gamed)
+  and must be gated.
+- `categories_note`, `claude_board_note`: one line each.

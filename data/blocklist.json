@@ -148,5 +148,10 @@
     "date": "2026-08-29",
     "kind": "open-advisories",
     "reason": "10 advisories, mostly High/Critical: arbitrary file write, shell execution bypasses"
+  },
+  {
+    "repo": "Tencent/WeKnora",
+    "date": "2026-09-27",
+    "reason": "2 open advisory(ies): GHSA-pcwc-3fw3-8cqv medium (unpatched), GHSA-78h3-63c4-5fqc critical (unpatched) | 2 open CVE(s) found by search: CVE-2025-11046 medium (unpatched), CVE-2026-8786 low (unpatched)"
   }
 ]

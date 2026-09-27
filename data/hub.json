@@ -15,6 +15,13 @@
           "name": "codex",
           "stars": 126400,
           "oneliner": "OpenAI's lightweight coding agent that runs in your terminal."
+        },
+        {
+          "repo": "anthropics/claude-code",
+          "name": "claude-code",
+          "stars": 148304,
+          "url": "https://code.claude.com/docs/en/overview",
+          "oneliner": "Anthropic's coding agent that lives in your terminal: the tool you run these skills in."
         }
       ],
       "id": "development-coding-agents",
@@ -84,6 +91,14 @@
           "name": "claude-obsidian",
           "stars": 15200,
           "oneliner": "Self-organizing AI second brain for Obsidian + Claude Code."
+        },
+        {
+          "repo": "vectorize-io/hindsight",
+          "name": "hindsight",
+          "stars": 35906,
+          "perday": 1040,
+          "url": "https://hindsight.vectorize.io/",
+          "oneliner": "Long-term memory for AI agents that learns from what they did before."
         }
       ],
       "id": "research-knowledge",
@@ -239,6 +254,79 @@
       ],
       "id": "security-privacy",
       "checked": "2026-09-27"
+    }
+  ],
+  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Sep 27), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
+  "claude_board": [
+    {
+      "repo": "mattpocock/skills",
+      "name": "mattpocock/skills",
+      "installs_label": "24.8M installs · 54 skills",
+      "url": "https://skills.sh/mattpocock/skills",
+      "oneliner": "Matt Pocock's everyday engineering skills for AI agents: planning, reviews, debugging and more."
+    },
+    {
+      "repo": "heygen-com/hyperframes",
+      "name": "HyperFrames",
+      "installs_label": "9.1M installs · 52 skills",
+      "url": "https://skills.sh/heygen-com/hyperframes",
+      "oneliner": "Your AI writes a web page, and HyperFrames turns it into a video."
+    },
+    {
+      "repo": "Leonxlnx/taste-skill",
+      "name": "taste-skill",
+      "installs_label": "4.5M installs · 15 skills",
+      "url": "https://tasteskill.dev",
+      "oneliner": "Gives your AI good taste: stops it from producing boring, generic designs."
+    },
+    {
+      "repo": "JuliusBrussee/caveman",
+      "name": "caveman",
+      "installs_label": "3.7M installs · 23 skills",
+      "url": "https://skills.sh/JuliusBrussee/caveman",
+      "oneliner": "Makes your AI answer in short, blunt sentences to save money on tokens."
+    },
+    {
+      "repo": "vercel-labs/skills",
+      "name": "skills (find-skills)",
+      "installs_label": "3.6M installs",
+      "url": "https://skills.sh/vercel-labs/skills",
+      "oneliner": "The npx skills tool: finds and installs skills for your AI agent."
+    },
+    {
+      "repo": "anthropics/skills",
+      "name": "anthropics/skills",
+      "installs_label": "3.3M installs · 21 skills",
+      "url": "https://skills.sh/anthropics/skills",
+      "oneliner": "Anthropic's official skills for Claude: documents, slides, design and more."
+    },
+    {
+      "repo": "obra/superpowers",
+      "name": "superpowers",
+      "installs_label": "3.3M installs · 15 skills",
+      "url": "https://skills.sh/obra/superpowers",
+      "oneliner": "Teaches coding agents to plan, test and debug like a careful senior engineer."
+    },
+    {
+      "repo": "wshobson/agents",
+      "name": "wshobson/agents",
+      "installs_label": "2.2M installs · 183 skills",
+      "url": "https://skills.sh/wshobson/agents",
+      "oneliner": "A big marketplace of ready-made agents and skills for Claude Code and other tools."
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "name": "impeccable",
+      "installs_label": "1.9M installs · 24 skills",
+      "url": "https://impeccable.style",
+      "oneliner": "Teaches your AI coding tool real design sense, so what it builds doesn't look AI-made."
+    },
+    {
+      "repo": "remotion-dev/skills",
+      "name": "remotion skills",
+      "installs_label": "1.5M installs · 15 skills",
+      "url": "https://skills.sh/remotion-dev/skills",
+      "oneliner": "Official skills for making videos with code, using Remotion."
     }
   ]
 }

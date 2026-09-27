@@ -148,7 +148,7 @@ async function runSearch(query) {
         <div class="rstat">★ ${formatCount(r.stargazers_count)}</div>
       </a>`).join('');
     out.innerHTML = `
-      <div class="rawlabel">Raw radar - unverified, ranked by stars</div>
+      <div class="rawlabel">Unvetted GitHub search, ranked by stars: not reviewed or safety-checked. Queue one for a full briefing before you trust it.</div>
       ${rows || '<div class="err"><b>Nothing found.</b> Try different words.</div>'}
       <div class="card">
         <div class="desc">Want the curated read? Queue a Top 3 hunt - community-verified picks with a mini-brief each, not just star counts.</div>

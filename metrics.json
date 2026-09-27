@@ -1,67 +1,377 @@
 {
- "snapshot_date": "2026-08-07",
- "stars": {
-  "affaan-m/ECC": 238563,
-  "mattpocock/skills": 208730,
-  "garrytan/gstack": 126802,
-  "Graphify-Labs/graphify": 104008,
-  "DietrichGebert/ponytail": 98227,
-  "odysseus-dev/odysseus": 84933,
-  "nexu-io/open-design": 84392,
-  "paperclipai/paperclip": 75835,
-  "rtk-ai/rtk": 75193,
-  "MemPalace/mempalace": 58194,
-  "anomalyco/opencode": 194750,
-  "openai/codex": 104650,
-  "earendil-works/pi": 85277,
-  "bytedance/deer-flow": 79514,
-  "ruvnet/ruflo": 67285,
-  "HKUDS/nanobot": 46750,
-  "antirez/ds4": 20888,
-  "Michael-A-Kuykendall/shimmy": 5736,
-  "drumih/turbo-fieldfare": 5325,
-  "huginn/huginn": 49758,
-  "activepieces/activepieces": 23618,
-  "windmill-labs/windmill": 17472,
-  "immich-app/immich": 109931,
-  "home-assistant/core": 89792,
-  "jellyfin/jellyfin": 55522,
-  "grafana/grafana": 76153,
-  "apache/superset": 74177,
-  "metabase/metabase": 48591,
-  "D4Vinci/Scrapling": 72996,
-  "vercel-labs/agent-browser": 40167,
-  "apify/crawlee": 25229,
-  "excalidraw/excalidraw": 129136,
-  "penpot/penpot": 58236,
-  "onlook-dev/onlook": 26435,
-  "coollabsio/coolify": 60225,
-  "Dokploy/dokploy": 36415,
-  "dagger/dagger": 16140,
-  "AppFlowy-IO/AppFlowy": 75060,
-  "siyuan-note/siyuan": 45667,
-  "AgriciDaniel/claude-obsidian": 10523,
-  "twentyhq/twenty": 54464,
-  "frappe/erpnext": 37753,
-  "krayin/laravel-crm": 23643,
-  "TauricResearch/TradingAgents": 96075,
-  "OpenBB-finance/OpenBB": 71558,
-  "freqtrade/freqtrade": 53055,
-  "usestrix/strix": 49642,
-  "projectdiscovery/nuclei": 30366,
-  "gitleaks/gitleaks": 28527,
-  "BigPizzaV3/CodexPlusPlus": 28194,
-  "xai-org/grok-build": 24391,
-  "JustVugg/colibri": 23179,
-  "alibaba/open-code-review": 19567,
-  "microsoft/SkillOpt": 15745,
-  "langchain-ai/openwiki": 14526,
-  "andrewyng/openworker": 13565,
-  "XiaomiMiMo/MiMo-Code": 12679,
-  "yc-software/qm": 12277,
-  "firecrawl/anydoc": 10899,
-  "openai/codex-security": 9263,
-  "ayghri/i-have-adhd": 18139,
-  "zhaoxuya520/reverse-skill": 20512
+ "about": "Weekly GitHub star snapshots for every repo the radar considers. The Friday run appends one row per repo and never overwrites, so growth is measured from our own records. Format: repo -> [[date, stars], ...].",
+ "history": {
+  "affaan-m/ECC": [
+   [
+    "2026-08-07",
+    238563
+   ]
+  ],
+  "mattpocock/skills": [
+   [
+    "2026-08-07",
+    208730
+   ]
+  ],
+  "garrytan/gstack": [
+   [
+    "2026-08-07",
+    126802
+   ]
+  ],
+  "Graphify-Labs/graphify": [
+   [
+    "2026-08-07",
+    104008
+   ]
+  ],
+  "DietrichGebert/ponytail": [
+   [
+    "2026-08-07",
+    98227
+   ]
+  ],
+  "odysseus-dev/odysseus": [
+   [
+    "2026-08-07",
+    84933
+   ]
+  ],
+  "nexu-io/open-design": [
+   [
+    "2026-08-07",
+    84392
+   ]
+  ],
+  "paperclipai/paperclip": [
+   [
+    "2026-08-07",
+    75835
+   ]
+  ],
+  "rtk-ai/rtk": [
+   [
+    "2026-08-07",
+    75193
+   ]
+  ],
+  "MemPalace/mempalace": [
+   [
+    "2026-08-07",
+    58194
+   ]
+  ],
+  "anomalyco/opencode": [
+   [
+    "2026-08-07",
+    194750
+   ]
+  ],
+  "openai/codex": [
+   [
+    "2026-08-07",
+    104650
+   ]
+  ],
+  "earendil-works/pi": [
+   [
+    "2026-08-07",
+    85277
+   ]
+  ],
+  "bytedance/deer-flow": [
+   [
+    "2026-08-07",
+    79514
+   ]
+  ],
+  "ruvnet/ruflo": [
+   [
+    "2026-08-07",
+    67285
+   ]
+  ],
+  "HKUDS/nanobot": [
+   [
+    "2026-08-07",
+    46750
+   ]
+  ],
+  "antirez/ds4": [
+   [
+    "2026-08-07",
+    20888
+   ]
+  ],
+  "Michael-A-Kuykendall/shimmy": [
+   [
+    "2026-08-07",
+    5736
+   ]
+  ],
+  "drumih/turbo-fieldfare": [
+   [
+    "2026-08-07",
+    5325
+   ]
+  ],
+  "huginn/huginn": [
+   [
+    "2026-08-07",
+    49758
+   ]
+  ],
+  "activepieces/activepieces": [
+   [
+    "2026-08-07",
+    23618
+   ]
+  ],
+  "windmill-labs/windmill": [
+   [
+    "2026-08-07",
+    17472
+   ]
+  ],
+  "immich-app/immich": [
+   [
+    "2026-08-07",
+    109931
+   ]
+  ],
+  "home-assistant/core": [
+   [
+    "2026-08-07",
+    89792
+   ]
+  ],
+  "jellyfin/jellyfin": [
+   [
+    "2026-08-07",
+    55522
+   ]
+  ],
+  "grafana/grafana": [
+   [
+    "2026-08-07",
+    76153
+   ]
+  ],
+  "apache/superset": [
+   [
+    "2026-08-07",
+    74177
+   ]
+  ],
+  "metabase/metabase": [
+   [
+    "2026-08-07",
+    48591
+   ]
+  ],
+  "D4Vinci/Scrapling": [
+   [
+    "2026-08-07",
+    72996
+   ]
+  ],
+  "vercel-labs/agent-browser": [
+   [
+    "2026-08-07",
+    40167
+   ]
+  ],
+  "apify/crawlee": [
+   [
+    "2026-08-07",
+    25229
+   ]
+  ],
+  "excalidraw/excalidraw": [
+   [
+    "2026-08-07",
+    129136
+   ]
+  ],
+  "penpot/penpot": [
+   [
+    "2026-08-07",
+    58236
+   ]
+  ],
+  "onlook-dev/onlook": [
+   [
+    "2026-08-07",
+    26435
+   ]
+  ],
+  "coollabsio/coolify": [
+   [
+    "2026-08-07",
+    60225
+   ]
+  ],
+  "Dokploy/dokploy": [
+   [
+    "2026-08-07",
+    36415
+   ]
+  ],
+  "dagger/dagger": [
+   [
+    "2026-08-07",
+    16140
+   ]
+  ],
+  "AppFlowy-IO/AppFlowy": [
+   [
+    "2026-08-07",
+    75060
+   ]
+  ],
+  "siyuan-note/siyuan": [
+   [
+    "2026-08-07",
+    45667
+   ]
+  ],
+  "AgriciDaniel/claude-obsidian": [
+   [
+    "2026-08-07",
+    10523
+   ]
+  ],
+  "twentyhq/twenty": [
+   [
+    "2026-08-07",
+    54464
+   ]
+  ],
+  "frappe/erpnext": [
+   [
+    "2026-08-07",
+    37753
+   ]
+  ],
+  "krayin/laravel-crm": [
+   [
+    "2026-08-07",
+    23643
+   ]
+  ],
+  "TauricResearch/TradingAgents": [
+   [
+    "2026-08-07",
+    96075
+   ]
+  ],
+  "OpenBB-finance/OpenBB": [
+   [
+    "2026-08-07",
+    71558
+   ]
+  ],
+  "freqtrade/freqtrade": [
+   [
+    "2026-08-07",
+    53055
+   ]
+  ],
+  "usestrix/strix": [
+   [
+    "2026-08-07",
+    49642
+   ]
+  ],
+  "projectdiscovery/nuclei": [
+   [
+    "2026-08-07",
+    30366
+   ]
+  ],
+  "gitleaks/gitleaks": [
+   [
+    "2026-08-07",
+    28527
+   ]
+  ],
+  "BigPizzaV3/CodexPlusPlus": [
+   [
+    "2026-08-07",
+    28194
+   ]
+  ],
+  "xai-org/grok-build": [
+   [
+    "2026-08-07",
+    24391
+   ]
+  ],
+  "JustVugg/colibri": [
+   [
+    "2026-08-07",
+    23179
+   ]
+  ],
+  "alibaba/open-code-review": [
+   [
+    "2026-08-07",
+    19567
+   ]
+  ],
+  "microsoft/SkillOpt": [
+   [
+    "2026-08-07",
+    15745
+   ]
+  ],
+  "langchain-ai/openwiki": [
+   [
+    "2026-08-07",
+    14526
+   ]
+  ],
+  "andrewyng/openworker": [
+   [
+    "2026-08-07",
+    13565
+   ]
+  ],
+  "XiaomiMiMo/MiMo-Code": [
+   [
+    "2026-08-07",
+    12679
+   ]
+  ],
+  "yc-software/qm": [
+   [
+    "2026-08-07",
+    12277
+   ]
+  ],
+  "firecrawl/anydoc": [
+   [
+    "2026-08-07",
+    10899
+   ]
+  ],
+  "openai/codex-security": [
+   [
+    "2026-08-07",
+    9263
+   ]
+  ],
+  "ayghri/i-have-adhd": [
+   [
+    "2026-08-07",
+    18139
+   ]
+  ],
+  "zhaoxuya520/reverse-skill": [
+   [
+    "2026-08-07",
+    20512
+   ]
+  ]
  }
 }
