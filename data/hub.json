@@ -108,12 +108,6 @@
       "name": "Web Scraping & Data Extraction",
       "picks": [
         {
-          "repo": "firecrawl/firecrawl",
-          "name": "firecrawl",
-          "stars": 184500,
-          "oneliner": "The web data API to search, scrape, and interact at scale."
-        },
-        {
           "repo": "D4Vinci/Scrapling",
           "name": "Scrapling",
           "stars": 83600,
@@ -194,14 +188,7 @@
     },
     {
       "name": "Sales & CRM",
-      "picks": [
-        {
-          "repo": "frappe/erpnext",
-          "name": "erpnext",
-          "stars": 39500,
-          "oneliner": "Free open-source ERP with a full CRM and sales pipeline inside."
-        }
-      ],
+      "picks": [],
       "id": "sales-crm",
       "checked": "2026-09-27"
     },
