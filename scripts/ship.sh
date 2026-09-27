@@ -13,7 +13,8 @@ if [ -f scripts/build.mjs ]; then node scripts/build.mjs --hub; fi
 node --test scripts/*.test.mjs >/tmp/rr-ship-tests.log 2>&1 || { tail -30 /tmp/rr-ship-tests.log; echo "ship.sh: tests failed, nothing pushed"; exit 1; }
 node scripts/verify.mjs
 git add -A
-if git diff --cached --quiet; then echo "nothing to ship"; exit 0; fi
-git commit -q -m "$msg"
+if ! git diff --cached --quiet; then git commit -q -m "$msg"; fi
+# Push whatever is ahead of GitHub, including commits made before this run (a merge, say).
+if [ "$(git rev-list --count origin/main..HEAD)" = "0" ]; then echo "nothing to ship"; exit 0; fi
 git push -q origin main
 echo "pushed $(git rev-parse --short HEAD); Vercel deploys from GitHub in about a minute"
