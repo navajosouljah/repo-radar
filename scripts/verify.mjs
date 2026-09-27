@@ -23,7 +23,7 @@ const key = r => String(r || '').toLowerCase();
 
 function walk(dir, out = []) {
   for (const f of readdirSync(join(ROOT, dir))) {
-    if (['.git', 'node_modules', '.vercel', 'backup'].includes(f)) continue;
+    if (['.git', 'node_modules', '.vercel', 'backup', 'scripts'].includes(f)) continue; // scripts/ holds test fixtures, never published
     const p = dir ? `${dir}/${f}` : f;
     if (statSync(join(ROOT, p)).isDirectory()) walk(p, out); else out.push(p);
   }

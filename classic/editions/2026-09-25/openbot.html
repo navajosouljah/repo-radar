@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CopilotKit/OpenBot - AI Coworkers With Their Own Computers | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5e6c8;--bg2:#efe0bc;--card:#fffdf5;--card2:#f9f3e4;
+    --primary:#d46a2e;--primary-dim:#b85a24;--secondary:#2e7d4e;
+    --accent:#8a7b5e;--accent-light:#6b5e44;
+    --ink:#2c2417;--muted:#6b5e44;--line:#d4c5a0;
+    --sans:'Nunito',sans-serif;--mono:'VT323',monospace;--disp:'Press Start 2P',cursive;
+    --r:0px;
+    --shadow:0 2px 0 #d4c5a0;--shadow-lg:0 4px 0 #c4b590;
+    --glow:none;
+    --pixel-border:3px solid #2c2417;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;image-rendering:pixelated}
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:#2c2417;border-bottom:4px solid var(--primary)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:22px;color:var(--bg);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:20px;color:#2c2417;background:var(--primary);border:var(--pixel-border);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{background:var(--secondary);color:#fff;text-decoration:none}
+  .hero{padding:72px 0 50px;border-bottom:4px solid #2c2417}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:var(--primary);color:#fffdf5;font-weight:700;border-radius:var(--r);padding:10px 22px;margin-bottom:24px;border:var(--pixel-border)}
+  h1{font-family:var(--disp);font-size:clamp(18px,4.5vw,36px);font-weight:700;line-height:1.4;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.55em;display:block;letter-spacing:.06em;margin-bottom:8px}
+  h1 .name{color:var(--primary);text-shadow:2px 2px 0 #f5e6c8}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500;font-family:var(--sans)}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:var(--pixel-border);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:22px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+  .tabnav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:4px solid #2c2417;padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:700;font-size:9px;letter-spacing:.02em;background:var(--card);border:var(--pixel-border);color:var(--muted);padding:12px 20px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);background:var(--card2)}
+  .tab-btn.active{background:var(--primary);border-color:#2c2417;color:#fffdf5}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(13px,2.5vw,20px);font-weight:700;letter-spacing:.01em;margin-bottom:14px;color:var(--ink);line-height:1.6}
+  h2 em{font-style:normal;color:var(--primary)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:var(--pixel-border);border-radius:var(--r);padding:26px 22px;border-left:6px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(32px,5vw,48px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:var(--pixel-border);border-left:6px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15.5px;margin-bottom:8px;color:var(--ink)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:var(--card);border:4px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--secondary);color:#fff;font-weight:700;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:var(--r);margin-bottom:16px;border:2px solid #2c2417}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:var(--pixel-border);box-shadow:var(--shadow)}
+  .ba.before{background:#fdf0e0;border-color:#b85a24}
+  .ba.after{background:#e8f5ec;border-color:var(--secondary)}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:var(--primary)}.ba.after .ba-tag{color:var(--secondary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:var(--pixel-border);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:3px solid #2c2417}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#fffdf5;font-weight:700;font-size:10px;width:36px;height:36px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid #2c2417}
+  .step-head h3{margin:0;font-size:16px}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#2c2417;border:var(--pixel-border);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:20px;line-height:1.6;color:#f5e6c8}
+  pre .cm{color:#8a7b5e}
+  .story{background:var(--card);border:var(--pixel-border);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:10px;color:var(--primary);line-height:1.8;font-weight:700}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:4px solid var(--secondary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--secondary);font-size:16px;margin-bottom:16px;font-family:var(--disp);font-size:11px}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:3px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:2px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:#fdf0e0;border:4px solid var(--primary);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:var(--primary);font-size:17px;margin-bottom:16px;font-family:var(--disp);font-size:11px}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:3px solid rgba(212,106,46,.2)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:4px solid #2c2417;padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:700;font-size:8px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:17px;line-height:1.8}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700;font-size:20px}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:10px;font-family:var(--disp);background:var(--card);border:var(--pixel-border);padding:14px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.02em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#fffdf5;text-decoration:none}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/CopilotKit/OpenBot" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">AI Coworkers - Open Source</span>
+    <h1><span class="owner">CopilotKit /</span><span class="name">OpenBot</span></h1>
+    <p class="tagline"><strong>Give each AI agent its own computer.</strong> OpenBot is a self-hosted platform where AI coworkers each get a real browser, real files, and only the tools you grant. Every action is transparent to the developer - decided before it happens, recorded after. Bring any AG-UI agent.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">5.5K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">725</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Your team's new <em>pixel-perfect coworkers</em></h2>
+    <p class="sub">OpenBot ships as a template you clone and make your own. Docker Compose brings up every piece, your data sits in your own PostgreSQL, and no model ships in the box. Each bot is an AG-UI endpoint - so you bring whatever agent framework you like.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">5.5K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">725</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">v0.0.14</div><div class="l">Latest Release</div></div>
+      <div class="bignum"><div class="n">438K</div><div class="l">Launch Post Views</div></div>
+      <div class="bignum"><div class="n sc">AG-UI</div><div class="l">Open Protocol</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9632;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Each bot gets its own computer</div><p>Not a shared sandbox. Every coworker runs in its own isolated container with a <strong>real browser</strong>, its own file system, and only the tools you explicitly grant. No ambient access to things it should not touch.</p></div>
+      <div class="feat"><div class="fh">AG-UI protocol, framework agnostic</div><p>A bot is any endpoint speaking <strong>AG-UI</strong>, the open interaction protocol maintained by CopilotKit. Agents built with LangGraph, Mastra, CrewAI, Pydantic AI, or Google ADK all arrive the same way.</p></div>
+      <div class="feat"><div class="fh">Full action transparency</div><p>Every action is <strong>decided before it happens and recorded after</strong>. Developers see exactly what the agent plans to do, approve or reject it, and review a complete audit trail.</p></div>
+      <div class="feat"><div class="fh">Self-hosted, your data stays home</div><p>Docker Compose brings up the stack. Your data lives in <strong>your own PostgreSQL</strong>. No SaaS dependency, no data leaving your infrastructure. You pick the model provider.</p></div>
+      <div class="feat"><div class="fh">Bot-to-bot handoff</div><p>Coworkers can <strong>hand tasks off to each other</strong>, route untagged messages on their own, and run on a schedule. Multi-agent orchestration without a central controller.</p></div>
+      <div class="feat"><div class="fh">Knowledge source connectors</div><p>Bots can <strong>answer from Google Drive and Notion</strong> - connecting to your existing knowledge bases rather than requiring you to re-upload documents into yet another tool.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Best Feature</span>
+      <h3>Isolation that actually works</h3>
+      <p>The killer differentiator is not the AI - it is the sandboxing. Each coworker gets a real, isolated computer. A browser with its own logins, files it can read and write, and only the tools you grant. When an agent makes a mistake, it breaks its own sandbox, not your production environment. This is what turns AI agents from demos into something you can actually deploy at a company.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>AI agent trust</em> problem</h2>
+    <p class="sub">AI agents are powerful but dangerous. Giving them access to your browser, files, and tools means one bad action can break everything. Teams need transparency and isolation before they can deploy agents for real work.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Agents share your environment.</strong> Most AI agent frameworks run in the developer's own browser or file system. One rogue action - deleting the wrong file, clicking the wrong link - affects everything. There is no isolation.</p>
+        <p><strong>Black-box decision making.</strong> You tell the agent to do something and it does... things. What exactly did it browse? What did it write? The audit trail is spotty at best, nonexistent at worst.</p>
+        <p><strong>Locked into one framework.</strong> You pick LangGraph or CrewAI or Mastra and you are committed. Swapping the orchestration layer means rewriting your agents from scratch.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Each agent gets its own sandbox.</strong> With OpenBot, every coworker runs in an isolated container. Its own browser, its own files, its own scoped tools. A mistake stays contained in that sandbox.</p>
+        <p><strong>Full transparency by design.</strong> Every action is proposed before execution and logged after. Developers can approve, reject, or review any action. The audit trail is built into the protocol.</p>
+        <p><strong>Bring any AG-UI agent.</strong> The AG-UI protocol decouples the agent from the platform. Swap LangGraph for CrewAI without touching your deployment. The platform does not care what framework powers the bot.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Deploy your <em>first coworker</em></h2>
+    <p class="sub">OpenBot is a template, not a package. Clone it, configure it, and run Docker Compose.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Clone the template</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Clone the OpenBot template</span>
+git clone https://github.com/CopilotKit/OpenBot.git
+cd OpenBot
+
+<span class="cm"># Copy the environment template</span>
+cp .env.example .env</pre>
+        <p>Edit <strong>.env</strong> with your model provider API key (OpenAI, Anthropic, or others) and your PostgreSQL credentials. OpenBot does not bundle a model - you bring your own.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Start the stack</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Bring up OpenBot with Docker Compose</span>
+docker compose up -d
+
+<span class="cm"># Verify services are running</span>
+docker compose ps</pre>
+        <p>Docker Compose starts <strong>PostgreSQL, the OpenBot server, and the agent runtime</strong>. Each coworker gets its own container when it spins up. Your data stays in your own database.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Define a coworker</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Define a coworker in the config</span>
+<span class="cm"># Each coworker is an AG-UI endpoint</span>
+<span class="cm"># with scoped browser, files, and tools</span>
+
+<span class="cm"># Example: a research coworker</span>
+name: "researcher"
+agent: "langgraph://research-agent"
+tools:
+  - browser: { allow: ["*.google.com"] }
+  - files: { read: true, write: false }</pre>
+        <p>Coworkers are defined declaratively. Specify the <strong>AG-UI agent endpoint</strong>, what tools it can use, what sites it can browse, and what files it can access. The principle is least privilege.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where <em>OpenBot</em> fits</h2>
+    <p class="sub">OpenBot shines wherever you need AI agents doing real work with real accountability - not chat demos, but coworkers you can trust with production tasks.</p>
+
+    <div class="story"><div class="metric">Customer Support Bots</div><p><strong>Deploy support agents that browse your docs and ticketing system.</strong> Each support coworker gets access to your knowledge base and Zendesk, but nothing else. It drafts replies, the team reviews and sends. Every interaction is logged.</p></div>
+    <div class="story"><div class="metric">Research Assistants</div><p><strong>Agents that browse the web, summarize findings, and save to shared drives.</strong> A research coworker gets a browser scoped to approved sources and write access to a single Google Drive folder. It runs on a schedule and delivers daily briefings.</p></div>
+    <div class="story"><div class="metric">Internal Tool Automation</div><p><strong>Automate repetitive workflows across internal tools.</strong> A coworker logs into your internal dashboards with its own credentials, pulls reports, and formats them. No screen-sharing your personal browser session with an AI.</p></div>
+    <div class="story"><div class="metric">Multi-Agent Orchestration</div><p><strong>Teams of bots that hand off work to each other.</strong> A triage coworker reads incoming requests and routes them to specialized coworkers - one for billing, one for technical issues, one for account changes. Each with its own scoped access.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>Launch post went viral.</strong> CEO Atai Barkai announced OpenBot on August 19, 2026 as "an open source Grok Bot that works with ANY agent harness." The launch post crossed 438K views in a single day and hit 1.1K stars and 105 forks within the first week. <a href="https://runtimewire.com/article/copilotkit-founders-pitch-self-hosted-openbot-directly-against-grok-bot" target="_blank">Source: RuntimeWire</a></li>
+        <li><strong>CopilotKit blog coverage.</strong> The official CopilotKit blog documents the project passing 3.5K GitHub stars and the v0.0.5 release shipping bot-to-bot handoff, Google Drive and Notion connectors, scheduled runs, and autonomous message routing. <a href="https://www.copilotkit.ai/blog/openbot-updates-v0.0.5" target="_blank">Source: CopilotKit Blog</a></li>
+        <li><strong>MoClaw technical breakdown.</strong> MoClaw Blog published a detailed analysis of how OpenBot gives each agent its own computer, examining the isolation model and AG-UI protocol integration. <a href="https://moclaw.ai/blog/copilotkit-openbot" target="_blank">Source: MoClaw Blog</a></li>
+        <li><strong>ExplainX overview.</strong> ExplainX published a blog post positioning OpenBot as an "Open-Source Grok Bot for Any Harness" with a walkthrough of the architecture and self-hosting setup. <a href="https://explainx.ai/blog/copilotkit-openbot-open-source-grok-bot-august-2026" target="_blank">Source: ExplainX</a></li>
+        <li><strong>Hacker News debate.</strong> Discussion on HN around CopilotKit and AG-UI noted that "even with AG-UI, CopilotKit is a paid service" and debated vendor lock-in concerns, though OpenBot itself is MIT-licensed and self-hosted. <a href="https://news.ycombinator.com/item?id=45496596" target="_blank">Source: Hacker News</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch Out For</h3>
+      <ul>
+        <li><strong>It is a template, not a product.</strong> OpenBot is meant to be cloned and customized. There is no hosted version, no package to install, no managed service. If you want turnkey, this is not it - you are building and maintaining your own deployment.</li>
+        <li><strong>Very early stage.</strong> The project was created August 17, 2026 and is at v0.0.14. The API surface is changing fast. Expect breaking changes between minor versions and plan for migration work.</li>
+        <li><strong>CopilotKit commercial relationship.</strong> OpenBot is MIT-licensed but built by CopilotKit, which sells a commercial platform. Evaluate whether the open-source project will continue to get investment or whether features will migrate to the paid product over time.</li>
+        <li><strong>Docker Compose complexity.</strong> Running multiple isolated containers per coworker means resource requirements scale with the number of agents. Plan your infrastructure accordingly - this is not a lightweight single-process tool.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
+    <ul>
+      <li><a href="https://github.com/CopilotKit/OpenBot" target="_blank">CopilotKit/OpenBot GitHub</a> - source, docs, coworker config</li>
+      <li>Stack: TypeScript, Docker, PostgreSQL, AG-UI protocol</li>
+      <li>Last pushed: September 23, 2026 | Created: August 17, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>

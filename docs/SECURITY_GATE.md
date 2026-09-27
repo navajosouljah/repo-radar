@@ -36,6 +36,17 @@ Sep 27 2026 after the purge was silently undone and ZCode was ranked #5.
        release. An unmerged PR is not a fix (for example laravel-crm's PR #2466).
    - An affected range written as `<= X` with no fix listed is **not** a fix.
    - A pre-release (alpha, beta) is not a published fix.
+   - **A disputed fix must be resolved first.** When an issue or post says a published fix isn't in the
+     shipped code, find the maintainers' answer before deciding.
+     - If the hole is still open: FAIL.
+     - If what remains is a setup requirement (for example, OpenMAIC stays open to anyone unless
+       `ACCESS_CODE` is set; confirmed in issue #1587): PASS, and that requirement becomes a
+       **mandatory watch-out** on the page.
+   - Many advisories in a short window (for example, 11 in a month) is itself a watch-out the page
+     must name, even when all are fixed.
+   - When two checks disagree (a helper agent says FAIL, the log says PASS), the evidence decides:
+     re-read the advisories and issues, record which way it went and why in the log's
+     `settled.note`.
 3. **Searches.** Search `OWNER/REPO CVE`, `OWNER/REPO vulnerability`, `OWNER/REPO malware` and
    `OWNER/REPO scam`.
    - A CVE record that names this repo is checked the same way as an advisory (GitHub's global

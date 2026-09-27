@@ -18909,6 +18909,11 @@
         "license": "MIT",
         "flags": []
       }
+    },
+    "settled": {
+      "by": "human review",
+      "date": "2026-09-27",
+      "note": "All 11 advisories (Sep 6-26 2026, 2 critical SSRF) are fixed in released versions; latest v1.1.1. Issue #1587: the maintainer confirmed the app stays open to anyone when ACCESS_CODE is unset (the critical advisory had overstated its fix, since corrected), and PR #1594 now warns at startup. PASS with a mandatory watch-out: set an access code when self-hosting; 11 security holes in one month."
     }
   },
   "heygen-com/hyperframes": {

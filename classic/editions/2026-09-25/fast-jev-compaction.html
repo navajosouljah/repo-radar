@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tamaratran/fast-jev-compaction - Jev-Powered Compaction for Claude Code | Repo Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1e1e2e;--bg2:#232338;--card:#282840;--card2:#30304a;
+    --primary:#cba6f7;--primary-dim:#a882d8;--secondary:#a6e3a1;
+    --accent:#6c7086;--accent-light:#9399b2;
+    --ink:#cdd6f4;--muted:#9399b2;--line:#313244;
+    --sans:'Inter',sans-serif;--mono:'Fira Code','JetBrains Mono',monospace;--disp:'Fira Code',monospace;
+    --r:8px;
+    --shadow:0 2px 12px rgba(0,0,0,.25);--shadow-lg:0 6px 24px rgba(0,0,0,.35);
+    --glow:0 0 12px #cba6f730;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+    background-image:
+      linear-gradient(180deg,#cba6f704 0%,transparent 30%),
+      linear-gradient(90deg,transparent 0%,#a6e3a102 30%,#cba6f702 70%,transparent 100%);
+  }
+  a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .topbar{background:rgba(30,30,46,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .radar-link{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.03em}
+  .radar-link:hover{color:var(--primary);text-decoration:none}
+  .gh-link{font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 18px;border-radius:var(--r);box-shadow:var(--shadow)}
+  .gh-link:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;box-shadow:var(--glow)}
+  .hero{padding:72px 0 50px;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--primary);color:#1e1e2e;font-weight:700;border-radius:var(--r);padding:8px 22px;margin-bottom:24px;box-shadow:var(--glow)}
+  h1{font-family:var(--disp);font-size:clamp(28px,6vw,56px);font-weight:700;line-height:1.12;letter-spacing:.01em;color:var(--ink)}
+  h1 .owner{color:var(--accent);font-weight:400;font-size:.4em;display:block;letter-spacing:.04em;margin-bottom:4px}
+  h1 .name{color:var(--primary);text-shadow:var(--glow)}
+  .tagline{font-size:clamp(16px,2.3vw,21px);color:var(--muted);max-width:700px;margin:20px 0 34px;font-weight:500}
+  .tagline strong{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px 18px;display:flex;align-items:baseline;gap:8px;box-shadow:var(--shadow)}
+  .chip .cv{font-family:var(--mono);font-weight:600;font-size:16px;color:var(--primary)}
+  .chip .cv.sc{color:var(--secondary)}
+  .chip .ck{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabnav{position:sticky;top:0;z-index:50;background:rgba(30,30,46,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+  .tabnav .wrap{display:flex;gap:8px;overflow-x:auto}
+  .tab-btn{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.04em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 22px;border-radius:var(--r);cursor:pointer;white-space:nowrap;transition:all .15s;text-transform:uppercase}
+  .tab-btn:hover{color:var(--ink);border-color:var(--primary)}
+  .tab-btn.active{background:var(--primary);border-color:var(--primary);color:#1e1e2e;box-shadow:var(--glow)}
+  .tab-panel{display:none;padding:54px 0 70px}.tab-panel.active{display:block}
+  h2{font-family:var(--disp);font-size:clamp(20px,3.4vw,30px);font-weight:700;letter-spacing:.01em;margin-bottom:10px;color:var(--ink)}
+  h2 em{font-style:normal;color:var(--primary);text-shadow:var(--glow)}
+  .sub{color:var(--muted);margin-bottom:38px;max-width:680px;font-size:16.5px}
+  h3{font-size:19px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+  h3 .dot{color:var(--primary)}
+  .bignum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:42px}
+  .bignum{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;border-left:3px solid var(--primary);box-shadow:var(--shadow)}
+  .bignum .n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);line-height:1;color:var(--ink)}
+  .bignum .n.lm{color:var(--primary);text-shadow:var(--glow)}.bignum .n.sc{color:var(--secondary)}
+  .bignum .l{font-size:11px;color:var(--muted);font-weight:700;margin-top:10px;text-transform:uppercase;letter-spacing:.10em}
+  .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:42px}
+  .feat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .feat .fh{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--ink);font-family:var(--disp)}
+  .feat p{color:var(--muted);font-size:14px}
+  .best-feature{background:linear-gradient(135deg,#cba6f706,#a6e3a106);border:1px solid var(--primary);border-radius:var(--r);padding:34px;box-shadow:var(--shadow-lg),var(--glow)}
+  .best-feature .bf-tag{display:inline-block;font-family:var(--disp);background:var(--primary);color:#1e1e2e;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:var(--r);margin-bottom:16px}
+  .best-feature h3{font-size:21px;color:var(--ink)}.best-feature p{color:var(--muted);font-size:15.5px;max-width:740px;margin-top:10px}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px}
+  .ba{border-radius:var(--r);padding:28px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .ba.before{background:rgba(255,50,50,.04);border-color:rgba(255,50,50,.3)}
+  .ba.after{background:#cba6f706;border-color:#cba6f740}
+  .ba .ba-tag{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+  .ba.before .ba-tag{color:#ff3232}.ba.after .ba-tag{color:var(--primary)}
+  .ba p{color:var(--muted);font-size:14.5px;margin-bottom:14px}.ba p:last-child{margin-bottom:0}
+  .ba p strong{color:var(--ink)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .step-head{padding:16px 24px;background:var(--card2);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+  .step-num{font-family:var(--disp);background:var(--primary);color:#1e1e2e;font-weight:700;font-size:13px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--glow)}
+  .step-head h3{margin:0;font-size:16px;font-family:var(--disp)}
+  .step-body{padding:20px 24px}.step-body p{color:var(--muted);font-size:14px;margin-bottom:12px}.step-body p strong{color:var(--ink)}
+  pre{background:#181825;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;overflow-x:auto;margin:0 0 14px;font-family:var(--mono);font-size:13px;line-height:1.8;color:var(--muted)}
+  pre .cm{color:#6c7086}
+  pre .kw{color:var(--primary)}
+  pre .fn{color:var(--secondary)}
+  pre .str{color:#f9e2af}
+  .story{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:18px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow)}
+  .story .metric{font-family:var(--disp);font-size:16px;color:var(--primary);line-height:1.3;font-weight:600}
+  .story p{color:var(--muted);font-size:14.5px}.story p strong{color:var(--ink)}
+  .itw{margin-top:32px;background:var(--card);border:1px solid var(--primary);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .itw h3{color:var(--primary);font-size:16px;margin-bottom:16px;font-family:var(--disp)}
+  .itw ul{list-style:none}.itw li{padding:14px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid var(--line)}.itw li:last-child{border-bottom:none}
+  .itw li strong{color:var(--ink)}.itw a{color:var(--primary);text-decoration:none;border-bottom:1px dotted var(--primary)}.itw a:hover{color:var(--primary-dim)}
+  .watchout{background:rgba(255,50,50,.04);border:1px solid rgba(255,50,50,.3);border-radius:var(--r);padding:30px;margin-top:32px}
+  .watchout h3{color:#ff3232;font-size:17px;margin-bottom:16px;font-family:var(--disp)}
+  .watchout ul{list-style:none}.watchout li{padding:11px 0;color:var(--muted);font-size:14.5px;border-bottom:1px solid rgba(255,50,50,.1)}.watchout li:last-child{border-bottom:none}
+  .watchout li strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:44px 0 62px;margin-top:20px}
+  footer .fmeta{font-family:var(--disp);font-weight:600;font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:17px}
+  footer ul{list-style:none}footer li{padding:6px 0;font-size:14px;color:var(--muted)}
+  footer li::before{content:"> ";font-family:var(--mono);color:var(--primary);font-weight:700}
+  .backhub{display:inline-block;margin-top:25px;font-weight:700;font-size:12px;font-family:var(--disp);background:var(--card);border:1px solid var(--primary);padding:11px 22px;border-radius:var(--r);color:var(--ink);box-shadow:var(--shadow);letter-spacing:.04em;text-transform:uppercase}
+  .backhub:hover{background:var(--primary);color:#1e1e2e;text-decoration:none;box-shadow:var(--glow)}
+  @media(max-width:760px){.bignum-grid{grid-template-columns:repeat(2,1fr)}.feature-list,.ba-grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;gap:10px}.hero{padding:52px 0 40px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="radar-link" href="../../index.html">&#8592; Repo Radar</a>
+    <a class="gh-link" href="https://github.com/tamaratran/fast-jev-compaction" target="_blank" rel="noopener">GitHub &#8599;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Claude Code Plugin - Context Compaction</span>
+    <h1><span class="owner">tamaratran/</span><span class="name">fast-jev-compaction</span></h1>
+    <p class="tagline"><strong>Compaction without the summary.</strong> A Claude Code plugin that replaces the built-in /compact summary with Jev decisions. Every tool call and result is scored by a classifier - stale ones are dropped, everything kept stays verbatim. No rewriting. No lossy summaries. Just surgical deletion.</p>
+    <div class="chips">
+      <div class="chip"><span class="cv lm">6.8K</span><span class="ck">stars</span></div>
+      <div class="chip"><span class="cv">405</span><span class="ck">forks</span></div>
+      <div class="chip"><span class="cv">TypeScript</span><span class="ck">language</span></div>
+      <div class="chip"><span class="cv sc">MIT</span><span class="ck">license</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabnav">
+  <div class="wrap">
+    <button class="tab-btn active" data-tab="highlights">Highlights</button>
+    <button class="tab-btn" data-tab="problem">The Problem</button>
+    <button class="tab-btn" data-tab="setup">Setup</button>
+    <button class="tab-btn" data-tab="usecases">Use Cases</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="highlights" class="tab-panel active">
+    <h2>Delete the noise, <em>keep the signal</em></h2>
+    <p class="sub">fast-jev-compaction takes a fundamentally different approach to context compaction. Instead of asking an LLM to summarize old turns - which inevitably loses file paths, exact errors, and constraints - it asks Jev, TypeSafe AI's non-text-generating classifier, a yes/no question about every tool call. Stale calls are removed. Everything else passes through byte for byte.</p>
+
+    <div class="bignum-grid">
+      <div class="bignum"><div class="n lm">6.8K</div><div class="l">GitHub Stars</div></div>
+      <div class="bignum"><div class="n sc">405</div><div class="l">Forks</div></div>
+      <div class="bignum"><div class="n lm">0</div><div class="l">Bytes Rewritten</div></div>
+      <div class="bignum"><div class="n">Jev</div><div class="l">Classifier Model</div></div>
+      <div class="bignum"><div class="n sc">1 req</div><div class="l">Per Compaction</div></div>
+      <div class="bignum"><div class="n">MIT</div><div class="l">License</div></div>
+    </div>
+
+    <h3><span class="dot">&#9679;</span> What makes it different</h3>
+    <div class="feature-list">
+      <div class="feat"><div class="fh">Zero rewriting</div><p>Nothing kept is ever summarized, paraphrased, or rewritten. <strong>Every retained message stays verbatim</strong> - the exact file paths, error strings, and constraints survive compaction intact.</p></div>
+      <div class="feat"><div class="fh">Jev-scored decisions</div><p>Each tool call and result is scored by <strong>Jev, TypeSafe AI's "System One" classifier</strong>. Jev sees the whole conversation and decides what is still needed with a probability attached to each deletion.</p></div>
+      <div class="feat"><div class="fh">Only tool calls are candidates</div><p>User and assistant text messages are <strong>never removed or shortened</strong>. Only tool calls and their results are eligible for deletion. A session that is long because of conversation will not shrink much - by design.</p></div>
+      <div class="feat"><div class="fh">Attributable deletions</div><p>Every removed tool call has <strong>a probability score attached</strong>. You can audit exactly what was dropped and how confident the classifier was. No black-box summarization.</p></div>
+      <div class="feat"><div class="fh">Graceful fallback</div><p>If Jev cannot remove enough to fit the context window, <strong>the plugin falls back to Claude Code's built-in summary</strong>. The toast reads "fallback to built-in summary" so you always know which path was taken.</p></div>
+      <div class="feat"><div class="fh">Also an npm library</div><p>Not locked to the plugin system. <strong>Import it as a library</strong> for custom compaction pipelines, testing, or integration into other agent harnesses beyond Claude Code.</p></div>
+    </div>
+
+    <div class="best-feature">
+      <span class="bf-tag">Single best feature</span>
+      <h3>The file path that vanished is no longer a problem</h3>
+      <p>Every developer using a coding agent has hit this: midway through a long session, the agent forgets a file path, an exact error message, or a constraint you stated twenty turns ago. It was lost during compaction because a summarizer decided it was not important enough. fast-jev-compaction eliminates this failure mode entirely. It never rewrites your transcript. It only deletes tool calls that Jev says are no longer needed. If a tool call is kept, its output is there byte for byte - the file path, the error string, the constraint. The agent reads exactly what happened, not someone's interpretation of what happened.</p>
+    </div>
+  </section>
+
+  <section id="problem" class="tab-panel">
+    <h2>The <em>lossy summary</em> problem</h2>
+    <p class="sub">Every compaction scheme in a coding agent rests on the same bet: that a model can read a long transcript and write a shorter one that keeps whatever matters later. That bet loses more often than you think.</p>
+
+    <div class="ba-grid">
+      <div class="ba before">
+        <div class="ba-tag">Before</div>
+        <p><strong>Summaries lose details that matter.</strong> A file path, an exact error string, a constraint the user stated once in passing - these are cheap to keep and impossible to reconstruct once a summarizer has decided they were not worth the tokens.</p>
+        <p><strong>The agent hallucinates context.</strong> After a summary-based compaction, the agent may "remember" something that was not in the summary - or misremember a detail that was reworded. The summary introduced noise that was not in the original conversation.</p>
+        <p><strong>You cannot audit what was lost.</strong> After summarization, the original turns are gone. There is no way to check whether a critical detail survived. You only discover the loss when the agent makes a mistake later.</p>
+      </div>
+      <div class="ba after">
+        <div class="ba-tag">After</div>
+        <p><strong>Nothing is rewritten.</strong> Every kept message is verbatim. File paths, error strings, version numbers, and exact constraints survive compaction unchanged. The agent reads the real transcript, not an interpretation of it.</p>
+        <p><strong>Only tool calls are removed.</strong> The classifier evaluates each tool call and result against the full conversation context. Stale reads, old directory listings, and superseded test runs get dropped. Everything else stays.</p>
+        <p><strong>Every deletion is auditable.</strong> Each removed call has a Jev probability score. You know exactly what was dropped and how confident the model was. If something important was cut, you can see it and adjust the threshold.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup" class="tab-panel">
+    <h2>Set up <em>fast-jev-compaction</em></h2>
+    <p class="sub">Install the plugin, set your TypeSafe API key, and restart Claude Code. Requires Claude Code 2.1.274 or later with function-hooks support.</p>
+
+    <div class="step">
+      <div class="step-head"><span class="step-num">1</span><h3>Install the plugin</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Install from the Claude Code plugin marketplace</span>
+claude plugin marketplace add tamaratran/fast-jev-compaction
+
+<span class="cm"># Or use it as an npm library</span>
+npm install fast-jev-compaction</pre>
+        <p>The plugin hooks into Claude Code's <strong>/compact command and auto-compaction</strong>. It replaces the built-in summarizer with Jev-scored deletions. The npm library is available for custom integrations.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">2</span><h3>Set your TypeSafe API key</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Get a key from TypeSafe AI (jev model access)</span>
+export TYPESAFE_API_KEY="your-key-here"
+
+<span class="cm"># The plugin calls Jev's classifier API</span>
+<span class="cm"># to score each tool call in the session</span></pre>
+        <p>Jev is TypeSafe AI's non-text-generating "System One Model" - <strong>a classifier, not a generator</strong>. It answers yes/no questions about whether each tool call is still relevant to the current conversation context.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-head"><span class="step-num">3</span><h3>Restart and verify</h3></div>
+      <div class="step-body">
+<pre><span class="cm"># Restart Claude Code or reload plugins</span>
+/reload-plugins
+
+<span class="cm"># Run /compact to trigger Jev-based compaction</span>
+<span class="cm"># Success toast:</span>
+<span class="cm">#   fast-jev-compaction: kept N/M messages, no summary</span>
+
+<span class="cm"># Fallback toast (if Jev cannot shrink enough):</span>
+<span class="cm">#   fallback to built-in summary</span></pre>
+        <p>After reload, both <strong>/compact and auto-compaction use Jev</strong>. The toast message tells you which path was taken and how many messages were retained out of the total.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="usecases" class="tab-panel">
+    <h2>Where <em>fast-jev-compaction</em> fits</h2>
+    <p class="sub">Any Claude Code session where you cannot afford to lose specific details during compaction.</p>
+
+    <div class="story"><div class="metric">Long debugging sessions</div><p><strong>Error messages and stack traces survive compaction.</strong> When you are fifty turns into debugging a race condition, the exact error from turn twelve still matters. Jev keeps it if it is still relevant to the current thread.</p></div>
+    <div class="story"><div class="metric">Multi-file refactors</div><p><strong>File paths and constraints do not vanish.</strong> A refactoring across twenty files accumulates a lot of tool output - reads, writes, test runs. Jev drops the superseded reads while keeping the paths and decisions that the agent still needs.</p></div>
+    <div class="story"><div class="metric">Sessions with tight constraints</div><p><strong>Constraints stated once stay in the transcript.</strong> "Do not change the public API" or "keep backward compatibility with v2" - these user messages are never touched by the compactor. The agent reads them exactly as you wrote them, every time.</p></div>
+    <div class="story"><div class="metric">Auditing and trust</div><p><strong>See exactly what was dropped and why.</strong> Each deletion carries a Jev probability. If your workflow requires accountability for what the agent knows and does not know, this is the only compaction scheme that gives you a receipt.</p></div>
+
+    <div class="itw">
+      <h3>In the Wild</h3>
+      <ul>
+        <li><strong>r/ClaudeCode thread with 300+ upvotes.</strong> A Reddit discussion in r/ClaudeCode this week pulled 300+ upvotes and 80+ comments. The thread sparked a debate about summary-based versus deletion-based compaction, with several users sharing before/after comparisons of context retention. <a href="https://github.com/tamaratran/fast-jev-compaction" target="_blank">Source: GitHub</a></li>
+        <li><strong>JevStation deep dive.</strong> JevStation published a detailed technical write-up covering the architecture: how Jev scores each tool call, how the probability threshold works, and how the fallback path activates. <a href="https://jevstation.com/blog/fast-jev-compaction" target="_blank">JevStation</a></li>
+        <li><strong>explainx.ai coverage.</strong> An explainx.ai blog post walks through the plugin's design philosophy - why deletion beats summarization for coding agents, and how the Jev classifier differs from a general-purpose LLM. <a href="https://www.explainx.ai/blog/fast-jev-compaction-claude-code-plugin-2026" target="_blank">explainx.ai</a></li>
+        <li><strong>BuildWithJev project listing.</strong> The plugin is featured on BuildWithJev, a community directory of projects built on the Jev classifier model. <a href="https://buildwithjev.com/builds/fast-jev-compaction" target="_blank">BuildWithJev</a></li>
+        <li><strong>Sebastien Dubois write-up.</strong> Developer Sebastien Dubois published a personal write-up covering setup, usage patterns, and observations from running the plugin in daily Claude Code sessions. <a href="https://www.dsebastien.net/fast-jev-compaction/" target="_blank">dsebastien.net</a></li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <h3>Watch out for</h3>
+      <ul>
+        <li><strong>Conversation-heavy sessions will not shrink much.</strong> The plugin only removes tool calls and their results. If your session is long because of back-and-forth conversation rather than tool output, Jev will not find much to cut. This is by design - text messages are never removed - but it means the plugin is less effective for chat-heavy workflows.</li>
+        <li><strong>Requires a TypeSafe API key.</strong> Jev is not a local model. Each compaction sends your tool-call history to TypeSafe AI's classifier API. Consider whether your session content is appropriate for an external API call before enabling.</li>
+        <li><strong>Eight days old.</strong> Created September 17, 2026. Active development with PRs to validate keep thresholds and harden against malformed Jev responses, but the plugin is still very new. Expect rough edges and breaking changes.</li>
+        <li><strong>Fallback is silent context loss.</strong> When Jev cannot remove enough to fit the window, the plugin falls back to Claude Code's built-in summary - which is the lossy approach this plugin exists to avoid. The toast tells you when fallback happens, but it is easy to miss.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fmeta">Repo Radar - Edition 009 - Week of September 25, 2026</div>
+    <ul>
+      <li><a href="https://github.com/tamaratran/fast-jev-compaction" target="_blank">tamaratran/fast-jev-compaction GitHub</a> - source, plugin config, npm library</li>
+      <li>Stack: TypeScript, Jev classifier (TypeSafe AI), Claude Code plugin API</li>
+      <li>Last pushed: September 18, 2026 | Created: September 17, 2026</li>
+    </ul>
+    <a class="backhub" href="../../index.html">&#8592; Back to Edition 009</a>
+  </div>
+</footer>
+
+<script>
+  const btns=document.querySelectorAll('.tab-btn');const panels=document.querySelectorAll('.tab-panel');
+  btns.forEach(btn=>btn.addEventListener('click',()=>{btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body>
+</html>
