@@ -49,9 +49,18 @@
       "role": "result",
       "say": "Working page code you can ship, not just advice.",
       "outputs": [
-        { "what": "The page's code, rewritten in place", "eg": "The homepage's own example: cutting a page's script from 412 KB to 86 KB and its load time from 3.4 seconds to 1.1 seconds." },
-        { "what": "A written record of your product and its design system", "eg": "PRODUCT.md and DESIGN.md, so the next `/impeccable` command on this project already knows the audience and the existing visual style." },
-        { "what": "A plain list of what it found and fixed", "eg": "The homepage's own hotel-site example: 4 named tells, each with the fix it applied." }
+        {
+          "what": "The page's code, rewritten in place",
+          "eg": "The homepage's own example: cutting a page's script from 412 KB to 86 KB and its load time from 3.4 seconds to 1.1 seconds."
+        },
+        {
+          "what": "A written record of your product and its design system",
+          "eg": "PRODUCT.md and DESIGN.md, so the next `/impeccable` command on this project already knows the audience and the existing visual style."
+        },
+        {
+          "what": "A plain list of what it found and fixed",
+          "eg": "The homepage's own hotel-site example: 4 named tells, each with the fix it applied."
+        }
       ]
     }
   ],
@@ -70,14 +79,29 @@
   "pulse": {
     "gain": "+2.4K stars in the last 7 days, about 341 a day - findarepo rates the growth organic",
     "history": [
-      ["2026-09-27", 71797]
+      [
+        "2026-09-27",
+        71797
+      ]
     ],
     "history_note": "One live measurement today (GitHub API). findarepo reports the 7-day trend as a rate, not a dated log we could add as a second point.",
     "facts": [
-      { "value": "546K", "label": "npm downloads last month" },
-      { "value": "1.9M", "label": "installs across its skill pack, per skills.sh" },
-      { "value": "54", "label": "people have contributed code" },
-      { "value": "4.3K", "label": "copies (forks) people made to build on" }
+      {
+        "value": "546K",
+        "label": "npm downloads last month"
+      },
+      {
+        "value": "1.9M",
+        "label": "installs across its skill pack, per skills.sh"
+      },
+      {
+        "value": "54",
+        "label": "people have contributed code"
+      },
+      {
+        "value": "4.3K",
+        "label": "copies (forks) people made to build on"
+      }
     ]
   },
   "coverage": [
@@ -103,7 +127,7 @@
       "plat": "X (Twitter)",
       "title": "\"1) /impeccable teach 2) /audit 3) /critique\"",
       "url": "https://x.com/claude_code/status/2042266044090433974",
-      "meta": "posted by Anthropic's own Claude Code account"
+      "meta": "the Claude Code Community account (@claude_code) · Apr 9"
     }
   ],
   "trending": [
@@ -155,24 +179,77 @@
     "**It changes fast.** Four version releases shipped in the last three weeks of September 2026 alone; a review written as recently as May 2026 already describes an older version (23 commands and 27 checks, versus 24 and 61 today) - expect commands to keep shifting."
   ],
   "sources": [
-    { "title": "Impeccable on GitHub (README, releases, contributors)", "url": "https://github.com/pbakaus/impeccable", "date": "2026-09-27" },
-    { "title": "impeccable.style (homepage)", "url": "https://impeccable.style", "date": "2026-09-27" },
-    { "title": "Neo Mirai case study", "url": "https://impeccable.style/cases/neo-mirai", "date": "2026-09-27" },
-    { "title": "impeccable on the npm registry", "url": "https://www.npmjs.com/package/impeccable", "date": "2026-09-27" },
-    { "title": "skills.sh: pbakaus/impeccable install counts", "url": "https://skills.sh/pbakaus/impeccable", "date": "2026-09-27" },
-    { "title": "findarepo: impeccable growth and star check", "url": "https://findarepo.com/repo/pbakaus/impeccable/", "date": "2026-09-27" },
-    { "title": "Latent Space: Skill engineering and the case against one-shot AI design", "url": "https://www.latent.space/p/skill-engineering-design", "date": "2026-07-02" },
-    { "title": "Composio: 10 best design skills for Claude Code and Codex", "url": "https://composio.dev/content/top-design-skills", "date": "2026-05-05" },
-    { "title": "AI Engineer: The Dark Arts of Skill Engineering (talk)", "url": "https://ai.engineer/talks/SQMCtZX3trg-dark-arts-skill-engineering-paul-bakaus" },
-    { "title": "Claude Code's account on X", "url": "https://x.com/claude_code/status/2042266044090433974" },
-    { "title": "VS Code Marketplace: Impeccable extension, publisher Renaissance Geek", "url": "https://marketplace.visualstudio.com/items?itemName=renaissance-geek.impeccable", "date": "2026-09-27" },
-    { "title": "Anthropic's frontend-design skill (the project this started from)", "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design" },
-    { "title": "Impeccable engine release engine-v0.1.6 (per-platform download sizes)", "url": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.6", "date": "2026-09-25" }
+    {
+      "title": "Impeccable on GitHub (README, releases, contributors)",
+      "url": "https://github.com/pbakaus/impeccable",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "impeccable.style (homepage)",
+      "url": "https://impeccable.style",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Neo Mirai case study",
+      "url": "https://impeccable.style/cases/neo-mirai",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "impeccable on the npm registry",
+      "url": "https://www.npmjs.com/package/impeccable",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "skills.sh: pbakaus/impeccable install counts",
+      "url": "https://skills.sh/pbakaus/impeccable",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "findarepo: impeccable growth and star check",
+      "url": "https://findarepo.com/repo/pbakaus/impeccable/",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Latent Space: Skill engineering and the case against one-shot AI design",
+      "url": "https://www.latent.space/p/skill-engineering-design",
+      "date": "2026-07-02"
+    },
+    {
+      "title": "Composio: 10 best design skills for Claude Code and Codex",
+      "url": "https://composio.dev/content/top-design-skills",
+      "date": "2026-05-05"
+    },
+    {
+      "title": "AI Engineer: The Dark Arts of Skill Engineering (talk)",
+      "url": "https://ai.engineer/talks/SQMCtZX3trg-dark-arts-skill-engineering-paul-bakaus"
+    },
+    {
+      "title": "Claude Code Community (@claude_code) on X: the impeccable tip",
+      "url": "https://x.com/claude_code/status/2042266044090433974",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "VS Code Marketplace: Impeccable extension, publisher Renaissance Geek",
+      "url": "https://marketplace.visualstudio.com/items?itemName=renaissance-geek.impeccable",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "Anthropic's frontend-design skill (the project this started from)",
+      "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design"
+    },
+    {
+      "title": "Impeccable engine release engine-v0.1.6 (per-platform download sizes)",
+      "url": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.6",
+      "date": "2026-09-25"
+    }
   ],
   "footprint": {
     "disk": "The install command itself is tiny (well under 1 MB). It downloads the real program once, the first time you use it - about **14 to 18 MB** depending on whether you're on a Mac, Windows or Linux machine.",
     "memory": "No separate figure to give: it runs inside the AI coding tool you already have open rather than as its own program, so it doesn't add a memory cost of its own.",
     "runs_on": "Mac, Windows or Linux. Works inside Claude Code, Cursor, GitHub Copilot, Codex CLI, Gemini CLI, Grok Build and several others. No graphics card needed - most of its checks (61 of them) run without calling an AI model at all.",
-    "source": { "title": "Impeccable engine release engine-v0.1.6 (per-platform download sizes)", "url": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.6" }
+    "source": {
+      "title": "Impeccable engine release engine-v0.1.6 (per-platform download sizes)",
+      "url": "https://github.com/pbakaus/impeccable/releases/tag/engine-v0.1.6"
+    }
   }
 }
