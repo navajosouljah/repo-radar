@@ -533,9 +533,7 @@
     "repo": "pbakaus/impeccable",
     "checked": "2026-09-27",
     "verdict": "PASS",
-    "reasons": [
-      "14 report(s) to read"
-    ],
+    "reasons": [],
     "checks": {
       "advisories": {
         "source": "github-api",
@@ -545,7 +543,7 @@
         "items": []
       },
       "searches": {
-        "engine": "exa",
+        "engine": "exa+hn+nvd",
         "queries": [
           "pbakaus/impeccable CVE",
           "pbakaus/impeccable vulnerability",
@@ -554,134 +552,24 @@
         ],
         "results": 14,
         "errors": 0,
-        "hits": [
-          {
-            "query": "pbakaus/impeccable malware",
-            "title": " https:&#x2F;&#x2F;i.imgur.com&#x2F;RFasK8b.jpg  30 seconds and I can be quite sure there are no ads, malware, popups, a",
-            "url": "https://news.ycombinator.com/item?id=20881097",
-            "published": "2019-09-04",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable malware",
-            "title": "If I may advocate for the non HN partisan position here. Let&#x27;s consider that Google&#x27;s Android was and is a hug",
-            "url": "https://news.ycombinator.com/item?id=47143706",
-            "published": "2026-02-24",
-            "matched": "malicious",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable malware",
-            "title": "This comment troubles me because of this: &gt;Dan Goodin is Senior Security Editor at Ars Technica, where he oversees co",
-            "url": "https://news.ycombinator.com/item?id=41740203",
-            "published": "2024-10-04",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable malware",
-            "title": "I personally won&#x27;t use iOS ever again if Apple is forced to allow GOG, Steam, Xbox and F-Droid to coexist alongside",
-            "url": "https://news.ycombinator.com/item?id=23540841",
-            "published": "2020-06-16",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "OT: Fellow foreigners trying to import this need to be aware of the messy electronics business in ShenZhen. Please look ",
-            "url": "https://news.ycombinator.com/item?id=762531",
-            "published": "2009-08-14",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "This was the biggest scam I read in recent memory. It was introduced to me as some kind of proto-lovecraftian fever drea",
-            "url": "https://news.ycombinator.com/item?id=42975601",
-            "published": "2025-02-07",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "&gt; it’s been damn near impossible to scam someone via eBay… I got scammed by an eBay seller with thousands of transact",
-            "url": "https://news.ycombinator.com/item?id=34144625",
-            "published": "2022-12-27",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "Bitfinexed has been posting that FTX is a scam for years. He has an impeccable track record No one wanted to listen",
-            "url": "https://news.ycombinator.com/item?id=33635088",
-            "published": "2022-11-17",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "It&#x27;s error message blindness, similar to ad blindness. Even if you make a great banner ad with some very useful inf",
-            "url": "https://news.ycombinator.com/item?id=33264650",
-            "published": "2022-10-19",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "&gt;It turns out it’s all true. The cars are impressive and their flaws get covered up. Musk is a lying ignorant grifter",
-            "url": "https://news.ycombinator.com/item?id=26852940",
-            "published": "2021-04-18",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "Considering his fame, brand recognition, and interests in education, it&#x27;s pretty plausible to me that he got sort o",
-            "url": "https://news.ycombinator.com/item?id=24116767",
-            "published": "2020-08-11",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "In 2009-2013 Facebook was under a lot of pressure to share their data with academic researchers. They didn’t have the re",
-            "url": "https://news.ycombinator.com/item?id=21379153",
-            "published": "2019-10-28",
-            "matched": "data leak",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "You&#x27;re mistakenly legitimitizing the idea that there is some tangible &quot;luxury&quot; available from a truly new",
-            "url": "https://news.ycombinator.com/item?id=14352821",
-            "published": "2017-05-16",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "pbakaus/impeccable scam",
-            "title": "While this comment and its siblings do mention methods that can, in theory, be used to launder bitcoin, it&#x27;s still ",
-            "url": "https://news.ycombinator.com/item?id=12134812",
-            "published": "2016-07-21",
-            "matched": "scam",
-            "kind": "report"
-          }
-        ],
+        "hits": [],
         "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
         "cves": []
       },
       "activity": {
         "canonical": "pbakaus/impeccable",
-        "stars": 71721,
-        "forks": 4338,
+        "stars": 71797,
+        "forks": 4341,
         "watchers": 198,
-        "openIssues": 55,
+        "openIssues": 59,
         "hasIssues": true,
         "contributors": 54,
         "commits": 1917,
         "created": "2025-11-16",
-        "pushed": "2026-09-26",
+        "pushed": "2026-09-27",
         "archived": false,
         "ageDays": 316,
         "homepage": "https://impeccable.style",
@@ -1768,10 +1656,10 @@
       },
       "activity": {
         "canonical": "anthropics/skills",
-        "stars": 178642,
-        "forks": 21139,
-        "watchers": 1131,
-        "openIssues": 1344,
+        "stars": 178659,
+        "forks": 21141,
+        "watchers": 1128,
+        "openIssues": 1350,
         "hasIssues": true,
         "contributors": 16,
         "commits": 56,
