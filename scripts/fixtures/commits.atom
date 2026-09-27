@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/pacifio/atlas/commits/main</id>
+  <link type="text/html" rel="alternate" href="https://github.com/pacifio/atlas/commits/main"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/pacifio/atlas/commits/main.atom"/>
+  <title>Recent Commits to atlas:main</title>
+  <updated>2026-09-27T08:31:59Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/a34a6d44bf37d26d9a6f8f6fe1fab5ce0a92d8d1</id>
+    <link type="text/html" rel="alternate" href="https://github.com/pacifio/atlas/commit/a34a6d44bf37d26d9a6f8f6fe1fab5ce0a92d8d1"/>
+    <title>
+        Merge pull request #316 from pacifio/0.3.4
+    </title>
+    <updated>2026-09-27T08:31:59Z</updated>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/32670628?s=30&amp;v=4"/>
+    <author>
+      <name>pacifio</name>
+      <uri>https://github.com/pacifio</uri>
+    </author>
+    <content type="html">
+      &lt;pre style=&#39;white-space:pre-wrap;width:81ex&#39;&gt;Merge pull request #316 from pacifio/0.3.4
+
+0.3.4&lt;/pre&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Grit::Commit/393f42d5230a3d4f280781c4bb65da493203bd1f</id>
+    <link type="text/html" rel="alternate" href="https://github.com/p

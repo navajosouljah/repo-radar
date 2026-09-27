@@ -22,8 +22,9 @@ JJ's weekly radar of open-source tools worth knowing, live at https://repo-radar
   on-demand briefings. `index.html` is the hub. `archive.html` lists every edition.
 - `docs/SECURITY_GATE.md` is the gate. `docs/routine-prompt-v1.md` and `v2.md` record the Friday cloud
   routine's instructions.
-- `scripts/catalog.mjs` lists every repo the site recommends. `gate.mjs` and `gate-recheck.mjs` run
-  the gate. `ship.sh` deploys.
+- `scripts/catalog.mjs` lists every repo the site recommends. `gate.mjs` runs the gate (and the
+  weekly `--recheck`); it reads GitHub's public pages through `public-pages.mjs` when the API isn't
+  there (the cloud). `gate-recheck.mjs` is its Mac-only second look. `ship.sh` deploys.
 
 ## The Friday routine
 - A claude.ai cloud routine, `trig_01PhYQSJtUnr7YMPgBZErRJR` ("Repo Radar Weekly Edition"), runs

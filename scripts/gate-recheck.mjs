@@ -14,8 +14,16 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { ver, cmp, maxVer, fixFromText, fixFromRanges, commitsFromText, prsFromRefs } from './gate-lib.mjs';
+import { registryLatest } from './public-pages.mjs';
 
 const run = promisify(execFile);
+// This pass needs the GitHub API (compare, pull requests, commit history). Without `gh` (the cloud
+// routine) every lookup would come back empty and turn verdicts into guesses, so it refuses to run.
+// gate.mjs on public pages already applies the registry, text and range rules in one pass.
+if (!(await run('gh', ['auth', 'status']).then(() => true, () => false))) {
+  console.error('gate-recheck needs the GitHub API (gh). Without it, use `node scripts/gate.mjs --recheck`, which reads public pages and applies the same rules.');
+  process.exit(2);
+}
 const ROOT = new URL('..', import.meta.url).pathname;
 const LOG = `${ROOT}data/gate-log.json`;
 const BLOCK = `${ROOT}data/blocklist.json`;
@@ -27,9 +35,6 @@ const vs = v => (v ? v.join('.') : null);
 async function gh(path) {
   try { return JSON.parse((await run('gh', ['api', path], { maxBuffer: 50 << 20 })).stdout); } catch { return null; }
 }
-async function getJSON(url) {
-  try { const r = await fetch(url, { headers: { 'User-Agent': 'repo-radar-gate' } }); return r.ok ? await r.json() : null; } catch { return null; }
-}
 const tagCache = new Map();
 async function latestTag(o, r) {
   const k = `${o}/${r}`;
@@ -38,21 +43,6 @@ async function latestTag(o, r) {
   if (!tag) tag = (await gh(`repos/${o}/${r}/tags?per_page=1`))?.[0]?.name || null;
   tagCache.set(k, tag);
   return tag;
-}
-const registryCache = new Map();
-async function registryLatest(eco, name) {
-  const key = `${eco}:${name}`;
-  if (registryCache.has(key)) return registryCache.get(key);
-  let v = null;
-  const e = (eco || '').toLowerCase();
-  if (e === 'npm') v = (await getJSON(`https://registry.npmjs.org/${name.replace('/', '%2F')}/latest`))?.version;
-  else if (e === 'pip' || e === 'pypi') v = (await getJSON(`https://pypi.org/pypi/${name}/json`))?.info?.version;
-  else if (e === 'rust' || e === 'crates.io') v = (await getJSON(`https://crates.io/api/v1/crates/${name}`))?.crate?.max_version;
-  else if (e === 'go') v = (await getJSON(`https://proxy.golang.org/${name.toLowerCase()}/@latest`))?.Version;
-  else if (e === 'composer') { const d = await getJSON(`https://repo.packagist.org/p2/${name}.json`); v = d?.packages?.[name]?.[0]?.version; }
-  else if (e === 'rubygems') v = (await getJSON(`https://rubygems.org/api/v1/gems/${name}.json`))?.version;
-  registryCache.set(key, v || null);
-  return v || null;
 }
 async function commitInRelease(o, r, sha, tag) {
   if (!tag) return false;
@@ -119,28 +109,34 @@ for (const [repo, e] of Object.entries(log)) {
   if (!openAdv.length && !openCve.length) {
     // Nothing open any more: recompute from the remaining (non-advisory) reasons.
     if (e.verdict === 'FAIL' && !e.settled) {
-      const other = (e.reasons || []).filter(x => !/advisor|CVE|patch/i.test(x));
+      const other = (e.reasons || []).filter(x => !/advisor|CVE|patch|open after registry recheck/i.test(x));
       e.verdict = other.length ? 'REVIEW' : 'PASS'; e.reasons = other;
       const i = block.findIndex(b => b.repo.toLowerCase() === repo.toLowerCase());
-      if (i >= 0) block.splice(i, 1);
+      if (i >= 0 && block[i].kind !== 'conduct') block.splice(i, 1);
       changed.push(`${repo}: FAIL -> ${e.verdict}`);
     }
     continue;
   }
   const before = e.verdict;
   const rechecked = [];
-  for (const i of [...openAdv, ...openCve]) rechecked.push(await recheckItem(o, r, i, githubLatest));
+  const seen = new Set();
+  for (const i of [...openAdv, ...openCve]) {
+    const id = i.ghsa || i.id;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    rechecked.push(await recheckItem(o, r, i, githubLatest));
+  }
   e.recheck = { date: new Date().toISOString().slice(0, 10), items: rechecked };
   const bad = rechecked.filter(x => x.recheck === 'unpatched' || x.recheck === 'fix-unreleased');
   const unsure = rechecked.filter(x => x.recheck === 'unconfirmed');
   // Rebuild the advisory part of the verdict; keep any non-advisory REVIEW reasons.
-  const other = (e.reasons || []).filter(x => !/advisor|CVE|patch/i.test(x));
+  const other = (e.reasons || []).filter(x => !/advisor|CVE|patch|open after registry recheck/i.test(x));
   if (bad.length) { e.verdict = 'FAIL'; e.reasons = [`${bad.length} open after registry recheck: ${bad.map(b => `${b.ghsa || b.id} ${b.severity || ''} (${b.why})`).join('; ')}`, ...other]; }
   else if (unsure.length) { e.verdict = 'REVIEW'; e.reasons = [`${unsure.length} advisory(ies) unconfirmed: ${unsure.map(u => `${u.ghsa || u.id} (${u.why})`).join('; ')}`, ...other]; }
   else { e.verdict = other.length ? 'REVIEW' : 'PASS'; e.reasons = other; }
   const i = block.findIndex(b => b.repo.toLowerCase() === repo.toLowerCase());
-  if (e.verdict === 'FAIL' && i < 0) block.push({ repo, date: e.recheck.date, reason: e.reasons[0] });
-  if (e.verdict !== 'FAIL' && i >= 0 && !e.settled) block.splice(i, 1);
+  if (e.verdict === 'FAIL' && i < 0) block.push({ repo, date: e.recheck.date, kind: 'open-advisories', reason: e.reasons[0] });
+  if (e.verdict !== 'FAIL' && i >= 0 && !e.settled && block[i].kind !== 'conduct') block.splice(i, 1);
   if (before !== e.verdict) changed.push(`${repo}: ${before} -> ${e.verdict}`);
   process.stderr.write(`${e.verdict.padEnd(6)} ${repo}  ${rechecked.map(x => `${x.ghsa || x.id}=${x.recheck}`).join(', ')}\n`);
 }
