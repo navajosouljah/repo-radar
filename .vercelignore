@@ -1,0 +1,7 @@
+# Build and ops files live in git, not on the public site.
+scripts/
+docs/
+data/
+queue/
+backup/
+*.md
