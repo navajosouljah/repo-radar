@@ -33,9 +33,14 @@ anything ships.
 
 ## `data/editions/<date>/<slug>.json`: one repo's answer sheet
 
-Every string is plain English. `**bold**` is the only markup allowed. Every number, person, post and
-URL is real and cited; if something is missing, say "no data found" or leave the section's empty
-state to say so.
+Every string is plain English. Two kinds of markup are allowed: `**bold**` and `[a link](https://...)`.
+Every number, person, post and URL is real and cited; if something is missing, say "no data found" or
+leave the section's empty state to say so.
+
+The page reads top to bottom: what it is (with the picture and the vitals), how it works (the board),
+what changes for you, how hard it is to try (with what it takes on your computer), should you,
+is it safe, and last, who's using it and who's talking about it, then the sources. (Order set by JJ
+at Gate A, Sep 27 2026.)
 
 | Field | What goes in it |
 |---|---|
@@ -46,15 +51,16 @@ state to say so.
 | `replaces` | Optional: a product or bill the reader knows ("TypeSafe's paid Jev service"). Only if sourced |
 | `links` | `website` (the homepage, if it has one), `demo` (a live demo or video), `docs` |
 | `visual` | Found with `node scripts/shots.mjs owner/repo --site <website>`, and looked at before choosing. `src` (under 2 MB: a copy in `assets/shots/`; bigger: the printed URL), `width`, `height`, `alt` (what it really shows, with its real numbers and words), `caption` |
-| `board` | Exactly 4 notes, in order `problem`, `input`, `does`, `result`. Each has `say` (a short sentence) and `eg` (a real example: the product's own demo or docs) |
+| `board` | Exactly 5 notes, in order: `problem` (the headline across the top), `trigger` (what makes it run: a command you type, a message arriving, a schedule), `input` (what you hand it), `does` (with `steps`: 2 to 4 short steps of what happens inside), `result` (with `outputs`: 1 to 3 `{what, eg}`, the concrete things you get back). Every note has `say` (a short sentence); `eg` is a real example from the product's own demo or docs |
 | `before`, `after` | 2-3 bullets each: the pain without it, then what you get with it |
 | `uses_note` | Optional one line of context ("It's 9 days old, so real use is early") |
 | `uses` | 2-4 real uses: a named person, team or publication that used it for a specific thing. `who`, `what`, `result`, `stat` (the headline number: "37 of 40", "178 pts"), `source {title, url, date}`. Not a use: an adopters list, a crowd ("2,300 issues filed"), the maker's own announcement. Fewer than 2 real ones: write those and a `uses_note` |
-| `pulse` | `gain` (a plain line), `history` ([[date, stars], ...] measured points only), `history_note`, `facts` (2-4 `{value, label}`) |
-| `coverage` | 3-6 independent write-ups or threads: `plat`, `title`, `url`, `meta` ("178 points · Sep 20"), `tone: "critical"` for critical takes |
+| `pulse` | `gain` (a plain line) and `history` ([[date, stars], ...] measured points only), shown in the Popularity vital at the top. `history_note` and `facts` are optional and not shown |
+| `coverage` | 3-6 independent write-ups or threads, listed under real uses as "Who's talking about it": `plat`, `title`, `url`, `meta` ("178 points · Sep 20"), `tone: "critical"` for critical takes |
 | `trending` | Optional short chips ("findarepo: star growth looks organic") |
 | `star_check` | Optional one line from findarepo's star check |
-| `try` | `effort` (`minutes`, `hour` or `developer`), `steps` (3 plain steps), `paste` (the Claude Code prompt: always `/skillspector <url>` first, then install and run its own demo, 10 minutes max) |
+| `try` | `effort` (`minutes`, `hour` or `developer`), `steps` (3 plain steps; a step that sends you somewhere (a demo, a download, the Releases page, a notebook, the docs) links there with `[label](url)`), `paste` (the Claude Code prompt: always `/skillspector <url>` first, then install and run its own demo, 10 minutes max) |
+| `footprint` | What installing it takes: `disk` (download and install size), `memory` (what it needs while running), `runs_on` (Mac, Windows, Linux, versions, whether it needs a graphics card), `source {title, url}`. Only sourced numbers: the README's requirements, the Releases page's file sizes, model file sizes, package sizes. You may add sourced sizes up, and then say "about". A value you can't find is "no data found" |
 | `verdict` | `best_for` (2-3), `skip_if` (2-3), `alternatives` (2-3: `name`, `repo` if it is a GitHub repo, which must be gated, `url`, `line`) |
 | `watch` | 2-4 watch-outs, each starting with a **bold** summary |
 | `sources` | Every source used, with a date where known |
@@ -62,7 +68,7 @@ state to say so.
 The safety block on every page comes from `data/gate-log.json`, not from this file.
 
 ## Plain-English rules (verify enforces the first)
-- These words may not appear in `tagline`, `sentence`, `board` or `before`/`after` unless explained
+- These words may not appear in `tagline`, `sentence`, the board's notes, steps and outputs, or `before`/`after` unless explained
   right next to them (in brackets or after a colon): autoregressive, inference, embeddings, vector,
   RAG, LLM, orchestration, harness, SDK, CLI, latency, tokens, fine-tune, MCP, agentic, runtime,
   backbone, parameters, checkpoint, forward pass, calibrated, repo, dependency, deploy, endpoint,

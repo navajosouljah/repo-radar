@@ -26,8 +26,8 @@ const errors = [];
 
 // ---------- helpers ----------
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-// **bold** is the only markup allowed inside data strings.
-const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+// Two kinds of markup are allowed inside data strings: **bold** and [a link](https://...).
+const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
 const human = n => {
   if (n == null || n === '') return 'no data';
   const v = Number(n);
@@ -91,23 +91,7 @@ const topbar = (depth, crumb) => {
 </header>${crumb ? `<p class="crumb">${crumb}</p>` : ''}</div>`;
 };
 
-// ---------- sparkline ----------
-function starChart(history, w = 520, h = 150) {
-  const pts = (history || []).filter(p => p && p[1] != null).map(([d, v]) => [Date.parse(d), Number(v)]);
-  if (pts.length < 2) return '';
-  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
-  const x0 = Math.min(...xs), x1 = Math.max(...xs), y1 = Math.max(...ys) * 1.08;
-  const X = t => 8 + ((t - x0) / (x1 - x0 || 1)) * (w - 16);
-  const Y = v => h - 10 - (v / (y1 || 1)) * (h - 24);
-  const path = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join(' ');
-  const area = `${path} L${X(x1).toFixed(1)} ${h - 10} L${X(x0).toFixed(1)} ${h - 10} Z`;
-  const dots = pts.map(p => `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="4.5" fill="var(--ink)"><title>${dShort(new Date(p[0]).toISOString())}: ${human(p[1])} stars</title></circle>`).join('');
-  return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Stars over time: ${pts.map(p => `${dShort(new Date(p[0]).toISOString())} ${human(p[1])}`).join(', ')}">
-<line x1="8" y1="${h - 10}" x2="${w - 8}" y2="${h - 10}" stroke="var(--rule)" stroke-width="1.5"/>
-<path d="${area}" fill="var(--green)" opacity=".75"/>
-<path d="${path}" fill="none" stroke="var(--green-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${pts.length < 5 ? '7 6' : '0'}"/>
-${dots}</svg>`;
-}
+// ---------- sparkline (the Popularity vital) ----------
 const miniChart = history => {
   const pts = (history || []).filter(p => p && p[1] != null);
   if (pts.length < 2) return '';
@@ -157,7 +141,7 @@ function repoPage(ed, r, ctx = {}) {
 
   const vitals = `<div class="vitals" aria-label="At a glance">
   <div class="vital"><span class="v-label">Popularity</span><span class="v-big">${human(stars)}</span><span class="v-note">GitHub stars${r.pulse?.gain ? `, <b>${esc(r.pulse.gain)}</b>` : ''}</span>${miniChart(history)}</div>
-  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">${coverageCount}</span><span class="v-note">independent write-ups and threads we found${biggest ? `. Biggest: <b>${esc(biggest)}</b>` : ''}</span></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">${coverageCount}</span><span class="v-note">independent write-ups and threads we found${biggest ? `. Biggest: <b>${esc(biggest)}</b>` : ''}. <a href="#who">See them</a></span></div>
   <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">${EFFORT_LABEL[effort]}</span><div class="meter" aria-hidden="true">${[0, 1, 2].map(i => `<i class="${i <= effort ? 'on' : ''}"></i>`).join('')}</div></div>
   <div class="vital ${gate.ok ? 'safe' : 'unsafe'}"><span class="v-label">Safety check</span><span class="v-big">${gate.ok ? 'Passed' : 'Not cleared'}</span><span class="v-note">${gate.ok ? `Checked ${dShort(g.checked)}: no open security issues` : esc(gate.why)}</span></div>
 </div>`;
@@ -182,8 +166,16 @@ function repoPage(ed, r, ctx = {}) {
 </section>
 ${vitals}`;
 
-  const board = q(1, 'how', 'How does it work?', null, `<div class="board">${(r.board || []).map(n => `
-  <div class="note ${esc(n.role)}"><span class="role">${{ problem: 'Your problem', input: 'You give it', does: 'It does', result: 'You get' }[n.role] || esc(n.role)}</span><p class="say">${rich(n.say)}</p>${n.eg ? `<p class="eg">${rich(n.eg)}</p>` : ''}</div>`).join('')}
+  const note = n => {
+    const role = { problem: 'Your problem', trigger: 'When it kicks in', input: 'You give it', does: 'It does', result: 'You get' }[n.role] || esc(n.role);
+    const steps = n.role === 'does' && (n.steps || []).length ? `<ol class="steps-in">${n.steps.map(x => `<li>${rich(x)}</li>`).join('')}</ol>` : '';
+    const outs = n.role === 'result' && (n.outputs || []).length ? `<ul class="outputs">${n.outputs.map(o => `<li><b>${rich(o.what)}</b>${o.eg ? `<span>${rich(o.eg)}</span>` : ''}</li>`).join('')}</ul>` : '';
+    return `<div class="note ${esc(n.role)}"><span class="role">${role}</span><p class="say">${rich(n.say)}</p>${steps}${outs}${n.eg ? `<p class="eg">${rich(n.eg)}</p>` : ''}</div>`;
+  };
+  const notes = r.board || [];
+  const headline = notes.find(n => n.role === 'problem');
+  const board = q(1, 'how', 'How does it work?', null, `<div class="board">${headline ? `<div class="headline">${note(headline)}</div>` : ''}
+<div class="flow">${notes.filter(n => n !== headline).map(note).join('')}</div>
 </div>
 <p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p>`);
 
@@ -192,59 +184,58 @@ ${vitals}`;
   <div class="after"><h3>With it</h3><ul>${(r.after || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
 </div>`);
 
-  const uses = q(3, 'who', "Who's using it, and for what?", r.uses_note ? rich(r.uses_note) : null,
-    (r.uses || []).length ? `<ol class="uses">${r.uses.map(u => `
-  <li class="use"><span class="who-mark${u.stat && u.stat.length > 4 ? ' long' : ''}" aria-hidden="true">${esc(u.stat || String(r.uses.indexOf(u) + 1))}</span><div><h3>${rich(u.who)}</h3><p>${rich(u.what)}</p>${u.result ? `<p class="result">${rich(u.result)}</p>` : ''}${u.source ? `<a class="src" href="${esc(u.source.url)}" rel="noopener">${esc(u.source.title)}${u.source.date ? `, ${dShort(u.source.date)}` : ''}</a>` : ''}</div></li>`).join('')}</ol>`
-      : `<p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>`);
+  const fp = r.footprint || {};
+  const footprint = `<div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>${rich(fp.disk || 'no data found')}</dd></div>
+    <div><dt>Memory while it runs</dt><dd>${rich(fp.memory || 'no data found')}</dd></div>
+    <div><dt>Runs on</dt><dd>${rich(fp.runs_on || 'no data found')}</dd></div>
+  </dl>${fp.source ? `<a class="src" href="${esc(fp.source.url)}" rel="noopener">Source: ${esc(fp.source.title)}</a>` : ''}</div>`;
 
-  const pulse = q(4, 'popular', 'Is it actually popular?', null, `<div class="pulse">
-  <div class="stars-card">
-    <div class="big">${human(stars)}<small>GitHub stars</small></div>
-    ${r.pulse?.gain ? `<p class="gain">${esc(r.pulse.gain)}</p>` : ''}
-    ${starChart(history)}
-    ${history.length >= 2 ? `<div class="axis"><span>${dShort(history[0][0])}</span><span>${dShort(history[history.length - 1][0])}</span></div>` : ''}
-    <p class="foot">${esc(r.pulse?.history_note || '')}</p>
-    ${(r.pulse?.facts || []).length ? `<div class="facts">${r.pulse.facts.map(f => `<div class="fact"><b>${esc(f.value)}</b><span>${esc(f.label)}</span></div>`).join('')}</div>` : ''}
-  </div>
-  <div>
-    <h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Who's talking about it</h3>
-    ${(r.coverage || []).length ? `<ul class="wall">${r.coverage.map(c => `<li class="${c.tone === 'critical' ? 'tone-critical' : ''}"><span class="plat">${esc(c.plat)}</span><a href="${esc(c.url)}" rel="noopener">${esc(c.title)}</a><span class="meta">${esc(c.meta || '')}</span></li>`).join('')}</ul>` : `<p class="thin">No independent coverage found yet.</p>`}
-    ${(r.trending || []).length ? `<div class="trending">${r.trending.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>` : ''}
-  </div>
-</div>`);
-
-  const tryIt = q(5, 'try', 'How hard is it to try?', null, `<div class="try">
+  const tryIt = q(3, 'try', 'How hard is it to try?', null, `<div class="try">
   <div class="effort">
     <h3 style="font-size:1.125rem">Effort</h3>
     <div class="levels" role="img" aria-label="Effort: ${EFFORT_LABEL[effort]}">${EFFORT_LABEL.map((l, i) => `<span class="${i === effort ? 'on' : ''}">${l}</span>`).join('')}</div>
     <ol class="steps">${(r.try?.steps || []).map(s => `<li>${rich(s)}</li>`).join('')}</ol>
   </div>
-  ${gate.ok && r.try?.paste ? `<div class="paste">
-    <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
-    <pre id="paste-${esc(r.slug)}">${esc(r.try.paste)}</pre>
-    <button class="copy" type="button" data-copy="paste-${esc(r.slug)}">Copy the prompt</button>
-  </div>` : ''}
+  <div class="try-side">
+    ${footprint}
+    ${gate.ok && r.try?.paste ? `<div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-${esc(r.slug)}">${esc(r.try.paste)}</pre>
+      <button class="copy" type="button" data-copy="paste-${esc(r.slug)}">Copy the prompt</button>
+    </div>` : ''}
+  </div>
 </div>`);
 
   const v = r.verdict || {};
-  const should = q(6, 'should', 'Should I?', null, `<div class="should">
+  const should = q(4, 'should', 'Should I?', null, `<div class="should">
   <div class="yes"><h3>Great if you...</h3><ul>${(v.best_for || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
   <div class="no"><h3>Skip it if...</h3><ul>${(v.skip_if || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
 </div>
 ${(v.alternatives || []).length ? `<div class="alts"><h3>Instead, you could look at</h3><ul>${v.alternatives.map(a => `<li><a href="${esc(a.url || `https://github.com/${a.repo}`)}" rel="noopener"><b>${esc(a.name)}</b></a><span>${rich(a.line)}</span></li>`).join('')}</ul></div>` : ''}`);
 
   const flags = act.flags || [];
-  const safe = q(7, 'safe', 'Is it safe?', null, `<div class="safety">
+  const safe = q(5, 'safe', 'Is it safe?', null, `<div class="safety">
   <div>
     <span class="stamp ${gate.ok ? 'pass' : 'fail'}">${gate.ok ? 'PASSED' : 'NOT CLEARED'}</span>
     <ul class="checks">
       <li><div><b>Security advisories: ${adv.count ?? 'not checked'}</b><span>${adv.url ? `<a href="${esc(adv.url)}" rel="noopener">GitHub's advisory list</a>, checked ${dShort(g.checked)}` : ''}${adv.count ? ', all fixed in a published release' : ''}</span></div></li>
-      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>${srch.results ?? 0} results read${(srch.hits || []).filter(h => h.kind === 'report' || h.kind === 'cve-record').length ? ', nothing unresolved' : ', nothing found'}</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>${srch.results ?? 0} results read, including the national CVE database${(srch.hits || []).filter(h => h.kind === 'report' || h.kind === 'cve-record').length ? ': nothing unresolved' : ': nothing found'}</span></div></li>
       <li class="${flags.length ? 'flag' : ''}"><div><b>Are the stars earned?</b><span>${human(act.stars)} stars, ${human(act.contributors)} contributors, ${human(act.commits)} commits${flags.length ? `. Flag: ${esc(flags.join('; '))}` : `${r.star_check ? `. ${esc(r.star_check)}` : ''}`}</span></div></li>
     </ul>
     ${g.settled ? `<p class="lede" style="margin:var(--s-4) 0 0">${esc(g.settled.note)}</p>` : ''}
   </div>
   <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch">${(r.watch || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
+</div>`);
+
+  // Real uses and the coverage come last: the conclusion, with every link to go back to.
+  const who = q(6, 'who', "Who's using it, and for what?", r.uses_note ? rich(r.uses_note) : null,
+    `${(r.uses || []).length ? `<ol class="uses">${r.uses.map(u => `
+  <li class="use"><span class="who-mark${u.stat && u.stat.length > 4 ? ' long' : ''}" aria-hidden="true">${esc(u.stat || String(r.uses.indexOf(u) + 1))}</span><div><h3>${rich(u.who)}</h3><p>${rich(u.what)}</p>${u.result ? `<p class="result">${rich(u.result)}</p>` : ''}${u.source ? `<a class="src" href="${esc(u.source.url)}" rel="noopener">${esc(u.source.title)}${u.source.date ? `, ${dShort(u.source.date)}` : ''}</a>` : ''}</div></li>`).join('')}</ol>`
+      : `<p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>`}
+<div class="talk"><h3>Who's talking about it</h3>
+  ${(r.coverage || []).length ? `<ul class="wall">${r.coverage.map(c => `<li class="${c.tone === 'critical' ? 'tone-critical' : ''}"><span class="plat">${esc(c.plat)}</span><a href="${esc(c.url)}" rel="noopener">${esc(c.title)}</a><span class="meta">${esc(c.meta || '')}</span></li>`).join('')}</ul>` : `<p class="thin">No independent coverage found yet.</p>`}
+  ${(r.trending || []).length ? `<div class="trending">${r.trending.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>` : ''}
 </div>`);
 
   const sources = `<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${(r.sources || []).map(s => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a>${s.date ? `, ${dShort(s.date)}` : ''}</li>`).join('')}</ol></section>`;
@@ -255,11 +246,10 @@ ${topbar(depth, ctx.crumb || `Edition ${ed.number} &middot; Week of ${dLong(ed.d
 ${hero}
 ${board}
 ${ba}
-${uses}
-${pulse}
 ${tryIt}
 ${should}
 ${safe}
+${who}
 ${sources}
 <footer class="site-foot"><span>${ctx.footLeft || `Repo Radar &middot; Edition ${ed.number} &middot; ${dLong(ed.date)}`}</span><a href="${ctx.backHref || './'}">&larr; ${ctx.backLabel || "Back to this week's 10"}</a></footer>
 </main>

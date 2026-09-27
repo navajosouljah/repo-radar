@@ -24,19 +24,42 @@
       "eg": "Asking a chat AI each time means a fee per call, a wait, and a paragraph your software has to decode."
     },
     {
+      "role": "trigger",
+      "say": "Every time a new message or task comes in, your software asks laya instead of a paid chat AI",
+      "eg": "A support inbox, a chatbot or an AI agent calls it once per email, ticket or job, as it arrives."
+    },
+    {
       "role": "input",
-      "say": "You hand it the message and your multiple-choice questions",
-      "eg": "\"I was charged twice for invoice 4411... Refund the duplicate today or we are cancelling our plan.\""
+      "say": "The message, plus your multiple-choice questions",
+      "eg": "\"I was charged twice for invoice 4411... Refund the duplicate today or we are cancelling our plan.\" Which intent? How urgent? Will they cancel?"
     },
     {
       "role": "does",
-      "say": "It reads everything once and scores every option at the same time",
+      "say": "It reads the message once and scores every answer at the same time",
+      "steps": [
+        "Reads the whole message in one go",
+        "Scores every option of every question at once, instead of writing a reply word by word",
+        "Picks the top option for each question and says how sure it is"
+      ],
       "eg": "It never writes sentences, so it can't ramble or answer with something that isn't on your list."
     },
     {
       "role": "result",
-      "say": "You get a typed answer, with a confidence score for each",
-      "eg": "**Refund request** (98% sure), so: route to **billing** and flag for manager approval, in about half a second in the live demo."
+      "say": "Answers your software can act on straight away",
+      "outputs": [
+        {
+          "what": "One answer per question, always from your list",
+          "eg": "Intent: **refund request**, 98% sure"
+        },
+        {
+          "what": "A score for every option",
+          "eg": "Frustration 1.85 out of 3, urgency 0.20, churn risk 0.17"
+        },
+        {
+          "what": "A decision in about half a second",
+          "eg": "Route to **billing** and flag for manager approval: 586 milliseconds in the live demo"
+        }
+      ]
     }
   ],
   "before": [
@@ -162,9 +185,9 @@
   "try": {
     "effort": "developer",
     "steps": [
-      "Try it in your browser first: open the live demo, paste any customer message and press **Ask**. Nothing to install.",
-      "To use it for real, a developer installs it with one line and asks it questions from their code.",
-      "For better accuracy, they fine-tune it on your own past decisions, using a free notebook the author provides."
+      "Try it in your browser first: open the [live demo](https://huggingface.co/spaces/convaiinnovations/laya-demo), paste any customer message and press **Ask**. Nothing to install.",
+      "To use it for real, a developer installs it with one line and follows the [quickstart](https://github.com/NandhaKishorM/laya#quickstart) to ask it questions from their code.",
+      "For better accuracy, they train it on your own past decisions with the author's free [training notebook](https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb), which runs on Kaggle's free graphics chips."
     ],
     "paste": "/skillspector https://github.com/NandhaKishorM/laya\n\nIf that scan passes: in a scratch folder, install laya (pip install laya), run the README quickstart on its sample customer email, and show me the answers it returns. 10 minutes max, then stop and report back in plain English."
   },
@@ -246,6 +269,25 @@
     {
       "title": "Dev.to: the author's engineering write-up",
       "url": "https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me"
+    },
+    {
+      "title": "laya's model files on Hugging Face (sizes)",
+      "url": "https://huggingface.co/convaiinnovations/laya/tree/main",
+      "date": "2026-09-27"
+    },
+    {
+      "title": "PyTorch on PyPI (download size for Macs with Apple chips)",
+      "url": "https://pypi.org/project/torch/",
+      "date": "2026-09-27"
     }
-  ]
+  ],
+  "footprint": {
+    "disk": "About **2.5 GB** if you follow its quickstart: PyTorch, the AI toolkit it runs on (a 127 MB download on Macs with Apple chips), plus three model files it fetches on first use (843 MB, 644 MB and 843 MB). laya itself is tiny.",
+    "memory": "At least **1.5 GB**: by default it keeps two models loaded (the English and multilingual ones, 843 MB and 644 MB). It can be told to keep just one.",
+    "runs_on": "Mac, Windows or Linux, with Python 3.10 or newer. No graphics card needed: on a regular processor an answer takes 0.2 to 0.5 seconds instead of about 33 milliseconds.",
+    "source": {
+      "title": "laya README: installation, memory and speed",
+      "url": "https://github.com/NandhaKishorM/laya#production-preload--memory"
+    }
+  }
 }

@@ -111,16 +111,25 @@ order:
    - for #1 to #3, the same picture is the `thumb` in edition.json.
    Only if the script finds nothing usable, leave `visual` out; the page then says so honestly.
    A demo video it finds goes in `links.demo`.
-3. **The board:** 4 notes, *your problem -> you give it -> it does -> you get*. The example comes
-   from the product's own demo or docs, never made up.
+3. **The board:** 5 notes: *your problem* across the top, then *when it kicks in -> you give it
+   -> it does -> you get*. "When it kicks in" is the trigger (the command you type, the message that
+   arrives, the schedule). "It does" lists 2 to 4 steps of what happens inside. "You get" lists 1 to 3
+   concrete outputs, each with a real example. Every example comes from the product's own demo or
+   docs, never made up. JJ wants more detail here, not less.
 4. **Real uses:** a named person, team or publication who used it for a specific thing, with the
    result and a dated link. For `fit: "you"`, favor non-developer roles. Not a use: an adopters
    list, a crowd ("2,300 issues filed"), or the maker's own announcement. If fewer than 2 real uses
    exist, write only the real ones and add a `uses_note` saying real use is still early.
 5. **Coverage:** Hacker News (points), YouTube (views), blogs, and critical takes too.
-6. **Try it:** 3 plain steps. `paste` always starts with `/skillspector https://github.com/<o>/<r>`,
-   then install and run its own demo, 10 minutes max.
-7. **Links load:** open every URL you cite (WebFetch or curl). Drop any that doesn't.
+6. **Try it:** 3 plain steps. Every step that sends JJ somewhere links there: the live demo, the
+   download, the Releases page, the notebook, the docs. He should never have to search for where to
+   click. `paste` always starts with `/skillspector https://github.com/<o>/<r>`, then install and run
+   its own demo, 10 minutes max.
+7. **What it takes on your computer (`footprint`):** space on disk, memory while running, and what it
+   runs on. Look in the README's install or requirements section, the Releases page (file sizes), the
+   model's file list (Hugging Face shows sizes), and the package's page (npm, PyPI). Add sourced sizes
+   up if you need to and say "about"; anything you can't find is "no data found".
+8. **Links load:** open every URL you cite (WebFetch or curl). Drop any that doesn't.
 
 **The writing test** (verify enforces the jargon rule):
 - Could a smart non-coder repeat the tagline to a colleague? If not, rewrite it. About 20 words at

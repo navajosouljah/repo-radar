@@ -84,3 +84,35 @@ test('a broken internal link and an em dash are refused', () => {
   refuses(site({ 'index.html': '<a href="missing.html">x</a>' }), /broken link missing\.html/);
   refuses(site({ 'archive.html': '<p>one — two</p>' }), /em or en dash/);
 });
+
+// JJ's Gate A round (Sep 27 2026): the board shows the trigger, the steps and the outputs; every
+// page says what installing takes; every try-it step that sends you somewhere links there.
+const sheet = over => ({ repo: 'good/repo', name: 'a', tagline: 'A tool', sentence: 'It helps.', fit: 'you',
+  board: [{ role: 'problem', say: 'p' }, { role: 'trigger', say: 't' }, { role: 'input', say: 'i' }, { role: 'does', say: 'd', steps: ['one', 'two'] }, { role: 'result', say: 'r', outputs: [{ what: 'o' }] }],
+  before: ['x'], after: ['y'], uses: [], pulse: {}, coverage: [], try: { steps: ['Nothing to install.'] },
+  footprint: { disk: '10 MB', memory: 'no data found', runs_on: 'Mac', source: { title: 's', url: 'https://example.com' } },
+  verdict: {}, watch: ['**Early.** It is new.'], sources: [{ title: 's', url: 'https://example.com', date: '2026-09-20' }], ...over });
+const edition = { number: '1', date: '2026-09-25', theme: 't', picks: [{ rank: 1, slug: 'a', repo: 'good/repo', name: 'a', oneliner: 'x' }] };
+const withSheet = over => site({ 'data/editions/2026-09-25/edition.json': edition, 'data/editions/2026-09-25/a.json': sheet(over) });
+
+test('a complete answer sheet passes', () => {
+  const r = verify(withSheet({}));
+  assert.equal(r.status, 0, r.stderr);
+});
+
+test('a board without its trigger, steps or outputs is refused', () => {
+  refuses(withSheet({ board: [{ role: 'problem', say: 'p' }, { role: 'input', say: 'i' }, { role: 'does', say: 'd' }, { role: 'result', say: 'r' }] }), /board needs 5 notes/);
+  refuses(withSheet({ board: sheet({}).board.map(n => (n.role === 'does' ? { ...n, steps: ['only one'] } : n)) }), /needs 2 to 4 steps/);
+  refuses(withSheet({ board: sheet({}).board.map(n => (n.role === 'result' ? { ...n, outputs: [] } : n)) }), /needs 1 to 3 outputs/);
+});
+
+test('a page must say what installing takes, with a source', () => {
+  refuses(withSheet({ footprint: undefined }), /missing footprint/);
+  refuses(withSheet({ footprint: { disk: '2 GB', memory: '1 GB', runs_on: 'Mac' } }), /footprint needs a source/);
+});
+
+test('a try-it step that sends you somewhere must link there', () => {
+  refuses(withSheet({ try: { steps: ['Open the live demo and press Ask.'] } }), /try step 1 sends the reader somewhere but has no link/);
+  const ok = verify(withSheet({ try: { steps: ['Open the [live demo](https://example.com/demo) and press Ask.'] } }));
+  assert.equal(ok.status, 0, ok.stderr);
+});

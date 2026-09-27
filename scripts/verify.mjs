@@ -88,7 +88,10 @@ for (const f of html.filter(f => /^(editions|lookups|classic)\//.test(f) || f ==
 }
 
 // ---- 4 + 5 + 6: repo data files --------------------------------------------------------------
-const REQUIRED = ['repo', 'name', 'tagline', 'sentence', 'fit', 'board', 'before', 'after', 'uses', 'pulse', 'coverage', 'try', 'verdict', 'watch', 'sources'];
+const REQUIRED = ['repo', 'name', 'tagline', 'sentence', 'fit', 'board', 'before', 'after', 'uses', 'pulse', 'coverage', 'try', 'footprint', 'verdict', 'watch', 'sources'];
+const BOARD = ['problem', 'trigger', 'input', 'does', 'result'];
+// A try-it step that sends the reader somewhere must link there (JJ, Sep 27 2026: "always provide links").
+const GOES_SOMEWHERE = /\b(open|visit|download|go to|sign up|log in|install(s)? (it )?from|releases? page|(live )?demo|website|notebook|app store|quickstart|docs|guide)\b/i;
 // Words a non-coder can't be expected to know. Allowed only when the same field explains them.
 const JARGON = /\b(autoregressive|non-autoregressive|inference|embeddings?|vector(s| database)?|RAG|LLMs?|orchestration|harness|SDK|CLI|latency|tokens?|fine-?tun(e|ing)|MCP|agentic|runtime|backbone|parameters?|checkpoint|forward pass|calibrat\w*|repo(sitory)?|dependenc(y|ies)|deploy\w*|endpoint|webhook|Docker|Kubernetes|monorepo|self-hosted)\b/i;
 // The explanation has to sit right next to the word: "inference (running the model)", "tokens: small chunks of text".
@@ -106,8 +109,16 @@ for (const where of dataFiles) {
   const r = readJSON(where);
   if (where.startsWith('data/lookups/')) { cleared(r.repo, where); for (const a of r.verdict?.alternatives || []) if (a.repo) cleared(a.repo, `${where} (alternative)`); }
   for (const k of REQUIRED) if (r[k] == null || (Array.isArray(r[k]) && !r[k].length && k !== 'uses' && k !== 'coverage')) bad(where, `missing ${k}`);
-  if ((r.board || []).length !== 4) bad(where, 'board needs exactly 4 notes (problem, input, does, result)');
-  const plain = [['tagline', r.tagline], ['sentence', r.sentence], ...(r.board || []).flatMap((n, i) => [[`board[${i}]`, n.say]]), ...(r.before || []).map((x, i) => [`before[${i}]`, x]), ...(r.after || []).map((x, i) => [`after[${i}]`, x])];
+  const board = r.board || [];
+  if (board.map(n => n.role).join() !== BOARD.join()) bad(where, `board needs 5 notes in this order: ${BOARD.join(', ')}`);
+  const does = board.find(n => n.role === 'does'), result = board.find(n => n.role === 'result');
+  if (does && !((does.steps || []).length >= 2 && does.steps.length <= 4)) bad(where, 'the "It does" note needs 2 to 4 steps');
+  if (result && !((result.outputs || []).length >= 1 && result.outputs.length <= 3)) bad(where, 'the "You get" note needs 1 to 3 outputs');
+  const fp = r.footprint || {};
+  for (const k of ['disk', 'memory', 'runs_on']) if (!fp[k]) bad(where, `footprint.${k} missing (write "no data found" if there is none)`);
+  if (['disk', 'memory', 'runs_on'].some(k => fp[k] && !/^no data found/i.test(fp[k])) && !fp.source?.url) bad(where, 'footprint needs a source');
+  (r.try?.steps || []).forEach((st, i) => { if (GOES_SOMEWHERE.test(st) && !/\]\(https?:\/\//.test(st)) bad(where, `try step ${i + 1} sends the reader somewhere but has no link`); });
+  const plain = [['tagline', r.tagline], ['sentence', r.sentence], ...board.flatMap((n, i) => [[`board[${i}]`, n.say], ...(n.steps || []).map((x, j) => [`board[${i}].steps[${j}]`, x]), ...(n.outputs || []).map((o, j) => [`board[${i}].outputs[${j}]`, o.what])]), ...(r.before || []).map((x, i) => [`before[${i}]`, x]), ...(r.after || []).map((x, i) => [`after[${i}]`, x])];
   for (const [field, text] of plain) {
     const word = jargonProblem(text);
     if (word) bad(where, `jargon "${word}" in ${field} without a plain explanation next to it`);
