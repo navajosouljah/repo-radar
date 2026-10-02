@@ -1,0 +1,170 @@
+{
+  "repo": "mattpocock/skills",
+  "name": "Skills",
+  "tagline": "A curated box of 27 agent skills for Claude Code - from test-driven development to debugging to architecture reviews.",
+  "sentence": "Install Matt Pocock's skills collection and your Claude Code agent gets 27 new abilities: /tdd writes tests first, /caveman debugs with print statements, /todoist turns a task into a checklist, and 24 more - each one a focused behavior the agent follows exactly.",
+  "fit": "you",
+  "replaces": "Writing custom CLAUDE.md rules for each workflow you want the agent to follow",
+  "links": {
+    "website": "https://skills.sh",
+    "docs": "https://github.com/mattpocock/skills"
+  },
+  "visual": {
+    "src": "assets/shots/skills.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "The skills.sh website showing a grid of available skills from the mattpocock/skills collection, each with a name, description and install count.",
+    "caption": "The skills.sh catalog showing Matt Pocock's skill collection: 27 skills, each with a short description of what it teaches the agent."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding agent is powerful but generic. It doesn't know your team's workflow - whether you want tests first, how you debug, or how you hand off work.",
+      "eg": "You want Claude Code to always write the test before the code, but every time you forget to say so, it writes the code first."
+    },
+    {
+      "role": "trigger",
+      "say": "You install the skills collection - one command - and start using the new slash commands.",
+      "eg": "`npx skills@latest add mattpocock/skills` installs all 27 skills. Or pick one: `npx skills@latest add mattpocock/skills/tdd`."
+    },
+    {
+      "role": "input",
+      "say": "A slash command followed by your normal prompt.",
+      "eg": "`/tdd Add a retry mechanism to the API client` - the agent writes a failing test first, then makes it pass."
+    },
+    {
+      "role": "does",
+      "say": "Each skill injects a specific workflow into the agent's thinking. The agent follows that workflow instead of its default behavior.",
+      "steps": [
+        "/tdd: writes a failing test, then writes the code to make it pass, then refactors",
+        "/caveman: debugs with print statements instead of reasoning about the bug - forces the agent to observe before concluding",
+        "/todoist: breaks a task into a checkbox list and works through it step by step",
+        "18 user-invoked skills and 9 that activate automatically based on what you're doing"
+      ],
+      "eg": "Deepak Bagada (CEO, SaaSNext) installed the collection across 5 engineering teams: /tdd eliminated missing test suites, /diagnose cut debugging time roughly in half, handoff docs cut task resumption from 90 minutes to 15."
+    },
+    {
+      "role": "result",
+      "say": "An agent that follows your team's workflows instead of guessing what you want.",
+      "outputs": [
+        { "what": "Consistent workflows", "eg": "Every task follows the same pattern - tests first, debugging by observation, clear handoff documentation" },
+        { "what": "Lower AI costs", "eg": "One test showed 62% fewer tokens (the units AI charges are measured in) in debugging sessions using /caveman" },
+        { "what": "Faster PRs", "eg": "20-40% faster time to a correct pull request in one week-long test" }
+      ]
+    }
+  ],
+  "before": [
+    "Your agent improvises a workflow each time. Sometimes it writes tests first, sometimes it doesn't. Debugging is a guessing game.",
+    "You write custom CLAUDE.md rules for each behavior you want, and they're hard to share across projects or teams."
+  ],
+  "after": [
+    "27 pre-built workflows you can invoke by name. /tdd for test-first, /caveman for print-debugging, /todoist for checklists.",
+    "Skills are shareable packages: install once, use across every project."
+  ],
+  "uses_note": "Skills has 274K stars. Two named uses found with measurable outcomes.",
+  "uses": [
+    {
+      "who": "Deepak Bagada, CEO of SaaSNext",
+      "what": "Installed the skills collection across 5 engineering teams and adapted 12 of 27 skills for production TypeScript projects. Results: TDD adoption eliminated missing test suites, debugging time cut roughly in half with /diagnose, handoff docs cut task resumption from 90 minutes to 15.",
+      "url": "https://dailyaiworld.com/workflow/matt-pocock-skills-production-agent-workflows-2026",
+      "date": "2026-07-18"
+    },
+    {
+      "who": "andrew (andrew.ooo)",
+      "what": "Tested skills on an Astro/TypeScript project for one week. /caveman debugging reduced output tokens by 62%, time-to-correct-PR down 20-40%. (Note: andrew.ooo is AI-agent-operated, human-supervised.)",
+      "url": "https://andrew.ooo/posts/matt-pocock-skills-claude-code-review/",
+      "date": "2026-05-02"
+    }
+  ],
+  "pulse": {
+    "gain": "+8.2K stars this week, +47.9K in 30 days.",
+    "history": [
+      ["2026-04-23", 0],
+      ["2026-09-02", 226428],
+      ["2026-10-02", 274282]
+    ],
+    "history_note": "Created Apr 23. The 30-day gain of +47.9K is from findarepo's measured data.",
+    "facts": [
+      { "value": "274K", "label": "stars on GitHub" },
+      { "value": "27", "label": "skills in the collection" },
+      { "value": "18 + 9", "label": "user-invoked + auto-activated skills" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "The Pragmatic Engineer (Gergely Orosz)",
+      "title": "AI Skills with Matt Pocock",
+      "url": "https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock",
+      "meta": "Sep 17, 2026"
+    },
+    {
+      "plat": "Hacker News (via simonwillison.net)",
+      "title": "Claude Skills are awesome, maybe a bigger deal than MCP",
+      "url": "https://news.ycombinator.com/item?id=45619537",
+      "meta": "738 points, 370 comments"
+    },
+    {
+      "plat": "Developers Digest",
+      "title": "Matt Pocock's Skills Repo Is a Better Pattern Than Vibe Coding",
+      "url": "https://www.developersdigest.tech/blog/github-trending-skills-2026-05-13",
+      "meta": "May 13, 2026"
+    },
+    {
+      "plat": "DevTalk Forum",
+      "title": "Anyone tried mattpocock/skills? Here is what I found after a week",
+      "url": "https://forum.devtalk.com/t/anyone-tried-mattpocock-skills-for-claude-code-here-is-what-i-found-after-a-week/244771",
+      "meta": "Mixed review: /grill-with-docs and /caveman effective, /tdd less useful for complex UI"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install all 27 skills: `npx skills@latest add mattpocock/skills`. Or try one: `npx skills@latest add mattpocock/skills/tdd`.",
+      "Try `/tdd Add a retry mechanism to the API client` and watch the agent write a failing test first, then make it pass.",
+      "Try `/caveman` on a bug you're stuck on - the agent debugs by adding print statements and observing the output instead of guessing."
+    ],
+    "paste": "/skillspector https://github.com/mattpocock/skills\n\nIf that scan passes: install the collection, run /tdd on a simple feature, then /caveman on a known bug. Report whether the agent followed the skill's workflow and what the result looked like. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "Lightweight - skills are Markdown instruction files, not heavy packages.",
+    "memory": "No measurable overhead. Skills are context instructions, not running processes.",
+    "runs_on": "Claude Code, Codex, or any agent that supports skills. Needs Node.js for the installer.",
+    "source": { "title": "Skills README", "url": "https://github.com/mattpocock/skills" }
+  },
+  "verdict": {
+    "best_for": [
+      "You use Claude Code daily and want consistent, named workflows - test-first, print-debugging, task checklists - without writing custom rules",
+      "You lead a team and want everyone's agent to follow the same practices"
+    ],
+    "skip_if": [
+      "You don't use Claude Code or a compatible AI agent - the skills need a host",
+      "You prefer writing your own custom rules and want full control over every prompt"
+    ],
+    "alternatives": [
+      {
+        "name": "ECC (Everything Claude Code)",
+        "repo": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "line": "261 skills and 63 sub-agents - much larger collection but also a bigger commitment. Skills focuses on 27 high-quality, focused workflows."
+      },
+      {
+        "name": "Custom CLAUDE.md rules",
+        "line": "Write your own rules in CLAUDE.md. More work, but fully customized to your project. Skills saves that time with pre-built, tested workflows."
+      }
+    ]
+  },
+  "watch": [
+    "**Made by Matt Pocock, known for TypeScript education.** This is a personal project, not a company product. He maintains it actively, but it depends on one person.",
+    "**Not all skills are equally useful.** The DevTalk review found /tdd less useful for complex UI work, while /grill-with-docs and /caveman were strong.",
+    "**The andrew.ooo review was AI-agent-operated.** The 62% token reduction number comes from a blog that is human-supervised but AI-written - weight it accordingly.",
+    "**Skills are Markdown files.** They work by injecting instructions into the agent's context. No sandboxing, no isolation - they change how the agent thinks, which is the point but also the risk."
+  ],
+  "sources": [
+    { "title": "Skills on GitHub (README, skill list)", "url": "https://github.com/mattpocock/skills", "date": "2026-10-02" },
+    { "title": "Skills catalog on skills.sh", "url": "https://skills.sh", "date": "2026-10-02" },
+    { "title": "The Pragmatic Engineer: AI Skills with Matt Pocock", "url": "https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock", "date": "2026-09-17" },
+    { "title": "HN: Claude Skills are awesome (738 points)", "url": "https://news.ycombinator.com/item?id=45619537", "date": "2026-05-15" },
+    { "title": "Daily AI World: SaaSNext skills deployment", "url": "https://dailyaiworld.com/workflow/matt-pocock-skills-production-agent-workflows-2026", "date": "2026-07-18" },
+    { "title": "andrew.ooo: Skills review", "url": "https://andrew.ooo/posts/matt-pocock-skills-claude-code-review/", "date": "2026-05-02" }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "repo": "rohitg00/ai-engineering-from-scratch",
+  "name": "AI Engineering from Scratch",
+  "tagline": "A free 523-lesson curriculum that teaches AI engineering by building real projects - from zero to running systems in production.",
+  "sentence": "Work through 523 lessons across 20 phases, each one a real coding exercise in Python, TypeScript, Rust or Julia - from 'what is a neural network' to putting a working AI system online, with no video lectures and no paywall.",
+  "fit": "developers",
+  "links": {
+    "website": "https://aiengineeringfromscratch.com",
+    "docs": "https://github.com/rohitg00/ai-engineering-from-scratch"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to learn AI engineering, but courses are either too theoretical (lectures and slides) or too expensive (bootcamps at $5,000+).",
+      "eg": "A Coursera specialization costs $49/month and takes 6 months. A bootcamp costs $5,000-15,000. Neither gives you real code to run."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the curriculum on GitHub or the website and start with Phase 0, Lesson 1.",
+      "eg": "Go to the website, pick a phase that matches your level, and open the first lesson. Each one is a file you run."
+    },
+    {
+      "role": "input",
+      "say": "Your time and a computer. Lessons are self-contained files you read, modify and run.",
+      "eg": "Each lesson is a Python, TypeScript, Rust or Julia file with comments explaining what it does and exercises at the end."
+    },
+    {
+      "role": "does",
+      "say": "It walks you through 20 phases of AI engineering, from fundamentals to putting real systems online, with 523 hands-on exercises.",
+      "steps": [
+        "Phase 0: Foundations - Python, math, hardware (GPU setup, container basics)",
+        "Phases 1-10: Core AI - neural networks, transformers, fine-tuning (adjusting an AI model with your own data), RAG (retrieval-augmented generation - teaching AI to look up facts before answering), agents",
+        "Phases 11-20: Production - putting systems online, monitoring, security, multi-agent systems, AI engineering for teams"
+      ],
+      "eg": "Phase 3, Lesson 7: build a small transformer model from scratch in Python, train it on text, and watch it learn to predict the next word."
+    },
+    {
+      "role": "result",
+      "say": "Practical AI engineering skills, demonstrated by the code you wrote and the systems you built.",
+      "outputs": [
+        { "what": "Working code from every lesson", "eg": "523 files you wrote and ran, covering the full stack from fundamentals to production" },
+        { "what": "A structured path from zero to production", "eg": "20 phases that build on each other - you don't have to guess what to learn next" },
+        { "what": "Multi-language fluency", "eg": "Lessons in Python, TypeScript, Rust and Julia - the four languages used in real AI engineering" }
+      ]
+    }
+  ],
+  "before": [
+    "Learning AI engineering means stitching together blog posts, video courses and documentation, guessing what to learn next.",
+    "Free resources are scattered and unstructured. Paid ones are expensive and often more theory than code."
+  ],
+  "after": [
+    "One free curriculum, 523 lessons, 20 phases from zero to production. Each lesson is code you run, not slides you watch.",
+    "A clear path: finish Phase 5 and you can build a chatbot. Finish Phase 15 and you can put a working AI system online."
+  ],
+  "uses_note": "The curriculum is 5 months old with 63K stars and 114K readers in the last 30 days. Published testimonials from named learners who completed specific portions and reported results are absent - coverage is mostly 'here's what it is' rather than 'here's what I learned by doing it.'",
+  "uses": [],
+  "pulse": {
+    "gain": "+4.2K stars this week, +21.2K in 30 days.",
+    "history": [
+      ["2026-05-01", 0],
+      ["2026-09-02", 41406],
+      ["2026-10-02", 62616]
+    ],
+    "history_note": "Created May 1. The 30-day gain of +21.2K is from findarepo's measured data.",
+    "facts": [
+      { "value": "62.6K", "label": "stars on GitHub" },
+      { "value": "523", "label": "lessons" },
+      { "value": "~342 hours", "label": "of material" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "DEV Community (creator)",
+      "title": "Build It, Then Use It: How I wrote 435 AI engineering lessons from scratch",
+      "url": "https://dev.to/rohitg00/build-it-then-use-it-how-i-wrote-435-ai-engineering-lessons-from-scratch-5d2d",
+      "meta": "May 24, 2026"
+    },
+    {
+      "plat": "AIToolly",
+      "title": "AI Engineering from Scratch: A New Reference Manual for Building and Delivering AI Solutions",
+      "url": "https://aitoolly.com/ai-news/article/2026-05-22-ai-engineering-from-scratch-a-new-reference-manual-for-building-and-delivering-ai-solutions",
+      "meta": "Aug 27, 2026"
+    },
+    {
+      "plat": "YouTube",
+      "title": "AI Engineering From Scratch - 435 Free Lessons, 20 Phases, Built In Real Code",
+      "url": "https://www.youtube.com/watch?v=PTN_AfsqMnU",
+      "meta": "Video walkthrough"
+    }
+  ],
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "[Open the curriculum](https://aiengineeringfromscratch.com) and start with Phase 0 if you're new, or jump to Phase 3 (Transformers) if you know the basics.",
+      "Pick any lesson, clone the repo, and run the file. Each one is self-contained: read the comments, modify the code, run it again.",
+      "Work through 3-5 lessons in a row to see how they build on each other."
+    ],
+    "paste": "/skillspector https://github.com/rohitg00/ai-engineering-from-scratch\n\nIf that scan passes: clone the repo, run 3 lessons from different phases (Phase 0, Phase 3, Phase 10). Report whether each lesson runs, whether the explanations are clear, and whether the exercises are useful. 15 minutes max."
+  },
+  "footprint": {
+    "disk": "Clone the repo (size varies with full lesson history). Lessons are individual script files - small.",
+    "memory": "Depends on the lesson. Early phases need only Python and a text editor. Later phases (GPU training, deployment) need more resources.",
+    "runs_on": "Any computer with Python 3.x. Some lessons use TypeScript, Rust or Julia. GPU lessons (Phase 0, Lesson 3) need an NVIDIA card. Docker used in some deployment lessons.",
+    "source": { "title": "AI Engineering from Scratch README", "url": "https://github.com/rohitg00/ai-engineering-from-scratch" }
+  },
+  "verdict": {
+    "best_for": [
+      "You want to learn AI engineering hands-on, writing and running real code from day one, without paying for a course",
+      "You want a structured path from fundamentals to production, not a random collection of tutorials"
+    ],
+    "skip_if": [
+      "You learn better from video lectures and live instruction - this is text and code, no videos",
+      "You want a certificate or credential - this is a self-study curriculum with no formal assessment"
+    ],
+    "alternatives": [
+      {
+        "name": "fast.ai",
+        "url": "https://www.fast.ai/",
+        "line": "Free video-based deep learning course. More established, with a strong community and forum, but less hands-on per lesson and focused on deep learning rather than the full AI engineering stack."
+      },
+      {
+        "name": "Hugging Face Course",
+        "url": "https://huggingface.co/learn/nlp-course",
+        "line": "Free NLP course built around the Hugging Face library. Narrower scope (NLP only), but deeper on that topic and integrated with the Hugging Face ecosystem."
+      }
+    ]
+  },
+  "watch": [
+    "**Most coverage is by the creator.** Independent critical reviews are thin. The curriculum is comprehensive (523 lessons, ~342 hours), but hasn't been widely peer-reviewed.",
+    "**No completion testimonials yet.** 63K stars and 114K readers, but no named learner has published 'I did this curriculum and got a job / built a system / passed a benchmark.'",
+    "**One author.** Rohit Ghumare maintains the entire 523-lesson curriculum. Active development, but a large surface for one person.",
+    "**Later phases need real hardware.** GPU training, Docker deployments and multi-agent systems require more than a basic laptop."
+  ],
+  "sources": [
+    { "title": "AI Engineering from Scratch on GitHub (README, curriculum)", "url": "https://github.com/rohitg00/ai-engineering-from-scratch", "date": "2026-10-02" },
+    { "title": "AI Engineering from Scratch website", "url": "https://aiengineeringfromscratch.com", "date": "2026-10-02" },
+    { "title": "DEV Community: How I wrote 435 AI engineering lessons", "url": "https://dev.to/rohitg00/build-it-then-use-it-how-i-wrote-435-ai-engineering-lessons-from-scratch-5d2d", "date": "2026-05-24" },
+    { "title": "AIToolly: AI Engineering from Scratch review", "url": "https://aitoolly.com/ai-news/article/2026-05-22-ai-engineering-from-scratch-a-new-reference-manual-for-building-and-delivering-ai-solutions", "date": "2026-08-27" }
+  ]
+}

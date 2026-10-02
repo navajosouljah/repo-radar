@@ -304,6 +304,9 @@ function pickCard(ed, p, i, depth) {
   if (p.status === 'fail') {
     return `<a class="pick small bad" href="${href}"><span class="n">!</span><h3><small>${esc(p.repo)}</small>${esc(p.name)}: do not install</h3><p>${esc(p.oneliner)}</p><div class="row"><span class="chip" style="border-color:var(--coral-edge);color:var(--coral-ink)">Failed our safety check</span></div></a>`;
   }
+  if (p.status === 'review') {
+    return `<a class="pick small bad" href="${href}"><span class="n">?</span><h3><small>${esc(p.repo)}</small>${esc(p.name)}: under review</h3><p>${esc(p.oneliner)}</p><div class="row"><span class="chip" style="border-color:var(--amber-edge,orange);color:var(--amber-ink,#856404)">Under review</span></div></a>`;
+  }
   requireGate(p.repo, `${depth === 0 ? 'index.html' : `editions/${ed.date}/index.html`} (Top 10)`);
   const fit = FIT[p.fit] || FIT.news;
   const cls = i === 0 ? 'p1' : i <= 2 ? `p${i + 1}` : 'small';
@@ -316,6 +319,7 @@ function restList(ed, depth) {
   const rows = ed.picks.slice(3).map(p => {
     const href = depth === 0 ? `editions/${ed.date}/${p.slug}.html` : `${p.slug}.html`;
     if (p.status === 'fail') return `<li><a class="row bad" href="${href}"><span class="n">!</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${esc(p.oneliner)}</span><span class="chip" style="border-color:var(--coral-edge);color:var(--coral-ink)">Do not install</span></a></li>`;
+    if (p.status === 'review') return `<li><a class="row bad" href="${href}"><span class="n">?</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${esc(p.oneliner)}</span><span class="chip" style="border-color:var(--amber-edge,orange);color:var(--amber-ink,#856404)">Under review</span></a></li>`;
     requireGate(p.repo, `${depth === 0 ? 'index.html' : `editions/${ed.date}/index.html`} (Top 10)`);
     const fit = FIT[p.fit] || FIT.news;
     return `<li><a class="row" href="${href}"><span class="n">#${p.rank}</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${rich(p.oneliner)}</span><span class="chip ${fit[0]}"><span class="dot" aria-hidden="true"></span>${fit[1]}</span><span class="num">${human(p.stars)} stars</span></a></li>`;
@@ -388,6 +392,7 @@ for (const date of editions) {
     if (!existsSync(join(ROOT, f))) continue;
     const r = { ...read(f), rank: p.rank, slug: p.slug };
     const out = `editions/${date}/${p.slug}.html`;
+    if (p.status === 'review' || r.status === 'review') continue;
     outputs.push([out, p.status === 'fail' || r.status === 'fail' ? failPage(ed, r) : repoPage(ed, r)]);
   }
   if (!only && ed.picks.every(p => p.status === 'fail' || p.oneliner)) {

@@ -1,5 +1,5 @@
 {
-  "categories_note": "The top 3 in each lane, checked for safety on Sep 27. Design now counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. The full re-ranking by measured growth arrives with the new picking recipe.",
+  "categories_note": "The top 3 in each lane, checked for safety on Oct 2. Design counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. Ranked by measured growth, adoption and total stars.",
   "categories": [
     {
       "name": "Development & Coding Agents",
@@ -25,7 +25,7 @@
         }
       ],
       "id": "development-coding-agents",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "AI Updates",
@@ -50,7 +50,7 @@
         }
       ],
       "id": "ai-updates",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Automation & Agent Orchestration",
@@ -75,7 +75,7 @@
         }
       ],
       "id": "automation-agent-orchestration",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Research & Knowledge",
@@ -102,7 +102,7 @@
         }
       ],
       "id": "research-knowledge",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Web Scraping & Data Extraction",
@@ -121,7 +121,7 @@
         }
       ],
       "id": "web-scraping-data-extraction",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Website Builders",
@@ -140,7 +140,7 @@
         }
       ],
       "id": "website-builders",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Design & Branding",
@@ -171,7 +171,7 @@
         }
       ],
       "id": "design-branding",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Build & DevOps",
@@ -184,13 +184,13 @@
         }
       ],
       "id": "build-devops",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Sales & CRM",
       "picks": [],
       "id": "sales-crm",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Finance",
@@ -215,7 +215,7 @@
         }
       ],
       "id": "finance",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     },
     {
       "name": "Security & Privacy",
@@ -240,10 +240,10 @@
         }
       ],
       "id": "security-privacy",
-      "checked": "2026-09-27"
+      "checked": "2026-10-02"
     }
   ],
-  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Sep 27), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
+  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Oct 2), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
   "claude_board": [
     {
       "repo": "mattpocock/skills",

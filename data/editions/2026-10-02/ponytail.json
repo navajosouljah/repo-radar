@@ -1,0 +1,163 @@
+{
+  "repo": "DietrichGebert/ponytail",
+  "name": "Ponytail",
+  "tagline": "A one-line plugin that makes your AI coding agent write less code - it thinks like the laziest senior developer in the room.",
+  "sentence": "Install Ponytail in Claude Code, Cursor, Codex or 20 other agents and it rewrites the agent's habits: before touching a file it asks 'can I delete something instead?' and works down a seven-rung ladder from do-nothing to write-new-code.",
+  "fit": "you",
+  "replaces": "Manually prompting your coding agent to be minimal (and watching it ignore you)",
+  "links": {
+    "website": "https://ponytail.dev",
+    "docs": "https://github.com/DietrichGebert/ponytail"
+  },
+  "visual": {
+    "src": "assets/shots/ponytail.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "Ponytail's README showing its core concept: a seven-rung decision ladder from 'No code at all' at the top to 'New code' at the bottom, with each rung labeled - No code, Delete code, Refactor, Config / env, Library, Existing pattern, New code.",
+    "caption": "The seven-rung ladder from Ponytail's README: the agent tries every option above 'new code' before writing anything."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI coding agents default to writing more code. Ask for a feature and you get a new file, new functions, new abstractions - even when an existing tool or a config change would have done the job.",
+      "eg": "You ask Claude Code to add date formatting. Instead of using a built-in method, it writes a custom date formatter from scratch."
+    },
+    {
+      "role": "trigger",
+      "say": "You install Ponytail as a plugin - one command, no config.",
+      "eg": "`npx skills add dietrichgebert/ponytail` in Claude Code, or the equivalent for Cursor, Codex, Windsurf or any of 20+ supported agents."
+    },
+    {
+      "role": "input",
+      "say": "Nothing changes about how you talk to your agent. You keep asking for features the same way.",
+      "eg": "Same prompts as before. Ponytail works in the background, changing how the agent thinks before it writes."
+    },
+    {
+      "role": "does",
+      "say": "It injects a decision ladder into the agent's thinking: before writing code, try doing nothing, then deleting, then refactoring, then configuring, then using a library, then copying an existing pattern - and only then write something new.",
+      "steps": [
+        "Rung 1: Can you solve it with no code at all? (A setting, a flag, a documentation fix)",
+        "Rung 2: Can you delete code to fix it? (Remove dead code, simplify a conditional)",
+        "Rung 3-6: Refactor, config change, library, or copy an existing pattern in the codebase",
+        "Rung 7: Only now, write new code - and keep it minimal"
+      ],
+      "eg": "You ask for a retry mechanism. Without Ponytail, the agent writes a custom retry wrapper. With it, the agent finds that the HTTP library already has a retry option and enables it with one line."
+    },
+    {
+      "role": "result",
+      "say": "Smaller diffs, fewer new files, and changes that use what the codebase already has.",
+      "outputs": [
+        { "what": "Less code per task", "eg": "The corrected benchmark shows about 54% less code output on average across test cases" },
+        { "what": "Faster, cheaper agent runs", "eg": "About 20% cheaper and 27% faster per task, because the agent thinks more and writes less" },
+        { "what": "Changes that fit the existing codebase", "eg": "The agent reuses patterns already in your code instead of inventing parallel approaches" }
+      ]
+    }
+  ],
+  "before": [
+    "Your coding agent writes new code by default, even when an existing tool, a config flag or a deletion would solve the problem.",
+    "You spend time reviewing and cleaning up unnecessary abstractions the agent introduced."
+  ],
+  "after": [
+    "The agent walks a seven-rung ladder - from 'do nothing' to 'write new code' - and stops at the first rung that works.",
+    "Diffs are smaller, reviews are faster, and the agent reuses what the codebase already has."
+  ],
+  "uses_note": "Ponytail has 151K stars and 72K npm downloads/month, but individual named case studies with specific shipped projects are sparse. Colin Eberhardt (CTO, Scott Logic) rigorously benchmarked it and filed an issue that led to corrected claims.",
+  "uses": [
+    {
+      "who": "Colin Eberhardt, CTO at Scott Logic",
+      "what": "Benchmarked Ponytail rigorously, filed GitHub issue #126 showing the original 80-94% claim was inflated by a chatty baseline. This led the author to rebuild the benchmark entirely, landing on the corrected 54% figure.",
+      "url": "https://www.infoq.com/news/2026/08/ponytail-agent-skill-benchmark/",
+      "date": "2026-08-05"
+    }
+  ],
+  "pulse": {
+    "gain": "+6.8K stars this week, +42.4K in 30 days.",
+    "history": [
+      ["2026-06-12", 0],
+      ["2026-09-02", 108788],
+      ["2026-10-02", 151169]
+    ],
+    "history_note": "Created Jun 12. The 30-day gain of +42.4K is from findarepo's measured data.",
+    "facts": [
+      { "value": "151K", "label": "stars on GitHub" },
+      { "value": "72.1K/month", "label": "npm downloads" },
+      { "value": "54%", "label": "less code (corrected benchmark)" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "InfoQ",
+      "title": "Ponytail Agent Skill Corrects its Own Benchmark after Contributor Challenge",
+      "url": "https://www.infoq.com/news/2026/08/ponytail-agent-skill-benchmark/",
+      "meta": "Aug 5, 2026"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Ponytail - make your AI agent think like the laziest senior dev in the room",
+      "url": "https://news.ycombinator.com/item?id=48527946",
+      "meta": "98 points, 17 comments"
+    },
+    {
+      "plat": "DEV Community",
+      "title": "Ponytail: The AI Coding Skill Taking GitHub by Storm",
+      "url": "https://dev.to/yashddesai/ponytail-the-ai-coding-skill-taking-github-by-storm-and-the-one-question-nobodys-answered-yet-46mc",
+      "meta": "Jun 25, 2026"
+    },
+    {
+      "plat": "Flavio Copes blog",
+      "title": "A Deep Dive into Ponytail",
+      "url": "https://flaviocopes.com/ponytail/",
+      "meta": "Updated Sep 17, 2026"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install it in Claude Code: `npx skills add dietrichgebert/ponytail` (or the matching command for your agent - Cursor, Codex, Windsurf, etc.).",
+      "Ask your agent to do a task you've done before - something where it usually writes too much. Compare the diff to what it would have done without Ponytail.",
+      "Try asking for a feature that could be solved with a config change or a library - see if the agent finds the simpler path."
+    ],
+    "paste": "/skillspector https://github.com/DietrichGebert/ponytail\n\nIf that scan passes: install the skill, run 3 coding tasks (one that could be solved by deletion, one by config, one that needs new code), and compare the output to what the agent writes without Ponytail. Report the diff sizes. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "**1.3 MB** npm package, zero dependencies.",
+    "memory": "No measurable overhead. It's a set of rules injected into the agent's context, not a running process.",
+    "runs_on": "Any system where your AI coding agent runs. Supports 20+ agents: Claude Code, Cursor, Codex, Windsurf, Gemini CLI, Zed, and more.",
+    "source": { "title": "Ponytail README and npm package", "url": "https://github.com/DietrichGebert/ponytail" }
+  },
+  "verdict": {
+    "best_for": [
+      "You use an AI coding agent and it writes too much code - new files, new abstractions, custom solutions when a built-in would do",
+      "You want smaller diffs and faster code reviews without changing how you prompt"
+    ],
+    "skip_if": [
+      "You're working on a greenfield project where most code genuinely is new - the ladder is less useful when there's nothing to reuse",
+      "You prefer full control over your agent's system prompt and don't want a plugin modifying it"
+    ],
+    "alternatives": [
+      {
+        "name": "A custom CLAUDE.md rule",
+        "line": "You can write your own 'prefer minimal code' instruction in your project's CLAUDE.md. Less structured than the seven-rung ladder, but fully in your control and free."
+      },
+      {
+        "name": "ECC (Everything Claude Code)",
+        "repo": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "line": "A much larger plugin collection (261 skills). Includes code-reduction heuristics among many other things, but it's a full framework rather than a single focused tool."
+      }
+    ]
+  },
+  "watch": [
+    "**The '54% less code' claim was corrected from 80-94%.** An external benchmark by Scott Logic showed the original numbers were inflated. The author rebuilt the benchmark and published the corrected figure. Credit for transparency, but check claims carefully.",
+    "**It's a ruleset, not magic.** Ponytail changes how the agent thinks, but a bad prompt or a complex requirement can still produce bloated code.",
+    "**Design-system blind spot.** One reviewer noted Ponytail may steer agents toward native HTML inputs when a project uses a component library like shadcn or Material UI.",
+    "**One main author.** Active development, but sustained by a single maintainer."
+  ],
+  "sources": [
+    { "title": "Ponytail on GitHub (README, ladder, benchmark)", "url": "https://github.com/DietrichGebert/ponytail", "date": "2026-10-02" },
+    { "title": "InfoQ: Ponytail benchmark correction", "url": "https://www.infoq.com/news/2026/08/ponytail-agent-skill-benchmark/", "date": "2026-08-05" },
+    { "title": "Flavio Copes: A Deep Dive into Ponytail", "url": "https://flaviocopes.com/ponytail/", "date": "2026-09-17" },
+    { "title": "HN discussion: Ponytail", "url": "https://news.ycombinator.com/item?id=48527946", "date": "2026-07" },
+    { "title": "DEV Community: Ponytail review", "url": "https://dev.to/yashddesai/ponytail-the-ai-coding-skill-taking-github-by-storm-and-the-one-question-nobodys-answered-yet-46mc", "date": "2026-06-25" }
+  ]
+}

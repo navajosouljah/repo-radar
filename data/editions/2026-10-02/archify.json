@@ -1,0 +1,162 @@
+{
+  "repo": "tt-a1i/archify",
+  "name": "Archify",
+  "tagline": "Point an AI agent at your codebase and get a validated architecture diagram - not a guess, a verified map.",
+  "sentence": "Install Archify in Claude Code and ask it to diagram any project: it reads the code, draws the architecture, then runs a validation engine that rejects crossing connections and overlapping labels until the diagram is clean.",
+  "fit": "you",
+  "replaces": "Manually drawing architecture diagrams in Lucidchart, Miro or Structurizr",
+  "links": {
+    "website": "https://tt-a1i.github.io/archify/",
+    "docs": "https://tt-a1i.github.io/archify/guide.html"
+  },
+  "visual": {
+    "src": "assets/shots/archify.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "An Archify-generated architecture diagram showing connected components in a layered layout with clean labels and validated connections - no overlapping lines or unreadable text.",
+    "caption": "An Archify diagram from its gallery: the validation engine checks every connection and label before the diagram is final."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need an architecture diagram of your project, but drawing one by hand takes hours and it's out of date the moment the code changes.",
+      "eg": "A new team member asks 'how does this system fit together?' and nobody has a current diagram."
+    },
+    {
+      "role": "trigger",
+      "say": "You install Archify in Claude Code and ask it to diagram a project.",
+      "eg": "`npx skills add tt-a1i/archify -g` to install, then ask Claude Code: 'Diagram the architecture of this project.'"
+    },
+    {
+      "role": "input",
+      "say": "A codebase - any project the agent can read.",
+      "eg": "A Node.js API, a Python service, a monorepo with multiple packages. Archify reads the code to understand the structure."
+    },
+    {
+      "role": "does",
+      "say": "It reads the code, identifies the components and connections, draws a diagram, then validates it automatically.",
+      "steps": [
+        "The agent reads your codebase and identifies the main components: services, databases, APIs, queues, frontends",
+        "It draws a layered architecture diagram showing how those components connect",
+        "A validation engine checks the diagram: no crossing connections, no overlapping labels, no unreadable text. If something fails, it redraws until the diagram passes"
+      ],
+      "eg": "ThakiCloud used it to diagram a 9-component AI platform stack. The first render was rejected by the validator for crossing connections - it corrected and produced a clean diagram."
+    },
+    {
+      "role": "result",
+      "say": "A clean, validated architecture diagram you can share, print or embed.",
+      "outputs": [
+        { "what": "A verified architecture diagram", "eg": "An SVG or PNG diagram with labeled components, clean connections, and no visual clutter" },
+        { "what": "A diagram that updates when the code changes", "eg": "Run it again after a refactor and the diagram reflects the new architecture" },
+        { "what": "A gallery of examples", "eg": "20+ example diagrams at archify's gallery page, showing different project types and layouts" }
+      ]
+    }
+  ],
+  "before": [
+    "Architecture diagrams are drawn by hand in tools like Lucidchart or Miro, then forgotten when the code changes.",
+    "AI-generated diagrams are often inaccurate - wrong connections, overlapping labels, or a layout that's hard to read."
+  ],
+  "after": [
+    "Ask an agent to diagram the project and get a validated result - the engine rejects bad layouts before you see them.",
+    "Run it again after any change: the diagram stays current with the code."
+  ],
+  "uses_note": "Archify has 76K stars and 128K installs on skills.sh. Two named public uses found.",
+  "uses": [
+    {
+      "who": "ThakiCloud team",
+      "what": "Diagrammed their AI platform stack (9 components: GPU scheduling with Kueue, model serving with vLLM, multi-tenant auth via Keycloak). First render was rejected by the validator; corrected version passed.",
+      "url": "https://thakicloud.com/tech-blog/en/dev/agentops/archify-agent-architecture-diagrams/",
+      "date": "2026-07-22"
+    },
+    {
+      "who": "Aditi Gupta, AI engineer (Bengaluru)",
+      "what": "Tested Archify on unfamiliar repositories and changed her workflow: now starts with a structured map before reading code. Found regeneration cheaper than manual redrawing.",
+      "url": "https://dev.to/aditi_gupta_8d81622a592aa/archify-honest-review-30p8",
+      "date": "2026-09-03"
+    }
+  ],
+  "pulse": {
+    "gain": "+3.9K stars this week, +28.1K in 30 days.",
+    "history": [
+      ["2026-06-01", 0],
+      ["2026-09-02", 47898],
+      ["2026-10-02", 76027]
+    ],
+    "history_note": "Created Jun 1. The 30-day gain of +28.1K is from findarepo's measured data.",
+    "facts": [
+      { "value": "76K", "label": "stars on GitHub" },
+      { "value": "127.9K", "label": "installs on skills.sh" },
+      { "value": "v3.0.1", "label": "current stable version" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "BetterStack",
+      "title": "Archify: Verifiable Architecture Diagrams Generated by AI Agents",
+      "url": "https://betterstack.com/community/guides/ai/archify-architecture/",
+      "meta": "Guide"
+    },
+    {
+      "plat": "Substack (Artificially Intimidating)",
+      "title": "Archify: The Free Architecture Diagram Alternative to Structurizr's Retired Cloud",
+      "url": "https://artificiallyintimidating.com/p/archify-free-architecture-diagram-tool",
+      "meta": "Sep 10, 2026. Notes 3 of 5 packaged examples failed its own containment gate (issue #324)."
+    },
+    {
+      "plat": "Taku blog",
+      "title": "Archify: Architecture Diagrams Your Agent Can Verify",
+      "url": "https://taku.ai/blog/skill-archify",
+      "meta": "Blog post"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install it: `npx skills add tt-a1i/archify -g` (works in Claude Code; other agents have their own install commands).",
+      "Open a project and ask [Claude Code](https://code.claude.com/docs/en/overview): 'Diagram the architecture of this project.' Watch it read the code and generate a diagram.",
+      "Check the [gallery](https://tt-a1i.github.io/archify/gallery.html) to see what different project diagrams look like."
+    ],
+    "paste": "/skillspector https://github.com/tt-a1i/archify\n\nIf that scan passes: install the skill, point it at a real project (this repo or another you have open), and ask for an architecture diagram. Check whether the validator catches any layout problems. Report the result. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for exact size. It's a skills plugin - lightweight by nature.",
+    "memory": "Standard Node.js usage. No GPU needed, no Docker needed.",
+    "runs_on": "Anywhere Node.js 18+ runs: Mac, Windows, Linux. Requires an AI agent (Claude Code, Codex, or similar) to drive it.",
+    "source": { "title": "Archify README and guide", "url": "https://github.com/tt-a1i/archify" }
+  },
+  "verdict": {
+    "best_for": [
+      "You need architecture diagrams that stay current with the code, without spending hours in a drawing tool",
+      "You want a diagram you can trust - the validation engine catches layout problems before you share it"
+    ],
+    "skip_if": [
+      "You need pixel-perfect custom diagrams for a presentation - Archify produces clean automated layouts, not designer-polished visuals",
+      "You don't use an AI coding agent - Archify needs Claude Code, Codex or a similar host to run"
+    ],
+    "alternatives": [
+      {
+        "name": "Structurizr",
+        "url": "https://structurizr.com/",
+        "line": "The original 'architecture as code' tool. More mature and supports the C4 model formally, but its cloud service has been retired - only the on-premises version remains."
+      },
+      {
+        "name": "Mermaid (in your editor)",
+        "url": "https://mermaid.js.org/",
+        "line": "A text-to-diagram tool built into GitHub, Notion and many editors. Simpler, no validation engine, but works without an AI agent."
+      }
+    ]
+  },
+  "watch": [
+    "**Three of five packaged examples fail Archify's own validation gate.** A reviewer found this (issue #324). The validator works, but the bundled examples haven't all been updated to pass it.",
+    "**Diagrams require human verification.** Aditi Gupta's review notes that Archify's output needs a human eye - the structure is a starting point, not gospel.",
+    "**Requires an AI agent host.** Archify isn't a standalone app. It needs Claude Code, Codex or a similar agent to drive it, which means you need one of those set up first.",
+    "**DeepSeek Harness requires Node 22+.** The main skill works with Node 18, but the DeepSeek integration needs Node 22.19.0 or later."
+  ],
+  "sources": [
+    { "title": "Archify on GitHub (README, gallery, guide)", "url": "https://github.com/tt-a1i/archify", "date": "2026-10-02" },
+    { "title": "ThakiCloud: Archify agent architecture diagrams", "url": "https://thakicloud.com/tech-blog/en/dev/agentops/archify-agent-architecture-diagrams/", "date": "2026-07-22" },
+    { "title": "Aditi Gupta: Archify honest review (DEV Community)", "url": "https://dev.to/aditi_gupta_8d81622a592aa/archify-honest-review-30p8", "date": "2026-09-03" },
+    { "title": "BetterStack: Archify guide", "url": "https://betterstack.com/community/guides/ai/archify-architecture/", "date": "2026-10-02" },
+    { "title": "Artificially Intimidating: Archify review", "url": "https://artificiallyintimidating.com/p/archify-free-architecture-diagram-tool", "date": "2026-09-10" }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "repo": "debpalash/VoiceStudio",
+  "name": "VoiceStudio",
+  "tagline": "A free voice studio on your own computer: clone a voice, dub a video, or dictate in 646 languages - nothing uploaded.",
+  "sentence": "Record a short sample of any voice, and VoiceStudio clones it on your machine so you can make it say new things, dub a video into another language, or turn text into a spoken audiobook - all without an internet connection.",
+  "fit": "you",
+  "replaces": "ElevenLabs ($5-99/month subscription for cloud voice cloning and text-to-speech)",
+  "links": {
+    "website": "https://voicestudio.ai",
+    "docs": "https://github.com/debpalash/VoiceStudio/wiki"
+  },
+  "visual": {
+    "src": "assets/shots/voicestudio.png",
+    "width": 1440,
+    "height": 960,
+    "alt": "VoiceStudio's voice cloning screen: a sidebar with Clone, Design, Saved, Gallery, Stories, Dubbing, Transcribe, Projects, Tools and Integrations, and a main panel showing 'VoiceStudio Demo Voice' with a script input area reading 'Every voice has a story. Bring yours to life with VoiceStudio' and a pink 'Synthesize audio' button.",
+    "caption": "VoiceStudio's voice cloning view, from its own README: type text, pick a cloned voice, click Synthesize."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to clone a voice or make a voiceover, but cloud services charge a monthly fee and upload your recordings to someone else's servers.",
+      "eg": "ElevenLabs, the best-known voice cloning service, starts at $5/month and processes everything on their cloud servers."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the VoiceStudio app on your computer and pick what you want to do: clone, design, dub, transcribe or dictate.",
+      "eg": "Double-click the app icon, or type `voicestudio` in a terminal. The interface opens in a window."
+    },
+    {
+      "role": "input",
+      "say": "A voice recording to clone, a video to dub, or text to speak aloud.",
+      "eg": "A 30-second recording of your voice, plus the text you want it to say in any of 646 supported languages."
+    },
+    {
+      "role": "does",
+      "say": "It runs AI voice models entirely on your computer to clone, generate or transcribe speech.",
+      "steps": [
+        "For cloning: it analyzes your voice sample and builds a voice profile that captures how you sound",
+        "For text-to-speech: it reads your text and generates audio in the cloned voice, adjusting speed, pitch and emotion",
+        "For dubbing: it transcribes a video's audio, translates it, and re-speaks it in the new language using the original speaker's cloned voice"
+      ],
+      "eg": "The README's demo: record a sample, type a sentence, click 'Synthesize audio,' and hear it spoken back in your cloned voice."
+    },
+    {
+      "role": "result",
+      "say": "Audio files, dubbed videos, or live dictation - all made locally, no data leaving your machine.",
+      "outputs": [
+        { "what": "A cloned voice that speaks your text", "eg": "An audio file of your voice saying something you never recorded, in any of 646 languages" },
+        { "what": "A dubbed video", "eg": "Your English video re-spoken in Spanish, with the original speaker's voice preserved" },
+        { "what": "A transcribed recording", "eg": "Spoken audio turned into a written transcript you can search and edit" }
+      ]
+    }
+  ],
+  "before": [
+    "Voice cloning means a cloud subscription, uploading sensitive recordings to a company's server, and usage limits tied to your plan.",
+    "Dubbing a video into another language means hiring a voice actor or using a service that charges per minute of audio."
+  ],
+  "after": [
+    "Clone any voice on your own computer - free, unlimited, no recordings leave your machine.",
+    "Dub a video into another language in minutes, keeping the original speaker's voice, without paying per minute or per word."
+  ],
+  "uses_note": "VoiceStudio is about 6 months old with 51K+ stars and active development (2,496 pull requests). Named public uses are hard to find - most users share results (audio clips) rather than crediting the tool.",
+  "uses": [],
+  "pulse": {
+    "gain": "+16.1K stars this week, +38.1K in 30 days.",
+    "history": [
+      ["2026-04-09", 0],
+      ["2026-09-02", 13565],
+      ["2026-10-02", 51653]
+    ],
+    "history_note": "Created Apr 9. The 30-day gain of +38K is from findarepo's measured data.",
+    "facts": [
+      { "value": "51.7K", "label": "stars on GitHub" },
+      { "value": "+16.1K/week", "label": "stars gained this week" },
+      { "value": "646", "label": "supported languages" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "debpalash/VoiceStudio on GitHub Trending (weekly, monthly)",
+      "url": "https://github.com/trending",
+      "meta": "Trending weekly and monthly, Oct 2"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "debpalash/VoiceStudio trending stats",
+      "url": "https://trendshift.io/repositories/28176",
+      "meta": "#20 monthly"
+    },
+    {
+      "plat": "findarepo",
+      "title": "debpalash/VoiceStudio on findarepo",
+      "url": "https://findarepo.com/repo/debpalash/VoiceStudio/",
+      "meta": "#2 daily, Oct 2"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download VoiceStudio](https://github.com/debpalash/VoiceStudio/releases/latest) from GitHub Releases - pick the installer for your system (Mac, Windows or Linux).",
+      "Inside the app, select Voice > Clone. Record a 30-second sample of your voice (or anyone's), then type a sentence you want it to say.",
+      "Click 'Synthesize audio' and listen to the result. Then try the Dubbing tab with a short video clip."
+    ],
+    "paste": "/skillspector https://github.com/debpalash/VoiceStudio\n\nIf that scan passes: download the app, clone a voice from a sample, synthesize a sentence, and report how it sounds. Try one more feature (dubbing or transcription). 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for the exact install size. Voice models typically run 1-5 GB each; the app downloads models on first use.",
+    "memory": "No data found for a specific number. Voice AI models generally need 4-8 GB of RAM. A graphics card speeds things up but isn't strictly required.",
+    "runs_on": "Mac, Windows, Linux. Desktop app (Electron-based). The README mentions Twilio, Plivo and n8n integrations for phone and automation workflows.",
+    "source": { "title": "VoiceStudio README and Releases", "url": "https://github.com/debpalash/VoiceStudio" }
+  },
+  "verdict": {
+    "best_for": [
+      "You want to clone a voice or make voiceovers without paying a subscription or uploading recordings to the cloud",
+      "You need to dub videos into other languages and want to keep the original speaker's voice"
+    ],
+    "skip_if": [
+      "You need the absolute best voice quality for a commercial product - ElevenLabs' cloud models are still ahead for production-grade output",
+      "You don't have a reasonably modern computer - running voice AI locally needs decent hardware"
+    ],
+    "alternatives": [
+      {
+        "name": "ElevenLabs",
+        "url": "https://elevenlabs.io/",
+        "line": "The cloud voice-cloning leader, $5-99/month. Higher quality and easier to start, but your recordings are processed on their servers."
+      },
+      {
+        "name": "Coqui TTS",
+        "repo": "coqui-ai/TTS",
+        "url": "https://github.com/coqui-ai/TTS",
+        "line": "An older open-source text-to-speech project. VoiceStudio bundles more features (dubbing, transcription, a desktop app) in one package."
+      }
+    ]
+  },
+  "watch": [
+    "**Quality may not match ElevenLabs.** Local voice models are improving fast, but cloud services with larger models and more training data still produce more natural-sounding output.",
+    "**Model downloads on first use.** The app downloads AI models when you first use each feature, which can take a while on a slow connection.",
+    "**Voice cloning raises ethical questions.** Cloning someone's voice without their permission is easy with this tool. The tool doesn't enforce any consent checks.",
+    "**One main developer.** Active development (2,496 PRs) but sustained by a single maintainer."
+  ],
+  "sources": [
+    { "title": "VoiceStudio on GitHub (README, features, requirements)", "url": "https://github.com/debpalash/VoiceStudio", "date": "2026-10-02" },
+    { "title": "VoiceStudio Releases", "url": "https://github.com/debpalash/VoiceStudio/releases", "date": "2026-10-02" },
+    { "title": "Trendshift: debpalash/VoiceStudio", "url": "https://trendshift.io/repositories/28176", "date": "2026-10-02" },
+    { "title": "findarepo: debpalash/VoiceStudio", "url": "https://findarepo.com/repo/debpalash/VoiceStudio/", "date": "2026-10-02" },
+    { "title": "ElevenLabs pricing", "url": "https://elevenlabs.io/", "date": "2026-10-02" }
+  ]
+}

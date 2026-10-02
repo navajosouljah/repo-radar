@@ -1,0 +1,141 @@
+{
+  "repo": "Niko1221/Strata",
+  "name": "Strata",
+  "tagline": "Run a powerful AI on your own gaming PC - no cloud, no subscription, no data leaving your machine.",
+  "sentence": "Install Strata on a Windows or Linux PC with a gaming graphics card, and chat with a 125-billion-brain AI that runs entirely on your hardware, keeping everything private.",
+  "fit": "you",
+  "replaces": "ChatGPT Plus or Claude Pro subscriptions, for private local AI chat",
+  "links": {
+    "docs": "https://github.com/Niko1221/Strata/wiki"
+  },
+  "visual": {
+    "src": "assets/shots/strata.png",
+    "width": 2560,
+    "height": 1440,
+    "alt": "Strata's monitor dashboard running on an NVIDIA GeForce RTX 5070: model state 'Reading prompt' at 97%, speed 50.4 tokens per second, GPU load 88%, VRAM 11.2 of 12 GB (1,644 experts cached), GPU temperature 54 degrees, alongside a Claude Code terminal building a voxel pagoda garden.",
+    "caption": "Strata's built-in monitor, from its own README: a 125-billion-parameter model running at 50 tokens/second on a single RTX 5070."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want a powerful AI assistant, but cloud subscriptions cost money every month and send your questions to someone else's server.",
+      "eg": "ChatGPT Plus is $20/month, and every question you type travels to OpenAI's servers - you can't control what happens to it there."
+    },
+    {
+      "role": "trigger",
+      "say": "You run the installer once, and Strata downloads the AI model to your PC.",
+      "eg": "`START-HERE.bat` on Windows, or `./setup.sh` on Linux. It detects your graphics card and downloads the right model (~70 GB)."
+    },
+    {
+      "role": "input",
+      "say": "Questions, conversations, code, or images - the same things you'd type into ChatGPT.",
+      "eg": "Ask it to summarize a document, write an email, explain a concept, or analyze a photo - all in your browser at localhost."
+    },
+    {
+      "role": "does",
+      "say": "It loads the AI model across your graphics card and system memory and runs it locally.",
+      "steps": [
+        "The installer detects your hardware - how much graphics memory, how much system memory, how fast your storage is",
+        "It downloads Qwen3.8-Flash-Next (a 125-billion-brain-cell model) and splits it: the busiest parts go on the graphics card, the rest stays in RAM",
+        "A small 'guess and check' helper predicts the next words and the big model verifies them all at once, so answers come out fast"
+      ],
+      "eg": "The README's own benchmark: 50.4 tokens per second on an RTX 5070 with 12 GB of graphics memory."
+    },
+    {
+      "role": "result",
+      "say": "A private, free AI assistant running in your browser - nothing leaves your machine.",
+      "outputs": [
+        { "what": "A chat interface in your browser", "eg": "Open http://127.0.0.1:8080 and start talking - it looks and feels like ChatGPT" },
+        { "what": "An API other apps can use", "eg": "Point Claude Code or Cursor at the local address, and they use your local AI instead of a cloud one" },
+        { "what": "Complete privacy", "eg": "No account, no API key (a code some services require), no internet connection needed after setup" }
+      ]
+    }
+  ],
+  "before": [
+    "Running a powerful AI means a cloud subscription ($20+/month) and trusting a company with every question you ask.",
+    "Local AI projects before Strata needed command-line setup, manual model downloads, and tuning to get decent speed."
+  ],
+  "after": [
+    "One installer, one click, and a 125-billion-brain-cell AI runs on your own PC - free, private, no subscription.",
+    "Answers come out at 50 words per second on a mid-range gaming card, fast enough for real-time chat."
+  ],
+  "uses_note": "Strata is 8 days old. GitHub issues show real users running it on RTX 3060, 4070, 5070 and AMD cards with varying results, but no named person or team has published a verifiable account of using it for real work yet - real use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+5.3K stars in 8 days since launch. findarepo measures about 1,600 stars/day.",
+    "history": [
+      ["2026-09-24", 0],
+      ["2026-10-02", 5341]
+    ],
+    "history_note": "Created Sep 24. All stars are since launch.",
+    "facts": [
+      { "value": "5.3K", "label": "stars in 8 days" },
+      { "value": "1,607/day", "label": "findarepo's measured star pace" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Trendshift",
+      "title": "Niko1221/Strata trending stats",
+      "url": "https://trendshift.io/repositories/Niko1221/Strata",
+      "meta": "#10 daily, #3 monthly, Oct 2"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Niko1221/Strata on findarepo: star growth and credibility",
+      "url": "https://findarepo.com/repo/Niko1221/Strata/",
+      "meta": "Looks organic"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "Trendshift: #10 daily, #3 monthly"
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "[Download Strata](https://github.com/Niko1221/Strata) from GitHub. On Windows, run `START-HERE.bat`; on Linux, run `./setup.sh`. It detects your graphics card and downloads the model (~70 GB, so give it time on a normal connection).",
+      "Once the download finishes, open your browser to [http://127.0.0.1:8080](http://127.0.0.1:8080) and start a conversation - ask it something you'd normally ask ChatGPT.",
+      "Check the Monitor tab to see how fast it's running and how much of your graphics card it's using."
+    ],
+    "paste": "/skillspector https://github.com/Niko1221/Strata\n\nIf that scan passes: clone the repo, run the installer, and start a chat session. Ask it to explain what it is and report how fast the answers come. Show me the monitor stats. 10 minutes max (the model download may take longer - report what you see)."
+  },
+  "footprint": {
+    "disk": "About **70 GB** for the model download, plus the Strata application itself. Total disk use is roughly 75 GB.",
+    "memory": "**32 GB+ system RAM** recommended. The model splits between the graphics card and system memory. With 12 GB of graphics memory, about 3.2 GB of model data stays on the card and the rest loads into RAM.",
+    "runs_on": "Windows 10/11 or Linux. Needs an NVIDIA RTX 20/30/40/50 series or AMD RX 7000/9000 series graphics card with at least 12 GB of graphics memory. No Mac support yet.",
+    "source": { "title": "Strata README: Hardware requirements", "url": "https://github.com/Niko1221/Strata" }
+  },
+  "verdict": {
+    "best_for": [
+      "You have a gaming PC and want a free, private AI assistant that never sends data to the cloud",
+      "You want to use your own local AI with coding tools like Claude Code or Cursor"
+    ],
+    "skip_if": [
+      "You don't have a gaming PC with a recent graphics card and 32 GB of RAM - it won't run on a basic laptop",
+      "You want the most capable AI available - cloud models from Anthropic and OpenAI are still ahead of local ones for complex reasoning"
+    ],
+    "alternatives": [
+      {
+        "name": "LM Studio",
+        "url": "https://lmstudio.ai/",
+        "line": "A desktop app for running local AI models with a visual interface. Easier to browse models, but Strata's speed optimizations for this specific model are harder to replicate."
+      }
+    ]
+  },
+  "watch": [
+    "**8 days old, one developer.** Very early - expect rough edges, breaking changes, and gaps in documentation.",
+    "**70 GB download.** The model is large. On a typical home connection, the initial download can take hours.",
+    "**No Mac support.** Requires an NVIDIA or AMD graphics card with 12+ GB of memory - no Apple silicon, no integrated graphics.",
+    "**One model only.** Strata is built around Qwen3.8-Flash-Next. You can't swap in other models yet."
+  ],
+  "sources": [
+    { "title": "Strata on GitHub (README, requirements, setup)", "url": "https://github.com/Niko1221/Strata", "date": "2026-10-02" },
+    { "title": "Strata GitHub Issues (user hardware reports)", "url": "https://github.com/Niko1221/Strata/issues", "date": "2026-10-02" },
+    { "title": "findarepo: Niko1221/Strata stats", "url": "https://findarepo.com/repo/Niko1221/Strata/", "date": "2026-10-02" },
+    { "title": "Trendshift: Niko1221/Strata", "url": "https://trendshift.io/repositories/Niko1221/Strata", "date": "2026-10-02" },
+    { "title": "Ollama", "url": "https://ollama.com/", "date": "2026-10-02" },
+    { "title": "LM Studio", "url": "https://lmstudio.ai/", "date": "2026-10-02" }
+  ]
+}

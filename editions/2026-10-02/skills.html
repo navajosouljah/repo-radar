@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills: A curated box of 27 agent skills for Claude Code - from test-driven development to debugging to architecture reviews. | Repo Radar</title>
+<meta name="description" content="Install Matt Pocock's skills collection and your Claude Code agent gets 27 new abilities: /tdd writes tests first, /caveman debugs with print statements, /todoist turns a task into a checklist, and 24 more - each one a focused behavior the agent follows exactly.">
+<meta property="og:title" content="Skills: A curated box of 27 agent skills for Claude Code - from test-driven development to debugging to architecture reviews. | Repo Radar">
+<meta property="og:description" content="Install Matt Pocock's skills collection and your Claude Code agent gets 27 new abilities: /tdd writes tests first, /caveman debugs with print statements, /todoist turns a task into a checklist, and 24 more - each one a focused behavior the agent follows exactly.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/skills.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 010 &middot; Week of October 2, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#7 this week</span><span class="repo-id">mattpocock/skills</span></div>
+    <h1 id="name">Skills</h1>
+    <p class="tagline">A curated box of 27 agent skills for Claude Code - from test-driven development to debugging to architecture reviews.</p>
+    <p class="sentence">Install Matt Pocock's skills collection and your Claude Code agent gets 27 new abilities: /tdd writes tests first, /caveman debugs with print statements, /todoist turns a task into a checklist, and 24 more - each one a focused behavior the agent follows exactly.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: Writing custom CLAUDE.md rules for each workflow you want the agent to follow</span>
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://skills.sh" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/mattpocock/skills" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/skills.png" alt="The skills.sh website showing a grid of available skills from the mattpocock/skills collection, each with a name, description and install count." width="1600" height="900" loading="eager">
+    <figcaption>The skills.sh catalog showing Matt Pocock's skill collection: 27 skills, each with a short description of what it teaches the agent.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">274K</span><span class="v-note">GitHub stars, <b>+8.2K stars this week, +47.9K in 30 days.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 8.5 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>738 points on Hacker News (via simonwillison.net)</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 2: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Your AI coding agent is powerful but generic. It doesn't know your team's workflow - whether you want tests first, how you debug, or how you hand off work.</p><p class="eg">You want Claude Code to always write the test before the code, but every time you forget to say so, it writes the code first.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You install the skills collection - one command - and start using the new slash commands.</p><p class="eg"><code>npx skills@latest add mattpocock/skills</code> installs all 27 skills. Or pick one: <code>npx skills@latest add mattpocock/skills/tdd</code>.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A slash command followed by your normal prompt.</p><p class="eg"><code>/tdd Add a retry mechanism to the API client</code> - the agent writes a failing test first, then makes it pass.</p></div><div class="note does"><span class="role">It does</span><p class="say">Each skill injects a specific workflow into the agent's thinking. The agent follows that workflow instead of its default behavior.</p><ol class="steps-in"><li>/tdd: writes a failing test, then writes the code to make it pass, then refactors</li><li>/caveman: debugs with print statements instead of reasoning about the bug - forces the agent to observe before concluding</li><li>/todoist: breaks a task into a checkbox list and works through it step by step</li><li>18 user-invoked skills and 9 that activate automatically based on what you're doing</li></ol><p class="eg">Deepak Bagada (CEO, SaaSNext) installed the collection across 5 engineering teams: /tdd eliminated missing test suites, /diagnose cut debugging time roughly in half, handoff docs cut task resumption from 90 minutes to 15.</p></div><div class="note result"><span class="role">You get</span><p class="say">An agent that follows your team's workflows instead of guessing what you want.</p><ul class="outputs"><li><b>Consistent workflows</b><span>Every task follows the same pattern - tests first, debugging by observation, clear handoff documentation</span></li><li><b>Lower AI costs</b><span>One test showed 62% fewer tokens (the units AI charges are measured in) in debugging sessions using /caveman</span></li><li><b>Faster PRs</b><span>20-40% faster time to a correct pull request in one week-long test</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Your agent improvises a workflow each time. Sometimes it writes tests first, sometimes it doesn't. Debugging is a guessing game.</li><li>You write custom CLAUDE.md rules for each behavior you want, and they're hard to share across projects or teams.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>27 pre-built workflows you can invoke by name. /tdd for test-first, /caveman for print-debugging, /todoist for checklists.</li><li>Skills are shareable packages: install once, use across every project.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Install all 27 skills: <code>npx skills@latest add mattpocock/skills</code>. Or try one: <code>npx skills@latest add mattpocock/skills/tdd</code>.</li><li>Try <code>/tdd Add a retry mechanism to the API client</code> and watch the agent write a failing test first, then make it pass.</li><li>Try <code>/caveman</code> on a bug you're stuck on - the agent debugs by adding print statements and observing the output instead of guessing.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Lightweight - skills are Markdown instruction files, not heavy packages.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No measurable overhead. Skills are context instructions, not running processes.</dd></div>
+    <div><dt>Runs on</dt><dd>Claude Code, Codex, or any agent that supports skills. Needs Node.js for the installer.</dd></div>
+  </dl><a class="src" href="https://github.com/mattpocock/skills" rel="noopener">Source: Skills README</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-skills">/skillspector https://github.com/mattpocock/skills
+
+If that scan passes: install the collection, run /tdd on a simple feature, then /caveman on a known bug. Report whether the agent followed the skill's workflow and what the result looked like. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-skills">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You use Claude Code daily and want consistent, named workflows - test-first, print-debugging, task checklists - without writing custom rules</li><li>You lead a team and want everyone's agent to follow the same practices</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You don't use Claude Code or a compatible AI agent - the skills need a host</li><li>You prefer writing your own custom rules and want full control over every prompt</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://github.com/affaan-m/ECC" rel="noopener"><b>ECC (Everything Claude Code)</b></a><span>261 skills and 63 sub-agents - much larger collection but also a bigger commitment. Skills focuses on 27 high-quality, focused workflows.</span></li><li><a href="https://github.com/undefined" rel="noopener"><b>Custom CLAUDE.md rules</b></a><span>Write your own rules in CLAUDE.md. More work, but fully customized to your project. Skills saves that time with pre-built, tested workflows.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/mattpocock/skills/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 2</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>274K stars, 4 contributors, 493 commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Made by Matt Pocock, known for TypeScript education.</b> This is a personal project, not a company product. He maintains it actively, but it depends on one person.</li><li><b>Not all skills are equally useful.</b> The DevTalk review found /tdd less useful for complex UI work, while /grill-with-docs and /caveman were strong.</li><li><b>The andrew.ooo review was AI-agent-operated.</b> The 62% token reduction number comes from a blog that is human-supervised but AI-written - weight it accordingly.</li><li><b>Skills are Markdown files.</b> They work by injecting instructions into the agent's context. No sandboxing, no isolation - they change how the agent thinks, which is the point but also the risk.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Skills has 274K stars. Two named uses found with measurable outcomes.</p><ol class="uses">
+  <li class="use"><span class="who-mark" aria-hidden="true">1</span><div><h3>Deepak Bagada, CEO of SaaSNext</h3><p>Installed the skills collection across 5 engineering teams and adapted 12 of 27 skills for production TypeScript projects. Results: TDD adoption eliminated missing test suites, debugging time cut roughly in half with /diagnose, handoff docs cut task resumption from 90 minutes to 15.</p></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">2</span><div><h3>andrew (andrew.ooo)</h3><p>Tested skills on an Astro/TypeScript project for one week. /caveman debugging reduced output tokens by 62%, time-to-correct-PR down 20-40%. (Note: andrew.ooo is AI-agent-operated, human-supervised.)</p></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">The Pragmatic Engineer (Gergely Orosz)</span><a href="https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock" rel="noopener">AI Skills with Matt Pocock</a><span class="meta">Sep 17, 2026</span></li><li class=""><span class="plat">Hacker News (via simonwillison.net)</span><a href="https://news.ycombinator.com/item?id=45619537" rel="noopener">Claude Skills are awesome, maybe a bigger deal than MCP</a><span class="meta">738 points, 370 comments</span></li><li class=""><span class="plat">Developers Digest</span><a href="https://www.developersdigest.tech/blog/github-trending-skills-2026-05-13" rel="noopener">Matt Pocock's Skills Repo Is a Better Pattern Than Vibe Coding</a><span class="meta">May 13, 2026</span></li><li class=""><span class="plat">DevTalk Forum</span><a href="https://forum.devtalk.com/t/anyone-tried-mattpocock-skills-for-claude-code-here-is-what-i-found-after-a-week/244771" rel="noopener">Anyone tried mattpocock/skills? Here is what I found after a week</a><span class="meta">Mixed review: /grill-with-docs and /caveman effective, /tdd less useful for complex UI</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/mattpocock/skills" rel="noopener">Skills on GitHub (README, skill list)</a>, Oct 2</li><li><a href="https://skills.sh" rel="noopener">Skills catalog on skills.sh</a>, Oct 2</li><li><a href="https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock" rel="noopener">The Pragmatic Engineer: AI Skills with Matt Pocock</a>, Sep 17</li><li><a href="https://news.ycombinator.com/item?id=45619537" rel="noopener">HN: Claude Skills are awesome (738 points)</a>, May 15</li><li><a href="https://dailyaiworld.com/workflow/matt-pocock-skills-production-agent-workflows-2026" rel="noopener">Daily AI World: SaaSNext skills deployment</a>, Jul 18</li><li><a href="https://andrew.ooo/posts/matt-pocock-skills-claude-code-review/" rel="noopener">andrew.ooo: Skills review</a>, May 2</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 010 &middot; October 2, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

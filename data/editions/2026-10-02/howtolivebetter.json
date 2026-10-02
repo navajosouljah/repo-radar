@@ -1,0 +1,146 @@
+{
+  "repo": "eternity4719/HowToLiveBetter",
+  "name": "HowToLiveBetter",
+  "tagline": "A free, evidence-graded cheat sheet for life: 650 recommendations on health, money, law and more, each with its cost and payoff.",
+  "sentence": "Search 650 practical recommendations - from disease prevention to legal red lines to financial moves - each graded by evidence quality, with the exact cost in time and money and the measured benefit.",
+  "fit": "you",
+  "links": {
+    "website": "https://eternity4719.github.io/HowToLiveBetter/",
+    "docs": "https://github.com/eternity4719/HowToLiveBetter"
+  },
+  "visual": {
+    "src": "assets/shots/howtolivebetter.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "The HowToLiveBetter website header in Chinese: 'Spend the least money, time and energy, and get back lifespan, money and freedom.' Below it: 650 recommendations, 428 A-grade evidence items, 1,539 source links, filterable by cost-effectiveness.",
+    "caption": "The project's website header: 650 recommendations, 428 backed by the strongest evidence grade, and 1,539 cited sources."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Life advice is everywhere, but most of it is unsourced opinions. When you actually need to make a decision - about health, money, insurance, or legal rights - you can't tell what's evidence-based and what's a guess.",
+      "eg": "A friend tells you to take a supplement. Is there real evidence it works? How much does it cost per year? What's the measured benefit?"
+    },
+    {
+      "role": "trigger",
+      "say": "You open the website and search or filter by topic, evidence grade, cost or benefit type.",
+      "eg": "Search 'vitamin D' or filter for 'longevity' + 'A-grade evidence' + 'under $50/year' to see only the strongest, cheapest recommendations."
+    },
+    {
+      "role": "input",
+      "say": "A question about your life: health, money, legal rights, insurance, emergencies, relationships, career, or going abroad.",
+      "eg": "34 topics: longevity, disease prevention, first aid, saving money, legal red lines, unemployment, health insurance, parenting, entrepreneurship, skills for emigrating, and more."
+    },
+    {
+      "role": "does",
+      "say": "It shows you the recommendations that match, each with three things: what it costs, what you get, and how strong the evidence is.",
+      "steps": [
+        "Each recommendation lists the cost (money, time, effort) and the measured benefit (mortality reduction, savings in dollars, time gained)",
+        "Each one carries an evidence grade: A (peer-reviewed journal papers or official government documents), B (multiple credible sources), or C (single credible source)",
+        "Every claim links to the original source - a journal paper, a government regulation, or an official document - so you can check it yourself"
+      ],
+      "eg": "One recommendation: 'Get a flu shot every year. Cost: about $30 and 30 minutes. Benefit: 40-60% reduction in flu risk. Evidence: A (CDC, multiple clinical trials).' With links to each study."
+    },
+    {
+      "role": "result",
+      "say": "A short list of the highest-value actions for your situation, each one sourced.",
+      "outputs": [
+        { "what": "Ranked recommendations by cost-effectiveness", "eg": "The cheapest actions with the biggest proven benefits, sorted so you do the high-value ones first" },
+        { "what": "Source links you can verify", "eg": "1,539 links to journal papers and official documents - not blog posts or opinions" },
+        { "what": "Downloadable offline versions", "eg": "PDF, EPUB, or a single HTML file you can keep on your phone for reference anywhere" }
+      ]
+    }
+  ],
+  "before": [
+    "Life advice comes from social media, friends, and articles that rarely cite sources or quantify the benefit.",
+    "Finding the highest-value thing to do for your health or money means reading dozens of studies, if you even know where to look."
+  ],
+  "after": [
+    "One searchable guide with 650 recommendations, each graded by evidence quality and showing its exact cost and payoff.",
+    "Every claim links to the original source - journal papers and official documents, not opinions - so you can verify anything in seconds."
+  ],
+  "uses_note": "It's 25 days old. The guide has gone viral in Chinese-speaking communities with 34K+ stars, but named external uses are not yet documented - people share the guide, not stories about applying specific recommendations.",
+  "uses": [],
+  "pulse": {
+    "gain": "+19K stars this week, +34.5K in 25 days since launch.",
+    "history": [
+      ["2026-09-07", 0],
+      ["2026-10-02", 34514]
+    ],
+    "history_note": "Created Sep 7. All stars are since launch.",
+    "facts": [
+      { "value": "34.5K", "label": "stars in 25 days" },
+      { "value": "650", "label": "recommendations" },
+      { "value": "1,539", "label": "source citations" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Trendshift",
+      "title": "eternity4719/HowToLiveBetter trending stats",
+      "url": "https://trendshift.io/repositories/eternity4719/HowToLiveBetter",
+      "meta": "#18 daily, #6 monthly, Oct 2"
+    },
+    {
+      "plat": "findarepo",
+      "title": "eternity4719/HowToLiveBetter on findarepo",
+      "url": "https://findarepo.com/repo/eternity4719/HowToLiveBetter/",
+      "meta": "#1 daily, Oct 2"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "Trendshift: #18 daily, #6 monthly",
+    "findarepo: #1 daily repo, Oct 2"
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Open the live guide](https://eternity4719.github.io/HowToLiveBetter/) in your browser. It works on your phone, too.",
+      "Search a topic that matters to you - 'saving money,' 'disease prevention,' or 'legal' - and filter by evidence grade (A for the strongest) or cost.",
+      "Pick one recommendation, follow its source link to the original paper or document, and decide if it's worth acting on."
+    ],
+    "paste": "/skillspector https://github.com/eternity4719/HowToLiveBetter\n\nIf that scan passes: open the live website, search for three different topics, check whether the source links work and whether the evidence grades match the cited sources. Report what you find. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "**Zero install.** The website runs in your browser. The offline PDF or EPUB download is a few megabytes.",
+    "memory": "No special requirements - it's a website and downloadable documents.",
+    "runs_on": "Any device with a web browser. Offline versions available as PDF, EPUB, or a single HTML file.",
+    "source": { "title": "HowToLiveBetter README and Releases", "url": "https://github.com/eternity4719/HowToLiveBetter" }
+  },
+  "verdict": {
+    "best_for": [
+      "You want a single place to look up evidence-based life advice, ranked by cost-effectiveness, without wading through unsourced opinions",
+      "You value being able to verify claims yourself by following source links to the original research"
+    ],
+    "skip_if": [
+      "You read only English - the guide is primarily in Chinese, with English and other translations available but less complete",
+      "You want personalized medical or financial advice - this is a general reference, not a professional consultation"
+    ],
+    "alternatives": [
+      {
+        "name": "UpToDate (for health)",
+        "url": "https://www.uptodate.com/",
+        "line": "The gold standard for evidence-based medical guidance, used by doctors. Subscription-only and written for clinicians, not for a general audience."
+      },
+      {
+        "name": "80,000 Hours (for career)",
+        "url": "https://80000hours.org/",
+        "line": "Evidence-based career advice from the effective altruism community. Narrower scope (careers only) but deeper on that one topic."
+      }
+    ]
+  },
+  "watch": [
+    "**Primarily in Chinese.** English and other translations exist but may lag behind the original. If you don't read Chinese, some recommendations may be region-specific (Chinese law, Chinese insurance systems).",
+    "**Not medical or legal advice.** It's a curated reference, not a professional consultation. The evidence grades are the author's own assessment.",
+    "**25 days old, one main author.** The guide is comprehensive (650 items, 1,539 sources), but it hasn't been independently peer-reviewed as a whole.",
+    "**Some recommendations may be China-specific.** Legal red lines, insurance, and employment rights sections reference Chinese law and systems."
+  ],
+  "sources": [
+    { "title": "HowToLiveBetter on GitHub (README, methodology)", "url": "https://github.com/eternity4719/HowToLiveBetter", "date": "2026-10-02" },
+    { "title": "HowToLiveBetter live search interface", "url": "https://eternity4719.github.io/HowToLiveBetter/", "date": "2026-10-02" },
+    { "title": "findarepo: eternity4719/HowToLiveBetter", "url": "https://findarepo.com/repo/eternity4719/HowToLiveBetter/", "date": "2026-10-02" },
+    { "title": "Trendshift: eternity4719/HowToLiveBetter", "url": "https://trendshift.io/repositories/eternity4719/HowToLiveBetter", "date": "2026-10-02" }
+  ]
+}

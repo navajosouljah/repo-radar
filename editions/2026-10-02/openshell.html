@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenShell: A safety sandbox from NVIDIA that keeps AI agents from doing damage - they run inside a locked room with a one-way mirror. | Repo Radar</title>
+<meta name="description" content="When an AI agent needs to run code or touch a system, OpenShell puts it inside an isolated container with strict rules about what it can access, what it can change, and who has to approve before it acts.">
+<meta property="og:title" content="OpenShell: A safety sandbox from NVIDIA that keeps AI agents from doing damage - they run inside a locked room with a one-way mirror. | Repo Radar">
+<meta property="og:description" content="When an AI agent needs to run code or touch a system, OpenShell puts it inside an isolated container with strict rules about what it can access, what it can change, and who has to approve before it acts.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/openshell.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 010 &middot; Week of October 2, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#10 this week</span><span class="repo-id">NVIDIA/OpenShell</span></div>
+    <h1 id="name">OpenShell</h1>
+    <p class="tagline">A safety sandbox from NVIDIA that keeps AI agents from doing damage - they run inside a locked room with a one-way mirror.</p>
+    <p class="sentence">When an AI agent needs to run code or touch a system, OpenShell puts it inside an isolated container with strict rules about what it can access, what it can change, and who has to approve before it acts.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      <span class="chip replaces">Replaces: Custom Docker sandboxing and manual permission systems for AI agents</span>
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://github.com/NVIDIA/OpenShell" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/NVIDIA/OpenShell" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/openshell.png" alt="The OpenShell README showing its architecture: an Agent at the top connects through a Gateway to a Supervisor, which manages sandboxed Containers where the agent's code actually runs, with audit logs flowing to an observer." width="1600" height="900" loading="eager">
+    <figcaption>OpenShell's architecture from its README: agents run inside sandboxed containers, supervised by a gateway that enforces permissions and logs every action.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">14.2K</span><span class="v-note">GitHub stars, <b>+4.1K stars this week, +14.2K total (all since Sep 28 launch).</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">5</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>385 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">About an hour</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 2: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">AI agents are powerful, but letting them run code on your systems is risky. A rogue command, a prompt injection, or a simple mistake can delete files, expose data, or break a production system.</p><p class="eg">An AI agent told to 'clean up old files' deletes your database backups. Or a prompt injection makes it email your credentials to an attacker.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You install OpenShell and configure it as the safety layer your AI agents run through.</p><p class="eg"><code>curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh</code> - one command to install on Linux or Mac.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Your AI agent's actions - code execution, file access, network calls, system commands.</p><p class="eg">The agent wants to run a Python script, read a config file, or make an API call. Each action goes through OpenShell first.</p></div><div class="note does"><span class="role">It does</span><p class="say">It wraps each agent action in a sandboxed container with permission rules, approval gates, and an audit log.</p><ol class="steps-in"><li>The agent's code runs inside an isolated container - it can't see or touch your real system</li><li>A supervisor checks each action against permission rules: is this agent allowed to read this file? Run this command? Access this network?</li><li>High-risk actions require human approval before they execute. Everything is logged for audit.</li></ol><p class="eg">SAP engineers are integrating OpenShell into their Joule Studio platform, contributing code in 4 areas: platform architecture, Kubernetes operations, gateway footprint, and supervisor health monitoring.</p></div><div class="note result"><span class="role">You get</span><p class="say">AI agents that can do their work without being able to do damage.</p><ul class="outputs"><li><b>Sandboxed execution</b><span>Agent code runs in containers that can't access your real filesystem, network or databases unless explicitly allowed</span></li><li><b>Permission gates</b><span>Rules that say what each agent can and can't do - file by file, command by command, network endpoint by endpoint</span></li><li><b>Audit trail</b><span>A complete log of every action the agent took, every permission check, and every approval or denial</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Letting AI agents run code means trusting them not to break things. Custom container sandboxing (isolating code in a sealed-off virtual environment) is possible but hard to get right.</li><li>When something goes wrong, there's no audit trail - you don't know what the agent did or why.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Agents run inside locked-down containers with explicit permission rules. They can do their job but nothing more.</li><li>Every action is logged and auditable. High-risk actions need human approval before they execute.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: About an hour"><span class="">5 minutes</span><span class="on">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Install OpenShell: <code>curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh</code> (Linux or Mac with Docker/Podman).</li><li>Create a sandbox, point an AI agent at it, and ask the agent to run a command. Watch the permission check in the logs.</li><li>Try a restricted action (file deletion, network access) and see whether the sandbox blocks it.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd><b>71 MB</b> (Debian amd64 package) to <b>44 MB</b> (Snap amd64). Compressed sandbox archive: 4.2 MB.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found for exact memory usage. Runs containers, so memory depends on what the agent does inside them.</dd></div>
+    <div><dt>Runs on</dt><dd>Linux, macOS (Apple Silicon), Windows with WSL 2 (experimental). Requires Docker or Podman. GPU optional - needed only if running inference inside sandboxes.</dd></div>
+  </dl><a class="src" href="https://github.com/NVIDIA/OpenShell" rel="noopener">Source: OpenShell README and install docs</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-openshell">/skillspector https://github.com/NVIDIA/OpenShell
+
+If that scan passes: install OpenShell, create a sandbox, and test 3 scenarios: a safe command, a dangerous command (file deletion), and a network call. Report whether the sandbox blocks the right things and logs everything. 15 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-openshell">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You're deploying AI agents that run code in production and need a safety layer between the agent and your systems</li><li>You need an audit trail of every action an AI agent takes, for compliance or debugging</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You're experimenting with AI agents locally and don't need production-grade sandboxing</li><li>You need fleet-level governance (managing hundreds of agent instances across teams) - OpenShell handles individual agents, not fleet management</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://e2b.dev/" rel="noopener"><b>E2B (e2b.dev)</b></a><span>Cloud sandboxes for AI agents, with a simpler API. Easier to start with but less configurable, and your agent's code runs on their servers.</span></li><li><a href="https://github.com/undefined" rel="noopener"><b>Custom Docker sandboxing</b></a><span>Build your own with Docker seccomp profiles and network policies. Full control, but you're building and maintaining the permission system yourself.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/NVIDIA/OpenShell/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 2</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>18 results read, including the national CVE database: nothing unresolved</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>14.2K stars, 130 contributors, 1.6K commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Alpha software (v0.1.2).</b> Four days old as open source. Expect breaking changes, missing features, and rough documentation.</li><li><b>NVIDIA-backed, not community-driven.</b> This is a corporate open-source project. NVIDIA controls the roadmap, and enterprise needs come first.</li><li><b>Fleet governance is out of scope.</b> Tigera's review notes that OpenShell secures individual agents but can't answer 'what are all my agents doing right now?' across a fleet.</li><li><b>Skeptics question the premise.</b> The HN discussion (385 points, 261 comments) includes debate about whether sandboxing solves the core problem of AI agent safety, or just moves the trust boundary.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">OpenShell is backed by NVIDIA with enterprise partnerships. Named integrations include SAP (contributing engineers) and Salesforce/Slack (reference architecture). These are partnerships, not confirmed production deployments with measurable results.</p><ol class="uses">
+  <li class="use"><span class="who-mark" aria-hidden="true">1</span><div><h3>SAP (Andre Lamego, SVP &amp; Chief Product Officer)</h3><p>SAP engineers are contributing code to OpenShell in 4 areas: platform architecture, Kubernetes-native operations, gateway footprint, and supervisor health monitoring. Integrating into Joule Studio on SAP Business Technology Platform.</p></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">2</span><div><h3>Salesforce + Slack</h3><p>Building a reference architecture where Slack is the conversational layer for Agentforce agents, with OpenShell for managing agent activity, viewing audit events, and approving/rejecting agent permission requests from within Slack.</p></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=47427027" rel="noopener">Nvidia NemoClaw (covers OpenShell runtime)</a><span class="meta">385 points, 261 comments</span></li><li class=""><span class="plat">Morning Brew</span><a href="https://www.morningbrew.com/stories/has-nvidia-solved-the-rogue-ai-hacking-problem" rel="noopener">Has Nvidia solved the rogue AI hacking problem?</a><span class="meta">Sep 29, 2026. Notes users include Microsoft, Perplexity, JPMorgan Chase.</span></li><li class=""><span class="plat">The New Stack</span><a href="https://thenewstack.io/nvidia-openshell-sentry-agents/" rel="noopener">Nvidia launches Open Agent Safety Platform to lock down rogue AI agents</a><span class="meta">Sep 28, 2026</span></li><li class=""><span class="plat">CNBC</span><a href="https://www.cnbc.com/2026/09/28/nvidia-releases.html" rel="noopener">Nvidia Open Agent Safety Platform to stop AI agents from breaking out</a><span class="meta">Sep 28, 2026</span></li><li class=""><span class="plat">Tigera Blog</span><a href="https://www.tigera.io/blog/nvidia-openshell-secures-the-agent-who-governs-the-fleet/" rel="noopener">NVIDIA OpenShell Secures the Agent. Who Governs the Fleet?</a><span class="meta">Critical: OpenShell can't answer fleet-level governance questions. Jul 15, 2026.</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/NVIDIA/OpenShell" rel="noopener">OpenShell on GitHub (README, architecture, install)</a>, Oct 2</li><li><a href="https://docs.nvidia.com/openshell/latest/" rel="noopener">NVIDIA OpenShell docs</a>, Oct 2</li><li><a href="https://news.sap.com/2026/09/sap-nvidia-openshell-auditable-ai-agents-enterprise-systems/" rel="noopener">SAP: OpenShell for enterprise AI agents</a>, Sep 28</li><li><a href="https://news.ycombinator.com/item?id=47427027" rel="noopener">HN: Nvidia NemoClaw / OpenShell discussion</a>, Oct 2</li><li><a href="https://www.morningbrew.com/stories/has-nvidia-solved-the-rogue-ai-hacking-problem" rel="noopener">Morning Brew: Nvidia rogue AI hacking</a>, Sep 29</li><li><a href="https://www.tigera.io/blog/nvidia-openshell-secures-the-agent-who-governs-the-fleet/" rel="noopener">Tigera: OpenShell fleet governance gap</a>, Jul 15</li><li><a href="https://thenewstack.io/nvidia-openshell-sentry-agents/" rel="noopener">The New Stack: OpenShell launch</a>, Sep 28</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 010 &middot; October 2, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

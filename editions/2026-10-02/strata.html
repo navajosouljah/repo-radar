@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strata: Run a powerful AI on your own gaming PC - no cloud, no subscription, no data leaving your machine. | Repo Radar</title>
+<meta name="description" content="Install Strata on a Windows or Linux PC with a gaming graphics card, and chat with a 125-billion-brain AI that runs entirely on your hardware, keeping everything private.">
+<meta property="og:title" content="Strata: Run a powerful AI on your own gaming PC - no cloud, no subscription, no data leaving your machine. | Repo Radar">
+<meta property="og:description" content="Install Strata on a Windows or Linux PC with a gaming graphics card, and chat with a 125-billion-brain AI that runs entirely on your hardware, keeping everything private.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/strata.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 010 &middot; Week of October 2, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#2 this week</span><span class="repo-id">Niko1221/Strata</span></div>
+    <h1 id="name">Strata</h1>
+    <p class="tagline">Run a powerful AI on your own gaming PC - no cloud, no subscription, no data leaving your machine.</p>
+    <p class="sentence">Install Strata on a Windows or Linux PC with a gaming graphics card, and chat with a 125-billion-brain AI that runs entirely on your hardware, keeping everything private.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: ChatGPT Plus or Claude Pro subscriptions, for private local AI chat</span>
+      
+    </div>
+    <div class="actions"><a class="btn quiet" href="https://github.com/Niko1221/Strata" rel="noopener">GitHub</a><span class="no-site">No website yet: the GitHub page is its home.</span></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/strata.png" alt="Strata's monitor dashboard running on an NVIDIA GeForce RTX 5070: model state 'Reading prompt' at 97%, speed 50.4 tokens per second, GPU load 88%, VRAM 11.2 of 12 GB (1,644 experts cached), GPU temperature 54 degrees, alongside a Claude Code terminal building a voxel pagoda garden." width="2560" height="1440" loading="eager">
+    <figcaption>Strata's built-in monitor, from its own README: a 125-billion-parameter model running at 50 tokens/second on a single RTX 5070.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">5.3K</span><span class="v-note">GitHub stars, <b>+5.3K stars in 8 days since launch. findarepo measures about 1,600 stars/day.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">2</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">About an hour</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 2: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want a powerful AI assistant, but cloud subscriptions cost money every month and send your questions to someone else's server.</p><p class="eg">ChatGPT Plus is $20/month, and every question you type travels to OpenAI's servers - you can't control what happens to it there.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You run the installer once, and Strata downloads the AI model to your PC.</p><p class="eg"><code>START-HERE.bat</code> on Windows, or <code>./setup.sh</code> on Linux. It detects your graphics card and downloads the right model (~70 GB).</p></div><div class="note input"><span class="role">You give it</span><p class="say">Questions, conversations, code, or images - the same things you'd type into ChatGPT.</p><p class="eg">Ask it to summarize a document, write an email, explain a concept, or analyze a photo - all in your browser at localhost.</p></div><div class="note does"><span class="role">It does</span><p class="say">It loads the AI model across your graphics card and system memory and runs it locally.</p><ol class="steps-in"><li>The installer detects your hardware - how much graphics memory, how much system memory, how fast your storage is</li><li>It downloads Qwen3.8-Flash-Next (a 125-billion-brain-cell model) and splits it: the busiest parts go on the graphics card, the rest stays in RAM</li><li>A small 'guess and check' helper predicts the next words and the big model verifies them all at once, so answers come out fast</li></ol><p class="eg">The README's own benchmark: 50.4 tokens per second on an RTX 5070 with 12 GB of graphics memory.</p></div><div class="note result"><span class="role">You get</span><p class="say">A private, free AI assistant running in your browser - nothing leaves your machine.</p><ul class="outputs"><li><b>A chat interface in your browser</b><span>Open http://127.0.0.1:8080 and start talking - it looks and feels like ChatGPT</span></li><li><b>An API other apps can use</b><span>Point Claude Code or Cursor at the local address, and they use your local AI instead of a cloud one</span></li><li><b>Complete privacy</b><span>No account, no API key (a code some services require), no internet connection needed after setup</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Running a powerful AI means a cloud subscription ($20+/month) and trusting a company with every question you ask.</li><li>Local AI projects before Strata needed command-line setup, manual model downloads, and tuning to get decent speed.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>One installer, one click, and a 125-billion-brain-cell AI runs on your own PC - free, private, no subscription.</li><li>Answers come out at 50 words per second on a mid-range gaming card, fast enough for real-time chat.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: About an hour"><span class="">5 minutes</span><span class="on">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://github.com/Niko1221/Strata" rel="noopener">Download Strata</a> from GitHub. On Windows, run <code>START-HERE.bat</code>; on Linux, run <code>./setup.sh</code>. It detects your graphics card and downloads the model (~70 GB, so give it time on a normal connection).</li><li>Once the download finishes, open your browser to <a href="http://127.0.0.1:8080" rel="noopener">http://127.0.0.1:8080</a> and start a conversation - ask it something you'd normally ask ChatGPT.</li><li>Check the Monitor tab to see how fast it's running and how much of your graphics card it's using.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About <b>70 GB</b> for the model download, plus the Strata application itself. Total disk use is roughly 75 GB.</dd></div>
+    <div><dt>Memory while it runs</dt><dd><b>32 GB+ system RAM</b> recommended. The model splits between the graphics card and system memory. With 12 GB of graphics memory, about 3.2 GB of model data stays on the card and the rest loads into RAM.</dd></div>
+    <div><dt>Runs on</dt><dd>Windows 10/11 or Linux. Needs an NVIDIA RTX 20/30/40/50 series or AMD RX 7000/9000 series graphics card with at least 12 GB of graphics memory. No Mac support yet.</dd></div>
+  </dl><a class="src" href="https://github.com/Niko1221/Strata" rel="noopener">Source: Strata README: Hardware requirements</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-strata">/skillspector https://github.com/Niko1221/Strata
+
+If that scan passes: clone the repo, run the installer, and start a chat session. Ask it to explain what it is and report how fast the answers come. Show me the monitor stats. 10 minutes max (the model download may take longer - report what you see).</pre>
+      <button class="copy" type="button" data-copy="paste-strata">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You have a gaming PC and want a free, private AI assistant that never sends data to the cloud</li><li>You want to use your own local AI with coding tools like Claude Code or Cursor</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You don't have a gaming PC with a recent graphics card and 32 GB of RAM - it won't run on a basic laptop</li><li>You want the most capable AI available - cloud models from Anthropic and OpenAI are still ahead of local ones for complex reasoning</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://lmstudio.ai/" rel="noopener"><b>LM Studio</b></a><span>A desktop app for running local AI models with a visual interface. Easier to browse models, but Strata's speed optimizations for this specific model are harder to replicate.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/Niko1221/Strata/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 2</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>15 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>5.3K stars, 50 contributors, 545 commits. findarepo: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>8 days old, one developer.</b> Very early - expect rough edges, breaking changes, and gaps in documentation.</li><li><b>70 GB download.</b> The model is large. On a typical home connection, the initial download can take hours.</li><li><b>No Mac support.</b> Requires an NVIDIA or AMD graphics card with 12+ GB of memory - no Apple silicon, no integrated graphics.</li><li><b>One model only.</b> Strata is built around Qwen3.8-Flash-Next. You can't swap in other models yet.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Strata is 8 days old. GitHub issues show real users running it on RTX 3060, 4070, 5070 and AMD cards with varying results, but no named person or team has published a verifiable account of using it for real work yet - real use is still very early.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io/repositories/Niko1221/Strata" rel="noopener">Niko1221/Strata trending stats</a><span class="meta">#10 daily, #3 monthly, Oct 2</span></li><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/Niko1221/Strata/" rel="noopener">Niko1221/Strata on findarepo: star growth and credibility</a><span class="meta">Looks organic</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span><span class="chip">Trendshift: #10 daily, #3 monthly</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/Niko1221/Strata" rel="noopener">Strata on GitHub (README, requirements, setup)</a>, Oct 2</li><li><a href="https://github.com/Niko1221/Strata/issues" rel="noopener">Strata GitHub Issues (user hardware reports)</a>, Oct 2</li><li><a href="https://findarepo.com/repo/Niko1221/Strata/" rel="noopener">findarepo: Niko1221/Strata stats</a>, Oct 2</li><li><a href="https://trendshift.io/repositories/Niko1221/Strata" rel="noopener">Trendshift: Niko1221/Strata</a>, Oct 2</li><li><a href="https://ollama.com/" rel="noopener">Ollama</a>, Oct 2</li><li><a href="https://lmstudio.ai/" rel="noopener">LM Studio</a>, Oct 2</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 010 &middot; October 2, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

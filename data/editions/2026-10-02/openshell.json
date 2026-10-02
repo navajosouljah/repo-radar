@@ -1,0 +1,174 @@
+{
+  "repo": "NVIDIA/OpenShell",
+  "name": "OpenShell",
+  "tagline": "A safety sandbox from NVIDIA that keeps AI agents from doing damage - they run inside a locked room with a one-way mirror.",
+  "sentence": "When an AI agent needs to run code or touch a system, OpenShell puts it inside an isolated container with strict rules about what it can access, what it can change, and who has to approve before it acts.",
+  "fit": "developers",
+  "replaces": "Custom Docker sandboxing and manual permission systems for AI agents",
+  "links": {
+    "website": "https://github.com/NVIDIA/OpenShell",
+    "docs": "https://docs.nvidia.com/openshell/latest/"
+  },
+  "visual": {
+    "src": "assets/shots/openshell.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "The OpenShell README showing its architecture: an Agent at the top connects through a Gateway to a Supervisor, which manages sandboxed Containers where the agent's code actually runs, with audit logs flowing to an observer.",
+    "caption": "OpenShell's architecture from its README: agents run inside sandboxed containers, supervised by a gateway that enforces permissions and logs every action."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI agents are powerful, but letting them run code on your systems is risky. A rogue command, a prompt injection, or a simple mistake can delete files, expose data, or break a production system.",
+      "eg": "An AI agent told to 'clean up old files' deletes your database backups. Or a prompt injection makes it email your credentials to an attacker."
+    },
+    {
+      "role": "trigger",
+      "say": "You install OpenShell and configure it as the safety layer your AI agents run through.",
+      "eg": "`curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh` - one command to install on Linux or Mac."
+    },
+    {
+      "role": "input",
+      "say": "Your AI agent's actions - code execution, file access, network calls, system commands.",
+      "eg": "The agent wants to run a Python script, read a config file, or make an API call. Each action goes through OpenShell first."
+    },
+    {
+      "role": "does",
+      "say": "It wraps each agent action in a sandboxed container with permission rules, approval gates, and an audit log.",
+      "steps": [
+        "The agent's code runs inside an isolated container - it can't see or touch your real system",
+        "A supervisor checks each action against permission rules: is this agent allowed to read this file? Run this command? Access this network?",
+        "High-risk actions require human approval before they execute. Everything is logged for audit."
+      ],
+      "eg": "SAP engineers are integrating OpenShell into their Joule Studio platform, contributing code in 4 areas: platform architecture, Kubernetes operations, gateway footprint, and supervisor health monitoring."
+    },
+    {
+      "role": "result",
+      "say": "AI agents that can do their work without being able to do damage.",
+      "outputs": [
+        { "what": "Sandboxed execution", "eg": "Agent code runs in containers that can't access your real filesystem, network or databases unless explicitly allowed" },
+        { "what": "Permission gates", "eg": "Rules that say what each agent can and can't do - file by file, command by command, network endpoint by endpoint" },
+        { "what": "Audit trail", "eg": "A complete log of every action the agent took, every permission check, and every approval or denial" }
+      ]
+    }
+  ],
+  "before": [
+    "Letting AI agents run code means trusting them not to break things. Custom container sandboxing (isolating code in a sealed-off virtual environment) is possible but hard to get right.",
+    "When something goes wrong, there's no audit trail - you don't know what the agent did or why."
+  ],
+  "after": [
+    "Agents run inside locked-down containers with explicit permission rules. They can do their job but nothing more.",
+    "Every action is logged and auditable. High-risk actions need human approval before they execute."
+  ],
+  "uses_note": "OpenShell is backed by NVIDIA with enterprise partnerships. Named integrations include SAP (contributing engineers) and Salesforce/Slack (reference architecture). These are partnerships, not confirmed production deployments with measurable results.",
+  "uses": [
+    {
+      "who": "SAP (Andre Lamego, SVP & Chief Product Officer)",
+      "what": "SAP engineers are contributing code to OpenShell in 4 areas: platform architecture, Kubernetes-native operations, gateway footprint, and supervisor health monitoring. Integrating into Joule Studio on SAP Business Technology Platform.",
+      "url": "https://news.sap.com/2026/09/sap-nvidia-openshell-auditable-ai-agents-enterprise-systems/",
+      "date": "2026-09-28"
+    },
+    {
+      "who": "Salesforce + Slack",
+      "what": "Building a reference architecture where Slack is the conversational layer for Agentforce agents, with OpenShell for managing agent activity, viewing audit events, and approving/rejecting agent permission requests from within Slack.",
+      "url": "https://venturebeat.com/technology/nvidia-launches-enterprise-ai-agent-platform-with-adobe-salesforce-sap-among",
+      "date": "2026-03"
+    }
+  ],
+  "pulse": {
+    "gain": "+4.1K stars this week, +14.2K total (all since Sep 28 launch).",
+    "history": [
+      ["2026-09-28", 0],
+      ["2026-10-02", 14237]
+    ],
+    "history_note": "Created Sep 28, 2026 (4 days ago). All stars are since launch.",
+    "facts": [
+      { "value": "14.2K", "label": "stars in 4 days" },
+      { "value": "NVIDIA", "label": "backed by" },
+      { "value": "Alpha (v0.1.2)", "label": "maturity" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Nvidia NemoClaw (covers OpenShell runtime)",
+      "url": "https://news.ycombinator.com/item?id=47427027",
+      "meta": "385 points, 261 comments"
+    },
+    {
+      "plat": "Morning Brew",
+      "title": "Has Nvidia solved the rogue AI hacking problem?",
+      "url": "https://www.morningbrew.com/stories/has-nvidia-solved-the-rogue-ai-hacking-problem",
+      "meta": "Sep 29, 2026. Notes users include Microsoft, Perplexity, JPMorgan Chase."
+    },
+    {
+      "plat": "The New Stack",
+      "title": "Nvidia launches Open Agent Safety Platform to lock down rogue AI agents",
+      "url": "https://thenewstack.io/nvidia-openshell-sentry-agents/",
+      "meta": "Sep 28, 2026"
+    },
+    {
+      "plat": "CNBC",
+      "title": "Nvidia Open Agent Safety Platform to stop AI agents from breaking out",
+      "url": "https://www.cnbc.com/2026/09/28/nvidia-releases.html",
+      "meta": "Sep 28, 2026"
+    },
+    {
+      "plat": "Tigera Blog",
+      "title": "NVIDIA OpenShell Secures the Agent. Who Governs the Fleet?",
+      "url": "https://www.tigera.io/blog/nvidia-openshell-secures-the-agent-who-governs-the-fleet/",
+      "meta": "Critical: OpenShell can't answer fleet-level governance questions. Jul 15, 2026."
+    }
+  ],
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "Install OpenShell: `curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh` (Linux or Mac with Docker/Podman).",
+      "Create a sandbox, point an AI agent at it, and ask the agent to run a command. Watch the permission check in the logs.",
+      "Try a restricted action (file deletion, network access) and see whether the sandbox blocks it."
+    ],
+    "paste": "/skillspector https://github.com/NVIDIA/OpenShell\n\nIf that scan passes: install OpenShell, create a sandbox, and test 3 scenarios: a safe command, a dangerous command (file deletion), and a network call. Report whether the sandbox blocks the right things and logs everything. 15 minutes max."
+  },
+  "footprint": {
+    "disk": "**71 MB** (Debian amd64 package) to **44 MB** (Snap amd64). Compressed sandbox archive: 4.2 MB.",
+    "memory": "No data found for exact memory usage. Runs containers, so memory depends on what the agent does inside them.",
+    "runs_on": "Linux, macOS (Apple Silicon), Windows with WSL 2 (experimental). Requires Docker or Podman. GPU optional - needed only if running inference inside sandboxes.",
+    "source": { "title": "OpenShell README and install docs", "url": "https://github.com/NVIDIA/OpenShell" }
+  },
+  "verdict": {
+    "best_for": [
+      "You're deploying AI agents that run code in production and need a safety layer between the agent and your systems",
+      "You need an audit trail of every action an AI agent takes, for compliance or debugging"
+    ],
+    "skip_if": [
+      "You're experimenting with AI agents locally and don't need production-grade sandboxing",
+      "You need fleet-level governance (managing hundreds of agent instances across teams) - OpenShell handles individual agents, not fleet management"
+    ],
+    "alternatives": [
+      {
+        "name": "E2B (e2b.dev)",
+        "url": "https://e2b.dev/",
+        "line": "Cloud sandboxes for AI agents, with a simpler API. Easier to start with but less configurable, and your agent's code runs on their servers."
+      },
+      {
+        "name": "Custom Docker sandboxing",
+        "line": "Build your own with Docker seccomp profiles and network policies. Full control, but you're building and maintaining the permission system yourself."
+      }
+    ]
+  },
+  "watch": [
+    "**Alpha software (v0.1.2).** Four days old as open source. Expect breaking changes, missing features, and rough documentation.",
+    "**NVIDIA-backed, not community-driven.** This is a corporate open-source project. NVIDIA controls the roadmap, and enterprise needs come first.",
+    "**Fleet governance is out of scope.** Tigera's review notes that OpenShell secures individual agents but can't answer 'what are all my agents doing right now?' across a fleet.",
+    "**Skeptics question the premise.** The HN discussion (385 points, 261 comments) includes debate about whether sandboxing solves the core problem of AI agent safety, or just moves the trust boundary."
+  ],
+  "sources": [
+    { "title": "OpenShell on GitHub (README, architecture, install)", "url": "https://github.com/NVIDIA/OpenShell", "date": "2026-10-02" },
+    { "title": "NVIDIA OpenShell docs", "url": "https://docs.nvidia.com/openshell/latest/", "date": "2026-10-02" },
+    { "title": "SAP: OpenShell for enterprise AI agents", "url": "https://news.sap.com/2026/09/sap-nvidia-openshell-auditable-ai-agents-enterprise-systems/", "date": "2026-09-28" },
+    { "title": "HN: Nvidia NemoClaw / OpenShell discussion", "url": "https://news.ycombinator.com/item?id=47427027", "date": "2026-10-02" },
+    { "title": "Morning Brew: Nvidia rogue AI hacking", "url": "https://www.morningbrew.com/stories/has-nvidia-solved-the-rogue-ai-hacking-problem", "date": "2026-09-29" },
+    { "title": "Tigera: OpenShell fleet governance gap", "url": "https://www.tigera.io/blog/nvidia-openshell-secures-the-agent-who-governs-the-fleet/", "date": "2026-07-15" },
+    { "title": "The New Stack: OpenShell launch", "url": "https://thenewstack.io/nvidia-openshell-sentry-agents/", "date": "2026-09-28" }
+  ]
+}

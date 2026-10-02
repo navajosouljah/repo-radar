@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ponytail: A one-line plugin that makes your AI coding agent write less code - it thinks like the laziest senior developer in the room. | Repo Radar</title>
+<meta name="description" content="Install Ponytail in Claude Code, Cursor, Codex or 20 other agents and it rewrites the agent's habits: before touching a file it asks 'can I delete something instead?' and works down a seven-rung ladder from do-nothing to write-new-code.">
+<meta property="og:title" content="Ponytail: A one-line plugin that makes your AI coding agent write less code - it thinks like the laziest senior developer in the room. | Repo Radar">
+<meta property="og:description" content="Install Ponytail in Claude Code, Cursor, Codex or 20 other agents and it rewrites the agent's habits: before touching a file it asks 'can I delete something instead?' and works down a seven-rung ladder from do-nothing to write-new-code.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/ponytail.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 010 &middot; Week of October 2, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#5 this week</span><span class="repo-id">DietrichGebert/ponytail</span></div>
+    <h1 id="name">Ponytail</h1>
+    <p class="tagline">A one-line plugin that makes your AI coding agent write less code - it thinks like the laziest senior developer in the room.</p>
+    <p class="sentence">Install Ponytail in Claude Code, Cursor, Codex or 20 other agents and it rewrites the agent's habits: before touching a file it asks 'can I delete something instead?' and works down a seven-rung ladder from do-nothing to write-new-code.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: Manually prompting your coding agent to be minimal (and watching it ignore you)</span>
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://ponytail.dev" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/DietrichGebert/ponytail" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/ponytail.png" alt="Ponytail's README showing its core concept: a seven-rung decision ladder from 'No code at all' at the top to 'New code' at the bottom, with each rung labeled - No code, Delete code, Refactor, Config / env, Library, Existing pattern, New code." width="1600" height="900" loading="eager">
+    <figcaption>The seven-rung ladder from Ponytail's README: the agent tries every option above 'new code' before writing anything.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">151K</span><span class="v-note">GitHub stars, <b>+6.8K stars this week, +42.4K in 30 days.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 11.3 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>98 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 2: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">AI coding agents default to writing more code. Ask for a feature and you get a new file, new functions, new abstractions - even when an existing tool or a config change would have done the job.</p><p class="eg">You ask Claude Code to add date formatting. Instead of using a built-in method, it writes a custom date formatter from scratch.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You install Ponytail as a plugin - one command, no config.</p><p class="eg"><code>npx skills add dietrichgebert/ponytail</code> in Claude Code, or the equivalent for Cursor, Codex, Windsurf or any of 20+ supported agents.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Nothing changes about how you talk to your agent. You keep asking for features the same way.</p><p class="eg">Same prompts as before. Ponytail works in the background, changing how the agent thinks before it writes.</p></div><div class="note does"><span class="role">It does</span><p class="say">It injects a decision ladder into the agent's thinking: before writing code, try doing nothing, then deleting, then refactoring, then configuring, then using a library, then copying an existing pattern - and only then write something new.</p><ol class="steps-in"><li>Rung 1: Can you solve it with no code at all? (A setting, a flag, a documentation fix)</li><li>Rung 2: Can you delete code to fix it? (Remove dead code, simplify a conditional)</li><li>Rung 3-6: Refactor, config change, library, or copy an existing pattern in the codebase</li><li>Rung 7: Only now, write new code - and keep it minimal</li></ol><p class="eg">You ask for a retry mechanism. Without Ponytail, the agent writes a custom retry wrapper. With it, the agent finds that the HTTP library already has a retry option and enables it with one line.</p></div><div class="note result"><span class="role">You get</span><p class="say">Smaller diffs, fewer new files, and changes that use what the codebase already has.</p><ul class="outputs"><li><b>Less code per task</b><span>The corrected benchmark shows about 54% less code output on average across test cases</span></li><li><b>Faster, cheaper agent runs</b><span>About 20% cheaper and 27% faster per task, because the agent thinks more and writes less</span></li><li><b>Changes that fit the existing codebase</b><span>The agent reuses patterns already in your code instead of inventing parallel approaches</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Your coding agent writes new code by default, even when an existing tool, a config flag or a deletion would solve the problem.</li><li>You spend time reviewing and cleaning up unnecessary abstractions the agent introduced.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>The agent walks a seven-rung ladder - from 'do nothing' to 'write new code' - and stops at the first rung that works.</li><li>Diffs are smaller, reviews are faster, and the agent reuses what the codebase already has.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Install it in Claude Code: <code>npx skills add dietrichgebert/ponytail</code> (or the matching command for your agent - Cursor, Codex, Windsurf, etc.).</li><li>Ask your agent to do a task you've done before - something where it usually writes too much. Compare the diff to what it would have done without Ponytail.</li><li>Try asking for a feature that could be solved with a config change or a library - see if the agent finds the simpler path.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd><b>1.3 MB</b> npm package, zero dependencies.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No measurable overhead. It's a set of rules injected into the agent's context, not a running process.</dd></div>
+    <div><dt>Runs on</dt><dd>Any system where your AI coding agent runs. Supports 20+ agents: Claude Code, Cursor, Codex, Windsurf, Gemini CLI, Zed, and more.</dd></div>
+  </dl><a class="src" href="https://github.com/DietrichGebert/ponytail" rel="noopener">Source: Ponytail README and npm package</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-ponytail">/skillspector https://github.com/DietrichGebert/ponytail
+
+If that scan passes: install the skill, run 3 coding tasks (one that could be solved by deletion, one by config, one that needs new code), and compare the output to what the agent writes without Ponytail. Report the diff sizes. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-ponytail">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You use an AI coding agent and it writes too much code - new files, new abstractions, custom solutions when a built-in would do</li><li>You want smaller diffs and faster code reviews without changing how you prompt</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You're working on a greenfield project where most code genuinely is new - the ladder is less useful when there's nothing to reuse</li><li>You prefer full control over your agent's system prompt and don't want a plugin modifying it</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://github.com/undefined" rel="noopener"><b>A custom CLAUDE.md rule</b></a><span>You can write your own 'prefer minimal code' instruction in your project's CLAUDE.md. Less structured than the seven-rung ladder, but fully in your control and free.</span></li><li><a href="https://github.com/affaan-m/ECC" rel="noopener"><b>ECC (Everything Claude Code)</b></a><span>A much larger plugin collection (261 skills). Includes code-reduction heuristics among many other things, but it's a full framework rather than a single focused tool.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/DietrichGebert/ponytail/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 2</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>11 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>151K stars, 75 contributors, 224 commits</span></div></li>
+    </ul>
+    <p class="lede" style="margin:var(--s-4) 0 0">Issue #199 flags a caret range on @modelcontextprotocol/sdk (^1.19.0); fresh installs resolve to the patched 1.26+. Issue #735 is about a trojanized clone by another account, not this repo.</p>
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>The '54% less code' claim was corrected from 80-94%.</b> An external benchmark by Scott Logic showed the original numbers were inflated. The author rebuilt the benchmark and published the corrected figure. Credit for transparency, but check claims carefully.</li><li><b>It's a ruleset, not magic.</b> Ponytail changes how the agent thinks, but a bad prompt or a complex requirement can still produce bloated code.</li><li><b>Design-system blind spot.</b> One reviewer noted Ponytail may steer agents toward native HTML inputs when a project uses a component library like shadcn or Material UI.</li><li><b>One main author.</b> Active development, but sustained by a single maintainer.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Ponytail has 151K stars and 72K npm downloads/month, but individual named case studies with specific shipped projects are sparse. Colin Eberhardt (CTO, Scott Logic) rigorously benchmarked it and filed an issue that led to corrected claims.</p><ol class="uses">
+  <li class="use"><span class="who-mark" aria-hidden="true">1</span><div><h3>Colin Eberhardt, CTO at Scott Logic</h3><p>Benchmarked Ponytail rigorously, filed GitHub issue #126 showing the original 80-94% claim was inflated by a chatty baseline. This led the author to rebuild the benchmark entirely, landing on the corrected 54% figure.</p></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">InfoQ</span><a href="https://www.infoq.com/news/2026/08/ponytail-agent-skill-benchmark/" rel="noopener">Ponytail Agent Skill Corrects its Own Benchmark after Contributor Challenge</a><span class="meta">Aug 5, 2026</span></li><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=48527946" rel="noopener">Ponytail - make your AI agent think like the laziest senior dev in the room</a><span class="meta">98 points, 17 comments</span></li><li class=""><span class="plat">DEV Community</span><a href="https://dev.to/yashddesai/ponytail-the-ai-coding-skill-taking-github-by-storm-and-the-one-question-nobodys-answered-yet-46mc" rel="noopener">Ponytail: The AI Coding Skill Taking GitHub by Storm</a><span class="meta">Jun 25, 2026</span></li><li class=""><span class="plat">Flavio Copes blog</span><a href="https://flaviocopes.com/ponytail/" rel="noopener">A Deep Dive into Ponytail</a><span class="meta">Updated Sep 17, 2026</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/DietrichGebert/ponytail" rel="noopener">Ponytail on GitHub (README, ladder, benchmark)</a>, Oct 2</li><li><a href="https://www.infoq.com/news/2026/08/ponytail-agent-skill-benchmark/" rel="noopener">InfoQ: Ponytail benchmark correction</a>, Aug 5</li><li><a href="https://flaviocopes.com/ponytail/" rel="noopener">Flavio Copes: A Deep Dive into Ponytail</a>, Sep 17</li><li><a href="https://news.ycombinator.com/item?id=48527946" rel="noopener">HN discussion: Ponytail</a>, Jul undefined</li><li><a href="https://dev.to/yashddesai/ponytail-the-ai-coding-skill-taking-github-by-storm-and-the-one-question-nobodys-answered-yet-46mc" rel="noopener">DEV Community: Ponytail review</a>, Jun 25</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 010 &middot; October 2, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

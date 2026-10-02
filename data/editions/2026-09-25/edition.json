@@ -93,6 +93,7 @@
       "slug": "kirocrew",
       "repo": "kirodotdev/KiroCrew",
       "name": "KiroCrew",
+      "status": "review",
       "fit": "developers",
       "stars": 4161,
       "oneliner": "A workspace from AWS's Kiro team where AI coding agents keep working across sessions and improve as they go."

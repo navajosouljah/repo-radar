@@ -155,12 +155,6 @@
         "name": "Grok Bot (xAI)",
         "url": "https://x.ai/news/introducing-grok-bot",
         "line": "The closed, hosted product OpenBot's own launch post positioned itself against - AI teammates you subscribe to (through a SuperGrok or Cursor plan) rather than run and govern yourself."
-      },
-      {
-        "name": "KiroCrew",
-        "repo": "kirodotdev/KiroCrew",
-        "url": "kirocrew.html",
-        "line": "Another open-source way to run multiple AI agents, built for preserving context across sessions and scheduled work rather than OpenBot's per-agent sandboxing and audit trail."
       }
     ]
   },

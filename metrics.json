@@ -5,18 +5,30 @@
    [
     "2026-08-07",
     238563
+   ],
+   [
+    "2026-10-02",
+    270940
    ]
   ],
   "mattpocock/skills": [
    [
     "2026-08-07",
     208730
+   ],
+   [
+    "2026-10-02",
+    274332
    ]
   ],
   "garrytan/gstack": [
    [
     "2026-08-07",
     126802
+   ],
+   [
+    "2026-10-02",
+    134746
    ]
   ],
   "Graphify-Labs/graphify": [
@@ -29,6 +41,10 @@
    [
     "2026-08-07",
     98227
+   ],
+   [
+    "2026-10-02",
+    151149
    ]
   ],
   "odysseus-dev/odysseus": [
@@ -47,6 +63,10 @@
    [
     "2026-08-07",
     75835
+   ],
+   [
+    "2026-10-02",
+    96061
    ]
   ],
   "rtk-ai/rtk": [
@@ -77,6 +97,10 @@
    [
     "2026-08-07",
     85277
+   ],
+   [
+    "2026-10-02",
+    111563
    ]
   ],
   "bytedance/deer-flow": [
@@ -89,6 +113,10 @@
    [
     "2026-08-07",
     67285
+   ],
+   [
+    "2026-10-02",
+    73707
    ]
   ],
   "HKUDS/nanobot": [
@@ -173,12 +201,20 @@
    [
     "2026-08-07",
     72996
+   ],
+   [
+    "2026-10-02",
+    85119
    ]
   ],
   "vercel-labs/agent-browser": [
    [
     "2026-08-07",
     40167
+   ],
+   [
+    "2026-10-02",
+    43458
    ]
   ],
   "apify/crawlee": [
@@ -317,6 +353,10 @@
    [
     "2026-08-07",
     19567
+   ],
+   [
+    "2026-10-02",
+    43273
    ]
   ],
   "microsoft/SkillOpt": [
@@ -365,12 +405,1286 @@
    [
     "2026-08-07",
     18139
+   ],
+   [
+    "2026-10-02",
+    52824
    ]
   ],
   "zhaoxuya520/reverse-skill": [
    [
     "2026-08-07",
     20512
+   ],
+   [
+    "2026-10-02",
+    39314
+   ]
+  ],
+  "Panniantong/Agent-Reach": [
+   [
+    "2026-10-02",
+    87791
+   ]
+  ],
+  "JuliusBrussee/caveman": [
+   [
+    "2026-10-02",
+    108852
+   ]
+  ],
+  "obra/superpowers": [
+   [
+    "2026-10-02",
+    294195
+   ]
+  ],
+  "pbakaus/impeccable": [
+   [
+    "2026-10-02",
+    73967
+   ]
+  ],
+  "NVIDIA/OpenShell": [
+   [
+    "2026-10-02",
+    14234
+   ]
+  ],
+  "coreyhaines31/marketingskills": [
+   [
+    "2026-10-02",
+    52229
+   ]
+  ],
+  "heygen-com/hyperframes": [
+   [
+    "2026-10-02",
+    55593
+   ]
+  ],
+  "mksglu/context-mode": [
+   [
+    "2026-10-02",
+    24914
+   ]
+  ],
+  "google/skills": [
+   [
+    "2026-10-02",
+    20600
+   ]
+  ],
+  "getsentry/sentry": [
+   [
+    "2026-10-02",
+    44919
+   ]
+  ],
+  "colbymchenry/codegraph": [
+   [
+    "2026-10-02",
+    72825
+   ]
+  ],
+  "cursor/plugins": [
+   [
+    "2026-10-02",
+    9399
+   ]
+  ],
+  "mvschwarz/openrig": [
+   [
+    "2026-10-02",
+    4010
+   ]
+  ],
+  "Effect-TS/effect": [
+   [
+    "2026-10-02",
+    16391
+   ]
+  ],
+  "pablostanley/yoinks": [
+   [
+    "2026-10-02",
+    3212
+   ]
+  ],
+  "vercel-labs/agent-skills": [
+   [
+    "2026-10-02",
+    31834
+   ]
+  ],
+  "addyosmani/agent-skills": [
+   [
+    "2026-10-02",
+    100435
+   ]
+  ],
+  "androoAGI/starnet": [
+   [
+    "2026-10-02",
+    938
+   ]
+  ],
+  "Neet-Nestor/Telegram-Media-Downloader": [
+   [
+    "2026-10-02",
+    5959
+   ]
+  ],
+  "laoma2053/awesome-zhuiju-free": [
+   [
+    "2026-10-02",
+    10792
+   ]
+  ],
+  "mnfst/awesome-free-llm-apis": [
+   [
+    "2026-10-02",
+    8946
+   ]
+  ],
+  "libnoname/noname": [
+   [
+    "2026-10-02",
+    5082
+   ]
+  ],
+  "tabler/tabler-icons": [
+   [
+    "2026-10-02",
+    21866
+   ]
+  ],
+  "WesselKroos/youtube-ambilight": [
+   [
+    "2026-10-02",
+    286
+   ]
+  ],
+  "webbrain-one/webbrain": [
+   [
+    "2026-10-02",
+    1175
+   ]
+  ],
+  "spicetify/cli": [
+   [
+    "2026-10-02",
+    24741
+   ]
+  ],
+  "fleetbase/fleetbase": [
+   [
+    "2026-10-02",
+    4117
+   ]
+  ],
+  "WebKit/WebKit": [
+   [
+    "2026-10-02",
+    10192
+   ]
+  ],
+  "BuilderIO/skills": [
+   [
+    "2026-10-02",
+    4510
+   ]
+  ],
+  "mrifqidaffaaditya/WA-AKG": [
+   [
+    "2026-10-02",
+    399
+   ]
+  ],
+  "modelcontextprotocol/servers": [
+   [
+    "2026-10-02",
+    90952
+   ]
+  ],
+  "thedotmack/claude-mem": [
+   [
+    "2026-10-02",
+    95171
+   ]
+  ],
+  "rmyndharis/OpenWA": [
+   [
+    "2026-10-02",
+    14940
+   ]
+  ],
+  "n8n-io/n8n": [
+   [
+    "2026-10-02",
+    206502
+   ]
+  ],
+  "vercel-labs/skills": [
+   [
+    "2026-10-02",
+    32965
+   ]
+  ],
+  "tradingview/lightweight-charts": [
+   [
+    "2026-10-02",
+    17450
+   ]
+  ],
+  "hicccc77/WeFlow": [
+   [
+    "2026-10-02",
+    14648
+   ]
+  ],
+  "LuxAlgo/Vela": [
+   [
+    "2026-10-02",
+    516
+   ]
+  ],
+  "HunxByts/GhostTrack": [
+   [
+    "2026-10-02",
+    16637
+   ]
+  ],
+  "tile-ai/tilelang": [
+   [
+    "2026-10-02",
+    8208
+   ]
+  ],
+  "Friedrich-M/UniMate": [
+   [
+    "2026-10-02",
+    1171
+   ]
+  ],
+  "NVIDIA/SkillSpector": [
+   [
+    "2026-10-02",
+    19034
+   ]
+  ],
+  "ifixai-ai/iFixAi": [
+   [
+    "2026-10-02",
+    18901
+   ]
+  ],
+  "Tracer-Cloud/opensre": [
+   [
+    "2026-10-02",
+    11332
+   ]
+  ],
+  "ComposioHQ/awesome-claude-skills": [
+   [
+    "2026-10-02",
+    76350
+   ]
+  ],
+  "MakazhanAlpamys/Soup": [
+   [
+    "2026-10-02",
+    7993
+   ]
+  ],
+  "PostHog/posthog": [
+   [
+    "2026-10-02",
+    40097
+   ]
+  ],
+  "microsoft/VibeVoice": [
+   [
+    "2026-10-02",
+    54606
+   ]
+  ],
+  "vectorize-io/hindsight": [
+   [
+    "2026-10-02",
+    44514
+   ]
+  ],
+  "debpalash/VoiceStudio": [
+   [
+    "2026-10-02",
+    51653
+   ]
+  ],
+  "rohitg00/ai-engineering-from-scratch": [
+   [
+    "2026-10-02",
+    62569
+   ]
+  ],
+  "flutter/flutter": [
+   [
+    "2026-10-02",
+    179227
+   ]
+  ],
+  "vercel/next.js": [
+   [
+    "2026-10-02",
+    142983
+   ]
+  ],
+  "alirezarezvani/claude-skills": [
+   [
+    "2026-10-02",
+    27245
+   ]
+  ],
+  "TencentCloud/Octop": [
+   [
+    "2026-10-02",
+    6317
+   ]
+  ],
+  "google/ax": [
+   [
+    "2026-10-02",
+    12828
+   ]
+  ],
+  "anthropics/financial-services": [
+   [
+    "2026-10-02",
+    38510
+   ]
+  ],
+  "anthropics/claude-code-action": [
+   [
+    "2026-10-02",
+    9352
+   ]
+  ],
+  "pytorch/pytorch": [
+   [
+    "2026-10-02",
+    103614
+   ]
+  ],
+  "harry0703/MoneyPrinterTurbo": [
+   [
+    "2026-10-02",
+    128046
+   ]
+  ],
+  "byoungd/up": [
+   [
+    "2026-10-02",
+    66725
+   ]
+  ],
+  "Leonxlnx/taste-skill": [
+   [
+    "2026-10-02",
+    91929
+   ]
+  ],
+  "darkzOGx/youtube-automation-agent": [
+   [
+    "2026-10-02",
+    3998
+   ]
+  ],
+  "mrdoob/three.js": [
+   [
+    "2026-10-02",
+    116160
+   ]
+  ],
+  "qist/tvbox": [
+   [
+    "2026-10-02",
+    11619
+   ]
+  ],
+  "nodejs/node": [
+   [
+    "2026-10-02",
+    122215
+   ]
+  ],
+  "pdone/lx-music-source": [
+   [
+    "2026-10-02",
+    9440
+   ]
+  ],
+  "DuarteSantos8/openGym": [
+   [
+    "2026-10-02",
+    1597
+   ]
+  ],
+  "dream-num/univer": [
+   [
+    "2026-10-02",
+    22290
+   ]
+  ],
+  "mobile-next/mobile-mcp": [
+   [
+    "2026-10-02",
+    8545
+   ]
+  ],
+  "oblien/openship": [
+   [
+    "2026-10-02",
+    14331
+   ]
+  ],
+  "vercel-labs/scriptc": [
+   [
+    "2026-10-02",
+    5896
+   ]
+  ],
+  "satnaing/shadcn-admin": [
+   [
+    "2026-10-02",
+    15529
+   ]
+  ],
+  "moeru-ai/airi": [
+   [
+    "2026-10-02",
+    49941
+   ]
+  ],
+  "openclaw/openclaw": [
+   [
+    "2026-10-02",
+    391197
+   ]
+  ],
+  "adewaskar/jarvis": [
+   [
+    "2026-10-02",
+    334
+   ]
+  ],
+  "ahmedkhaleel2004/gitdiagram": [
+   [
+    "2026-10-02",
+    17728
+   ]
+  ],
+  "FxEmbed/FxEmbed": [
+   [
+    "2026-10-02",
+    5640
+   ]
+  ],
+  "vega-org/vega-app": [
+   [
+    "2026-10-02",
+    1480
+   ]
+  ],
+  "cloudflare/vinext": [
+   [
+    "2026-10-02",
+    9071
+   ]
+  ],
+  "VectifyAI/PageIndex": [
+   [
+    "2026-10-02",
+    38495
+   ]
+  ],
+  "qbittorrent/search-plugins": [
+   [
+    "2026-10-02",
+    7086
+   ]
+  ],
+  "NVIDIA/Model-Optimizer": [
+   [
+    "2026-10-02",
+    5162
+   ]
+  ],
+  "derv82/wifit3": [
+   [
+    "2026-10-02",
+    1648
+   ]
+  ],
+  "bilawalsidhu/gods-eye-view": [
+   [
+    "2026-10-02",
+    46388
+   ]
+  ],
+  "Tencent/WeKnora": [
+   [
+    "2026-10-02",
+    31716
+   ]
+  ],
+  "tt-a1i/archify": [
+   [
+    "2026-10-02",
+    76075
+   ]
+  ],
+  "superdesigndev/treg": [
+   [
+    "2026-10-02",
+    4017
+   ]
+  ],
+  "anthropics/claude-code": [
+   [
+    "2026-10-02",
+    148933
+   ]
+  ],
+  "trycua/cua": [
+   [
+    "2026-10-02",
+    27746
+   ]
+  ],
+  "max-sixty/worktrunk": [
+   [
+    "2026-10-02",
+    8645
+   ]
+  ],
+  "tashfeenahmed/freellmapi": [
+   [
+    "2026-10-02",
+    30082
+   ]
+  ],
+  "anthropics/knowledge-work-plugins": [
+   [
+    "2026-10-02",
+    25965
+   ]
+  ],
+  "THU-MAIC/OpenMAIC": [
+   [
+    "2026-10-02",
+    39804
+   ]
+  ],
+  "longbridge/gpui-kit": [
+   [
+    "2026-10-02",
+    15602
+   ]
+  ],
+  "OpenWhispr/openwhispr": [
+   [
+    "2026-10-02",
+    8949
+   ]
+  ],
+  "cloudflare/security-audit-skill": [
+   [
+    "2026-10-02",
+    23705
+   ]
+  ],
+  "WorldFlowAI/everything-claude-code": [
+   [
+    "2026-10-02",
+    3870
+   ]
+  ],
+  "jo-inc/camofox-browser": [
+   [
+    "2026-10-02",
+    11315
+   ]
+  ],
+  "Stremio/stremio-web": [
+   [
+    "2026-10-02",
+    13984
+   ]
+  ],
+  "JoeanAmier/TikTokDownloader": [
+   [
+    "2026-10-02",
+    16464
+   ]
+  ],
+  "is-a-dev/register": [
+   [
+    "2026-10-02",
+    11446
+   ]
+  ],
+  "LibreChat-AI/LibreChat": [
+   [
+    "2026-10-02",
+    45203
+   ]
+  ],
+  "every-app/open-seo": [
+   [
+    "2026-10-02",
+    22147
+   ]
+  ],
+  "cline/cline": [
+   [
+    "2026-10-02",
+    69710
+   ]
+  ],
+  "miuuyy/codex-chatgpt-web": [
+   [
+    "2026-10-02",
+    13219
+   ]
+  ],
+  "OpenHands/OpenHands": [
+   [
+    "2026-10-02",
+    89796
+   ]
+  ],
+  "microsoft/vscode": [
+   [
+    "2026-10-02",
+    193345
+   ]
+  ],
+  "alsk1992/CloddsBot": [
+   [
+    "2026-10-02",
+    2917
+   ]
+  ],
+  "Open-Dev-Society/OpenStock": [
+   [
+    "2026-10-02",
+    19605
+   ]
+  ],
+  "Tencent/BrowserSkill": [
+   [
+    "2026-10-02",
+    8045
+   ]
+  ],
+  "melgarafael/DeskcommCRM": [
+   [
+    "2026-10-02",
+    4360
+   ]
+  ],
+  "ever-co/ever-gauzy": [
+   [
+    "2026-10-02",
+    8159
+   ]
+  ],
+  "tech-leads-club/agent-skills": [
+   [
+    "2026-10-02",
+    7027
+   ]
+  ],
+  "humanlayer/skills": [
+   [
+    "2026-10-02",
+    4831
+   ]
+  ],
+  "jingyaogong/minimind": [
+   [
+    "2026-10-02",
+    63083
+   ]
+  ],
+  "ahujasid/mcp-for-blender": [
+   [
+    "2026-10-02",
+    29850
+   ]
+  ],
+  "petergyang/no-ai-slop": [
+   [
+    "2026-10-02",
+    11696
+   ]
+  ],
+  "microsoft/markitdown": [
+   [
+    "2026-10-02",
+    187968
+   ]
+  ],
+  "browser-use/browser-use": [
+   [
+    "2026-10-02",
+    116992
+   ]
+  ],
+  "docling-project/docling": [
+   [
+    "2026-10-02",
+    68298
+   ]
+  ],
+  "SnailSploit/Claude-Red": [
+   [
+    "2026-10-02",
+    7183
+   ]
+  ],
+  "SWE-agent/mini-swe-agent": [
+   [
+    "2026-10-02",
+    8150
+   ]
+  ],
+  "experientiallabs/experiential": [
+   [
+    "2026-10-02",
+    7662
+   ]
+  ],
+  "lexmount/moli": [
+   [
+    "2026-10-02",
+    3805
+   ]
+  ],
+  "tester-army/e2e": [
+   [
+    "2026-10-02",
+    1255
+   ]
+  ],
+  "tigerless-labs/autoharness": [
+   [
+    "2026-10-02",
+    7200
+   ]
+  ],
+  "qingjian-team/qingjian": [
+   [
+    "2026-10-02",
+    2874
+   ]
+  ],
+  "CopilotKit/OpenDots": [
+   [
+    "2026-10-02",
+    902
+   ]
+  ],
+  "deepopen-com/deepopen": [
+   [
+    "2026-10-02",
+    1950
+   ]
+  ],
+  "OffGridPete/Fieldwatch": [
+   [
+    "2026-10-02",
+    1620
+   ]
+  ],
+  "imputnet/cobalt": [
+   [
+    "2026-10-02",
+    44402
+   ]
+  ],
+  "monid-ai/monid": [
+   [
+    "2026-10-02",
+    1247
+   ]
+  ],
+  "Niko1221/Strata": [
+   [
+    "2026-10-02",
+    5341
+   ]
+  ],
+  "Taichu-AI/ZDTaichu5.0-9B": [
+   [
+    "2026-10-02",
+    2837
+   ]
+  ],
+  "ThinkWatchProject/ThinkWatch-Lite": [
+   [
+    "2026-10-02",
+    564
+   ]
+  ],
+  "multica-ai/andrej-karpathy-skills": [
+   [
+    "2026-10-02",
+    216489
+   ]
+  ],
+  "nanaism/yomiyasu": [
+   [
+    "2026-10-02",
+    1124
+   ]
+  ],
+  "eternity4719/HowToLiveBetter": [
+   [
+    "2026-10-02",
+    34514
+   ]
+  ],
+  "CAPCOM-TD-OSS/REDox": [
+   [
+    "2026-10-02",
+    501
+   ]
+  ],
+  "samwhosung/benilla": [
+   [
+    "2026-10-02",
+    426
+   ]
+  ],
+  "rehan-remade/universal-modder": [
+   [
+    "2026-10-02",
+    1794
+   ]
+  ],
+  "crmne/zapfast": [
+   [
+    "2026-10-02",
+    1186
+   ]
+  ],
+  "CleverRaven/Cataclysm-DDA": [
+   [
+    "2026-10-02",
+    13284
+   ]
+  ],
+  "thisisgm/flea": [
+   [
+    "2026-10-02",
+    641
+   ]
+  ],
+  "Teaching-myself-Godot/ez-curved-lines-2d": [
+   [
+    "2026-10-02",
+    179
+   ]
+  ],
+  "runkids/skillshare": [
+   [
+    "2026-10-02",
+    2713
+   ]
+  ],
+  "osfv/Reson": [
+   [
+    "2026-10-02",
+    1
+   ]
+  ],
+  "Louis-CFM/coucou": [
+   [
+    "2026-10-02",
+    2712
+   ]
+  ],
+  "edgcpp/compiler": [
+   [
+    "2026-10-02",
+    589
+   ]
+  ],
+  "usamahz/cpu-performance-engineering": [
+   [
+    "2026-10-02",
+    384
+   ]
+  ],
+  "stablyai/orca": [
+   [
+    "2026-10-02",
+    83550
+   ]
+  ],
+  "CrossGL/crosstl": [
+   [
+    "2026-10-02",
+    572
+   ]
+  ],
+  "anthropics/skills": [
+   [
+    "2026-10-02",
+    179388
+   ]
+  ],
+  "genmedia-labs/skills": [
+   [
+    "2026-10-02",
+    26
+   ]
+  ],
+  "flowkit-labs/skills": [
+   [
+    "2026-10-02",
+    12
+   ]
+  ],
+  "microsoft/azure-skills": [
+   [
+    "2026-10-02",
+    1528
+   ]
+  ],
+  "101-skills/superpowers": [
+   [
+    "2026-10-02",
+    5
+   ]
+  ],
+  "designed-by-ai/skills": [
+   [
+    "2026-10-02",
+    7
+   ]
+  ],
+  "magentosh/superpowers": [
+   [
+    "2026-10-02",
+    0
+   ]
+  ],
+  "qu-skills/superpowers": [
+   [
+    "2026-10-02",
+    2
+   ]
+  ],
+  "bankai-skills/superpowers": [
+   [
+    "2026-10-02",
+    0
+   ]
+  ],
+  "its-a-skill-issue/superpowers": [
+   [
+    "2026-10-02",
+    0
+   ]
+  ],
+  "skills-shell/superpowers": [
+   [
+    "2026-10-02",
+    0
+   ]
+  ],
+  "google/agents-cli": [
+   [
+    "2026-10-02",
+    6042
+   ]
+  ],
+  "emilkowalski/skills": [
+   [
+    "2026-10-02",
+    42777
+   ]
+  ],
+  "solana-foundation/solana-dev-skill": [
+   [
+    "2026-10-02",
+    566
+   ]
+  ],
+  "github/gh-stack": [
+   [
+    "2026-10-02",
+    1601
+   ]
+  ],
+  "InterfaceX-co-jp/genshijin": [
+   [
+    "2026-10-02",
+    332
+   ]
+  ],
+  "neondatabase/agent-skills": [
+   [
+    "2026-10-02",
+    98
+   ]
+  ],
+  "rocketride-org/rocketride-server": [
+   [
+    "2026-10-02",
+    17982
+   ]
+  ],
+  "deepseek-ai/deepseek-harness": [
+   [
+    "2026-10-02",
+    242101
+   ]
+  ],
+  "NandhaKishorM/laya": [
+   [
+    "2026-10-02",
+    30041
+   ]
+  ],
+  "farion1231/cc-switch": [
+   [
+    "2026-10-02",
+    139504
+   ]
+  ],
+  "diegosouzapw/OmniRoute": [
+   [
+    "2026-10-02",
+    72229
+   ]
+  ],
+  "feder-cr/dots": [
+   [
+    "2026-10-02",
+    2418
+   ]
+  ],
+  "jaredpalmer/kev": [
+   [
+    "2026-10-02",
+    8267
+   ]
+  ],
+  "cortex-docs/cortex": [
+   [
+    "2026-10-02",
+    3213
+   ]
+  ],
+  "cdyforever/how-to-live-better": [
+   [
+    "2026-10-02",
+    6238
+   ]
+  ],
+  "mexicat/pdoom-video": [
+   [
+    "2026-10-02",
+    2226
+   ]
+  ],
+  "browser-use/jev-ultrafast": [
+   [
+    "2026-10-02",
+    21766
+   ]
+  ],
+  "google/artemis": [
+   [
+    "2026-10-02",
+    10853
+   ]
+  ],
+  "hypit-ai/hypit": [
+   [
+    "2026-10-02",
+    18831
+   ]
+  ],
+  "devdotfast/whiteboard": [
+   [
+    "2026-10-02",
+    2570
+   ]
+  ],
+  "volotat/mini-AGI": [
+   [
+    "2026-10-02",
+    1035
+   ]
+  ],
+  "ninjahawk/livenerf": [
+   [
+    "2026-10-02",
+    1117
+   ]
+  ],
+  "firelex/jeff": [
+   [
+    "2026-10-02",
+    1297
+   ]
+  ],
+  "streetcomplete/StreetComplete": [
+   [
+    "2026-10-02",
+    4984
+   ]
+  ],
+  "InfinityLoop1308/PipePipe": [
+   [
+    "2026-10-02",
+    6873
+   ]
+  ],
+  "reladraw/reladraw": [
+   [
+    "2026-10-02",
+    1011
+   ]
+  ],
+  "git-bug/git-bug": [
+   [
+    "2026-10-02",
+    10694
+   ]
+  ],
+  "ntfargo/Relapse-Exploit": [
+   [
+    "2026-10-02",
+    1629
+   ]
+  ],
+  "jemalloc/jemalloc": [
+   [
+    "2026-10-02",
+    11215
+   ]
+  ],
+  "maanHimself/OpenDLSS-NR": [
+   [
+    "2026-10-02",
+    761
+   ]
+  ],
+  "xCuri0/ReBarUEFI": [
+   [
+    "2026-10-02",
+    2540
+   ]
+  ],
+  "PostHog/jeeves": [
+   [
+    "2026-10-02",
+    392
+   ]
+  ],
+  "WordPress/wordpress-develop": [
+   [
+    "2026-10-02",
+    3473
+   ]
+  ],
+  "f/jev-leftpad": [
+   [
+    "2026-10-02",
+    84
+   ]
+  ],
+  "magnitudedev/magnitude": [
+   [
+    "2026-10-02",
+    6233
+   ]
+  ],
+  "kyle-pena-nlp/jevchat": [
+   [
+    "2026-10-02",
+    95
+   ]
+  ],
+  "dashersw/coyopedal": [
+   [
+    "2026-10-02",
+    242
+   ]
+  ],
+  "nestrilabs/virtio-nvgpu": [
+   [
+    "2026-10-02",
+    398
+   ]
+  ],
+  "browserbase/stagehand": [
+   [
+    "2026-10-02",
+    25517
+   ]
+  ],
+  "Low-Zi-Hong/ESP32s3-LLM-Cluster": [
+   [
+    "2026-10-02",
+    214
+   ]
+  ],
+  "seamusc/papermono-shopping-list": [
+   [
+    "2026-10-02",
+    186
+   ]
+  ],
+  "adonis-singh/re4": [
+   [
+    "2026-10-02",
+    313
+   ]
+  ],
+  "christianrowlands/wavedigger": [
+   [
+    "2026-10-02",
+    264
+   ]
+  ],
+  "mindbox77/zxdesk": [
+   [
+    "2026-10-02",
+    116
+   ]
+  ],
+  "geastack/examples": [
+   [
+    "2026-10-02",
+    118
+   ]
+  ],
+  "lfarroco/ogre-battle-64-recomp": [
+   [
+    "2026-10-02",
+    67
+   ]
+  ],
+  "ahmd-sh/hntui": [
+   [
+    "2026-10-02",
+    140
    ]
   ]
  }

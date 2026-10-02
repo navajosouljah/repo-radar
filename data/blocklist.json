@@ -184,5 +184,29 @@
     "date": "2026-09-27",
     "kind": "open-advisories",
     "reason": "2 open CVE(s) found by search: CVE-2026-17613 high (unpatched), CVE-2026-100868 medium (unpatched) | new since the 2026-09-27 ruling: CVE CVE-2026-100868 (unpatched)"
+  },
+  {
+    "repo": "akitaonrails/ai-memory",
+    "date": "2026-10-02",
+    "kind": "open-advisories",
+    "reason": "1 open advisory(ies): GHSA-vh98-jf5c-jw45 low (unpatched)"
+  },
+  {
+    "repo": "esengine/DeepSeek-Reasonix",
+    "date": "2026-10-02",
+    "kind": "open-advisories",
+    "reason": "2 open advisory(ies): GHSA-83jp-h8cg-2gcr high (unpatched), GHSA-grg2-7gc6-36m6 critical (unpatched) | 1 open CVE(s) found by search: CVE-2026-102437 high (unpatched)"
+  },
+  {
+    "repo": "ollama/ollama",
+    "date": "2026-10-02",
+    "kind": "open-advisories",
+    "reason": "19 open CVE(s) found by search: CVE-2024-39719 high (unpatched), CVE-2024-12055 high (unpatched), CVE-2024-8063 high (unpatched), CVE-2025-0315 high (unpatched), CVE-2025-0317 high (unpatched), CVE-2025-63389 critical (unpatched), CVE-2025-15514 high (unpatched), CVE-2025-66959 high (unpatched), CVE-2025-66960 high (unpatched), CVE-2025-15063 critical (unpatched), CVE-2026-5530 moderate (unpatched), CVE-2026-7020 low (unpatched), CVE-2026-42248 high (unpatched), CVE-2026-42249 high (unpatched), CVE-2026-5757 high (unpatched), CVE-2026-15685 high (unpatched), CVE-2026-65315 high (unpatched), CVE-2026-9081 high (unpatched), CVE-2026-85180 high (unpatched)"
+  },
+  {
+    "repo": "ggml-org/llama.cpp",
+    "date": "2026-10-02",
+    "kind": "open-advisories",
+    "reason": "12 open advisory(ies): GHSA-3p4r-fq3f-q74v high (unpatched), GHSA-96jg-mvhq-q7q7 high (unpatched), GHSA-8947-pfff-2f3c low (unpatched), GHSA-vgg9-87g3-85w8 high (unpatched), GHSA-7rxv-5jhh-j6xx high (unpatched), GHSA-g4cc-763q-h9h6 moderate (unpatched), GHSA-8wwf-w4qm-gpqr high (unpatched), GHSA-wcr5-566p-9cwj critical (unpatched), GHSA-5vm9-p64x-gqw9 moderate (unpatched), GHSA-mqp6-7pv6-fqjf moderate (unpatched), GHSA-49q7-2jmh-92fp moderate (unpatched), GHSA-p5mv-gjc5-mwqv high (unpatched) | 3 open CVE(s) found by search: CVE-2026-18581 low (unpatched), CVE-2026-78147 moderate (unpatched), CVE-2026-86317 moderate (unpatched)"
   }
 ]

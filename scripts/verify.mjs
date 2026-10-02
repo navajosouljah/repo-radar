@@ -71,7 +71,7 @@ function cleared(repo, where, maxAgeDays = 45) {
 const edDirs = existsSync(join(ROOT, 'data/editions')) ? readdirSync(join(ROOT, 'data/editions')).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)) : [];
 for (const d of SHEET ? [] : edDirs) {
   const ed = readJSON(`data/editions/${d}/edition.json`);
-  for (const p of ed.picks) if (p.status !== 'fail') cleared(p.repo, `data/editions/${d}/edition.json`);
+  for (const p of ed.picks) if (p.status !== 'fail' && p.status !== 'review') cleared(p.repo, `data/editions/${d}/edition.json`);
   for (const f of readdirSync(join(ROOT, `data/editions/${d}`)).filter(f => f.endsWith('.json') && f !== 'edition.json')) {
     const r = readJSON(`data/editions/${d}/${f}`);
     for (const a of r.verdict?.alternatives || []) if (altRepo(a)) cleared(altRepo(a), `data/editions/${d}/${f} (alternative)`);
@@ -85,7 +85,7 @@ if (!SHEET && existsSync(join(ROOT, 'data/hub.json'))) {
 // b) every published page: the repo a page is about, and every GitHub repo a list links to
 for (const f of html.filter(f => /^(editions|lookups|classic)\//.test(f) || f === 'index.html')) {
   const s = readFileSync(join(ROOT, f), 'utf8');
-  if (/DO NOT INSTALL/.test(s) && /class="stamp[^"]*"|>DO NOT INSTALL</.test(s)) continue; // a warning page is allowed to name its repo
+  if ((/DO NOT INSTALL|UNDER REVIEW/.test(s)) && /class="stamp[^"]*"/.test(s)) continue; // a warning or review page is allowed to name its repo
   const isList = /index\.html$/.test(f);
   const links = [...s.matchAll(/href="https:\/\/github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)\/?"/g)].map(m => `${m[1]}/${m[2]}`);
   const subjects = isList ? links : links.slice(0, 1);

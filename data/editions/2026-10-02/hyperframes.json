@@ -1,0 +1,151 @@
+{
+  "repo": "heygen-com/hyperframes",
+  "name": "HyperFrames",
+  "tagline": "A video maker for AI: describe what you want, and out comes a polished MP4 - no camera, no editing app.",
+  "sentence": "Ask Claude Code to make a product demo or a recap video: HyperFrames turns a web page into an animated MP4, complete with titles, charts and transitions.",
+  "fit": "you",
+  "replaces": "Canva video, Loom or a freelance editor for short product demos and recap clips",
+  "links": {
+    "website": "https://hyperframes.heygen.com",
+    "demo": "https://hyperframes.dev",
+    "docs": "https://hyperframes.heygen.com/introduction"
+  },
+  "visual": {
+    "src": "assets/shots/hyperframes.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "A HyperFrames video template called 'Biennale Yellow': large navy serif type reading 'Paper, ink & yellow' on a warm parchment background with a soft yellow glow, with metadata showing Register: Literary-editorial, Ground: Warm parchment, Type: Instrument Serif and Archivo, Depth: Atmospheric blooms.",
+    "caption": "One of 20+ built-in design templates. You pick a look, give it your content, and HyperFrames renders the video."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need a short product video or a recap clip, but you don't have a camera, a video editor, or the time to learn one.",
+      "eg": "A one-minute demo of your new feature: right now, that means a screen recorder, a video editor, and an afternoon."
+    },
+    {
+      "role": "trigger",
+      "say": "You ask Claude Code (or any coding agent) to make the video, or type a command yourself.",
+      "eg": "`/hyperframes 'Make a 30-second product demo for our new dashboard'` - the agent writes the page and renders the video."
+    },
+    {
+      "role": "input",
+      "say": "A description of what you want, or a web page with timing marks that say when each part appears.",
+      "eg": "A product name, a few bullet points, and a design template like 'Biennale Yellow' or 'Bold Poster.'"
+    },
+    {
+      "role": "does",
+      "say": "It builds each frame from your content and renders them into a video file.",
+      "steps": [
+        "The agent writes a web page with your content, picks a template and adds animation timing",
+        "HyperFrames opens each frame in a browser engine (the same tool web browsers use to draw pages), captures it as a picture, and stitches the pictures into a video",
+        "It mixes in audio, captions or transitions if you asked for them, and writes the final MP4 file"
+      ],
+      "eg": "The README's own example: one command renders an MP4 from an HTML template, deterministically - the same input always produces the same video."
+    },
+    {
+      "role": "result",
+      "say": "A finished MP4 video, ready to share or post.",
+      "outputs": [
+        { "what": "A polished video file", "eg": "A 30-second MP4 you can post to LinkedIn, attach to a Slack message, or embed in a slide deck" },
+        { "what": "Reusable templates", "eg": "20+ built-in design themes (editorial, poster, capsule, grid) you can swap for a different look without redoing the content" },
+        { "what": "A repeatable recipe", "eg": "Change one number in the content and re-render: the video updates in seconds, not hours" }
+      ]
+    }
+  ],
+  "before": [
+    "Making a short product video means a screen recorder, a video editor, and half a day of cutting and arranging.",
+    "Updating a video after a product change means redoing the whole process from scratch."
+  ],
+  "after": [
+    "Describe what you want and get a rendered MP4 in seconds - no camera, no editor, no editing skills.",
+    "Change the content and re-render: the video updates automatically, like re-printing a document."
+  ],
+  "uses_note": "HyperFrames is 7 months old with over 4 million installs on skills.sh. Real named uses from outside the maker's own team are still hard to find in public - most adoption is through Claude Code agents where the output (a video) is what gets shared, not the tool that made it.",
+  "uses": [],
+  "pulse": {
+    "gain": "+2.7K stars this week, +11.7K in 30 days. 4 million Claude Code installs on skills.sh.",
+    "history": [
+      ["2026-03-10", 0],
+      ["2026-09-02", 43859],
+      ["2026-10-02", 55593]
+    ],
+    "history_note": "Created Mar 10, 2026. The 30-day gain of +11.7K is from findarepo's measured data.",
+    "facts": [
+      { "value": "55.6K", "label": "stars on GitHub" },
+      { "value": "4.1M", "label": "installs on skills.sh" },
+      { "value": "11", "label": "skills in the HyperFrames collection" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "skills.sh",
+      "title": "heygen-com/hyperframes on skills.sh: all-time, trending and hot lists",
+      "url": "https://skills.sh/heygen-com/hyperframes",
+      "meta": "4.1M installs"
+    },
+    {
+      "plat": "GitHub Trending",
+      "title": "heygen-com/hyperframes on GitHub Trending (daily, weekly, monthly)",
+      "url": "https://github.com/trending",
+      "meta": "Trending across all three time ranges, Oct 2"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "heygen-com/hyperframes trending stats",
+      "url": "https://trendshift.io/repositories/heygen-com/hyperframes",
+      "meta": "Trending"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Install the HyperFrames plugin](https://github.com/heygen-com/hyperframes) in Claude Code: type `claude plugin install hyperframes@hyperframes` and wait for it to finish.",
+      "Ask Claude Code to make a video: try `Make a 30-second product overview video for a fictional coffee delivery app called BeanDrop, using the Biennale Yellow template.`",
+      "Play the MP4 file it creates. Change one detail in the content and ask [Claude Code](https://code.claude.com/docs/en/overview) to re-render - the updated video arrives in seconds."
+    ],
+    "paste": "/skillspector https://github.com/heygen-com/hyperframes\n\nIf that scan passes: install the plugin, make a 30-second demo video using one of the built-in templates, and show me the result. Then change one line of content and re-render. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "About **240 MB** for development (includes test files via Git LFS). The plugin install itself is lighter.",
+    "memory": "No data found for a specific number. Rendering uses a browser engine to capture frames, so memory depends on the complexity of the page.",
+    "runs_on": "Mac, Windows, Linux. Needs Node.js 22+ and FFmpeg (a free video-encoding tool, installed automatically on most systems).",
+    "source": { "title": "HyperFrames README: System requirements", "url": "https://github.com/heygen-com/hyperframes" }
+  },
+  "verdict": {
+    "best_for": [
+      "You need short product demos, recap clips or social videos and don't have a video editor or the time to learn one",
+      "You already use Claude Code and want to make videos by describing them, not by dragging clips on a timeline"
+    ],
+    "skip_if": [
+      "You need to film real people or real places - HyperFrames renders designed pages, not camera footage",
+      "You want a drag-and-drop video editor with a visual timeline - this is a code-to-video tool, not a traditional editor"
+    ],
+    "alternatives": [
+      {
+        "name": "Canva Video",
+        "url": "https://www.canva.com/video-editor/",
+        "line": "A drag-and-drop video maker with templates - easier to start with, but you can't automate it from a coding agent or re-render by changing one line."
+      },
+      {
+        "name": "Remotion",
+        "repo": "remotion-dev/remotion",
+        "url": "https://remotion.dev/",
+        "line": "An open-source code-to-video tool that uses React (a web-development framework). More flexible for developers, but harder to start with if you're not writing code yourself."
+      }
+    ]
+  },
+  "watch": [
+    "**Made by HeyGen, an AI video company.** HyperFrames is their open-source project (Apache 2.0 license), not a community effort. HeyGen's paid products are separate.",
+    "**It renders designed pages, not camera footage.** If you need to film a person talking, this isn't the tool. It's for animated graphics, charts, titles and transitions.",
+    "**Needs FFmpeg installed.** FFmpeg is a free video tool that most systems have or can install automatically, but if it's missing, the render step will fail with an error."
+  ],
+  "sources": [
+    { "title": "HyperFrames on GitHub (README, templates, requirements)", "url": "https://github.com/heygen-com/hyperframes", "date": "2026-10-02" },
+    { "title": "HyperFrames documentation", "url": "https://hyperframes.heygen.com/introduction", "date": "2026-10-02" },
+    { "title": "HyperFrames interactive playground", "url": "https://hyperframes.dev", "date": "2026-10-02" },
+    { "title": "skills.sh: heygen-com/hyperframes installs", "url": "https://skills.sh/heygen-com/hyperframes", "date": "2026-10-02" },
+    { "title": "Canva Video Editor", "url": "https://www.canva.com/video-editor/", "date": "2026-10-02" },
+    { "title": "Remotion", "url": "https://remotion.dev/", "date": "2026-10-02" }
+  ]
+}

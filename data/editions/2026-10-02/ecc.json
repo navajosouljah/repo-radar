@@ -1,0 +1,162 @@
+{
+  "repo": "affaan-m/ECC",
+  "name": "ECC",
+  "tagline": "A free plugin that turns Claude Code into a full engineering team - 261 skills, 63 sub-agents, 79 commands.",
+  "sentence": "Install ECC (Everything Claude Code) and your single Claude Code agent gains a roster of specialized sub-agents: one writes tests, one reviews security, one manages packages, one handles releases - 63 in total, coordinated by a guided installer.",
+  "fit": "you",
+  "replaces": "Assembling your own collection of Claude Code plugins and CLAUDE.md rules",
+  "links": {
+    "website": "https://ecc.tools",
+    "docs": "https://github.com/affaan-m/ECC"
+  },
+  "visual": {
+    "src": "assets/shots/ecc.png",
+    "width": 1600,
+    "height": 900,
+    "alt": "The ECC README header showing 'Everything Claude Code' with its tagline and install command, followed by sections for skills, sub-agents and commands, with badges showing 271K stars and MIT license.",
+    "caption": "ECC's README: 261 skills, 63 sub-agents and 79 commands, installed with one command."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Claude Code is powerful out of the box, but building a complete workflow - testing, security review, package management, releases - means assembling plugins one at a time.",
+      "eg": "You need a test skill, a security reviewer, a docs generator and a release helper. Each one is a separate install, a separate config, a separate thing to maintain."
+    },
+    {
+      "role": "trigger",
+      "say": "You run the ECC installer, pick a profile (minimal, core or full), and it sets up everything.",
+      "eg": "`npx ecc-universal@2.2.3 setup` walks you through a guided install: pick minimal (essentials), core (recommended), or full (everything)."
+    },
+    {
+      "role": "input",
+      "say": "Your normal Claude Code prompts. ECC's skills and sub-agents activate based on what you're doing.",
+      "eg": "Ask Claude Code to review a file and ECC's security sub-agent checks for vulnerabilities. Ask it to deploy and the deployment sub-agent handles the steps."
+    },
+    {
+      "role": "does",
+      "say": "It adds 261 skills, 63 specialized sub-agents and 79 commands to your Claude Code, organized by category.",
+      "steps": [
+        "Skills: specific behaviors like test-driven development, code review, documentation generation, security scanning",
+        "Sub-agents: specialized roles that handle focused tasks - one for tests, one for security, one for packages, one for releases",
+        "Commands: shortcuts for common workflows - run all checks, generate a changelog, create a release"
+      ],
+      "eg": "The creator won the Anthropic x Forum Ventures hackathon by building his entire platform (zenith.chat) through Claude Code configured with ECC's skills."
+    },
+    {
+      "role": "result",
+      "say": "One agent that acts like a team - each task is handled by the right specialist.",
+      "outputs": [
+        { "what": "A fully equipped agent", "eg": "Claude Code with testing, security, deployment, documentation and 50+ other capabilities installed and configured" },
+        { "what": "Cross-agent support", "eg": "ECC works with Claude Code, Cursor, Codex, OpenCode, Gemini and Zed - same skills across different agents" },
+        { "what": "A guided setup", "eg": "The installer asks what you need and configures only those skills. No manual CLAUDE.md editing required." }
+      ]
+    }
+  ],
+  "before": [
+    "Setting up a complete Claude Code workflow means finding, installing and configuring a dozen different plugins.",
+    "Each plugin has its own install process, its own rules, and its own way of conflicting with the others."
+  ],
+  "after": [
+    "One installer, one setup, 261 skills and 63 sub-agents. Pick a profile and go.",
+    "Skills work across 6 different AI agents, so switching tools doesn't mean re-configuring everything."
+  ],
+  "uses_note": "ECC has 271K stars and 268 contributors. Named third-party uses beyond the creator's own projects are sparse - adoption is broad but documented case studies from non-makers are thin.",
+  "uses": [
+    {
+      "who": "Affaan Mustafa (creator)",
+      "what": "Won the Anthropic x Forum Ventures hackathon at Cerebral Valley, SF, building his zenith.chat platform entirely through Claude Code with ECC's config. First place among 100+ participants, $15K in Anthropic credits.",
+      "url": "https://x.com/bigaiguy/status/2059968824380911679",
+      "date": "2026-01-18"
+    },
+    {
+      "who": "jabbor (GitHub user)",
+      "what": "Used ECC with a local AI model (Omnicoder-9B via llama.cpp) to build a Python-based SQL Server MCP tool in one afternoon. Reported the system stayed on track and self-corrected without prompting.",
+      "url": "https://github.com/affaan-m/ECC/discussions/740",
+      "date": "2026-03-21"
+    }
+  ],
+  "pulse": {
+    "gain": "+7.5K stars this week, +64.5K in 30 days.",
+    "history": [
+      ["2026-01-18", 0],
+      ["2026-09-02", 206495],
+      ["2026-10-02", 271003]
+    ],
+    "history_note": "Created Jan 18. The 30-day gain of +64.5K is from findarepo's measured data.",
+    "facts": [
+      { "value": "271K", "label": "stars on GitHub" },
+      { "value": "261", "label": "skills" },
+      { "value": "63", "label": "sub-agents" }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "DataCamp",
+      "title": "Everything Claude Code (ECC): Open-Source Framework Guide",
+      "url": "https://www.datacamp.com/tutorial/everything-claude-code",
+      "meta": "Tutorial by Dario Radecic, Jun 29, 2026"
+    },
+    {
+      "plat": "AugmentCode",
+      "title": "Everything Claude Code hits 170K stars: what developers should know",
+      "url": "https://www.augmentcode.com/learn/everything-claude-code-github-stars",
+      "meta": "Blog post"
+    },
+    {
+      "plat": "Substack (Ikjot Juneja)",
+      "title": "Claude Code + ECC = An Entire AI Engineering Team",
+      "url": "https://ikjotjuneja.substack.com/p/claude-code-ecc-an-entire-ai-engineering",
+      "meta": "Jun 4, 2026"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Run the guided installer: `npx ecc-universal@2.2.3 setup`. Pick the 'core' profile for a good starting set.",
+      "Open a project in [Claude Code](https://code.claude.com/docs/en/overview) and ask it to review a file for security issues - watch the security sub-agent handle it.",
+      "Try a few commands: ask it to run all checks, generate documentation, or set up a testing workflow."
+    ],
+    "paste": "/skillspector https://github.com/affaan-m/ECC\n\nIf that scan passes: run the guided installer with the 'core' profile, then test 3 different capabilities (security review, testing, and documentation). Report what each sub-agent does and whether the output is useful. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for exact size. 261 skills are primarily Markdown instruction files; sub-agents are config, not binaries.",
+    "memory": "No measurable overhead beyond what Claude Code already uses. Skills are context instructions.",
+    "runs_on": "Claude Code 2.1+, Cursor, Codex, OpenCode, Gemini, Zed. Needs Node.js 18+ and Git.",
+    "source": { "title": "ECC README and installer", "url": "https://github.com/affaan-m/ECC" }
+  },
+  "verdict": {
+    "best_for": [
+      "You want a complete Claude Code setup without assembling plugins one by one",
+      "You work across multiple AI agents (Claude Code, Cursor, Codex) and want the same skills everywhere"
+    ],
+    "skip_if": [
+      "You prefer a minimal agent setup and don't want 261 skills in your context",
+      "You've already built a custom workflow that works - ECC may conflict with existing CLAUDE.md rules"
+    ],
+    "alternatives": [
+      {
+        "name": "mattpocock/skills",
+        "repo": "mattpocock/skills",
+        "url": "https://github.com/mattpocock/skills",
+        "line": "27 focused, high-quality skills. Much smaller than ECC's 261, but each one is more carefully tested. A good choice if you want less, not more."
+      },
+      {
+        "name": "Custom CLAUDE.md rules",
+        "line": "Write your own rules from scratch. The most control, the most work, and no sub-agents - but nothing you didn't put there yourself."
+      }
+    ]
+  },
+  "watch": [
+    "**261 skills is a lot.** The full profile adds significant context to every agent interaction. The guided installer's 'minimal' profile exists for a reason.",
+    "**Named case studies from non-makers are thin.** 271K stars and 268 contributors, but published stories of 'I used ECC for my company and here's what happened' are hard to find.",
+    "**v2.0 is a recent rewrite.** ECC shipped v2.0.0 as a 'cross-harness agent system' - the architecture changed significantly, so earlier tutorials may not match the current setup.",
+    "**Potential conflicts with other plugins.** 261 skills and 63 sub-agents can conflict with other installed skills or CLAUDE.md rules. The guided installer helps, but check for overlaps."
+  ],
+  "sources": [
+    { "title": "ECC on GitHub (README, installer, skills list)", "url": "https://github.com/affaan-m/ECC", "date": "2026-10-02" },
+    { "title": "DataCamp: ECC tutorial", "url": "https://www.datacamp.com/tutorial/everything-claude-code", "date": "2026-06-29" },
+    { "title": "AugmentCode: ECC at 170K stars", "url": "https://www.augmentcode.com/learn/everything-claude-code-github-stars", "date": "2026-10-02" },
+    { "title": "Ikjot Juneja: Claude Code + ECC", "url": "https://ikjotjuneja.substack.com/p/claude-code-ecc-an-entire-ai-engineering", "date": "2026-06-04" },
+    { "title": "Affaan Mustafa: hackathon win", "url": "https://x.com/bigaiguy/status/2059968824380911679", "date": "2026-01-18" }
+  ]
+}
