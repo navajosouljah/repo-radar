@@ -9,7 +9,11 @@ Sep 27 2026 after the purge was silently undone and ZCode was ranked #5.
 ## The four checks
 
 1. **Blocklist.** Read `data/blocklist.json`. A repo listed there can never appear anywhere on the
-   site: not picked, not listed, not linked as a recommendation. Each entry has a `kind`:
+   site: not picked, not listed, not linked as a recommendation. `verify.mjs` goes one step further
+   (JJ, Oct 3 2026): no page may link a blocklisted repo at all, in any form of link (a deep link to
+   an issue, a second link, a source). The one exception is that repo's own DO NOT INSTALL page, and
+   a page counts as one only when its repo has a FAIL in the gate log; the words on their own excuse
+   nothing. Links to other repos as plain citations stay ungated. Each entry has a `kind`:
    - `open-advisories`: it comes off the list automatically when a later full gate passes (the
      maintainers shipped fixes).
    - `conduct` (malware, scam, secret data upload, impersonation): only JJ can take it off.

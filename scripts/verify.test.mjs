@@ -179,3 +179,70 @@ test('the fence, end to end: verify refuses a checkout that adds an edition and 
   writeFileSync(join(root, 'scripts/build.mjs'), '// build, with a new exception');
   refuses(root, /scripts\/build\.mjs changed in the same push as a new edition/);
 });
+
+// JJ's rulings on the Oct 3 2026 adversarial pass: (1) the words DO NOT INSTALL excuse nothing on
+// their own, (2) no page links a blocklisted repo, in any form of link.
+const failed = repo => ({ ...pass(repo), verdict: 'FAIL', reasons: ['1 open advisory(ies)'] });
+const stamp = '<span class="stamp fail">DO NOT INSTALL</span>';
+const twoBad = {
+  'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'bad/repo': failed('bad/repo'), 'worse/repo': failed('worse/repo') }),
+  'data/blocklist.json': JSON.stringify(['bad/repo', 'worse/repo'].map(repo => ({ repo, kind: 'open-advisories', reason: 'x', date: today }))),
+};
+
+test('a page is a warning page only when its own repo has a FAIL on record', () => {
+  const held = pass('held/repo'); held.verdict = 'REVIEW';
+  refuses(site({
+    'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'held/repo': held }),
+    'editions/2026-08-01/h.html': `${stamp}<a href="https://github.com/held/repo">GitHub</a>`,
+  }), /held\/repo gate verdict is REVIEW/);
+  refuses(site({ 'editions/2026-08-01/n.html': `${stamp}<a href="https://github.com/never/gated">GitHub</a>` }), /never\/gated was never gated/);
+  // the phrase in bold in a list page's note used to switch the whole page's check off
+  refuses(site({ 'editions/2026-08-01/index.html': '<p><b>DO NOT INSTALL</b> is our warning stamp.</p><a href="https://github.com/never/gated">x</a>' }), /never\/gated was never gated/);
+});
+
+test('a real warning page passes: stamped, its repo FAIL and blocklisted, linking only its own repo', () => {
+  const r = verify(site({ ...twoBad, 'editions/2026-08-01/bad.html': `${stamp}<a href="https://github.com/bad/repo">GitHub</a><a href="https://github.com/bad/repo/security/advisories">advisories</a>` }));
+  assert.equal(r.status, 0, r.stderr);
+});
+
+test('no page links a blocklisted repo, in any form of link', () => {
+  // a deep link on a normal page, a second link on a repo page, a root page, and a warning page that links another one
+  refuses(site({ ...twoBad, 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://github.com/bad/repo/issues/89">a thread</a>' }), /links bad\/repo, which is on the blocklist/);
+  refuses(site({ ...twoBad, 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://github.com/Bad/Repo">also</a>' }), /links bad\/repo, which is on the blocklist/);
+  // a capitalised host, and GitHub's other hosts for the same repo (a raw file, the API)
+  refuses(site({ ...twoBad, 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://GitHub.com/bad/repo">also</a>' }), /links bad\/repo, which is on the blocklist/);
+  refuses(site({ ...twoBad, 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://raw.githubusercontent.com/bad/repo/main/install.sh">script</a>' }), /links bad\/repo, which is on the blocklist/);
+  refuses(site({ ...twoBad, 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://api.github.com/repos/bad/repo/releases">api</a>' }), /links bad\/repo, which is on the blocklist/);
+  refuses(site({ ...twoBad, 'archive.html': '<a href="https://github.com/bad/repo/tree/main">x</a>' }), /archive\.html: links bad\/repo/);
+  refuses(site({ ...twoBad, 'editions/2026-08-01/bad.html': `${stamp}<a href="https://github.com/bad/repo">GitHub</a><a href="https://github.com/worse/repo.git">alt</a>` }), /links worse\/repo, which is on the blocklist/);
+});
+
+test('a citation to a repo that was never gated and is not blocklisted stays allowed', () => {
+  const r = verify(site({ 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://github.com/someone/thread/issues/89">source</a>' }));
+  assert.equal(r.status, 0, r.stderr);
+});
+
+// The adversarial pass on that fix (Oct 3 2026) found the first version tied "its own repo" to the
+// first plain link on the page. The page builder's warning pages link their repo only through the
+// advisories list, so a real one would have been refused, and a page whose first link was another
+// failed repo would have excused the wrong one.
+const failSheet = repo => ({ repo, name: 'bad', status: 'fail', tagline: 'Pulled.', sentence: 'It failed.', what_happened: ['x'], why_fail: ['x'], if_used: ['x'], sources: [{ title: 's', url: 'https://example.com', date: '2026-09-27' }] });
+const failEdition = { number: '1', date: '2026-09-25', theme: 't', picks: [{ rank: 1, slug: 'bad', repo: 'bad/repo', name: 'bad', status: 'fail', oneliner: 'Pulled.' }] };
+
+test('a warning page as the builder makes it passes: its repo comes from its data file, and its only own link is the advisories list', () => {
+  const r = verify(site({ ...twoBad,
+    'data/editions/2026-09-25/edition.json': failEdition, 'data/editions/2026-09-25/bad.json': failSheet('bad/repo'),
+    'editions/2026-09-25/bad.html': `${stamp}<span class="repo-id">bad/repo</span><a href="https://example.com/report">source</a><a href="https://github.com/bad/repo/security/advisories">GitHub's advisory list</a>`,
+  }));
+  assert.equal(r.status, 0, r.stderr);
+  // an older page with no data file names its repo in the repo-id the stamp sits next to
+  const legacy = verify(site({ ...twoBad, 'editions/2026-08-01/bad.html': `${stamp}<span class="repo-id">bad/repo</span><a href="https://github.com/bad/repo/issues/3">the report</a>` }));
+  assert.equal(legacy.status, 0, legacy.stderr);
+});
+
+test('a warning page excuses its own repo only: another failed repo linked first is still refused', () => {
+  refuses(site({ ...twoBad,
+    'data/editions/2026-09-25/edition.json': failEdition, 'data/editions/2026-09-25/bad.json': failSheet('bad/repo'),
+    'editions/2026-09-25/bad.html': `${stamp}<span class="repo-id">bad/repo</span><a href="https://github.com/worse/repo">see also</a><a href="https://github.com/bad/repo/security/advisories">advisories</a>`,
+  }), /links worse\/repo, which is on the blocklist/);
+});

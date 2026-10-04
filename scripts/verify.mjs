@@ -5,6 +5,8 @@
 //   2. no em or en dashes anywhere in the published pages or the data
 //   3. every repo the site recommends has a current gate PASS with advisory evidence and is not on
 //      the blocklist (pages, lists, the Claude Board, alternatives, legacy pages, classic/)
+//      and no page links a blocklisted repo in any form of link; only a stamped page whose own
+//      repo has a FAIL on record may name that repo
 //   4. every repo data file has the required fields
 //   5. the plain-English fields contain no unexplained jargon
 //   6. no source is dated before the repo it describes existed
@@ -85,11 +87,30 @@ if (!SHEET && existsSync(join(ROOT, 'data/hub.json'))) {
   for (const c of hub.categories || []) for (const p of c.picks || []) cleared(p.repo, `data/hub.json (${c.name})`);
   for (const p of hub.claude_board || []) cleared(p.repo, 'data/hub.json (Claude Board)');
 }
-// b) every published page: the repo a page is about, and every GitHub repo a list links to
-for (const f of html.filter(f => /^(editions|lookups|classic)\//.test(f) || f === 'index.html')) {
+// b) every published page: the repo a page is about, and every GitHub repo a list links to.
+// A warning page may name its own repo and nothing else: it carries the DO NOT INSTALL stamp AND
+// that repo has a FAIL on record. The words alone excuse nothing (JJ, Oct 3 2026: any page with the
+// phrase in bold used to skip this whole check, whether or not its repo had failed).
+// c) no page anywhere links a blocklisted repo, in any form of link: a deep link (/issues, /tree),
+// a second link on a repo page, a source, a raw file, a capitalised host. Citations to other repos
+// stay ungated (JJ, Oct 3 2026).
+const reEsc = x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const BLOCK_LINK = [...BLOCK].map(k => [k, new RegExp(`^https?://[^/]*github[^/]*/(?:repos/)?${reEsc(k)}(?=$|[/?#]|\\.git(?=$|[/?#]))`, 'i')]);
+// The repo a page is about: its data file when it has one, else the repo-id the template prints
+// next to the stamp, else (old hand-made pages only) the first GitHub link on it.
+function ownRepo(f, s) {
+  const d = `data/${f.replace(/\.html$/, '.json')}`;
+  if (existsSync(join(ROOT, d))) return readJSON(d).repo || null;
+  return (s.match(/class="repo-id">\s*([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\s*</) || s.match(/href="https?:\/\/(?:www\.)?github\.com\/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+?)(?:\.git)?[/?#"]/i) || [])[1] || null;
+}
+for (const f of html) {
   const s = readFileSync(join(ROOT, f), 'utf8');
-  if (/DO NOT INSTALL/.test(s) && /class="stamp[^"]*"|>DO NOT INSTALL</.test(s)) continue; // a warning page is allowed to name its repo
   const isList = /index\.html$/.test(f);
+  const own = !isList && /class="stamp[^"]*"[^>]*>\s*DO NOT INSTALL/.test(s) ? ownRepo(f, s) : null;
+  const warned = own && gateOf(own)?.verdict === 'FAIL' ? key(own) : null;
+  const hrefs = [...s.matchAll(/href="([^"]+)"/gi)].map(m => m[1]);
+  for (const [k, re] of BLOCK_LINK) if (k !== warned && hrefs.some(h => re.test(h))) bad(f, `links ${k}, which is on the blocklist`);
+  if (warned || !(/^(editions|lookups|classic)\//.test(f) || f === 'index.html')) continue; // a warning page recommends nothing
   const links = [...s.matchAll(/href="https:\/\/github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)\/?"/g)].map(m => `${m[1]}/${m[2]}`);
   const subjects = isList ? links : links.slice(0, 1);
   for (const r of new Set(subjects)) if (!/^(sponsors|topics|orgs|features)\//.test(r)) cleared(r, f, 90);
@@ -155,8 +176,10 @@ for (const d of SHEET ? [] : edDirs.filter(d => d > REPORTS_FROM)) {
 // ---- 8: the fence -------------------------------------------------------------------------------
 // The Oct 2 2026 Friday run kept a flagged repo on the site by adding an "under review" exception to
 // build.mjs and to this file. An edition run never edits the checker or the rules: script and rule
-// changes ship on their own, from a session JJ is in. Known ceiling: a run that rewrites this check
-// on purpose still gets through; only a rule on the GitHub side would stop that.
+// changes ship on their own, from a session JJ is in. Known ceiling, accepted by JJ on Oct 3 2026:
+// a run that rewrites this check on purpose, or that ships a script change in one push and the
+// edition in the next, still gets through. Only a rule on the GitHub side would stop that; revisit
+// if a run ever trips the fence.
 const PROTECTED = [/^scripts\//, /^CLAUDE\.md$/, /^docs\/(SECURITY_GATE|EDITION_PLAYBOOK|DATA_FORMAT)\.md$/];
 export function fenceProblems(changes) {
   const added = changes.find(c => c.status === 'A' && /^data\/editions\/\d{4}-\d{2}-\d{2}\/edition\.json$/.test(c.path));

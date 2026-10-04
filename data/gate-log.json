@@ -897,14 +897,12 @@
   },
   "akitaonrails/ai-memory": {
     "repo": "akitaonrails/ai-memory",
-    "checked": "2026-10-02",
-    "verdict": "FAIL",
-    "reasons": [
-      "1 open advisory(ies): GHSA-vh98-jf5c-jw45 low (unpatched)"
-    ],
+    "checked": "2026-10-04",
+    "verdict": "PASS",
+    "reasons": [],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/akitaonrails/ai-memory/security/advisories",
         "count": 2,
         "latestRelease": "2.5.2",
@@ -915,10 +913,9 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "memory_read_page include_related exposes metadata of pages in restricted projects",
-            "patched": null,
+            "patched": "2.5.2",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.5.2"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-vh98-jf5c-jw45",
@@ -926,44 +923,44 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "ignore_paths capture exclusion fails open for a path with a leading double slash",
-            "patched": null,
+            "patched": "2.5.1",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.5.2"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "akitaonrails/ai-memory CVE",
           "akitaonrails/ai-memory vulnerability",
           "akitaonrails/ai-memory malware",
           "akitaonrails/ai-memory scam"
         ],
-        "results": 10,
+        "results": 20,
         "errors": 0,
         "hits": [],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 0
         },
         "cves": []
       },
       "activity": {
-        "source": "public-page",
         "canonical": "akitaonrails/ai-memory",
-        "stars": 8746,
-        "forks": 607,
-        "watchers": 49,
-        "openIssues": 26,
+        "stars": 8810,
+        "forks": 610,
+        "watchers": 50,
+        "openIssues": 9,
         "hasIssues": true,
-        "contributors": 129,
-        "commits": 2508,
+        "contributors": 132,
+        "commits": 2566,
         "created": "2026-05-21",
-        "pushed": "2026-10-01",
+        "pushed": "2026-10-03",
         "archived": false,
         "ageDays": 135,
+        "homepage": null,
+        "license": "MIT",
         "flags": []
       }
     }

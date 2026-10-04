@@ -186,12 +186,6 @@
     "reason": "2 open CVE(s) found by search: CVE-2026-17613 high (unpatched), CVE-2026-100868 medium (unpatched) | new since the 2026-09-27 ruling: CVE CVE-2026-100868 (unpatched)"
   },
   {
-    "repo": "akitaonrails/ai-memory",
-    "date": "2026-10-02",
-    "kind": "open-advisories",
-    "reason": "1 open advisory(ies): GHSA-vh98-jf5c-jw45 low (unpatched)"
-  },
-  {
     "repo": "esengine/DeepSeek-Reasonix",
     "date": "2026-10-02",
     "kind": "open-advisories",
