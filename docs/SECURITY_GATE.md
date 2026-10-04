@@ -144,6 +144,14 @@ The cloud routine runs unattended, so it may rule only on the harmless kind of R
   14 or more days old, oldest first. The build refuses a gate older than 30 days, so every listed
   repo is fully re-checked at least monthly.
 - A new FAIL comes down everywhere it appears and goes on the blocklist.
+- **A cloud verdict on an advisory gets a second look from a Mac** (JJ, Oct 3 2026). The cloud run
+  reads the public advisory pages, and some of them don't show the fixed version: on Oct 2 2026 it
+  failed ai-memory with both advisories already fixed in release 2.5.2, and the API gate passed it
+  the next day. The repo still comes down that Friday (the safe side). The Friday report lists it
+  under "Needs JJ" as "re-check from the Mac", and `verify.mjs` refuses an edition whose report
+  leaves one out (`needsMacRecheck` in `scripts/gate-lib.mjs`, with tests). On a Mac:
+  `node scripts/gate.mjs owner/repo` uses the GitHub API, which carries the fixed versions. A PASS
+  takes the repo off the blocklist; then restore its page and ship. A FAIL from the Mac is final.
 
 ## Shipping
 

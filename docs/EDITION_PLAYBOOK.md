@@ -72,6 +72,12 @@ this rolling refresh keeps the site shippable.
 - A repo that is now **REVIEW**: follow "What the Friday routine may settle" in
   `docs/SECURITY_GATE.md`. If you may not settle it, it comes down this week (not blocklisted), and
   the report names it for JJ.
+- **Your advisory verdicts get a second look from a Mac.** You read advisories from GitHub's public
+  pages, and some of those pages don't show the fixed version, so a patched repo can look
+  unpatched (ai-memory, Oct 2 2026). You still take the repo down: that is the safe side. But
+  every repo you FAIL or hold this week on an advisory or CVE goes under "Needs JJ" in the report,
+  one line each: ``owner/repo: re-check from the Mac: `node scripts/gate.mjs owner/repo` ``.
+  `verify.mjs` refuses the edition if one is missing, and its message names the repo.
 
 ## 3. Choose the 10
 
@@ -200,6 +206,8 @@ never reached him. Finish the run by printing the same report. It starts like th
 - One line for each thing only JJ can decide or fix: a repo that came down on a REVIEW you may not
   settle, a check that blocked you, a source that failed. Write "Nothing this week." if there is
   nothing. Never leave this section out.
+- owner/repo: re-check from the Mac: `node scripts/gate.mjs owner/repo`   (one line for every repo
+  you failed or held this week on an advisory or CVE; see step 2)
 ```
 
 Then, in short:

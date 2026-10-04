@@ -6324,15 +6324,15 @@
   },
   "esengine/DeepSeek-Reasonix": {
     "repo": "esengine/DeepSeek-Reasonix",
-    "checked": "2026-10-02",
+    "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "2 open advisory(ies): GHSA-83jp-h8cg-2gcr high (unpatched), GHSA-grg2-7gc6-36m6 critical (unpatched)",
+      "3 open advisory(ies): GHSA-4p5q-jhpc-rf9q high (fix-unreleased), GHSA-83jp-h8cg-2gcr high (fix-unreleased), GHSA-grg2-7gc6-36m6 critical (fix-unreleased)",
       "1 open CVE(s) found by search: CVE-2026-102437 high (unpatched)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/esengine/DeepSeek-Reasonix/security/advisories",
         "count": 5,
         "latestRelease": "1.39.7",
@@ -6343,10 +6343,9 @@
             "severity": "high",
             "published": "2026-09-29",
             "summary": "Workspace configuration files could widen sandbox, permission and approval settings and start host programs without confirmation",
-            "patched": null,
+            "patched": "1.39.5; 2.22.0",
             "openPackages": [],
-            "status": "fix-unverified",
-            "latestPublished": "1.39.7"
+            "status": "fix-unreleased"
           },
           {
             "ghsa": "GHSA-83jp-h8cg-2gcr",
@@ -6354,10 +6353,9 @@
             "severity": "high",
             "published": "2026-09-29",
             "summary": "Sandboxed agent can self-approve its own write-access decision through the unauthenticated serve API, escaping the OS sandbox",
-            "patched": null,
+            "patched": "1.39.3; 2.21.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "1.39.7"
+            "status": "fix-unreleased"
           },
           {
             "ghsa": "GHSA-grg2-7gc6-36m6",
@@ -6365,10 +6363,9 @@
             "severity": "critical",
             "published": "2026-09-29",
             "summary": "gitcmd's hardened git diff wrapper still executes attacker-controlled filter.<driver>.clean via .gitattributes, a residual gap the code itse",
-            "patched": null,
+            "patched": "1.39.3; 2.21.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "1.39.7"
+            "status": "fix-unreleased"
           },
           {
             "ghsa": "GHSA-wqg8-98mr-4jcj",
@@ -6378,8 +6375,7 @@
             "summary": "Repository-supplied project-level MCP plugin configuration is auto-started without trust confirmation, allowing arbitrary local command exec",
             "patched": "1.39.3",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "1.39.7"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-8789-pp7w-w83p",
@@ -6389,22 +6385,93 @@
             "summary": "Startup RCE in Reasonix CLI (reasonix) via core.fsmonitor",
             "patched": "1.19.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "1.39.7"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "esengine/DeepSeek-Reasonix CVE",
           "esengine/DeepSeek-Reasonix vulnerability",
           "esengine/DeepSeek-Reasonix malware",
           "esengine/DeepSeek-Reasonix scam"
         ],
-        "results": 1,
+        "results": 21,
         "errors": 0,
         "hits": [
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "CVE Record: CVE-2026-102437",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2026-102437",
+            "published": "2026-09-29",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "CVE-2026-102437 - Vulnerability Details - OpenCVE",
+            "url": "https://app.opencve.io/cve/CVE-2026-102437",
+            "published": "2026-09-29",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "CVE-2026-102437: Improper Neutralization of... - CVE.report",
+            "url": "https://cve.report/CVE-2026-102437",
+            "published": "2026-09-29",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "CVE-2026-102437: esengine DeepSeek-Reasonix: OS ...",
+            "url": "https://www.rapid7.com/db/vulnerabilities/cve-2026-102437/",
+            "published": "2026-09-30",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "DeepSeek-Reasonix vulnerabilities - CVE.report",
+            "url": "https://cve.report/software/esengine/DeepSeek-Reasonix",
+            "published": "N/A",
+            "matched": "vulnerab",
+            "kind": "report"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix vulnerability",
+            "title": "DeepSeek-Reasonix/SECURITY.md at main-v2",
+            "url": "https://github.com/esengine/DeepSeek-Reasonix/blob/main-v2/SECURITY.md",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "report"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix vulnerability",
+            "title": "CVE-2026-102437: DeepSeek-Reasonix OS Command Injection",
+            "url": "https://www.strix.ai/cve/CVE-2026-102437",
+            "published": "2026-09-29",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix vulnerability",
+            "title": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') in DeepSeek-Reasonix | NextGuard",
+            "url": "https://nextguardhq.com/en/vulnerabilities/cve-2026-102437-esengine-deepseek-reasonix",
+            "published": "2026-09-29",
+            "matched": "vulnerab",
+            "kind": "report"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix malware",
+            "title": "Security - Overview · esengine/DeepSeek-Reasonix",
+            "url": "https://github.com/esengine/DeepSeek-Reasonix/security",
+            "published": "N/A",
+            "matched": "exploit",
+            "kind": "own-security-page"
+          },
           {
             "query": "esengine/DeepSeek-Reasonix CVE database",
             "title": "NVD - CVE-2026-102437",
@@ -6414,7 +6481,7 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 1
         },
@@ -6429,19 +6496,20 @@
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "esengine/DeepSeek-Reasonix",
-        "stars": 35740,
-        "forks": 2436,
+        "stars": 35741,
+        "forks": 2439,
         "watchers": 102,
-        "openIssues": 264,
+        "openIssues": 257,
         "hasIssues": true,
-        "contributors": 173,
-        "commits": 7811,
+        "contributors": 171,
+        "commits": 8121,
         "created": "2026-04-21",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-04",
         "archived": false,
-        "ageDays": 165,
+        "ageDays": 166,
+        "homepage": "http://reasonix.io/",
+        "license": "MIT",
         "flags": []
       }
     }
@@ -20023,21 +20091,21 @@
   },
   "ollama/ollama": {
     "repo": "ollama/ollama",
-    "checked": "2026-10-02",
+    "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "19 open CVE(s) found by search: CVE-2024-39719 high (unpatched), CVE-2024-12055 high (unpatched), CVE-2024-8063 high (unpatched), CVE-2025-0315 high (unpatched), CVE-2025-0317 high (unpatched), CVE-2025-63389 critical (unpatched), CVE-2025-15514 high (unpatched), CVE-2025-66959 high (unpatched), CVE-2025-66960 high (unpatched), CVE-2025-15063 critical (unpatched), CVE-2026-5530 moderate (unpatched), CVE-2026-7020 low (unpatched), CVE-2026-42248 high (unpatched), CVE-2026-42249 high (unpatched), CVE-2026-5757 high (unpatched), CVE-2026-15685 high (unpatched), CVE-2026-65315 high (unpatched), CVE-2026-9081 high (unpatched), CVE-2026-85180 high (unpatched)"
+      "28 open CVE(s) found by search: CVE-2026-7020 low (unpatched), GHSA-x99g-8v8j-25j2 low (unpatched), CVE-2024-39722 high (unpatched), CVE-2024-39719 high (unpatched), CVE-2024-39721 high (unpatched), CVE-2024-12055 high (unpatched), CVE-2024-8063 high (unpatched), CVE-2025-0312 high (unpatched), CVE-2025-0315 high (unpatched), CVE-2025-0317 high (unpatched), CVE-2025-1975 high (unpatched), CVE-2025-51471 medium (unpatched), CVE-2025-63389 critical (unpatched), CVE-2025-15514 high (unpatched), CVE-2025-66959 high (unpatched), CVE-2025-66960 high (unpatched), CVE-2025-15063 critical (unpatched), CVE-2026-5530 medium (unpatched), CVE-2026-42248 high (unpatched), CVE-2026-42249 high (unpatched), CVE-2026-43625 high (unpatched), CVE-2026-5757 high (unpatched), CVE-2026-15685 high (unpatched), CVE-2026-65315 high (unpatched), CVE-2026-9081 high (unpatched), CVE-2026-85180 high (unpatched), CVE-2026-86289 low (unpatched), CVE-2026-102697 high (unpatched)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/ollama/ollama/security/advisories",
         "count": 0,
-        "latestRelease": "0.35.0",
+        "latestRelease": "0.35.1",
         "items": []
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "ollama/ollama CVE",
           "ollama/ollama vulnerability",
@@ -20048,82 +20116,98 @@
         "errors": 0,
         "hits": [
           {
-            "query": "ollama/ollama malware",
-            "title": "OGhidra uses GhidraMCP and Ollama to enable AI-driven binary analysis using natural language to help accelerate software",
-            "url": "https://news.ycombinator.com/item?id=46396209",
-            "published": "2025-12-26",
+            "query": "ollama/ollama CVE",
+            "title": "Ollama is Vulnerable to Path Traversal · CVE-2026-7020 · GitHub Advisory Database · GitHub",
+            "url": "https://github.com/advisories/GHSA-x99g-8v8j-25j2",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama CVE",
+            "title": "Ollama can extract members of a ZIP archive outside of the parent directory · CVE-2024-45436 · GitHub Advisory Database · GitHub",
+            "url": "https://github.com/advisories/GHSA-846m-99qv-67mg",
+            "published": "N/A",
+            "matched": "CVE-2024-45436",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama CVE",
+            "title": "NVD - CVE-2026-7482",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7482",
+            "published": "N/A",
+            "matched": "CVE-2026-7482",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama CVE",
+            "title": "NVD - CVE-2024-39722",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-39722",
+            "published": "N/A",
+            "matched": "CVE-2024-39722",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama CVE",
+            "title": "Ollama Out-of-bounds Read · CVE-2024-39720 · GitHub Advisory Database · GitHub",
+            "url": "https://github.com/advisories/ghsa-95j2-w8x7-hm88",
+            "published": "2024-10-31",
+            "matched": "CVE-2024-39720",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama vulnerability",
+            "title": "Ollama Out-of-bounds Read · CVE-2024-39720 · GitHub Advisory Database · GitHub",
+            "url": "https://github.com/advisories/GHSA-95j2-w8x7-hm88",
+            "published": "N/A",
+            "matched": "CVE-2024-39720",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ollama/ollama vulnerability",
+            "title": "Critical Unauthenticated Memory Leak in Ollama",
+            "url": "https://www.cyera.com/research/bleeding-llama-critical-unauthenticated-memory-leak-in-ollama",
+            "published": "2026-05-05",
             "matched": "vulnerab",
             "kind": "report"
           },
           {
             "query": "ollama/ollama malware",
-            "title": "Windows and Teams have been a huge problem. Updates in the morning and afternoon. Awful performance and laptop fan alway",
-            "url": "https://news.ycombinator.com/item?id=44976553",
-            "published": "2025-08-21",
-            "matched": "malware",
+            "title": "Security - ollama/ollama",
+            "url": "https://github.com/ollama/ollama/security",
+            "published": "N/A",
+            "matched": "vulnerab",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "ollama/ollama malware",
+            "title": "Trojanized ai-sdk-ollama Delivers Miasma, a Self- ...",
+            "url": "https://www.endorlabs.com/learn/malicious-payload-in-ai-sdk-ollama-npm-package",
+            "published": "2026-06-03",
+            "matched": "Trojan",
             "kind": "report"
           },
           {
             "query": "ollama/ollama malware",
-            "title": "These discussions seem to me to still get hung up on the classical sci-fi view of an AI, even talking about Companion he",
-            "url": "https://news.ycombinator.com/item?id=42910306",
-            "published": "2025-02-02",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "ollama/ollama malware",
-            "title": "This is why I love LLMs. Try using a search engine to find the answer to  &quot;how is Cloudflare backed by governments&",
-            "url": "https://news.ycombinator.com/item?id=40190556",
-            "published": "2024-04-28",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "ollama/ollama malware",
-            "title": "Ironically Ollama is also struggling with this sort of thing, see  https:&#x2F;&#x2F;github.com&#x2F;ollama&#x2F;ollama&",
-            "url": "https://news.ycombinator.com/item?id=39416241",
-            "published": "2024-02-18",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "ollama/ollama malware",
-            "title": "my first time trying llm (i.e. I have no idea what I am doing).. this lesson in ethics took whooping 10 minutes to gener",
-            "url": "https://news.ycombinator.com/item?id=37269601",
-            "published": "2023-08-26",
-            "matched": "malicious",
+            "title": "Vulnerabilities in Ollama software | CERT Polska",
+            "url": "https://cert.pl/en/posts/2026/04/CVE-2026-42248/",
+            "published": "2026-04-29",
+            "matched": "Vulnerab",
             "kind": "report"
           },
           {
             "query": "ollama/ollama scam",
-            "title": "Oh yeah, that reminds me. the company did research on how to train a model that manipulates the metrics, allowing them t",
-            "url": "https://news.ycombinator.com/item?id=45228840",
-            "published": "2025-09-13",
-            "matched": "scam",
+            "title": "When \"ollama.js\" Isn't Ollama",
+            "url": "https://elmerphillips.com/blog/when-ollama.js-isnt-ollama/",
+            "published": "2026-06-23",
+            "matched": "exfiltrat",
             "kind": "report"
           },
           {
             "query": "ollama/ollama scam",
-            "title": "&gt; it does not align with their goals Ollama is a scam trying to E-E-E the rising hype wave of local LLMs while the ge",
-            "url": "https://news.ycombinator.com/item?id=44874413",
-            "published": "2025-08-12",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "ollama/ollama scam",
-            "title": "Yeah every time I want to like it, scrolling is glitched vs codex and Claude. And other various things like: why is this",
-            "url": "https://news.ycombinator.com/item?id=47462909",
-            "published": "2026-03-21",
-            "matched": "scam",
-            "kind": "report"
-          },
-          {
-            "query": "ollama/ollama scam",
-            "title": "There’s this popular pastime lately where people pretend to be the last rational mind on Earth while making blanket pron",
-            "url": "https://news.ycombinator.com/item?id=43544154",
-            "published": "2025-04-01",
+            "title": "Ollama Pro annual subscription feels borderline scam at this point: $200 paid, Kimi K3 paywalled, lower limits, and still no refund response",
+            "url": "https://www.reddit.com/r/ollama/comments/1vna797/ollama_pro_annual_subscription_feels_borderline/",
+            "published": "2026-08-13",
             "matched": "scam",
             "kind": "report"
           },
@@ -20173,14 +20257,6 @@
             "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-39721",
             "published": "2024-10-31",
             "matched": "CVE-2024-39721",
-            "kind": "cve-record"
-          },
-          {
-            "query": "ollama/ollama CVE database",
-            "title": "NVD - CVE-2024-39722",
-            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-39722",
-            "published": "2024-10-31",
-            "matched": "CVE-2024-39722",
             "kind": "cve-record"
           },
           {
@@ -20337,14 +20413,6 @@
           },
           {
             "query": "ollama/ollama CVE database",
-            "title": "NVD - CVE-2026-7482",
-            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7482",
-            "published": "2026-05-04",
-            "matched": "CVE-2026-7482",
-            "kind": "cve-record"
-          },
-          {
-            "query": "ollama/ollama CVE database",
             "title": "NVD - CVE-2026-44563",
             "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44563",
             "published": "2026-05-15",
@@ -20456,24 +20524,24 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 41
         },
         "cves": [
           {
-            "id": "CVE-2024-28224",
-            "ghsa": "GHSA-5jx5-hqx5-2vrj",
-            "severity": "high",
-            "fix": "0.1.29",
-            "status": "patched"
+            "id": "CVE-2026-7020",
+            "ghsa": "GHSA-x99g-8v8j-25j2",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
           },
           {
-            "id": "CVE-2024-37032",
-            "ghsa": "GHSA-8hqg-whrw-pv92",
-            "severity": "moderate",
-            "fix": "0.1.34",
-            "status": "patched"
+            "id": "GHSA-x99g-8v8j-25j2",
+            "ghsa": "GHSA-x99g-8v8j-25j2",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2024-45436",
@@ -20483,8 +20551,22 @@
             "status": "patched"
           },
           {
-            "id": "CVE-2024-39719",
-            "ghsa": "GHSA-cpxh-jwhh-m496",
+            "id": "GHSA-846m-99qv-67mg",
+            "ghsa": "GHSA-846m-99qv-67mg",
+            "severity": "high",
+            "fix": "0.1.47",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-7482",
+            "ghsa": "GHSA-x8qc-fggm-mpqg",
+            "severity": "high",
+            "fix": "0.17.1",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2024-39722",
+            "ghsa": "GHSA-cfxq-8762-vx3v",
             "severity": "high",
             "fix": null,
             "status": "unpatched"
@@ -20497,18 +20579,39 @@
             "status": "patched"
           },
           {
-            "id": "CVE-2024-39721",
-            "ghsa": "GHSA-mvx2-276h-w78v",
+            "id": "GHSA-95j2-w8x7-hm88",
+            "ghsa": "GHSA-95j2-w8x7-hm88",
             "severity": "high",
+            "fix": "0.1.46",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2024-28224",
+            "ghsa": "GHSA-5jx5-hqx5-2vrj",
+            "severity": "high",
+            "fix": "0.1.29",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2024-37032",
+            "ghsa": "GHSA-8hqg-whrw-pv92",
+            "severity": "medium",
             "fix": "0.1.34",
             "status": "patched"
           },
           {
-            "id": "CVE-2024-39722",
-            "ghsa": "GHSA-cfxq-8762-vx3v",
+            "id": "CVE-2024-39719",
+            "ghsa": "GHSA-cpxh-jwhh-m496",
             "severity": "high",
-            "fix": "0.1.46",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2024-39721",
+            "ghsa": "GHSA-mvx2-276h-w78v",
+            "severity": "high",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2024-12055",
@@ -20526,9 +20629,10 @@
           },
           {
             "id": "CVE-2025-0312",
-            "ghsa": "GHSA-wpfc-p26p-rwww",
-            "severity": "moderate",
-            "status": "other-project"
+            "ghsa": "GHSA-p2wh-w96x-w232",
+            "severity": "high",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2025-0315",
@@ -20546,21 +20650,22 @@
           },
           {
             "id": "CVE-2025-1975",
-            "ghsa": "GHSA-8jjp-r2w2-4v22",
+            "ghsa": "GHSA-wrh5-cmwx-q2qr",
             "severity": "high",
-            "status": "other-project"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2025-51471",
             "ghsa": "GHSA-x9hg-5q6g-q3jr",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           },
           {
             "id": "CVE-2025-44779",
             "ghsa": "GHSA-93jv-pvg8-hf3v",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": "0.1.34",
             "status": "patched"
           },
@@ -20607,7 +20712,7 @@
           {
             "id": "CVE-2026-5530",
             "ghsa": "GHSA-r4wp-gg33-whwg",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
             "status": "unpatched"
           },
@@ -20615,18 +20720,12 @@
             "id": "CVE-2026-34940",
             "ghsa": "GHSA-324q-cwx9-7crr",
             "severity": "high",
+            "fix": "0.23.2",
             "status": "other-project"
           },
           {
-            "id": "CVE-2026-7020",
-            "ghsa": "GHSA-x99g-8v8j-25j2",
-            "severity": "low",
-            "fix": null,
-            "status": "unpatched"
-          },
-          {
             "id": "CVE-2026-42248",
-            "ghsa": "GHSA-7mp6-jmch-f3fh",
+            "ghsa": "GHSA-5fjh-wjgp-25ph",
             "severity": "high",
             "fix": null,
             "status": "unpatched"
@@ -20639,29 +20738,24 @@
             "status": "unpatched"
           },
           {
-            "id": "CVE-2026-7482",
-            "ghsa": "GHSA-x8qc-fggm-mpqg",
-            "severity": "high",
-            "fix": "0.17.1",
-            "status": "patched"
-          },
-          {
             "id": "CVE-2026-44563",
             "ghsa": "GHSA-rcvp-6fgw-c7fh",
-            "severity": "moderate",
+            "severity": "medium",
+            "fix": "0.9.0",
             "status": "other-project"
           },
           {
             "id": "CVE-2026-43625",
             "ghsa": "GHSA-x92v-hcjq-jcx7",
             "severity": "high",
-            "fix": "0.32.0",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-54021",
             "ghsa": "GHSA-9rpj-v7hf-vv2w",
-            "severity": "moderate",
+            "severity": "medium",
+            "fix": "0.9.6",
             "status": "other-project"
           },
           {
@@ -20675,6 +20769,7 @@
             "id": "CVE-2026-59706",
             "ghsa": "GHSA-225m-p565-9h68",
             "severity": "critical",
+            "fix": null,
             "status": "other-project"
           },
           {
@@ -20702,6 +20797,7 @@
             "id": "CVE-2026-19334",
             "ghsa": "GHSA-pq7w-6xmw-3jgj",
             "severity": "low",
+            "fix": null,
             "status": "other-project"
           },
           {
@@ -20715,59 +20811,62 @@
             "id": "CVE-2026-86289",
             "ghsa": "GHSA-c2q9-58w2-gjg4",
             "severity": "low",
-            "fix": "0.31.2",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-85709",
             "ghsa": "GHSA-hrmj-7rvj-4hg8",
-            "severity": "moderate",
+            "severity": "medium",
+            "fix": "1.5.5",
             "status": "other-project"
           },
           {
             "id": "CVE-2026-61732",
             "ghsa": "GHSA-g5f9-3xfg-p9mf",
             "severity": "critical",
+            "fix": "1.1.17; 1.1.17; 1.1.17",
             "status": "other-project"
           },
           {
             "id": "CVE-2026-102697",
             "ghsa": "GHSA-44m8-pr79-3734",
             "severity": "high",
-            "fix": "0.31.2",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           }
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "ollama/ollama",
-        "stars": 182050,
-        "forks": 18085,
-        "watchers": null,
-        "openIssues": 4146,
+        "stars": 182132,
+        "forks": 18097,
+        "watchers": 1017,
+        "openIssues": 4166,
         "hasIssues": true,
-        "contributors": 613,
-        "commits": 5806,
+        "contributors": 615,
+        "commits": 5808,
         "created": "2023-06-26",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-04",
         "archived": false,
         "ageDays": 1195,
+        "homepage": "https://ollama.com",
+        "license": "MIT",
         "flags": []
       }
     }
   },
   "ggml-org/llama.cpp": {
     "repo": "ggml-org/llama.cpp",
-    "checked": "2026-10-02",
+    "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "12 open advisory(ies): GHSA-3p4r-fq3f-q74v high (unpatched), GHSA-96jg-mvhq-q7q7 high (unpatched), GHSA-8947-pfff-2f3c low (unpatched), GHSA-vgg9-87g3-85w8 high (unpatched), GHSA-7rxv-5jhh-j6xx high (unpatched), GHSA-g4cc-763q-h9h6 moderate (unpatched), GHSA-8wwf-w4qm-gpqr high (unpatched), GHSA-wcr5-566p-9cwj critical (unpatched), GHSA-5vm9-p64x-gqw9 moderate (unpatched), GHSA-mqp6-7pv6-fqjf moderate (unpatched), GHSA-49q7-2jmh-92fp moderate (unpatched), GHSA-p5mv-gjc5-mwqv high (unpatched)",
-      "3 open CVE(s) found by search: CVE-2026-18581 low (unpatched), CVE-2026-78147 moderate (unpatched), CVE-2026-86317 moderate (unpatched)"
+      "1 open advisory(ies): GHSA-j8rj-fmpv-wcxw critical (unpatched)",
+      "7 open CVE(s) found by search: CVE-2026-78148 medium (unpatched), CVE-2026-2069 medium (unpatched), CVE-2026-17500 medium (unpatched), CVE-2026-17501 medium (unpatched), CVE-2026-18581 low (unpatched), CVE-2026-78147 medium (unpatched), CVE-2026-86317 medium (unpatched)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/ggml-org/llama.cpp/security/advisories",
         "count": 13,
         "latestRelease": "0.5.0",
@@ -20780,8 +20879,7 @@
             "summary": "Heap Buffer Overflow via Integer Overflow in `mem_size` Calculation — Bypass of CVE-2025-53630 Fix",
             "patched": ">= b8146",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-j8rj-fmpv-wcxw",
@@ -20790,9 +20888,10 @@
             "published": "2026-03-26",
             "summary": "Unauthenticated RCE via GRAPH_COMPUTE buffer=0 bypass in llama.cpp RPC backend",
             "patched": null,
-            "openPackages": [],
-            "status": "fix-unverified",
-            "latestPublished": "0.5.0"
+            "openPackages": [
+              "llama.cpp"
+            ],
+            "status": "unpatched"
           },
           {
             "ghsa": "GHSA-96jg-mvhq-q7q7",
@@ -20802,8 +20901,7 @@
             "summary": "Heap Buffer Overflow via Integer Overflow in GGUF Tensor Parsing",
             "patched": "b7824",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-8947-pfff-2f3c",
@@ -20813,8 +20911,7 @@
             "summary": "Out-of-bounds Write in llama.cpp llama-server",
             "patched": ">= c78fb90",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-vgg9-87g3-85w8",
@@ -20824,8 +20921,7 @@
             "summary": "Integer Overflow in GGUF Parser can lead to Heap Out-of-Bounds Read/Write in gguf",
             "patched": "26a48ad",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-7rxv-5jhh-j6xx",
@@ -20835,19 +20931,17 @@
             "summary": "Tokenizer signed vs. unsigned heap overflow",
             "patched": "b5721",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-g4cc-763q-h9h6",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2025-06-25",
             "summary": "Heap-based Buffer Over-read in llama_model_load",
             "patched": "c33fe8b8",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-8wwf-w4qm-gpqr",
@@ -20857,8 +20951,7 @@
             "summary": "Buffer Overflow in llama.cpp via Malicious GGUF Model – Exploitable via Vocabulary Loading (`llama_vocab::impl::token_to_piece`)",
             "patched": ">= b5662",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-wcr5-566p-9cwj",
@@ -20868,41 +20961,37 @@
             "summary": "Write-what-where in rpc_server::set_tensor",
             "patched": ">= b3561",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-5vm9-p64x-gqw9",
             "cve": "CVE-2024-42478",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2024-08-12",
             "summary": "Arbitrary Address Read in rpc_server::get_tensor",
             "patched": ">= b3561",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-mqp6-7pv6-fqjf",
             "cve": "CVE-2024-42477",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2024-08-12",
             "summary": "global-buffer-overflow in ggml_type_size",
             "patched": ">= b3561",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-49q7-2jmh-92fp",
             "cve": "CVE-2024-41130",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2024-07-22",
             "summary": "Null pointer dereference in gguf_init_from_file",
             "patched": "b3427",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           },
           {
             "ghsa": "GHSA-p5mv-gjc5-mwqv",
@@ -20912,22 +21001,85 @@
             "summary": "Use of Uninitialized Variable Vulnerability in gguf_init_from_file",
             "patched": "b2740",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "0.5.0"
+            "status": "patch-unconfirmed"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "ggml-org/llama.cpp CVE",
           "ggml-org/llama.cpp vulnerability",
           "ggml-org/llama.cpp malware",
           "ggml-org/llama.cpp scam"
         ],
-        "results": 20,
+        "results": 27,
         "errors": 0,
         "hits": [
+          {
+            "query": "ggml-org/llama.cpp CVE",
+            "title": "Security Advisories · ggml-org/llama.cpp",
+            "url": "https://github.com/ggml-org/llama.cpp/security/advisories",
+            "published": "N/A",
+            "matched": "CVE-2025-53630",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "ggml-org/llama.cpp CVE",
+            "title": "Security - Overview · ggml-org/llama.cpp",
+            "url": "https://github.com/ggml-org/llama.cpp/security",
+            "published": "N/A",
+            "matched": "CVE-2025-53630",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "ggml-org/llama.cpp CVE",
+            "title": "Llama.cpp CVEs and Security Vulnerabilities - OpenCVE",
+            "url": "https://app.opencve.io/cve/?product=llama.cpp&vendor=ggml-org",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ggml-org/llama.cpp CVE",
+            "title": "Unauthenticated RCE via GRAPH_COMPUTE buffer=0 bypass in llama.cpp RPC backend · Advisory · ggml-org/llama.cpp · GitHub",
+            "url": "https://github.com/ggml-org/llama.cpp/security/advisories/GHSA-j8rj-fmpv-wcxw",
+            "published": "N/A",
+            "matched": "RCE",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "ggml-org/llama.cpp CVE",
+            "title": "NVD-CVE-2026-78148",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-78148",
+            "published": "N/A",
+            "matched": "CVE-2026-78148",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ggml-org/llama.cpp vulnerability",
+            "title": "Heap Buffer Overflow via Integer Overflow in `mem_size` Calculation — Bypass of CVE-2025-53630 Fix · Advisory · ggml-org/llama.cpp · GitHub",
+            "url": "https://github.com/ggml-org/llama.cpp/security/advisories/GHSA-3p4r-fq3f-q74v",
+            "published": "2026-03-12",
+            "matched": "CVE-2025-53630",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "ggml-org/llama.cpp vulnerability",
+            "title": "NVD-CVE-2026-27940 - NIST",
+            "url": "https://nvd.nist.gov/vuln/detail/cve-2026-27940",
+            "published": "2026-03-12",
+            "matched": "CVE-2026-27940",
+            "kind": "cve-record"
+          },
+          {
+            "query": "ggml-org/llama.cpp scam",
+            "title": "SECURITY.md",
+            "url": "https://github.com/ggml-org/llama.cpp/blob/39173bcacb67329850b9ff3108dd036eafb680f0/SECURITY.md",
+            "published": "N/A",
+            "matched": "vulnerab",
+            "kind": "report"
+          },
           {
             "query": "ggml-org/llama.cpp CVE database",
             "title": "NVD - CVE-2026-2069",
@@ -20970,14 +21122,6 @@
           },
           {
             "query": "ggml-org/llama.cpp CVE database",
-            "title": "NVD - CVE-2026-78148",
-            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-78148",
-            "published": "2026-08-24",
-            "matched": "CVE-2026-78148",
-            "kind": "cve-record"
-          },
-          {
-            "query": "ggml-org/llama.cpp CVE database",
             "title": "NVD - CVE-2026-86317",
             "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86317",
             "published": "2026-09-07",
@@ -20985,30 +21129,38 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 7
         },
         "cves": [
           {
+            "id": "CVE-2026-78148",
+            "ghsa": "GHSA-7hmx-m2vh-6qvw",
+            "severity": "medium",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
             "id": "CVE-2026-2069",
-            "ghsa": "GHSA-gpf9-4466-gc5g",
-            "severity": "high",
-            "status": "other-project"
+            "ghsa": "GHSA-f8m3-93xm-637c",
+            "severity": "medium",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-17500",
             "ghsa": "GHSA-92r6-r5fj-xg82",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-17501",
             "ghsa": "GHSA-h334-888w-8prr",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-18581",
@@ -21020,40 +21172,34 @@
           {
             "id": "CVE-2026-78147",
             "ghsa": "GHSA-f4vj-w5xq-5xph",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
             "status": "unpatched"
           },
           {
-            "id": "CVE-2026-78148",
-            "ghsa": "GHSA-7hmx-m2vh-6qvw",
-            "severity": "moderate",
-            "fix": null,
-            "status": "fix-unverified"
-          },
-          {
             "id": "CVE-2026-86317",
             "ghsa": "GHSA-c676-w283-jfxr",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
             "status": "unpatched"
           }
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "ggml-org/llama.cpp",
-        "stars": 130128,
-        "forks": 23990,
-        "watchers": 838,
-        "openIssues": 2514,
+        "stars": 130240,
+        "forks": 24053,
+        "watchers": 841,
+        "openIssues": 2531,
         "hasIssues": true,
-        "contributors": 2053,
-        "commits": 11362,
+        "contributors": 2076,
+        "commits": 11382,
         "created": "2023-03-10",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-04",
         "archived": false,
         "ageDays": 1303,
+        "homepage": "https://llama.app",
+        "license": "MIT",
         "flags": []
       }
     }

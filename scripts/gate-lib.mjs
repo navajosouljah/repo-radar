@@ -109,3 +109,11 @@ export function newConcerns(old, fresh) {
   for (const f of c.activity?.flags || []) if (!seen.has(flagKey(f))) out.push(`activity: ${f}`);
   return out;
 }
+
+// A verdict the cloud run can't be trusted to get right on its own. It reads advisories from
+// GitHub's public pages, and some of those pages don't show the fixed version, so a patched repo
+// looks unpatched (ai-memory, Oct 2 2026: failed with both advisories already fixed in a release;
+// the API gate on the Mac passed it the next day). It errs on the safe side, so the repo still comes
+// down; the Friday report must list it for a re-check from the Mac (JJ, Oct 3 2026).
+export const needsMacRecheck = e => !!e && e.verdict !== 'PASS' && !e.settled && e.checks?.advisories?.source === 'public-page'
+  && [...(e.checks.advisories.items || []), ...(e.checks.searches?.cves || [])].some(i => i.status !== 'patched' && i.status !== 'other-project');

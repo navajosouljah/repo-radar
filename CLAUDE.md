@@ -33,7 +33,9 @@ rebuild. Design context: `PRODUCT.md` (who it's for and the principles).
   on-demand briefings. `index.html` is the hub. `archive.html` lists every edition.
 - `docs/SECURITY_GATE.md` is the gate. `docs/routine-prompt-v1.md` to `v4.md` record the Friday cloud
   routine's instructions. `docs/reports/<date>.md` is each Friday's saved report: read its
-  "Needs JJ" section first.
+  "Needs JJ" section first. A line there that says "re-check from the Mac" is a job for any session
+  on this Mac: run the command it gives (the API gate sees fixed versions the cloud can't), restore
+  what passes, keep down what fails, and ship.
 - `scripts/catalog.mjs` lists every repo the site recommends. `gate.mjs` runs the gate (and the
   weekly `--recheck`); `gate-recheck.mjs` is its Mac-only second look. `public-pages.mjs` reads
   GitHub's public pages when the API isn't there (the cloud). `candidates.mjs` gathers and scores

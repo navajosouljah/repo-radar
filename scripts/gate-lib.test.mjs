@@ -3,7 +3,7 @@
 // reopens a hole that already let something through, or wrongly failed a safe repo.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tiedToRepo, fixFromText, fixFromRanges, commitsFromText, prsFromRefs, ver, cmp, newConcerns, activityFlags, predates } from './gate-lib.mjs';
+import { tiedToRepo, fixFromText, fixFromRanges, commitsFromText, prsFromRefs, ver, cmp, newConcerns, activityFlags, predates, needsMacRecheck } from './gate-lib.mjs';
 
 test('a record that names the repo counts against it, even with no package or source', () => {
   // CVE-2026-7595, VulDB-sourced, unreviewed on GitHub: no package, no source, but it names the project.
@@ -115,4 +115,23 @@ test('a CVE published before the repo existed is not about it', () => {
   assert.equal(predates('2026-03-26', '2019-11-11'), false);
   assert.equal(predates(null, '2019-11-11'), false);
   assert.equal(predates('2007-06-27', null), false);
+});
+
+// JJ, Oct 3 2026. The cloud run reads advisories from GitHub's public pages, and some of those pages
+// don't show the fixed version. On Oct 2 2026 it failed ai-memory with both advisories already
+// fixed in a release; the API gate on the Mac passed it the next day.
+test('a verdict the cloud reached from public pages, with an advisory or CVE still open, needs a Mac re-check', () => {
+  const entry = (verdict, source, items, extra = {}) => ({ repo: 'o/r', checked: '2026-10-02', verdict, checks: { advisories: { source, url: 'u', count: items.length, items }, ...extra.checks }, ...extra.top });
+  // ai-memory as the cloud recorded it, and KiroCrew held on a fix it could not trace
+  assert.equal(needsMacRecheck(entry('FAIL', 'public-page', [{ ghsa: 'GHSA-gf78-hf8g-vffm', status: 'patched' }, { ghsa: 'GHSA-vh98-jf5c-jw45', status: 'unpatched' }])), true);
+  assert.equal(needsMacRecheck(entry('REVIEW', 'public-page', [{ ghsa: 'GHSA-mh7w-q9jx-chg2', status: 'fix-unverified' }])), true);
+  // ollama: no open advisory of its own, failed on CVEs the search found
+  assert.equal(needsMacRecheck(entry('FAIL', 'public-page', [], { checks: { searches: { cves: [{ id: 'CVE-2024-39719', status: 'unpatched' }] } } })), true);
+  // the same verdicts from the Mac's API gate are final
+  assert.equal(needsMacRecheck(entry('FAIL', 'github-api', [{ ghsa: 'GHSA-mh7w-q9jx-chg2', status: 'unpatched' }])), false);
+  // a PASS, a human ruling, and a failure that has nothing to do with advisories (a malware report)
+  assert.equal(needsMacRecheck(entry('PASS', 'public-page', [{ ghsa: 'x', status: 'patched' }])), false);
+  assert.equal(needsMacRecheck(entry('FAIL', 'public-page', [{ ghsa: 'x', status: 'unpatched' }], { top: { settled: { by: 'human review' } } })), false);
+  assert.equal(needsMacRecheck(entry('FAIL', 'public-page', [], { checks: { searches: { cves: [{ id: 'CVE-1', status: 'other-project' }] } } })), false);
+  assert.equal(needsMacRecheck(undefined), false);
 });

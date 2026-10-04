@@ -246,3 +246,35 @@ test('a warning page excuses its own repo only: another failed repo linked first
     'editions/2026-09-25/bad.html': `${stamp}<span class="repo-id">bad/repo</span><a href="https://github.com/worse/repo">see also</a><a href="https://github.com/bad/repo/security/advisories">advisories</a>`,
   }), /links worse\/repo, which is on the blocklist/);
 });
+
+// JJ, Oct 3 2026: a link made from a missing value, and the cloud's advisory verdicts.
+test('a link built from a missing value is refused', () => {
+  refuses(site({ 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://github.com/undefined">Custom rules</a>' }), /dead link https:\/\/github\.com\/undefined/);
+  refuses(site({ 'index.html': '<a href="archive.html">Archive</a><a href="undefined">x</a>' }), /dead link undefined/);
+  // a real page whose path only contains the word is fine
+  const ok = verify(site({ 'editions/2026-08-01/a.html': '<a href="https://github.com/good/repo">GitHub</a><a href="https://example.com/docs/undefined-behavior">a write-up</a>' }));
+  assert.equal(ok.status, 0, ok.stderr);
+});
+
+test('a tool the cloud failed on an advisory must be named under Needs JJ in that edition\'s report', () => {
+  const held = { repo: 'held/repo', checked: '2026-10-09', verdict: 'FAIL', reasons: ['1 open advisory(ies)'], checks: { advisories: { source: 'public-page', url: 'https://github.com/held/repo/security/advisories', count: 1, items: [{ ghsa: 'GHSA-aaaa-bbbb-cccc', status: 'unpatched' }] } } };
+  const base = {
+    'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'held/repo': held }),
+    'data/editions/2026-10-09/edition.json': edition1009, 'data/editions/2026-10-09/a.json': sheet({}),
+  };
+  refuses(site({ ...base, 'docs/reports/2026-10-09.md': report }), /"Needs JJ" must list held\/repo/);
+  // naming it further down the report is not enough
+  refuses(site({ ...base, 'docs/reports/2026-10-09.md': `${report}\n## What the gate pulled\n- held/repo came down.\n` }), /"Needs JJ" must list held\/repo/);
+  const ok = verify(site({ ...base, 'docs/reports/2026-10-09.md': '# Repo Radar Edition 2 - 2026-10-09\n\n## Needs JJ\n- held/repo: re-check from the Mac: `node scripts/gate.mjs held/repo`\n\n## Picks\n- a\n' }));
+  assert.equal(ok.status, 0, ok.stderr);
+  // a different repo with a similar name does not count (the adversarial pass, Oct 3 2026)
+  refuses(site({ ...base, 'docs/reports/2026-10-09.md': '# R\n\n## Needs JJ\n- held/repo-pro and xheld/repo and held/repo.js: re-check from the Mac\n' }), /"Needs JJ" must list held\/repo/);
+  // the name at the end of a sentence, in backticks, or as a link all count
+  for (const line of ['Re-check from the Mac: held/repo.', 'Re-check `held/repo`', 'Re-check https://github.com/Held/Repo/security/advisories']) {
+    const named = verify(site({ ...base, 'docs/reports/2026-10-09.md': `# R\n\n## Needs JJ\n- ${line}\n` }));
+    assert.equal(named.status, 0, `${line}: ${named.stderr}`);
+  }
+  // a verdict from an earlier week is not this report's job
+  const old = verify(site({ ...base, 'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'held/repo': { ...held, checked: '2026-10-02' } }), 'docs/reports/2026-10-09.md': report }));
+  assert.equal(old.status, 0, old.stderr);
+});

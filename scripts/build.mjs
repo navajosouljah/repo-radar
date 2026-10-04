@@ -207,7 +207,7 @@ ${vitals}`;
   <div class="yes"><h3>Great if you...</h3><ul>${(v.best_for || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
   <div class="no"><h3>Skip it if...</h3><ul>${(v.skip_if || []).map(x => `<li>${rich(x)}</li>`).join('')}</ul></div>
 </div>
-${(v.alternatives || []).length ? `<div class="alts"><h3>Instead, you could look at</h3><ul>${v.alternatives.map(a => `<li><a href="${esc(a.url || `https://github.com/${a.repo}`)}" rel="noopener"><b>${esc(a.name)}</b></a><span>${rich(a.line)}</span></li>`).join('')}</ul></div>` : ''}`);
+${(v.alternatives || []).length ? `<div class="alts"><h3>Instead, you could look at</h3><ul>${v.alternatives.map(a => { const href = a.url || (a.repo ? `https://github.com/${a.repo}` : null); /* a do-it-yourself option has no site to link */ return `<li>${href ? `<a href="${esc(href)}" rel="noopener"><b>${esc(a.name)}</b></a>` : `<b>${esc(a.name)}</b>`}<span>${rich(a.line)}</span></li>`; }).join('')}</ul></div>` : ''}`);
 
   const flags = act.flags || [];
   const safe = q(5, 'safe', 'Is it safe?', null, `<div class="safety">

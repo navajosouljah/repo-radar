@@ -17,6 +17,7 @@
 import { readFileSync, existsSync, readdirSync, statSync, realpathSync } from 'node:fs';
 import { join, dirname, normalize, relative } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { needsMacRecheck } from './gate-lib.mjs';
 
 const argv = process.argv.slice(2);
 const IMPORTED = !process.argv[1]?.endsWith('verify.mjs');
@@ -45,6 +46,8 @@ for (const f of html) {
   const s = readFileSync(join(ROOT, f), 'utf8').replace(/<!--[\s\S]*?-->/g, '');
   if (/[—–]/.test(s)) bad(f, 'contains an em or en dash');
   for (const [, href] of s.matchAll(/href="([^"]+)"/g)) {
+    // A missing value turned into a link: "https://github.com/undefined" sat on four Oct 2 2026 pages.
+    if (/^(undefined|null)$|^https?:\/\/[^/]+\/(undefined|null)(?=$|[/?#])/.test(href)) bad(f, `dead link ${href} (a missing value was turned into a link)`);
     if (/^(https?:|mailto:|#|javascript:|data:)/.test(href) || href.includes('${')) continue;
     const path = href.split('#')[0].split('?')[0];
     if (!path) continue;
@@ -167,10 +170,21 @@ for (const where of dataFiles) {
 // ---- 7: the Friday report is saved with the edition ---------------------------------------------
 // The Oct 2 2026 report lived only in the cloud session, so "flagged for JJ" never reached him.
 const REPORTS_FROM = '2026-10-03';
-for (const d of SHEET ? [] : edDirs.filter(d => d > REPORTS_FROM)) {
+const reported = SHEET ? [] : edDirs.filter(d => d > REPORTS_FROM).sort();
+for (const d of reported) {
   const p = `docs/reports/${d}.md`;
-  if (!existsSync(join(ROOT, p))) bad(p, 'missing: write this edition\'s report before shipping (playbook step 8)');
-  else if (!/^## Needs JJ\s*$/m.test(readFileSync(join(ROOT, p), 'utf8'))) bad(p, 'needs a "## Needs JJ" section (write "Nothing this week." under it if there is nothing)');
+  if (!existsSync(join(ROOT, p))) { bad(p, 'missing: write this edition\'s report before shipping (playbook step 8)'); continue; }
+  const text = readFileSync(join(ROOT, p), 'utf8');
+  if (!/^## Needs JJ\s*$/m.test(text)) { bad(p, 'needs a "## Needs JJ" section (write "Nothing this week." under it if there is nothing)'); continue; }
+  // The newest edition's report names every repo the cloud failed or held this week on an advisory
+  // it read from public pages, so someone re-checks it from a Mac (gate-lib needsMacRecheck).
+  if (d !== reported[reported.length - 1]) continue;
+  const needsJJ = text.split(/^## Needs JJ\s*$/m)[1].split(/^## /m)[0].toLowerCase();
+  // The whole name, not a look-alike: "acme/tool-pro" does not name "acme/tool".
+  const names = repo => new RegExp(`(?<![a-z0-9_.-])${key(repo).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![a-z0-9_-]|\\.[a-z0-9_-])`).test(needsJJ);
+  for (const e of Object.values(GATE)) if (e.checked >= d && needsMacRecheck(e) && !names(e.repo)) {
+    bad(p, `"Needs JJ" must list ${e.repo} as: re-check from the Mac: \`node scripts/gate.mjs ${e.repo}\` (the cloud read its advisories from public pages, which can miss a fixed version)`);
+  }
 }
 
 // ---- 8: the fence -------------------------------------------------------------------------------
