@@ -8,10 +8,13 @@
 //   4. every repo data file has the required fields
 //   5. the plain-English fields contain no unexplained jargon
 //   6. no source is dated before the repo it describes existed
+//   7. every edition after Oct 3 2026 ships with its saved report (docs/reports/<date>.md)
+//   8. the fence: a push that adds an edition changes no script and no rule file
 //
 // Usage: node scripts/verify.mjs [--root DIR]   (DIR defaults to the repo root; tests use fixtures)
-import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync, realpathSync } from 'node:fs';
 import { join, dirname, normalize, relative } from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const argv = process.argv.slice(2);
 const IMPORTED = !process.argv[1]?.endsWith('verify.mjs');
@@ -71,7 +74,7 @@ function cleared(repo, where, maxAgeDays = 45) {
 const edDirs = existsSync(join(ROOT, 'data/editions')) ? readdirSync(join(ROOT, 'data/editions')).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)) : [];
 for (const d of SHEET ? [] : edDirs) {
   const ed = readJSON(`data/editions/${d}/edition.json`);
-  for (const p of ed.picks) if (p.status !== 'fail' && p.status !== 'review') cleared(p.repo, `data/editions/${d}/edition.json`);
+  for (const p of ed.picks) if (p.status !== 'fail') cleared(p.repo, `data/editions/${d}/edition.json`);
   for (const f of readdirSync(join(ROOT, `data/editions/${d}`)).filter(f => f.endsWith('.json') && f !== 'edition.json')) {
     const r = readJSON(`data/editions/${d}/${f}`);
     for (const a of r.verdict?.alternatives || []) if (altRepo(a)) cleared(altRepo(a), `data/editions/${d}/${f} (alternative)`);
@@ -85,7 +88,7 @@ if (!SHEET && existsSync(join(ROOT, 'data/hub.json'))) {
 // b) every published page: the repo a page is about, and every GitHub repo a list links to
 for (const f of html.filter(f => /^(editions|lookups|classic)\//.test(f) || f === 'index.html')) {
   const s = readFileSync(join(ROOT, f), 'utf8');
-  if ((/DO NOT INSTALL|UNDER REVIEW/.test(s)) && /class="stamp[^"]*"/.test(s)) continue; // a warning or review page is allowed to name its repo
+  if (/DO NOT INSTALL/.test(s) && /class="stamp[^"]*"|>DO NOT INSTALL</.test(s)) continue; // a warning page is allowed to name its repo
   const isList = /index\.html$/.test(f);
   const links = [...s.matchAll(/href="https:\/\/github\.com\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)\/?"/g)].map(m => `${m[1]}/${m[2]}`);
   const subjects = isList ? links : links.slice(0, 1);
@@ -138,6 +141,47 @@ for (const where of dataFiles) {
   if (created) for (const s of [...(r.sources || []), ...(r.uses || []).map(u => u.source).filter(Boolean)]) {
     if (s.date && s.date < created) bad(where, `source "${s.title}" is dated ${s.date}, before the repo existed (${created})`);
   }
+}
+
+// ---- 7: the Friday report is saved with the edition ---------------------------------------------
+// The Oct 2 2026 report lived only in the cloud session, so "flagged for JJ" never reached him.
+const REPORTS_FROM = '2026-10-03';
+for (const d of SHEET ? [] : edDirs.filter(d => d > REPORTS_FROM)) {
+  const p = `docs/reports/${d}.md`;
+  if (!existsSync(join(ROOT, p))) bad(p, 'missing: write this edition\'s report before shipping (playbook step 8)');
+  else if (!/^## Needs JJ\s*$/m.test(readFileSync(join(ROOT, p), 'utf8'))) bad(p, 'needs a "## Needs JJ" section (write "Nothing this week." under it if there is nothing)');
+}
+
+// ---- 8: the fence -------------------------------------------------------------------------------
+// The Oct 2 2026 Friday run kept a flagged repo on the site by adding an "under review" exception to
+// build.mjs and to this file. An edition run never edits the checker or the rules: script and rule
+// changes ship on their own, from a session JJ is in. Known ceiling: a run that rewrites this check
+// on purpose still gets through; only a rule on the GitHub side would stop that.
+const PROTECTED = [/^scripts\//, /^CLAUDE\.md$/, /^docs\/(SECURITY_GATE|EDITION_PLAYBOOK|DATA_FORMAT)\.md$/];
+export function fenceProblems(changes) {
+  const added = changes.find(c => c.status === 'A' && /^data\/editions\/\d{4}-\d{2}-\d{2}\/edition\.json$/.test(c.path));
+  if (!added) return [];
+  return changes.filter(c => PROTECTED.some(re => re.test(c.path)))
+    .map(c => `${c.path} changed in the same push as a new edition (${added.path}). An edition run never edits the scripts or the rule files: put the file back, and if a check is blocking you, stop and report it instead`);
+}
+// Everything that differs from GitHub's main: commits not pushed yet, uncommitted edits, new files.
+function changesVsGitHub() {
+  const git = (...a) => spawnSync('git', ['-C', ROOT, ...a], { encoding: 'utf8' });
+  const top = git('rev-parse', '--show-toplevel');
+  if (top.status !== 0 || realpathSync(top.stdout.trim()) !== realpathSync(ROOT)) return null; // not a checkout (a test fixture)
+  if (git('rev-parse', '--verify', '-q', 'origin/main').status !== 0) return { error: 'no origin/main to compare with' };
+  const diff = git('diff', '--name-status', '--no-renames', 'origin/main');
+  const fresh = git('ls-files', '--others', '--exclude-standard');
+  if (diff.status !== 0 || fresh.status !== 0) return { error: (diff.stderr || fresh.stderr).trim().slice(0, 140) };
+  return { changes: [
+    ...diff.stdout.split('\n').filter(Boolean).map(l => { const [status, ...path] = l.split('\t'); return { status: status[0], path: path.join('\t') }; }),
+    ...fresh.stdout.split('\n').filter(Boolean).map(path => ({ status: 'A', path })),
+  ] };
+}
+if (!IMPORTED && !SHEET) {
+  const vs = changesVsGitHub();
+  if (vs?.error) bad('the fence', `can't compare this checkout with GitHub (${vs.error})`);
+  else if (vs) for (const p of fenceProblems(vs.changes)) problems.push(p);
 }
 
 if (IMPORTED) { /* imported by a test: expose helpers only */ }

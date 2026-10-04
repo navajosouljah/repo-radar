@@ -12,6 +12,7 @@
 // Usage: node scripts/build.mjs [--edition YYYY-MM-DD] [--hub] [--all]
 import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { human, whyThisWeek } from './picks-lib.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const SITE = 'https://repo-radar-weekly.vercel.app/';
@@ -28,14 +29,6 @@ const errors = [];
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // Markup allowed inside data strings: **bold**, [a link](https://...), and `a tool name`.
 const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
-const human = n => {
-  if (n == null || n === '') return 'no data';
-  const v = Number(n);
-  if (!Number.isFinite(v)) return String(n);
-  if (v >= 1e6) return `${(v / 1e6).toFixed(v >= 1e7 ? 0 : 1).replace(/\.0$/, '')}M`;
-  if (v >= 1e3) return `${(v / 1e3).toFixed(v >= 1e5 ? 0 : 1).replace(/\.0$/, '')}K`;
-  return String(v);
-};
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const FULL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const dShort = iso => { if (!iso) return ''; const [y, m, d] = iso.slice(0, 10).split('-').map(Number); return `${MONTHS[m - 1]} ${d}`; };
@@ -298,20 +291,27 @@ ${q(4, 'record', 'Safety check record', `<ul class="checks">
 }
 
 // ---------- edition index + hub ----------
+// What a Top 10 card shows in place of total stars: why the repo is here this week, from the numbers
+// the candidates run measured for that edition. An edition without a candidates file shows total stars.
+const poolCache = new Map();
+function why(ed, p) {
+  if (!poolCache.has(ed.date)) {
+    const f = `data/candidates/${ed.date}.json`;
+    poolCache.set(ed.date, new Map((existsSync(join(ROOT, f)) ? read(f).candidates : []).map(c => [key(c.repo), c])));
+  }
+  return esc(whyThisWeek(p, poolCache.get(ed.date).get(key(p.repo))));
+}
 function pickCard(ed, p, i, depth) {
   const up = '../'.repeat(depth);
   const href = depth === 0 ? `editions/${ed.date}/${p.slug}.html` : `${p.slug}.html`;
   if (p.status === 'fail') {
     return `<a class="pick small bad" href="${href}"><span class="n">!</span><h3><small>${esc(p.repo)}</small>${esc(p.name)}: do not install</h3><p>${esc(p.oneliner)}</p><div class="row"><span class="chip" style="border-color:var(--coral-edge);color:var(--coral-ink)">Failed our safety check</span></div></a>`;
   }
-  if (p.status === 'review') {
-    return `<a class="pick small bad" href="${href}"><span class="n">?</span><h3><small>${esc(p.repo)}</small>${esc(p.name)}: under review</h3><p>${esc(p.oneliner)}</p><div class="row"><span class="chip" style="border-color:var(--amber-edge,orange);color:var(--amber-ink,#856404)">Under review</span></div></a>`;
-  }
   requireGate(p.repo, `${depth === 0 ? 'index.html' : `editions/${ed.date}/index.html`} (Top 10)`);
   const fit = FIT[p.fit] || FIT.news;
   const cls = i === 0 ? 'p1' : i <= 2 ? `p${i + 1}` : 'small';
   const img = i <= 2 && p.thumb ? `<img src="${esc(srcAt(p.thumb, depth))}" alt="" loading="lazy">` : '';
-  const text = `<div>${i === 0 ? '' : `<span class="n">#${p.rank}</span>`}${i === 0 ? `<span class="rank-tag">#1 this week</span>` : ''}<h3><small>${esc(p.repo)}</small>${esc(p.name)}</h3><p>${rich(p.oneliner)}</p><div class="row" style="margin-top:var(--s-3)"><span class="chip ${fit[0]}"><span class="dot" aria-hidden="true"></span>${fit[1]}</span><span class="num">${human(p.stars)} stars</span></div></div>`;
+  const text = `<div>${i === 0 ? '' : `<span class="n">#${p.rank}</span>`}${i === 0 ? `<span class="rank-tag">#1 this week</span>` : ''}<h3><small>${esc(p.repo)}</small>${esc(p.name)}</h3><p>${rich(p.oneliner)}</p><div class="row" style="margin-top:var(--s-3)"><span class="chip ${fit[0]}"><span class="dot" aria-hidden="true"></span>${fit[1]}</span><span class="num">${why(ed, p)}</span></div></div>`;
   return i === 0 ? `<a class="pick p1" href="${href}">${text}${img}</a>` : `<a class="pick ${cls}" href="${href}">${img}${text}</a>`;
 }
 
@@ -319,10 +319,9 @@ function restList(ed, depth) {
   const rows = ed.picks.slice(3).map(p => {
     const href = depth === 0 ? `editions/${ed.date}/${p.slug}.html` : `${p.slug}.html`;
     if (p.status === 'fail') return `<li><a class="row bad" href="${href}"><span class="n">!</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${esc(p.oneliner)}</span><span class="chip" style="border-color:var(--coral-edge);color:var(--coral-ink)">Do not install</span></a></li>`;
-    if (p.status === 'review') return `<li><a class="row bad" href="${href}"><span class="n">?</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${esc(p.oneliner)}</span><span class="chip" style="border-color:var(--amber-edge,orange);color:var(--amber-ink,#856404)">Under review</span></a></li>`;
     requireGate(p.repo, `${depth === 0 ? 'index.html' : `editions/${ed.date}/index.html`} (Top 10)`);
     const fit = FIT[p.fit] || FIT.news;
-    return `<li><a class="row" href="${href}"><span class="n">#${p.rank}</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${rich(p.oneliner)}</span><span class="chip ${fit[0]}"><span class="dot" aria-hidden="true"></span>${fit[1]}</span><span class="num">${human(p.stars)} stars</span></a></li>`;
+    return `<li><a class="row" href="${href}"><span class="n">#${p.rank}</span><span class="nm"><b>${esc(p.name)}</b><small>${esc(p.repo)}</small></span><span class="ol">${rich(p.oneliner)}</span><span class="chip ${fit[0]}"><span class="dot" aria-hidden="true"></span>${fit[1]}</span><span class="num">${why(ed, p)}</span></a></li>`;
   }).join('');
   return `<ol class="rest">${rows}</ol>`;
 }
@@ -392,7 +391,6 @@ for (const date of editions) {
     if (!existsSync(join(ROOT, f))) continue;
     const r = { ...read(f), rank: p.rank, slug: p.slug };
     const out = `editions/${date}/${p.slug}.html`;
-    if (p.status === 'review' || r.status === 'review') continue;
     outputs.push([out, p.status === 'fail' || r.status === 'fail' ? failPage(ed, r) : repoPage(ed, r)]);
   }
   if (!only && ed.picks.every(p => p.status === 'fail' || p.oneliner)) {

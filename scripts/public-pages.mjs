@@ -12,6 +12,7 @@
 //   github.com/advisories/GHSA-...               the same, from GitHub's global advisory database
 //   github.com/advisories?query=CVE-...          which global advisory a CVE belongs to
 //   github.com/O/R/releases/latest               redirects to the latest release's tag
+//   github.com/search?q=created:>DATE&s=stars    the newest repos by stars, 10 to a page (no login)
 //
 // Parsers are pure (page text in, facts out) and tested in public-pages.test.mjs. A page that can't
 // be read comes back as { error }, never as a guess: the gate treats that as "can't check".
@@ -70,6 +71,16 @@ export function parseRepoPage(html) {
 export const parseContributors = html => count((html.match(/Contributors\s*<span[^>]*\btitle="([^"]+)"/) || [])[1]);
 export const parseLatestCommit = xml => (xml.match(/<entry>[\s\S]*?<updated>(\d{4}-\d{2}-\d{2})/) || [])[1] || null;
 
+// The public search page embeds its results as JSON. null means "could not read", never "no results".
+export function parseRepoSearch(html) {
+  const m = html.match(/<script type="application\/json" data-target="react-app\.embeddedData">([\s\S]*?)<\/script>/);
+  let rows;
+  try { rows = JSON.parse(m[1]).payload.blackbirdSearchRoute.results; } catch { return null; }
+  if (!Array.isArray(rows)) return null;
+  return rows.map(r => ({ repo: `${r.repo?.repository?.owner_login}/${r.repo?.repository?.name}`, stars: r.followers ?? null, description: plain(r.hl_trunc_description) }))
+    .filter(r => !/(^|\/)undefined(\/|$)/.test(r.repo));
+}
+
 // One <li class="Box-row"> per published advisory; `?page=N+1` is present while more pages follow.
 export function parseAdvisoryList(html) {
   const empty = /There aren(?:&#39;|')t any published security advisories/.test(html);
@@ -127,6 +138,21 @@ export async function repoFacts(o, r) {
     fetchPage(`https://github.com/${co}/${cr}/commits.atom`),
   ]);
   return { ...f, contributors: c.error ? null : parseContributors(c.text), pushed: a.error ? null : parseLatestCommit(a.text) };
+}
+
+// The most-starred repos created after `since` (YYYY-MM-DD). A pause between pages: the public
+// search answers only a few requests a minute.
+export async function newestRepos(since, pages = 1) {
+  const out = [];
+  for (let p = 1; p <= pages; p++) {
+    if (p > 1) await sleep(2000);
+    const page = await fetchPage(`https://github.com/search?q=${encodeURIComponent(`created:>${since}`)}&type=repositories&s=stars&o=desc&p=${p}`);
+    const rows = page.error ? null : parseRepoSearch(page.text);
+    if (!rows) return { error: `search page ${p}: ${page.error || 'unreadable (no results on it)'}`, rows: out };
+    out.push(...rows);
+    if (rows.length < 10) break;
+  }
+  return { rows: out };
 }
 
 export async function advisoryList(o, r) {

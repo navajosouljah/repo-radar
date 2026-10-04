@@ -360,17 +360,17 @@ ul, ol { margin: 0; padding: 0; }
 
 /* #4-#10: a compact ranked list */
 .rest { list-style: none; margin-top: var(--s-4); display: grid; gap: var(--s-2); }
-.rest .row { display: grid; grid-template-columns: 48px minmax(0, 1fr) minmax(0, 2.1fr) auto 88px; gap: var(--s-4); align-items: center; padding: var(--s-3) var(--s-4); background: var(--card); border: 1.5px solid var(--rule); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s; }
+.rest .row { display: grid; grid-template-columns: 48px minmax(0, 1fr) minmax(0, 2.1fr) auto 136px; gap: var(--s-4); align-items: center; padding: var(--s-3) var(--s-4); background: var(--card); border: 1.5px solid var(--rule); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s; }
 .rest .row:hover { transform: translateX(3px); box-shadow: var(--shadow); }
 .rest .n { font-family: var(--f-display); font-weight: 800; font-size: 1.125rem; color: var(--ink-3); }
 .rest .nm b { display: block; font-family: var(--f-display); font-size: 1.125rem; }
 .rest .nm small { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink-3); }
 .rest .ol { font-size: var(--t-sm); color: var(--ink-2); line-height: 1.45; }
-.rest .num { font-family: var(--f-display); font-size: var(--t-xs); font-weight: 700; color: var(--ink-2); text-align: right; font-variant-numeric: tabular-nums; }
+.rest .num { font-family: var(--f-display); font-size: var(--t-xs); font-weight: 700; color: var(--ink-2); text-align: right; text-wrap: balance; font-variant-numeric: tabular-nums; }
 .rest .row.bad { background: var(--coral); border-color: var(--coral-edge); }
 .rest .row.bad .n { color: var(--coral-ink); }
 @media (max-width: 880px) {
-  .rest .row { grid-template-columns: 40px minmax(0, 1fr) auto; grid-template-areas: "n nm num" "n ol ol" "n chip chip"; gap: 4px var(--s-3); }
-  .rest .n { grid-area: n; align-self: start; } .rest .nm { grid-area: nm; } .rest .ol { grid-area: ol; } .rest .chip { grid-area: chip; justify-self: start; } .rest .num { grid-area: num; }
+  .rest .row { grid-template-columns: 40px auto minmax(0, 1fr); grid-template-areas: "n nm nm" "n ol ol" "n chip num"; gap: 4px var(--s-3); }
+  .rest .n { grid-area: n; align-self: start; } .rest .nm { grid-area: nm; } .rest .ol { grid-area: ol; } .rest .chip { grid-area: chip; justify-self: start; } .rest .num { grid-area: num; align-self: center; }
 }
 .pick.p1 img { object-position: top center; }

@@ -7,6 +7,8 @@
 //   4 findarepo digests (last 7 days)                                 appearances
 //   5 Hacker News stories with 100+ points linking GitHub (14 days)   points
 //   6 YouTube videos with 25K+ views linking repos (14 days)          views      (local runs only: yt-dlp)
+//   + GitHub search: the most-starred repos born in the last 7 and 45 days  (finds candidates only:
+//     a star count is not someone vouching for a tool, so it never counts as an independent source)
 // Plus every repo in data/tips.md. npm and PyPI downloads are not wired in yet: adoption comes from
 // skills.sh installs only.
 //
@@ -26,6 +28,7 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync, readdirSync } from 
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import * as web from './public-pages.mjs';
+import { capGain, windowGain } from './picks-lib.mjs';
 
 const run = promisify(execFile);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -167,6 +170,21 @@ if (RESCORE) {
   });
   else sources.youtube = { reached: false, detail: 'skipped (run with --youtube on a machine with yt-dlp)' };
 
+  // GitHub search: the newest repos by stars (JJ, Oct 3 2026). The trending pages show who is hot
+  // that morning; a repo that peaked on Tuesday is gone by Friday. This asks GitHub directly, so a
+  // young repo stays in the pool every week. It is not in DISCOVERY: it never counts toward the two
+  // independent sources or toward the fail-closed count.
+  await source('github-search', async () => {
+    const before = n => new Date(Date.parse(DATE) - n * 864e5).toISOString().slice(0, 10);
+    let seen = 0;
+    for (const [window, since, pages] of [['7d', before(7), 1], ['45d', before(45), 3]]) {
+      const r = await web.newestRepos(since, pages);
+      for (const x of r.rows) add(x.repo, { sources: { 'github-search': { [window]: true } }, signals: { stars: x.stars }, description: x.description }), seen++;
+      if (r.error) throw new Error(r.error);
+    }
+    return `${seen} rows`;
+  });
+
   // Tips JJ added ("add <repo> to the radar tips")
   if (existsSync(`${ROOT}data/tips.md`)) for (const m of readFileSync(`${ROOT}data/tips.md`, 'utf8').matchAll(/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)/g)) add(m[1], { sources: { tips: { yes: true } } });
 
@@ -277,12 +295,18 @@ for (const c of list) {
   c.last_featured = featured.get(c.repo.toLowerCase()) || null;
   // A repo younger than the window gained every star inside it: exact, not estimated.
   const age = c.created ? days(DATE, c.created) : null;
-  if (age != null && age <= 30 && c.signals.gain30 == null && c.signals.stars != null) { c.signals.gain30 = c.signals.stars; c.signals.gain30_source = 'all stars since launch'; }
-  if (age != null && age <= 7 && c.signals.gain7 == null && c.signals.stars != null) { c.signals.gain7 = c.signals.stars; c.signals.gain7_source = 'all stars since launch'; }
+  // An outside estimate never beats that, and no gain can exceed the total (picks-lib windowGain:
+  // Strata's 11.2K "this week" on 5.3K stars, AIHOT's 1.3K "this week" at 5 days old and 5.5K stars).
+  for (const [k, win] of [['gain7', 7], ['gain30', 30]]) {
+    const g = windowGain(c.signals[k], c.signals.stars, age, win);
+    if (g === (c.signals[k] ?? null)) continue;
+    c.signals[`${k}_source`] = age != null && age <= win ? 'all stars since launch' : `${c.signals[`${k}_source`] || 'measured'} (capped at total stars)`;
+    c.signals[k] = g;
+  }
 }
 const lg = x => Math.log10(1 + Math.max(0, x || 0));
 const maxOf = f => Math.max(1e-9, ...list.map(f));
-const g7 = c => c.signals.gain7 ?? (c.signals.gain1 != null ? c.signals.gain1 * 7 : null);
+const g7 = c => c.signals.gain7 ?? (c.signals.gain1 != null ? capGain(c.signals.gain1 * 7, c.signals.stars) : null);
 const g30 = c => c.signals.gain30 ?? null;
 const coveragePoints = c => {
   const s = c.sources; let p = 0;
@@ -325,6 +349,10 @@ console.log(`${list.length} candidates, ${ok.length} clear every floor.`);
 console.log(`By score:\n${ok.slice(0, 20).map(row).join('\n') || '  (none)'}`);
 console.log(`New this week (under 45 days old):\n${ok.filter(c => c.age_days != null && c.age_days < 45).map(row).join('\n') || '  (none)'}`);
 console.log(`Still climbing (over 90 days old, biggest 30-day gain first):\n${ok.filter(c => c.age_days != null && c.age_days > 90).sort((a, b) => (g30(b) || 0) - (g30(a) || 0)).slice(0, 5).map(row).join('\n') || '  (none)'}`);
+// Young repos that clear every floor except the second sighting. The search finds them; only real
+// coverage qualifies them (playbook step 1).
+const oneShort = list.filter(c => c.age_days != null && c.age_days < 45 && c.floors_failed.length === 1 && /independent sources/.test(c.floors_failed[0])).sort((a, b) => (b.signals.stars || 0) - (a.signals.stars || 0));
+if (oneShort.length) console.log(`Young, missing only independent coverage (${oneShort.length}): look for real coverage of the top ones (playbook step 1)\n${oneShort.slice(0, 10).map(row).join('\n')}`);
 const unknownOnly = list.filter(c => c.floors_failed.length && c.floors_failed.every(f => /unknown/.test(f)));
 if (unknownOnly.length) console.log(`Missing facts only (${unknownOnly.length}): add them to ${FACTS.replace(ROOT, '')} and run with --rescore:\n${unknownOnly.slice(0, 30).map(c => `  ${c.repo}: ${c.floors_failed.join(', ')}`).join('\n')}`);
 if (!RESCORE && reached.length < 3) {

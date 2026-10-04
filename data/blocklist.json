@@ -208,5 +208,11 @@
     "date": "2026-10-02",
     "kind": "open-advisories",
     "reason": "12 open advisory(ies): GHSA-3p4r-fq3f-q74v high (unpatched), GHSA-96jg-mvhq-q7q7 high (unpatched), GHSA-8947-pfff-2f3c low (unpatched), GHSA-vgg9-87g3-85w8 high (unpatched), GHSA-7rxv-5jhh-j6xx high (unpatched), GHSA-g4cc-763q-h9h6 moderate (unpatched), GHSA-8wwf-w4qm-gpqr high (unpatched), GHSA-wcr5-566p-9cwj critical (unpatched), GHSA-5vm9-p64x-gqw9 moderate (unpatched), GHSA-mqp6-7pv6-fqjf moderate (unpatched), GHSA-49q7-2jmh-92fp moderate (unpatched), GHSA-p5mv-gjc5-mwqv high (unpatched) | 3 open CVE(s) found by search: CVE-2026-18581 low (unpatched), CVE-2026-78147 moderate (unpatched), CVE-2026-86317 moderate (unpatched)"
+  },
+  {
+    "repo": "kirodotdev/KiroCrew",
+    "date": "2026-10-04",
+    "kind": "open-advisories",
+    "reason": "1 open advisory(ies): GHSA-mh7w-q9jx-chg2 high (unpatched)"
   }
 ]

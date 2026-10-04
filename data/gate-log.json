@@ -11682,14 +11682,14 @@
   },
   "kirodotdev/KiroCrew": {
     "repo": "kirodotdev/KiroCrew",
-    "checked": "2026-10-02",
-    "verdict": "REVIEW",
+    "checked": "2026-10-04",
+    "verdict": "FAIL",
     "reasons": [
-      "1 advisory(ies) fixed by a commit or pull request that public pages can't trace to a release: GHSA-mh7w-q9jx-chg2"
+      "1 open advisory(ies): GHSA-mh7w-q9jx-chg2 high (unpatched)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/kirodotdev/KiroCrew/security/advisories",
         "count": 1,
         "latestRelease": "0.7.2",
@@ -11701,43 +11701,54 @@
             "published": "2026-09-28",
             "summary": "Prompt injection: calendar event text reaches a meeting agent's first message unfenced, and the thread-parent fence and injection screen can",
             "patched": null,
-            "openPackages": [],
-            "status": "fix-unverified",
-            "latestPublished": "0.7.2"
+            "openPackages": [
+              "kirocrew"
+            ],
+            "status": "unpatched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "kirodotdev/KiroCrew CVE",
           "kirodotdev/KiroCrew vulnerability",
           "kirodotdev/KiroCrew malware",
           "kirodotdev/KiroCrew scam"
         ],
-        "results": 0,
+        "results": 20,
         "errors": 0,
-        "hits": [],
-        "fallbacks": 4,
+        "hits": [
+          {
+            "query": "kirodotdev/KiroCrew vulnerability",
+            "title": "Security - Crew - Docs - Kiro",
+            "url": "https://kiro.dev/docs/crew/security/",
+            "published": "N/A",
+            "matched": "exfiltrat",
+            "kind": "report"
+          }
+        ],
+        "fallbacks": 0,
         "nvd": {
           "results": 0
         },
         "cves": []
       },
       "activity": {
-        "source": "public-page",
         "canonical": "kirodotdev/KiroCrew",
-        "stars": 4252,
-        "forks": 728,
+        "stars": 4266,
+        "forks": 734,
         "watchers": 24,
-        "openIssues": 2586,
+        "openIssues": 2545,
         "hasIssues": true,
-        "contributors": 264,
-        "commits": 8531,
+        "contributors": 267,
+        "commits": 8780,
         "created": "2026-07-16",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-04",
         "archived": false,
         "ageDays": 79,
+        "homepage": "https://kiro.dev/crew/",
+        "license": "Apache-2.0",
         "flags": []
       }
     }

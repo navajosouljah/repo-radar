@@ -15,6 +15,7 @@ anything ships.
   "method": "**How this week was picked:** sources scanned, how many cleared, anything pulled for safety.",
   "picks": [
     { "rank": 1, "slug": "laya", "repo": "owner/name", "name": "laya", "fit": "you | developers | news",
+      "slot": "score | new | climbing",
       "stars": 26096, "thumb": "assets/shots/laya-demo.webp", "oneliner": "Plain-English line, max about 20 words." },
     { "rank": 5, "slug": "zcode", "repo": "owner/name", "name": "ZCode", "status": "fail",
       "oneliner": "Why it was pulled, in one line." }
@@ -28,6 +29,11 @@ anything ships.
   - `developers`: someone who writes code has to set it up or build it into something: a library, an
     SDK, a framework, a server to host.
   - `news`: a model or research result. It goes on the "Also this week" line, not in the 10.
+- `slot` is which pool the pick came from (playbook step 3). The card does not show total stars: it
+  shows why the repo is here this week, and `build.mjs` writes that line itself from
+  `data/candidates/<date>.json` ("8 days old · 5.3K stars", "+2.7K stars this week", "Still climbing ·
+  +38.1K stars this month"). Never write that line by hand. An edition with no candidates file shows
+  total stars.
 - `thumb` is only for #1 to #3, and only a real screenshot or demo frame of the product (the same
   picture as the page's `visual`). No auto-generated GitHub cards.
 

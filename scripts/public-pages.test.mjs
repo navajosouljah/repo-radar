@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseRepoPage, parseContributors, parseLatestCommit, parseAdvisoryList, parseAdvisory } from './public-pages.mjs';
+import { parseRepoPage, parseContributors, parseLatestCommit, parseAdvisoryList, parseAdvisory, parseRepoSearch } from './public-pages.mjs';
 import { advisoryStatus } from './gate-lib.mjs';
 
 const fx = name => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');
@@ -77,4 +77,17 @@ test('advisory status: "< X" is a fix at X, "<= X" is not, a commit fix needs a 
 test('advisory status: one package patched and another not is partly patched', () => {
   const adv = { packages: [{ name: 'a', patched: '1.2.0' }, { name: 'b', patched: null }] };
   assert.equal(advisoryStatus(adv, [9, 9, 9], 'o', 'r').status, 'partly-patched');
+});
+
+// The newest-repos search (added Oct 3 2026): github.com/search embeds its results as JSON.
+test('repo search: the newest repos by stars, read from the public search page', () => {
+  const rows = parseRepoSearch(fx('search-newest.html'));
+  assert.equal(rows.length, 3);
+  assert.deepEqual(rows.map(r => [r.repo, r.stars]), [['eternity4719/HowToLiveBetter', 37684], ['NandhaKishorM/laya', 30501], ['browser-use/jev-ultrafast', 21912]]);
+  assert.equal(typeof rows[0].description, 'string');
+});
+
+test('repo search: a page without results is "could not read", never an empty list', () => {
+  assert.equal(parseRepoSearch('<html>Sign in to GitHub</html>'), null);
+  assert.equal(parseRepoSearch('<script type="application/json" data-target="react-app.embeddedData">{"payload":{}}</script>'), null);
 });

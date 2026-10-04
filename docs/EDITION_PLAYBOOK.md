@@ -18,6 +18,12 @@ Read these, in this order: `CLAUDE.md`, `docs/SECURITY_GATE.md`, `docs/DATA_FORM
    Friday's date.
 5. Ship only with `scripts/ship.sh "Repo Radar Edition NNN: <date>"`.
 6. Never edit `data/gate-log.json` or `data/blocklist.json` by hand. The gate script writes them.
+7. Never edit anything in `scripts/`, or `CLAUDE.md`, `docs/SECURITY_GATE.md`, `docs/DATA_FORMAT.md`
+   or this file. When a check blocks you, the check is right: stop, do not push, and write why in
+   the report. Never add a new status, exception or workaround to get past it. (On Oct 2 2026 the
+   run added an "under review" exception to `build.mjs` and `verify.mjs` and kept a flagged repo on
+   the site with its install steps. `verify.mjs` now refuses any push that adds an edition and
+   changes one of these files.)
 
 Your sandbox blocks `api.github.com` and has no `gh`. You don't need either: every script here reads
 GitHub's public pages instead, automatically. Use your GitHub tool only when a script says a fact is
@@ -26,9 +32,9 @@ missing, and WebFetch for reading pages yourself.
 ## 1. Gather candidates
 
 Run `node scripts/candidates.mjs <this Friday's date>`. It scans GitHub Trending, Trendshift,
-skills.sh, findarepo, Hacker News and `data/tips.md`, reads every candidate on GitHub (stars, age,
-last commit), scores them, applies the floors and the 8-week cool-down, and writes
-`data/candidates/<date>.json`.
+skills.sh, findarepo, Hacker News and `data/tips.md`, asks GitHub's search for the most-starred
+repos born in the last 7 and 45 days, reads every candidate on GitHub (stars, age, last commit),
+scores them, applies the floors and the 8-week cool-down, and writes `data/candidates/<date>.json`.
 
 - The first line says how many of the 6 discovery sources were reached. For each `NO`, try its page
   with WebFetch (URLs in the appendix). If you can read it, add what you find to the candidates file
@@ -40,6 +46,13 @@ last commit), scores them, applies the floors and the 8-week cool-down, and writ
 - **YouTube** can't be read from the cloud (it answers with a CAPTCHA). Don't add YouTube coverage
   from search results unless the page you actually read shows the view count. Otherwise the `method`
   line says YouTube was not scanned.
+- **The search finds, it never qualifies.** `github-search` is not one of the 6 discovery sources: a
+  star count is not someone vouching for a tool, so it never counts toward the 2 independent
+  sources. If it prints **"Young, missing only independent coverage"**, look for real coverage of
+  the top 5: a Hacker News story with 100+ points, a Trendshift or findarepo listing, a YouTube
+  video whose page shows 25K+ views. Add only what you actually read to that repo's `sources` in
+  the candidates file, with the same fields the script writes, then run `--rescore`. Found nothing:
+  the repo stays out, and that is fine. If `github-search=NO`, say so in the `method` line.
 - If it prints **"Missing facts only"**, look those repos up with your GitHub tool and write the
   facts to `data/candidates/<date>.facts.json` as
   `{"owner/repo": {"created": "YYYY-MM-DD", "pushed": "YYYY-MM-DD", "stars": 12345}}`, then run
@@ -69,6 +82,8 @@ the last 8 weeks; stars look earned):
 - **Slots:** 6 by score, 3 "new this week" (under 45 days old), and 1 "still climbing" (over 90 days
   old, with the biggest 30-day gain). The script prints each pool. When a pool has fewer repos than
   it has slots, fill the rest by score, and the `method` line says so.
+- **Write the slot on each pick** in edition.json: `"slot": "score"`, `"new"` or `"climbing"`. The
+  card uses it to say why the repo is here (DATA_FORMAT.md).
 - **Fewer than 10 clear:** publish the ones that do and say so in the `method` line. Never lower a
   floor to fill a slot.
 - **JJ's lens:** label each pick `you`, `developers` or `news` (definitions in DATA_FORMAT.md). At
@@ -165,12 +180,29 @@ any slot filled by score), and the 10 picks.
 1. `node scripts/build.mjs --edition <date> --hub`. It refuses to build if any repo lacks a PASS.
    Fix the cause; never work around it.
 2. Add the previous edition to `archive.html`.
-3. `node --test scripts/*.test.mjs` and `node scripts/verify.mjs` must pass.
-4. `scripts/ship.sh "Repo Radar Edition NNN: <date>"`.
+3. Write this week's report to `docs/reports/<date>.md` (the format is in step 8). It ships in the
+   same push as the edition, and verify refuses an edition without it.
+4. `node --test scripts/*.test.mjs` and `node scripts/verify.mjs` must pass. If either one fails
+   and the fix would mean changing a script or a rule file, stop here: do not push. Put what
+   blocked you under "Needs JJ" in the report and end the run with that report.
+5. `scripts/ship.sh "Repo Radar Edition NNN: <date>"`.
 
 ## 8. Report
 
-Finish with a short summary:
+The report is a file, `docs/reports/<date>.md`, written before you ship (step 7), so it is saved
+with the edition. The Oct 2 2026 report lived only in the cloud session, and its "flagged for JJ"
+never reached him. Finish the run by printing the same report. It starts like this:
+
+```
+# Repo Radar Edition NNN - <date>
+
+## Needs JJ
+- One line for each thing only JJ can decide or fix: a repo that came down on a REVIEW you may not
+  settle, a check that blocked you, a source that failed. Write "Nothing this week." if there is
+  nothing. Never leave this section out.
+```
+
+Then, in short:
 - the 10 picks, with their fit and the one number that matters for each;
 - which sources were scanned and which were not;
 - what the gate pulled or held back, and why;
@@ -188,6 +220,7 @@ Finish with a short summary:
 | 4 | findarepo | `https://findarepo.com/digest/<date>/`; per repo `https://findarepo.com/repo/<o>/<r>/` | Digests list the day's risers; repo pages give measured stars a day and a star-credibility check |
 | 5 | Hacker News | `https://hn.algolia.com/api/v1/search?query=github.com&tags=story&numericFilters=created_at_i%3E<unix>,points%3E100` | URL-encode `>` as `%3E` |
 | 6 | YouTube | web search for the named channels, last 14 days | 25K+ views; repo named or linked. Local runs only (`--youtube`); the cloud gets a CAPTCHA |
+| - | GitHub search | `https://github.com/search?q=created%3A%3E<YYYY-MM-DD>&type=repositories&s=stars&o=desc` (add `&p=2`, `&p=3`) | The most-starred repos born after that date, 10 to a page, no login. Finds candidates only; never an independent source |
 | - | GitHub pages | `https://github.com/<o>/<r>` and its security, releases and contributors pages | Read by the scripts; not a discovery source |
 
 npm and PyPI downloads are not wired in yet; adoption comes from skills.sh installs.

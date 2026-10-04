@@ -8,7 +8,7 @@ import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { jargonProblem } from './verify.mjs';
+import { jargonProblem, fenceProblems } from './verify.mjs';
 
 const VERIFY = new URL('./verify.mjs', import.meta.url).pathname;
 const today = new Date().toISOString().slice(0, 10);
@@ -126,4 +126,56 @@ test('--sheet checks one answer sheet on its own', () => {
   const r = spawnSync('node', [VERIFY, '--root', root, '--sheet', 'data/editions/2026-09-25/a.json'], { encoding: 'utf8' });
   assert.equal(r.status, 1);
   assert.match(r.stderr, /try step 1 sends the reader somewhere but has no link/);
+});
+
+// JJ, Oct 3 2026: the Oct 2 Friday run kept a flagged repo on the site by adding an "under review"
+// exception to build.mjs and to this checker. These tests close that whole class.
+const edition1009 = { number: '2', date: '2026-10-09', theme: 't', picks: [{ rank: 1, slug: 'a', repo: 'good/repo', name: 'a', oneliner: 'x' }] };
+const report = '# Repo Radar Edition 2 - 2026-10-09\n\n## Needs JJ\nNothing this week.\n';
+
+test('an "under review" pick still has to be cleared: only PASS appears, and FAIL only as a warning page', () => {
+  const g = pass('held/repo'); g.verdict = 'REVIEW';
+  refuses(site({
+    'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'held/repo': g }),
+    'data/editions/2026-09-25/edition.json': { number: '1', date: '2026-09-25', theme: 't', picks: [{ rank: 1, slug: 'h', repo: 'held/repo', name: 'h', status: 'review', oneliner: 'x' }] },
+  }), /held\/repo gate verdict is REVIEW/);
+});
+
+test('a page stamped UNDER REVIEW is not excused from the gate', () => {
+  const g = pass('held/repo'); g.verdict = 'REVIEW';
+  refuses(site({
+    'data/gate-log.json': JSON.stringify({ 'good/repo': pass('good/repo'), 'held/repo': g }),
+    'editions/2026-09-25/h.html': '<span class="stamp review">UNDER REVIEW</span><a href="https://github.com/held/repo">GitHub</a>',
+  }), /held\/repo gate verdict is REVIEW/);
+});
+
+test('an edition after Oct 3 2026 ships with its saved report, and the report has a Needs JJ section', () => {
+  const base = { 'data/editions/2026-10-09/edition.json': edition1009, 'data/editions/2026-10-09/a.json': sheet({}) };
+  refuses(site(base), /docs\/reports\/2026-10-09\.md: missing/);
+  refuses(site({ ...base, 'docs/reports/2026-10-09.md': '# Report\n\nAll good.\n' }), /needs a "## Needs JJ" section/);
+  const ok = verify(site({ ...base, 'docs/reports/2026-10-09.md': report }));
+  assert.equal(ok.status, 0, ok.stderr);
+});
+
+test('the fence: a push that adds an edition may not change the checker or the rules', () => {
+  const added = { status: 'A', path: 'data/editions/2026-10-09/edition.json' };
+  assert.match(fenceProblems([added, { status: 'M', path: 'scripts/verify.mjs' }])[0], /scripts\/verify\.mjs changed in the same push as a new edition/);
+  assert.equal(fenceProblems([added, { status: 'A', path: 'scripts/new-helper.mjs' }]).length, 1);
+  assert.equal(fenceProblems([added, { status: 'M', path: 'docs/SECURITY_GATE.md' }, { status: 'M', path: 'CLAUDE.md' }]).length, 2);
+  // An edition on its own is fine, and so is script work with no new edition in the same push.
+  assert.deepEqual(fenceProblems([added, { status: 'A', path: 'editions/2026-10-09/a.html' }, { status: 'M', path: 'data/gate-log.json' }]), []);
+  assert.deepEqual(fenceProblems([{ status: 'M', path: 'scripts/verify.mjs' }, { status: 'M', path: 'data/editions/2026-10-02/edition.json' }]), []);
+});
+
+test('the fence, end to end: verify refuses a checkout that adds an edition and edits a script', () => {
+  const root = site({ 'scripts/build.mjs': '// build', 'docs/reports/2026-10-09.md': report });
+  const git = (...a) => { const r = spawnSync('git', ['-C', root, '-c', 'user.name=t', '-c', 'user.email=t@example.com', ...a], { encoding: 'utf8' }); assert.equal(r.status, 0, r.stderr); };
+  git('init', '-q', '-b', 'main'); git('add', '-A'); git('commit', '-q', '-m', 'base'); git('update-ref', 'refs/remotes/origin/main', 'HEAD');
+  mkdirSync(join(root, 'data/editions/2026-10-09'), { recursive: true });
+  writeFileSync(join(root, 'data/editions/2026-10-09/edition.json'), JSON.stringify(edition1009));
+  writeFileSync(join(root, 'data/editions/2026-10-09/a.json'), JSON.stringify(sheet({})));
+  const clean = verify(root);
+  assert.equal(clean.status, 0, clean.stderr); // the edition alone passes
+  writeFileSync(join(root, 'scripts/build.mjs'), '// build, with a new exception');
+  refuses(root, /scripts\/build\.mjs changed in the same push as a new edition/);
 });
