@@ -1,0 +1,24 @@
+{
+  "repo": "akitaonrails/ai-memory",
+  "name": "ai-memory",
+  "tagline": "Give your coding agent a long-term memory - persistent, searchable context that survives across sessions.",
+  "sentence": "ai-memory is an MCP server that stores project decisions, patterns and conventions so your coding agent remembers what it learned.",
+  "status": "fail",
+  "what_happened": [
+    "**Three unpatched security advisories found Oct 9 2026.** GHSA-2jrq-p5rw-6wvv (low): wiki page reads and writes follow symlinks out of the project tree. GHSA-7qj3-7wqw-m5w6 (moderate): database user without write access can modify shared global preferences. GHSA-vh98-jf5c-jw45 (low): ignore_paths capture exclusion fails open for a path with a leading double slash.",
+    "**Previously pulled and restored.** ai-memory was pulled on Oct 2 2026 for earlier advisories, then restored after those were confirmed fixed in version 2.5.2. These are new advisories published Oct 9."
+  ],
+  "why_fail": [
+    "**Three advisories with no patched version.** The latest published release is 2.6.2 and none of the three advisories list a fix.",
+    "**Symlink traversal lets files outside your project be read or written.** GHSA-2jrq-p5rw-6wvv means a wiki page operation could follow a symlink to read or modify files outside the project directory.",
+    "**Privilege escalation in shared setups.** GHSA-7qj3-7wqw-m5w6 means a user without write permission can still change global preferences."
+  ],
+  "if_used": [
+    "Check for unexpected files or changes in your project directory, especially if you use symlinks.",
+    "If you share the database with others, audit the global preferences for unauthorized changes.",
+    "Watch for a patched release. Once these advisories have confirmed fixes, the gate will re-check automatically."
+  ],
+  "sources": [
+    {"title": "GitHub security advisories", "url": "https://github.com/akitaonrails/ai-memory/security/advisories", "date": "2026-10-09"}
+  ]
+}
