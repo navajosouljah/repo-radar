@@ -1,0 +1,112 @@
+{
+  "number": "011",
+  "date": "2026-10-09",
+  "theme_short": "Free apps for your whole creative suite",
+  "theme": "**The week your creative suite went open-source.** Four Rust-built replacements for Photoshop, Lightroom, Premiere and Acrobat landed in the same week - all free, all running on your own machine, no subscription. The rest arm your AI agent with reverse engineering, game modding, persistent memory and professional design taste.",
+  "method": "**How this week was picked:** 255 candidates from 6 sources (GitHub Trending, Trendshift, skills.sh, findarepo, Hacker News, GitHub search). YouTube was not scanned (CAPTCHA in cloud). GitHub public pages returned challenge pages for candidate enrichment, but the security gate read them successfully for all checks. 14 cleared all floors. Picks: 6 by score, 3 new this week (under 45 days), 1 still climbing (over 90 days). 5 of the 10 picks are from the same maker (storytold/ArtCraft) - that concentration reflects a real moment (four Adobe replacements launched at once), not a gap in sourcing. **Every repo passed our safety check on Oct 9.** artcraft settled PASS by routine (activity flag: 12.4K stars on 21 commits - the repo is the brand hub, not the main codebase; no advisories, CVEs or security reports). Re-check: ai-memory now FAILs (3 new unpatched advisories found Oct 9, blocklisted). Tips: none this week (data/tips.md empty).",
+  "picks": [
+    {
+      "rank": 1,
+      "slug": "photocraft",
+      "repo": "storytold/photocraft",
+      "name": "PhotoCraft",
+      "fit": "you",
+      "slot": "new",
+      "stars": 31269,
+      "thumb": "assets/shots/photocraft.jpg",
+      "oneliner": "A free, open-source photo editor that works like Photoshop - runs on your computer, no subscription, no account."
+    },
+    {
+      "rank": 2,
+      "slug": "lightcraft",
+      "repo": "storytold/lightcraft",
+      "name": "LightCraft",
+      "fit": "you",
+      "slot": "new",
+      "stars": 6805,
+      "thumb": "assets/shots/lightcraft.jpg",
+      "oneliner": "A free photo library and RAW editor that works like Lightroom - organize, develop and export, all on your own machine."
+    },
+    {
+      "rank": 3,
+      "slug": "filmcraft",
+      "repo": "storytold/filmcraft",
+      "name": "FilmCraft",
+      "fit": "you",
+      "slot": "new",
+      "stars": 6165,
+      "thumb": "assets/shots/filmcraft.png",
+      "oneliner": "A free, open-source video editor that works like Premiere Pro - timeline editing, color grading and export, on your own machine."
+    },
+    {
+      "rank": 4,
+      "slug": "pdfcraft",
+      "repo": "storytold/pdfcraft",
+      "name": "PdfCraft",
+      "fit": "you",
+      "slot": "score",
+      "stars": 5418,
+      "oneliner": "A free, open-source PDF reader and organizer that works like Acrobat - view, combine, split and secure PDFs on your own machine."
+    },
+    {
+      "rank": 5,
+      "slug": "universal-modder",
+      "repo": "rehan-remade/universal-modder",
+      "name": "Universal Modder",
+      "fit": "you",
+      "slot": "score",
+      "stars": 5835,
+      "oneliner": "A game-modding toolkit for AI agents - tell Claude Code what you want changed in a game, and it does the modding for you."
+    },
+    {
+      "rank": 6,
+      "slug": "rea",
+      "repo": "morluto/rea",
+      "name": "REA",
+      "fit": "developers",
+      "slot": "score",
+      "stars": 34965,
+      "oneliner": "A reverse-engineering assistant that takes apart programs for you - binaries, apps, websites, firmware - and explains what it finds."
+    },
+    {
+      "rank": 7,
+      "slug": "claude-mem",
+      "repo": "thedotmack/claude-mem",
+      "name": "claude-mem",
+      "fit": "you",
+      "slot": "climbing",
+      "stars": 98860,
+      "oneliner": "Persistent memory for your AI agent - it remembers what you worked on, what you decided, and what you like, across sessions."
+    },
+    {
+      "rank": 8,
+      "slug": "artcraft",
+      "repo": "storytold/artcraft",
+      "name": "ArtCraft",
+      "fit": "you",
+      "slot": "score",
+      "stars": 9735,
+      "oneliner": "A creative studio that connects 62 AI models in one workspace - generate images, videos, 3D objects and music from a single app."
+    },
+    {
+      "rank": 9,
+      "slug": "knowledge-work-plugins",
+      "repo": "anthropics/knowledge-work-plugins",
+      "name": "Knowledge Work Plugins",
+      "fit": "you",
+      "slot": "score",
+      "stars": 27968,
+      "oneliner": "Anthropic's official plugins for Claude Cowork - ready-made assistants for sales, support, legal, finance, marketing and more."
+    },
+    {
+      "rank": 10,
+      "slug": "taste-skill",
+      "repo": "Leonxlnx/taste-skill",
+      "name": "taste-skill",
+      "fit": "you",
+      "slot": "score",
+      "stars": 93998,
+      "oneliner": "A design skill that gives your AI coding agent good taste - it stops building generic, boring-looking interfaces."
+    }
+  ]
+}

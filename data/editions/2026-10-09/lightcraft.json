@@ -1,0 +1,149 @@
+{
+  "repo": "storytold/lightcraft",
+  "name": "LightCraft",
+  "tagline": "A free photo library and RAW editor that works like Lightroom - organize, develop and export, all on your own machine.",
+  "sentence": "Import your photo library, develop RAW files with sliders you already know (exposure, contrast, highlights, shadows), and export finished JPEGs - without a Lightroom subscription.",
+  "fit": "you",
+  "replaces": "Adobe Lightroom ($10/month Photography plan)",
+  "links": {
+    "website": "https://getartcraft.com/apps/lightcraft",
+    "docs": "https://github.com/storytold/lightcraft"
+  },
+  "visual": {
+    "src": "assets/shots/lightcraft.jpg",
+    "width": 3200,
+    "height": 2000,
+    "alt": "LightCraft editing an Ansel Adams black-and-white photo of the Tetons: exposure, contrast, highlights and shadows sliders on the right, a filmstrip of thumbnails along the bottom.",
+    "caption": "The develop module with a classic landscape, showing the same slider layout Lightroom users know."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You shoot in RAW and need a tool to organize, develop and export your photos - but Lightroom costs $10 a month and locks your library in Adobe's cloud.",
+      "eg": "You come back from a trip with 400 RAW files and need to cull, rate, adjust and export the keepers."
+    },
+    {
+      "role": "trigger",
+      "say": "You open LightCraft and import a folder of photos, or point an AI agent at it through its command interface.",
+      "eg": "Import a folder of Canon CR2 or Sony ARW files - the RAW decoder handles DNG, Canon, Sony, Nikon, Fujifilm, Panasonic, Pentax and Olympus."
+    },
+    {
+      "role": "input",
+      "say": "Your RAW files, JPEGs, TIFFs or DNGs - the same files your camera saves.",
+      "eg": "A folder of 200 Sony ARW files from a weekend shoot."
+    },
+    {
+      "role": "does",
+      "say": "It builds a library you can browse, rate and filter, and develops each RAW file with non-destructive adjustments.",
+      "steps": [
+        "Browse your library with albums, star ratings, flags and color labels - filter to find the shots you want",
+        "Develop each photo with sliders for exposure, contrast, highlights, shadows, white balance and tone curves in a 32-bit float pipeline",
+        "Apply masks (brush, gradient, luminance range) with up to 15 local adjustments per mask",
+        "Export finished files as JPEG, TIFF or PNG, with watermarks and contact sheets"
+      ],
+      "eg": "The README claims a 24-megapixel RAW file updates in about 4 milliseconds per slider move on the GPU pipeline."
+    },
+    {
+      "role": "result",
+      "say": "A managed photo library with developed, exported images - all stored locally.",
+      "outputs": [
+        {"what": "Developed photos", "eg": "Finished JPEGs or TIFFs, exported with your adjustments baked in"},
+        {"what": "An organized library", "eg": "Albums, ratings and flags across your whole collection, searchable and browsable"},
+        {"what": "18 built-in presets", "eg": "One-click looks you can apply and adjust - copy settings across a whole batch"}
+      ]
+    }
+  ],
+  "before": [
+    "Developing RAW files means paying Adobe $10 a month for Lightroom - or learning darktable, which works differently.",
+    "Your photo library lives in Adobe's cloud, tied to a subscription. Cancel and you lose the edits."
+  ],
+  "after": [
+    "The same slider-based RAW workflow, on your own computer, for free - with presets, batch editing and a local library.",
+    "Your library and every edit stays on your machine. No account, no cloud, no subscription."
+  ],
+  "uses_note": "LightCraft is 9 days old and in development. Named real-world use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+6.8K stars in its first 9 days. Part of the ArtCraft suite.",
+    "history": [
+      ["2026-09-30", 0],
+      ["2026-10-09", 6805]
+    ],
+    "history_note": "Created Sep 30, 2026.",
+    "facts": [
+      {"value": "6.8K", "label": "stars on GitHub"},
+      {"value": "1,498", "label": "commits"},
+      {"value": "18", "label": "built-in presets"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "ArtCraft Apps - open-source Rust alternatives to Adobe's creative suite",
+      "url": "https://news.ycombinator.com/item?id=49958850",
+      "meta": "151 points, 217 comments"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Show HN: Free open source Adobe Lightroom alternative",
+      "url": "https://news.ycombinator.com/item?id=50012199",
+      "meta": "47 points, 62 comments - this thread was about a different project (Rembrandt) but LightCraft was discussed"
+    },
+    {
+      "plat": "findarepo",
+      "title": "storytold/lightcraft on findarepo",
+      "url": "https://findarepo.com/repo/storytold/lightcraft/",
+      "meta": "Star growth looks organic"
+    }
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download LightCraft](https://github.com/storytold/lightcraft/releases) for your computer (Mac, Windows or Linux) and install it.",
+      "Import a folder of photos (RAW files if you have them, or JPEGs). Rate a few with star ratings, then double-click one to enter the develop view.",
+      "Try the [develop sliders](https://github.com/storytold/lightcraft#develop): drag Exposure, Contrast and Highlights. Apply one of the 18 built-in presets. Export a finished JPEG."
+    ],
+    "paste": "/skillspector https://github.com/storytold/lightcraft\n\nIf that scan passes: download and install LightCraft, import a folder of sample photos, try the develop sliders and export a JPEG. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for installer size. Builds from source with `cargo run --release -p lightcraft` (requires Rust 1.90+).",
+    "memory": "No data found. Uses a GPU pipeline (Metal, Vulkan or DX12) and falls back to CPU without a GPU.",
+    "runs_on": "Mac (universal), Windows (x64, arm64, x86), Linux (x86_64, aarch64), FreeBSD and the web (via WebAssembly).",
+    "source": {"title": "LightCraft README: installation and requirements", "url": "https://github.com/storytold/lightcraft"}
+  },
+  "verdict": {
+    "best_for": [
+      "You shoot in RAW and want a free tool with Lightroom's slider-based workflow - exposure, contrast, highlights, shadows, presets",
+      "You want your photo library on your own computer with no cloud dependency"
+    ],
+    "skip_if": [
+      "You need full RAW camera support today - the decoder covers major brands but is about 55% complete, with some camera models unsupported",
+      "You depend on Lightroom's AI features (AI denoise, AI masks, subject detection) - those are at about 15% in LightCraft"
+    ],
+    "alternatives": [
+      {
+        "name": "darktable",
+        "url": "https://www.darktable.org/",
+        "line": "The established free RAW developer. Far more mature and complete, but a very different interface from Lightroom."
+      },
+      {
+        "name": "RawTherapee",
+        "url": "https://rawtherapee.com/",
+        "line": "A powerful free RAW processor focused on development. No library management, but deep editing controls."
+      }
+    ]
+  },
+  "watch": [
+    "**RAW support is about 55% complete.** Major brands (Canon, Sony, Nikon, Fujifilm) work, but some camera models and RAW variants are unsupported or partial.",
+    "**Part of the ArtCraft suite by storytold.** Same maker as PhotoCraft, FilmCraft, PdfCraft and ArtCraft. All are early alpha, built by one developer with AI. Long-term maintenance depends on one person.",
+    "**Cannot import Lightroom catalogs.** If you have years of edits in Lightroom, there is no clean migration path yet.",
+    "**AI and computational features are thin.** AI masks, AI denoise and computational photography are at about 15% by the project's own estimate."
+  ],
+  "sources": [
+    {"title": "LightCraft on GitHub (README, features, requirements)", "url": "https://github.com/storytold/lightcraft", "date": "2026-10-09"},
+    {"title": "LightCraft website", "url": "https://getartcraft.com/apps/lightcraft", "date": "2026-10-09"},
+    {"title": "Hacker News: ArtCraft Apps (151 points)", "url": "https://news.ycombinator.com/item?id=49958850", "date": "2026-10-06"},
+    {"title": "findarepo: storytold/lightcraft", "url": "https://findarepo.com/repo/storytold/lightcraft/", "date": "2026-10-09"}
+  ]
+}

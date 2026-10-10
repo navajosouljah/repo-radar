@@ -1,0 +1,132 @@
+{
+  "repo": "anthropics/knowledge-work-plugins",
+  "name": "Knowledge Work Plugins",
+  "tagline": "Anthropic's official plugins for Claude Cowork - ready-made assistants for sales, support, legal, finance, marketing and more.",
+  "sentence": "Install one of Anthropic's 11 plugins and your Claude Cowork workspace gets a specialized assistant - for drafting contracts, writing sales emails, analyzing data or managing projects.",
+  "fit": "you",
+  "links": {
+    "website": "https://github.com/anthropics/knowledge-work-plugins",
+    "docs": "https://github.com/anthropics/knowledge-work-plugins"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You use Claude Cowork at work but the general assistant doesn't know your role's specific workflows - the right email format for sales, the right clause language for legal, the right metrics for marketing.",
+      "eg": "You need to draft a sales follow-up email that matches your company's tone, but the general assistant gives you generic templates."
+    },
+    {
+      "role": "trigger",
+      "say": "You install a plugin for your role in Claude Cowork.",
+      "eg": "Install the Sales plugin and your workspace gets specialized prompts, templates and workflows for sales outreach, follow-ups and pipeline management."
+    },
+    {
+      "role": "input",
+      "say": "Your work context - documents, emails, data, conversations - fed through the plugin's specialized prompts.",
+      "eg": "Drop in a prospect's LinkedIn profile and the Sales plugin drafts a personalized outreach email with the right structure and tone."
+    },
+    {
+      "role": "does",
+      "say": "The plugin adds specialized workflows, prompts and templates to your Claude Cowork workspace.",
+      "steps": [
+        "Choose from 11 plugins: productivity, sales, support, project management, marketing, legal, finance, data analysis, enterprise search, bio research, or plugin management",
+        "The plugin loads role-specific prompts, templates and workflows into your Cowork workspace",
+        "You use the specialized assistant for your role's tasks - drafting, analyzing, managing, reviewing"
+      ],
+      "eg": "The Legal plugin: paste a contract and get a clause-by-clause review with risk flags, or draft a new contract from a template."
+    },
+    {
+      "role": "result",
+      "say": "A Claude Cowork workspace tuned for your specific role.",
+      "outputs": [
+        {"what": "Role-specific drafts", "eg": "A sales email, a legal review, a marketing brief, or a financial analysis - in your role's standard format"},
+        {"what": "Specialized workflows", "eg": "A step-by-step pipeline for your role: prospect research for sales, contract review for legal, campaign analysis for marketing"}
+      ]
+    }
+  ],
+  "before": [
+    "The general Claude assistant doesn't know your role's specific format, structure or workflow. You spend time prompting it to match your needs.",
+    "Building a custom assistant for your role means writing and maintaining your own prompts and templates."
+  ],
+  "after": [
+    "Install a plugin and your Claude Cowork workspace knows your role - the right formats, structures and workflows for sales, legal, finance or whatever you do.",
+    "Anthropic maintains the plugins. Updates and improvements come automatically."
+  ],
+  "uses_note": "Knowledge Work Plugins is by Anthropic and has 28K stars. As an official Anthropic project, adoption is primarily through Claude Cowork, where usage is not publicly tracked by individual.",
+  "uses": [],
+  "pulse": {
+    "gain": "+2K stars this week, +3.5K in 30 days. 28K total over 9 months.",
+    "history": [
+      ["2026-01-23", 0],
+      ["2026-09-09", 24515],
+      ["2026-10-09", 27968]
+    ],
+    "history_note": "Created Jan 23, 2026. Steady growth.",
+    "facts": [
+      {"value": "28K", "label": "stars on GitHub"},
+      {"value": "1,070", "label": "commits"},
+      {"value": "11", "label": "plugins"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub",
+      "title": "anthropics/knowledge-work-plugins on GitHub",
+      "url": "https://github.com/anthropics/knowledge-work-plugins",
+      "meta": "28K stars, by Anthropic"
+    },
+    {
+      "plat": "findarepo",
+      "title": "anthropics/knowledge-work-plugins on findarepo",
+      "url": "https://findarepo.com/repo/anthropics/knowledge-work-plugins/",
+      "meta": "Growth data"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Browse the 11 plugins](https://github.com/anthropics/knowledge-work-plugins) and pick the one that matches your role (sales, legal, finance, marketing, support, etc.).",
+      "Install the plugin in your Claude Cowork workspace following the README's instructions.",
+      "Try a task specific to your role: draft a sales email, review a contract, or analyze a dataset. Compare the result to what the general assistant gives you."
+    ],
+    "paste": "/skillspector https://github.com/anthropics/knowledge-work-plugins\n\nIf that scan passes: install one of the 11 plugins for a role you work in, try a task specific to that role, and show me the result. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for install size. Plugins install into Claude Cowork.",
+    "memory": "No data found. Runs inside Claude Cowork.",
+    "runs_on": "Claude Cowork (cloud-based). No local installation beyond the plugin setup.",
+    "source": {"title": "Knowledge Work Plugins README", "url": "https://github.com/anthropics/knowledge-work-plugins"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use Claude Cowork at work and want specialized assistance for your specific role - sales, legal, finance, marketing, support or project management",
+      "You want official, maintained plugins from Anthropic rather than building your own prompts"
+    ],
+    "skip_if": [
+      "You don't use Claude Cowork - these plugins are for Cowork, not Claude Code or the API",
+      "You have already built custom prompts and workflows for your role that work better than a general plugin"
+    ],
+    "alternatives": [
+      {
+        "name": "Custom Cowork prompts",
+        "url": "https://claude.ai/",
+        "line": "Write your own prompts and templates in Claude Cowork. More work to set up, but perfectly tailored to your company's specific needs."
+      },
+      {
+        "name": "mattpocock/skills",
+        "repo": "mattpocock/skills",
+        "url": "https://skills.sh/mattpocock/skills",
+        "line": "Engineering-focused skills for Claude Code. Different product (Code, not Cowork) and audience (developers, not business roles)."
+      }
+    ]
+  },
+  "watch": [
+    "**By Anthropic, for Claude Cowork.** These are official plugins from the company that makes Claude. That means strong maintenance but also a single-vendor dependency.",
+    "**Cowork only, not Claude Code.** If you use Claude Code (the terminal tool), these plugins don't apply. They are for the Cowork collaboration workspace.",
+    "**11 plugins, varying depth.** Some roles (sales, support) have deeper workflows than others. Check the plugin for your role before expecting full coverage.",
+    "**Apache-2.0 license.** Open source, so you can read, fork and adapt the plugins to your company's needs."
+  ],
+  "sources": [
+    {"title": "Knowledge Work Plugins on GitHub (README, plugin list)", "url": "https://github.com/anthropics/knowledge-work-plugins", "date": "2026-10-09"},
+    {"title": "findarepo: anthropics/knowledge-work-plugins", "url": "https://findarepo.com/repo/anthropics/knowledge-work-plugins/", "date": "2026-10-09"}
+  ]
+}

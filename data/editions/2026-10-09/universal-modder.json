@@ -1,0 +1,139 @@
+{
+  "repo": "rehan-remade/universal-modder",
+  "name": "Universal Modder",
+  "tagline": "A game-modding toolkit for AI agents - tell Claude Code what you want changed in a game, and it does the modding for you.",
+  "sentence": "Ask Claude Code to add a new weapon to Terraria or build a civilization for Age of Empires 2 - Universal Modder gives it the playbooks and tools to mod 12 game engines.",
+  "fit": "you",
+  "links": {
+    "website": "https://github.com/rehan-remade/universal-modder",
+    "docs": "https://github.com/rehan-remade/universal-modder"
+  },
+  "visual": {
+    "src": "assets/shots/universal-modder.png",
+    "width": 1600,
+    "height": 866,
+    "alt": "A pipeline diagram showing two routes: a 3D route (concept to 3D model to render) and a 2D route (image to sprite cutout to sprite fit to in-game), with labeled steps at each stage.",
+    "caption": "The modding pipeline: from a concept to an in-game asset, through 3D modeling or 2D sprite creation."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to mod a game - add a weapon, a character, a map - but learning each engine's modding tools takes hours, and every game works differently.",
+      "eg": "You want to add a custom sword to Terraria, but that means learning tModLoader, setting up the project structure, writing the item code and compiling a mod."
+    },
+    {
+      "role": "trigger",
+      "say": "You ask Claude Code to mod the game, or run the `um` command yourself.",
+      "eg": "`um mod terraria 'Add a legendary crystal sword that shoots beams'` - the agent reads Terraria's modding playbook and starts building."
+    },
+    {
+      "role": "input",
+      "say": "A description of what you want - a weapon, a character, a civilization, a map - and which game it's for.",
+      "eg": "A new civilization for Age of Empires 2, a weapons pack for Terraria, or a vehicle mod for GTA V."
+    },
+    {
+      "role": "does",
+      "say": "It gives your AI agent step-by-step playbooks for 12 game engines, handles asset creation and compiles a working mod.",
+      "steps": [
+        "The agent reads the engine playbook (Terraria, AoE2, GTA V, Minecraft, Unity, Unreal and more) to learn that engine's modding workflow",
+        "It generates the assets (sprites, 3D models, textures) using the 2D or 3D pipeline",
+        "It writes the mod code, sets up the project structure and compiles the mod for the target engine"
+      ],
+      "eg": "The README's Terraria example: describe a weapon, and the agent generates the sprite, writes the item code, and produces a loadable tModLoader mod."
+    },
+    {
+      "role": "result",
+      "say": "A working game mod, ready to load into your game.",
+      "outputs": [
+        {"what": "A compiled mod", "eg": "A tModLoader mod for Terraria with a custom weapon, ready to drop into your mods folder"},
+        {"what": "Generated game assets", "eg": "Sprites, 3D models or textures created through the modding pipeline"},
+        {"what": "Mod project files", "eg": "The full project structure, so you can open it in the engine's modding tools and keep editing"}
+      ]
+    }
+  ],
+  "before": [
+    "Modding a game means learning that engine's modding tools, project structure and asset format - a different setup for every game.",
+    "Creating game assets (sprites, models, textures) for a mod means learning a 3D tool or pixel editor on top of the modding tools."
+  ],
+  "after": [
+    "Describe what you want and which game - the AI agent handles the engine-specific workflow, asset creation and compilation.",
+    "12 engine playbooks in one toolkit: mod Terraria, AoE2, GTA V, Minecraft, Unity, Unreal and more with the same tool."
+  ],
+  "uses_note": "Universal Modder is 9 days old. Named real-world use outside the project's own demos is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+4.1K stars this week. 5.8K total in 9 days.",
+    "history": [
+      ["2026-09-30", 0],
+      ["2026-10-09", 5835]
+    ],
+    "history_note": "Created Sep 30, 2026.",
+    "facts": [
+      {"value": "5.8K", "label": "stars on GitHub"},
+      {"value": "125", "label": "commits"},
+      {"value": "12", "label": "engine playbooks"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "findarepo",
+      "title": "rehan-remade/universal-modder on findarepo",
+      "url": "https://findarepo.com/repo/rehan-remade/universal-modder/",
+      "meta": "Star growth looks organic"
+    },
+    {
+      "plat": "GitHub Trending",
+      "title": "rehan-remade/universal-modder on GitHub Trending",
+      "url": "https://github.com/trending",
+      "meta": "Trending"
+    }
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Read the Universal Modder README](https://github.com/rehan-remade/universal-modder) to see which game engines are supported and what the `um` command does.",
+      "Install Universal Modder in Claude Code and pick a game you own. Ask Claude Code to create a simple mod (a new item or character).",
+      "Load the generated mod into your game and test it. Check the project files to see the full structure the agent created."
+    ],
+    "paste": "/skillspector https://github.com/rehan-remade/universal-modder\n\nIf that scan passes: install Universal Modder, pick a supported game engine from the playbook list, and ask Claude Code to create a simple mod (like a new weapon for Terraria). Show me the generated files. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for install size. It is a set of skills, tools and playbooks that Claude Code uses - not a standalone application.",
+    "memory": "No data found. Runs through Claude Code, so resource use depends on the modding task and the game engine's own tools.",
+    "runs_on": "Wherever Claude Code runs (Mac, Windows, Linux). Each game engine has its own platform requirements.",
+    "source": {"title": "Universal Modder README", "url": "https://github.com/rehan-remade/universal-modder"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want to mod games but don't want to learn each engine's modding tools - describe what you want and let the AI handle the details",
+      "You play multiple moddable games and want one toolkit that covers Terraria, AoE2, GTA V, Minecraft and more"
+    ],
+    "skip_if": [
+      "You are an experienced modder who already knows your engine's tools - Universal Modder adds a layer of AI abstraction you may not need",
+      "You want to mod a game not in the 12 supported engines - you'd need to write your own playbook"
+    ],
+    "alternatives": [
+      {
+        "name": "Nexus Mods",
+        "url": "https://www.nexusmods.com/",
+        "line": "The largest mod-sharing site. Download finished mods from other creators instead of building your own."
+      },
+      {
+        "name": "Manual modding with engine tools",
+        "url": "https://tmodloader.net/",
+        "line": "Each engine's official modding toolkit (tModLoader for Terraria, Creation Kit for Skyrim). More control, but you learn each one separately."
+      }
+    ]
+  },
+  "watch": [
+    "**9 days old and early.** The playbooks and asset pipelines are new. Expect rough edges, especially on less-tested engines.",
+    "**Quality depends on the AI agent.** The mod's code and assets are generated by Claude Code. Complex mods may need manual editing.",
+    "**You need the game and its modding tools installed.** Universal Modder drives the modding workflow but doesn't replace the game's own mod loader or compiler.",
+    "**Only 125 commits so far.** The project is small. Playbook coverage and asset-pipeline quality will improve - or stall - depending on the maintainer."
+  ],
+  "sources": [
+    {"title": "Universal Modder on GitHub (README, playbooks, examples)", "url": "https://github.com/rehan-remade/universal-modder", "date": "2026-10-09"},
+    {"title": "findarepo: rehan-remade/universal-modder", "url": "https://findarepo.com/repo/rehan-remade/universal-modder/", "date": "2026-10-09"}
+  ]
+}

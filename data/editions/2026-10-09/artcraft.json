@@ -1,0 +1,141 @@
+{
+  "repo": "storytold/artcraft",
+  "name": "ArtCraft",
+  "tagline": "A creative studio that connects 62 AI models in one workspace - generate images, videos, 3D objects and music from a single app.",
+  "sentence": "Open ArtCraft, type a prompt or drag in a reference image, and pick from 62 AI models across 16 image, 25 video, 5 music and 11 3D categories to generate what you need.",
+  "fit": "you",
+  "links": {
+    "website": "https://getartcraft.com",
+    "docs": "https://github.com/storytold/artcraft"
+  },
+  "visual": {
+    "src": "https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp",
+    "width": 800,
+    "height": 674,
+    "alt": "ArtCraft's character posing interface: a 3D character model on the left with adjustable pose controls, and a generated 2D result on the right showing the posed character rendered in a stylized art style.",
+    "caption": "Character posing: set a pose on the 3D model and ArtCraft generates a styled 2D render."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to generate images, videos or 3D objects with AI, but each model lives on a different website with its own account, credits and interface.",
+      "eg": "You want to try Midjourney for an image, Sora for a video, and a 3D mesh generator - that's three accounts, three interfaces, three billing systems."
+    },
+    {
+      "role": "trigger",
+      "say": "You open ArtCraft on your computer and choose a creation type - image, video, music, 3D mesh, or a combined scene.",
+      "eg": "Click 'Image' and pick from 16 models (including Grok, FLUX, Seedream) or click 'Video' and pick from 25."
+    },
+    {
+      "role": "input",
+      "say": "A text prompt, a reference image, or a 3D scene you compose in the built-in canvas.",
+      "eg": "A text prompt like 'a medieval castle at sunset,' or drag in a photo as a style reference, or pose a 3D character and generate a styled render."
+    },
+    {
+      "role": "does",
+      "say": "It sends your prompt to the model you choose and brings the result back into the same workspace.",
+      "steps": [
+        "Pick a model from 62 options across images, video, music/sound, 3D meshes and worlds/Gaussian splats",
+        "Compose in 2D, stage in 3D, or just type a prompt - the workspace handles positioning, layering and reference images",
+        "The model generates the result and ArtCraft brings it back into the canvas for compositing or further editing"
+      ],
+      "eg": "The website shows: pose a character in 3D, send it to an image model, and get a styled 2D render - all in one window."
+    },
+    {
+      "role": "result",
+      "say": "Generated images, videos, 3D objects or music, ready to use or compose further.",
+      "outputs": [
+        {"what": "Generated images", "eg": "An AI-generated image from any of 16 models, ready to download or composite in the canvas"},
+        {"what": "Generated videos", "eg": "A video clip from one of 25 video models, including Sora, Kling and Seedance"},
+        {"what": "3D meshes and scenes", "eg": "A 3D object from Hunyuan 3D, Tripo3D or Meshy, viewable and posable in the workspace"}
+      ]
+    }
+  ],
+  "before": [
+    "Using multiple AI generation models means juggling different websites, accounts and credit systems - one for images, another for video, another for 3D.",
+    "Compositing AI-generated assets (an image, a 3D model, a video clip) means exporting from each tool and combining them in a separate editor."
+  ],
+  "after": [
+    "One app, 62 models: generate images, videos, 3D objects and music from the same workspace, and composite them without switching tools.",
+    "Compose in 2D or stage in 3D, then send to any model - the result comes back into the canvas."
+  ],
+  "uses_note": "ArtCraft is the umbrella brand for the storytold creative suite. It was created in 2022 but relaunched with the AI generation features recently. Named real-world use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+9.7K stars this week. 9.7K total. The repo is the brand hub for the ArtCraft suite.",
+    "history": [
+      ["2022-03-31", 0],
+      ["2026-10-02", 0],
+      ["2026-10-09", 9735]
+    ],
+    "history_note": "Created Mar 31, 2022, but effectively dormant until the recent launch. 21 commits on main.",
+    "facts": [
+      {"value": "9.7K", "label": "stars on GitHub"},
+      {"value": "21", "label": "commits"},
+      {"value": "62", "label": "AI models available"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "ArtCraft Apps - open-source Rust alternatives to Adobe's creative suite",
+      "url": "https://news.ycombinator.com/item?id=49958850",
+      "meta": "151 points, 217 comments"
+    },
+    {
+      "plat": "findarepo",
+      "title": "storytold/artcraft on findarepo",
+      "url": "https://findarepo.com/repo/storytold/artcraft/",
+      "meta": "Star data"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download ArtCraft](https://getartcraft.com) for Mac or Windows and install it.",
+      "Open the app, choose an [image model](https://getartcraft.com) and type a prompt to generate your first image. Try a second model to see how the results differ.",
+      "Try the character posing feature: place a 3D character, adjust the pose, and generate a styled 2D render."
+    ],
+    "paste": "/skillspector https://github.com/storytold/artcraft\n\nIf that scan passes: download ArtCraft, generate an image with one of the available models, and try posing a 3D character. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for install size. Stable releases available for Mac and Windows.",
+    "memory": "No data found. AI generation happens through external model providers, so local resource use is mainly the UI.",
+    "runs_on": "Mac and Windows (stable releases). Linux: build from source. AI features use external model APIs, which need credits from each provider.",
+    "source": {"title": "ArtCraft README and website", "url": "https://getartcraft.com"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want to try multiple AI generation models (image, video, 3D, music) from one app instead of juggling separate websites",
+      "You want to composite AI-generated assets - mix image, 3D and video outputs in the same workspace"
+    ],
+    "skip_if": [
+      "You need a specific model's advanced features - ArtCraft is a hub that connects to models, not a replacement for each model's own interface",
+      "You want free generation - the AI models use their own credit systems, so generation costs vary by model"
+    ],
+    "alternatives": [
+      {
+        "name": "ComfyUI",
+        "url": "https://www.comfy.org/",
+        "line": "A free, node-based AI image generation tool. Runs locally and supports many models, but no built-in video, 3D or music generation."
+      },
+      {
+        "name": "Midjourney",
+        "url": "https://www.midjourney.com/",
+        "line": "The popular AI image generator. Higher quality on single images, but it is a paid web service, not a local app with compositing."
+      }
+    ]
+  },
+  "watch": [
+    "**12.4K stars on only 21 commits.** ArtCraft is the brand hub for the storytold creative suite, not the main codebase. The real code is in the sibling repos (PhotoCraft, FilmCraft, etc.). The low commit count reflects its role as an umbrella, not a lack of development.",
+    "**AI generation costs money.** The 62 models use external APIs. Each provider has its own credits or subscription. ArtCraft is free, but generating with most models is not.",
+    "**Part of the storytold suite.** Same maker as PhotoCraft, LightCraft, FilmCraft and PdfCraft. Built by Brandon Thomas, a solo developer from Atlanta, using AI assistance.",
+    "**Some models are unavailable.** The 62-model catalog includes models marked as disabled or planned. Not all are available in the current release."
+  ],
+  "sources": [
+    {"title": "ArtCraft on GitHub (README, features, model catalog)", "url": "https://github.com/storytold/artcraft", "date": "2026-10-09"},
+    {"title": "ArtCraft website", "url": "https://getartcraft.com", "date": "2026-10-09"},
+    {"title": "Hacker News: ArtCraft Apps (151 points)", "url": "https://news.ycombinator.com/item?id=49958850", "date": "2026-10-06"},
+    {"title": "findarepo: storytold/artcraft", "url": "https://findarepo.com/repo/storytold/artcraft/", "date": "2026-10-09"}
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "repo": "storytold/pdfcraft",
+  "name": "PdfCraft",
+  "tagline": "A free, open-source PDF reader and organizer that works like Acrobat - view, combine, split and secure PDFs on your own machine.",
+  "sentence": "Open, search, annotate, combine and split PDFs with the same tools Acrobat has - without paying Adobe $20 a month.",
+  "fit": "you",
+  "replaces": "Adobe Acrobat Pro ($20/month)",
+  "links": {
+    "website": "https://getartcraft.com/apps/pdfcraft",
+    "docs": "https://github.com/storytold/pdfcraft"
+  },
+  "visual": {
+    "src": "assets/shots/pdfcraft.png",
+    "width": 1600,
+    "height": 1000,
+    "alt": "PdfCraft viewing a PrintCraft Showcase PDF: an All Tools sidebar listing Export, Fill and Sign, Edit, Create, Combine, Organize, Comments, Scan and OCR, Protect, Redact, Compress. A comments panel shows 20 annotations and 13 form fields.",
+    "caption": "The PDF workbench showing the tools sidebar, a document with 20 comments, and 13 fillable form fields."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need to read, combine, split or annotate PDFs regularly - but Acrobat costs $20 a month and free viewers can't organize or secure files.",
+      "eg": "You have 5 scanned contracts and need to combine them into one PDF, rearrange the pages, and add a password."
+    },
+    {
+      "role": "trigger",
+      "say": "You open PdfCraft and drop in your PDF files, or point an AI agent at it through its command interface.",
+      "eg": "Open a PDF by double-clicking it, or let Claude Code drive PdfCraft through its built-in command channel."
+    },
+    {
+      "role": "input",
+      "say": "Your PDF files - including encrypted ones (RC4 through AES-256) and complex documents with layers, forms and comments.",
+      "eg": "A 200-page report with threaded comments, a fillable tax form, or a set of PDFs to merge."
+    },
+    {
+      "role": "does",
+      "say": "It renders, organizes and manipulates PDF files locally, with crash recovery and atomic saves.",
+      "steps": [
+        "View PDFs with tiled rendering for deep zoom, bookmarks, search-as-you-type, and multiple layouts (continuous, single, two-up)",
+        "Organize pages: rotate, delete, insert, move, combine files, extract or split by page count",
+        "Fill forms, toggle layers, read and add threaded comments, and handle attachments",
+        "Save with incremental, atomic writes that keep original bytes intact - with autosave every minute"
+      ],
+      "eg": "The project's own test: 963 of 983 pdf.js test files open and render cleanly, zero crashes across the corpus."
+    },
+    {
+      "role": "result",
+      "say": "Organized, annotated or secured PDF files, saved on your own computer.",
+      "outputs": [
+        {"what": "Combined or split PDFs", "eg": "5 scanned contracts merged into one file, or a 200-page report split into chapters"},
+        {"what": "Filled forms and comments", "eg": "A tax form filled out and saved, or a contract with your threaded review comments"},
+        {"what": "Secured files", "eg": "A PDF with AES-256 encryption and owner-set permissions, ready to share"}
+      ]
+    }
+  ],
+  "before": [
+    "Combining, splitting or securing PDFs means paying Adobe $20 a month for Acrobat - or hunting for a free tool that handles each task separately.",
+    "Free PDF viewers show the pages but can't organize, combine, fill forms or add security."
+  ],
+  "after": [
+    "One free app for reading, combining, splitting, annotating and securing PDFs - with Acrobat's tool layout.",
+    "Autosave and crash recovery protect your work. Incremental saves keep the original bytes intact."
+  ],
+  "uses_note": "PdfCraft is 9 days old and in early alpha. Named real-world use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+5.4K stars in its first 9 days. Part of the ArtCraft suite.",
+    "history": [
+      ["2026-09-30", 0],
+      ["2026-10-09", 5418]
+    ],
+    "history_note": "Created Sep 30, 2026.",
+    "facts": [
+      {"value": "5.4K", "label": "stars on GitHub"},
+      {"value": "549", "label": "commits"},
+      {"value": "963/983", "label": "pdf.js test files render cleanly"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "ArtCraft Apps - open-source Rust alternatives to Adobe's creative suite",
+      "url": "https://news.ycombinator.com/item?id=49958850",
+      "meta": "151 points, 217 comments"
+    },
+    {
+      "plat": "findarepo",
+      "title": "storytold/pdfcraft on findarepo",
+      "url": "https://findarepo.com/repo/storytold/pdfcraft/",
+      "meta": "Star growth looks organic"
+    }
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download PdfCraft](https://github.com/storytold/pdfcraft/releases) for your computer (Mac, Windows or Linux) and install it.",
+      "Open a PDF and try the [tools](https://github.com/storytold/pdfcraft#organize): search, rearrange pages, and combine two PDFs into one using Organize > Combine.",
+      "Try filling a form if you have a fillable PDF, and check that the comments panel shows threaded annotations."
+    ],
+    "paste": "/skillspector https://github.com/storytold/pdfcraft\n\nIf that scan passes: download and install PdfCraft, open a sample PDF, try the page organizer and combine two files. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for installer size. Builds from source with `cargo run --release -p pdfcraft` (requires Rust 1.90+).",
+    "memory": "No data found. Uses tiled rendering for efficient memory use on large documents.",
+    "runs_on": "Mac (universal), Windows (x64, arm64, x86), Linux (x86_64, aarch64, needs glibc 2.35+), FreeBSD and the web (via WebAssembly).",
+    "source": {"title": "PdfCraft README: installation and requirements", "url": "https://github.com/storytold/pdfcraft"}
+  },
+  "verdict": {
+    "best_for": [
+      "You need one free app that reads, combines, splits, annotates and secures PDFs - instead of paying Adobe $20 a month",
+      "You handle encrypted or complex PDFs (forms, layers, threaded comments) and want a viewer that renders them correctly"
+    ],
+    "skip_if": [
+      "You need to edit PDF text or create PDFs from scratch - PdfCraft is a viewer and organizer, not a full Acrobat editor. Content editing is not built yet.",
+      "You need OCR, Office import/export or XFA forms - those features are listed as thin or missing"
+    ],
+    "alternatives": [
+      {
+        "name": "SumatraPDF",
+        "url": "https://www.sumatrapdfreader.org/",
+        "line": "A fast, lightweight free PDF viewer on Windows. Very stable but no page organization, form filling or annotation."
+      },
+      {
+        "name": "Okular",
+        "url": "https://okular.kde.org/",
+        "line": "KDE's free document viewer. Annotations and form filling, but no page organization or file combining."
+      }
+    ]
+  },
+  "watch": [
+    "**About half of Acrobat Pro's features.** PdfCraft views, organizes and secures, but cannot edit existing text, create new PDFs from scratch, or run OCR. It is a workbench, not a full editor.",
+    "**Part of the ArtCraft suite by storytold.** Same maker as PhotoCraft, LightCraft, FilmCraft and ArtCraft. Early alpha, built by one developer with AI.",
+    "**Rendering uses an external crate.** Pages are currently rendered by the hayro crate while the project builds its own renderer. Quality may vary on complex layouts.",
+    "**Linux needs glibc 2.35 or newer.** That means Ubuntu 22.04+, Debian 12+ or equivalent. Older distributions are unsupported."
+  ],
+  "sources": [
+    {"title": "PdfCraft on GitHub (README, features, requirements)", "url": "https://github.com/storytold/pdfcraft", "date": "2026-10-09"},
+    {"title": "PdfCraft website", "url": "https://getartcraft.com/apps/pdfcraft", "date": "2026-10-09"},
+    {"title": "Hacker News: ArtCraft Apps (151 points)", "url": "https://news.ycombinator.com/item?id=49958850", "date": "2026-10-06"},
+    {"title": "findarepo: storytold/pdfcraft", "url": "https://findarepo.com/repo/storytold/pdfcraft/", "date": "2026-10-09"}
+  ]
+}

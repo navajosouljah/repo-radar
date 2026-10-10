@@ -1,5 +1,5 @@
 {
-  "categories_note": "The top 3 in each lane, checked for safety on Oct 2. Design counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. Ranked by measured growth, adoption and total stars.",
+  "categories_note": "The top 3 in each lane, checked for safety on Oct 9. Design counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. Ranked by measured growth, adoption and total stars.",
   "categories": [
     {
       "name": "Development & Coding Agents",
@@ -25,7 +25,7 @@
         }
       ],
       "id": "development-coding-agents",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "AI Updates",
@@ -50,7 +50,7 @@
         }
       ],
       "id": "ai-updates",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Automation & Agent Orchestration",
@@ -75,7 +75,7 @@
         }
       ],
       "id": "automation-agent-orchestration",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Research & Knowledge",
@@ -102,7 +102,7 @@
         }
       ],
       "id": "research-knowledge",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Web Scraping & Data Extraction",
@@ -121,7 +121,7 @@
         }
       ],
       "id": "web-scraping-data-extraction",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Website Builders",
@@ -140,7 +140,7 @@
         }
       ],
       "id": "website-builders",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Design & Branding",
@@ -156,8 +156,8 @@
         {
           "repo": "Leonxlnx/taste-skill",
           "name": "taste-skill",
-          "stars": 90450,
-          "perday": 270,
+          "stars": 93998,
+          "perday": 305,
           "url": "https://tasteskill.dev",
           "oneliner": "Gives your AI good taste: stops it from producing boring, generic designs."
         },
@@ -171,7 +171,7 @@
         }
       ],
       "id": "design-branding",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Build & DevOps",
@@ -184,13 +184,13 @@
         }
       ],
       "id": "build-devops",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Sales & CRM",
       "picks": [],
       "id": "sales-crm",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Finance",
@@ -215,7 +215,7 @@
         }
       ],
       "id": "finance",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     },
     {
       "name": "Security & Privacy",
@@ -233,17 +233,19 @@
           "oneliner": "AI pentester for web applications - analyzes source, identifies vectors, executes real exploits."
         },
         {
-          "repo": "projectdiscovery/nuclei",
-          "name": "nuclei",
-          "stars": 31500,
-          "oneliner": "Template-driven vulnerability scanner - the backbone of open appsec."
+          "repo": "morluto/rea",
+          "name": "REA",
+          "stars": 34965,
+          "perday": 4986,
+          "url": "https://rea.tools",
+          "oneliner": "AI reverse-engineering assistant - disassembles binaries, APKs, Electron apps and firmware, and explains what it finds."
         }
       ],
       "id": "security-privacy",
-      "checked": "2026-10-02"
+      "checked": "2026-10-09"
     }
   ],
-  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Oct 2), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
+  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Oct 9), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
   "claude_board": [
     {
       "repo": "mattpocock/skills",

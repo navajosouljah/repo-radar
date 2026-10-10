@@ -1,0 +1,149 @@
+{
+  "repo": "storytold/filmcraft",
+  "name": "FilmCraft",
+  "tagline": "A free, open-source video editor that works like Premiere Pro - timeline editing, color grading and export, on your own machine.",
+  "sentence": "Cut clips on a multi-track timeline, grade the color with scopes and curves, and export a finished video - without paying Adobe $23 a month for Premiere.",
+  "fit": "you",
+  "replaces": "Adobe Premiere Pro ($23/month Creative Cloud subscription)",
+  "links": {
+    "website": "https://getartcraft.com/apps/filmcraft",
+    "docs": "https://github.com/storytold/filmcraft"
+  },
+  "visual": {
+    "src": "assets/shots/filmcraft.png",
+    "width": 2400,
+    "height": 1285,
+    "alt": "FilmCraft editing Apollo 11 launch footage: a multi-track timeline with titles, b-roll, picture and audio tracks, a Lumetri Color panel with color wheels, and the launch at Complex 39A in the preview.",
+    "caption": "The editor with Apollo 11 footage, showing the timeline, Lumetri-style color grading and the preview monitor."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need to cut a video - trim clips, add transitions, grade the color, export an MP4 - but Premiere costs $23 a month and the free alternatives feel limited.",
+      "eg": "You have 20 minutes of footage and need a polished 3-minute video with titles, transitions and color correction."
+    },
+    {
+      "role": "trigger",
+      "say": "You open FilmCraft and import your footage, or point an AI agent at it through its command interface.",
+      "eg": "Import your video files and start cutting - the timeline uses the same three-point editing and trim tools Premiere users know."
+    },
+    {
+      "role": "input",
+      "say": "Your video and audio files: H.264, HEVC, ProRes, VP9, AV1, DNxHD and more - decoded by FilmCraft's own codecs, not a third-party library.",
+      "eg": "Drop in MP4 files from your phone, ProRes files from a camera, or MXF files from a broadcast workflow."
+    },
+    {
+      "role": "does",
+      "say": "It gives you a full editing workspace with a multi-track timeline, color grading, effects and titling.",
+      "steps": [
+        "Cut and arrange clips on a multi-track timeline with three-point editing, ripple/roll/slip/slide trims, and J/K/L playback",
+        "Grade the color with a Lumetri-style panel: color wheels, curves, HSL secondaries and scopes",
+        "Add from about 55 video effects and 30 transitions, with keyframes and Bezier interpolation",
+        "Export as H.264 MP4, ProRes, MXF or image sequences - with broadcast-standard loudness metering"
+      ],
+      "eg": "The README demo: import footage, add a title track, grade with color wheels, and export an H.264 MP4."
+    },
+    {
+      "role": "result",
+      "say": "A finished video file, exported on your own computer.",
+      "outputs": [
+        {"what": "Exported video", "eg": "An H.264 MP4 ready to upload, or a ProRes file for further editing"},
+        {"what": "Subtitle files", "eg": "SRT, WebVTT or broadcast caption formats (SCC, CEA-608/708), exported alongside the video"},
+        {"what": "Project interchange", "eg": "Export as Final Cut Pro XML, OpenTimelineIO, EDL or AAF to move between editors"}
+      ]
+    }
+  ],
+  "before": [
+    "Cutting a video with color grading and proper export means paying Adobe $23 a month - or using a free editor with fewer codec and format options.",
+    "Moving a project between editors means hoping the interchange format works. Many free editors don't support broadcast formats."
+  ],
+  "after": [
+    "A full timeline editor with Premiere-style color grading, on your machine, for free - including its own H.264, HEVC and ProRes codecs.",
+    "Export your project as Final Cut Pro XML, OpenTimelineIO or EDL and move it to another editor if you outgrow this one."
+  ],
+  "uses_note": "FilmCraft is 9 days old and about 50-60% ready for real work by its own estimate. Named use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+6.2K stars in its first 9 days. Part of the ArtCraft suite.",
+    "history": [
+      ["2026-09-30", 0],
+      ["2026-10-09", 6165]
+    ],
+    "history_note": "Created Sep 30, 2026.",
+    "facts": [
+      {"value": "6.2K", "label": "stars on GitHub"},
+      {"value": "842", "label": "commits"},
+      {"value": "55", "label": "video effects"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "ArtCraft Apps - open-source Rust alternatives to Adobe's creative suite",
+      "url": "https://news.ycombinator.com/item?id=49958850",
+      "meta": "151 points, 217 comments"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Open-Source Rust Alternatives to Adobe Apps",
+      "url": "https://news.ycombinator.com/item?id=50004284",
+      "meta": "32 points, 30 comments"
+    },
+    {
+      "plat": "findarepo",
+      "title": "storytold/filmcraft on findarepo",
+      "url": "https://findarepo.com/repo/storytold/filmcraft/",
+      "meta": "Star growth looks organic"
+    }
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download FilmCraft](https://github.com/storytold/filmcraft/releases) for your computer (Mac, Windows or Linux) and install it.",
+      "Import a video file and try the basics: cut it on the [timeline](https://github.com/storytold/filmcraft#editing) with ripple edit, add a title, and open the color panel to try the color wheels.",
+      "Export an H.264 MP4 and check the result. Try the loudness meter to see broadcast-standard audio levels."
+    ],
+    "paste": "/skillspector https://github.com/storytold/filmcraft\n\nIf that scan passes: download and install FilmCraft, import a sample video, make a simple cut with a title, and export an MP4. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for installer size. Builds from source with `cargo run --release -p filmcraft` (requires Rust 1.95+).",
+    "memory": "No data found. Uses a GPU compositor (wgpu) with optional hardware acceleration (VideoToolbox on Mac, Media Foundation on Windows, VA-API or NVENC on Linux).",
+    "runs_on": "Mac (universal), Windows (x64, arm64, x86), Linux (x86_64, aarch64), FreeBSD and the web (via WebAssembly).",
+    "source": {"title": "FilmCraft README: installation and requirements", "url": "https://github.com/storytold/filmcraft"}
+  },
+  "verdict": {
+    "best_for": [
+      "You know Premiere's timeline workflow and want a free alternative that speaks the same language - same trims, same shortcuts, same color panel",
+      "You need broadcast-standard features (loudness metering, drop-frame timecode, caption formats) in a free editor"
+    ],
+    "skip_if": [
+      "You need a stable editor for paid work today - FilmCraft estimates itself at 50-60% readiness and its testing on Windows and Linux is limited",
+      "You rely on Premiere plugins (VST3, AU, OpenFX) - FilmCraft has no plugin hosting yet"
+    ],
+    "alternatives": [
+      {
+        "name": "DaVinci Resolve",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve",
+        "line": "The industry-standard free editor with professional color grading. Far more mature, but proprietary and a much larger install."
+      },
+      {
+        "name": "Kdenlive",
+        "url": "https://kdenlive.org/",
+        "line": "A mature free video editor on Linux, Windows and Mac. Stable and well-tested, with a different interface."
+      }
+    ]
+  },
+  "watch": [
+    "**About 50-60% ready for real work.** The project's own estimate. Speed on large footage, plugin hosting and broad camera-file support are the main gaps.",
+    "**Part of the ArtCraft suite by storytold.** Same maker as PhotoCraft, LightCraft, PdfCraft and ArtCraft. Early alpha, built by one developer with AI.",
+    "**No FFmpeg inside, for better or worse.** FilmCraft implements its own H.264, HEVC, ProRes, VP9 and AV1 codecs. That removes a dependency but means codec support is narrower and less battle-tested than FFmpeg's.",
+    "**Windows and Linux get less testing.** The README notes that macOS receives the most testing. Expect more rough edges on other platforms."
+  ],
+  "sources": [
+    {"title": "FilmCraft on GitHub (README, features, requirements)", "url": "https://github.com/storytold/filmcraft", "date": "2026-10-09"},
+    {"title": "FilmCraft website", "url": "https://getartcraft.com/apps/filmcraft", "date": "2026-10-09"},
+    {"title": "Hacker News: ArtCraft Apps (151 points)", "url": "https://news.ycombinator.com/item?id=49958850", "date": "2026-10-06"},
+    {"title": "findarepo: storytold/filmcraft", "url": "https://findarepo.com/repo/storytold/filmcraft/", "date": "2026-10-09"}
+  ]
+}

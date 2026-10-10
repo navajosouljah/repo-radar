@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REA: A reverse-engineering assistant that takes apart programs for you - binaries, apps, websites, firmware - and explains what it finds. | Repo Radar</title>
+<meta name="description" content="Point REA at a compiled program, an Android app, an Electron app or a piece of firmware, and it disassembles, decompiles and explains the code - so you can understand how it works.">
+<meta property="og:title" content="REA: A reverse-engineering assistant that takes apart programs for you - binaries, apps, websites, firmware - and explains what it finds. | Repo Radar">
+<meta property="og:description" content="Point REA at a compiled program, an Android app, an Electron app or a piece of firmware, and it disassembles, decompiles and explains the code - so you can understand how it works.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/rea.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 011 &middot; Week of October 9, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#6 this week</span><span class="repo-id">morluto/rea</span></div>
+    <h1 id="name">REA</h1>
+    <p class="tagline">A reverse-engineering assistant that takes apart programs for you - binaries, apps, websites, firmware - and explains what it finds.</p>
+    <p class="sentence">Point REA at a compiled program, an Android app, an Electron app or a piece of firmware, and it disassembles, decompiles and explains the code - so you can understand how it works.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://rea.tools" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/morluto/rea" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/rea.png" alt="The Hopper disassembler analyzing a Mach-O aarch64 binary called true.hop, with REA running a Python bootstrap script in a terminal alongside it." width="1662" height="946" loading="eager">
+    <figcaption>REA analyzing a binary in Hopper: the disassembly view with the AI assistant running alongside.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">55.7K</span><span class="v-note">GitHub stars, <b>+34.9K stars this week. 35K total, nearly all gained in one week at 178 days old.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 10: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You need to understand how a compiled program works - a native binary, an app, a website's code - but reverse engineering by hand takes days of reading assembly.</p><p class="eg">You have a compiled game from the 1990s and want to understand its level format, or an Android app whose network calls you need to audit.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You point REA at a file or a program and ask it to analyze.</p><p class="eg"><code>rea analyze game.exe</code> or <code>rea analyze app.apk</code> - REA identifies the format and starts disassembling.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A compiled file: a native binary (ELF, Mach-O, PE), an Android APK, an Electron app, a .NET assembly, EVM bytecode, or firmware.</p><p class="eg">A Mach-O aarch64 binary, a JavaScript bundle from an Electron app, or smart contract bytecode.</p></div><div class="note does"><span class="role">It does</span><p class="say">It combines traditional reverse-engineering tools with AI to disassemble, decompile and explain the code.</p><ol class="steps-in"><li>Identifies the file format and architecture, then disassembles or decompiles the code</li><li>Uses AI agents to analyze control flow, name functions and explain what each section does</li><li>Builds a navigable model of the program: functions, data structures, cross-references and call graphs</li></ol><p class="eg">The README showcase: REA analyzes DX-Ball (a 1990s game) to find its level data format, and Notion's Electron app to map its internal architecture.</p></div><div class="note result"><span class="role">You get</span><p class="say">A human-readable analysis of how the program works, with named functions and explained logic.</p><ul class="outputs"><li><b>Annotated disassembly</b><span>Assembly code with AI-generated function names and comments explaining what each section does</span></li><li><b>Decompiled source</b><span>Readable pseudo-code reconstructed from the binary, with data structures identified</span></li><li><b>Architecture map</b><span>An overview of the program's modules, their relationships and the key functions in each</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Reverse engineering a binary means days of reading raw assembly in Ghidra or IDA, manually naming functions and tracing data flow.</li><li>Each file format (ELF, APK, Electron, firmware) needs its own tools and workflow.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Point REA at the file and get named functions, explained logic and architecture maps - the AI does the tedious analysis.</li><li>One tool handles native binaries, Android apps, Electron apps, .NET, EVM bytecode and firmware.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://github.com/morluto/rea" rel="noopener">Read the REA README</a> to understand the supported file formats and installation requirements.</li><li><a href="https://github.com/morluto/rea/releases" rel="noopener">Download REA</a> or build from source and install it.</li><li>Point it at a simple binary you have: <code>rea analyze /usr/bin/true</code> or any small compiled program. Review the output to see the annotated disassembly.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>No data found for install size.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. AI analysis of large binaries will use significant memory depending on the model and binary size.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows, Linux. Requires Python for the bootstrap script. Targets native binaries (ELF, Mach-O, PE), APKs, Electron apps, .NET, EVM and firmware.</dd></div>
+  </dl><a class="src" href="https://github.com/morluto/rea" rel="noopener">Source: REA README: installation</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-rea">/skillspector https://github.com/morluto/rea
+
+If that scan passes: install REA, analyze a simple binary from the system (like /usr/bin/true), and show me the annotated output. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-rea">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You need to understand how a compiled program works and want AI to handle the tedious parts - naming functions, explaining logic, mapping architecture</li><li>You work with multiple file formats (native binaries, APKs, Electron apps, firmware) and want one tool for all of them</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You are not a developer or security researcher - reverse engineering is a technical discipline even with AI assistance</li><li>You need a proven, audited tool for production security work - REA's star growth is explosive but its track record is short</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://ghidra-sre.org/" rel="noopener"><b>Ghidra</b></a><span>The NSA's free reverse-engineering tool. Far more mature and proven, but no AI assistance and a steep learning curve.</span></li><li><a href="https://binary.ninja/" rel="noopener"><b>Binary Ninja</b></a><span>A commercial reverse-engineering platform with a modern interface. Paid ($299+ personal), but well-supported and widely used.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/morluto/rea/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 10</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>55.7K stars, 50 contributors, 2K commits. findarepo: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Explosive star growth needs context.</b> REA went from ~60 to 35K stars in one week at 178 days old. findarepo says the growth looks organic, but the pattern is unusual - it may reflect a viral moment rather than broad adoption.</li><li><b>MIT license, 1,963 commits, active development.</b> The codebase is substantial and actively maintained, which is a good sign despite the sudden attention.</li><li><b>Reverse engineering is a specialized skill.</b> Even with AI assistance, understanding the output requires technical knowledge. This is rated 'developers' for a reason.</li><li><b>Legal context matters.</b> Reverse engineering is legal for interoperability, security research and fair use in most jurisdictions, but check your local laws and the software's license before analyzing proprietary code.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">REA is 178 days old but gained almost all of its 35K stars in one week. Named real-world use is still early.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/morluto/rea/" rel="noopener">morluto/rea on findarepo</a><span class="meta">Star growth looks organic</span></li><li class=""><span class="plat">GitHub Trending</span><a href="https://github.com/trending" rel="noopener">morluto/rea on GitHub Trending</a><span class="meta">Trending across multiple time ranges</span></li><li class=""><span class="plat">rea.tools</span><a href="https://rea.tools" rel="noopener">REA project website</a><span class="meta">Official project site with documentation</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/morluto/rea" rel="noopener">REA on GitHub (README, features, showcases)</a>, Oct 9</li><li><a href="https://rea.tools" rel="noopener">REA project website</a>, Oct 9</li><li><a href="https://findarepo.com/repo/morluto/rea/" rel="noopener">findarepo: morluto/rea</a>, Oct 9</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 011 &middot; October 9, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

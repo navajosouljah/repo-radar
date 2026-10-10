@@ -1,0 +1,147 @@
+{
+  "repo": "morluto/rea",
+  "name": "REA",
+  "tagline": "A reverse-engineering assistant that takes apart programs for you - binaries, apps, websites, firmware - and explains what it finds.",
+  "sentence": "Point REA at a compiled program, an Android app, an Electron app or a piece of firmware, and it disassembles, decompiles and explains the code - so you can understand how it works.",
+  "fit": "developers",
+  "links": {
+    "website": "https://rea.tools",
+    "docs": "https://github.com/morluto/rea"
+  },
+  "visual": {
+    "src": "assets/shots/rea.png",
+    "width": 1662,
+    "height": 946,
+    "alt": "The Hopper disassembler analyzing a Mach-O aarch64 binary called true.hop, with REA running a Python bootstrap script in a terminal alongside it.",
+    "caption": "REA analyzing a binary in Hopper: the disassembly view with the AI assistant running alongside."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need to understand how a compiled program works - a native binary, an app, a website's code - but reverse engineering by hand takes days of reading assembly.",
+      "eg": "You have a compiled game from the 1990s and want to understand its level format, or an Android app whose network calls you need to audit."
+    },
+    {
+      "role": "trigger",
+      "say": "You point REA at a file or a program and ask it to analyze.",
+      "eg": "`rea analyze game.exe` or `rea analyze app.apk` - REA identifies the format and starts disassembling."
+    },
+    {
+      "role": "input",
+      "say": "A compiled file: a native binary (ELF, Mach-O, PE), an Android APK, an Electron app, a .NET assembly, EVM bytecode, or firmware.",
+      "eg": "A Mach-O aarch64 binary, a JavaScript bundle from an Electron app, or smart contract bytecode."
+    },
+    {
+      "role": "does",
+      "say": "It combines traditional reverse-engineering tools with AI to disassemble, decompile and explain the code.",
+      "steps": [
+        "Identifies the file format and architecture, then disassembles or decompiles the code",
+        "Uses AI agents to analyze control flow, name functions and explain what each section does",
+        "Builds a navigable model of the program: functions, data structures, cross-references and call graphs"
+      ],
+      "eg": "The README showcase: REA analyzes DX-Ball (a 1990s game) to find its level data format, and Notion's Electron app to map its internal architecture."
+    },
+    {
+      "role": "result",
+      "say": "A human-readable analysis of how the program works, with named functions and explained logic.",
+      "outputs": [
+        {"what": "Annotated disassembly", "eg": "Assembly code with AI-generated function names and comments explaining what each section does"},
+        {"what": "Decompiled source", "eg": "Readable pseudo-code reconstructed from the binary, with data structures identified"},
+        {"what": "Architecture map", "eg": "An overview of the program's modules, their relationships and the key functions in each"}
+      ]
+    }
+  ],
+  "before": [
+    "Reverse engineering a binary means days of reading raw assembly in Ghidra or IDA, manually naming functions and tracing data flow.",
+    "Each file format (ELF, APK, Electron, firmware) needs its own tools and workflow."
+  ],
+  "after": [
+    "Point REA at the file and get named functions, explained logic and architecture maps - the AI does the tedious analysis.",
+    "One tool handles native binaries, Android apps, Electron apps, .NET, EVM bytecode and firmware."
+  ],
+  "uses_note": "REA is 178 days old but gained almost all of its 35K stars in one week. Named real-world use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+34.9K stars this week. 35K total, nearly all gained in one week at 178 days old.",
+    "history": [
+      ["2026-04-14", 0],
+      ["2026-10-02", 60],
+      ["2026-10-09", 34965]
+    ],
+    "history_note": "Created Apr 14, 2026. Explosive growth: from ~60 to 35K stars in one week.",
+    "facts": [
+      {"value": "35K", "label": "stars on GitHub"},
+      {"value": "1,963", "label": "commits"},
+      {"value": "55.7K", "label": "stars as of Oct 10 (still growing fast)"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "findarepo",
+      "title": "morluto/rea on findarepo",
+      "url": "https://findarepo.com/repo/morluto/rea/",
+      "meta": "Star growth looks organic"
+    },
+    {
+      "plat": "GitHub Trending",
+      "title": "morluto/rea on GitHub Trending",
+      "url": "https://github.com/trending",
+      "meta": "Trending across multiple time ranges"
+    },
+    {
+      "plat": "rea.tools",
+      "title": "REA project website",
+      "url": "https://rea.tools",
+      "meta": "Official project site with documentation"
+    }
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "[Read the REA README](https://github.com/morluto/rea) to understand the supported file formats and installation requirements.",
+      "[Download REA](https://github.com/morluto/rea/releases) or build from source and install it.",
+      "Point it at a simple binary you have: `rea analyze /usr/bin/true` or any small compiled program. Review the output to see the annotated disassembly."
+    ],
+    "paste": "/skillspector https://github.com/morluto/rea\n\nIf that scan passes: install REA, analyze a simple binary from the system (like /usr/bin/true), and show me the annotated output. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for install size.",
+    "memory": "No data found. AI analysis of large binaries will use significant memory depending on the model and binary size.",
+    "runs_on": "Mac, Windows, Linux. Requires Python for the bootstrap script. Targets native binaries (ELF, Mach-O, PE), APKs, Electron apps, .NET, EVM and firmware.",
+    "source": {"title": "REA README: installation", "url": "https://github.com/morluto/rea"}
+  },
+  "verdict": {
+    "best_for": [
+      "You need to understand how a compiled program works and want AI to handle the tedious parts - naming functions, explaining logic, mapping architecture",
+      "You work with multiple file formats (native binaries, APKs, Electron apps, firmware) and want one tool for all of them"
+    ],
+    "skip_if": [
+      "You are not a developer or security researcher - reverse engineering is a technical discipline even with AI assistance",
+      "You need a proven, audited tool for production security work - REA's star growth is explosive but its track record is short"
+    ],
+    "alternatives": [
+      {
+        "name": "Ghidra",
+        "url": "https://ghidra-sre.org/",
+        "line": "The NSA's free reverse-engineering tool. Far more mature and proven, but no AI assistance and a steep learning curve."
+      },
+      {
+        "name": "Binary Ninja",
+        "url": "https://binary.ninja/",
+        "line": "A commercial reverse-engineering platform with a modern interface. Paid ($299+ personal), but well-supported and widely used."
+      }
+    ]
+  },
+  "watch": [
+    "**Explosive star growth needs context.** REA went from ~60 to 35K stars in one week at 178 days old. findarepo says the growth looks organic, but the pattern is unusual - it may reflect a viral moment rather than broad adoption.",
+    "**MIT license, 1,963 commits, active development.** The codebase is substantial and actively maintained, which is a good sign despite the sudden attention.",
+    "**Reverse engineering is a specialized skill.** Even with AI assistance, understanding the output requires technical knowledge. This is rated 'developers' for a reason.",
+    "**Legal context matters.** Reverse engineering is legal for interoperability, security research and fair use in most jurisdictions, but check your local laws and the software's license before analyzing proprietary code."
+  ],
+  "sources": [
+    {"title": "REA on GitHub (README, features, showcases)", "url": "https://github.com/morluto/rea", "date": "2026-10-09"},
+    {"title": "REA project website", "url": "https://rea.tools", "date": "2026-10-09"},
+    {"title": "findarepo: morluto/rea", "url": "https://findarepo.com/repo/morluto/rea/", "date": "2026-10-09"}
+  ]
+}

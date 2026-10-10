@@ -1,0 +1,148 @@
+{
+  "repo": "Leonxlnx/taste-skill",
+  "name": "taste-skill",
+  "tagline": "A design skill that gives your AI coding agent good taste - it stops building generic, boring-looking interfaces.",
+  "sentence": "Install taste-skill and the websites, apps and dashboards your AI agent builds look designed - with real visual hierarchy, spacing and motion, not the usual flat gray default.",
+  "fit": "you",
+  "links": {
+    "website": "https://tasteskill.dev",
+    "docs": "https://github.com/Leonxlnx/taste-skill"
+  },
+  "visual": {
+    "src": "assets/shots/taste-skill.webp",
+    "width": 1906,
+    "height": 3724,
+    "alt": "A botanical website called Floria with the heading 'Botanic Architecture': product cards at $95-$185 with plant images, process steps (Soil Mapping, Growth Protocol, Root Cultivation, Bloom Optimization), and an archives section - all with polished typography and warm earth tones.",
+    "caption": "A website built by an AI agent with taste-skill installed: real layout, hierarchy and typography instead of generic defaults."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding agent builds working interfaces, but they all look the same - flat, gray, generic. They work, but nobody would call them well-designed.",
+      "eg": "You ask Claude Code to build a landing page and get a technically correct page with default fonts, no visual hierarchy and the same layout every AI produces."
+    },
+    {
+      "role": "trigger",
+      "say": "You install taste-skill and it guides your AI agent's design decisions automatically.",
+      "eg": "Install the skill once, and every UI your agent builds benefits from design guidance - no extra prompting needed."
+    },
+    {
+      "role": "input",
+      "say": "Your usual request to the AI agent - build a page, design a dashboard, create a form - but now with design guidance applied.",
+      "eg": "The same prompt you always use: 'Build a landing page for a coffee shop.' The skill adds design taste to the output."
+    },
+    {
+      "role": "does",
+      "say": "It loads design principles into the agent's context, guiding choices about layout, typography, color, spacing and motion.",
+      "steps": [
+        "The skill loads with adjustable dials: DESIGN_VARIANCE (how bold), MOTION_INTENSITY (how much animation), VISUAL_DENSITY (how packed)",
+        "It guides the agent's choices: typography pairings, color palettes, spacing scales, visual hierarchy and layout structure",
+        "The agent applies these principles to whatever it builds - pages, dashboards, forms, components"
+      ],
+      "eg": "The README's Floria example: instead of a generic plant shop page, the agent builds a page with 'Botanic Architecture' branding, warm earth tones, product cards at real prices, and a polished process section."
+    },
+    {
+      "role": "result",
+      "say": "UIs that look designed, not generated - with real visual hierarchy, spacing and polish.",
+      "outputs": [
+        {"what": "Designed interfaces", "eg": "A landing page with thoughtful typography, color and layout - not the flat gray default"},
+        {"what": "Tunable output", "eg": "Dial DESIGN_VARIANCE up for bold, creative layouts or down for conservative, corporate ones"}
+      ]
+    }
+  ],
+  "before": [
+    "Every AI-built interface looks the same: default fonts, flat gray palette, no visual hierarchy. They work, but they look like AI made them.",
+    "Getting better design from an AI agent means writing long, detailed design prompts every time."
+  ],
+  "after": [
+    "Install once and every UI the agent builds gets design guidance - real typography, color, spacing and hierarchy.",
+    "Tune the output with three dials: how bold, how animated, how dense. No design prompts needed."
+  ],
+  "uses_note": "taste-skill has 94K stars and is on the skills.sh trending list. Individual named uses are hard to find - adoption shows in the AI-built sites and apps that look noticeably better.",
+  "uses": [],
+  "pulse": {
+    "gain": "+2.1K stars this week. 94K total over 8 months.",
+    "history": [
+      ["2026-02-19", 0],
+      ["2026-09-09", 91864],
+      ["2026-10-09", 93998]
+    ],
+    "history_note": "Created Feb 19, 2026. Steady growth over 8 months.",
+    "facts": [
+      {"value": "94K", "label": "stars on GitHub"},
+      {"value": "175", "label": "commits"},
+      {"value": "3", "label": "tunable dials"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "skills.sh",
+      "title": "Leonxlnx/taste-skill on skills.sh",
+      "url": "https://skills.sh/Leonxlnx/taste-skill",
+      "meta": "Trending, 4.5M+ installs"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Leonxlnx/taste-skill on findarepo",
+      "url": "https://findarepo.com/repo/Leonxlnx/taste-skill/",
+      "meta": "Star growth data"
+    },
+    {
+      "plat": "tasteskill.dev",
+      "title": "taste-skill website with examples",
+      "url": "https://tasteskill.dev",
+      "meta": "Official site with before/after demos"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install taste-skill in your AI coding agent (Claude Code, Codex, Cursor or others): follow the instructions at [tasteskill.dev](https://tasteskill.dev).",
+      "Ask your agent to build a landing page for a fictional business (like 'a specialty coffee roaster called Evergreen'). Look at the typography, colors and layout.",
+      "Try adjusting the DESIGN_VARIANCE dial (in the skill's settings) from low to high and rebuild the same page to see the difference."
+    ],
+    "paste": "/skillspector https://github.com/Leonxlnx/taste-skill\n\nIf that scan passes: install taste-skill, build a landing page for a fictional coffee roaster, then adjust DESIGN_VARIANCE from low to high and rebuild to see the difference. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for exact install size. It is a skill (a set of design guidelines loaded into the agent's context), not a standalone application.",
+    "memory": "No data found. Runs as a skill inside your AI coding agent.",
+    "runs_on": "Works with Claude Code, Codex, Cursor and other AI coding agents. No specific hardware requirements.",
+    "source": {"title": "taste-skill README", "url": "https://github.com/Leonxlnx/taste-skill"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use an AI coding agent to build UIs and want them to look designed, not generated - with real typography, color and hierarchy",
+      "You are not a designer and want one-click design improvement without learning design principles yourself"
+    ],
+    "skip_if": [
+      "You are a professional designer who sets your own design system - a generic taste skill may conflict with your brand guidelines",
+      "You only build backend code or APIs - taste-skill helps with visual interfaces, not server logic"
+    ],
+    "alternatives": [
+      {
+        "name": "impeccable",
+        "repo": "pbakaus/impeccable",
+        "url": "https://impeccable.style",
+        "line": "Another design skill for AI agents. Different design philosophy - impeccable focuses on 'design sense' while taste-skill focuses on 'good taste.'"
+      },
+      {
+        "name": "ui-ux-pro-max",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+        "url": "https://www.uupm.cc/",
+        "line": "A design playbook for AI agents focused on professional web and mobile screens. More structured and rule-based than taste-skill."
+      }
+    ]
+  },
+  "watch": [
+    "**By Leon Lin, a solo developer.** 175 commits, MIT license. The skill is small and focused, but maintenance depends on one person.",
+    "**Works with multiple agents, not just Claude Code.** taste-skill supports Codex, Cursor and other AI coding agents. Your mileage may vary by agent.",
+    "**Design is subjective.** The 'taste' this skill teaches is one person's design philosophy. It improves generic output significantly, but may not match your brand or aesthetic.",
+    "**Already on the Category Radar.** taste-skill has been in our Design and Branding lane since October 2. It earned this feature through sustained growth, not a spike."
+  ],
+  "sources": [
+    {"title": "taste-skill on GitHub (README, examples, settings)", "url": "https://github.com/Leonxlnx/taste-skill", "date": "2026-10-09"},
+    {"title": "taste-skill website", "url": "https://tasteskill.dev", "date": "2026-10-09"},
+    {"title": "skills.sh: Leonxlnx/taste-skill installs", "url": "https://skills.sh/Leonxlnx/taste-skill", "date": "2026-10-09"},
+    {"title": "findarepo: Leonxlnx/taste-skill", "url": "https://findarepo.com/repo/Leonxlnx/taste-skill/", "date": "2026-10-09"}
+  ]
+}

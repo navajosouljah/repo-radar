@@ -1,0 +1,138 @@
+{
+  "repo": "thedotmack/claude-mem",
+  "name": "claude-mem",
+  "tagline": "Persistent memory for your AI agent - it remembers what you worked on, what you decided, and what you like, across sessions.",
+  "sentence": "Install claude-mem and your AI coding agent remembers your preferences, past decisions and project context between sessions - like giving it a notebook that carries over.",
+  "fit": "you",
+  "links": {
+    "website": "https://github.com/thedotmack/claude-mem",
+    "docs": "https://github.com/thedotmack/claude-mem"
+  },
+  "visual": {
+    "src": "https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif",
+    "width": 640,
+    "height": 360,
+    "alt": "An animated preview of claude-mem in a terminal: the agent retrieves stored memories about the user's project preferences and coding style, then uses them in its response.",
+    "caption": "The agent pulling stored memories into a session - preferences and decisions carry over automatically."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Every time you start a new session with your AI coding agent, it forgets everything - your preferences, your past decisions, the context you built up. You repeat yourself constantly.",
+      "eg": "You told Claude Code last week that you prefer Tailwind over CSS modules, but today it suggests CSS modules again because it has no memory of that conversation."
+    },
+    {
+      "role": "trigger",
+      "say": "claude-mem runs automatically at the start and end of every session, loading and saving memories.",
+      "eg": "Start a new Claude Code session and the agent automatically retrieves your stored preferences, decisions and project context - no manual recall needed."
+    },
+    {
+      "role": "input",
+      "say": "Your conversations with the agent - it captures preferences, decisions and important context as you work.",
+      "eg": "When you say 'I prefer functional components over class components,' claude-mem stores that as a permanent preference."
+    },
+    {
+      "role": "does",
+      "say": "It stores memories in a local database and automatically retrieves the relevant ones at the start of each session.",
+      "steps": [
+        "At the end of a session, 5 lifecycle hooks capture preferences, decisions and context and store them in a local SQLite database with Chroma for search",
+        "At the start of the next session, it retrieves the memories most relevant to what you're working on",
+        "Tools let you search, add or edit memories manually if you want to"
+      ],
+      "eg": "The README demo: the agent remembers that your project uses a specific testing framework and applies that context without being told again."
+    },
+    {
+      "role": "result",
+      "say": "An AI agent that gets better the more you use it - because it remembers.",
+      "outputs": [
+        {"what": "Persistent preferences", "eg": "Your coding style, framework choices and project conventions, applied automatically in every session"},
+        {"what": "Decision history", "eg": "Past architectural decisions and their reasoning, so the agent doesn't suggest what you already rejected"}
+      ]
+    }
+  ],
+  "before": [
+    "Every new session starts from zero. The agent doesn't know your preferences, your project's conventions, or what you decided last week.",
+    "You repeat the same context at the start of every session - framework choices, coding style, project structure."
+  ],
+  "after": [
+    "The agent remembers your preferences, decisions and project context across sessions - it gets better the more you use it.",
+    "No manual recall needed. Relevant memories load automatically when you start a new session."
+  ],
+  "uses_note": "claude-mem is over a year old with 98.9K stars. Real named uses from outside the maker's team are hard to find in public - most adoption is through Claude Code where the tool works silently in the background.",
+  "uses": [],
+  "pulse": {
+    "gain": "+3.2K stars this week, +5.2K in 30 days. 98.9K total. Still climbing after 13 months.",
+    "history": [
+      ["2025-08-31", 0],
+      ["2026-09-09", 93636],
+      ["2026-10-09", 98860]
+    ],
+    "history_note": "Created Aug 31, 2025. Steady growth over 13 months.",
+    "facts": [
+      {"value": "98.9K", "label": "stars on GitHub"},
+      {"value": "3,222", "label": "commits"},
+      {"value": "5", "label": "lifecycle hooks"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "findarepo",
+      "title": "thedotmack/claude-mem on findarepo",
+      "url": "https://findarepo.com/repo/thedotmack/claude-mem/",
+      "meta": "Star growth data"
+    },
+    {
+      "plat": "GitHub",
+      "title": "claude-mem on GitHub",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "meta": "98.9K stars, 3,222 commits"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Read the claude-mem README](https://github.com/thedotmack/claude-mem) to understand how the lifecycle hooks work and what gets stored.",
+      "Install claude-mem in Claude Code and start a session. Work on something and state a preference (like 'I prefer TypeScript over JavaScript').",
+      "Start a new session and ask the agent what it remembers about your preferences. Check that it recalls what you told it."
+    ],
+    "paste": "/skillspector https://github.com/thedotmack/claude-mem\n\nIf that scan passes: install claude-mem, work through a short session, state a preference, then start a new session and check if the agent remembers it. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for exact install size. Uses SQLite and Chroma for local storage - the database grows with your memories.",
+    "memory": "No data found. Runs as a plugin inside Claude Code.",
+    "runs_on": "Wherever Claude Code runs (Mac, Windows, Linux).",
+    "source": {"title": "claude-mem README", "url": "https://github.com/thedotmack/claude-mem"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use Claude Code daily and are tired of repeating your preferences, project conventions and past decisions at the start of every session",
+      "You want your AI agent to get better over time by learning from your conversations"
+    ],
+    "skip_if": [
+      "You prefer to control exactly what context the agent sees - claude-mem captures memories automatically, which may include things you'd rather forget",
+      "You already use a manual memory system (like CLAUDE.md files) that gives you full control over what the agent knows"
+    ],
+    "alternatives": [
+      {
+        "name": "CLAUDE.md files",
+        "url": "https://code.claude.com/docs/en/overview",
+        "line": "Claude Code's built-in memory files. You write the context by hand, so you control exactly what the agent knows - but nothing is captured automatically."
+      },
+      {
+        "name": "Obsidian",
+        "url": "https://obsidian.md/",
+        "line": "A personal knowledge base you manage yourself. Not AI-agent memory, but a structured way to keep notes your agent can read."
+      }
+    ]
+  },
+  "watch": [
+    "**CMEM cryptocurrency token.** The creator endorses a CMEM token associated with the project. The open-source tool works without the token, but its existence is worth knowing.",
+    "**Paid tier after 30 days.** CMEM Pro costs $30/month after a 30-day free trial. The core open-source features work without it, but some advanced features are gated.",
+    "**By Alex Newman (thedotmack).** A solo developer project with 3,222 commits. The Apache-2.0 license means the code is open, but long-term maintenance depends on one person.",
+    "**Automatic memory capture raises privacy questions.** The tool captures preferences and decisions from your conversations and stores them locally. Review what it stores periodically."
+  ],
+  "sources": [
+    {"title": "claude-mem on GitHub (README, features, hooks)", "url": "https://github.com/thedotmack/claude-mem", "date": "2026-10-09"},
+    {"title": "findarepo: thedotmack/claude-mem", "url": "https://findarepo.com/repo/thedotmack/claude-mem/", "date": "2026-10-09"}
+  ]
+}
