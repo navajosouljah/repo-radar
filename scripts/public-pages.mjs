@@ -50,7 +50,7 @@ const plain = s => unesc(String(s ?? '').replace(/<[^>]+>/g, ' ')).replace(/\s+/
 const count = s => (s == null ? null : Number(String(s).replace(/[^\d]/g, '')));
 
 export function parseRepoPage(html) {
-  const byId = id => count((html.match(new RegExp(`id="${id}"[^>]*?\\stitle="([^"]*)"`)) || [])[1]);
+  const byId = id => count((html.match(new RegExp(`id="${id}"[^>]*?\\stitle="([^"]*)"`)) || [])[1]);
   const at = html.indexOf('"codeViewLayoutRoute":{"repo":{');
   const repo = at < 0 ? '' : html.slice(at, at + 1500);
   // Since Oct 2026 GitHub's repo page carries these counts only in its embedded JSON: stars, forks
@@ -64,7 +64,7 @@ export function parseRepoPage(html) {
   const issues = byId('issues-repo-tab-count') ?? navCount('issues');
   const prs = byId('pull-requests-repo-tab-count') ?? navCount('pull-requests');
   return {
-    canonical: (html.match(/<meta property="og:url" content="https:\/\/github\.com\/([^/"]+\/[^/"?#]+)"/) || [])[1] || null,
+    canonical: (html.match(/<meta property="og:url" content="https:\/\/github\.com\/([^\/"]+\/[^\/"?#]+)"/) || [])[1] || null,
     stars: byId('repo-stars-counter-star') ?? aboutNum('stargazerCount'),
     forks: byId('repo-network-counter') ?? aboutNum('forksCount'),
     watchers: count((html.match(/<strong>([\d,]+)<\/strong>\s*watching/) || [])[1]) ?? aboutNum('watcherCount'),
@@ -94,7 +94,7 @@ export function parseAdvisoryList(html) {
   const empty = /There aren(?:&#39;|')t any published security advisories/.test(html);
   const items = [];
   for (const row of html.split('<li class="Box-row').slice(1)) {
-    const a = row.match(/href="\/[^/"]+\/[^/"]+\/security\/advisories\/(GHSA(?:-[a-z0-9]{4}){3})"[^>]*>([\s\S]*?)<\/a>/i);
+    const a = row.match(/href="\/[^\/"]+\/[^\/"]+\/security\/advisories\/(GHSA(?:-[a-z0-9]{4}){3})"[^>]*>([\s\S]*?)<\/a>/i);
     if (!a || items.some(i => i.ghsa === a[1])) continue;
     items.push({
       ghsa: a[1],
