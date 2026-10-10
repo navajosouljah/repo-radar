@@ -53,13 +53,21 @@ export function parseRepoPage(html) {
   const byId = id => count((html.match(new RegExp(`id="${id}"[^>]*?\\stitle="([^"]*)"`)) || [])[1]);
   const at = html.indexOf('"codeViewLayoutRoute":{"repo":{');
   const repo = at < 0 ? '' : html.slice(at, at + 1500);
-  const issues = byId('issues-repo-tab-count');
-  const prs = byId('pull-requests-repo-tab-count');
+  // Since Oct 2026 GitHub's repo page carries these counts only in its embedded JSON: stars, forks
+  // and watchers in "sidebarAbout", the Issues and Pull requests tab counts in "localNavigation".
+  // The old HTML counters are read first; the JSON is the fallback. Missing stays null.
+  const slice = (key, n) => { const i = html.indexOf(key); return i < 0 ? '' : html.slice(i, i + n); };
+  const about = slice('"sidebarAbout":{', 2000);
+  const nav = slice('"localNavigation":[', 6000);
+  const aboutNum = k => { const m = about.match(new RegExp(`"${k}":(\\d+)`)); return m ? +m[1] : null; };
+  const navCount = id => { const m = nav.match(new RegExp(`\\{"id":"${id}"[^{}]*?"count":(\\d+)`)); return m ? +m[1] : null; };
+  const issues = byId('issues-repo-tab-count') ?? navCount('issues');
+  const prs = byId('pull-requests-repo-tab-count') ?? navCount('pull-requests');
   return {
     canonical: (html.match(/<meta property="og:url" content="https:\/\/github\.com\/([^/"]+\/[^/"?#]+)"/) || [])[1] || null,
-    stars: byId('repo-stars-counter-star'),
-    forks: byId('repo-network-counter'),
-    watchers: count((html.match(/<strong>([\d,]+)<\/strong>\s*watching/) || [])[1]),
+    stars: byId('repo-stars-counter-star') ?? aboutNum('stargazerCount'),
+    forks: byId('repo-network-counter') ?? aboutNum('forksCount'),
+    watchers: count((html.match(/<strong>([\d,]+)<\/strong>\s*watching/) || [])[1]) ?? aboutNum('watcherCount'),
     openIssues: issues == null && prs == null ? null : (issues || 0) + (prs || 0),
     hasIssues: issues != null,
     commits: count((html.match(/"commitCount":"([\d,]+)"/) || [])[1]),

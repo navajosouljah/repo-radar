@@ -14,6 +14,11 @@ test('repo page: the numbers the activity check needs', () => {
   assert.deepEqual(f, { canonical: 'pacifio/atlas', stars: 7928, forks: 331, watchers: 45, openIssues: 31, hasIssues: true, commits: 1208, created: '2026-05-14', archived: false });
 });
 
+test('repo page: the Oct 2026 layout, where the counts live only in embedded JSON', () => {
+  const f = parseRepoPage(fx('repo-page-2026-10.html'));
+  assert.deepEqual(f, { canonical: 'navajosouljah/frontier-radar', stars: 0, forks: 0, watchers: 0, openIssues: 0, hasIssues: true, commits: 25, created: '2026-10-07', archived: false });
+});
+
 test('repo page: an archived repo reads as archived', () => {
   assert.equal(parseRepoPage(fx('repo-archived.html')).archived, true);
 });
