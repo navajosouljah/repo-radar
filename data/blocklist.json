@@ -214,5 +214,41 @@
     "date": "2026-10-09",
     "kind": "open-advisories",
     "reason": "3 open advisory(ies): GHSA-2jrq-p5rw-6wvv low (unpatched), GHSA-7qj3-7wqw-m5w6 moderate (unpatched), GHSA-vh98-jf5c-jw45 low (unpatched) | activity check failed: repo page unreadable (no star count on it)"
+  },
+  {
+    "repo": "deepseek-ai/deepseek-harness",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "5 open CVE(s) found by search: CVE-2026-101078 low (unpatched), CVE-2026-101102 moderate (unpatched), CVE-2026-101131 low (unpatched), CVE-2026-108788 low (unpatched), CVE-2026-108789 low (unpatched)"
+  },
+  {
+    "repo": "hugohe3/ppt-master",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "2 open advisory(ies): GHSA-8qv4-8xgv-jxp5 moderate (unpatched), GHSA-mv87-79gf-mh4v moderate (unpatched)"
+  },
+  {
+    "repo": "openai/codex",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "3 open CVE(s) found by search: CVE-2025-61260 critical (unpatched), CVE-2026-14898 moderate (unpatched), CVE-2026-19593 critical (unpatched) | new since the 2026-09-27 ruling: report https://news.ycombinator.com/item?id=49997377"
+  },
+  {
+    "repo": "tmux/tmux",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "2 open CVE(s) found by search: CVE-2019-9535 critical (unpatched), CVE-2020-27347 high (unpatched)"
+  },
+  {
+    "repo": "wger-project/wger",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "1 open advisory(ies): GHSA-mw8f-w6p8-xrf4 high (unpatched)"
+  },
+  {
+    "repo": "farion1231/cc-switch",
+    "date": "2026-10-16",
+    "kind": "open-advisories",
+    "reason": "1 moderate CVE (CVE-2026-6143) with fix-unverified status. Cannot verify from the cloud - settling FAIL pending Mac re-check."
   }
 ]

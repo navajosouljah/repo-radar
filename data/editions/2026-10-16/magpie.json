@@ -1,0 +1,166 @@
+{
+  "repo": "yetone/magpie",
+  "name": "Magpie",
+  "tagline": "A free app that lets you pick any AI model for any coding agent from one menu bar - no config files, no vendor lock-in.",
+  "sentence": "Install Magpie once, and every coding agent on your computer (Claude Code, Codex, Gemini and dozens more) can use any model from any provider, switched with one click.",
+  "fit": "you",
+  "links": {
+    "website": "https://usemagpie.ai",
+    "docs": "https://usemagpie.ai/docs/start"
+  },
+  "visual": {
+    "src": "assets/shots/magpie.png",
+    "width": 2080,
+    "height": 1256,
+    "alt": "Magpie's Agents tab showing 9 connected coding agents (Claude Code, Codex, Gemini CLI, Antigravity CLI, OpenCode, Zed, Hermes Agent, Kimi Code) each with a model picker dropdown and toggle switch. Profiles 'Budget' and 'Focus' appear at the bottom.",
+    "caption": "The agents dashboard - pick a model for each coding agent from one list, with profiles for switching between setups."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You run several AI coding agents, each locked to one model or vendor. Switching means editing config files in different formats, juggling separate keys, and losing track of what you spend.",
+      "eg": "You want Claude Code to use a cheaper model for small tasks, and Codex to try a different vendor - but each has its own config file in a different format."
+    },
+    {
+      "role": "trigger",
+      "say": "You click the Magpie icon in your menu bar (or open the terminal, web, or full-window interface).",
+      "eg": "Click the menu bar icon and see every coding agent installed on your machine, each with its current model shown."
+    },
+    {
+      "role": "input",
+      "say": "Your AI provider keys, subscription logins, or local model servers - added once and shared across all agents.",
+      "eg": "Add your Anthropic key plus your OpenAI key, or sign in with your Claude Pro subscription and your ChatGPT Plus account."
+    },
+    {
+      "role": "does",
+      "say": "A local gateway translates between API formats, routes requests to the model you chose, and tracks what each agent uses.",
+      "steps": [
+        "Pick a model for each agent from one searchable list - Magpie writes the change into that agent's own config file, preserving comments and formatting",
+        "The gateway (running on your computer at port 3425) translates between OpenAI, Anthropic and Gemini API formats, so any agent can talk to any provider",
+        "If a key or subscription runs out, routing groups automatically switch to the next one - the agent never sees the error"
+      ],
+      "eg": "Set Claude Code to use DeepSeek for drafts and Codex to use Claude via your Pro subscription - both changes take one click each."
+    },
+    {
+      "role": "result",
+      "say": "Every agent uses the model you chose, from one dashboard, with one cost view.",
+      "outputs": [
+        {"what": "One-click model switching", "eg": "Change Claude Code's model to DeepSeek, or Codex's to Claude, without touching a config file"},
+        {"what": "Shared subscriptions", "eg": "Your Claude Pro or ChatGPT Plus login becomes a provider for other agents that do not have their own"},
+        {"what": "Cost and usage tracking", "eg": "See how much each agent uses and what it costs in dollars - broken down by agent, model and conversation"}
+      ]
+    }
+  ],
+  "before": [
+    "Switching an agent's model means finding its config file, looking up the right format, and editing it by hand - different for each tool.",
+    "Your Claude subscription only works in Claude Code, your ChatGPT plan only in Codex, and you have no single view of what you spend."
+  ],
+  "after": [
+    "One menu bar shows every agent and every model. Click to switch, save a profile to change them all at once.",
+    "Any subscription or key works in any agent - Claude Code can use your OpenAI key, Codex can use your Claude plan - and you see total cost in one place."
+  ],
+  "uses_note": "Magpie was created on September 23, 2026. It is 23 days old and growing fast, but independent long-term user reports are still scarce.",
+  "uses": [],
+  "pulse": {
+    "gain": "+14K stars in 23 days. Created Sep 23, 2026.",
+    "history": [
+      ["2026-09-23", 0],
+      ["2026-09-24", 442],
+      ["2026-09-28", 1465],
+      ["2026-10-09", 7040],
+      ["2026-10-16", 14000]
+    ],
+    "history_note": "Created Sep 23, 2026. Gained +6K stars in the 7 days before Oct 16. Over 1,200 releases shipped in 23 days.",
+    "facts": [
+      {"value": "14K", "label": "stars on GitHub"},
+      {"value": "3,805", "label": "commits"},
+      {"value": "60+", "label": "supported coding agents"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "Magpie review: yetone's menu bar model switcher for coding agents",
+      "url": "https://andrew.ooo/posts/magpie-review-yetone-menu-bar-model-switcher-coding-agents/",
+      "meta": "Independent review, Sep 28 - 'most useful if you run two or more agents'"
+    },
+    {
+      "plat": "AlphaSignal",
+      "title": "Magpie Gives Developers One Gateway to Rule 20 Coding Agents",
+      "url": "https://alphasignal.ai/news/magpie-gives-developers-one-gateway-to-rule-20-coding-agents",
+      "meta": "Technical overview, Sep 29"
+    },
+    {
+      "plat": "Blog",
+      "title": "Magpie: Every Agent's Model, One Menu Bar - Source Tour",
+      "url": "https://pyshine.com/Magpie-Every-Agent-Model-One-Menu-Bar-Source-Tour/",
+      "meta": "Code walkthrough of the gateway and routing engine, Sep 30"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "yetone/magpie trending on Trendshift",
+      "url": "https://trendshift.io/repositories/257963",
+      "meta": "Trending daily and weekly"
+    },
+    {
+      "plat": "findarepo",
+      "title": "yetone/magpie on findarepo",
+      "url": "https://findarepo.com/repo/yetone/magpie/",
+      "meta": "Star growth looks organic (100/100)"
+    }
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download Magpie](https://usemagpie.ai) for your computer (Mac, Windows or Linux) - about 15-25 MB. Or install from the terminal: `curl -fsSL https://usemagpie.ai/install.sh | sh`.",
+      "Add a provider (pick a preset like Anthropic or OpenAI and paste your key, or sign in with a Claude or ChatGPT subscription).",
+      "Switch to the Agents tab, find a coding agent you already have, and change its model. Start a new session in that agent and check that it uses the new model."
+    ],
+    "paste": "/skillspector https://github.com/yetone/magpie\n\nIf that scan passes: download Magpie from https://usemagpie.ai, add a provider with an API key, then switch Claude Code's model to a different vendor. Verify it works by starting a new Claude Code session. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "About 15-25 MB (the Mac Apple Silicon DMG is 22.8 MB, the Intel DMG is 25.2 MB). Terminal-only build is about 7 MB.",
+    "memory": "No data found. The gateway runs on your computer at port 3425. Plugin runtime downloads Bun the first time a plugin needs it.",
+    "runs_on": "Mac (macOS 11+, Apple Silicon and Intel), Windows (10+, x64 and ARM), Linux (x86-64 and ARM64, requires GTK 3 and WebKitGTK 4.1). Also runs in Docker and Termux. Menu bar app, full window, terminal interface, web interface, and command line.",
+    "source": {"title": "Magpie website and README: installation and requirements", "url": "https://usemagpie.ai"}
+  },
+  "verdict": {
+    "best_for": [
+      "You run two or more coding agents (Claude Code, Codex, Gemini CLI, etc.) and want to try different models without editing config files",
+      "You pay for a Claude or ChatGPT subscription and want other agents to use it too, with automatic failover when a quota runs out"
+    ],
+    "skip_if": [
+      "You use one agent with one provider - a reviewer calls Magpie 'a nice menu-bar toy you do not need' in that case",
+      "You are concerned about routing paid subscriptions through a third-party tool - the README warns that Google may suspend accounts used outside their own apps"
+    ],
+    "alternatives": [
+      {
+        "name": "LiteLLM",
+        "url": "https://litellm.ai/",
+        "line": "An open-source proxy that translates between AI APIs. Developer-focused (runs as a server you set up), not a desktop app."
+      },
+      {
+        "name": "Manual config editing",
+        "url": "https://docs.anthropic.com/en/docs/claude-code",
+        "line": "Free and no extra software. But you edit each agent's config file by hand, in its own format, and track costs yourself."
+      }
+    ]
+  },
+  "watch": [
+    "**Routing subscriptions may break vendor terms.** The README warns that Google may suspend accounts used outside Antigravity. The Claude bridge spawns a process per request and depends on Claude Code's internal flags staying stable. Check each vendor's terms before routing their subscription through Magpie.",
+    "**Does not accept outside pull requests.** Only maintainers can open PRs. Bug fixes depend on one developer (yetone, also known for avante.nvim). Response times on issues have been fast (often under a day), but it is a single-maintainer project.",
+    "**Very rapid release pace.** Over 1,200 releases in 23 days. One reviewer noted a regression (issue #129) that was fixed within a day. Behavior can change quickly between versions.",
+    "**Sends a daily telemetry ping by default.** A released build sends a random ID, its version and system, and which agents, providers and models are in use. No prompts, keys or usage numbers are included. Opt out in Settings or with DO_NOT_TRACK=1."
+  ],
+  "sources": [
+    {"title": "Magpie on GitHub (README, features, requirements)", "url": "https://github.com/yetone/magpie", "date": "2026-10-16"},
+    {"title": "Magpie website and downloads", "url": "https://usemagpie.ai", "date": "2026-10-16"},
+    {"title": "Magpie releases (v0.1.1270, installer sizes)", "url": "https://github.com/yetone/magpie/releases", "date": "2026-10-16"},
+    {"title": "Magpie review (andrew.ooo, independent review)", "url": "https://andrew.ooo/posts/magpie-review-yetone-menu-bar-model-switcher-coding-agents/", "date": "2026-09-28"},
+    {"title": "AlphaSignal: Magpie Gives Developers One Gateway to Rule 20 Coding Agents", "url": "https://alphasignal.ai/news/magpie-gives-developers-one-gateway-to-rule-20-coding-agents", "date": "2026-09-29"},
+    {"title": "PyShine: Magpie source tour", "url": "https://pyshine.com/Magpie-Every-Agent-Model-One-Menu-Bar-Source-Tour/", "date": "2026-09-30"},
+    {"title": "findarepo: yetone/magpie (star check)", "url": "https://findarepo.com/repo/yetone/magpie/", "date": "2026-10-16"},
+    {"title": "Trendshift: yetone/magpie", "url": "https://trendshift.io/repositories/257963", "date": "2026-10-16"}
+  ]
+}

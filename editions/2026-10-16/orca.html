@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orca: A desktop app for running a fleet of AI coding agents in parallel - each gets its own copy of the code, and you track them all from one screen. | Repo Radar</title>
+<meta name="description" content="Open Orca on your desktop, give each coding task its own isolated copy of the code, and run Claude Code, Codex or another agent in each one - then check on all of them from your phone.">
+<meta property="og:title" content="Orca: A desktop app for running a fleet of AI coding agents in parallel - each gets its own copy of the code, and you track them all from one screen. | Repo Radar">
+<meta property="og:description" content="Open Orca on your desktop, give each coding task its own isolated copy of the code, and run Claude Code, Codex or another agent in each one - then check on all of them from your phone.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/orca.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 012 &middot; Week of October 16, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#6 this week</span><span class="repo-id">stablyai/orca</span></div>
+    <h1 id="name">Orca</h1>
+    <p class="tagline">A desktop app for running a fleet of AI coding agents in parallel - each gets its own copy of the code, and you track them all from one screen.</p>
+    <p class="sentence">Open Orca on your desktop, give each coding task its own isolated copy of the code, and run Claude Code, Codex or another agent in each one - then check on all of them from your phone.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://www.onorca.dev" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/stablyai/orca" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/orca.jpg" alt="Orca desktop app on macOS with a dark theme: the left sidebar lists seven in-progress worktrees, the center pane runs Claude Code v2.1.174 in the improve-readme worktree, the top right runs OpenAI Codex v0.139.0 in the same worktree, and a terminal below shows build output. A phone overlay displays the Orca mobile companion with stats: 5,065 agents spawned, 26 days of agent time, 359 PRs created, and a connected desktop with 200 worktrees and 47 active." width="1998" height="1250" loading="eager">
+    <figcaption>Two agents working side by side in the same worktree - Claude Code on the left, Codex on the right - with the mobile companion tracking 200 worktrees and 5,065 agents spawned.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">94K</span><span class="v-note">GitHub stars, <b>+24.4K stars in 30 days. Still climbing. 94K total in 7 months.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 11.5 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 16: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want to run several AI coding agents at once, each on a different task, but they fight over the same files - branch conflicts, overwritten changes, and confusion about who changed what.</p><p class="eg">You ask one agent to refactor a module while another writes tests, and they overwrite each other's files because they share the same working copy.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You open Orca on your desktop and create a worktree (a separate, isolated copy of the code) for each task.</p><p class="eg">Create two worktrees from the same branch: one for a refactor, one for tests. Each agent sees its own copy and can't touch the other.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Your code and the tasks you want agents to work on - issues from GitHub or Linear, a prompt, or a file you drag into the agent.</p><p class="eg">Open a GitHub issue in Orca's built-in panel and start an agent on it. The issue details feed into the prompt.</p></div><div class="note does"><span class="role">It does</span><p class="say">It runs multiple coding agents in isolated worktrees and gives you one view of all their progress.</p><ol class="steps-in"><li>Creates a separate copy of the code (a git worktree) for each task, so agents never overwrite each other's work</li><li>Runs up to five agents side by side in split terminals, with a built-in browser that lets you click a UI element and send its code to the agent</li><li>Shows diffs from each agent, lets you comment on specific lines and send feedback back, and notifies your phone when an agent finishes</li></ol><p class="eg">The README example: fan one prompt across multiple agents, watch them work in split terminals, compare their diffs, and merge the best result.</p></div><div class="note result"><span class="role">You get</span><p class="say">Several agents working in parallel without stepping on each other, tracked from one screen and your phone.</p><ul class="outputs"><li><b>Isolated parallel work</b><span>Each agent in its own worktree - no branch conflicts, no stashing, no file locks</span></li><li><b>One view of everything</b><span>Diffs, terminal output, browser previews and progress for every agent in one window, with inline commenting</span></li><li><b>A phone app for when you step away</b><span>Get notified when agents finish, review their work, and send follow-up prompts from your phone (iOS and Android)</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Running two AI coding agents at once means switching branches by hand, stashing changes, and hoping they don't overwrite each other's files.</li><li>Checking on a long-running agent means staying at your desk - there's no way to see its progress or send it a follow-up from your phone.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Each agent gets its own isolated copy of the code. Run five agents on five tasks in one window, and their changes never collide.</li><li>A phone app notifies you when agents finish and lets you review diffs, approve merges, and send follow-ups from anywhere.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://www.onorca.dev/download" rel="noopener">Download Orca</a> for your computer (Mac, Windows or Linux) and install it. On Mac you can also run <code>brew install --cask stablyai/orca/orca</code>.</li><li>Open a project, create a worktree for a task (like 'write tests for the login page'), and start an agent in it. <a href="https://www.onorca.dev/docs" rel="noopener">Orca's docs</a> cover the first-run setup for Claude Code, Codex and others.</li><li>Create a second worktree with a different task and run another agent. Watch both work side by side in split terminals and compare their diffs.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>No data found for installer size. Available as DMG (macOS), EXE (Windows) and AppImage (Linux). Mobile companion on iOS App Store and Android APK.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. Runs as an Electron desktop app with WebGL-rendered terminals. Each agent runs its own process.</dd></div>
+    <div><dt>Runs on</dt><dd>macOS (Apple Silicon and Intel), Windows and Linux. Mobile companion: iOS (App Store) and Android (APK). Remote worktrees over SSH to any Linux server.</dd></div>
+  </dl><a class="src" href="https://www.onorca.dev/download" rel="noopener">Source: Orca README and download page</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-orca">/skillspector https://github.com/stablyai/orca
+
+If that scan passes: download Orca from onorca.dev/download, open a project, create two worktrees for two different tasks, and run an agent in each. Compare the diffs side by side. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-orca">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You run AI coding agents daily and want to run several at once on different tasks without branch conflicts - each in its own isolated worktree</li><li>You want to monitor long-running agents from your phone and send follow-ups without staying at your desk</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You only run one agent at a time - Orca's value is in parallel work, and a single agent runs fine in a regular terminal</li><li>You are cost-conscious about AI subscriptions - running five agents in parallel means five sets of API or subscription costs with no pooling</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://emdash.sh" rel="noopener"><b>Emdash</b></a><span>Another open-source desktop app for parallel coding agents in isolated worktrees, with SSH remote support. Lighter-weight and newer.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/stablyai/orca/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 16</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>13 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>94K stars, 599 contributors, 14.6K commits. findarepo: looks organic (100/100)</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Each agent needs its own subscription.</b> Running five agents in parallel means five sets of API or subscription costs. Orca tracks usage per account but does not pool or limit spend.</li><li><b>No independent security review found.</b> Orca runs shell commands and inherits the permissions of the agents it runs. One directory flags this as worth weighing.</li><li><b>Y Combinator W22 company.</b> Stably AI is venture-backed, which means the business model may change. The app is free and MIT-licensed today, but the company is hiring and building a cloud product (Orca VM).</li><li><b>94K stars in 7 months is fast.</b> findarepo rates the growth organic (100/100), but the pace is unusual. The 14,562-commit count suggests heavy development activity - some of it automated.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Orca has 94K stars and is 7 months old. The screenshot shows one user with 5,065 agents spawned and 359 PRs created, but named external adopters are hard to find.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/stablyai/orca/" rel="noopener">stablyai/orca on findarepo</a><span class="meta">Star credibility 100/100, looks organic</span></li><li class=""><span class="plat">Blog</span><a href="https://aitoolly.com/ai-news/article/2026-08-14-orca-a-new-ade-for-collaborative-parallel-agent-clusters-across-desktop-mobile-and-vps" rel="noopener">Orca: A New ADE for Collaborative Parallel Agent Clusters</a><span class="meta">Feature article, Aug 14, 2026</span></li><li class=""><span class="plat">Blog</span><a href="https://pyshine.com/Orca-Agent-Development-Environment-Parallel-AI-Coding/" rel="noopener">Orca Agent Development Environment: Parallel AI Coding</a><span class="meta">Technical walkthrough</span></li><li class=""><span class="plat">Dealroom</span><a href="https://app.dealroom.co/companies/stably_ai_orca" rel="noopener">Stably AI (Orca) company profile</a><span class="meta">Y Combinator W22, founded by Jinjing Liang and Neil Parker</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/stablyai/orca" rel="noopener">Orca on GitHub (README, features, supported agents)</a>, Oct 16</li><li><a href="https://www.onorca.dev" rel="noopener">Orca website</a>, Oct 16</li><li><a href="https://www.onorca.dev/download" rel="noopener">Orca download page</a>, Oct 16</li><li><a href="https://findarepo.com/repo/stablyai/orca/" rel="noopener">findarepo: stablyai/orca star growth</a>, Oct 16</li><li><a href="https://aitoolly.com/ai-news/article/2026-08-14-orca-a-new-ade-for-collaborative-parallel-agent-clusters-across-desktop-mobile-and-vps" rel="noopener">Orca: A New ADE for Collaborative Parallel Agent Clusters (aitoolly.com)</a>, Aug 14</li><li><a href="https://app.dealroom.co/companies/stably_ai_orca" rel="noopener">Stably AI (Orca) on Dealroom</a>, Oct 16</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 012 &middot; October 16, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

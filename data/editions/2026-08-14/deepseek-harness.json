@@ -1,0 +1,24 @@
+{
+  "repo": "deepseek-ai/deepseek-harness",
+  "name": "deepseek-harness",
+  "tagline": "DeepSeek's open-source agent harness where models, tools, skills, sessions, sandboxes, the agent loop, and UI are all composable Cordis plugins.",
+  "sentence": "An open-source agent harness by DeepSeek where every part - models, tools, skills, sessions, sandboxes, the agent loop, and UI - is a composable Cordis plugin that can be mixed, matched, and replaced.",
+  "status": "fail",
+  "what_happened": [
+    "**Five unpatched CVEs found Oct 16 2026.** CVE-2026-101078 (low), CVE-2026-101102 (moderate), CVE-2026-101131 (low), CVE-2026-108788 (low), CVE-2026-108789 (low). None have a patched version available.",
+    "**Previously featured in Edition 003 (Aug 14 2026).** Pulled from the site and blocklisted after the Oct 16 re-check found 5 CVEs with no fixes."
+  ],
+  "why_fail": [
+    "**Five CVEs with no patched version.** The latest release is 0.2.1 and none of the five CVEs list a fix.",
+    "**One moderate-severity CVE.** CVE-2026-101102 is rated moderate. The remaining four are low severity but still unpatched."
+  ],
+  "if_used": [
+    "Check the NVD entries for each CVE to understand whether they affect your use case: CVE-2026-101078, CVE-2026-101102, CVE-2026-101131, CVE-2026-108788, CVE-2026-108789.",
+    "Watch for a patched release. Once these CVEs have confirmed fixes, the gate will re-check automatically."
+  ],
+  "sources": [
+    {"title": "NVD - CVE-2026-101078", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101078", "date": "2026-09-28"},
+    {"title": "NVD - CVE-2026-101102", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101102", "date": "2026-09-28"},
+    {"title": "GitHub security advisories", "url": "https://github.com/deepseek-ai/deepseek-harness/security/advisories", "date": "2026-10-16"}
+  ]
+}

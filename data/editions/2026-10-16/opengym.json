@@ -1,0 +1,150 @@
+{
+  "repo": "DuarteSantos8/openGym",
+  "name": "openGym",
+  "tagline": "A free, open-source gym and body-weight tracker you run on your own server - no subscription, no ads, your data stays with you.",
+  "sentence": "Run your own workout tracker on a server you control and get guided sessions with last time's weights pre-filled, rest timers, a muscle map and progress charts - free, no ads, no telemetry.",
+  "fit": "you",
+  "links": {
+    "website": "https://opengym.ch",
+    "demo": "https://opengym.ch/demo/",
+    "docs": "https://github.com/DuarteSantos8/openGym"
+  },
+  "visual": {
+    "src": "assets/shots/opengym.png",
+    "width": 1170,
+    "height": 2532,
+    "alt": "openGym workout screen: 'Push Day' with a barbell bench press exercise showing an animated muscle diagram, tags (Pectorals, Barbell, Best: 75 kg), last session's sets, linear progression note (+2.5 kg more), and weight/reps/RIR input rows.",
+    "caption": "A guided workout in progress - the app shows which muscles work, your last session's numbers, and suggests the next weight."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to track your gym workouts and body weight, but every app either costs money each month, shows ads, or keeps your data on someone else's server.",
+      "eg": "You log sets and weights in a subscription app and wonder where your years of workout history would go if the company raised prices or shut down."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the app in your browser or on your phone and tap into today's planned workout.",
+      "eg": "It's Push Day - the app shows your routine with bench press, overhead press and flyes, weights from last time already filled in, and a rest timer ready."
+    },
+    {
+      "role": "input",
+      "say": "Your weekly workout plan, the exercises and weights you choose, and your body weight. Or import your history from another app.",
+      "eg": "Import your FitNotes, Strong or Hevy history (CSV or API key) and pick up where you left off, or start fresh from one of four starter plans (Push/Pull/Legs, Upper/Lower, Full Body, 5x5)."
+    },
+    {
+      "role": "does",
+      "say": "It guides your workout with pre-filled weights, animated exercise demos, a rest timer, and tracks your progress over time.",
+      "steps": [
+        "Shows your planned workout with weights from last time, animated demos of each exercise, and a rest timer that starts when you finish a set",
+        "Tracks your sets, reps and weight, detects personal records, and calculates your estimated one-rep max for each exercise",
+        "Charts your progress: a muscle map showing trained, recovering and resting muscles, body-weight trend against your goal, and strength history per exercise"
+      ],
+      "eg": "The README demo: start a Push Day, see bench press with your last weight pre-filled and a diagram of which muscles work, log your sets, and the app tells you whether to add weight next time."
+    },
+    {
+      "role": "result",
+      "say": "A complete workout log on a server you own, backed up by copying one folder.",
+      "outputs": [
+        {"what": "A full workout history", "eg": "Every set, rep and weight you've ever logged, plus personal records and estimated max lifts - stored in a folder on your server"},
+        {"what": "Progress charts", "eg": "Body-weight trend, strength history per exercise, a muscle map, and before/after progress photos with a slider"},
+        {"what": "Your data, portable", "eg": "Export everything as one JSON file, or share a plan as a small file or PDF - no lock-in"}
+      ]
+    }
+  ],
+  "before": [
+    "Tracking workouts means paying a monthly subscription, seeing ads, or trusting a company with years of personal health data that lives on their server.",
+    "Switching gym apps means starting over - your workout history, personal records and progress photos are trapped in the old app."
+  ],
+  "after": [
+    "A gym tracker that runs on your own server - free, no ads, no telemetry. Your data is a folder you can back up, move or delete.",
+    "Import your history from FitNotes, Strong, Hevy or Apple Health and keep going. Export everything as JSON if you ever want to leave."
+  ],
+  "uses_note": "openGym is 90 days old and growing fast. Named real-world uses are hard to find at this stage - adoption shows in forks, mirrors and the active Discord.",
+  "uses": [],
+  "pulse": {
+    "gain": "+9.3K stars since Oct 5. 12.7K total in 90 days.",
+    "history": [
+      ["2026-07-18", 0],
+      ["2026-10-05", 3400],
+      ["2026-10-16", 12700]
+    ],
+    "history_note": "Created Jul 18, 2026. Growth accelerated in October.",
+    "facts": [
+      {"value": "12.7K", "label": "stars on GitHub"},
+      {"value": "1,805", "label": "commits"},
+      {"value": "5,600+", "label": "exercises in the library"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "findarepo",
+      "title": "DuarteSantos8/openGym on findarepo",
+      "url": "https://findarepo.com/repo/DuarteSantos8/openGym/",
+      "meta": "Star credibility 100/100, looks organic"
+    },
+    {
+      "plat": "Telegram",
+      "title": "Your workout log doesn't need someone else's cloud",
+      "url": "https://t.me/s/SkipCI/185",
+      "meta": "SkipCI channel feature"
+    },
+    {
+      "plat": "AlternativeTo",
+      "title": "openGym on AlternativeTo",
+      "url": "https://alternativeto.net/software/opengym/about/",
+      "meta": "Listed as open-source gym tracker alternative"
+    }
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Try the live demo at [opengym.ch/demo](https://opengym.ch/demo/) to see what the app looks like with sample data - no install needed.",
+      "To run your own: [clone the project](https://github.com/DuarteSantos8/openGym), copy `.env.example` to `.env`, run `docker compose pull && docker compose up -d`, and open `localhost:8080` in your browser.",
+      "Tap **Create profile**, set up a weekly plan from one of the starter templates, and run a workout to see the guided session, rest timer and muscle map."
+    ],
+    "paste": "/skillspector https://github.com/DuarteSantos8/openGym\n\nIf that scan passes: try the live demo at opengym.ch/demo, or run `docker compose up -d` and create a profile at localhost:8080. Start a Push/Pull/Legs plan and run one workout. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "Docker images (size not listed in README). Exercise media downloads ~140 MB on first launch. Android APK available from the Releases page.",
+    "memory": "No data found. Runs as a Node.js API and nginx web server inside Docker containers.",
+    "runs_on": "Web browser (any device, works as a home-screen app). Android APK. iPhone via Safari (add to home screen). Server needs Docker with Compose (images for amd64 and arm64). Kubernetes and Helm guides are also available.",
+    "source": {"title": "openGym README and self-hosting guide", "url": "https://github.com/DuarteSantos8/openGym"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want a gym tracker that keeps your data on your own server - no subscription, no ads, no telemetry, and you can back it up by copying one folder",
+      "You already track workouts in FitNotes, Strong or Hevy and want to move to something you control without losing your history"
+    ],
+    "skip_if": [
+      "You don't want to run a server - openGym needs Docker or a computer you leave on, which is more work than downloading an app from the store",
+      "You want a polished, battle-tested app today - openGym is 90 days old and still releasing features fast (v1.3 to v1.4 in the last month)"
+    ],
+    "alternatives": [
+      {
+        "name": "Strong",
+        "url": "https://www.strong.app/",
+        "line": "A polished workout tracker for iOS and Android with a large exercise library. Paid subscription, and your data lives on their servers."
+      },
+      {
+        "name": "Hevy",
+        "url": "https://www.hevyapp.com/",
+        "line": "A free-tier gym tracker with social features. Some features require a paid plan, and data is stored in their cloud."
+      }
+    ]
+  },
+  "watch": [
+    "**The exercise images and animations are copyrighted third-party content.** They are licensed for use in openGym only. Self-hosted servers get 180 px images; forks must keep the copyright notice intact.",
+    "**Mostly one developer.** 1,805 commits from Duarte Santos. The maintainer says code, tests and docs are partly drafted with AI (Claude Code) with human review. Long-term maintenance depends on one person.",
+    "**AGPL-3.0 license.** If you modify the code and run it as a web service, you must offer your source under the same license. This matters if you plan to customize it for a gym or a team.",
+    "**Passkey login needs HTTPS on a domain.** The quick Docker setup works on localhost, but using your phone's fingerprint or face to log in requires a domain with HTTPS - the README links to guides for Cloudflare Tunnel, Caddy and others."
+  ],
+  "sources": [
+    {"title": "openGym on GitHub (README, features, installation)", "url": "https://github.com/DuarteSantos8/openGym", "date": "2026-10-16"},
+    {"title": "openGym website", "url": "https://opengym.ch", "date": "2026-10-16"},
+    {"title": "findarepo: DuarteSantos8/openGym star growth", "url": "https://findarepo.com/repo/DuarteSantos8/openGym/", "date": "2026-10-16"},
+    {"title": "SkipCI Telegram: openGym feature", "url": "https://t.me/s/SkipCI/185", "date": "2026-10-16"},
+    {"title": "AlternativeTo: openGym listing", "url": "https://alternativeto.net/software/opengym/about/", "date": "2026-10-16"}
+  ]
+}

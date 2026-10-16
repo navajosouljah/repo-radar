@@ -1,0 +1,173 @@
+{
+  "repo": "storytold/wordcraft",
+  "name": "WordCraft",
+  "tagline": "A free, open-source word processor that works like Microsoft Word - runs on your computer, no subscription, no account.",
+  "sentence": "Open a document, format it with styles, tables and track changes the same way you would in Word, but without paying Microsoft $7-13 a month.",
+  "fit": "you",
+  "replaces": "Microsoft Word ($7-13/month Microsoft 365 subscription)",
+  "links": {
+    "website": "https://getartcraft.com/apps/wordcraft",
+    "docs": "https://github.com/storytold/wordcraft"
+  },
+  "visual": {
+    "src": "assets/shots/wordcraft.png",
+    "width": 2880,
+    "height": 1800,
+    "alt": "WordCraft editing 'The Open Studio Handbook': Navigation pane with headings on the left, a Word-style ribbon toolbar with Home tab, Styles gallery, and formatted text with bold, italic and blue headings.",
+    "caption": "The editor with a formatted document, showing the ribbon toolbar and navigation pane - the same layout as Microsoft Word."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need to write and format documents - styles, tables, track changes, references - but Word costs $7-13 a month and the free alternatives use a different interface.",
+      "eg": "You want to open a .docx file from a colleague, review it with tracked changes, update the table of contents, and send it back as a PDF."
+    },
+    {
+      "role": "trigger",
+      "say": "You open WordCraft on your computer, or an AI agent opens it through its built-in command interface.",
+      "eg": "Double-click the app, or connect it to Claude Code - WordCraft has over 400 commands an agent can call."
+    },
+    {
+      "role": "input",
+      "say": "Your document files: .docx, .odt, .rtf, .html, Markdown, LaTeX and plain text - including Word's own files with their formatting intact.",
+      "eg": "Open a .docx proposal from a client and keep the styles, headers and tracked changes."
+    },
+    {
+      "role": "does",
+      "say": "It gives you a full Word-style workspace with a ribbon toolbar, styles, tables and review tools, all running locally.",
+      "steps": [
+        "Format text with the ribbon: fonts, styles, headings, lists, the same shortcuts Word uses (Ctrl+B for bold, F4 to repeat)",
+        "Build tables with merged cells, banded rows and sorting; add headers, footers, columns and page numbers",
+        "Review with track changes, comments, spelling and grammar checking in 21 languages, and compare two documents side by side",
+        "Save as .docx, PDF (with selectable text and bookmarks), .odt, .rtf, Markdown, LaTeX or plain text"
+      ],
+      "eg": "The README demo: open the sample document, apply heading styles, insert a table of contents, and export to PDF."
+    },
+    {
+      "role": "result",
+      "say": "A formatted document saved on your own computer, in the format you need.",
+      "outputs": [
+        {"what": "Formatted .docx files", "eg": "A Word file you can hand back to a colleague - styles, tracked changes and comments preserved"},
+        {"what": "PDF exports", "eg": "A finished PDF with selectable text, clickable links and bookmarks, ready to send"},
+        {"what": "No subscription bill", "eg": "The same ribbon-and-styles workflow Word charges $7-13/month for, running on your machine for free"}
+      ]
+    }
+  ],
+  "before": [
+    "Writing and formatting documents with styles, tables and tracked changes means paying Microsoft $7-13 a month - or learning a free tool that looks and works differently.",
+    "Opening a colleague's .docx file with all its formatting means owning Word, or hoping a converter keeps everything intact."
+  ],
+  "after": [
+    "The same ribbon-and-styles workflow, on your own computer, for free - with the keyboard shortcuts Word users already know.",
+    "Open .docx files with formatting intact, review with tracked changes, and export to PDF or send back as .docx."
+  ],
+  "uses_note": "WordCraft went public on October 7, 2026. It is 9 days old and in alpha, so named real-world use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+13.4K stars in its first 9 days. Created Oct 7, 2026.",
+    "history": [
+      ["2026-10-07", 0],
+      ["2026-10-09", 1200],
+      ["2026-10-11", 4925],
+      ["2026-10-12", 8177],
+      ["2026-10-13", 9597],
+      ["2026-10-16", 13400]
+    ],
+    "history_note": "Created Oct 7, 2026. Peaked at +3.3K stars on Oct 12 (the day the Hacker News thread hit 101 points).",
+    "facts": [
+      {"value": "13.4K", "label": "stars on GitHub"},
+      {"value": "735", "label": "commits"},
+      {"value": "422", "label": "commands (ribbon, shortcuts, agent)"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "WordCraft rebuilds Microsoft Word in pure Rust, no Electron required",
+      "url": "https://news.ycombinator.com/item?id=50050370",
+      "meta": "101 points, 108 comments, Oct 12"
+    },
+    {
+      "plat": "Blog",
+      "title": "Nic's Notes: WordCraft",
+      "url": "https://notes.nicolasdeville.com/github/wordcraft/",
+      "meta": "Hands-on look at the MCP control channel and Word parity, Oct 11"
+    },
+    {
+      "plat": "Blog",
+      "title": "WordCraft: Open-Source Rust Clone of Word [2026]",
+      "url": "https://www.kunalganglani.com/blog/wordcraft-open-source-word-clone",
+      "meta": "Overview of features and early reception"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "storytold/wordcraft trending on Trendshift",
+      "url": "https://trendshift.io/repositories/287838",
+      "meta": "#1 daily in Rust, #2 overall on Oct 12"
+    },
+    {
+      "plat": "findarepo",
+      "title": "storytold/wordcraft on findarepo",
+      "url": "https://findarepo.com/repo/storytold/wordcraft/",
+      "meta": "Star growth looks organic (100/100)"
+    }
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download WordCraft](https://github.com/storytold/wordcraft/releases) for your computer (Mac, Windows or Linux) and install it.",
+      "Launch a sample with `wordcraft --sample` and test the basics: apply a heading style, insert a table, and add a tracked change.",
+      "If you have a .docx file from Word, drag it in and check that styles, headers and tracked changes come through. Export it to PDF."
+    ],
+    "paste": "/skillspector https://github.com/storytold/wordcraft\n\nIf that scan passes: download and install WordCraft, open a sample document with `wordcraft --sample`, apply heading styles, insert a table of contents, and export to PDF. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "About 86 MB (the Linux AppImage is 86.1 MB; Mac and Windows installers are in the same range). Source builds require Rust 1.90+.",
+    "memory": "No data found. Uses a GPU compositor (Metal, Vulkan or DirectX 12) and falls back to all CPU cores without a GPU. Re-layout of a 188-page document takes about 1.4 ms.",
+    "runs_on": "Mac (universal - Apple silicon and Intel), Windows (x64, arm64, x86), Linux (x86_64, aarch64), FreeBSD (x86_64) and the web (via WebAssembly). Installers: DMG, MSI, AppImage, Flatpak, DEB, RPM.",
+    "source": {"title": "WordCraft README and Releases: installation and requirements", "url": "https://github.com/storytold/wordcraft"}
+  },
+  "verdict": {
+    "best_for": [
+      "You know Word's ribbon-and-styles workflow and want a free alternative that works the same way - styles, tracked changes, the same shortcuts",
+      "You want an AI agent to create and edit .docx files and PDFs through a command interface, without needing a Word license"
+    ],
+    "skip_if": [
+      "You need a reliable word processor for contracts, CVs or client work today - this is in early alpha, and commenters report crashes and freezes",
+      "You depend on .docx round-trip fidelity (charts, SmartArt, exact pagination) - those are not fully working yet"
+    ],
+    "alternatives": [
+      {
+        "name": "LibreOffice Writer",
+        "url": "https://www.libreoffice.org/discover/writer/",
+        "line": "The established free word processor. More stable and complete, but a different interface - not a Word look-alike."
+      },
+      {
+        "name": "OnlyOffice",
+        "url": "https://www.onlyoffice.com/",
+        "line": "A free office suite with a Word-style ribbon. Closer to Word's look, with better .docx fidelity than most free editors."
+      },
+      {
+        "name": "Google Docs",
+        "url": "https://docs.google.com/",
+        "line": "Free and browser-based. Handles basic .docx files, but needs an internet connection and stores documents in the cloud."
+      }
+    ]
+  },
+  "watch": [
+    "**Early alpha - not ready for professional work.** The Hacker News thread (101 points, 108 comments) includes reports of crashes on an M4 MacBook when changing text to a heading. One guide says: keep WordCraft for drafts, use a mature editor for a CV, a contract or a thesis.",
+    "**Another storytold pick after last week's five.** WordCraft is the sixth ArtCraft/storytold tool in two weeks. That concentration reflects a real moment - Microsoft Office replacements launched alongside the Adobe ones - but one org's fate now affects a large share of recent editions.",
+    "**Built by a very small team using AI.** Trendshift shows 2 contributors and 735 commits. The same pattern as PhotoCraft: one developer with a heavy AI assist. Long-term maintenance is an open question.",
+    "**.docx fidelity is untested on real-world files.** The project's own beta requirements include testing against a corpus of real documents. Charts and SmartArt do not survive a round trip, and pagination does not yet match Word exactly."
+  ],
+  "sources": [
+    {"title": "WordCraft on GitHub (README, features, requirements)", "url": "https://github.com/storytold/wordcraft", "date": "2026-10-16"},
+    {"title": "WordCraft website and downloads", "url": "https://getartcraft.com/apps/wordcraft", "date": "2026-10-16"},
+    {"title": "WordCraft releases (v0.7.0, installer sizes)", "url": "https://github.com/storytold/wordcraft/releases", "date": "2026-10-16"},
+    {"title": "Hacker News: WordCraft rebuilds Microsoft Word in pure Rust (101 points, 108 comments)", "url": "https://news.ycombinator.com/item?id=50050370", "date": "2026-10-12"},
+    {"title": "Nic's Notes: WordCraft (hands-on impressions)", "url": "https://notes.nicolasdeville.com/github/wordcraft/", "date": "2026-10-11"},
+    {"title": "findarepo: storytold/wordcraft (star check)", "url": "https://findarepo.com/repo/storytold/wordcraft/", "date": "2026-10-16"},
+    {"title": "Trendshift: storytold/wordcraft (#1 daily in Rust)", "url": "https://trendshift.io/repositories/287838", "date": "2026-10-16"}
+  ]
+}

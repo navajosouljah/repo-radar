@@ -1,0 +1,24 @@
+{
+  "repo": "hugohe3/ppt-master",
+  "name": "PPT-MASTER",
+  "tagline": "AI turns documents or topics into real, native PowerPoint decks - with native shapes, transitions, animations, data-backed charts, and audio narration from speaker notes.",
+  "sentence": "An AI-powered tool that turns documents or topics into native PowerPoint decks with shapes, transitions, animations, data-backed charts, and audio narration.",
+  "status": "fail",
+  "what_happened": [
+    "**Two unpatched security advisories found Oct 16 2026.** GHSA-8qv4-8xgv-jxp5 (moderate): attribute injection in icon placeholder expansion writes unescaped markup to disk. GHSA-mv87-79gf-mh4v (moderate): live preview SVG sanitizer bypass via case-sensitive filtering (mXSS).",
+    "**Previously featured in Edition 005 (Aug 28 2026).** Pulled from the site and blocklisted after the Oct 16 re-check found 2 advisories with no fixes."
+  ],
+  "why_fail": [
+    "**Two moderate-severity advisories with no patched version.** The latest release is 6.7.0 and neither advisory lists a fix.",
+    "**Attribute injection writes unescaped markup to disk.** GHSA-8qv4-8xgv-jxp5 could allow content injection through icon placeholders.",
+    "**SVG sanitizer bypass.** GHSA-mv87-79gf-mh4v allows cross-site scripting through case-sensitive filtering in live preview."
+  ],
+  "if_used": [
+    "Avoid using the live preview feature with untrusted content until GHSA-mv87-79gf-mh4v is patched.",
+    "Avoid icon placeholder expansion with untrusted input until GHSA-8qv4-8xgv-jxp5 is patched.",
+    "Watch for a patched release. Once these advisories have confirmed fixes, the gate will re-check automatically."
+  ],
+  "sources": [
+    {"title": "GitHub security advisories for ppt-master", "url": "https://github.com/hugohe3/ppt-master/security/advisories", "date": "2026-10-16"}
+  ]
+}

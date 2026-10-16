@@ -1,0 +1,163 @@
+{
+  "repo": "boykopovar/AnyPS5",
+  "name": "AnyPS5",
+  "tagline": "A tool that converts PlayStation 5 game files into programs that run directly on your Windows or Linux computer - no emulation needed.",
+  "sentence": "Point it at a PS5 game's executable files and it produces a native Windows or Linux program, the way Valve's Proton layer lets Steam games run on Linux - but for PlayStation 5 titles.",
+  "fit": "you",
+  "links": {
+    "website": "https://boykopovar.github.io/AnyPS5",
+    "docs": "https://github.com/boykopovar/AnyPS5"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "PS5 games only run on a PlayStation 5. If you want to play them on your computer, there is no official way, and traditional emulators are years from running modern 3D titles at playable speeds.",
+      "eg": "A PS5-exclusive game you want to play on your PC - there is no port, no official plan, and emulators can barely load the main menu of most games."
+    },
+    {
+      "role": "trigger",
+      "say": "You run AnyPS5's converter on a PS5 game's program files, or use the web converter at boykopovar.github.io/AnyPS5 (files stay on your device).",
+      "eg": "Upload a game's executable files to the web converter, pick Windows or Linux, and download the converted program."
+    },
+    {
+      "role": "input",
+      "say": "A PS5 game's decrypted executable files - the program and system module files from the game, which must be obtained separately from your own console.",
+      "eg": "A decrypted ELF executable, plus the sce_sys and sce_module folders from the game."
+    },
+    {
+      "role": "does",
+      "say": "It rewrites the game's code into a format your computer can run directly, and provides replacement system libraries that stand in for Sony's services.",
+      "steps": [
+        "The relinker converts the PS5 executable into a native program for your system (a Windows .exe or a Linux binary)",
+        "Replacement system libraries handle what Sony's software would - memory, file access, controller input, and audio",
+        "The shader recompiler translates the game's graphics instructions into a format your graphics card understands",
+        "Controller mapping supports PS5 controllers, Xbox controllers, and keyboard/mouse through a configuration file"
+      ],
+      "eg": "The PS5 uses the same type of processor as PCs (AMD x86-64), so the game's main code can run directly without translation - only the system libraries and graphics need to be converted."
+    },
+    {
+      "role": "result",
+      "say": "A native PC program that runs a PS5 game directly on your computer, without pretending to be a PlayStation.",
+      "outputs": [
+        {"what": "A native PC program", "eg": "A Windows .exe or Linux program built from the PS5 game, running directly on your hardware"},
+        {"what": "Controller support", "eg": "PS5 DualSense controllers, Xbox controllers, and keyboard/mouse all work through a configuration file"}
+      ]
+    }
+  ],
+  "before": [
+    "PS5 exclusives stay on the PS5. If there is no official PC port, the only options are buying the console or waiting years for emulators to mature.",
+    "PS5 emulators can barely reach a game's main menu. One leading emulator has 12 of 55 tested games reaching gameplay, and most crash early."
+  ],
+  "after": [
+    "A converter that rewrites PS5 executables into native PC programs - no emulation layer, so in theory far less overhead.",
+    "A web-based converter that runs in your browser and keeps all files on your device - no uploads, no servers, no installs required for conversion."
+  ],
+  "uses_note": "AnyPS5 is 74 days old and still in early development. Only one game is confirmed fully playable. No named real-world adopters outside the developer.",
+  "uses": [],
+  "pulse": {
+    "gain": "+39.3K stars in 74 days. Created Aug 3, 2026. Reached 100% GPU shader instruction coverage in October.",
+    "history": [
+      ["2026-08-03", 0],
+      ["2026-09-17", 858],
+      ["2026-10-16", 39300]
+    ],
+    "history_note": "Created Aug 3, 2026. 858 stars reported by Notebookcheck in mid-September. 39.3K on Oct 16.",
+    "facts": [
+      {"value": "39.3K", "label": "stars on GitHub"},
+      {"value": "100%", "label": "GPU shader instruction coverage"},
+      {"value": "1", "label": "game confirmed fully playable"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Tom's Hardware",
+      "title": "AnyPS5 project reaches critical GPU milestone in race to enable running PS5 games natively on PC",
+      "url": "https://www.tomshardware.com/video-games/playstation/anyps5-reaches-critical-gpu-milestone-with-100-percent-shader-instruction-coverage-ps5-games-running-natively-on-pc-still-far-off",
+      "meta": "100% shader coverage, Oct 2026"
+    },
+    {
+      "plat": "Tom's Hardware",
+      "title": "Open-source AnyPS5 dumps emulation to run PlayStation 5 console games natively on PC",
+      "url": "https://www.tomshardware.com/video-games/playstation/open-source-anyps5-dumps-emulation-to-run-playstation-5-console-games-natively-on-pc-amd-zen-2-architecture-enables-proton-like-binary-translation-for-windows-and-linux",
+      "meta": "Initial coverage, Sep 2026"
+    },
+    {
+      "plat": "TweakTown",
+      "title": "PS5 games running 'natively' on PC edge closer as tool hits 96% shader coverage",
+      "url": "https://www.tweaktown.com/news/113923/ps5-games-running-natively-on-pc-edge-closer-as-tool-hits-96-percent-shader-coverage/index.html",
+      "meta": "96% shader milestone"
+    },
+    {
+      "plat": "Notebookcheck",
+      "title": "Playing PS5 titles on PC might be possible using a different route altogether with AnyPS5",
+      "url": "https://www.notebookcheck.net/Playing-PS5-titles-on-PC-might-be-possible-using-a-different-route-altogether-with-AnyPS5.1409700.0.html",
+      "meta": "858 stars at time of writing"
+    },
+    {
+      "plat": "FandomWire",
+      "title": "AnyPS5 tool: PS5 games natively on PC",
+      "url": "https://fandomwire.com/anyps5-tool-ps5-games-natively-on-pc/",
+      "meta": "Overview of the relinker approach"
+    },
+    {
+      "plat": "VideoCardz",
+      "title": "AnyPS5 aims to run PS5 games natively on PC without an emulator",
+      "url": "https://videocardz.com/newz/anyps5-aims-to-run-ps5-games-natively-on-pc-without-an-emulator",
+      "meta": "Hardware news coverage"
+    }
+  ],
+  "star_check": "No findarepo data found. Covered by Tom's Hardware, TweakTown, Notebookcheck, and VideoCardz.",
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Visit the [web converter](https://boykopovar.github.io/AnyPS5) to see the interface - it converts PS5 executables to Windows or Linux programs in your browser.",
+      "To build from source, clone the [repository](https://github.com/boykopovar/AnyPS5) and follow the build guide (requires CMake, a C++20 compiler, and Vulkan headers).",
+      "Check the [community compatibility list](https://github.com/boykopovar/AnyPS5) for which games have been tested - only Dreaming Sarah is confirmed fully playable today."
+    ],
+    "paste": "/skillspector https://github.com/boykopovar/AnyPS5\n\nIf that scan passes: visit the web converter at https://boykopovar.github.io/AnyPS5 to see the interface. Building from source requires CMake, a C++20 compiler, and Vulkan headers. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No installer size published. Built from source with CMake. Windows builds require MinGW-w64 GCC 15.2.0 specifically.",
+    "memory": "No data found. Uses Vulkan for graphics rendering.",
+    "runs_on": "Windows and Linux. The PS5's AMD x86-64 processor means game code runs directly on PC processors. The web converter runs in any modern browser (desktop Chrome or Edge for large files).",
+    "source": {"title": "AnyPS5 README and build guide", "url": "https://github.com/boykopovar/AnyPS5"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want to follow the PS5-to-PC porting effort and try early builds as they mature - this is a front-row seat to a new approach",
+      "You are a developer interested in binary translation, shader recompilation, or system library reimplementation"
+    ],
+    "skip_if": [
+      "You want to play PS5 games on PC today - only one simple 2D game is confirmed working, and no 3D titles are playable yet",
+      "You do not have legally obtained PS5 game files from your own console - the project ships no games, firmware, or extraction tools",
+      "You want a polished experience - there are no prebuilt installers, and the project is 74 days old"
+    ],
+    "alternatives": [
+      {
+        "name": "Official PC ports",
+        "url": "https://store.steampowered.com/",
+        "line": "Sony has been bringing PS5 exclusives to PC officially - Marvel's Spider-Man 2, God of War Ragnarok, and others are already on Steam."
+      },
+      {
+        "name": "PS Remote Play",
+        "url": "https://www.playstation.com/remote-play/",
+        "line": "Sony's official app streams PS5 games to your PC, phone, or tablet over your network. Requires a PS5 and a good connection."
+      }
+    ]
+  },
+  "watch": [
+    "**Only one game is confirmed playable.** Dreaming Sarah, a small 2015 2D platformer, is the only title that runs start to finish. No 3D game is playable yet. 100% shader coverage is a milestone, but system library reimplementation is at about 85% and many functions are stubs.",
+    "**Requires game files from a modified console.** AnyPS5 ships no games, no firmware, and no extraction tools. Getting the files typically means dumping them from a jailbroken PS5, which may violate your console's terms of service or local laws.",
+    "**Extremely early - expect crashes.** The project is 74 days old and has shipped only v0.1. Its own demo shows a game reaching menus and early gameplay before crashing. The developer says releases will follow only after a full game launch.",
+    "**Progress percentages are misleading.** The shader and library coverage numbers track only the functions the project has catalogued so far, not every PS5 system function. The true denominator grows as more games are tested."
+  ],
+  "sources": [
+    {"title": "AnyPS5 on GitHub (README, build guide, compatibility)", "url": "https://github.com/boykopovar/AnyPS5", "date": "2026-10-16"},
+    {"title": "AnyPS5 web converter", "url": "https://boykopovar.github.io/AnyPS5", "date": "2026-10-16"},
+    {"title": "Tom's Hardware: AnyPS5 reaches 100% shader instruction coverage", "url": "https://www.tomshardware.com/video-games/playstation/anyps5-reaches-critical-gpu-milestone-with-100-percent-shader-instruction-coverage-ps5-games-running-natively-on-pc-still-far-off", "date": "2026-10-16"},
+    {"title": "Tom's Hardware: Open-source AnyPS5 dumps emulation", "url": "https://www.tomshardware.com/video-games/playstation/open-source-anyps5-dumps-emulation-to-run-playstation-5-console-games-natively-on-pc-amd-zen-2-architecture-enables-proton-like-binary-translation-for-windows-and-linux", "date": "2026-09-17"},
+    {"title": "Notebookcheck: Playing PS5 titles on PC with AnyPS5", "url": "https://www.notebookcheck.net/Playing-PS5-titles-on-PC-might-be-possible-using-a-different-route-altogether-with-AnyPS5.1409700.0.html", "date": "2026-09-17"},
+    {"title": "TweakTown: PS5 games running natively on PC edge closer", "url": "https://www.tweaktown.com/news/113923/ps5-games-running-natively-on-pc-edge-closer-as-tool-hits-96-percent-shader-coverage/index.html", "date": "2026-10-16"},
+    {"title": "FandomWire: AnyPS5 tool - PS5 games natively on PC", "url": "https://fandomwire.com/anyps5-tool-ps5-games-natively-on-pc/", "date": "2026-10-16"}
+  ]
+}

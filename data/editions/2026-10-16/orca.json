@@ -1,0 +1,151 @@
+{
+  "repo": "stablyai/orca",
+  "name": "Orca",
+  "tagline": "A desktop app for running a fleet of AI coding agents in parallel - each gets its own copy of the code, and you track them all from one screen.",
+  "sentence": "Open Orca on your desktop, give each coding task its own isolated copy of the code, and run Claude Code, Codex or another agent in each one - then check on all of them from your phone.",
+  "fit": "developers",
+  "links": {
+    "website": "https://www.onorca.dev",
+    "docs": "https://www.onorca.dev/docs"
+  },
+  "visual": {
+    "src": "assets/shots/orca.jpg",
+    "width": 1998,
+    "height": 1250,
+    "alt": "Orca desktop app on macOS with a dark theme: the left sidebar lists seven in-progress worktrees, the center pane runs Claude Code v2.1.174 in the improve-readme worktree, the top right runs OpenAI Codex v0.139.0 in the same worktree, and a terminal below shows build output. A phone overlay displays the Orca mobile companion with stats: 5,065 agents spawned, 26 days of agent time, 359 PRs created, and a connected desktop with 200 worktrees and 47 active.",
+    "caption": "Two agents working side by side in the same worktree - Claude Code on the left, Codex on the right - with the mobile companion tracking 200 worktrees and 5,065 agents spawned."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to run several AI coding agents at once, each on a different task, but they fight over the same files - branch conflicts, overwritten changes, and confusion about who changed what.",
+      "eg": "You ask one agent to refactor a module while another writes tests, and they overwrite each other's files because they share the same working copy."
+    },
+    {
+      "role": "trigger",
+      "say": "You open Orca on your desktop and create a worktree (a separate, isolated copy of the code) for each task.",
+      "eg": "Create two worktrees from the same branch: one for a refactor, one for tests. Each agent sees its own copy and can't touch the other."
+    },
+    {
+      "role": "input",
+      "say": "Your code and the tasks you want agents to work on - issues from GitHub or Linear, a prompt, or a file you drag into the agent.",
+      "eg": "Open a GitHub issue in Orca's built-in panel and start an agent on it. The issue details feed into the prompt."
+    },
+    {
+      "role": "does",
+      "say": "It runs multiple coding agents in isolated worktrees and gives you one view of all their progress.",
+      "steps": [
+        "Creates a separate copy of the code (a git worktree) for each task, so agents never overwrite each other's work",
+        "Runs up to five agents side by side in split terminals, with a built-in browser that lets you click a UI element and send its code to the agent",
+        "Shows diffs from each agent, lets you comment on specific lines and send feedback back, and notifies your phone when an agent finishes"
+      ],
+      "eg": "The README example: fan one prompt across multiple agents, watch them work in split terminals, compare their diffs, and merge the best result."
+    },
+    {
+      "role": "result",
+      "say": "Several agents working in parallel without stepping on each other, tracked from one screen and your phone.",
+      "outputs": [
+        {"what": "Isolated parallel work", "eg": "Each agent in its own worktree - no branch conflicts, no stashing, no file locks"},
+        {"what": "One view of everything", "eg": "Diffs, terminal output, browser previews and progress for every agent in one window, with inline commenting"},
+        {"what": "A phone app for when you step away", "eg": "Get notified when agents finish, review their work, and send follow-up prompts from your phone (iOS and Android)"}
+      ]
+    }
+  ],
+  "before": [
+    "Running two AI coding agents at once means switching branches by hand, stashing changes, and hoping they don't overwrite each other's files.",
+    "Checking on a long-running agent means staying at your desk - there's no way to see its progress or send it a follow-up from your phone."
+  ],
+  "after": [
+    "Each agent gets its own isolated copy of the code. Run five agents on five tasks in one window, and their changes never collide.",
+    "A phone app notifies you when agents finish and lets you review diffs, approve merges, and send follow-ups from anywhere."
+  ],
+  "uses_note": "Orca has 94K stars and is 7 months old. The screenshot shows one user with 5,065 agents spawned and 359 PRs created, but named external adopters are hard to find.",
+  "uses": [],
+  "pulse": {
+    "gain": "+24.4K stars in 30 days. Still climbing. 94K total in 7 months.",
+    "history": [
+      ["2026-03-17", 0],
+      ["2026-09-12", 67000],
+      ["2026-10-16", 94000]
+    ],
+    "history_note": "Created Mar 17, 2026. Launched on Product Hunt Apr 9. Growth accelerating since August.",
+    "facts": [
+      {"value": "94K", "label": "stars on GitHub"},
+      {"value": "14,562", "label": "commits"},
+      {"value": "34", "label": "supported agents"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "findarepo",
+      "title": "stablyai/orca on findarepo",
+      "url": "https://findarepo.com/repo/stablyai/orca/",
+      "meta": "Star credibility 100/100, looks organic"
+    },
+    {
+      "plat": "Blog",
+      "title": "Orca: A New ADE for Collaborative Parallel Agent Clusters",
+      "url": "https://aitoolly.com/ai-news/article/2026-08-14-orca-a-new-ade-for-collaborative-parallel-agent-clusters-across-desktop-mobile-and-vps",
+      "meta": "Feature article, Aug 14, 2026"
+    },
+    {
+      "plat": "Blog",
+      "title": "Orca Agent Development Environment: Parallel AI Coding",
+      "url": "https://pyshine.com/Orca-Agent-Development-Environment-Parallel-AI-Coding/",
+      "meta": "Technical walkthrough"
+    },
+    {
+      "plat": "Dealroom",
+      "title": "Stably AI (Orca) company profile",
+      "url": "https://app.dealroom.co/companies/stably_ai_orca",
+      "meta": "Y Combinator W22, founded by Jinjing Liang and Neil Parker"
+    }
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download Orca](https://www.onorca.dev/download) for your computer (Mac, Windows or Linux) and install it. On Mac you can also run `brew install --cask stablyai/orca/orca`.",
+      "Open a project, create a worktree for a task (like 'write tests for the login page'), and start an agent in it. [Orca's docs](https://www.onorca.dev/docs) cover the first-run setup for Claude Code, Codex and others.",
+      "Create a second worktree with a different task and run another agent. Watch both work side by side in split terminals and compare their diffs."
+    ],
+    "paste": "/skillspector https://github.com/stablyai/orca\n\nIf that scan passes: download Orca from onorca.dev/download, open a project, create two worktrees for two different tasks, and run an agent in each. Compare the diffs side by side. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No data found for installer size. Available as DMG (macOS), EXE (Windows) and AppImage (Linux). Mobile companion on iOS App Store and Android APK.",
+    "memory": "No data found. Runs as an Electron desktop app with WebGL-rendered terminals. Each agent runs its own process.",
+    "runs_on": "macOS (Apple Silicon and Intel), Windows and Linux. Mobile companion: iOS (App Store) and Android (APK). Remote worktrees over SSH to any Linux server.",
+    "source": {"title": "Orca README and download page", "url": "https://www.onorca.dev/download"}
+  },
+  "verdict": {
+    "best_for": [
+      "You run AI coding agents daily and want to run several at once on different tasks without branch conflicts - each in its own isolated worktree",
+      "You want to monitor long-running agents from your phone and send follow-ups without staying at your desk"
+    ],
+    "skip_if": [
+      "You only run one agent at a time - Orca's value is in parallel work, and a single agent runs fine in a regular terminal",
+      "You are cost-conscious about AI subscriptions - running five agents in parallel means five sets of API or subscription costs with no pooling"
+    ],
+    "alternatives": [
+      {
+        "name": "Emdash",
+        "url": "https://emdash.sh",
+        "line": "Another open-source desktop app for parallel coding agents in isolated worktrees, with SSH remote support. Lighter-weight and newer."
+      }
+    ]
+  },
+  "watch": [
+    "**Each agent needs its own subscription.** Running five agents in parallel means five sets of API or subscription costs. Orca tracks usage per account but does not pool or limit spend.",
+    "**No independent security review found.** Orca runs shell commands and inherits the permissions of the agents it runs. One directory flags this as worth weighing.",
+    "**Y Combinator W22 company.** Stably AI is venture-backed, which means the business model may change. The app is free and MIT-licensed today, but the company is hiring and building a cloud product (Orca VM).",
+    "**94K stars in 7 months is fast.** findarepo rates the growth organic (100/100), but the pace is unusual. The 14,562-commit count suggests heavy development activity - some of it automated."
+  ],
+  "sources": [
+    {"title": "Orca on GitHub (README, features, supported agents)", "url": "https://github.com/stablyai/orca", "date": "2026-10-16"},
+    {"title": "Orca website", "url": "https://www.onorca.dev", "date": "2026-10-16"},
+    {"title": "Orca download page", "url": "https://www.onorca.dev/download", "date": "2026-10-16"},
+    {"title": "findarepo: stablyai/orca star growth", "url": "https://findarepo.com/repo/stablyai/orca/", "date": "2026-10-16"},
+    {"title": "Orca: A New ADE for Collaborative Parallel Agent Clusters (aitoolly.com)", "url": "https://aitoolly.com/ai-news/article/2026-08-14-orca-a-new-ade-for-collaborative-parallel-agent-clusters-across-desktop-mobile-and-vps", "date": "2026-08-14"},
+    {"title": "Stably AI (Orca) on Dealroom", "url": "https://app.dealroom.co/companies/stably_ai_orca", "date": "2026-10-16"}
+  ]
+}

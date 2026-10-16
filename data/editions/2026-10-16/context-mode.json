@@ -1,0 +1,157 @@
+{
+  "repo": "mksglu/context-mode",
+  "name": "Context Mode",
+  "tagline": "A background service that keeps large tool results out of your AI coding agent's memory, so sessions last longer and cost less.",
+  "sentence": "Install it once and your AI coding sessions run for hours instead of hitting memory limits after 30 minutes - a 315 KB test result becomes a 5.4 KB summary the agent can still search.",
+  "fit": "developers",
+  "links": {
+    "website": "https://context-mode.com",
+    "docs": "https://github.com/mksglu/context-mode",
+    "demo": "https://www.youtube.com/watch?v=QUHrntlfPo4"
+  },
+  "visual": {
+    "src": "assets/shots/context-mode.jpg",
+    "width": 1280,
+    "height": 720,
+    "alt": "A YouTube thumbnail in pixel art style: a pink brain illustration on the left with '99% SAVINGS' in bold white text above it and a curved arrow pointing down, with 'CLAUDE CODE' in orange pixel-style lettering on the right, all on a dark background.",
+    "caption": "The project's demo video thumbnail, claiming 99% savings on Claude Code context usage."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding agent's conversation fills up fast. Every test output, log file, and code search it reads eats into a fixed-size working memory, and after about 30 minutes the agent has to compress or start over.",
+      "eg": "You ask your agent to run a 600-line test suite. The raw output is 56 KB - and now a quarter of the agent's memory is gone on one result."
+    },
+    {
+      "role": "trigger",
+      "say": "You install Context Mode once - it runs as a background service (an MCP (Model Context Protocol) server, a bridge that gives AI agents extra tools) and starts intercepting tool results automatically.",
+      "eg": "One command in your terminal, or install from the Claude Code plugin marketplace. It activates automatically for every session."
+    },
+    {
+      "role": "input",
+      "say": "The raw output from tools your agent uses: test results, log files, search results, file contents - anything the agent would normally read in full.",
+      "eg": "A Playwright browser snapshot (56 KB), 20 GitHub issues (59 KB), or a server access log (45 KB)."
+    },
+    {
+      "role": "does",
+      "say": "It intercepts tool output before the agent sees it, runs it in an isolated process, and hands back only a small summary.",
+      "steps": [
+        "Runs each tool's output in a sandboxed process so the raw data never enters the conversation - only the printed result does",
+        "Indexes the full output in a local database so the agent can search it later by keyword if it needs more detail",
+        "Tracks file edits, decisions, and task progress in a session log that survives compression, so the agent remembers what happened"
+      ],
+      "eg": "47 file reads totaling 700 KB become one sandboxed call returning 3.6 KB - the agent gets what it needs without filling its memory."
+    },
+    {
+      "role": "result",
+      "say": "Longer, cheaper AI coding sessions with less wasted memory.",
+      "outputs": [
+        {"what": "Longer sessions", "eg": "A session that used to compress at 30 minutes runs for about 3 hours before needing to compress"},
+        {"what": "Lower costs", "eg": "A long Claude Code session on Opus 5.5 dropped from $7.20 to $2.49 in the project's paired tests (155 of 168 runs cost less)"},
+        {"what": "Resumable work", "eg": "After compression, a 2 KB snapshot restores the agent's awareness of what happened earlier in the session"}
+      ]
+    }
+  ],
+  "before": [
+    "Your AI coding agent fills its working memory after about 30 minutes of real work. It has to compress or start over, losing track of what it was doing.",
+    "Every tool result enters the conversation at full size - a 56 KB test snapshot, a 59 KB batch of issues - even if the agent only needed a one-line answer from each."
+  ],
+  "after": [
+    "Tool results are processed in the background and only summaries enter the conversation. A 315 KB session becomes 5.4 KB, and the full data is still searchable.",
+    "Sessions run for hours instead of minutes, and the agent picks up where it left off after compression because its decisions and progress are saved locally."
+  ],
+  "uses_note": "Context Mode is 235 days old. The project claims adoption at large companies, but an independent review found those claims come from a self-authored tracking file, not confirmed case studies. No named real-world adopters could be verified.",
+  "uses": [],
+  "pulse": {
+    "gain": "+30K stars in 235 days. Created Feb 23, 2026. Reached #1 on Hacker News with 570+ points in February.",
+    "history": [
+      ["2026-02-23", 0],
+      ["2026-09-13", 22477],
+      ["2026-10-16", 30000]
+    ],
+    "history_note": "Created Feb 23, 2026. 22.5K stars reported by andrew.ooo review on Sep 13. ~30K on Oct 16.",
+    "facts": [
+      {"value": "30K", "label": "stars on GitHub"},
+      {"value": "17", "label": "supported AI coding tools"},
+      {"value": "98%", "label": "claimed context reduction"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "andrew.ooo",
+      "title": "Context Mode Review: Cut Coding Agent Context by 98%",
+      "url": "https://andrew.ooo/posts/context-mode-mcp-context-window-optimization-review/",
+      "meta": "Published Sep 13, 2026 - repo facts checked Oct 16"
+    },
+    {
+      "plat": "Hacker News",
+      "title": "Context Mode on Hacker News",
+      "url": "https://feedbagel.com/post/context-mode-mcp-server-reduces-claude-code-context-consumption-by-98",
+      "meta": "570+ points, #1, Feb 2026 (via FeedBagel)"
+    },
+    {
+      "plat": "36kr",
+      "title": "This open-source project cuts AI coding costs by 98% (Chinese)",
+      "url": "https://www.36kr.com/p/3845645258541319",
+      "meta": "Chinese tech media coverage"
+    },
+    {
+      "plat": "aitoolly",
+      "title": "Context Mode emerges on GitHub trending to optimize AI coding agent context windows by 98%",
+      "url": "https://aitoolly.com/de/ai-news/article/2026-10-12-context-mode-emerges-on-github-trending-to-optimize-ai-coding-agent-context-windows-by-98-percent",
+      "meta": "Oct 12, 2026"
+    }
+  ],
+  "star_check": "No findarepo data found. GitHub trending confirmed by multiple sources.",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install from the command line: `claude mcp add context-mode -- npx -y context-mode` (requires [Node.js 22.5+](https://nodejs.org/)).",
+      "Run a session with a task that produces large output - run tests, search files, or fetch a long page - and watch the agent's memory usage stay low.",
+      "Check the stats with `/context-mode:ctx-stats` to see how much memory was saved."
+    ],
+    "paste": "/skillspector https://github.com/mksglu/context-mode\n\nIf that scan passes: install with `claude mcp add context-mode -- npx -y context-mode`, then run a session that reads several files or runs tests, and check `/context-mode:ctx-stats`. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "Installed via npm (`npx -y context-mode`). Package size not published. Session data stored in SQLite databases under `~/.context-mode/content/`.",
+    "memory": "No data found. Runs tool output in subprocesses; supports 12 language sandboxes (JavaScript, Python, Shell, Go, Rust, and more).",
+    "runs_on": "Mac, Windows, and Linux. Requires Node.js 22.5+ (or Bun). Windows has known issues (see Watch). Linux needs glibc 2.31+ for the native SQLite module, or a C++20 compiler to build from source.",
+    "source": {"title": "Context Mode README: installation and requirements", "url": "https://github.com/mksglu/context-mode"}
+  },
+  "verdict": {
+    "best_for": [
+      "You run long AI coding sessions and hit context limits regularly - especially sessions over 30 minutes that compress and lose track of earlier work",
+      "You want to reduce your AI coding costs without changing how you work - install once and the savings happen automatically"
+    ],
+    "skip_if": [
+      "You mostly run short sessions that finish in a few minutes - the overhead of indexing and sandboxing adds no value for quick tasks",
+      "You need a fully open-source tool - Context Mode changed from MIT to the Elastic License 2.0, which is source-available but not open-source, and cannot be offered as a hosted service",
+      "You work on Windows - an open issue reports a batch execution call that ran for over four hours without completing"
+    ],
+    "alternatives": [
+      {
+        "name": "Curated tool lists",
+        "url": "https://github.com/mksglu/context-mode#landscape",
+        "line": "Reduce context by loading fewer tools. Context Mode handles output size; this handles input size. They work together."
+      },
+      {
+        "name": "Context Mode Engine (free)",
+        "url": "https://context-mode.com",
+        "line": "The free local plugin with sandbox and index. The paid Context Mode gateway ($49/month) adds cost controls, team policies, and analytics."
+      }
+    ]
+  },
+  "watch": [
+    "**License changed from MIT to Elastic License 2.0.** ELv2 is source-available, not open-source. You can use and modify it freely, but you cannot offer it as a hosted service to others.",
+    "**The 98% claim measures bytes saved, not answer quality.** The developer says 'We haven't run formal benchmarks on answer quality yet.' Fewer bytes in context could mean the agent misses details. An independent reviewer recommends checking your own numbers with `/context-mode:ctx-stats`.",
+    "**Windows support has known issues.** A GitHub issue (#947) reports a batch execution call that stayed in flight for over four hours. The reviewer advises Windows users to check the issue tracker first.",
+    "**Adoption claims are self-reported.** The README shows badges for Microsoft, Google, Meta, Amazon, and others, but an independent review found these come from the project's own tracking file and could not be confirmed."
+  ],
+  "sources": [
+    {"title": "Context Mode on GitHub (README, features, installation)", "url": "https://github.com/mksglu/context-mode", "date": "2026-10-16"},
+    {"title": "Context Mode website", "url": "https://context-mode.com", "date": "2026-10-16"},
+    {"title": "andrew.ooo: Context Mode Review: Cut Coding Agent Context by 98%", "url": "https://andrew.ooo/posts/context-mode-mcp-context-window-optimization-review/", "date": "2026-09-13"},
+    {"title": "YouTube demo video", "url": "https://www.youtube.com/watch?v=QUHrntlfPo4", "date": "2026-10-16"},
+    {"title": "FeedBagel: Context Mode on Hacker News (570+ points)", "url": "https://feedbagel.com/post/context-mode-mcp-server-reduces-claude-code-context-consumption-by-98", "date": "2026-02-23"}
+  ]
+}

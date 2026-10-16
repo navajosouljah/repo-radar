@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Mode: A background service that keeps large tool results out of your AI coding agent's memory, so sessions last longer and cost less. | Repo Radar</title>
+<meta name="description" content="Install it once and your AI coding sessions run for hours instead of hitting memory limits after 30 minutes - a 315 KB test result becomes a 5.4 KB summary the agent can still search.">
+<meta property="og:title" content="Context Mode: A background service that keeps large tool results out of your AI coding agent's memory, so sessions last longer and cost less. | Repo Radar">
+<meta property="og:description" content="Install it once and your AI coding sessions run for hours instead of hitting memory limits after 30 minutes - a 315 KB test result becomes a 5.4 KB summary the agent can still search.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/context-mode.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 012 &middot; Week of October 16, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#7 this week</span><span class="repo-id">mksglu/context-mode</span></div>
+    <h1 id="name">Context Mode</h1>
+    <p class="tagline">A background service that keeps large tool results out of your AI coding agent's memory, so sessions last longer and cost less.</p>
+    <p class="sentence">Install it once and your AI coding sessions run for hours instead of hitting memory limits after 30 minutes - a 315 KB test result becomes a 5.4 KB summary the agent can still search.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://context-mode.com" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn" href="https://www.youtube.com/watch?v=QUHrntlfPo4" rel="noopener">See it work <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/mksglu/context-mode" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/context-mode.jpg" alt="A YouTube thumbnail in pixel art style: a pink brain illustration on the left with '99% SAVINGS' in bold white text above it and a curved arrow pointing down, with 'CLAUDE CODE' in orange pixel-style lettering on the right, all on a dark background." width="1280" height="720" loading="eager">
+    <figcaption>The project's demo video thumbnail, claiming 99% savings on Claude Code context usage.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">30K</span><span class="v-note">GitHub stars, <b>+30K stars in 235 days. Created Feb 23, 2026. Reached #1 on Hacker News with 570+ points in February.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 10.5 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 16: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Your AI coding agent's conversation fills up fast. Every test output, log file, and code search it reads eats into a fixed-size working memory, and after about 30 minutes the agent has to compress or start over.</p><p class="eg">You ask your agent to run a 600-line test suite. The raw output is 56 KB - and now a quarter of the agent's memory is gone on one result.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You install Context Mode once - it runs as a background service (an MCP (Model Context Protocol) server, a bridge that gives AI agents extra tools) and starts intercepting tool results automatically.</p><p class="eg">One command in your terminal, or install from the Claude Code plugin marketplace. It activates automatically for every session.</p></div><div class="note input"><span class="role">You give it</span><p class="say">The raw output from tools your agent uses: test results, log files, search results, file contents - anything the agent would normally read in full.</p><p class="eg">A Playwright browser snapshot (56 KB), 20 GitHub issues (59 KB), or a server access log (45 KB).</p></div><div class="note does"><span class="role">It does</span><p class="say">It intercepts tool output before the agent sees it, runs it in an isolated process, and hands back only a small summary.</p><ol class="steps-in"><li>Runs each tool's output in a sandboxed process so the raw data never enters the conversation - only the printed result does</li><li>Indexes the full output in a local database so the agent can search it later by keyword if it needs more detail</li><li>Tracks file edits, decisions, and task progress in a session log that survives compression, so the agent remembers what happened</li></ol><p class="eg">47 file reads totaling 700 KB become one sandboxed call returning 3.6 KB - the agent gets what it needs without filling its memory.</p></div><div class="note result"><span class="role">You get</span><p class="say">Longer, cheaper AI coding sessions with less wasted memory.</p><ul class="outputs"><li><b>Longer sessions</b><span>A session that used to compress at 30 minutes runs for about 3 hours before needing to compress</span></li><li><b>Lower costs</b><span>A long Claude Code session on Opus 5.5 dropped from $7.20 to $2.49 in the project's paired tests (155 of 168 runs cost less)</span></li><li><b>Resumable work</b><span>After compression, a 2 KB snapshot restores the agent's awareness of what happened earlier in the session</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Your AI coding agent fills its working memory after about 30 minutes of real work. It has to compress or start over, losing track of what it was doing.</li><li>Every tool result enters the conversation at full size - a 56 KB test snapshot, a 59 KB batch of issues - even if the agent only needed a one-line answer from each.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Tool results are processed in the background and only summaries enter the conversation. A 315 KB session becomes 5.4 KB, and the full data is still searchable.</li><li>Sessions run for hours instead of minutes, and the agent picks up where it left off after compression because its decisions and progress are saved locally.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Install from the command line: <code>claude mcp add context-mode -- npx -y context-mode</code> (requires <a href="https://nodejs.org/" rel="noopener">Node.js 22.5+</a>).</li><li>Run a session with a task that produces large output - run tests, search files, or fetch a long page - and watch the agent's memory usage stay low.</li><li>Check the stats with <code>/context-mode:ctx-stats</code> to see how much memory was saved.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Installed via npm (<code>npx -y context-mode</code>). Package size not published. Session data stored in SQLite databases under <code>~/.context-mode/content/</code>.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. Runs tool output in subprocesses; supports 12 language sandboxes (JavaScript, Python, Shell, Go, Rust, and more).</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows, and Linux. Requires Node.js 22.5+ (or Bun). Windows has known issues (see Watch). Linux needs glibc 2.31+ for the native SQLite module, or a C++20 compiler to build from source.</dd></div>
+  </dl><a class="src" href="https://github.com/mksglu/context-mode" rel="noopener">Source: Context Mode README: installation and requirements</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-context-mode">/skillspector https://github.com/mksglu/context-mode
+
+If that scan passes: install with `claude mcp add context-mode -- npx -y context-mode`, then run a session that reads several files or runs tests, and check `/context-mode:ctx-stats`. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-context-mode">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You run long AI coding sessions and hit context limits regularly - especially sessions over 30 minutes that compress and lose track of earlier work</li><li>You want to reduce your AI coding costs without changing how you work - install once and the savings happen automatically</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You mostly run short sessions that finish in a few minutes - the overhead of indexing and sandboxing adds no value for quick tasks</li><li>You need a fully open-source tool - Context Mode changed from MIT to the Elastic License 2.0, which is source-available but not open-source, and cannot be offered as a hosted service</li><li>You work on Windows - an open issue reports a batch execution call that ran for over four hours without completing</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://github.com/mksglu/context-mode#landscape" rel="noopener"><b>Curated tool lists</b></a><span>Reduce context by loading fewer tools. Context Mode handles output size; this handles input size. They work together.</span></li><li><a href="https://context-mode.com" rel="noopener"><b>Context Mode Engine (free)</b></a><span>The free local plugin with sandbox and index. The paid Context Mode gateway ($49/month) adds cost controls, team policies, and analytics.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/mksglu/context-mode/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 16</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>9 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>30K stars, 120 contributors, 2.2K commits. No findarepo data found. GitHub trending confirmed by multiple sources.</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>License changed from MIT to Elastic License 2.0.</b> ELv2 is source-available, not open-source. You can use and modify it freely, but you cannot offer it as a hosted service to others.</li><li><b>The 98% claim measures bytes saved, not answer quality.</b> The developer says 'We haven't run formal benchmarks on answer quality yet.' Fewer bytes in context could mean the agent misses details. An independent reviewer recommends checking your own numbers with <code>/context-mode:ctx-stats</code>.</li><li><b>Windows support has known issues.</b> A GitHub issue (#947) reports a batch execution call that stayed in flight for over four hours. The reviewer advises Windows users to check the issue tracker first.</li><li><b>Adoption claims are self-reported.</b> The README shows badges for Microsoft, Google, Meta, Amazon, and others, but an independent review found these come from the project's own tracking file and could not be confirmed.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Context Mode is 235 days old. The project claims adoption at large companies, but an independent review found those claims come from a self-authored tracking file, not confirmed case studies. No named real-world adopters could be verified.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">andrew.ooo</span><a href="https://andrew.ooo/posts/context-mode-mcp-context-window-optimization-review/" rel="noopener">Context Mode Review: Cut Coding Agent Context by 98%</a><span class="meta">Published Sep 13, 2026 - repo facts checked Oct 16</span></li><li class=""><span class="plat">Hacker News</span><a href="https://feedbagel.com/post/context-mode-mcp-server-reduces-claude-code-context-consumption-by-98" rel="noopener">Context Mode on Hacker News</a><span class="meta">570+ points, #1, Feb 2026 (via FeedBagel)</span></li><li class=""><span class="plat">36kr</span><a href="https://www.36kr.com/p/3845645258541319" rel="noopener">This open-source project cuts AI coding costs by 98% (Chinese)</a><span class="meta">Chinese tech media coverage</span></li><li class=""><span class="plat">aitoolly</span><a href="https://aitoolly.com/de/ai-news/article/2026-10-12-context-mode-emerges-on-github-trending-to-optimize-ai-coding-agent-context-windows-by-98-percent" rel="noopener">Context Mode emerges on GitHub trending to optimize AI coding agent context windows by 98%</a><span class="meta">Oct 12, 2026</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/mksglu/context-mode" rel="noopener">Context Mode on GitHub (README, features, installation)</a>, Oct 16</li><li><a href="https://context-mode.com" rel="noopener">Context Mode website</a>, Oct 16</li><li><a href="https://andrew.ooo/posts/context-mode-mcp-context-window-optimization-review/" rel="noopener">andrew.ooo: Context Mode Review: Cut Coding Agent Context by 98%</a>, Sep 13</li><li><a href="https://www.youtube.com/watch?v=QUHrntlfPo4" rel="noopener">YouTube demo video</a>, Oct 16</li><li><a href="https://feedbagel.com/post/context-mode-mcp-server-reduces-claude-code-context-consumption-by-98" rel="noopener">FeedBagel: Context Mode on Hacker News (570+ points)</a>, Feb 23</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 012 &middot; October 16, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

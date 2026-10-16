@@ -1,0 +1,169 @@
+{
+  "repo": "wheresryan22/anatomy",
+  "name": "Anatomy",
+  "tagline": "A Claude skill that turns a one-line description into an interactive, labeled diagram you can take apart in your browser.",
+  "sentence": "Ask Claude to explain how something works and it builds an interactive picture of the real machine - hover to see parts move, click to take it apart, read the live numbers.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/wheresryan22/anatomy"
+  },
+  "visual": {
+    "src": "assets/shots/anatomy.webp",
+    "width": 900,
+    "height": 940,
+    "alt": "An isometric illustration of a SpaceX Raptor 2 rocket engine on a test stand, firing with red-orange exhaust. Labels read 'Fig 1', 'RAPTOR 2 - TEST STAND', 'Pc 300 bar - 230 tf'. A 'SHUT DOWN' button and 'HOVER THE ENGINE TO TAKE IT APART' instruction appear at bottom.",
+    "caption": "An anatomy illustration of a Raptor 2 engine - the kind of interactive, labeled diagram the skill creates from a plain-English request."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to explain how a machine or system works, but drawing a clear, labeled diagram by hand takes hours - and a screenshot or stock image does not show the insides.",
+      "eg": "You are writing docs for a caching system and want a picture that shows how the parts fit together, not just a box-and-arrow chart."
+    },
+    {
+      "role": "trigger",
+      "say": "You type a one-line request in Claude Code (or another supported coding agent) and the skill takes over.",
+      "eg": "Type '/anatomy explain how a pin-tumbler lock works, interactive' and the agent starts building."
+    },
+    {
+      "role": "input",
+      "say": "A plain-English description of the machine or idea you want illustrated.",
+      "eg": "'Explain how a Raptor 2 rocket engine works' - one sentence is enough."
+    },
+    {
+      "role": "does",
+      "say": "Claude writes a computational model with real values, then draws each part as a shaded solid and wires them together into a moving figure.",
+      "steps": [
+        "Writes the working values (pressures, temperatures, speeds) as a model that drives the motion and the readout",
+        "Draws 40 to 150+ parts with four-tone shading, assembles them in the right order, and adds labels",
+        "Runs a geometry audit to check that no parts overlap or pass through each other, then takes screenshots to verify the result"
+      ],
+      "eg": "The Raptor 2 example: 11 assemblies, a WebGL exhaust plume, and a live readout showing chamber pressure and thrust."
+    },
+    {
+      "role": "result",
+      "say": "An interactive diagram you can open in a browser, embed in docs, or drop into a React app.",
+      "outputs": [
+        {"what": "Standalone HTML page", "eg": "A single file you open in any browser - hover the engine to take it apart, see each part labeled"},
+        {"what": "SVG file or React component", "eg": "Drop a component into your Next.js docs site with working interaction and keyboard support"},
+        {"what": "Optional WebGL effects", "eg": "Fire, water, exhaust, lamp glow and steam layered into the diagram for realism"}
+      ]
+    }
+  ],
+  "before": [
+    "Explaining how a machine works means drawing a diagram by hand, paying a technical illustrator, or settling for a flat screenshot that does not show the insides.",
+    "A box-and-arrow chart gets the topology across but does not show what the parts look like or how they move."
+  ],
+  "after": [
+    "Describe what you want in one sentence and get an interactive picture where every part is labeled, moves realistically, and shows live numbers.",
+    "The diagram is source code you own - a standalone HTML file, an SVG, or a React component you drop into your docs."
+  ],
+  "uses_note": "Anatomy was created on October 8, 2026. It is 8 days old, so named real-world use is still very early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+13K stars in 8 days. Created Oct 8, 2026.",
+    "history": [
+      ["2026-10-08", 0],
+      ["2026-10-11", 2176],
+      ["2026-10-12", 6507],
+      ["2026-10-14", 8957],
+      ["2026-10-16", 13000]
+    ],
+    "history_note": "Created Oct 8, 2026. Crossed 6.5K stars in its first 4 days.",
+    "facts": [
+      {"value": "13K", "label": "stars on GitHub"},
+      {"value": "986", "label": "forks"},
+      {"value": "8", "label": "example figures included"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "Anatomy Claude Code Skill: 6,500 Stars in 4 Days [2026]",
+      "url": "https://www.kunalganglani.com/blog/anatomy-claude-code-skill",
+      "meta": "Overview of the skill, install steps, and early growth"
+    },
+    {
+      "plat": "Blog",
+      "title": "Anatomy for Claude Code: Interactive SVG for Documentation",
+      "url": "https://wavect.io/blog/anatomy-claude-code-interactive-svg.md",
+      "meta": "Technical walkthrough by Kevin Riedl, Oct 12"
+    },
+    {
+      "plat": "Blog",
+      "title": "Anatomy: Ein Skill fur Claude Code zeichnet Ideen als bewegliche Maschinen",
+      "url": "https://www.drweb.de/anatomy-claude-code-skill-erklaergrafiken/",
+      "meta": "German-language review with build times (clock: 1h54m, turbofan: 14h), Oct 14"
+    },
+    {
+      "plat": "Digg",
+      "title": "Anatomy promises interactive machine wireframes from one-line descriptions",
+      "url": "https://digg.com/ai/y2e8d0l4",
+      "meta": "Aggregation of the Oct 10 announcement"
+    },
+    {
+      "plat": "findarepo",
+      "title": "wheresryan22/anatomy on findarepo",
+      "url": "https://findarepo.com/repo/wheresryan22/anatomy/",
+      "meta": "Star growth looks organic (100/100)"
+    }
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "Install the skill: run `npx skills add wheresryan22/anatomy -g` (requires [Node.js 20.10+](https://nodejs.org/)). If you use Claude Code, add `-a claude-code`.",
+      "In Claude Code, type `/anatomy explain how a dial indicator works, interactive`. The agent will build a figure - a small one takes 30-90 minutes of agent time.",
+      "View the result in your browser. Hover the parts to see them labeled, click to take them apart, and check the live readout."
+    ],
+    "paste": "/skillspector https://github.com/wheresryan22/anatomy\n\nIf that scan passes: install with `npx skills add wheresryan22/anatomy -g -a claude-code`, then run `/anatomy explain how a dial indicator works, interactive`. The small example takes about 30-90 minutes of agent time."
+  },
+  "footprint": {
+    "disk": "About 10 MB for the skill folder (including examples). No additional packages to install - uses only Node.js built-in modules.",
+    "memory": "No data found. Chrome or Chromium is needed only for the visual verification step. WebGL is needed for shader effects but the plain SVG renders without it.",
+    "runs_on": "Any system that runs a supported coding agent (Claude Code, Antigravity, OpenCode, Codex, MiniMax Code) and Node.js 20.10+. Output works in any modern browser. Reduced-motion mode stops all animation.",
+    "source": {"title": "Anatomy README: installation and requirements", "url": "https://github.com/wheresryan22/anatomy"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want to explain a machine or system visually and do not want to draw it yourself - one sentence in, interactive diagram out",
+      "You are writing technical docs or a presentation and want a labeled, interactive figure you can embed as HTML, SVG or a React component"
+    ],
+    "skip_if": [
+      "You need a chart with axes and data plots - this draws machines and instruments, not bar charts or line graphs",
+      "You need a quick illustration in minutes - a single figure takes 30 minutes to 2+ hours of agent time, and complex ones (a turbofan engine) took 14 hours in one test"
+    ],
+    "alternatives": [
+      {
+        "name": "Mermaid",
+        "url": "https://mermaid.js.org/",
+        "line": "Text-to-diagram tool for flowcharts, sequence diagrams and architecture charts. Fast and widely supported, but draws flat boxes and arrows, not shaded machines."
+      },
+      {
+        "name": "Excalidraw",
+        "url": "https://excalidraw.com/",
+        "line": "A free whiteboard for hand-drawn-style diagrams. Good for quick sketches, but you draw by hand - no AI generation."
+      },
+      {
+        "name": "draw.io (diagrams.net)",
+        "url": "https://www.drawio.com/",
+        "line": "A free diagram editor with shape libraries. More control over layout, but no isometric shading or interactive disassembly."
+      }
+    ]
+  },
+  "watch": [
+    "**Figures take a long time to build.** A small dial gauge takes 30-90 minutes of active agent time. A Raptor 2 engine took over 10 hours. A turbofan took 14 hours. Each hour uses Claude Code usage quota.",
+    "**This is not an engineering simulation.** The diagrams look detailed, but one reviewer notes they do not establish engineering accuracy, manufacturing suitability, or a validated simulation. The numbers shown are illustrative, not certified.",
+    "**8 days old - no production use yet.** The repo was created October 8, 2026. No named users or teams have reported using it in production. Stars show interest, not adoption.",
+    "**Review the skill before installing.** It runs Node scripts and a headless Chrome browser locally. The publish script reads duration and token usage from session logs unless you pass `--no-session`."
+  ],
+  "sources": [
+    {"title": "Anatomy on GitHub (README, examples, requirements)", "url": "https://github.com/wheresryan22/anatomy", "date": "2026-10-16"},
+    {"title": "Anatomy for Claude Code: Interactive SVG (Wavect, Kevin Riedl)", "url": "https://wavect.io/blog/anatomy-claude-code-interactive-svg.md", "date": "2026-10-12"},
+    {"title": "Anatomy: Ein Skill fur Claude Code (Dr. Web, Markus Seyfferth)", "url": "https://www.drweb.de/anatomy-claude-code-skill-erklaergrafiken/", "date": "2026-10-14"},
+    {"title": "Anatomy Claude Code Skill: 6,500 Stars in 4 Days (Kunal Ganglani)", "url": "https://www.kunalganglani.com/blog/anatomy-claude-code-skill", "date": "2026-10-12"},
+    {"title": "Digg: Anatomy promises interactive machine wireframes", "url": "https://digg.com/ai/y2e8d0l4", "date": "2026-10-10"},
+    {"title": "Anatomy on explainx.ai (build times and limits)", "url": "https://explainx.ai/blog/anatomy-claude-code-skill-isometric-interactive-figures-wheresryan22-2026", "date": "2026-10-11"},
+    {"title": "findarepo: wheresryan22/anatomy (star check)", "url": "https://findarepo.com/repo/wheresryan22/anatomy/", "date": "2026-10-16"}
+  ]
+}

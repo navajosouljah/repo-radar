@@ -1,0 +1,169 @@
+{
+  "repo": "cathrynlavery/diagram-design",
+  "name": "Diagram Design",
+  "tagline": "An agent skill that draws publication-quality diagrams as self-contained HTML files, matching your brand's colors and fonts.",
+  "sentence": "Ask your AI coding assistant to draw a diagram and it picks from 44 types - flowcharts, architecture maps, timelines, charts - and writes one HTML file with clean lines, no shadows, and your brand's colors.",
+  "fit": "you",
+  "links": {
+    "website": "https://diagramdesign.dev",
+    "docs": "https://github.com/cathrynlavery/diagram-design",
+    "demo": "https://cathrynlavery.github.io/diagram-design"
+  },
+  "visual": {
+    "src": "assets/shots/diagram-design.webp",
+    "width": 1400,
+    "height": 673,
+    "alt": "An architecture diagram showing boxes connected by lines: Capture, Learn, Measure, Act, Decide, Research around a central 'Shared memory' node, plus a radar chart overlay showing metrics like unit tests, flaked, failed, write throughput.",
+    "caption": "One of the 44 diagram types - an architecture diagram with a data radar, generated as a self-contained HTML file."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need a diagram for a blog post, a presentation, or documentation, but AI-generated diagrams look generic - wrong fonts, drop shadows, cluttered lines, and no consistent style.",
+      "eg": "You ask your AI assistant to draw an architecture diagram. It produces something with random colors, thick borders, and drop shadows - fine for a draft, but not for publishing."
+    },
+    {
+      "role": "trigger",
+      "say": "You ask your AI coding assistant to draw a diagram, with an optional note about what type and style you want.",
+      "eg": "Type 'draw a sequence diagram of the login flow' in Claude Code, Codex, or GitHub Copilot."
+    },
+    {
+      "role": "input",
+      "say": "A plain-language description of what the diagram should show - or an existing diagram file from draw.io, Mermaid (a text-based diagram tool), or Excalidraw (a whiteboard app) to redraw in a polished style.",
+      "eg": "Describe what you want: 'architecture diagram showing the API gateway, three microservices, and the database.' Or import a .drawio file to redraw it."
+    },
+    {
+      "role": "does",
+      "say": "The skill guides the AI through picking a type, matching your brand, and drawing a clean diagram as one file.",
+      "steps": [
+        "Picks the best diagram type from 44 options: flowcharts, architecture maps, timelines, sequence diagrams, radar charts, Gantt charts, and more",
+        "Reads your website's colors and fonts to match your brand - checks contrast for accessibility and produces a fidelity receipt",
+        "Writes one self-contained HTML file with clean inline graphics - one accent color, 1px hairlines, no shadows, every coordinate on a 4-pixel grid, no scripts or external images"
+      ],
+      "eg": "Ask for a flowchart. The skill picks the flowchart type, reads your site's palette, and writes one HTML file you can open in any browser."
+    },
+    {
+      "role": "result",
+      "say": "A polished, brand-matched diagram file ready to publish.",
+      "outputs": [
+        {"what": "A publication-ready diagram", "eg": "One HTML file you can open in any browser, embed in a blog post, or drop into a presentation"},
+        {"what": "Brand-matched style", "eg": "Your accent color, your fonts, hairline borders, no shadows - ready to publish without a design tool"},
+        {"what": "Multiple export options", "eg": "Save as a standalone image (PNG at 2x resolution, or SVG) for slides, or keep the HTML for interactive viewing"}
+      ]
+    }
+  ],
+  "before": [
+    "AI-generated diagrams look like AI-generated diagrams. Random colors, thick borders, drop shadows, and no style consistency with your brand or your other diagrams.",
+    "Making a publishable diagram means either learning a design tool (Figma, draw.io) or asking a designer. A quick diagram for a blog post takes longer to style than to write."
+  ],
+  "after": [
+    "Ask for a diagram in plain language and get a publication-ready HTML file with your brand's colors, your fonts, and a consistent editorial style across all 44 types.",
+    "No design tool needed. One prompt, one file, ready to embed in a blog post or deck. Import draw.io or Mermaid files to redraw them in the same clean style."
+  ],
+  "uses_note": "Diagram Design is 183 days old. No named real-world adopters could be verified outside the creator. The skill is well-reviewed but hands-on testing by reviewers was limited.",
+  "uses": [],
+  "pulse": {
+    "gain": "+56.2K stars in 183 days. Created Apr 16, 2026. Gained ~9.9K stars in the week before Oct 16.",
+    "history": [
+      ["2026-04-16", 0],
+      ["2026-10-14", 54903],
+      ["2026-10-16", 56200]
+    ],
+    "history_note": "Created Apr 16, 2026. 54.9K stars on Oct 14 per andrew.ooo review. 56.2K on Oct 16.",
+    "facts": [
+      {"value": "56.2K", "label": "stars on GitHub"},
+      {"value": "44", "label": "diagram types"},
+      {"value": "3", "label": "style variants per type (light, dark, editorial)"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "andrew.ooo",
+      "title": "Diagram Design Review: Editorial Diagrams for Coding Agents",
+      "url": "https://andrew.ooo/posts/diagram-design-review-editorial-diagrams-agent-skill/",
+      "meta": "Published Oct 14, 2026 - 'the best-designed diagram skill we have read'"
+    },
+    {
+      "plat": "Web Reactiva",
+      "title": "Diagram Design skill (Spanish)",
+      "url": "https://www.webreactiva.com/blog/diagram-design-skill",
+      "meta": "Spanish tech blog coverage"
+    },
+    {
+      "plat": "BestHub",
+      "title": "How a 28K-Star GitHub Skill Enables AI to Generate Polished Charts",
+      "url": "https://www.besthub.dev/articles/how-a-28k-star-github-skill-enables-ai-to-generate-polished-charts-abb432d2884e",
+      "meta": "28K stars at time of writing"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "cathrynlavery/diagram-design trending on Trendshift",
+      "url": "https://trendshift.io/repositories/26141",
+      "meta": "GitHub trending tracker"
+    },
+    {
+      "plat": "aitoolly",
+      "title": "Diagram Design launches editorial-grade diagram system for leading AI coding assistants",
+      "url": "https://aitoolly.com/ai-news/article/2026-10-12-diagram-design-launches-editorial-grade-diagram-system-for-leading-ai-coding-assistants-and-develope",
+      "meta": "Oct 12, 2026"
+    }
+  ],
+  "star_check": "Star History: 24.6K stars, Global Rank #1633 as of Aug 2026. Growth appears organic based on gradual climb and coverage timeline.",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install in Claude Code: `/plugin marketplace add cathrynlavery/diagram-design`, then `/plugin install diagram-design@diagram-design`.",
+      "Ask Claude to draw a diagram: 'draw a flowchart of a user signup flow with email verification.' It picks the type, matches your style, and writes one HTML file.",
+      "Open the HTML file in your browser to see the result. Try the [live gallery](https://cathrynlavery.github.io/diagram-design) to see all 44 types."
+    ],
+    "paste": "/skillspector https://github.com/cathrynlavery/diagram-design\n\nIf that scan passes: install with `/plugin marketplace add cathrynlavery/diagram-design` and `/plugin install diagram-design@diagram-design`, then ask Claude to draw a flowchart. Open the HTML file in your browser. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "A skill (instruction files and reference documents) - no binary to install. The skill directory is about 60 reference files plus templates. By default, diagrams load Google Fonts; a system-fonts option removes all network requests.",
+    "memory": "No data found. The skill runs inside your AI coding assistant - it adds no separate process or server.",
+    "runs_on": "Works with Claude Code, Codex, GitHub Copilot, Cursor, Pi, Gemini, Kiro, and other AI coding assistants. The skill's own CI runs on Linux, Windows, and macOS. Output HTML files open in any browser.",
+    "source": {"title": "Diagram Design README: installation and supported hosts", "url": "https://github.com/cathrynlavery/diagram-design"}
+  },
+  "verdict": {
+    "best_for": [
+      "You want publication-quality diagrams for blog posts, presentations, or documentation without learning a design tool - ask in plain language and get a styled HTML file",
+      "You need consistent diagram style across a project or a brand - the skill reads your website's colors and fonts and applies them automatically"
+    ],
+    "skip_if": [
+      "You need diagrams that change every week and live in version control - the output is a finished HTML file with no editable source format, so every change means regenerating. The creator recommends Mermaid (a text-based diagram tool) for living docs.",
+      "You want pixel-perfect control over every element - the AI picks the layout, and results depend on which model you use",
+      "You need diagrams without any network requests - by default, diagrams load Google Fonts. The system-fonts option removes this, but you must enable it."
+    ],
+    "alternatives": [
+      {
+        "name": "Mermaid",
+        "url": "https://mermaid.js.org/",
+        "line": "Text-based diagrams that live in Markdown. Best for diagrams that change often and live in version control. Less polished visually, but editable and diff-friendly."
+      },
+      {
+        "name": "draw.io (diagrams.net)",
+        "url": "https://www.drawio.com/",
+        "line": "A free visual diagramming tool with drag-and-drop. More control over layout, but requires manual styling for a consistent look across diagrams."
+      },
+      {
+        "name": "Excalidraw",
+        "url": "https://excalidraw.com/",
+        "line": "A free whiteboard-style diagramming tool with a hand-drawn look. Great for sketching and brainstorming, less suited for formal publication."
+      }
+    ]
+  },
+  "watch": [
+    "**Output quality depends on your AI model.** The skill is a set of instructions, not a renderer - different models produce different results. The creator, Cathryn Lavery, says: 'The model already understood the content. What it was missing was taste, so I wrote the taste down.'",
+    "**No editable source format.** The output is a finished HTML file. To change a diagram, you ask the agent to regenerate it. There is no intermediate file you can edit by hand or diff in version control.",
+    "**First-run setup blocks unattended use.** The brand-matching step requires interaction on first run (GitHub issue #262). This means automated pipelines cannot use the skill without manual setup first.",
+    "**Star count has grown rapidly - 56K in 6 months.** The growth appears organic based on coverage timeline and gradual climb, but the diagram-type count has shifted across sources (from 13 to 27 to 44), suggesting the project has changed significantly between versions."
+  ],
+  "sources": [
+    {"title": "Diagram Design on GitHub (README, features, installation)", "url": "https://github.com/cathrynlavery/diagram-design", "date": "2026-10-16"},
+    {"title": "Diagram Design website", "url": "https://diagramdesign.dev", "date": "2026-10-16"},
+    {"title": "Live gallery", "url": "https://cathrynlavery.github.io/diagram-design", "date": "2026-10-16"},
+    {"title": "andrew.ooo: Diagram Design Review: Editorial Diagrams for Coding Agents", "url": "https://andrew.ooo/posts/diagram-design-review-editorial-diagrams-agent-skill/", "date": "2026-10-14"},
+    {"title": "BestHub: How a 28K-Star GitHub Skill Enables AI to Generate Polished Charts", "url": "https://www.besthub.dev/articles/how-a-28k-star-github-skill-enables-ai-to-generate-polished-charts-abb432d2884e", "date": "2026-10-16"},
+    {"title": "Star History: cathrynlavery/diagram-design", "url": "https://www.star-history.com/cathrynlavery/diagram-design", "date": "2026-10-16"}
+  ]
+}

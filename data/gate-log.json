@@ -642,7 +642,7 @@
       "date": "2026-09-27",
       "note": "Credible reports (The Register, RuntimeWire, SCMP, Sep 18-22 2026) that ZCode silently packaged and uploaded users' entire workspaces including .git history to vendor cloud storage, even with the relevant settings off. Vendor claims remediation, but server-side retention is unverifiable and the repo is a 3-commit code drop (2 contributors, 6.9K stars in 7 days), so the published code can't be verified against the distributed app."
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "activepieces/activepieces": {
     "repo": "activepieces/activepieces",
@@ -894,7 +894,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "akitaonrails/ai-memory": {
     "repo": "akitaonrails/ai-memory",
@@ -982,19 +982,19 @@
   },
   "addyosmani/agent-skills": {
     "repo": "addyosmani/agent-skills",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/addyosmani/agent-skills/security/advisories",
         "count": 0,
-        "latestRelease": "0.6.11",
+        "latestRelease": "0.6.13",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "addyosmani/agent-skills CVE",
           "addyosmani/agent-skills vulnerability",
@@ -1011,20 +1011,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "addyosmani/agent-skills",
-        "stars": 99422,
-        "forks": 10441,
-        "watchers": 515,
-        "openIssues": 117,
+        "stars": 107224,
+        "forks": 11157,
+        "watchers": 538,
+        "openIssues": 128,
         "hasIssues": true,
-        "contributors": 84,
-        "commits": 590,
+        "contributors": 83,
+        "commits": 702,
         "created": "2026-02-15",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-13",
         "archived": false,
-        "ageDays": 224,
-        "homepage": "https://skills.addy.ie",
-        "license": "MIT",
+        "ageDays": 244,
         "flags": []
       }
     },
@@ -1032,24 +1031,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own security-hardening skill and a general Snyk study of malicious skills on a different marketplace."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "AgriciDaniel/claude-obsidian": {
     "repo": "AgriciDaniel/claude-obsidian",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/AgriciDaniel/claude-obsidian/security/advisories",
         "count": 0,
         "latestRelease": "2.2.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "AgriciDaniel/claude-obsidian CVE",
           "AgriciDaniel/claude-obsidian vulnerability",
@@ -1066,20 +1064,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "AgriciDaniel/claude-obsidian",
-        "stars": 15248,
-        "forks": 1516,
+        "stars": 15567,
+        "forks": 1544,
         "watchers": 64,
-        "openIssues": 22,
+        "openIssues": 29,
         "hasIssues": true,
-        "contributors": 11,
+        "contributors": 7,
         "commits": 282,
         "created": "2026-04-07",
         "pushed": "2026-09-10",
         "archived": false,
-        "ageDays": 173,
-        "homepage": "skool.com/ai-marketing-hub-pro",
-        "license": "MIT",
+        "ageDays": 193,
         "flags": []
       }
     },
@@ -1087,35 +1084,35 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was a plugin-directory scan: grade A, 0 findings across 26 rules (agentmods.dev)."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "alibaba/open-code-review": {
     "repo": "alibaba/open-code-review",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/alibaba/open-code-review/security/advisories",
         "count": 1,
-        "latestRelease": "1.12.9",
+        "latestRelease": "1.13.0",
         "items": [
           {
             "ghsa": "GHSA-wwg6-qfxw-xffj",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-09-10",
             "summary": "Repository rule.json can read arbitrary files on the review host into the LLM prompt",
             "patched": "1.11.1",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "1.13.0"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "alibaba/open-code-review CVE",
           "alibaba/open-code-review vulnerability",
@@ -1132,20 +1129,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "alibaba/open-code-review",
-        "stars": 41842,
-        "forks": 3009,
-        "watchers": 132,
-        "openIssues": 232,
+        "stars": 47468,
+        "forks": 3457,
+        "watchers": 140,
+        "openIssues": 315,
         "hasIssues": true,
-        "contributors": 192,
-        "commits": 776,
+        "contributors": 214,
+        "commits": 803,
         "created": "2026-05-18",
-        "pushed": "2026-09-24",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 133,
-        "homepage": "https://open-codereview.ai",
-        "license": "Apache-2.0",
+        "ageDays": 152,
         "flags": []
       }
     },
@@ -1153,24 +1149,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own SECURITY.md."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "andrewyng/openworker": {
     "repo": "andrewyng/openworker",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/andrewyng/openworker/security/advisories",
         "count": 0,
-        "latestRelease": "0.2.1",
+        "latestRelease": "0.3.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "andrewyng/openworker CVE",
           "andrewyng/openworker vulnerability",
@@ -1187,36 +1182,34 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "andrewyng/openworker",
-        "stars": 18307,
-        "forks": 2586,
-        "watchers": 130,
-        "openIssues": 511,
+        "stars": 18539,
+        "forks": 2623,
+        "watchers": 131,
+        "openIssues": 510,
         "hasIssues": true,
-        "contributors": 29,
-        "commits": 483,
+        "contributors": 30,
+        "commits": 681,
         "created": "2026-07-20",
-        "pushed": "2026-09-24",
+        "pushed": "2026-10-10",
         "archived": false,
-        "ageDays": 70,
-        "homepage": "http://openworker.com",
-        "license": "MIT",
+        "ageDays": 89,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "anomalyco/opencode": {
     "repo": "anomalyco/opencode",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/anomalyco/opencode/security/advisories",
         "count": 3,
-        "latestRelease": "1.18.32",
+        "latestRelease": "1.19.2",
         "items": [
           {
             "ghsa": "GHSA-632h-h47v-g4x4",
@@ -1226,7 +1219,8 @@
             "summary": "Cross-site OpenCode server upgrade request can install arbitrary packages for npm-based installations",
             "patched": "1.18.22",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "1.19.2"
           },
           {
             "ghsa": "GHSA-c83v-7274-4vgp",
@@ -1236,7 +1230,8 @@
             "summary": "Malicious website can execute commands on the local system through XSS in the OpenCode web UI",
             "patched": "1.1.10",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "1.19.2"
           },
           {
             "ghsa": "GHSA-vxw4-wv6m-9hhh",
@@ -1246,12 +1241,13 @@
             "summary": "Unauthenticated HTTP Server Allows Arbitrary Command Execution",
             "patched": "1.0.216",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "1.19.2"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "anomalyco/opencode CVE",
           "anomalyco/opencode vulnerability",
@@ -1268,20 +1264,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "anomalyco/opencode",
-        "stars": 210379,
-        "forks": 27830,
-        "watchers": 814,
-        "openIssues": 6265,
+        "stars": 214162,
+        "forks": 28742,
+        "watchers": 819,
+        "openIssues": 4362,
         "hasIssues": true,
-        "contributors": 1017,
-        "commits": 15802,
+        "contributors": 1046,
+        "commits": 20501,
         "created": "2025-04-30",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 515,
-        "homepage": "https://opencode.ai",
-        "license": "MIT",
+        "ageDays": 535,
         "flags": []
       }
     },
@@ -1289,8 +1284,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "Datadog's RCE finding is GHSA-632h-h47v-g4x4, fixed in 1.18.22; the latest release is 1.18.32."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "anthropics/claude-code": {
     "repo": "anthropics/claude-code",
@@ -1667,19 +1661,19 @@
   },
   "anthropics/skills": {
     "repo": "anthropics/skills",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/anthropics/skills/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "anthropics/skills CVE",
           "anthropics/skills vulnerability",
@@ -1696,20 +1690,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "anthropics/skills",
-        "stars": 178659,
-        "forks": 21141,
-        "watchers": 1128,
-        "openIssues": 1350,
+        "stars": 181505,
+        "forks": 21501,
+        "watchers": 1117,
+        "openIssues": 1423,
         "hasIssues": true,
-        "contributors": 16,
-        "commits": 56,
+        "contributors": 17,
+        "commits": 60,
         "created": "2025-09-22",
-        "pushed": "2026-09-24",
+        "pushed": "2026-10-09",
         "archived": false,
-        "ageDays": 370,
-        "homepage": null,
-        "license": null,
+        "ageDays": 390,
         "flags": []
       }
     },
@@ -1717,24 +1710,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits are about Anthropic's separate skill scanner and a third party impersonating Anthropic, not this repo."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "antirez/ds4": {
     "repo": "antirez/ds4",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/antirez/ds4/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "antirez/ds4 CVE",
           "antirez/ds4 vulnerability",
@@ -1751,40 +1743,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "antirez/ds4",
-        "stars": 22736,
-        "forks": 2185,
-        "watchers": 172,
-        "openIssues": 724,
+        "stars": 23877,
+        "forks": 2305,
+        "watchers": 179,
+        "openIssues": 781,
         "hasIssues": true,
-        "contributors": 63,
-        "commits": 797,
+        "contributors": 55,
+        "commits": 806,
         "created": "2026-05-06",
-        "pushed": "2026-09-20",
+        "pushed": "2026-10-07",
         "archived": false,
-        "ageDays": 144,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 164,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "anywhere-labs/dsh-desktop": {
     "repo": "anywhere-labs/dsh-desktop",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/anywhere-labs/dsh-desktop/security/advisories",
         "count": 0,
-        "latestRelease": "2.0.15",
+        "latestRelease": "2.0.18",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "anywhere-labs/dsh-desktop CVE",
           "anywhere-labs/dsh-desktop vulnerability",
@@ -1801,20 +1791,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "anywhere-labs/dsh-desktop",
-        "stars": 29178,
-        "forks": 1390,
-        "watchers": 68,
-        "openIssues": 335,
+        "stars": 31055,
+        "forks": 1454,
+        "watchers": 74,
+        "openIssues": 370,
         "hasIssues": true,
-        "contributors": 55,
-        "commits": 13560,
+        "contributors": 44,
+        "commits": 13739,
         "created": "2026-08-13",
-        "pushed": "2026-09-25",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 45,
-        "homepage": "https://dshdesktop.cn",
-        "license": "MIT",
+        "ageDays": 65,
         "flags": []
       }
     },
@@ -1822,8 +1811,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an inspect.software health report: 81/100, Excellent."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "apache/superset": {
     "repo": "apache/superset",
@@ -2282,19 +2270,19 @@
   },
   "BigPizzaV3/CodexPlusPlus": {
     "repo": "BigPizzaV3/CodexPlusPlus",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/BigPizzaV3/CodexPlusPlus/security/advisories",
         "count": 0,
-        "latestRelease": "1.3.0",
+        "latestRelease": "1.9.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "BigPizzaV3/CodexPlusPlus CVE",
           "BigPizzaV3/CodexPlusPlus vulnerability",
@@ -2311,47 +2299,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "BigPizzaV3/CodexPlusPlus",
-        "stars": 31598,
-        "forks": 2010,
-        "watchers": 76,
-        "openIssues": 1069,
+        "stars": 32242,
+        "forks": 2071,
+        "watchers": 72,
+        "openIssues": 728,
         "hasIssues": true,
-        "contributors": 104,
-        "commits": 1171,
+        "contributors": 89,
+        "commits": 1575,
         "created": "2026-05-06",
-        "pushed": "2026-09-23",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 144,
-        "homepage": "https://codexpp.cc/",
-        "license": "AGPL-3.0",
+        "ageDays": 164,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "bilawalsidhu/gods-eye-view": {
     "repo": "bilawalsidhu/gods-eye-view",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/bilawalsidhu/gods-eye-view/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.1",
+        "latestRelease": "0.2.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "bilawalsidhu/gods-eye-view CVE",
           "bilawalsidhu/gods-eye-view vulnerability",
           "bilawalsidhu/gods-eye-view malware",
           "bilawalsidhu/gods-eye-view scam"
         ],
-        "results": 11,
+        "results": 10,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -2361,20 +2347,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "bilawalsidhu/gods-eye-view",
-        "stars": 43895,
-        "forks": 8929,
-        "watchers": 858,
-        "openIssues": 211,
+        "stars": 57086,
+        "forks": 11125,
+        "watchers": 1051,
+        "openIssues": 364,
         "hasIssues": true,
-        "contributors": 30,
-        "commits": 512,
+        "contributors": 93,
+        "commits": 1267,
         "created": "2026-06-22",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 97,
-        "homepage": "https://maptheworld.ai/",
-        "license": "NOASSERTION",
+        "ageDays": 117,
         "flags": []
       }
     },
@@ -2382,8 +2367,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was the repo's own SECURITY.md."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "assafelovic/gpt-researcher": {
     "repo": "assafelovic/gpt-researcher",
@@ -2570,26 +2554,26 @@
   },
   "browser-use/jev-ultrafast": {
     "repo": "browser-use/jev-ultrafast",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/browser-use/jev-ultrafast/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "browser-use/jev-ultrafast CVE",
           "browser-use/jev-ultrafast vulnerability",
           "browser-use/jev-ultrafast malware",
           "browser-use/jev-ultrafast scam"
         ],
-        "results": 0,
+        "results": 1,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -2599,62 +2583,61 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "browser-use/jev-ultrafast",
-        "stars": 20752,
-        "forks": 1427,
-        "watchers": 54,
-        "openIssues": 147,
+        "stars": 23063,
+        "forks": 1717,
+        "watchers": 56,
+        "openIssues": 201,
         "hasIssues": true,
         "contributors": 1,
         "commits": 3,
         "created": "2026-09-16",
-        "pushed": "2026-09-25",
+        "pushed": "2026-09-18",
         "archived": false,
-        "ageDays": 11,
-        "homepage": "https://browser-use.com",
-        "license": "MIT",
+        "ageDays": 31,
         "flags": [
-          "20752 stars on 1 contributor(s)",
-          "20752 stars on only 3 commit(s)"
+          "23063 stars on 1 contributor(s)",
+          "23063 stars on only 3 commit(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 20752 stars on 1 contributor(s); 20752 stars on only 3 commit(s)"
+        "activity: 23063 stars on 1 contributor(s); 23063 stars on only 3 commit(s)"
       ]
     },
     "settled": {
       "by": "local review",
       "date": "2026-09-27",
       "note": "Company code drop from Browser Use (1 contributor, 3 commits); findarepo's star check says it looks organic. Flag named on the page. Sep 27 review of a Hacker News claim that its browser component leaks data to PostHog: browser-harness 0.1.13 (which it installs) uploads the full task script (up to 20,000 characters) and the end of the output to PostHog from its own command line tool, on by default, not mentioned in its README; jev-ultrafast only uses the library parts (admin.ensure_daemon, helpers.cdp), which contain no analytics code, so its own runs send nothing there. Named as a watch-out on the page, with the off switch.",
-      "reasons": []
-    },
-    "rechecked": "2026-10-10"
+      "reasons": [],
+      "carried": "2026-10-16"
+    }
   },
   "bytedance/deer-flow": {
     "repo": "bytedance/deer-flow",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/bytedance/deer-flow/security/advisories",
         "count": 0,
         "latestRelease": "2.1.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "bytedance/deer-flow CVE",
           "bytedance/deer-flow vulnerability",
           "bytedance/deer-flow malware",
           "bytedance/deer-flow scam"
         ],
-        "results": 9,
+        "results": 10,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -2664,20 +2647,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "bytedance/deer-flow",
-        "stars": 83047,
-        "forks": 11508,
-        "watchers": 346,
-        "openIssues": 903,
+        "stars": 83948,
+        "forks": 11704,
+        "watchers": 336,
+        "openIssues": 944,
         "hasIssues": true,
-        "contributors": 479,
-        "commits": 3590,
+        "contributors": 568,
+        "commits": 4178,
         "created": "2025-05-07",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 509,
-        "homepage": "https://deerflow.tech",
-        "license": "MIT",
+        "ageDays": 528,
         "flags": []
       }
     },
@@ -2685,24 +2667,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "All three advisories are fixed. The XSS fix (PR #1389, merged Mar 26) is in v2.1.0 through its merge commit."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "cloudflare/security-audit-skill": {
     "repo": "cloudflare/security-audit-skill",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/cloudflare/security-audit-skill/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "cloudflare/security-audit-skill CVE",
           "cloudflare/security-audit-skill vulnerability",
@@ -2719,38 +2700,36 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "cloudflare/security-audit-skill",
-        "stars": 22245,
-        "forks": 1291,
-        "watchers": 83,
-        "openIssues": 50,
+        "stars": 30031,
+        "forks": 1864,
+        "watchers": 116,
+        "openIssues": 66,
         "hasIssues": true,
-        "contributors": 4,
+        "contributors": 3,
         "commits": 14,
         "created": "2026-06-18",
         "pushed": "2026-09-14",
         "archived": false,
-        "ageDays": 101,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 121,
         "flags": [
-          "22245 stars on only 14 commit(s)"
+          "30031 stars on only 14 commit(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 22245 stars on only 14 commit(s)"
+        "activity: 30031 stars on only 14 commit(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "Official Cloudflare repo; 22K stars on 14 commits (squashed history). Flag named on the page.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+      "carried": "2026-10-16"
+    }
   },
   "CherryHQ/cherry-studio": {
     "repo": "CherryHQ/cherry-studio",
@@ -2901,19 +2880,19 @@
   },
   "cloudflare/computer": {
     "repo": "cloudflare/computer",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/cloudflare/computer/security/advisories",
         "count": 0,
-        "latestRelease": "0.3.1",
+        "latestRelease": "0.5.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "cloudflare/computer CVE",
           "cloudflare/computer vulnerability",
@@ -2930,20 +2909,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "cloudflare/computer",
-        "stars": 9291,
-        "forks": 534,
-        "watchers": 33,
-        "openIssues": 19,
+        "stars": 9610,
+        "forks": 563,
+        "watchers": 31,
+        "openIssues": 27,
         "hasIssues": true,
-        "contributors": 15,
-        "commits": 835,
+        "contributors": 10,
+        "commits": 884,
         "created": "2026-06-05",
-        "pushed": "2026-09-23",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 114,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 134,
         "flags": []
       }
     },
@@ -2951,24 +2929,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an unrelated Malwarebytes report on fake Cloudflare verification pages."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "cobusgreyling/loop-engineering": {
     "repo": "cobusgreyling/loop-engineering",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/cobusgreyling/loop-engineering/security/advisories",
         "count": 0,
         "latestRelease": "1.6.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "cobusgreyling/loop-engineering CVE",
           "cobusgreyling/loop-engineering vulnerability",
@@ -2985,20 +2962,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "cobusgreyling/loop-engineering",
-        "stars": 11323,
-        "forks": 1517,
-        "watchers": 72,
-        "openIssues": 10,
+        "stars": 11564,
+        "forks": 1581,
+        "watchers": 73,
+        "openIssues": 15,
         "hasIssues": true,
-        "contributors": 43,
-        "commits": 534,
+        "contributors": 39,
+        "commits": 584,
         "created": "2026-06-09",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 110,
-        "homepage": "https://cobusgreyling.github.io/loop-engineering/",
-        "license": "MIT",
+        "ageDays": 130,
         "flags": []
       }
     },
@@ -3006,8 +2982,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own SECURITY.md and a skill listing."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "codecrafters-io/build-your-own-x": {
     "repo": "codecrafters-io/build-your-own-x",
@@ -4039,19 +4014,19 @@
   },
   "D4Vinci/Scrapling": {
     "repo": "D4Vinci/Scrapling",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/D4Vinci/Scrapling/security/advisories",
         "count": 0,
         "latestRelease": "0.4.15",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "D4Vinci/Scrapling CVE",
           "D4Vinci/Scrapling vulnerability",
@@ -4068,20 +4043,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "D4Vinci/Scrapling",
-        "stars": 84024,
-        "forks": 8595,
-        "watchers": 309,
-        "openIssues": 2,
+        "stars": 88027,
+        "forks": 9053,
+        "watchers": 320,
+        "openIssues": 8,
         "hasIssues": true,
-        "contributors": 32,
-        "commits": 1625,
+        "contributors": 36,
+        "commits": 1636,
         "created": "2024-10-13",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-11",
         "archived": false,
-        "ageDays": 714,
-        "homepage": "https://scrapling.readthedocs.io/en/latest/",
-        "license": "BSD-3-Clause",
+        "ageDays": 734,
         "flags": []
       }
     },
@@ -4089,31 +4063,30 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was the project's own README; no advisories and no reports."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "CopilotKit/OpenBot": {
     "repo": "CopilotKit/OpenBot",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/CopilotKit/OpenBot/security/advisories",
         "count": 0,
-        "latestRelease": "0.0.15",
+        "latestRelease": "0.2.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "CopilotKit/OpenBot CVE",
           "CopilotKit/OpenBot vulnerability",
           "CopilotKit/OpenBot malware",
           "CopilotKit/OpenBot scam"
         ],
-        "results": 20,
+        "results": 11,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -4123,40 +4096,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "CopilotKit/OpenBot",
-        "stars": 5631,
-        "forks": 737,
-        "watchers": 22,
-        "openIssues": 18,
+        "stars": 6542,
+        "forks": 903,
+        "watchers": 24,
+        "openIssues": 27,
         "hasIssues": true,
-        "contributors": 31,
-        "commits": 431,
+        "contributors": 42,
+        "commits": 542,
         "created": "2026-08-17",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 42,
-        "homepage": "https://www.copilotkit.ai/openbot",
-        "license": "MIT",
+        "ageDays": 61,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "deeplethe/utopia": {
     "repo": "deeplethe/utopia",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/deeplethe/utopia/security/advisories",
         "count": 0,
         "latestRelease": "0.1.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "deeplethe/utopia CVE",
           "deeplethe/utopia vulnerability",
@@ -4173,74 +4144,149 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "deeplethe/utopia",
-        "stars": 8043,
-        "forks": 1071,
-        "watchers": 378,
-        "openIssues": 29,
+        "stars": 8385,
+        "forks": 1161,
+        "watchers": 386,
+        "openIssues": 65,
         "hasIssues": true,
-        "contributors": 18,
-        "commits": 705,
+        "contributors": 35,
+        "commits": 856,
         "created": "2026-08-07",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-11",
         "archived": false,
-        "ageDays": 51,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 71,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "deepseek-ai/deepseek-harness": {
     "repo": "deepseek-ai/deepseek-harness",
-    "checked": "2026-09-27",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "5 open CVE(s) found by search: CVE-2026-101078 low (unpatched), CVE-2026-101102 moderate (unpatched), CVE-2026-101131 low (unpatched), CVE-2026-108788 low (unpatched), CVE-2026-108789 low (unpatched)"
+    ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/deepseek-ai/deepseek-harness/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.7",
+        "latestRelease": "0.2.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "deepseek-ai/deepseek-harness CVE",
           "deepseek-ai/deepseek-harness vulnerability",
           "deepseek-ai/deepseek-harness malware",
           "deepseek-ai/deepseek-harness scam"
         ],
-        "results": 10,
+        "results": 15,
         "errors": 0,
-        "hits": [],
+        "hits": [
+          {
+            "query": "deepseek-ai/deepseek-harness CVE database",
+            "title": "NVD - CVE-2026-101078",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101078",
+            "published": "2026-09-28",
+            "matched": "CVE-2026-101078",
+            "kind": "cve-record"
+          },
+          {
+            "query": "deepseek-ai/deepseek-harness CVE database",
+            "title": "NVD - CVE-2026-101102",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101102",
+            "published": "2026-09-28",
+            "matched": "CVE-2026-101102",
+            "kind": "cve-record"
+          },
+          {
+            "query": "deepseek-ai/deepseek-harness CVE database",
+            "title": "NVD - CVE-2026-101131",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101131",
+            "published": "2026-09-28",
+            "matched": "CVE-2026-101131",
+            "kind": "cve-record"
+          },
+          {
+            "query": "deepseek-ai/deepseek-harness CVE database",
+            "title": "NVD - CVE-2026-108788",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108788",
+            "published": "2026-10-12",
+            "matched": "CVE-2026-108788",
+            "kind": "cve-record"
+          },
+          {
+            "query": "deepseek-ai/deepseek-harness CVE database",
+            "title": "NVD - CVE-2026-108789",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108789",
+            "published": "2026-10-12",
+            "matched": "CVE-2026-108789",
+            "kind": "cve-record"
+          }
+        ],
         "fallbacks": 4,
         "nvd": {
-          "results": 0
+          "results": 5
         },
-        "cves": []
+        "cves": [
+          {
+            "id": "CVE-2026-101078",
+            "ghsa": "GHSA-23q9-h232-4q79",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-101102",
+            "ghsa": "GHSA-m9ww-cpfc-8cf2",
+            "severity": "moderate",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-101131",
+            "ghsa": "GHSA-vcc3-4jvw-qx89",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-108788",
+            "ghsa": "GHSA-5mvr-2xwh-9v9q",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-108789",
+            "ghsa": "GHSA-wc99-rg5g-w3c8",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          }
+        ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "deepseek-ai/deepseek-harness",
-        "stars": 237547,
-        "forks": 28542,
-        "watchers": 1030,
-        "openIssues": 0,
+        "stars": 250921,
+        "forks": 30172,
+        "watchers": 1064,
+        "openIssues": null,
         "hasIssues": false,
-        "contributors": 54,
-        "commits": 20177,
+        "contributors": 44,
+        "commits": 22346,
         "created": "2026-08-13",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 45,
-        "homepage": "https://deepseek.com/harness",
-        "license": "MIT",
+        "ageDays": 65,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "DietrichGebert/ponytail": {
     "repo": "DietrichGebert/ponytail",
@@ -4294,23 +4340,23 @@
       "date": "2026-09-27",
       "note": "Issue #199 flags a caret range on @modelcontextprotocol/sdk (^1.19.0); fresh installs resolve to the patched 1.26+. Issue #735 is about a trojanized clone by another account, not this repo."
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "DeusData/codebase-memory-mcp": {
     "repo": "DeusData/codebase-memory-mcp",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/DeusData/codebase-memory-mcp/security/advisories",
         "count": 0,
-        "latestRelease": "0.11.0",
+        "latestRelease": "0.12.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "DeusData/codebase-memory-mcp CVE",
           "DeusData/codebase-memory-mcp vulnerability",
@@ -4327,20 +4373,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "DeusData/codebase-memory-mcp",
-        "stars": 45031,
-        "forks": 3689,
-        "watchers": 178,
-        "openIssues": 634,
+        "stars": 46694,
+        "forks": 3846,
+        "watchers": 181,
+        "openIssues": 637,
         "hasIssues": true,
-        "contributors": 183,
-        "commits": 3194,
+        "contributors": 210,
+        "commits": 4183,
         "created": "2026-02-24",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 215,
-        "homepage": "https://deusdata.github.io/codebase-memory-mcp/",
-        "license": "MIT",
+        "ageDays": 235,
         "flags": []
       }
     },
@@ -4348,26 +4393,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The 'Trojan' hits are the README's documented Microsoft Defender false positive (61 of ~62 engines clean); no advisories."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "dagger/dagger": {
     "repo": "dagger/dagger",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
-    "reasons": [
-      "1 report(s) to read"
-    ],
+    "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/dagger/dagger/security/advisories",
         "count": 0,
-        "latestRelease": "0.21.9",
+        "latestRelease": "0.21.10",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "dagger/dagger CVE",
           "dagger/dagger vulnerability",
@@ -4433,22 +4475,27 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "dagger/dagger",
-        "stars": 16305,
-        "forks": 928,
-        "watchers": 233,
-        "openIssues": 188,
+        "stars": 16344,
+        "forks": 936,
+        "watchers": 231,
+        "openIssues": 212,
         "hasIssues": true,
-        "contributors": 329,
-        "commits": 14013,
+        "contributors": 312,
+        "commits": 15253,
         "created": "2019-11-20",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 2504,
-        "homepage": "https://dagger.io",
-        "license": "Apache-2.0",
+        "ageDays": 2523,
         "flags": []
       }
+    },
+    "auto": {
+      "verdict": "REVIEW",
+      "reasons": [
+        "1 report(s) to read"
+      ]
     },
     "settled": {
       "by": "local review",
@@ -4456,9 +4503,9 @@
       "note": "No advisories. The three CVE records (CVE-2007-3431, CVE-2008-6635, CVE-2008-6636) describe an older product also called Dagger, published 2007-2009, before this repo existed (2019). Two Hacker News hits (2010, 2014) also predate the repo. The remaining hit, HN comment 30858740 (Mar 2022), criticises the Windows install instructions (installing into System32); it is not a report of a security problem in dagger.",
       "reasons": [
         "1 report(s) to read"
-      ]
-    },
-    "rechecked": "2026-10-10"
+      ],
+      "carried": "2026-10-16"
+    }
   },
   "Dokploy/dokploy": {
     "repo": "Dokploy/dokploy",
@@ -6177,19 +6224,19 @@
   },
   "drumih/turbo-fieldfare": {
     "repo": "drumih/turbo-fieldfare",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/drumih/turbo-fieldfare/security/advisories",
         "count": 0,
-        "latestRelease": "0.9.1",
+        "latestRelease": "0.9.3",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "drumih/turbo-fieldfare CVE",
           "drumih/turbo-fieldfare vulnerability",
@@ -6206,54 +6253,52 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "drumih/turbo-fieldfare",
-        "stars": 6831,
-        "forks": 431,
-        "watchers": 39,
-        "openIssues": 52,
+        "stars": 6936,
+        "forks": 449,
+        "watchers": 40,
+        "openIssues": 53,
         "hasIssues": true,
         "contributors": 1,
-        "commits": 49,
+        "commits": 51,
         "created": "2026-07-17",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 72,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 92,
         "flags": [
-          "6831 stars on 1 contributor(s)"
+          "6936 stars on 1 contributor(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 6831 stars on 1 contributor(s)"
+        "activity: 6936 stars on 1 contributor(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own security policy. Solo project (1 contributor); flag named on the page.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+      "carried": "2026-10-16"
+    }
   },
   "Egonex-AI/Understand-Anything": {
     "repo": "Egonex-AI/Understand-Anything",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/Egonex-AI/Understand-Anything/security/advisories",
         "count": 0,
         "latestRelease": "2.9.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "Egonex-AI/Understand-Anything CVE",
           "Egonex-AI/Understand-Anything vulnerability",
@@ -6270,24 +6315,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "Egonex-AI/Understand-Anything",
-        "stars": 84324,
-        "forks": 7110,
-        "watchers": 261,
-        "openIssues": 307,
+        "stars": 86565,
+        "forks": 7296,
+        "watchers": 267,
+        "openIssues": 325,
         "hasIssues": true,
-        "contributors": 70,
-        "commits": 846,
+        "contributors": 65,
+        "commits": 858,
         "created": "2026-03-15",
-        "pushed": "2026-09-12",
+        "pushed": "2026-10-12",
         "archived": false,
-        "ageDays": 197,
-        "homepage": "https://understand-anything.com/",
-        "license": "MIT",
+        "ageDays": 216,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "dzhng/deep-research": {
     "repo": "dzhng/deep-research",
@@ -6340,19 +6383,18 @@
   },
   "esengine/DeepSeek-Reasonix": {
     "repo": "esengine/DeepSeek-Reasonix",
-    "checked": "2026-10-09",
+    "checked": "2026-10-16",
     "verdict": "FAIL",
     "reasons": [
       "2 open advisory(ies): GHSA-83jp-h8cg-2gcr high (unpatched), GHSA-grg2-7gc6-36m6 critical (unpatched)",
-      "1 open CVE(s) found by search: CVE-2026-102437 high (unpatched)",
-      "activity check failed: repo page unreadable (no star count on it)"
+      "1 open CVE(s) found by search: CVE-2026-102437 high (unpatched)"
     ],
     "checks": {
       "advisories": {
         "source": "public-page",
         "url": "https://github.com/esengine/DeepSeek-Reasonix/security/advisories",
-        "count": 6,
-        "latestRelease": "2.33.0",
+        "count": 7,
+        "latestRelease": "2.42.0",
         "items": [
           {
             "ghsa": "GHSA-j7r7-jh9q-wrq2",
@@ -6363,7 +6405,7 @@
             "patched": null,
             "openPackages": [],
             "status": "patched",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
           },
           {
             "ghsa": "GHSA-4p5q-jhpc-rf9q",
@@ -6374,7 +6416,7 @@
             "patched": null,
             "openPackages": [],
             "status": "fix-unverified",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
           },
           {
             "ghsa": "GHSA-83jp-h8cg-2gcr",
@@ -6385,7 +6427,7 @@
             "patched": null,
             "openPackages": [],
             "status": "unpatched",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
           },
           {
             "ghsa": "GHSA-grg2-7gc6-36m6",
@@ -6396,7 +6438,18 @@
             "patched": null,
             "openPackages": [],
             "status": "unpatched",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
+          },
+          {
+            "ghsa": "GHSA-6qf8-c4r6-q4qq",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-15",
+            "summary": "Cargo Check Read-Only Bypass Leading to Silent Host RCE",
+            "patched": "1.34.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.42.0"
           },
           {
             "ghsa": "GHSA-wqg8-98mr-4jcj",
@@ -6407,7 +6460,7 @@
             "patched": "1.39.3",
             "openPackages": [],
             "status": "patched",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
           },
           {
             "ghsa": "GHSA-8789-pp7w-w83p",
@@ -6418,7 +6471,7 @@
             "patched": "1.19.5",
             "openPackages": [],
             "status": "patched",
-            "latestPublished": "2.33.0"
+            "latestPublished": "2.42.0"
           }
         ]
       },
@@ -6458,10 +6511,21 @@
       },
       "activity": {
         "source": "public-page",
-        "error": "repo page unreadable (no star count on it)"
+        "canonical": "esengine/DeepSeek-Reasonix",
+        "stars": 35819,
+        "forks": 2454,
+        "watchers": 100,
+        "openIssues": 321,
+        "hasIssues": true,
+        "contributors": 185,
+        "commits": 10311,
+        "created": "2026-04-21",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 179,
+        "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "excalidraw/excalidraw": {
     "repo": "excalidraw/excalidraw",
@@ -6626,19 +6690,19 @@
   },
   "FareedKhan-dev/kimi-k3-in-c": {
     "repo": "FareedKhan-dev/kimi-k3-in-c",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c/security/advisories",
         "count": 0,
-        "latestRelease": "1.0.0",
+        "latestRelease": "1.1.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "FareedKhan-dev/kimi-k3-in-c CVE",
           "FareedKhan-dev/kimi-k3-in-c vulnerability",
@@ -6655,40 +6719,40 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "FareedKhan-dev/kimi-k3-in-c",
-        "stars": 8709,
-        "forks": 1406,
-        "watchers": 75,
-        "openIssues": 13,
+        "stars": 9068,
+        "forks": 1482,
+        "watchers": 81,
+        "openIssues": 4,
         "hasIssues": true,
-        "contributors": 10,
-        "commits": 77,
+        "contributors": 9,
+        "commits": 98,
         "created": "2026-08-01",
-        "pushed": "2026-09-22",
+        "pushed": "2026-10-02",
         "archived": false,
-        "ageDays": 57,
-        "homepage": "https://medium.com/@fareedkhandev/building-kimi-k3-in-c-to-run-a-2-8t-model-on-consumer-hardware-a5792cbf3b59",
-        "license": "Apache-2.0",
+        "ageDays": 77,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "farion1231/cc-switch": {
     "repo": "farion1231/cc-switch",
-    "checked": "2026-09-27",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "1 CVE(s) to check by hand: CVE-2026-6143"
+    ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/farion1231/cc-switch/security/advisories",
         "count": 0,
-        "latestRelease": "3.20.4",
+        "latestRelease": "4.0.13",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "farion1231/cc-switch CVE",
           "farion1231/cc-switch vulnerability",
@@ -6715,61 +6779,53 @@
           {
             "id": "CVE-2026-6143",
             "ghsa": "GHSA-rrm6-2q2p-cpx5",
-            "severity": "medium",
+            "severity": "moderate",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           }
         ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "farion1231/cc-switch",
-        "stars": 137463,
-        "forks": 9341,
-        "watchers": 255,
-        "openIssues": 2902,
+        "stars": 145081,
+        "forks": 9605,
+        "watchers": 265,
+        "openIssues": 1553,
         "hasIssues": true,
-        "contributors": 251,
-        "commits": 2502,
+        "contributors": 302,
+        "commits": 3014,
         "created": "2025-08-04",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 419,
-        "homepage": "https://ccswitch.io",
-        "license": "MIT",
+        "ageDays": 439,
         "flags": []
       }
     },
-    "recheck": {
-      "date": "2026-09-27",
-      "items": [
-        {
-          "id": "CVE-2026-6143",
-          "ghsa": "GHSA-rrm6-2q2p-cpx5",
-          "severity": "medium",
-          "fix": null,
-          "status": "unpatched",
-          "recheck": "patched",
-          "why": "fix PR(s) #1915 merged and in release v3.20.4"
-        }
+    "settled": {
+      "by": "routine",
+      "date": "2026-10-16",
+      "note": "1 moderate CVE (CVE-2026-6143) with fix-unverified status. Cannot verify from the cloud - settling FAIL pending Mac re-check.",
+      "reasons": [
+        "1 CVE(s) to check by hand: CVE-2026-6143"
       ]
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "firecrawl/anydoc": {
     "repo": "firecrawl/anydoc",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/firecrawl/anydoc/security/advisories",
         "count": 0,
         "latestRelease": "0.2.4",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "firecrawl/anydoc CVE",
           "firecrawl/anydoc vulnerability",
@@ -6786,24 +6842,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "firecrawl/anydoc",
-        "stars": 22096,
-        "forks": 1381,
-        "watchers": 61,
-        "openIssues": 98,
+        "stars": 22884,
+        "forks": 1473,
+        "watchers": 63,
+        "openIssues": 111,
         "hasIssues": true,
-        "contributors": 5,
+        "contributors": 6,
         "commits": 130,
         "created": "2026-08-03",
         "pushed": "2026-08-28",
         "archived": false,
-        "ageDays": 55,
-        "homepage": "https://firecrawl.github.io/anydoc/",
-        "license": "MIT",
+        "ageDays": 75,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "firecrawl/firecrawl": {
     "repo": "firecrawl/firecrawl",
@@ -7016,19 +7070,19 @@
   },
   "FlashML-org/FreeToken": {
     "repo": "FlashML-org/FreeToken",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/FlashML-org/FreeToken/security/advisories",
         "count": 0,
         "latestRelease": "0.1.3",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "FlashML-org/FreeToken CVE",
           "FlashML-org/FreeToken vulnerability",
@@ -7045,24 +7099,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "FlashML-org/FreeToken",
-        "stars": 13889,
-        "forks": 1368,
-        "watchers": 102,
-        "openIssues": 345,
+        "stars": 14534,
+        "forks": 1465,
+        "watchers": 101,
+        "openIssues": 425,
         "hasIssues": true,
-        "contributors": 8,
-        "commits": 88,
+        "contributors": 22,
+        "commits": 126,
         "created": "2026-07-20",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 69,
-        "homepage": "flashml.ai",
-        "license": "Apache-2.0",
+        "ageDays": 89,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "frappe/erpnext": {
     "repo": "frappe/erpnext",
@@ -8599,19 +8651,19 @@
   },
   "freqtrade/freqtrade": {
     "repo": "freqtrade/freqtrade",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/freqtrade/freqtrade/security/advisories",
         "count": 0,
-        "latestRelease": "2026.8.0",
+        "latestRelease": "2026.9.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "freqtrade/freqtrade CVE",
           "freqtrade/freqtrade vulnerability",
@@ -8628,40 +8680,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "freqtrade/freqtrade",
-        "stars": 54833,
-        "forks": 11363,
-        "watchers": 779,
+        "stars": 55450,
+        "forks": 11468,
+        "watchers": 785,
         "openIssues": 29,
         "hasIssues": true,
-        "contributors": 401,
-        "commits": 32971,
+        "contributors": 346,
+        "commits": 33186,
         "created": "2017-05-17",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 3420,
-        "homepage": "https://www.freqtrade.io",
-        "license": "GPL-3.0",
+        "ageDays": 3440,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "garrytan/gstack": {
     "repo": "garrytan/gstack",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/garrytan/gstack/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "garrytan/gstack CVE",
           "garrytan/gstack vulnerability",
@@ -8678,47 +8728,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "garrytan/gstack",
-        "stars": 134325,
-        "forks": 20012,
-        "watchers": 790,
-        "openIssues": 941,
+        "stars": 136633,
+        "forks": 20275,
+        "watchers": 777,
+        "openIssues": 114,
         "hasIssues": true,
-        "contributors": 14,
-        "commits": 406,
+        "contributors": 245,
+        "commits": 477,
         "created": "2026-03-11",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-14",
         "archived": false,
-        "ageDays": 200,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 220,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "genspark-ai/GenOffice": {
     "repo": "genspark-ai/GenOffice",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/genspark-ai/GenOffice/security/advisories",
         "count": 0,
-        "latestRelease": "0.10.1467",
+        "latestRelease": "0.11.829",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "genspark-ai/GenOffice CVE",
           "genspark-ai/GenOffice vulnerability",
           "genspark-ai/GenOffice malware",
           "genspark-ai/GenOffice scam"
         ],
-        "results": 1,
+        "results": 0,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -8728,40 +8776,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "genspark-ai/genoffice",
-        "stars": 7966,
-        "forks": 1039,
-        "watchers": 37,
-        "openIssues": 103,
+        "stars": 9816,
+        "forks": 1251,
+        "watchers": 51,
+        "openIssues": 62,
         "hasIssues": true,
-        "contributors": 29,
-        "commits": 547,
+        "contributors": 50,
+        "commits": 952,
         "created": "2026-07-31",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 58,
-        "homepage": "https://genoffice.ai/",
-        "license": "Apache-2.0",
+        "ageDays": 78,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "github/spec-kit": {
     "repo": "github/spec-kit",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/github/spec-kit/security/advisories",
         "count": 0,
-        "latestRelease": "1.0.12",
+        "latestRelease": "1.2.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "github/spec-kit CVE",
           "github/spec-kit vulnerability",
@@ -8778,24 +8824,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "github/spec-kit",
-        "stars": 139092,
-        "forks": 12463,
-        "watchers": 711,
-        "openIssues": 283,
+        "stars": 141498,
+        "forks": 12671,
+        "watchers": 715,
+        "openIssues": 181,
         "hasIssues": true,
-        "contributors": 305,
-        "commits": 2076,
+        "contributors": 326,
+        "commits": 2211,
         "created": "2025-08-21",
-        "pushed": "2026-09-25",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 402,
-        "homepage": "https://github.github.com/spec-kit/",
-        "license": "MIT",
+        "ageDays": 422,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "gitleaks/gitleaks": {
     "repo": "gitleaks/gitleaks",
@@ -8846,19 +8890,19 @@
   },
   "google-gemini/gemini-cli": {
     "repo": "google-gemini/gemini-cli",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/google-gemini/gemini-cli/security/advisories",
         "count": 0,
-        "latestRelease": "0.61.0",
+        "latestRelease": "0.64.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "google-gemini/gemini-cli CVE",
           "google-gemini/gemini-cli vulnerability",
@@ -8875,47 +8919,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "google-gemini/gemini-cli",
-        "stars": 107167,
-        "forks": 14633,
-        "watchers": 584,
-        "openIssues": 812,
+        "stars": 107404,
+        "forks": 14725,
+        "watchers": 590,
+        "openIssues": 751,
         "hasIssues": true,
-        "contributors": 699,
-        "commits": 6443,
+        "contributors": 698,
+        "commits": 6504,
         "created": "2025-04-17",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 528,
-        "homepage": "https://geminicli.com",
-        "license": "Apache-2.0",
+        "ageDays": 548,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "google/artemis": {
     "repo": "google/artemis",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/google/artemis/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "google/artemis CVE",
           "google/artemis vulnerability",
           "google/artemis malware",
           "google/artemis scam"
         ],
-        "results": 13,
+        "results": 18,
         "errors": 0,
         "hits": [
           {
@@ -8924,7 +8966,7 @@
             "url": "https://news.ycombinator.com/item?id=28685677",
             "published": "2021-09-28",
             "matched": "malware",
-            "kind": "report"
+            "kind": "before-repo"
           }
         ],
         "fallbacks": 4,
@@ -8934,52 +8976,44 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "google/artemis",
-        "stars": 10435,
-        "forks": 1030,
-        "watchers": 99,
-        "openIssues": 116,
+        "stars": 11971,
+        "forks": 1276,
+        "watchers": 146,
+        "openIssues": 138,
         "hasIssues": true,
-        "contributors": 8,
-        "commits": 119,
+        "contributors": 6,
+        "commits": 121,
         "created": "2026-08-13",
-        "pushed": "2026-09-12",
+        "pushed": "2026-09-29",
         "archived": false,
-        "ageDays": 45,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 65,
         "flags": []
       }
-    },
-    "auto": {
-      "verdict": "REVIEW",
-      "reasons": [
-        "1 report(s) to read"
-      ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an unrelated Hacker News comment.",
       "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "googleworkspace/cli": {
     "repo": "googleworkspace/cli",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/googleworkspace/cli/security/advisories",
         "count": 0,
         "latestRelease": "0.22.5",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "googleworkspace/cli CVE",
           "googleworkspace/cli vulnerability",
@@ -8996,24 +9030,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "googleworkspace/cli",
-        "stars": 31168,
-        "forks": 1853,
+        "stars": 31546,
+        "forks": 1920,
         "watchers": 99,
-        "openIssues": 132,
+        "openIssues": 137,
         "hasIssues": true,
-        "contributors": 43,
+        "contributors": 46,
         "commits": 283,
         "created": "2026-03-02",
-        "pushed": "2026-09-24",
+        "pushed": "2026-03-31",
         "archived": false,
-        "ageDays": 209,
-        "homepage": "https://developers.google.com/workspace",
-        "license": "Apache-2.0",
+        "ageDays": 229,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "grafana/grafana": {
     "repo": "grafana/grafana",
@@ -9445,26 +9477,26 @@
   },
   "GrapesJS/grapesjs": {
     "repo": "GrapesJS/grapesjs",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/GrapesJS/grapesjs/security/advisories",
         "count": 0,
-        "latestRelease": "0.23.6",
+        "latestRelease": "0.23.8",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "GrapesJS/grapesjs CVE",
           "GrapesJS/grapesjs vulnerability",
           "GrapesJS/grapesjs malware",
           "GrapesJS/grapesjs scam"
         ],
-        "results": 7,
+        "results": 15,
         "errors": 0,
         "hits": [
           {
@@ -9508,52 +9540,46 @@
           {
             "id": "CVE-2022-21802",
             "ghsa": "GHSA-589f-c66p-hxr4",
-            "severity": "medium",
-            "fix": null,
+            "severity": "moderate",
             "status": "other-project"
           },
           {
             "id": "CVE-2021-27916",
             "ghsa": "GHSA-9fcx-cv56-w58p",
             "severity": "high",
-            "fix": "4.4.12; 5.0.4",
             "status": "other-project"
           },
           {
             "id": "CVE-2025-13827",
             "ghsa": "GHSA-5xw2-57jx-pgjp",
             "severity": "high",
-            "fix": "4.4.18; 5.2.9; 6.0.7",
             "status": "other-project"
           },
           {
             "id": "CVE-2025-66468",
             "ghsa": "GHSA-424m-fj2q-g7vg",
             "severity": "high",
-            "fix": "2021.10.8; 2022.10.9; 2023.10.15; 2024.10.8; 2025.10.2",
             "status": "other-project"
           }
         ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "GrapesJS/grapesjs",
-        "stars": 26274,
-        "forks": 4649,
-        "watchers": 469,
-        "openIssues": 45,
+        "stars": 26313,
+        "forks": 4650,
+        "watchers": 467,
+        "openIssues": 31,
         "hasIssues": true,
-        "contributors": 228,
-        "commits": 6261,
+        "contributors": 196,
+        "commits": 6271,
         "created": "2016-01-22",
-        "pushed": "2026-09-21",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 3902,
-        "homepage": "https://grapesjs.com",
-        "license": "NOASSERTION",
+        "ageDays": 3921,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "Graphify-Labs/graphify": {
     "repo": "Graphify-Labs/graphify",
@@ -9614,23 +9640,23 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "guillaumemeyer/watermarks-remover": {
     "repo": "guillaumemeyer/watermarks-remover",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/guillaumemeyer/watermarks-remover/security/advisories",
         "count": 0,
         "latestRelease": "0.7.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "guillaumemeyer/watermarks-remover CVE",
           "guillaumemeyer/watermarks-remover vulnerability",
@@ -9647,33 +9673,31 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "guillaumemeyer/watermarks-remover",
-        "stars": 22937,
-        "forks": 2636,
-        "watchers": 105,
-        "openIssues": 17,
+        "stars": 24236,
+        "forks": 2782,
+        "watchers": 112,
+        "openIssues": 34,
         "hasIssues": true,
-        "contributors": 50,
-        "commits": 303,
+        "contributors": 56,
+        "commits": 307,
         "created": "2026-08-11",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-09",
         "archived": false,
-        "ageDays": 47,
-        "homepage": "https://github.com/guillaumemeyer/watermarks-remover",
-        "license": "MIT",
+        "ageDays": 67,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "HKUDS/nanobot": {
     "repo": "HKUDS/nanobot",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/HKUDS/nanobot/security/advisories",
         "count": 5,
         "latestRelease": "0.3.5",
@@ -9686,7 +9710,8 @@
             "summary": "Path traversal via unsanitized WhatsApp document fileName enables arbitrary file write",
             "patched": ">= 0.1.5.post4",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.3.5"
           },
           {
             "ghsa": "GHSA-v5j3-4q66-58cf",
@@ -9696,7 +9721,8 @@
             "summary": "Cross-Site WebSocket Hijacking (CSWSH) in nanobot WhatsApp Bridge",
             "patched": ">= 0.1.5",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.3.5"
           },
           {
             "ghsa": "GHSA-g6cf-xjwr-pm77",
@@ -9706,7 +9732,8 @@
             "summary": "`is_allowed` Authorization Bypass via `|`-Separated Sender ID Injection",
             "patched": ">= 0.1.4.post4",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.3.5"
           },
           {
             "ghsa": "GHSA-4gmr-2vc8-7qh3",
@@ -9716,7 +9743,8 @@
             "summary": "Zero-Click Indirect Prompt Injection and Authentication Bypass via Email Polling",
             "patched": ">= 0.1.4.post6",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.4.1"
           },
           {
             "ghsa": "GHSA-vc5v-6vwm-wf9m",
@@ -9726,12 +9754,13 @@
             "summary": "ZDI-CAN-29369: Hong Kong University Data Intelligence Lab nanobot WebFetch Server-Side Request Forgery Information Disclosure Vulnerability",
             "patched": "0.3.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.3.5"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "HKUDS/nanobot CVE",
           "HKUDS/nanobot vulnerability",
@@ -9807,100 +9836,98 @@
             "id": "CVE-2026-19243",
             "ghsa": "GHSA-m259-67hc-p7v5",
             "severity": "low",
-            "fix": null,
-            "status": "unpatched"
+            "fix": "0.3.0",
+            "status": "patched"
           },
           {
             "id": "CVE-2026-19244",
             "ghsa": "GHSA-qwp6-wxvx-2jc8",
             "severity": "low",
-            "fix": null,
-            "status": "unpatched"
+            "fix": "0.3.0",
+            "status": "patched"
           },
           {
             "id": "CVE-2026-19245",
             "ghsa": "GHSA-hfxr-wggc-4cr6",
             "severity": "low",
-            "fix": null,
-            "status": "unpatched"
+            "fix": "0.3.0",
+            "status": "patched"
           },
           {
             "id": "CVE-2026-19246",
             "ghsa": "GHSA-g4fw-p4hw-gq39",
             "severity": "low",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           },
           {
             "id": "CVE-2026-90808",
             "ghsa": "GHSA-vwc9-2889-5p3f",
-            "severity": "medium",
+            "severity": "moderate",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           },
           {
             "id": "CVE-2026-90809",
             "ghsa": "GHSA-7hvv-vr32-8c2m",
-            "severity": "medium",
+            "severity": "moderate",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           },
           {
             "id": "CVE-2026-92576",
             "ghsa": "GHSA-mpqf-rmwr-h7wr",
             "severity": "critical",
-            "fix": null,
-            "status": "unpatched"
+            "fix": "0.3.0",
+            "status": "patched"
           }
         ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "HKUDS/nanobot",
-        "stars": 48616,
-        "forks": 8591,
-        "watchers": 217,
-        "openIssues": 812,
+        "stars": 49081,
+        "forks": 8637,
+        "watchers": 222,
+        "openIssues": 851,
         "hasIssues": true,
-        "contributors": 456,
-        "commits": 4608,
+        "contributors": 427,
+        "commits": 4909,
         "created": "2026-02-01",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 238,
-        "homepage": "https://nanobot.wiki",
-        "license": "MIT",
+        "ageDays": 258,
         "flags": []
       }
     },
     "auto": {
-      "verdict": "FAIL",
+      "verdict": "REVIEW",
       "reasons": [
-        "7 open CVE(s) found by search: CVE-2026-19243 low (unpatched), CVE-2026-19244 low (unpatched), CVE-2026-19245 low (unpatched), CVE-2026-19246 low (unpatched), CVE-2026-90808 medium (unpatched), CVE-2026-90809 medium (unpatched), CVE-2026-92576 critical (unpatched)"
+        "3 CVE(s) to check by hand: CVE-2026-19246, CVE-2026-90808, CVE-2026-90809"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'nanobot'.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+      "carried": "2026-10-16"
+    }
   },
   "HKUDS/RAG-Anything": {
     "repo": "HKUDS/RAG-Anything",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/HKUDS/RAG-Anything/security/advisories",
         "count": 0,
-        "latestRelease": "1.4.1",
+        "latestRelease": "1.4.2",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "HKUDS/RAG-Anything CVE",
           "HKUDS/RAG-Anything vulnerability",
@@ -9917,24 +9944,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "HKUDS/RAG-Anything",
-        "stars": 23436,
-        "forks": 2728,
+        "stars": 23601,
+        "forks": 2749,
         "watchers": 122,
         "openIssues": 110,
         "hasIssues": true,
-        "contributors": 65,
-        "commits": 456,
+        "contributors": 57,
+        "commits": 479,
         "created": "2025-06-06",
-        "pushed": "2026-09-15",
+        "pushed": "2026-10-12",
         "archived": false,
-        "ageDays": 478,
-        "homepage": "http://arxiv.org/abs/2510.12323",
-        "license": "MIT",
+        "ageDays": 498,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "huginn/huginn": {
     "repo": "huginn/huginn",
@@ -10395,47 +10420,51 @@
   },
   "hugohe3/ppt-master": {
     "repo": "hugohe3/ppt-master",
-    "checked": "2026-09-27",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "2 open advisory(ies): GHSA-8qv4-8xgv-jxp5 moderate (unpatched), GHSA-mv87-79gf-mh4v moderate (unpatched)"
+    ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/hugohe3/ppt-master/security/advisories",
         "count": 2,
-        "latestRelease": "6.6.0",
+        "latestRelease": "6.7.0",
         "items": [
           {
             "ghsa": "GHSA-8qv4-8xgv-jxp5",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-09-11",
             "summary": "Attribute injection in icon placeholder expansion writes unescaped markup to disk",
-            "patched": "6.3.1",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "unpatched",
+            "latestPublished": "6.7.0"
           },
           {
             "ghsa": "GHSA-mv87-79gf-mh4v",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-09-11",
             "summary": "Live preview SVG sanitizer bypass via case-sensitive filtering (mXSS)",
-            "patched": "6.3.2",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "unpatched",
+            "latestPublished": "6.7.0"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "hugohe3/ppt-master CVE",
           "hugohe3/ppt-master vulnerability",
           "hugohe3/ppt-master malware",
           "hugohe3/ppt-master scam"
         ],
-        "results": 4,
+        "results": 5,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -10445,40 +10474,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "hugohe3/ppt-master",
-        "stars": 56635,
-        "forks": 4488,
-        "watchers": 113,
-        "openIssues": 2,
+        "stars": 62640,
+        "forks": 4966,
+        "watchers": 121,
+        "openIssues": 3,
         "hasIssues": true,
-        "contributors": 24,
-        "commits": 2110,
+        "contributors": 26,
+        "commits": 2147,
         "created": "2025-12-10",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-14",
         "archived": false,
-        "ageDays": 291,
-        "homepage": "https://hugohe3.github.io/ppt-master-examples/",
-        "license": "MIT",
+        "ageDays": 311,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "Human-Agent-Society/reef": {
     "repo": "Human-Agent-Society/reef",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/Human-Agent-Society/reef/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.1",
+        "latestRelease": "0.1.3",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "Human-Agent-Society/reef CVE",
           "Human-Agent-Society/reef vulnerability",
@@ -10495,40 +10522,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "Human-Agent-Society/reef",
-        "stars": 6325,
-        "forks": 567,
-        "watchers": 443,
-        "openIssues": 95,
+        "stars": 7611,
+        "forks": 709,
+        "watchers": 549,
+        "openIssues": 88,
         "hasIssues": true,
-        "contributors": 32,
-        "commits": 370,
+        "contributors": 46,
+        "commits": 481,
         "created": "2026-08-31",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 28,
-        "homepage": "https://reefinfra.ai",
-        "license": "Apache-2.0",
+        "ageDays": 47,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "hypit-ai/hypit": {
     "repo": "hypit-ai/hypit",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/hypit-ai/hypit/security/advisories",
         "count": 0,
-        "latestRelease": "0.2.16",
+        "latestRelease": "0.3.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "hypit-ai/hypit CVE",
           "hypit-ai/hypit vulnerability",
@@ -10545,40 +10570,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "hypit-ai/hypit",
-        "stars": 16619,
-        "forks": 2004,
-        "watchers": 32,
-        "openIssues": 16,
+        "stars": 22760,
+        "forks": 2583,
+        "watchers": 41,
+        "openIssues": 20,
         "hasIssues": true,
-        "contributors": 21,
-        "commits": 1415,
+        "contributors": 25,
+        "commits": 1493,
         "created": "2026-07-29",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-14",
         "archived": false,
-        "ageDays": 60,
-        "homepage": "https://hypit.ai",
-        "license": "NOASSERTION",
+        "ageDays": 80,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "img2threejs/img2threejs": {
     "repo": "img2threejs/img2threejs",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/img2threejs/img2threejs/security/advisories",
         "count": 0,
         "latestRelease": "2.0.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "img2threejs/img2threejs CVE",
           "img2threejs/img2threejs vulnerability",
@@ -10595,24 +10618,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "img2threejs/img2threejs",
-        "stars": 17008,
-        "forks": 1422,
-        "watchers": 64,
-        "openIssues": 88,
+        "stars": 18219,
+        "forks": 1579,
+        "watchers": 70,
+        "openIssues": 106,
         "hasIssues": true,
-        "contributors": 3,
-        "commits": 102,
+        "contributors": 5,
+        "commits": 106,
         "created": "2026-07-15",
-        "pushed": "2026-09-23",
+        "pushed": "2026-10-08",
         "archived": false,
-        "ageDays": 75,
-        "homepage": "https://img2threejs.io",
-        "license": "Apache-2.0",
+        "ageDays": 94,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "immich-app/immich": {
     "repo": "immich-app/immich",
@@ -10820,19 +10841,19 @@
   },
   "jaredpalmer/kev": {
     "repo": "jaredpalmer/kev",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/jaredpalmer/kev/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.0",
+        "latestRelease": "1.0.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "jaredpalmer/kev CVE",
           "jaredpalmer/kev vulnerability",
@@ -10849,24 +10870,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "jaredpalmer/kev",
-        "stars": 7368,
-        "forks": 446,
-        "watchers": 25,
-        "openIssues": 20,
+        "stars": 9222,
+        "forks": 622,
+        "watchers": 32,
+        "openIssues": 34,
         "hasIssues": true,
-        "contributors": 10,
-        "commits": 296,
+        "contributors": 13,
+        "commits": 345,
         "created": "2026-09-17",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 10,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 30,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "jellyfin/jellyfin": {
     "repo": "jellyfin/jellyfin",
@@ -11172,26 +11191,26 @@
   },
   "JuliusBrussee/caveman": {
     "repo": "JuliusBrussee/caveman",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/JuliusBrussee/caveman/security/advisories",
         "count": 0,
-        "latestRelease": "2.7.0",
+        "latestRelease": "4.0.1",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "JuliusBrussee/caveman CVE",
           "JuliusBrussee/caveman vulnerability",
           "JuliusBrussee/caveman malware",
           "JuliusBrussee/caveman scam"
         ],
-        "results": 20,
+        "results": 11,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -11201,24 +11220,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "JuliusBrussee/caveman",
-        "stars": 108043,
-        "forks": 6265,
-        "watchers": 245,
-        "openIssues": 139,
+        "stars": 112966,
+        "forks": 6534,
+        "watchers": 258,
+        "openIssues": 73,
         "hasIssues": true,
-        "contributors": 61,
-        "commits": 723,
+        "contributors": 108,
+        "commits": 1762,
         "created": "2026-04-04",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-13",
         "archived": false,
-        "ageDays": 176,
-        "homepage": "https://docs.caveman.so/docs/quickstart",
-        "license": "NOASSERTION",
+        "ageDays": 196,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "JustVugg/colibri": {
     "repo": "JustVugg/colibri",
@@ -11647,19 +11664,19 @@
   },
   "KeygraphHQ/shannon": {
     "repo": "KeygraphHQ/shannon",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/KeygraphHQ/shannon/security/advisories",
         "count": 0,
-        "latestRelease": "3.3.0",
+        "latestRelease": "3.4.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "KeygraphHQ/shannon CVE",
           "KeygraphHQ/shannon vulnerability",
@@ -11676,24 +11693,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "KeygraphHQ/shannon",
-        "stars": 48419,
-        "forks": 5544,
-        "watchers": 238,
-        "openIssues": 23,
+        "stars": 48953,
+        "forks": 5608,
+        "watchers": 241,
+        "openIssues": 24,
         "hasIssues": true,
         "contributors": 8,
-        "commits": 296,
+        "commits": 313,
         "created": "2025-09-27",
-        "pushed": "2026-09-21",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 366,
-        "homepage": "https://keygraph.io/",
-        "license": "AGPL-3.0",
+        "ageDays": 385,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "kirodotdev/KiroCrew": {
     "repo": "kirodotdev/KiroCrew",
@@ -11959,30 +11974,30 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "lidge-jun/opencodex": {
     "repo": "lidge-jun/opencodex",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/lidge-jun/opencodex/security/advisories",
         "count": 0,
-        "latestRelease": "2.68.0",
+        "latestRelease": "2.86.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "lidge-jun/opencodex CVE",
           "lidge-jun/opencodex vulnerability",
           "lidge-jun/opencodex malware",
           "lidge-jun/opencodex scam"
         ],
-        "results": 19,
+        "results": 17,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -11992,40 +12007,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "lidge-jun/opencodex",
-        "stars": 16433,
-        "forks": 1235,
-        "watchers": 26,
-        "openIssues": 121,
+        "stars": 17475,
+        "forks": 1334,
+        "watchers": 25,
+        "openIssues": 74,
         "hasIssues": true,
-        "contributors": 215,
-        "commits": 11863,
+        "contributors": 365,
+        "commits": 12953,
         "created": "2026-06-18",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-14",
         "archived": false,
-        "ageDays": 101,
-        "homepage": "https://opencodex.me/",
-        "license": "MIT",
+        "ageDays": 121,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "lnkiai/m3e-canvas": {
     "repo": "lnkiai/m3e-canvas",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/lnkiai/m3e-canvas/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "lnkiai/m3e-canvas CVE",
           "lnkiai/m3e-canvas vulnerability",
@@ -12042,24 +12055,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "lnkiai/m3e-canvas",
-        "stars": 8343,
-        "forks": 878,
-        "watchers": 30,
-        "openIssues": 4,
+        "stars": 9395,
+        "forks": 1014,
+        "watchers": 35,
+        "openIssues": 6,
         "hasIssues": true,
-        "contributors": 10,
-        "commits": 174,
+        "contributors": 16,
+        "commits": 192,
         "created": "2026-09-02",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 26,
-        "homepage": "https://lnkiai.github.io/m3e-canvas/",
-        "license": "MIT",
+        "ageDays": 45,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "mattpocock/skills": {
     "repo": "mattpocock/skills",
@@ -12108,41 +12119,42 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "MemPalace/mempalace": {
     "repo": "MemPalace/mempalace",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/MemPalace/mempalace/security/advisories",
         "count": 1,
-        "latestRelease": "3.10.0",
+        "latestRelease": "3.11.0",
         "items": [
           {
             "ghsa": "GHSA-7qpw-4fjh-7g82",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-09-15",
             "summary": "Remote MCP read-only mode can be bypassed by omitted mutating tools",
             "patched": "3.7.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "3.11.0"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "MemPalace/mempalace CVE",
           "MemPalace/mempalace vulnerability",
           "MemPalace/mempalace malware",
           "MemPalace/mempalace scam"
         ],
-        "results": 5,
+        "results": 8,
         "errors": 0,
         "hits": [
           {
@@ -12169,20 +12181,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "MemPalace/mempalace",
-        "stars": 59310,
+        "stars": 59592,
         "forks": 7564,
-        "watchers": 324,
-        "openIssues": 763,
+        "watchers": 321,
+        "openIssues": 820,
         "hasIssues": true,
-        "contributors": 160,
-        "commits": 2049,
+        "contributors": 172,
+        "commits": 2197,
         "created": "2026-04-05",
-        "pushed": "2026-09-25",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 176,
-        "homepage": "http://mempalaceofficial.com/",
-        "license": "MIT",
+        "ageDays": 195,
         "flags": []
       }
     },
@@ -12196,25 +12207,24 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The malware warning concerns a fake domain impersonating the project (issue #326), not the repo. The 'scam' post is an April 2026 opinion about authorship, with no malicious code shown.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+      "carried": "2026-10-16"
+    }
   },
   "Michael-A-Kuykendall/shimmy": {
     "repo": "Michael-A-Kuykendall/shimmy",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/Michael-A-Kuykendall/shimmy/security/advisories",
         "count": 0,
         "latestRelease": "2.6.4",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "Michael-A-Kuykendall/shimmy CVE",
           "Michael-A-Kuykendall/shimmy vulnerability",
@@ -12231,38 +12241,28 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "Michael-A-Kuykendall/shimmy",
-        "stars": 5907,
-        "forks": 576,
+        "stars": 5980,
+        "forks": 586,
         "watchers": 41,
-        "openIssues": 11,
+        "openIssues": 13,
         "hasIssues": true,
-        "contributors": 1,
+        "contributors": 5,
         "commits": 196,
         "created": "2025-08-28",
         "pushed": "2026-08-30",
         "archived": false,
-        "ageDays": 395,
-        "homepage": null,
-        "license": "Apache-2.0",
-        "flags": [
-          "5907 stars on 1 contributor(s)"
-        ]
+        "ageDays": 415,
+        "flags": []
       }
-    },
-    "auto": {
-      "verdict": "REVIEW",
-      "reasons": [
-        "activity: 5907 stars on 1 contributor(s)"
-      ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "Solo project (1 contributor) with 5.9K stars; flag named on the page; no advisories or reports.",
       "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "metabase/metabase": {
     "repo": "metabase/metabase",
@@ -13478,19 +13478,19 @@
   },
   "microsoft/SkillOpt": {
     "repo": "microsoft/SkillOpt",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/microsoft/SkillOpt/security/advisories",
         "count": 0,
         "latestRelease": "0.2.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "microsoft/SkillOpt CVE",
           "microsoft/SkillOpt vulnerability",
@@ -13507,40 +13507,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "microsoft/SkillOpt",
-        "stars": 17647,
-        "forks": 1647,
-        "watchers": 68,
-        "openIssues": 54,
+        "stars": 18471,
+        "forks": 1750,
+        "watchers": 73,
+        "openIssues": 58,
         "hasIssues": true,
-        "contributors": 64,
-        "commits": 531,
+        "contributors": 68,
+        "commits": 575,
         "created": "2026-05-08",
-        "pushed": "2026-09-05",
+        "pushed": "2026-10-06",
         "archived": false,
-        "ageDays": 142,
-        "homepage": "https://aka.ms/skillopt",
-        "license": "MIT",
+        "ageDays": 162,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "microsoft/VibeVoice": {
     "repo": "microsoft/VibeVoice",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/microsoft/VibeVoice/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "microsoft/VibeVoice CVE",
           "microsoft/VibeVoice vulnerability",
@@ -13557,40 +13555,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "microsoft/VibeVoice",
-        "stars": 54512,
-        "forks": 6135,
-        "watchers": 269,
-        "openIssues": 196,
+        "stars": 54847,
+        "forks": 6166,
+        "watchers": 273,
+        "openIssues": 201,
         "hasIssues": true,
-        "contributors": 23,
-        "commits": 159,
+        "contributors": 25,
+        "commits": 161,
         "created": "2025-08-25",
-        "pushed": "2026-09-03",
+        "pushed": "2026-10-08",
         "archived": false,
-        "ageDays": 398,
-        "homepage": "https://microsoft.github.io/VibeVoice/",
-        "license": "MIT",
+        "ageDays": 418,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "miuuyy/codex-chatgpt-web": {
     "repo": "miuuyy/codex-chatgpt-web",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/miuuyy/codex-chatgpt-web/security/advisories",
         "count": 0,
-        "latestRelease": "6.1.2",
+        "latestRelease": "6.1.9",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "miuuyy/codex-chatgpt-web CVE",
           "miuuyy/codex-chatgpt-web vulnerability",
@@ -13607,40 +13603,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "miuuyy/codex-chatgpt-web",
-        "stars": 11973,
-        "forks": 951,
-        "watchers": 35,
-        "openIssues": 22,
+        "stars": 14368,
+        "forks": 1131,
+        "watchers": 39,
+        "openIssues": 30,
         "hasIssues": true,
         "contributors": 13,
-        "commits": 336,
+        "commits": 353,
         "created": "2026-07-26",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 63,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 83,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "NandhaKishorM/laya": {
     "repo": "NandhaKishorM/laya",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/NandhaKishorM/laya/security/advisories",
         "count": 0,
-        "latestRelease": "0.3.20",
+        "latestRelease": "0.4.8",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "NandhaKishorM/laya CVE",
           "NandhaKishorM/laya vulnerability",
@@ -13657,40 +13651,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "NandhaKishorM/laya",
-        "stars": 26494,
-        "forks": 2308,
-        "watchers": 103,
-        "openIssues": 223,
+        "stars": 33121,
+        "forks": 2976,
+        "watchers": 117,
+        "openIssues": 124,
         "hasIssues": true,
-        "contributors": 86,
-        "commits": 413,
+        "contributors": 144,
+        "commits": 2213,
         "created": "2026-09-18",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 9,
-        "homepage": "https://huggingface.co/convaiinnovations/laya",
-        "license": "Apache-2.0",
+        "ageDays": 29,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "msitarzewski/agency-agents": {
     "repo": "msitarzewski/agency-agents",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/msitarzewski/agency-agents/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "msitarzewski/agency-agents CVE",
           "msitarzewski/agency-agents vulnerability",
@@ -13707,47 +13699,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "msitarzewski/agency-agents",
-        "stars": 154872,
-        "forks": 24975,
-        "watchers": 1125,
-        "openIssues": 149,
+        "stars": 160462,
+        "forks": 25943,
+        "watchers": 1143,
+        "openIssues": 215,
         "hasIssues": true,
-        "contributors": 102,
-        "commits": 421,
+        "contributors": 129,
+        "commits": 774,
         "created": "2025-10-13",
-        "pushed": "2026-09-22",
+        "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 349,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 369,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "nexu-io/html-anything": {
     "repo": "nexu-io/html-anything",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/nexu-io/html-anything/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "nexu-io/html-anything CVE",
           "nexu-io/html-anything vulnerability",
           "nexu-io/html-anything malware",
           "nexu-io/html-anything scam"
         ],
-        "results": 2,
+        "results": 3,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -13757,40 +13747,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "nexu-io/html-anything",
-        "stars": 8958,
-        "forks": 868,
-        "watchers": 39,
-        "openIssues": 70,
+        "stars": 9141,
+        "forks": 878,
+        "watchers": 41,
+        "openIssues": 60,
         "hasIssues": true,
-        "contributors": 20,
-        "commits": 42,
+        "contributors": 28,
+        "commits": 46,
         "created": "2026-05-11",
-        "pushed": "2026-09-15",
+        "pushed": "2026-10-13",
         "archived": false,
-        "ageDays": 139,
-        "homepage": "https://open-design.ai/html-anything/",
-        "license": "Apache-2.0",
+        "ageDays": 159,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "nexu-io/open-design": {
     "repo": "nexu-io/open-design",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/nexu-io/open-design/security/advisories",
         "count": 0,
-        "latestRelease": "0.24.1",
+        "latestRelease": "0.25.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "nexu-io/open-design CVE",
           "nexu-io/open-design vulnerability",
@@ -13807,24 +13795,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "nexu-io/open-design",
-        "stars": 98297,
-        "forks": 11399,
-        "watchers": 296,
-        "openIssues": 1132,
+        "stars": 101450,
+        "forks": 11663,
+        "watchers": 304,
+        "openIssues": 1174,
         "hasIssues": true,
-        "contributors": 439,
-        "commits": 3700,
+        "contributors": 504,
+        "commits": 3761,
         "created": "2026-04-28",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 153,
-        "homepage": "https://open-design.ai",
-        "license": "Apache-2.0",
+        "ageDays": 172,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "NousResearch/hermes-agent": {
     "repo": "NousResearch/hermes-agent",
@@ -14212,19 +14198,19 @@
   },
   "obra/superpowers": {
     "repo": "obra/superpowers",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/obra/superpowers/security/advisories",
         "count": 0,
-        "latestRelease": "6.4.2",
+        "latestRelease": "7.0.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "obra/superpowers CVE",
           "obra/superpowers vulnerability",
@@ -14241,20 +14227,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "obra/superpowers",
-        "stars": 292125,
-        "forks": 26143,
-        "watchers": 1077,
-        "openIssues": 263,
+        "stars": 300368,
+        "forks": 26819,
+        "watchers": 1105,
+        "openIssues": 368,
         "hasIssues": true,
-        "contributors": 44,
-        "commits": 683,
+        "contributors": 60,
+        "commits": 684,
         "created": "2025-10-09",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-10",
         "archived": false,
-        "ageDays": 353,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 373,
         "flags": []
       }
     },
@@ -14262,24 +14247,23 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'superpowers'."
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "odysseus-dev/odysseus": {
     "repo": "odysseus-dev/odysseus",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/odysseus-dev/odysseus/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "odysseus-dev/odysseus CVE",
           "odysseus-dev/odysseus vulnerability",
@@ -14296,37 +14280,57 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "odysseus-dev/odysseus",
-        "stars": 87625,
-        "forks": 984,
-        "watchers": 472,
-        "openIssues": 1297,
+        "stars": 93672,
+        "forks": 1621,
+        "watchers": 501,
+        "openIssues": 1460,
         "hasIssues": true,
-        "contributors": 331,
-        "commits": 2090,
+        "contributors": 348,
+        "commits": 2556,
         "created": "2026-05-31",
-        "pushed": "2026-09-24",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 119,
-        "homepage": "https://odysseus-dev.github.io/odysseus",
-        "license": "AGPL-3.0",
+        "ageDays": 139,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "omnigent-ai/omnigent": {
     "repo": "omnigent-ai/omnigent",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/omnigent-ai/omnigent/security/advisories",
-        "count": 7,
-        "latestRelease": "0.15.0",
+        "count": 13,
+        "latestRelease": "0.18.0",
         "items": [
+          {
+            "ghsa": "GHSA-rqfc-q7j9-5v59",
+            "cve": null,
+            "severity": "critical",
+            "published": "2026-10-13",
+            "summary": "Session imports can use another user’s host without authorization",
+            "patched": "0.18.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
+          {
+            "ghsa": "GHSA-h6vq-3549-mppq",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-13",
+            "summary": "Git commands can bypass repository and branch policies",
+            "patched": "0.18.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
           {
             "ghsa": "GHSA-598r-29w2-g93q",
             "cve": null,
@@ -14335,7 +14339,8 @@
             "summary": "Per-terminal os_env.cwd bypasses the uploaded-bundle workspace guard, spawning an unconfined host shell",
             "patched": "0.14.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-q5jc-8hqr-9hm4",
@@ -14345,7 +14350,19 @@
             "summary": "omnigent single-file YAML function: policy key bypasses handler allowlist → import-and-call RCE",
             "patched": "0.14.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
+          {
+            "ghsa": "GHSA-jw77-57v9-jmcm",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-13",
+            "summary": "Uploaded source tools can execute code with runner privileges",
+            "patched": "0.18.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-p5x3-3gqh-x44g",
@@ -14355,7 +14372,41 @@
             "summary": "Uploaded bundle's sub-agent os_env.cwd escapes workspace containment (sibling of GHSA-p8rw-8qj3-hf33)",
             "patched": "0.14.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
+          {
+            "ghsa": "GHSA-m3m2-42jg-grrv",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-13",
+            "summary": "Shell commands can bypass configured agent policies",
+            "patched": "0.18.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
+          {
+            "ghsa": "GHSA-v3vj-mch3-x6c2",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-13",
+            "summary": "Sandbox launcher isolation failure permits host-level code execution",
+            "patched": "0.18.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
+          },
+          {
+            "ghsa": "GHSA-x6v6-fg8x-997h",
+            "cve": null,
+            "severity": "critical",
+            "published": "2026-10-14",
+            "summary": "Omnigent default header authentication trusts client-controlled X-Forwarded-Email, enabling remote user impersonation",
+            "patched": "0.7.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-7mqg-cx4g-x2rf",
@@ -14365,7 +14416,8 @@
             "summary": "Guardrail policy bypass: shell-command parser fails open (CWE-184) in policies/builtins/_shell.py",
             "patched": "0.3.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-p8rw-8qj3-hf33",
@@ -14375,7 +14427,8 @@
             "summary": "Unvalidated os_env.cwd in agent bundle yields arbitrary host filesystem access on runners without OMNIGENT_RUNNER_WORKSPACE",
             "patched": "0.3.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-756x-9hf6-q4h4",
@@ -14385,7 +14438,8 @@
             "summary": "Uploaded Agent Bundle Allows Authenticated Runner RCE via Python Callable Tools",
             "patched": "0.3.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
           },
           {
             "ghsa": "GHSA-jrrm-9hc7-2v3h",
@@ -14395,12 +14449,13 @@
             "summary": "Shared Agent Bundle Overwrite Leads to Authenticated Runner RCE",
             "patched": "0.3.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.18.0"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "omnigent-ai/omnigent CVE",
           "omnigent-ai/omnigent vulnerability",
@@ -14417,24 +14472,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "omnigent-ai/omnigent",
-        "stars": 10290,
-        "forks": 1633,
-        "watchers": 46,
-        "openIssues": 1519,
+        "stars": 10841,
+        "forks": 1755,
+        "watchers": 47,
+        "openIssues": 2143,
         "hasIssues": true,
-        "contributors": 267,
-        "commits": 4165,
+        "contributors": 309,
+        "commits": 4924,
         "created": "2026-06-11",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 108,
-        "homepage": "https://omnigent.ai",
-        "license": "Apache-2.0",
+        "ageDays": 128,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "onlook-dev/onlook": {
     "repo": "onlook-dev/onlook",
@@ -14564,15 +14617,18 @@
   },
   "openai/codex": {
     "repo": "openai/codex",
-    "checked": "2026-09-27",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "3 open CVE(s) found by search: CVE-2025-61260 critical (unpatched), CVE-2026-14898 moderate (unpatched), CVE-2026-19593 critical (unpatched)",
+      "new since the 2026-09-27 ruling: report https://news.ycombinator.com/item?id=49997377"
+    ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/openai/codex/security/advisories",
         "count": 1,
-        "latestRelease": "0.157.1",
+        "latestRelease": "0.163.0",
         "items": [
           {
             "ghsa": "GHSA-w5fx-fh39-j5rw",
@@ -14580,14 +14636,15 @@
             "severity": "high",
             "published": "2025-09-19",
             "summary": "Sandbox bypass due to bug in path configuration logic",
-            "patched": "0.39.0; 0.4.12",
+            "patched": "0.39.0",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "0.163.0"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "openai/codex CVE",
           "openai/codex vulnerability",
@@ -14611,6 +14668,14 @@
             "url": "https://moglang.org",
             "published": "2026-03-09",
             "matched": "malware",
+            "kind": "report"
+          },
+          {
+            "query": "openai/codex scam",
+            "title": "Also see  https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49997249  for the 1372 unique strings: abion, acc, account",
+            "url": "https://news.ycombinator.com/item?id=49997377",
+            "published": "2026-10-07",
+            "matched": "scam",
             "kind": "report"
           },
           {
@@ -14686,9 +14751,9 @@
           {
             "id": "CVE-2025-54558",
             "ghsa": "GHSA-q6hp-29g8-7j6j",
-            "severity": "medium",
-            "fix": null,
-            "status": "unpatched"
+            "severity": "moderate",
+            "fix": "0.9.0",
+            "status": "patched"
           },
           {
             "id": "CVE-2025-61260",
@@ -14700,7 +14765,7 @@
           {
             "id": "CVE-2026-14898",
             "ghsa": "GHSA-gj6m-4qqg-3cw8",
-            "severity": "medium",
+            "severity": "moderate",
             "fix": null,
             "status": "unpatched"
           },
@@ -14709,21 +14774,20 @@
             "ghsa": "GHSA-433v-pqvh-w4gj",
             "severity": "high",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           },
           {
             "id": "CVE-2026-19591",
-            "ghsa": "GHSA-2frj-4qr5-m2rf",
-            "severity": "high",
-            "fix": null,
-            "status": "unpatched"
+            "ghsa": "GHSA-34x7-7wfj-jp4r",
+            "severity": "moderate",
+            "status": "other-project"
           },
           {
             "id": "CVE-2026-19592",
             "ghsa": "GHSA-26wp-42v3-96xp",
             "severity": "high",
             "fix": null,
-            "status": "unpatched"
+            "status": "fix-unverified"
           },
           {
             "id": "CVE-2026-19593",
@@ -14735,36 +14799,31 @@
         ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "openai/codex",
-        "stars": 126744,
-        "forks": 19790,
-        "watchers": 653,
-        "openIssues": 19171,
+        "stars": 129497,
+        "forks": 20375,
+        "watchers": 657,
+        "openIssues": 5166,
         "hasIssues": true,
-        "contributors": 631,
-        "commits": 11488,
+        "contributors": 672,
+        "commits": 12296,
         "created": "2025-04-13",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 532,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 552,
         "flags": []
       }
     },
-    "auto": {
-      "verdict": "FAIL",
-      "reasons": [
-        "7 open CVE(s) found by search: CVE-2025-54558 medium (unpatched), CVE-2025-61260 critical (unpatched), CVE-2026-14898 medium (unpatched), CVE-2026-19590 high (unpatched), CVE-2026-19591 high (unpatched), CVE-2026-19592 high (unpatched), CVE-2026-19593 critical (unpatched)"
-      ]
-    },
-    "settled": {
-      "by": "human review",
-      "date": "2026-09-27",
-      "note": "The critical advisory (CVE-2025-61260, GHSA-xrxf-jgv3-qmrm) was fixed in Codex CLI 0.23.0 on Aug 20 2025, per Check Point's disclosure, which confirms the fix works (research.checkpoint.com/2025/openai-codex-cli-command-injection-vulnerability). Current npm version 0.157.1.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-10"
+    "previous": {
+      "verdict": "PASS",
+      "settled": {
+        "by": "human review",
+        "date": "2026-09-27",
+        "note": "The critical advisory (CVE-2025-61260, GHSA-xrxf-jgv3-qmrm) was fixed in Codex CLI 0.23.0 on Aug 20 2025, per Check Point's disclosure, which confirms the fix works (research.checkpoint.com/2025/openai-codex-cli-command-injection-vulnerability). Current npm version 0.157.1.",
+        "carried": "2026-09-27"
+      }
+    }
   },
   "openai/codex-security": {
     "repo": "openai/codex-security",
@@ -14835,7 +14894,7 @@
       "note": "The flagged hit was a Hacker News post about the tool itself, not a vulnerability report.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "OpenBB-finance/OpenBB": {
     "repo": "OpenBB-finance/OpenBB",
@@ -14886,19 +14945,19 @@
   },
   "OpenCut-app/OpenCut": {
     "repo": "OpenCut-app/OpenCut",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/OpenCut-app/OpenCut/security/advisories",
         "count": 0,
         "latestRelease": "0.3.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "OpenCut-app/OpenCut CVE",
           "OpenCut-app/OpenCut vulnerability",
@@ -14915,24 +14974,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "OpenCut-app/OpenCut",
-        "stars": 90769,
-        "forks": 8979,
-        "watchers": 421,
-        "openIssues": 375,
+        "stars": 94865,
+        "forks": 9333,
+        "watchers": 453,
+        "openIssues": 379,
         "hasIssues": true,
-        "contributors": 101,
+        "contributors": 97,
         "commits": 1599,
         "created": "2025-06-22",
         "pushed": "2026-09-24",
         "archived": false,
-        "ageDays": 462,
-        "homepage": "https://opencut.app",
-        "license": "MIT",
+        "ageDays": 482,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "Panniantong/Agent-Reach": {
     "repo": "Panniantong/Agent-Reach",
@@ -14982,7 +15039,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "penpot/penpot": {
     "repo": "penpot/penpot",
@@ -15445,7 +15502,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "petergyang/no-ai-slop": {
     "repo": "petergyang/no-ai-slop",
@@ -15510,7 +15567,7 @@
       "note": "11.4K stars on 2 contributors and 23 commits; flag named on the page; no advisories or reports.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "presenton/presenton": {
     "repo": "presenton/presenton",
@@ -15859,7 +15916,7 @@
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'compositor'."
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "ruvnet/ruflo": {
     "repo": "ruvnet/ruflo",
@@ -15920,7 +15977,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "rtk-ai/rtk": {
     "repo": "rtk-ai/rtk",
@@ -16102,7 +16159,7 @@
       "note": "5K stars on 18 commits; flag named on the page; no advisories or reports.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "shadcn/improve": {
     "repo": "shadcn/improve",
@@ -16166,7 +16223,7 @@
       "note": "9.2K stars on 23 commits; flag named on the page; no advisories or reports.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "shareAI-lab/learn-claude-code": {
     "repo": "shareAI-lab/learn-claude-code",
@@ -16216,7 +16273,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "StarTrail-org/PixelRAG": {
     "repo": "StarTrail-org/PixelRAG",
@@ -16266,30 +16323,30 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "stablyai/orca": {
     "repo": "stablyai/orca",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/stablyai/orca/security/advisories",
         "count": 0,
-        "latestRelease": "1.4.215",
+        "latestRelease": "1.4.227",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "stablyai/orca CVE",
           "stablyai/orca vulnerability",
           "stablyai/orca malware",
           "stablyai/orca scam"
         ],
-        "results": 12,
+        "results": 13,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -16299,24 +16356,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "stablyai/orca",
-        "stars": 79387,
-        "forks": 5196,
-        "watchers": 136,
-        "openIssues": 6881,
+        "stars": 94050,
+        "forks": 6007,
+        "watchers": 149,
+        "openIssues": 8415,
         "hasIssues": true,
-        "contributors": 391,
-        "commits": 11925,
+        "contributors": 599,
+        "commits": 14564,
         "created": "2026-03-17",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 195,
-        "homepage": "https://onOrca.dev",
-        "license": "MIT",
+        "ageDays": 214,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-10"
+    }
   },
   "siyuan-note/siyuan": {
     "repo": "siyuan-note/siyuan",
@@ -17502,7 +17557,7 @@
       "note": "2 contributors; findarepo's star check says it looks organic. Flag named on the page.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "TauricResearch/TradingAgents": {
     "repo": "TauricResearch/TradingAgents",
@@ -17552,7 +17607,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "thedotmack/claude-mem": {
     "repo": "thedotmack/claude-mem",
@@ -17617,7 +17672,8 @@
         "ageDays": 405,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "trycompai/crm": {
     "repo": "trycompai/crm",
@@ -17667,7 +17723,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "twentyhq/twenty": {
     "repo": "twentyhq/twenty",
@@ -17918,7 +17974,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "usestrix/strix": {
     "repo": "usestrix/strix",
@@ -17997,7 +18053,7 @@
       "note": "The flagged hit was an unrelated Hacker News comment.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "Vincentwei1021/video-shotcraft": {
     "repo": "Vincentwei1021/video-shotcraft",
@@ -18047,7 +18103,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "vercel-labs/agent-browser": {
     "repo": "vercel-labs/agent-browser",
@@ -18097,7 +18153,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "virattt/ai-hedge-fund": {
     "repo": "virattt/ai-hedge-fund",
@@ -18147,7 +18203,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "webstudio-is/webstudio": {
     "repo": "webstudio-is/webstudio",
@@ -18197,7 +18253,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "windmill-labs/windmill": {
     "repo": "windmill-labs/windmill",
@@ -18345,7 +18401,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "xai-org/grok-build": {
     "repo": "xai-org/grok-build",
@@ -18409,7 +18465,7 @@
       "note": "Official xAI code drop (1 contributor); flag named on the page.",
       "carried": "2026-09-27"
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "XiaomiMiMo/MiMo-Code": {
     "repo": "XiaomiMiMo/MiMo-Code",
@@ -18459,7 +18515,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "yc-software/qm": {
     "repo": "yc-software/qm",
@@ -18509,7 +18565,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "ZSeven-W/openpencil": {
     "repo": "ZSeven-W/openpencil",
@@ -18606,7 +18662,8 @@
         "ageDays": 233,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "nextlevelbuilder/ui-ux-pro-max-skill": {
     "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
@@ -18918,7 +18975,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "tt-a1i/archify": {
     "repo": "tt-a1i/archify",
@@ -18967,7 +19024,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "debpalash/VoiceStudio": {
     "repo": "debpalash/VoiceStudio",
@@ -19016,7 +19073,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "ayghri/i-have-adhd": {
     "repo": "ayghri/i-have-adhd",
@@ -19402,19 +19459,19 @@
   },
   "vercel-labs/skills": {
     "repo": "vercel-labs/skills",
-    "checked": "2026-09-27",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/vercel-labs/skills/security/advisories",
         "count": 0,
-        "latestRelease": "1.7.0",
+        "latestRelease": "1.7.2",
         "items": []
       },
       "searches": {
-        "engine": "exa",
+        "engine": "hn+nvd",
         "queries": [
           "vercel-labs/skills CVE",
           "vercel-labs/skills vulnerability",
@@ -19425,23 +19482,25 @@
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "vercel-labs/skills",
-        "stars": 32605,
-        "forks": 2782,
-        "watchers": 108,
-        "openIssues": 1240,
+        "stars": 35186,
+        "forks": 3003,
+        "watchers": 118,
+        "openIssues": 1148,
         "hasIssues": true,
-        "contributors": 147,
-        "commits": 520,
+        "contributors": 157,
+        "commits": 570,
         "created": "2026-01-14",
-        "pushed": "2026-09-18",
+        "pushed": "2026-10-09",
         "archived": false,
-        "ageDays": 256,
-        "homepage": "https://skills.sh",
-        "license": "MIT",
+        "ageDays": 276,
         "flags": []
       }
     }
@@ -19539,7 +19598,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "eternity4719/HowToLiveBetter": {
     "repo": "eternity4719/HowToLiveBetter",
@@ -19588,7 +19647,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "rohitg00/ai-engineering-from-scratch": {
     "repo": "rohitg00/ai-engineering-from-scratch",
@@ -19637,7 +19696,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "NVIDIA/OpenShell": {
     "repo": "NVIDIA/OpenShell",
@@ -19772,7 +19831,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-10"
+    "rechecked": "2026-10-16"
   },
   "mvschwarz/openrig": {
     "repo": "mvschwarz/openrig",
@@ -21207,7 +21266,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "storytold/filmcraft": {
     "repo": "storytold/filmcraft",
@@ -21255,7 +21315,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "storytold/lightcraft": {
     "repo": "storytold/lightcraft",
@@ -21303,7 +21364,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "rehan-remade/universal-modder": {
     "repo": "rehan-remade/universal-modder",
@@ -21351,7 +21413,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "storytold/pdfcraft": {
     "repo": "storytold/pdfcraft",
@@ -21399,7 +21462,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "morluto/rea": {
     "repo": "morluto/rea",
@@ -21447,7 +21511,8 @@
         "ageDays": 179,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "storytold/artcraft": {
     "repo": "storytold/artcraft",
@@ -21507,7 +21572,8 @@
       "reasons": [
         "activity: 12368 stars on only 21 commit(s)"
       ]
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "anthropics/knowledge-work-plugins": {
     "repo": "anthropics/knowledge-work-plugins",
@@ -21555,11 +21621,12 @@
         "ageDays": 260,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-16"
   },
   "boykopovar/AnyPS5": {
     "repo": "boykopovar/AnyPS5",
-    "checked": "2026-10-10",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -21567,7 +21634,7 @@
         "source": "public-page",
         "url": "https://github.com/boykopovar/AnyPS5/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.1",
+        "latestRelease": "0.1.2",
         "items": []
       },
       "searches": {
@@ -21590,24 +21657,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "boykopovar/AnyPS5",
-        "stars": 23562,
-        "forks": 1944,
-        "watchers": 269,
-        "openIssues": 257,
+        "stars": 39322,
+        "forks": 3513,
+        "watchers": 395,
+        "openIssues": 939,
         "hasIssues": true,
-        "contributors": 190,
-        "commits": 4034,
+        "contributors": 364,
+        "commits": 8889,
         "created": "2026-08-03",
-        "pushed": "2026-10-10",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 68,
+        "ageDays": 75,
         "flags": []
       }
     }
   },
   "DuarteSantos8/openGym": {
     "repo": "DuarteSantos8/openGym",
-    "checked": "2026-10-10",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -21615,7 +21682,7 @@
         "source": "public-page",
         "url": "https://github.com/DuarteSantos8/openGym/security/advisories",
         "count": 0,
-        "latestRelease": "1.4.0",
+        "latestRelease": "1.4.1",
         "items": []
       },
       "searches": {
@@ -21626,7 +21693,7 @@
           "DuarteSantos8/openGym malware",
           "DuarteSantos8/openGym scam"
         ],
-        "results": 20,
+        "results": 11,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -21638,24 +21705,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "DuarteSantos8/openGym",
-        "stars": 8859,
-        "forks": 1096,
-        "watchers": 26,
-        "openIssues": 78,
+        "stars": 12691,
+        "forks": 1552,
+        "watchers": 27,
+        "openIssues": 182,
         "hasIssues": true,
-        "contributors": 76,
-        "commits": 1789,
+        "contributors": 75,
+        "commits": 1805,
         "created": "2026-07-18",
-        "pushed": "2026-10-09",
+        "pushed": "2026-10-13",
         "archived": false,
-        "ageDays": 84,
+        "ageDays": 91,
         "flags": []
       }
     }
   },
   "cathrynlavery/diagram-design": {
     "repo": "cathrynlavery/diagram-design",
-    "checked": "2026-10-10",
+    "checked": "2026-10-16",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -21686,17 +21753,17 @@
       "activity": {
         "source": "public-page",
         "canonical": "cathrynlavery/diagram-design",
-        "stars": 48262,
-        "forks": 3053,
-        "watchers": 136,
-        "openIssues": 81,
+        "stars": 56197,
+        "forks": 3561,
+        "watchers": 147,
+        "openIssues": 45,
         "hasIssues": true,
-        "contributors": 59,
-        "commits": 278,
+        "contributors": 65,
+        "commits": 351,
         "created": "2026-04-16",
-        "pushed": "2026-10-10",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 177,
+        "ageDays": 184,
         "flags": []
       }
     }
@@ -21745,6 +21812,1012 @@
         "pushed": "2026-10-08",
         "archived": false,
         "ageDays": 268,
+        "flags": []
+      }
+    }
+  },
+  "wheresryan22/anatomy": {
+    "repo": "wheresryan22/anatomy",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/wheresryan22/anatomy/security/advisories",
+        "count": 0,
+        "latestRelease": "1.1.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "wheresryan22/anatomy CVE",
+          "wheresryan22/anatomy vulnerability",
+          "wheresryan22/anatomy malware",
+          "wheresryan22/anatomy scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "wheresryan22/anatomy",
+        "stars": 13533,
+        "forks": 998,
+        "watchers": 32,
+        "openIssues": 23,
+        "hasIssues": true,
+        "contributors": 14,
+        "commits": 152,
+        "created": "2026-10-08",
+        "pushed": "2026-10-15",
+        "archived": false,
+        "ageDays": 9,
+        "flags": []
+      }
+    }
+  },
+  "storytold/wordcraft": {
+    "repo": "storytold/wordcraft",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/storytold/wordcraft/security/advisories",
+        "count": 0,
+        "latestRelease": "0.7.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "storytold/wordcraft CVE",
+          "storytold/wordcraft vulnerability",
+          "storytold/wordcraft malware",
+          "storytold/wordcraft scam"
+        ],
+        "results": 10,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "storytold/wordcraft",
+        "stars": 13466,
+        "forks": 3476,
+        "watchers": 68,
+        "openIssues": 1206,
+        "hasIssues": true,
+        "contributors": 132,
+        "commits": 735,
+        "created": "2026-10-07",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 10,
+        "flags": []
+      }
+    }
+  },
+  "yetone/magpie": {
+    "repo": "yetone/magpie",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/yetone/magpie/security/advisories",
+        "count": 0,
+        "latestRelease": "0.1.1270",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "yetone/magpie CVE",
+          "yetone/magpie vulnerability",
+          "yetone/magpie malware",
+          "yetone/magpie scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "yetone/magpie",
+        "stars": 13973,
+        "forks": 975,
+        "watchers": 17,
+        "openIssues": 910,
+        "hasIssues": true,
+        "contributors": 139,
+        "commits": 3805,
+        "created": "2026-09-23",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 24,
+        "flags": []
+      }
+    }
+  },
+  "mksglu/context-mode": {
+    "repo": "mksglu/context-mode",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/mksglu/context-mode/security/advisories",
+        "count": 0,
+        "latestRelease": "1.0.169",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "mksglu/context-mode CVE",
+          "mksglu/context-mode vulnerability",
+          "mksglu/context-mode malware",
+          "mksglu/context-mode scam"
+        ],
+        "results": 9,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "mksglu/context-mode",
+        "stars": 30009,
+        "forks": 2111,
+        "watchers": 111,
+        "openIssues": null,
+        "hasIssues": false,
+        "contributors": 120,
+        "commits": 2235,
+        "created": "2026-02-23",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 236,
+        "flags": []
+      }
+    }
+  },
+  "xerj-org/xerj": {
+    "repo": "xerj-org/xerj",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/xerj-org/xerj/security/advisories",
+        "count": 0,
+        "latestRelease": "1.0.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "xerj-org/xerj CVE",
+          "xerj-org/xerj vulnerability",
+          "xerj-org/xerj malware",
+          "xerj-org/xerj scam"
+        ],
+        "results": 12,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "xerj-org/xerj",
+        "stars": 6390,
+        "forks": 326,
+        "watchers": 18,
+        "openIssues": 31,
+        "hasIssues": true,
+        "contributors": 37,
+        "commits": 3143,
+        "created": "2026-06-30",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 109,
+        "flags": []
+      }
+    }
+  },
+  "openai/math": {
+    "repo": "openai/math",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [
+      "activity: 14990 stars on only 5 commit(s)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/openai/math/security/advisories",
+        "count": 0,
+        "latestRelease": null,
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "openai/math CVE",
+          "openai/math vulnerability",
+          "openai/math malware",
+          "openai/math scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "openai/math",
+        "stars": 14990,
+        "forks": 1721,
+        "watchers": 317,
+        "openIssues": 0,
+        "hasIssues": false,
+        "contributors": 3,
+        "commits": 5,
+        "created": "2026-10-06",
+        "pushed": "2026-10-12",
+        "archived": false,
+        "ageDays": 11,
+        "flags": [
+          "14990 stars on only 5 commit(s)"
+        ]
+      }
+    },
+    "settled": {
+      "by": "routine",
+      "date": "2026-10-16",
+      "note": "Activity flag: 14990 stars on 5 commits. This is a research manuscript archive, not software. Low commit count is expected.",
+      "reasons": [
+        "activity: 14990 stars on only 5 commit(s)"
+      ]
+    }
+  },
+  "nicekid1/cc-switch": {
+    "repo": "nicekid1/cc-switch",
+    "checked": "2026-10-16",
+    "verdict": "REVIEW",
+    "reasons": [
+      "advisories check failed: advisories page 1: HTTP 404",
+      "activity check failed: repo page: HTTP 404"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/nicekid1/cc-switch/security/advisories",
+        "error": "advisories page 1: HTTP 404"
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "nicekid1/cc-switch CVE",
+          "nicekid1/cc-switch vulnerability",
+          "nicekid1/cc-switch malware",
+          "nicekid1/cc-switch scam"
+        ],
+        "results": 2,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "error": "repo page: HTTP 404"
+      }
+    }
+  },
+  "generalaction/emdash": {
+    "repo": "generalaction/emdash",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/generalaction/emdash/security/advisories",
+        "count": 0,
+        "latestRelease": "1.2.8",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "generalaction/emdash CVE",
+          "generalaction/emdash vulnerability",
+          "generalaction/emdash malware",
+          "generalaction/emdash scam"
+        ],
+        "results": 14,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "generalaction/emdash",
+        "stars": 5997,
+        "forks": 630,
+        "watchers": 23,
+        "openIssues": 93,
+        "hasIssues": true,
+        "contributors": 132,
+        "commits": 10451,
+        "created": "2025-08-28",
+        "pushed": "2026-10-14",
+        "archived": false,
+        "ageDays": 415,
+        "flags": []
+      }
+    }
+  },
+  "tmux/tmux": {
+    "repo": "tmux/tmux",
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "2 open CVE(s) found by search: CVE-2019-9535 critical (unpatched), CVE-2020-27347 high (unpatched)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/tmux/tmux/security/advisories",
+        "count": 0,
+        "latestRelease": "3.8.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "tmux/tmux CVE",
+          "tmux/tmux vulnerability",
+          "tmux/tmux malware",
+          "tmux/tmux scam"
+        ],
+        "results": 29,
+        "errors": 0,
+        "hits": [
+          {
+            "query": "tmux/tmux malware",
+            "title": "The article probably written for non-Linux user who looking forward to switch side. Hardware compatibility, [almost]malw",
+            "url": "https://news.ycombinator.com/item?id=5187341",
+            "published": "2013-02-08",
+            "matched": "malware",
+            "kind": "before-repo"
+          },
+          {
+            "query": "tmux/tmux malware",
+            "title": "Those people are fine just using arrows and backspace, as it isn&#x27;t worth it to min-max this. I  don&#x27;t  want to",
+            "url": "https://news.ycombinator.com/item?id=49271866",
+            "published": "2026-08-12",
+            "matched": "malware",
+            "kind": "report"
+          },
+          {
+            "query": "tmux/tmux malware",
+            "title": "My favourite less known app:  https:&#x2F;&#x2F;www.inyourface.app&#x2F;  - This amazing app throws up a fullscreen moda",
+            "url": "https://news.ycombinator.com/item?id=40629148",
+            "published": "2024-06-10",
+            "matched": "exfiltrat",
+            "kind": "report"
+          },
+          {
+            "query": "tmux/tmux malware",
+            "title": "There&#x27;s no function, given the PID of a target process, to inject code directly. In order to load code from a libra",
+            "url": "https://news.ycombinator.com/item?id=21931201",
+            "published": "2020-01-01",
+            "matched": "malicious",
+            "kind": "report"
+          },
+          {
+            "query": "tmux/tmux malware",
+            "title": "While it&#x27;s not the intention to replace the binary itself, I&#x27;m just not a fan of the idea of substituting  sys",
+            "url": "https://news.ycombinator.com/item?id=14924143",
+            "published": "2017-08-03",
+            "matched": "malicious",
+            "kind": "report"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2011-1496",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2011-1496",
+            "published": "2011-04-18",
+            "matched": "CVE-2011-1496",
+            "kind": "before-repo"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2019-9535",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-9535",
+            "published": "2019-10-09",
+            "matched": "CVE-2019-9535",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2020-27347",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-27347",
+            "published": "2020-11-06",
+            "matched": "CVE-2020-27347",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2023-46300",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-46300",
+            "published": "2023-10-22",
+            "matched": "CVE-2023-46300",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2024-38396",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-38396",
+            "published": "2024-06-16",
+            "matched": "CVE-2024-38396",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2026-26068",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-26068",
+            "published": "2026-02-12",
+            "matched": "CVE-2026-26068",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2026-47270",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-47270",
+            "published": "2026-05-27",
+            "matched": "CVE-2026-47270",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2026-11623",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-11623",
+            "published": "2026-06-09",
+            "matched": "CVE-2026-11623",
+            "kind": "cve-record"
+          },
+          {
+            "query": "tmux/tmux CVE database",
+            "title": "NVD - CVE-2026-48980",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-48980",
+            "published": "2026-06-18",
+            "matched": "CVE-2026-48980",
+            "kind": "cve-record"
+          }
+        ],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 9
+        },
+        "cves": [
+          {
+            "id": "CVE-2019-9535",
+            "ghsa": "GHSA-jwm6-6mgm-w3f5",
+            "severity": "critical",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2020-27347",
+            "ghsa": "GHSA-xp5q-c655-9565",
+            "severity": "high",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2023-46300",
+            "ghsa": "GHSA-2rrh-8pm2-3q2c",
+            "severity": "critical",
+            "fix": "3.4.20",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2024-38396",
+            "ghsa": "GHSA-75hq-pffg-m782",
+            "severity": "critical",
+            "fix": "3.5.2",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-26068",
+            "status": "unknown",
+            "note": "not in GitHub advisory database"
+          },
+          {
+            "id": "CVE-2026-47270",
+            "status": "unknown",
+            "note": "not in GitHub advisory database"
+          },
+          {
+            "id": "CVE-2026-11623",
+            "ghsa": "GHSA-4cw9-jpqf-99x8",
+            "severity": "low",
+            "fix": "3.7.0",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-48980",
+            "status": "unknown",
+            "note": "not in GitHub advisory database"
+          }
+        ]
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "tmux/tmux",
+        "stars": 49858,
+        "forks": 2954,
+        "watchers": 488,
+        "openIssues": 32,
+        "hasIssues": true,
+        "contributors": 23,
+        "commits": 12484,
+        "created": "2015-06-03",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 4154,
+        "flags": []
+      }
+    }
+  },
+  "coder/mux": {
+    "repo": "coder/mux",
+    "checked": "2026-10-16",
+    "verdict": "REVIEW",
+    "reasons": [
+      "activity: renamed/moved to coder/xum"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/coder/mux/security/advisories",
+        "count": 0,
+        "latestRelease": "0.31.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "coder/mux CVE",
+          "coder/mux vulnerability",
+          "coder/mux malware",
+          "coder/mux scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "coder/xum",
+        "stars": 2054,
+        "forks": 141,
+        "watchers": 13,
+        "openIssues": 499,
+        "hasIssues": true,
+        "contributors": 27,
+        "commits": 5307,
+        "created": "2025-09-17",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 395,
+        "flags": [
+          "renamed/moved to coder/xum"
+        ]
+      }
+    }
+  },
+  "BurntSushi/ripgrep": {
+    "repo": "BurntSushi/ripgrep",
+    "checked": "2026-10-16",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/BurntSushi/ripgrep/security/advisories",
+        "count": 0,
+        "latestRelease": "15.2.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "BurntSushi/ripgrep CVE",
+          "BurntSushi/ripgrep vulnerability",
+          "BurntSushi/ripgrep malware",
+          "BurntSushi/ripgrep scam"
+        ],
+        "results": 11,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "BurntSushi/ripgrep",
+        "stars": 69148,
+        "forks": 5616,
+        "watchers": 318,
+        "openIssues": 215,
+        "hasIssues": true,
+        "contributors": 447,
+        "commits": 2287,
+        "created": "2016-03-11",
+        "pushed": "2026-08-04",
+        "archived": false,
+        "ageDays": 3872,
+        "flags": []
+      }
+    }
+  },
+  "AnyPS5/AnyPS5": {
+    "repo": "AnyPS5/AnyPS5",
+    "checked": "2026-10-16",
+    "verdict": "REVIEW",
+    "reasons": [
+      "advisories check failed: advisories page 1: HTTP 404",
+      "activity check failed: repo page: HTTP 404"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/AnyPS5/AnyPS5/security/advisories",
+        "error": "advisories page 1: HTTP 404"
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "AnyPS5/AnyPS5 CVE",
+          "AnyPS5/AnyPS5 vulnerability",
+          "AnyPS5/AnyPS5 malware",
+          "AnyPS5/AnyPS5 scam"
+        ],
+        "results": 2,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "error": "repo page: HTTP 404"
+      }
+    }
+  },
+  "wger-project/wger": {
+    "repo": "wger-project/wger",
+    "checked": "2026-10-16",
+    "verdict": "FAIL",
+    "reasons": [
+      "1 open advisory(ies): GHSA-mw8f-w6p8-xrf4 high (unpatched)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/wger-project/wger/security/advisories",
+        "count": 17,
+        "latestRelease": "2.7.0",
+        "items": [
+          {
+            "ghsa": "GHSA-mw8f-w6p8-xrf4",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "Sibling-unpatched code paths in wger/core/views/user.py retain the same gym=None authorization gap as GHSA-mhc8-p3jx-84mm — cross-tenant acc",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-v25j-wqcw-fvhj",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-08",
+            "summary": "Uncontrolled Resource Consumption in wger",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-x249-cx55-2h87",
+            "cve": "CVE-2026-46434",
+            "severity": "high",
+            "published": "2026-10-04",
+            "summary": "Trainer Privilege Escalation - Improper Privilege Management",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-rjpf-7pf5-q54x",
+            "cve": "CVE-2026-46438",
+            "severity": "moderate",
+            "published": "2026-10-04",
+            "summary": "Cross-User Data Corruption via Missing Ownership Check on WorkoutLog.slot_entry",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-cj9g-27ph-4cgv",
+            "cve": "CVE-2026-43977",
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "IDOR: Authenticated Users Can Read Any User's Private Workout Session Data via Template Routine API",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-9qpr-vc49-hqg2",
+            "cve": "CVE-2026-43978",
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "Privilege escalation via trainer-login session chaining allows gym trainer to impersonate gym manager",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-xf64-4pmc-h8qf",
+            "cve": "CVE-2026-45161",
+            "severity": "moderate",
+            "published": "2026-10-04",
+            "summary": "wger: trainer_login accepts GET - CSRF bypass enables forced session rebinding",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-vqv8-j3mj-wjxj",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-04-28",
+            "summary": "wger: trainer_login open redirect - ?next= parameter not validated against host",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-c72h-82w6-rqfp",
+            "cve": "CVE-2026-43976",
+            "severity": "high",
+            "published": "2026-10-04",
+            "summary": "wger: cross-tenant admin notes/contracts leak via gym=None bypass (5 views)",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-xq9m-hmp9-fw87",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-04-28",
+            "summary": "wger: CSV/TSV formula injection in gym member export (first_name/last_name)",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-mhc8-p3jx-84mm",
+            "cve": "CVE-2026-43948",
+            "severity": "critical",
+            "published": "2026-04-28",
+            "summary": "wger: cross-tenant password reset and plaintext disclosure via gym=None bypass",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-v3x9-6gg8-c2c9",
+            "cve": "CVE-2026-46437",
+            "severity": "moderate",
+            "published": "2026-10-04",
+            "summary": "API credentials remain valid after logout/password change",
+            "patched": ">= 2.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-6f54-qjvm-wwq3",
+            "cve": "CVE-2026-40353",
+            "severity": "high",
+            "published": "2026-04-15",
+            "summary": "Stored XSS via Unescaped License Attribution Fields",
+            "patched": ">= 2.5",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-xppv-4jrx-qf8m",
+            "cve": "CVE-2026-40474",
+            "severity": "high",
+            "published": "2026-04-15",
+            "summary": "Broken Access Control in Global Gym Configuration Update Endpoint",
+            "patched": ">= 2.5",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-42cr-w2gr-m54q",
+            "cve": "CVE-2026-27838",
+            "severity": "low",
+            "published": "2026-02-26",
+            "summary": "IDOR via user-unscoped cache keys on routine API actions exposes workout data",
+            "patched": ">=2.5",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-g8gc-6c4h-jg86",
+            "cve": "CVE-2026-27839",
+            "severity": "moderate",
+            "published": "2026-02-26",
+            "summary": "IDOR in nutritional_values endpoints exposes private dietary data via direct ORM lookup",
+            "patched": ">=2.5",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          },
+          {
+            "ghsa": "GHSA-xf68-8hjw-7mpm",
+            "cve": "CVE-2026-27835",
+            "severity": "moderate",
+            "published": "2026-02-26",
+            "summary": "IDOR in RepetitionsConfig and MaxRepetitionsConfig API leaks other users workout data",
+            "patched": ">=2.5",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "2.7.0"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "wger-project/wger CVE",
+          "wger-project/wger vulnerability",
+          "wger-project/wger malware",
+          "wger-project/wger scam"
+        ],
+        "results": 12,
+        "errors": 0,
+        "hits": [
+          {
+            "query": "wger-project/wger CVE database",
+            "title": "NVD - CVE-2022-2650",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-2650",
+            "published": "2022-11-24",
+            "matched": "CVE-2022-2650",
+            "kind": "cve-record"
+          },
+          {
+            "query": "wger-project/wger CVE database",
+            "title": "NVD - CVE-2026-82544",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82544",
+            "published": "2026-08-30",
+            "matched": "CVE-2026-82544",
+            "kind": "cve-record"
+          }
+        ],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 2
+        },
+        "cves": [
+          {
+            "id": "CVE-2022-2650",
+            "ghsa": "GHSA-gr58-76rp-mmg4",
+            "severity": "critical",
+            "fix": "2.2.0",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-82544",
+            "ghsa": "GHSA-frcw-fw5q-gh4g",
+            "severity": "moderate",
+            "fix": null,
+            "status": "fix-unverified"
+          }
+        ]
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "wger-project/wger",
+        "stars": 7133,
+        "forks": 1037,
+        "watchers": 78,
+        "openIssues": 235,
+        "hasIssues": true,
+        "contributors": 281,
+        "commits": 9704,
+        "created": "2013-01-19",
+        "pushed": "2026-10-15",
+        "archived": false,
+        "ageDays": 5019,
         "flags": []
       }
     }

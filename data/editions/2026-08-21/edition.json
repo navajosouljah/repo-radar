@@ -1,0 +1,17 @@
+{
+  "number": "004",
+  "date": "2026-08-21",
+  "theme_short": "",
+  "theme": "",
+  "method": "",
+  "picks": [
+    {
+      "rank": 5,
+      "slug": "cc-switch",
+      "repo": "farion1231/cc-switch",
+      "name": "CC Switch",
+      "status": "fail",
+      "oneliner": "Pulled Oct 16 2026: one moderate CVE with unverified fix."
+    }
+  ]
+}

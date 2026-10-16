@@ -1,0 +1,143 @@
+{
+  "repo": "vercel-labs/skills",
+  "name": "skills",
+  "tagline": "A tool for finding and installing ready-made skills into AI coding agents - one command, and it works across 75+ agents.",
+  "sentence": "Install a new ability into your AI coding agent with one command - for example, a design-taste skill that makes every interface your agent builds look polished instead of generic.",
+  "fit": "you",
+  "links": {
+    "website": "https://skills.sh",
+    "docs": "https://github.com/vercel-labs/skills"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want your AI coding agent to follow specific practices - design standards, testing rules, coding conventions - but writing those instructions yourself takes time, and they don't transfer between agents.",
+      "eg": "You wrote a page of design guidelines for Claude Code, but now you want the same rules in Cursor and Codex - and each agent stores instructions in a different folder."
+    },
+    {
+      "role": "trigger",
+      "say": "You run a command in your terminal and pick a skill from the directory at skills.sh.",
+      "eg": "Type `npx skills add vercel-labs/agent-skills` and Vercel's official skill pack installs into every agent on your machine."
+    },
+    {
+      "role": "input",
+      "say": "A skill name or search term - a GitHub project like `vercel-labs/agent-skills`, or a keyword like 'react testing'.",
+      "eg": "`npx skills find typescript` searches the directory and shows matching skills with their install counts."
+    },
+    {
+      "role": "does",
+      "say": "It finds the skill, downloads it, and installs it into the right folder for each of your AI coding agents.",
+      "steps": [
+        "Finds the skill in the skills.sh directory (over 600K skills listed) or directly from GitHub, GitLab, or a URL",
+        "Downloads it and places it in the correct folder for your agents - Claude Code, Cursor, Codex, or any of 75+ others",
+        "Your agent loads the skill automatically when a matching task comes up - full instructions load on demand, not all at once"
+      ],
+      "eg": "The README's example: install a 'react testing' skill and the next time you ask your agent to write tests for a React component, it follows the skill's testing practices automatically."
+    },
+    {
+      "role": "result",
+      "say": "Your AI coding agents have new, shared abilities - installed once, available across every supported agent on your machine.",
+      "outputs": [
+        {"what": "Skills installed across agents", "eg": "One install command puts a design skill into Claude Code, Cursor and Codex at the same time"},
+        {"what": "A searchable directory", "eg": "skills.sh lists over 600K skills with install counts, categories and security scans from Snyk"},
+        {"what": "Your own skills", "eg": "`npx skills init` creates a template - write instructions once and share them with your team or publish them to the directory"}
+      ]
+    }
+  ],
+  "before": [
+    "Adding a new ability to your AI coding agent means writing instructions from scratch, and those instructions only work in one agent - switching agents means rewriting them.",
+    "There is no central place to find, compare or share ready-made agent instructions. You copy snippets from blog posts and hope they work."
+  ],
+  "after": [
+    "One command installs a skill into every agent on your machine - Claude Code, Cursor, Codex and 75+ others, all at once.",
+    "A searchable directory at skills.sh lists hundreds of thousands of skills, ranked by installs, with categories and security scans."
+  ],
+  "uses_note": "Skills.sh reports over 3.9M installs for its top skill (find-skills). Individual named adopters are hard to find because skills install silently into agents and leave no public trace.",
+  "uses": [],
+  "pulse": {
+    "gain": "35.2K stars in 9 months. Created Jan 14, 2026.",
+    "history": [
+      ["2026-01-14", 0],
+      ["2026-10-16", 35200]
+    ],
+    "history_note": "Created Jan 14, 2026. Launched Jan 20 with the skills.sh directory. The format started at Anthropic and was released as an open standard in December 2025.",
+    "facts": [
+      {"value": "35.2K", "label": "stars on GitHub"},
+      {"value": "570", "label": "commits"},
+      {"value": "75+", "label": "supported agents"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Vercel",
+      "title": "Introducing skills, the open agent skills ecosystem",
+      "url": "https://vercel.com/changelog/introducing-skills-the-open-agent-skills-ecosystem",
+      "meta": "Official launch announcement, Jan 20, 2026"
+    },
+    {
+      "plat": "Blog",
+      "title": "The Vercel Skills CLI and the Open Agent Skills Ecosystem",
+      "url": "https://codex.danielvaughan.com/2026/05/31/codex-cli-vercel-skills-cli-npx-skills-open-agent-skills-ecosystem/",
+      "meta": "Detailed walkthrough of commands, format and publishing (Daniel Vaughan)"
+    },
+    {
+      "plat": "Security review",
+      "title": "skills.sh research and security assessment",
+      "url": "https://rywalker.com/research/skills-sh",
+      "meta": "Independent review: infrastructure 5/5, execution 2/5, security concerns raised",
+      "tone": "critical"
+    }
+  ],
+  "star_check": "No findarepo page found for this project",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Search for a skill: run `npx skills find react` (or any topic you care about) in your terminal and browse the results.",
+      "Install one: run `npx skills add vercel-labs/agent-skills` to install [Vercel's official skill pack](https://github.com/vercel-labs/agent-skills) into your agents.",
+      "Check it worked: run `npx skills list` to see which skills are installed and which agents they landed in."
+    ],
+    "paste": "/skillspector https://github.com/vercel-labs/skills\n\nIf that scan passes: run `npx skills find react`, pick a skill from the results, install it with `npx skills add`, then run `npx skills list` to confirm. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No permanent install needed. Runs via `npx` (requires Node.js). Skills themselves are small text files - a SKILL.md plus optional scripts and references.",
+    "memory": "No data found. The tool runs briefly to install or search, then exits. Skills are loaded by the agent, not by the tool.",
+    "runs_on": "Mac, Windows and Linux. Requires Node.js (for npx). The tool installs skills for whichever agents are already on your machine.",
+    "source": {"title": "skills README on GitHub", "url": "https://github.com/vercel-labs/skills"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use an AI coding agent and want to add abilities - design taste, testing rules, coding standards - without writing instructions from scratch",
+      "You work across multiple agents (Claude Code, Cursor, Codex) and want the same skills in all of them with one install command"
+    ],
+    "skip_if": [
+      "You already have a well-tuned set of agent instructions and don't want a tool overwriting or conflicting with them",
+      "You are concerned about running unreviewed third-party instructions in your coding agent - the directory has no human review gate"
+    ],
+    "alternatives": [
+      {
+        "name": "Agent Skills specification",
+        "url": "https://agentskills.io",
+        "line": "The open standard behind skills. You can write and install SKILL.md files by hand without the skills tool or the skills.sh directory."
+      },
+      {
+        "name": "Agent-specific instructions",
+        "url": "https://code.claude.com/docs/en/skills",
+        "line": "Write instructions directly for one agent: CLAUDE.md for Claude Code, .cursorrules for Cursor. More control, but no cross-agent sharing."
+      }
+    ]
+  },
+  "watch": [
+    "**No human review gate.** Skills.sh lists over 600K skills with no submission or curation process. Rankings come from install counts alone, which one independent reviewer notes 'can be gamed.'",
+    "**Security researchers bypassed the malicious-skill detector.** Trail of Bits got data-exfiltrating skills marked safe. Vercel's response is a real-time scanning partnership with Snyk rather than human review.",
+    "**Skills run inside your agent with your permissions.** A skill's instructions become part of what your agent does. Review what you install, especially from unknown publishers.",
+    "**The ecosystem is 9 months old.** The format started at Anthropic and was released as an open standard in December 2025. Adoption is broad (75+ agents, 20+ platforms) but the trust model is still maturing."
+  ],
+  "sources": [
+    {"title": "skills on GitHub (README, commands, supported agents)", "url": "https://github.com/vercel-labs/skills", "date": "2026-10-16"},
+    {"title": "skills.sh directory and leaderboard", "url": "https://skills.sh", "date": "2026-10-16"},
+    {"title": "Agent Skills specification (agentskills.io)", "url": "https://agentskills.io", "date": "2026-10-16"},
+    {"title": "Vercel changelog: Introducing skills", "url": "https://vercel.com/changelog/introducing-skills-the-open-agent-skills-ecosystem", "date": "2026-01-20"},
+    {"title": "The Vercel Skills CLI and the Open Agent Skills Ecosystem (Daniel Vaughan)", "url": "https://codex.danielvaughan.com/2026/05/31/codex-cli-vercel-skills-cli-npx-skills-open-agent-skills-ecosystem/", "date": "2026-05-31"},
+    {"title": "skills.sh research and security assessment (rywalker.com)", "url": "https://rywalker.com/research/skills-sh", "date": "2026-10-16"}
+  ]
+}

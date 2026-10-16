@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xerj: A local search engine in one file that indexes your folders so AI agents find answers instead of reading everything. | Repo Radar</title>
+<meta name="description" content="Run one command to index a folder of code, documents, or logs, then your AI agent searches the index instead of reading files one by one - finding the right file first try 94% of the time.">
+<meta property="og:title" content="Xerj: A local search engine in one file that indexes your folders so AI agents find answers instead of reading everything. | Repo Radar">
+<meta property="og:description" content="Run one command to index a folder of code, documents, or logs, then your AI agent searches the index instead of reading files one by one - finding the right file first try 94% of the time.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/xerj.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 012 &middot; Week of October 16, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#9 this week</span><span class="repo-id">xerj-org/xerj</span></div>
+    <h1 id="name">Xerj</h1>
+    <p class="tagline">A local search engine in one file that indexes your folders so AI agents find answers instead of reading everything.</p>
+    <p class="sentence">Run one command to index a folder of code, documents, or logs, then your AI agent searches the index instead of reading files one by one - finding the right file first try 94% of the time.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://xerj.org" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn" href="https://xerj.org/playground/" rel="noopener">See it work <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/xerj-org/xerj" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/xerj.png" alt="The Xerj logo on a dark background: 'XERJ' in large bold white letters with '.AI' in yellow, a horizontal yellow line above, and 'SEARCH FOR THE AGENT ERA' in gray below." width="1200" height="630" loading="eager">
+    <figcaption>The Xerj branding - a local search engine built for AI agents.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">6.4K</span><span class="v-note">GitHub stars, <b>+6.4K stars in 108 days. Created Jun 30, 2026.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 25.9 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 16: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">AI agents that need to search your files read them one by one into their conversation, using up working memory fast. Or they use basic text-matching (like a find-in-files command) and miss what they need.</p><p class="eg">Your agent needs to find how a function is used across a codebase. It reads file after file, burning through its memory budget, and still misses the relevant one.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You run one command - <code>xerj autoindex ~/my-project</code> - and the engine indexes the folder in the background. Then agents search the index instead of reading files.</p><p class="eg">Index a project folder once. The engine detects file types automatically - code, JSON, CSV, PDF, email - and creates the right indexes for each.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A folder of code, documents, logs, or data files. Supports 13 format families: source code in 36 languages, PDF, spreadsheets, JSON, CSV, email, and more.</p><p class="eg">A checkout of a large open-source project, a folder of PDF research papers, or a directory of server logs.</p></div><div class="note does"><span class="role">It does</span><p class="say">It indexes your files and serves search results through a standard interface that AI agents and existing tools already understand.</p><ol class="steps-in"><li>Detects each file's type automatically and indexes its contents - source code is parsed by structure (using tree-sitter), so function names and definitions are preserved</li><li>Offers keyword search, meaning-based search, and a hybrid of both, all from a single search command</li><li>Speaks the Elasticsearch query language, so any existing tool, dashboard, or script that queries Elasticsearch works without changes</li></ol><p class="eg">Index an 80-file codebase. The agent searches for 'database connection retry logic' and gets the right file on the first try - versus scrolling through files one by one.</p></div><div class="note result"><span class="role">You get</span><p class="say">AI agents that search faster, use less memory, and find the right files without reading everything.</p><ul class="outputs"><li><b>Faster, more accurate search</b><span>An AI agent finds the right file on its first search 94% of the time, versus 38% with basic text search</span></li><li><b>Less memory used</b><span>Agents that search the index use 2.7 times fewer output words than agents that read files with find-in-files commands</span></li><li><b>Agent memory</b><span>A built-in memory store lets agents save and recall facts between sessions, with per-agent isolation</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>AI agents that need to search your files read them one by one, filling their working memory and slowing down. A 500-file codebase means hundreds of file reads.</li><li>Basic text-matching finds exact strings but misses meaning. Searching for 'retry logic' won't find a function called <code>exponential_backoff</code> unless the comment mentions 'retry'.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>One command indexes the folder. AI agents search the index and get structured results - function definitions, line numbers, and context - without reading every file.</li><li>Hybrid search combines keyword matching and meaning, so 'retry logic' finds <code>exponential_backoff</code> even without an exact match. The right file comes up first 94% of the time.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Install with one command: <code>curl -fsSL https://xerj.org/get | sh</code> (Mac/Linux) or <code>irm https://xerj.org/get.ps1 | iex</code> (Windows).</li><li>Start the engine and index a folder: <code>xerj --insecure --data-dir ./data &amp;</code> then <code>xerj autoindex ~/some-project</code>.</li><li>Try a search: <code>curl 'http://localhost:9200/your-index/_search?q=your+query'</code> or try the <a href="https://xerj.org/playground/" rel="noopener">live playground</a>.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Ships as a single static binary - no Java, no dependencies. Download size not published. The optional neural search mode downloads about 90 MB of model files.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. Default search mode is lexical (no neural models loaded). Neural mode loads three model files locally.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows, and Linux on x86-64 and arm64. Linux builds are statically linked, so they run on any distribution including Alpine. Built from source with a stable Rust toolchain.</dd></div>
+  </dl><a class="src" href="https://xerj.org" rel="noopener">Source: Xerj website: installation</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-xerj">/skillspector https://github.com/xerj-org/xerj
+
+If that scan passes: install with `curl -fsSL https://xerj.org/get | sh`, start with `xerj --insecure --data-dir ./data &amp;`, index a folder with `xerj autoindex ~/some-project`, and run a search. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-xerj">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You work with AI agents that search codebases, document folders, or log archives - Xerj replaces file-by-file reading with indexed search</li><li>You want a lightweight local search engine with no Java dependency that speaks the Elasticsearch language - existing tools and dashboards just work</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You need a production Elasticsearch replacement with full feature coverage - 3 of 1,369 conformance tests fail, and features like scroll cursors behave differently</li><li>You want neural (meaning-based) search out of the box - the default mode is keyword-only, and neural mode requires downloading model files and is still opt-in</li><li>You need a battle-tested tool - this is 108 days old with no named production users</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://www.elastic.co/elasticsearch" rel="noopener"><b>Elasticsearch</b></a><span>The industry standard. Full-featured and production-hardened, but requires Java, more memory, and more setup. Xerj is designed as a lighter local alternative.</span></li><li><a href="https://github.com/BurntSushi/ripgrep" rel="noopener"><b>ripgrep</b></a><span>A fast text search tool. No indexing, no server - just searches files directly. Faster for one-off searches, but does not offer meaning-based search or an agent-friendly interface.</span></li><li><a href="https://www.meilisearch.com/" rel="noopener"><b>Meilisearch</b></a><span>An instant-search engine in a single binary. Focused on user-facing search with typo tolerance. Does not parse source code by structure.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/xerj-org/xerj/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 16</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>12 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>6.4K stars, 37 contributors, 3.1K commits. No findarepo data found.</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Young project - 108 days old with no named production users.</b> The benchmarks are the project's own and have not been independently reproduced. The claim of '40x fewer tokens than grep' in the About section contradicts the body's '2.7x' figure.</li><li><b>Default mode listens without authentication.</b> The <code>--insecure</code> flag disables all authentication and encryption. Anyone on the network can query, index, and delete data. Authentication is on by default without that flag, but the quickstart guide uses it.</li><li><b>Optional reranking sends data to an external service.</b> The Jev reranker (by TypeSafe AI) sends search result text to an external API for re-scoring. It is off by default, but you should know it exists before enabling it.</li><li><b>Not a drop-in Elasticsearch replacement.</b> Three conformance tests fail, scroll cursors are bounded snapshots (not infinite streams), and some aggregation features are missing. The project calls itself a 'migration bridge, not a clone.'</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Xerj is 108 days old. No named real-world adopters could be verified. The project's benchmarks are its own and have not been independently reproduced.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">DeepWiki</span><a href="https://deepwiki.com/xerj-org/xerj" rel="noopener">xerj-org/xerj - AI-native search engine overview</a><span class="meta">Automated technical overview of the codebase</span></li><li class=""><span class="plat">GitTrend</span><a href="https://gittrend.io/repo/xerj-org/xerj" rel="noopener">xerj-org/xerj trending on GitTrend</a><span class="meta">Star growth tracking</span></li><li class=""><span class="plat">Pinokio</span><a href="https://pinokio.co/posts/01kt4s6g6q3j040wbry1f0ac2f" rel="noopener">xerj on Pinokio</a><span class="meta">One-click installer listing</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/xerj-org/xerj" rel="noopener">Xerj on GitHub (README, features, benchmarks)</a>, Oct 16</li><li><a href="https://xerj.org" rel="noopener">Xerj website</a>, Oct 16</li><li><a href="https://xerj.org/playground/" rel="noopener">Xerj live playground</a>, Oct 16</li><li><a href="https://deepwiki.com/xerj-org/xerj" rel="noopener">DeepWiki: xerj-org/xerj overview</a>, Oct 16</li><li><a href="https://gittrend.io/repo/xerj-org/xerj" rel="noopener">GitTrend: xerj-org/xerj star tracking</a>, Oct 16</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 012 &middot; October 16, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

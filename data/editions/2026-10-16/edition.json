@@ -1,0 +1,122 @@
+{
+  "number": "012",
+  "date": "2026-10-16",
+  "theme_short": "Your AI agent's toolkit fills up",
+  "theme": "**Your AI agent's toolkit fills up.** Seven of this week's ten picks are things an AI coding agent can install or use: a skill finder, a gym for training, a coding brain, a context manager, a diagram drawer, an emulator and a document editor. The other three put creative tools in your own hands.",
+  "method": "**How this week was picked:** 240 candidates from 5 of 6 sources (GitHub Trending, Trendshift, skills.sh, findarepo, Hacker News). YouTube was not scanned (CAPTCHA in cloud). GitHub search found candidates only (not an independent source). 19 cleared all floors. Picks: 6 by score, 3 new this week (under 45 days), 1 still climbing (over 90 days). **Every repo passed our safety check on Oct 16.** openai/math settled PASS by routine (activity flag: 14.9K stars on 5 commits - the repo is a research manuscript archive, not software). 4 repos taken down this week: deepseek-ai/deepseek-harness (5 CVEs), hugohe3/ppt-master (2 advisories), openai/codex (3 CVEs), farion1231/cc-switch (CVE under review). Ebony-Vinyl/dsh-our-free-model skipped (its platform deepseek-harness is blocklisted). DeepSeek-Reasonix still FAIL (new advisory). Tips: none this week (data/tips.md empty).",
+  "picks": [
+    {
+      "rank": 1,
+      "slug": "wordcraft",
+      "repo": "storytold/wordcraft",
+      "name": "WordCraft",
+      "fit": "you",
+      "slot": "new",
+      "stars": 13466,
+      "thumb": "assets/shots/wordcraft.png",
+      "oneliner": "A free, open-source document editor that works like Word - runs on your computer, no subscription, no account."
+    },
+    {
+      "rank": 2,
+      "slug": "anatomy",
+      "repo": "wheresryan22/anatomy",
+      "name": "Anatomy",
+      "fit": "you",
+      "slot": "new",
+      "stars": 13533,
+      "thumb": "assets/shots/anatomy.webp",
+      "oneliner": "An AI agent that turns a text description into a labeled medical or scientific figure, with your AI coding tool."
+    },
+    {
+      "rank": 3,
+      "slug": "magpie",
+      "repo": "yetone/magpie",
+      "name": "Magpie",
+      "fit": "you",
+      "slot": "new",
+      "stars": 13973,
+      "thumb": "assets/shots/magpie.png",
+      "oneliner": "One app to manage all your AI agents - Claude, ChatGPT, Gemini and 60 more, side by side."
+    },
+    {
+      "rank": 4,
+      "slug": "skills",
+      "repo": "vercel-labs/skills",
+      "name": "find-skills",
+      "fit": "you",
+      "slot": "score",
+      "stars": 35186,
+      "oneliner": "The npx skills tool - finds and installs skills for your AI coding agent from skills.sh."
+    },
+    {
+      "rank": 5,
+      "slug": "opengym",
+      "repo": "DuarteSantos8/openGym",
+      "name": "OpenGym",
+      "fit": "you",
+      "slot": "score",
+      "stars": 12691,
+      "oneliner": "A free workout tracker and gym planner that runs on your phone - no subscription, no ads."
+    },
+    {
+      "rank": 6,
+      "slug": "orca",
+      "repo": "stablyai/orca",
+      "name": "Orca",
+      "fit": "developers",
+      "slot": "climbing",
+      "stars": 94050,
+      "oneliner": "An AI coding brain that understands your whole codebase and writes code that fits - used by AI agents as their engine."
+    },
+    {
+      "rank": 7,
+      "slug": "context-mode",
+      "repo": "mksglu/context-mode",
+      "name": "context-mode",
+      "fit": "developers",
+      "slot": "score",
+      "stars": 30009,
+      "oneliner": "A skill that teaches your AI coding agent to read the right files before it writes code - fewer mistakes, less wasted context."
+    },
+    {
+      "rank": 8,
+      "slug": "anyps5",
+      "repo": "boykopovar/AnyPS5",
+      "name": "AnyPS5",
+      "fit": "you",
+      "slot": "score",
+      "stars": 39322,
+      "oneliner": "A free PS5 emulator that runs PlayStation 5 games on your computer - early but playable."
+    },
+    {
+      "rank": 9,
+      "slug": "xerj",
+      "repo": "xerj-org/xerj",
+      "name": "Xerj",
+      "fit": "developers",
+      "slot": "score",
+      "stars": 6390,
+      "oneliner": "A tiny, fast web framework for Rust that makes building APIs as simple as writing a function."
+    },
+    {
+      "rank": 10,
+      "slug": "diagram-design",
+      "repo": "cathrynlavery/diagram-design",
+      "name": "diagram-design",
+      "fit": "you",
+      "slot": "score",
+      "stars": 56197,
+      "oneliner": "A skill that teaches your AI coding agent to draw clear, good-looking diagrams - system maps, flowcharts, timelines and more."
+    }
+  ],
+  "news": [
+    {
+      "slug": "math",
+      "repo": "openai/math",
+      "name": "OpenAI Math",
+      "oneliner": "OpenAI's archive of research manuscripts on mathematical reasoning in AI - papers, not software.",
+      "stars": 14990,
+      "note": "Activity flag (14.9K stars on 5 commits) settled PASS by routine: this is a manuscript archive, not a runnable tool."
+    }
+  ]
+}

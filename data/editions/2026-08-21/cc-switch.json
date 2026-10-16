@@ -1,0 +1,24 @@
+{
+  "repo": "farion1231/cc-switch",
+  "name": "CC Switch",
+  "tagline": "An all-in-one agent desktop that lets you manage Claude Code, Codex and other coding agents from a single window.",
+  "sentence": "A desktop app that combines AI coding agents, terminals and file management in one interface.",
+  "status": "fail",
+  "what_happened": [
+    "**One moderate CVE with unverified fix found Oct 16 2026.** CVE-2026-6143 (moderate, GHSA-rrm6-2q2p-cpx5). The fix status is unverified - it may have been patched but the NVD record has not confirmed it.",
+    "**Previously featured in Edition 004 (Aug 21 2026).** Pulled from the site and settled as FAIL pending Mac re-check, because the CVE fix could not be verified from the cloud."
+  ],
+  "why_fail": [
+    "**One moderate CVE with unverified fix.** CVE-2026-6143 was published April 13 2026. The latest release is 4.0.13 but the NVD has not confirmed the fix.",
+    "**Cannot verify from the cloud.** The gate requires Mac re-check to confirm whether the fix is included in the current release."
+  ],
+  "if_used": [
+    "Check CVE-2026-6143 on the NVD to understand whether it affects your use case.",
+    "Update to the latest version (4.0.13) if you are not already on it - the fix may be included.",
+    "Watch for the Mac re-check result. If the fix is confirmed, the gate will clear the repo."
+  ],
+  "sources": [
+    {"title": "NVD - CVE-2026-6143", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-6143", "date": "2026-04-13"},
+    {"title": "GitHub security advisories for cc-switch", "url": "https://github.com/farion1231/cc-switch/security/advisories", "date": "2026-10-16"}
+  ]
+}

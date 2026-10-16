@@ -1,0 +1,156 @@
+{
+  "repo": "xerj-org/xerj",
+  "name": "Xerj",
+  "tagline": "A local search engine in one file that indexes your folders so AI agents find answers instead of reading everything.",
+  "sentence": "Run one command to index a folder of code, documents, or logs, then your AI agent searches the index instead of reading files one by one - finding the right file first try 94% of the time.",
+  "fit": "developers",
+  "links": {
+    "website": "https://xerj.org",
+    "docs": "https://github.com/xerj-org/xerj",
+    "demo": "https://xerj.org/playground/"
+  },
+  "visual": {
+    "src": "assets/shots/xerj.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "The Xerj logo on a dark background: 'XERJ' in large bold white letters with '.AI' in yellow, a horizontal yellow line above, and 'SEARCH FOR THE AGENT ERA' in gray below.",
+    "caption": "The Xerj branding - a local search engine built for AI agents."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI agents that need to search your files read them one by one into their conversation, using up working memory fast. Or they use basic text-matching (like a find-in-files command) and miss what they need.",
+      "eg": "Your agent needs to find how a function is used across a codebase. It reads file after file, burning through its memory budget, and still misses the relevant one."
+    },
+    {
+      "role": "trigger",
+      "say": "You run one command - `xerj autoindex ~/my-project` - and the engine indexes the folder in the background. Then agents search the index instead of reading files.",
+      "eg": "Index a project folder once. The engine detects file types automatically - code, JSON, CSV, PDF, email - and creates the right indexes for each."
+    },
+    {
+      "role": "input",
+      "say": "A folder of code, documents, logs, or data files. Supports 13 format families: source code in 36 languages, PDF, spreadsheets, JSON, CSV, email, and more.",
+      "eg": "A checkout of a large open-source project, a folder of PDF research papers, or a directory of server logs."
+    },
+    {
+      "role": "does",
+      "say": "It indexes your files and serves search results through a standard interface that AI agents and existing tools already understand.",
+      "steps": [
+        "Detects each file's type automatically and indexes its contents - source code is parsed by structure (using tree-sitter), so function names and definitions are preserved",
+        "Offers keyword search, meaning-based search, and a hybrid of both, all from a single search command",
+        "Speaks the Elasticsearch query language, so any existing tool, dashboard, or script that queries Elasticsearch works without changes"
+      ],
+      "eg": "Index an 80-file codebase. The agent searches for 'database connection retry logic' and gets the right file on the first try - versus scrolling through files one by one."
+    },
+    {
+      "role": "result",
+      "say": "AI agents that search faster, use less memory, and find the right files without reading everything.",
+      "outputs": [
+        {"what": "Faster, more accurate search", "eg": "An AI agent finds the right file on its first search 94% of the time, versus 38% with basic text search"},
+        {"what": "Less memory used", "eg": "Agents that search the index use 2.7 times fewer output words than agents that read files with find-in-files commands"},
+        {"what": "Agent memory", "eg": "A built-in memory store lets agents save and recall facts between sessions, with per-agent isolation"}
+      ]
+    }
+  ],
+  "before": [
+    "AI agents that need to search your files read them one by one, filling their working memory and slowing down. A 500-file codebase means hundreds of file reads.",
+    "Basic text-matching finds exact strings but misses meaning. Searching for 'retry logic' won't find a function called `exponential_backoff` unless the comment mentions 'retry'."
+  ],
+  "after": [
+    "One command indexes the folder. AI agents search the index and get structured results - function definitions, line numbers, and context - without reading every file.",
+    "Hybrid search combines keyword matching and meaning, so 'retry logic' finds `exponential_backoff` even without an exact match. The right file comes up first 94% of the time."
+  ],
+  "uses_note": "Xerj is 108 days old. No named real-world adopters could be verified. The project's benchmarks are its own and have not been independently reproduced.",
+  "uses": [],
+  "pulse": {
+    "gain": "+6.4K stars in 108 days. Created Jun 30, 2026.",
+    "history": [
+      ["2026-06-30", 0],
+      ["2026-08-04", 1000],
+      ["2026-10-16", 6400]
+    ],
+    "history_note": "Created Jun 30, 2026. Crossed 1K stars on Aug 4 per GitTrend. 6.4K on Oct 16.",
+    "facts": [
+      {"value": "6.4K", "label": "stars on GitHub"},
+      {"value": "1,366/1,369", "label": "Elasticsearch conformance tests passing"},
+      {"value": "36", "label": "programming languages parsed"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "DeepWiki",
+      "title": "xerj-org/xerj - AI-native search engine overview",
+      "url": "https://deepwiki.com/xerj-org/xerj",
+      "meta": "Automated technical overview of the codebase"
+    },
+    {
+      "plat": "GitTrend",
+      "title": "xerj-org/xerj trending on GitTrend",
+      "url": "https://gittrend.io/repo/xerj-org/xerj",
+      "meta": "Star growth tracking"
+    },
+    {
+      "plat": "Pinokio",
+      "title": "xerj on Pinokio",
+      "url": "https://pinokio.co/posts/01kt4s6g6q3j040wbry1f0ac2f",
+      "meta": "One-click installer listing"
+    }
+  ],
+  "star_check": "No findarepo data found.",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install with one command: `curl -fsSL https://xerj.org/get | sh` (Mac/Linux) or `irm https://xerj.org/get.ps1 | iex` (Windows).",
+      "Start the engine and index a folder: `xerj --insecure --data-dir ./data &` then `xerj autoindex ~/some-project`.",
+      "Try a search: `curl 'http://localhost:9200/your-index/_search?q=your+query'` or try the [live playground](https://xerj.org/playground/)."
+    ],
+    "paste": "/skillspector https://github.com/xerj-org/xerj\n\nIf that scan passes: install with `curl -fsSL https://xerj.org/get | sh`, start with `xerj --insecure --data-dir ./data &`, index a folder with `xerj autoindex ~/some-project`, and run a search. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "Ships as a single static binary - no Java, no dependencies. Download size not published. The optional neural search mode downloads about 90 MB of model files.",
+    "memory": "No data found. Default search mode is lexical (no neural models loaded). Neural mode loads three model files locally.",
+    "runs_on": "Mac, Windows, and Linux on x86-64 and arm64. Linux builds are statically linked, so they run on any distribution including Alpine. Built from source with a stable Rust toolchain.",
+    "source": {"title": "Xerj website: installation", "url": "https://xerj.org"}
+  },
+  "verdict": {
+    "best_for": [
+      "You work with AI agents that search codebases, document folders, or log archives - Xerj replaces file-by-file reading with indexed search",
+      "You want a lightweight local search engine with no Java dependency that speaks the Elasticsearch language - existing tools and dashboards just work"
+    ],
+    "skip_if": [
+      "You need a production Elasticsearch replacement with full feature coverage - 3 of 1,369 conformance tests fail, and features like scroll cursors behave differently",
+      "You want neural (meaning-based) search out of the box - the default mode is keyword-only, and neural mode requires downloading model files and is still opt-in",
+      "You need a battle-tested tool - this is 108 days old with no named production users"
+    ],
+    "alternatives": [
+      {
+        "name": "Elasticsearch",
+        "url": "https://www.elastic.co/elasticsearch",
+        "line": "The industry standard. Full-featured and production-hardened, but requires Java, more memory, and more setup. Xerj is designed as a lighter local alternative."
+      },
+      {
+        "name": "ripgrep",
+        "url": "https://github.com/BurntSushi/ripgrep",
+        "line": "A fast text search tool. No indexing, no server - just searches files directly. Faster for one-off searches, but does not offer meaning-based search or an agent-friendly interface."
+      },
+      {
+        "name": "Meilisearch",
+        "url": "https://www.meilisearch.com/",
+        "line": "An instant-search engine in a single binary. Focused on user-facing search with typo tolerance. Does not parse source code by structure."
+      }
+    ]
+  },
+  "watch": [
+    "**Young project - 108 days old with no named production users.** The benchmarks are the project's own and have not been independently reproduced. The claim of '40x fewer tokens than grep' in the About section contradicts the body's '2.7x' figure.",
+    "**Default mode listens without authentication.** The `--insecure` flag disables all authentication and encryption. Anyone on the network can query, index, and delete data. Authentication is on by default without that flag, but the quickstart guide uses it.",
+    "**Optional reranking sends data to an external service.** The Jev reranker (by TypeSafe AI) sends search result text to an external API for re-scoring. It is off by default, but you should know it exists before enabling it.",
+    "**Not a drop-in Elasticsearch replacement.** Three conformance tests fail, scroll cursors are bounded snapshots (not infinite streams), and some aggregation features are missing. The project calls itself a 'migration bridge, not a clone.'"
+  ],
+  "sources": [
+    {"title": "Xerj on GitHub (README, features, benchmarks)", "url": "https://github.com/xerj-org/xerj", "date": "2026-10-16"},
+    {"title": "Xerj website", "url": "https://xerj.org", "date": "2026-10-16"},
+    {"title": "Xerj live playground", "url": "https://xerj.org/playground/", "date": "2026-10-16"},
+    {"title": "DeepWiki: xerj-org/xerj overview", "url": "https://deepwiki.com/xerj-org/xerj", "date": "2026-10-16"},
+    {"title": "GitTrend: xerj-org/xerj star tracking", "url": "https://gittrend.io/repo/xerj-org/xerj", "date": "2026-10-16"}
+  ]
+}

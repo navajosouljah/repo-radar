@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>skills: A tool for finding and installing ready-made skills into AI coding agents - one command, and it works across 75+ agents. | Repo Radar</title>
+<meta name="description" content="Install a new ability into your AI coding agent with one command - for example, a design-taste skill that makes every interface your agent builds look polished instead of generic.">
+<meta property="og:title" content="skills: A tool for finding and installing ready-made skills into AI coding agents - one command, and it works across 75+ agents. | Repo Radar">
+<meta property="og:description" content="Install a new ability into your AI coding agent with one command - for example, a design-taste skill that makes every interface your agent builds look polished instead of generic.">
+<meta property="og:image" content="https://opengraph.githubassets.com/1/vercel-labs/skills">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 012 &middot; Week of October 16, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#4 this week</span><span class="repo-id">vercel-labs/skills</span></div>
+    <h1 id="name">skills</h1>
+    <p class="tagline">A tool for finding and installing ready-made skills into AI coding agents - one command, and it works across 75+ agents.</p>
+    <p class="sentence">Install a new ability into your AI coding agent with one command - for example, a design-taste skill that makes every interface your agent builds look polished instead of generic.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://skills.sh" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/vercel-labs/skills" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="https://opengraph.githubassets.com/1/vercel-labs/skills" alt="skills on GitHub" width="1200" height="600" loading="eager">
+    <figcaption>No demo published yet: this is its GitHub card.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">35.2K</span><span class="v-note">GitHub stars, <b>35.2K stars in 9 months. Created Jan 14, 2026.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 16: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want your AI coding agent to follow specific practices - design standards, testing rules, coding conventions - but writing those instructions yourself takes time, and they don't transfer between agents.</p><p class="eg">You wrote a page of design guidelines for Claude Code, but now you want the same rules in Cursor and Codex - and each agent stores instructions in a different folder.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You run a command in your terminal and pick a skill from the directory at skills.sh.</p><p class="eg">Type <code>npx skills add vercel-labs/agent-skills</code> and Vercel's official skill pack installs into every agent on your machine.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A skill name or search term - a GitHub project like <code>vercel-labs/agent-skills</code>, or a keyword like 'react testing'.</p><p class="eg"><code>npx skills find typescript</code> searches the directory and shows matching skills with their install counts.</p></div><div class="note does"><span class="role">It does</span><p class="say">It finds the skill, downloads it, and installs it into the right folder for each of your AI coding agents.</p><ol class="steps-in"><li>Finds the skill in the skills.sh directory (over 600K skills listed) or directly from GitHub, GitLab, or a URL</li><li>Downloads it and places it in the correct folder for your agents - Claude Code, Cursor, Codex, or any of 75+ others</li><li>Your agent loads the skill automatically when a matching task comes up - full instructions load on demand, not all at once</li></ol><p class="eg">The README's example: install a 'react testing' skill and the next time you ask your agent to write tests for a React component, it follows the skill's testing practices automatically.</p></div><div class="note result"><span class="role">You get</span><p class="say">Your AI coding agents have new, shared abilities - installed once, available across every supported agent on your machine.</p><ul class="outputs"><li><b>Skills installed across agents</b><span>One install command puts a design skill into Claude Code, Cursor and Codex at the same time</span></li><li><b>A searchable directory</b><span>skills.sh lists over 600K skills with install counts, categories and security scans from Snyk</span></li><li><b>Your own skills</b><span><code>npx skills init</code> creates a template - write instructions once and share them with your team or publish them to the directory</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Adding a new ability to your AI coding agent means writing instructions from scratch, and those instructions only work in one agent - switching agents means rewriting them.</li><li>There is no central place to find, compare or share ready-made agent instructions. You copy snippets from blog posts and hope they work.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>One command installs a skill into every agent on your machine - Claude Code, Cursor, Codex and 75+ others, all at once.</li><li>A searchable directory at skills.sh lists hundreds of thousands of skills, ranked by installs, with categories and security scans.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Search for a skill: run <code>npx skills find react</code> (or any topic you care about) in your terminal and browse the results.</li><li>Install one: run <code>npx skills add vercel-labs/agent-skills</code> to install <a href="https://github.com/vercel-labs/agent-skills" rel="noopener">Vercel's official skill pack</a> into your agents.</li><li>Check it worked: run <code>npx skills list</code> to see which skills are installed and which agents they landed in.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>No permanent install needed. Runs via <code>npx</code> (requires Node.js). Skills themselves are small text files - a SKILL.md plus optional scripts and references.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. The tool runs briefly to install or search, then exits. Skills are loaded by the agent, not by the tool.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows and Linux. Requires Node.js (for npx). The tool installs skills for whichever agents are already on your machine.</dd></div>
+  </dl><a class="src" href="https://github.com/vercel-labs/skills" rel="noopener">Source: skills README on GitHub</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-skills">/skillspector https://github.com/vercel-labs/skills
+
+If that scan passes: run `npx skills find react`, pick a skill from the results, install it with `npx skills add`, then run `npx skills list` to confirm. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-skills">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You use an AI coding agent and want to add abilities - design taste, testing rules, coding standards - without writing instructions from scratch</li><li>You work across multiple agents (Claude Code, Cursor, Codex) and want the same skills in all of them with one install command</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You already have a well-tuned set of agent instructions and don't want a tool overwriting or conflicting with them</li><li>You are concerned about running unreviewed third-party instructions in your coding agent - the directory has no human review gate</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://agentskills.io" rel="noopener"><b>Agent Skills specification</b></a><span>The open standard behind skills. You can write and install SKILL.md files by hand without the skills tool or the skills.sh directory.</span></li><li><a href="https://code.claude.com/docs/en/skills" rel="noopener"><b>Agent-specific instructions</b></a><span>Write instructions directly for one agent: CLAUDE.md for Claude Code, .cursorrules for Cursor. More control, but no cross-agent sharing.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/vercel-labs/skills/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 16</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>35.2K stars, 157 contributors, 570 commits. No findarepo page found for this project</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>No human review gate.</b> Skills.sh lists over 600K skills with no submission or curation process. Rankings come from install counts alone, which one independent reviewer notes 'can be gamed.'</li><li><b>Security researchers bypassed the malicious-skill detector.</b> Trail of Bits got data-exfiltrating skills marked safe. Vercel's response is a real-time scanning partnership with Snyk rather than human review.</li><li><b>Skills run inside your agent with your permissions.</b> A skill's instructions become part of what your agent does. Review what you install, especially from unknown publishers.</li><li><b>The ecosystem is 9 months old.</b> The format started at Anthropic and was released as an open standard in December 2025. Adoption is broad (75+ agents, 20+ platforms) but the trust model is still maturing.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Skills.sh reports over 3.9M installs for its top skill (find-skills). Individual named adopters are hard to find because skills install silently into agents and leave no public trace.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Vercel</span><a href="https://vercel.com/changelog/introducing-skills-the-open-agent-skills-ecosystem" rel="noopener">Introducing skills, the open agent skills ecosystem</a><span class="meta">Official launch announcement, Jan 20, 2026</span></li><li class=""><span class="plat">Blog</span><a href="https://codex.danielvaughan.com/2026/05/31/codex-cli-vercel-skills-cli-npx-skills-open-agent-skills-ecosystem/" rel="noopener">The Vercel Skills CLI and the Open Agent Skills Ecosystem</a><span class="meta">Detailed walkthrough of commands, format and publishing (Daniel Vaughan)</span></li><li class="tone-critical"><span class="plat">Security review</span><a href="https://rywalker.com/research/skills-sh" rel="noopener">skills.sh research and security assessment</a><span class="meta">Independent review: infrastructure 5/5, execution 2/5, security concerns raised</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/vercel-labs/skills" rel="noopener">skills on GitHub (README, commands, supported agents)</a>, Oct 16</li><li><a href="https://skills.sh" rel="noopener">skills.sh directory and leaderboard</a>, Oct 16</li><li><a href="https://agentskills.io" rel="noopener">Agent Skills specification (agentskills.io)</a>, Oct 16</li><li><a href="https://vercel.com/changelog/introducing-skills-the-open-agent-skills-ecosystem" rel="noopener">Vercel changelog: Introducing skills</a>, Jan 20</li><li><a href="https://codex.danielvaughan.com/2026/05/31/codex-cli-vercel-skills-cli-npx-skills-open-agent-skills-ecosystem/" rel="noopener">The Vercel Skills CLI and the Open Agent Skills Ecosystem (Daniel Vaughan)</a>, May 31</li><li><a href="https://rywalker.com/research/skills-sh" rel="noopener">skills.sh research and security assessment (rywalker.com)</a>, Oct 16</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 012 &middot; October 16, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>
