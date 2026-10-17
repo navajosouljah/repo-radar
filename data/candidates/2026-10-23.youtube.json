@@ -1,0 +1,351 @@
+{
+  "date": "2026-10-23",
+  "scanned": "2026-10-17",
+  "source": {
+    "reached": true,
+    "detail": "102 repo links"
+  },
+  "hits": {
+    "storytold/photocraft": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      },
+      "gUGjiG81tiU": {
+        "channel": "Geoff Fagien",
+        "views": 142867,
+        "date": "20261010"
+      }
+    },
+    "robbietilton/Compositor": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "morluto/rea": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      },
+      "rw0fqnrZgNM": {
+        "channel": "AI LABS",
+        "views": 26530,
+        "date": "20261015"
+      },
+      "S_W4OSuh2Aw": {
+        "channel": "Eric Michaud",
+        "views": 164341,
+        "date": "20261013"
+      },
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      },
+      "OMobTlfjb8s": {
+        "channel": "Rob Shocks",
+        "views": 486243,
+        "date": "20261009"
+      }
+    },
+    "vercel-labs/skills": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "stablyai/orca": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "Jakeschincariol/arena-skill": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "rehan-remade/universal-modder": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "cloudflare/security-audit-skill": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "ItsssssJack/SlopMonster": {
+      "zwQmodmp1To": {
+        "channel": "Jack Roberts",
+        "views": 83498,
+        "date": "20261011"
+      }
+    },
+    "heygen-com/hyperframes": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      },
+      "S_W4OSuh2Aw": {
+        "channel": "Eric Michaud",
+        "views": 164341,
+        "date": "20261013"
+      }
+    },
+    "googleworkspace/cli": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "apify/apify-mcp-server": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "nateherkai/scroll-craft": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "blader/humanizer": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "addyosmani/agent-skills": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      },
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "expo/skills": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "supabase/agent-skills": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "stripe/ai": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "microsoft/playwright-cli": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "anthropics/claude-plugins-official": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "every-app/open-seo": {
+      "HhZdNYI4pJs": {
+        "channel": "Nate Herk | AI Automation",
+        "views": 235111,
+        "date": "20261011"
+      }
+    },
+    "vectorize-io/hindsight": {
+      "S_W4OSuh2Aw": {
+        "channel": "Eric Michaud",
+        "views": 164341,
+        "date": "20261013"
+      }
+    },
+    "debpalash/VoiceStudio": {
+      "S_W4OSuh2Aw": {
+        "channel": "Eric Michaud",
+        "views": 164341,
+        "date": "20261013"
+      },
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "hypit-ai/hypit": {
+      "S_W4OSuh2Aw": {
+        "channel": "Eric Michaud",
+        "views": 164341,
+        "date": "20261013"
+      }
+    },
+    "ThariqS/ai-newtab": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "mattpocock/skills": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "cathrynlavery/diagram-design": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "twostraws/SwiftUI-Agent-Skill": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "anthropics/knowledge-work-plugins": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "alibaba/open-code-review": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "BerriAI/litellm": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "storytold/artcraft": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "Robbyant/lingbot-map": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "boykopovar/AnyPS5": {
+      "1pnGTa8louY": {
+        "channel": "AIex The AI Workbench",
+        "views": 44105,
+        "date": "20261010"
+      }
+    },
+    "storytold/filmcraft": {
+      "gUGjiG81tiU": {
+        "channel": "Geoff Fagien",
+        "views": 142867,
+        "date": "20261010"
+      }
+    },
+    "N0zoM1z0/dx-ball": {
+      "OMobTlfjb8s": {
+        "channel": "Rob Shocks",
+        "views": 486243,
+        "date": "20261009"
+      }
+    },
+    "NationalSecurityAgency/ghidra": {
+      "OMobTlfjb8s": {
+        "channel": "Rob Shocks",
+        "views": 486243,
+        "date": "20261009"
+      }
+    },
+    "altic-dev/FluidVoice": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "paperclipai/paperclip": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "basicmachines-co/basic-memory": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "tashfeenahmed/freellmapi": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "D4Vinci/Scrapling": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    },
+    "block/buzz": {
+      "7rVTo_sy4Po": {
+        "channel": "The Next New Thing",
+        "views": 35231,
+        "date": "20261014"
+      }
+    }
+  }
+}

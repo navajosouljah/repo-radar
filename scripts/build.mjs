@@ -328,7 +328,7 @@ function restList(ed, depth) {
 
 function editionIndex(ed) {
   const html = `${head({ title: `Edition ${ed.number}: ${ed.theme_short || 'This week'} | Repo Radar`, description: stripB(ed.theme), depth: 2 })}
-${topbar(2, `Edition ${ed.number} &middot; Week of ${dLong(ed.date)}`)}
+${topbar(2, '')}
 <main class="wrap">
 <section class="masthead"><div><p class="edition">Edition ${ed.number} &middot; Week of ${dLong(ed.date)}</p><h1>This week's <span class="scribble">10</span></h1></div>
 <div class="theme-note"><span class="role">The story this week</span><p>${rich(ed.theme)}</p></div></section>

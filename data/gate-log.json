@@ -202,7 +202,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-15330",
@@ -470,7 +470,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-7v5m-pr3q-6453",
@@ -484,7 +484,7 @@
           ],
           "status": "partly-patched",
           "recheck": "patched",
-          "why": "fix 0.78.1, latest published 0.87.1",
+          "why": "fix 0.78.1, latest published 1.3.0",
           "packages": [
             "npm:@mariozechner/pi-coding-agent",
             "npm:@earendil-works/pi-coding-agent"
@@ -502,7 +502,7 @@
           ],
           "status": "partly-patched",
           "recheck": "patched",
-          "why": "fix 0.78.1, latest published 0.87.1",
+          "why": "fix 0.78.1, latest published 1.3.0",
           "packages": [
             "npm:@mariozechner/pi-coding-agent",
             "npm:@earendil-works/pi-coding-agent"
@@ -520,7 +520,7 @@
           ],
           "status": "partly-patched",
           "recheck": "patched",
-          "why": "fix 0.78.1, latest published 0.87.1",
+          "why": "fix 0.78.1, latest published 1.3.0",
           "packages": [
             "npm:@earendil-works/pi-coding-agent",
             "npm:@mariozechner/pi-coding-agent"
@@ -898,40 +898,55 @@
   },
   "akitaonrails/ai-memory": {
     "repo": "akitaonrails/ai-memory",
-    "checked": "2026-10-09",
-    "verdict": "FAIL",
-    "reasons": [
-      "3 open advisory(ies): GHSA-2jrq-p5rw-6wvv low (unpatched), GHSA-7qj3-7wqw-m5w6 moderate (unpatched), GHSA-vh98-jf5c-jw45 low (unpatched)",
-      "activity check failed: repo page unreadable (no star count on it)"
-    ],
+    "checked": "2026-10-17",
+    "verdict": "PASS",
+    "reasons": [],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/akitaonrails/ai-memory/security/advisories",
-        "count": 4,
-        "latestRelease": "2.6.2",
+        "count": 6,
+        "latestRelease": "3.1.0",
         "items": [
+          {
+            "ghsa": "GHSA-gcpc-88hm-3xqr",
+            "cve": null,
+            "severity": "low",
+            "published": "2026-10-12",
+            "summary": "Capture exclusions (ignore_paths) could be bypassed, capturing excluded file content",
+            "patched": "2.6.4",
+            "openPackages": [],
+            "status": "patched"
+          },
+          {
+            "ghsa": "GHSA-6mc4-46pr-w82w",
+            "cve": null,
+            "severity": "medium",
+            "published": "2026-10-12",
+            "summary": "Cross-origin browser requests could change state on an unauthenticated server",
+            "patched": "2.6.4",
+            "openPackages": [],
+            "status": "patched"
+          },
           {
             "ghsa": "GHSA-2jrq-p5rw-6wvv",
             "cve": null,
             "severity": "low",
             "published": "2026-10-09",
             "summary": "Wiki page reads and writes follow symlinks out of the project tree",
-            "patched": null,
+            "patched": "2.6.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.6.2"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-7qj3-7wqw-m5w6",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-10-09",
             "summary": "Database user without write access can modify the shared global preferences scope",
-            "patched": null,
+            "patched": "2.6.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.6.2"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-gf78-hf8g-vffm",
@@ -939,10 +954,9 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "memory_read_page include_related exposes metadata of pages in restricted projects",
-            "patched": null,
+            "patched": "2.5.2",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.6.2"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-vh98-jf5c-jw45",
@@ -950,33 +964,54 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "ignore_paths capture exclusion fails open for a path with a leading double slash",
-            "patched": null,
+            "patched": "2.5.1",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.6.2"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "akitaonrails/ai-memory CVE",
           "akitaonrails/ai-memory vulnerability",
           "akitaonrails/ai-memory malware",
           "akitaonrails/ai-memory scam"
         ],
-        "results": 10,
+        "results": 15,
         "errors": 0,
-        "hits": [],
-        "fallbacks": 4,
+        "hits": [
+          {
+            "query": "akitaonrails/ai-memory vulnerability",
+            "title": "Overview · akitaonrails/ai-memory · GitHub",
+            "url": "https://github.com/akitaonrails/ai-memory/security",
+            "published": "N/A",
+            "matched": "vulnerab",
+            "kind": "own-security-page"
+          }
+        ],
+        "fallbacks": 0,
         "nvd": {
           "results": 0
         },
         "cves": []
       },
       "activity": {
-        "source": "public-page",
-        "error": "repo page unreadable (no star count on it)"
+        "canonical": "akitaonrails/ai-memory",
+        "stars": 9614,
+        "forks": 690,
+        "watchers": 52,
+        "openIssues": 22,
+        "hasIssues": true,
+        "contributors": 153,
+        "commits": 3788,
+        "created": "2026-05-21",
+        "pushed": "2026-10-16",
+        "archived": false,
+        "ageDays": 148,
+        "homepage": null,
+        "license": "MIT",
+        "flags": []
       }
     }
   },
@@ -1953,7 +1988,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "GHSA-q35c-q38v-2xjv",
@@ -2243,7 +2278,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-16007",
@@ -2497,7 +2532,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-5625",
@@ -2736,7 +2771,7 @@
     "checked": "2026-09-27",
     "verdict": "FAIL",
     "reasons": [
-      "2 open after registry recheck: GHSA-9c5h-h4mj-p5ch low (fix PR(s) #15388 not merged or not in latest release v2.1.3); GHSA-qwwm-4xhq-q4m4 low (fix PR(s) #15413 not merged or not in latest release v2.1.3)"
+      "2 open after registry recheck: GHSA-9c5h-h4mj-p5ch low (fix PR(s) #15388 not merged or not in latest release v2.1.6); GHSA-qwwm-4xhq-q4m4 low (fix PR(s) #15413 not merged or not in latest release v2.1.6)"
     ],
     "checks": {
       "advisories": {
@@ -2855,7 +2890,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-13524",
@@ -2864,7 +2899,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "fix-unreleased",
-          "why": "fix PR(s) #15388 not merged or not in latest release v2.1.3"
+          "why": "fix PR(s) #15388 not merged or not in latest release v2.1.6"
         },
         {
           "id": "CVE-2026-13534",
@@ -2873,7 +2908,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "fix-unreleased",
-          "why": "fix PR(s) #15413 not merged or not in latest release v2.1.3"
+          "why": "fix PR(s) #15413 not merged or not in latest release v2.1.6"
         }
       ]
     }
@@ -3939,7 +3974,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-qwxj-qch7-whpc",
@@ -4163,21 +4198,21 @@
   },
   "deepseek-ai/deepseek-harness": {
     "repo": "deepseek-ai/deepseek-harness",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "5 open CVE(s) found by search: CVE-2026-101078 low (unpatched), CVE-2026-101102 moderate (unpatched), CVE-2026-101131 low (unpatched), CVE-2026-108788 low (unpatched), CVE-2026-108789 low (unpatched)"
+      "5 open after registry recheck: GHSA-23q9-h232-4q79 low (no fixed version in the advisory data or text); GHSA-m9ww-cpfc-8cf2 medium (no fixed version in the advisory data or text); GHSA-vcc3-4jvw-qx89 low (no fixed version in the advisory data or text); GHSA-5mvr-2xwh-9v9q low (no fixed version in the advisory data or text); GHSA-wc99-rg5g-w3c8 low (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/deepseek-ai/deepseek-harness/security/advisories",
         "count": 0,
         "latestRelease": "0.2.1",
         "items": []
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "deepseek-ai/deepseek-harness CVE",
           "deepseek-ai/deepseek-harness vulnerability",
@@ -4187,6 +4222,14 @@
         "results": 15,
         "errors": 0,
         "hits": [
+          {
+            "query": "deepseek-ai/deepseek-harness malware",
+            "title": "CVE-2026-82533: DeepSeek Harness AI Agent Sandbox Escape",
+            "url": "https://www.ox.security/blog/cve-2026-82533-deepseek-harness-ai-agent-sandbox-escape/",
+            "published": "2026-09-08",
+            "matched": "CVE-2026-82533",
+            "kind": "cve-record"
+          },
           {
             "query": "deepseek-ai/deepseek-harness CVE database",
             "title": "NVD - CVE-2026-101078",
@@ -4228,11 +4271,18 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 5
         },
         "cves": [
+          {
+            "id": "CVE-2026-82533",
+            "ghsa": "GHSA-8m2g-8cgm-3vcp",
+            "severity": "critical",
+            "fix": "0.1.2-alpha.1",
+            "status": "patched"
+          },
           {
             "id": "CVE-2026-101078",
             "ghsa": "GHSA-23q9-h232-4q79",
@@ -4243,7 +4293,7 @@
           {
             "id": "CVE-2026-101102",
             "ghsa": "GHSA-m9ww-cpfc-8cf2",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
             "status": "unpatched"
           },
@@ -4271,21 +4321,77 @@
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "deepseek-ai/deepseek-harness",
-        "stars": 250921,
-        "forks": 30172,
-        "watchers": 1064,
-        "openIssues": null,
+        "stars": 251194,
+        "forks": 30206,
+        "watchers": 1067,
+        "openIssues": 0,
         "hasIssues": false,
-        "contributors": 44,
-        "commits": 22346,
+        "contributors": 57,
+        "commits": 22382,
         "created": "2026-08-13",
-        "pushed": "2026-10-15",
+        "pushed": "2026-10-16",
         "archived": false,
         "ageDays": 65,
+        "homepage": "https://deepseek.com/harness",
+        "license": "MIT",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "id": "CVE-2026-101078",
+          "ghsa": "GHSA-23q9-h232-4q79",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-101102",
+          "ghsa": "GHSA-m9ww-cpfc-8cf2",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-101131",
+          "ghsa": "GHSA-vcc3-4jvw-qx89",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-108788",
+          "ghsa": "GHSA-5mvr-2xwh-9v9q",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-108789",
+          "ghsa": "GHSA-wc99-rg5g-w3c8",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        }
+      ]
     }
   },
   "DietrichGebert/ponytail": {
@@ -5352,7 +5458,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-6jrh-8qmg-jj3p",
@@ -6383,15 +6489,14 @@
   },
   "esengine/DeepSeek-Reasonix": {
     "repo": "esengine/DeepSeek-Reasonix",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "2 open advisory(ies): GHSA-83jp-h8cg-2gcr high (unpatched), GHSA-grg2-7gc6-36m6 critical (unpatched)",
-      "1 open CVE(s) found by search: CVE-2026-102437 high (unpatched)"
+      "1 open after registry recheck: GHSA-8rx4-qgjw-3jvq high (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/esengine/DeepSeek-Reasonix/security/advisories",
         "count": 7,
         "latestRelease": "2.42.0",
@@ -6402,10 +6507,9 @@
             "severity": "high",
             "published": "2026-10-09",
             "summary": "Project MCP server approval is bound only to the server name",
-            "patched": null,
+            "patched": "2.33.0",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-4p5q-jhpc-rf9q",
@@ -6413,10 +6517,9 @@
             "severity": "high",
             "published": "2026-09-29",
             "summary": "Workspace configuration files could widen sandbox, permission and approval settings and start host programs without confirmation",
-            "patched": null,
+            "patched": "1.39.5; 2.22.0",
             "openPackages": [],
-            "status": "fix-unverified",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-83jp-h8cg-2gcr",
@@ -6424,10 +6527,9 @@
             "severity": "high",
             "published": "2026-09-29",
             "summary": "Sandboxed agent can self-approve its own write-access decision through the unauthenticated serve API, escaping the OS sandbox",
-            "patched": null,
+            "patched": "1.39.3; 2.21.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-grg2-7gc6-36m6",
@@ -6435,10 +6537,9 @@
             "severity": "critical",
             "published": "2026-09-29",
             "summary": "gitcmd's hardened git diff wrapper still executes attacker-controlled filter.<driver>.clean via .gitattributes, a residual gap the code itse",
-            "patched": null,
+            "patched": "1.39.3; 2.21.0",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-6qf8-c4r6-q4qq",
@@ -6448,8 +6549,7 @@
             "summary": "Cargo Check Read-Only Bypass Leading to Silent Host RCE",
             "patched": "1.34.0",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-wqg8-98mr-4jcj",
@@ -6459,8 +6559,7 @@
             "summary": "Repository-supplied project-level MCP plugin configuration is auto-started without trust confirmation, allowing arbitrary local command exec",
             "patched": "1.39.3",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-8789-pp7w-w83p",
@@ -6470,22 +6569,61 @@
             "summary": "Startup RCE in Reasonix CLI (reasonix) via core.fsmonitor",
             "patched": "1.19.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.42.0"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "esengine/DeepSeek-Reasonix CVE",
           "esengine/DeepSeek-Reasonix vulnerability",
           "esengine/DeepSeek-Reasonix malware",
           "esengine/DeepSeek-Reasonix scam"
         ],
-        "results": 1,
+        "results": 6,
         "errors": 0,
         "hits": [
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "gitcmd's hardened git diff wrapper still executes attacker-controlled filter.<driver>.clean via .gitattributes, a residual gap the code itse",
+            "url": "https://github.com/esengine/DeepSeek-Reasonix/security/advisories/GHSA-grg2-7gc6-36m6",
+            "published": "2026-09-29",
+            "matched": "RCE",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "CVE Record: CVE-2026-102437",
+            "url": "https://www.cve.org/CVERecord?id=CVE-2026-102437",
+            "published": "2026-09-29",
+            "matched": "CVE-2026-102437",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "OSV - Open Source Vulnerabilities",
+            "url": "https://osv.dev/vulnerability/CVE-2026-102437",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "cve-record"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "Overview · esengine/DeepSeek-Reasonix · GitHub",
+            "url": "https://github.com/esengine/DeepSeek-Reasonix/security",
+            "published": "N/A",
+            "matched": "RCE",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "esengine/DeepSeek-Reasonix CVE",
+            "title": "DeepSeek-Reasonix: How a poisoned config can hijack an AI coding agent",
+            "url": "https://about.gitlab.com/blog/deepseek-reasonix-vulnerability-discovered/",
+            "published": "2026-10-02",
+            "matched": "hijack",
+            "kind": "report"
+          },
           {
             "query": "esengine/DeepSeek-Reasonix CVE database",
             "title": "NVD - CVE-2026-102437",
@@ -6495,7 +6633,7 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 1
         },
@@ -6510,21 +6648,37 @@
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "esengine/DeepSeek-Reasonix",
-        "stars": 35819,
-        "forks": 2454,
+        "stars": 35820,
+        "forks": 2456,
         "watchers": 100,
-        "openIssues": 321,
+        "openIssues": 349,
         "hasIssues": true,
-        "contributors": 185,
-        "commits": 10311,
+        "contributors": 187,
+        "commits": 10446,
         "created": "2026-04-21",
-        "pushed": "2026-10-16",
+        "pushed": "2026-10-17",
         "archived": false,
         "ageDays": 179,
+        "homepage": "http://reasonix.io/",
+        "license": "MIT",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "id": "CVE-2026-102437",
+          "ghsa": "GHSA-8rx4-qgjw-3jvq",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        }
+      ]
     }
   },
   "excalidraw/excalidraw": {
@@ -6657,7 +6811,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-39h7-pwv7-rc3x",
@@ -6738,28 +6892,28 @@
   },
   "farion1231/cc-switch": {
     "repo": "farion1231/cc-switch",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "1 CVE(s) to check by hand: CVE-2026-6143"
+      "1 open CVE(s) found by search: CVE-2026-6143 medium (unpatched)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/farion1231/cc-switch/security/advisories",
         "count": 0,
-        "latestRelease": "4.0.13",
+        "latestRelease": "4.0.14",
         "items": []
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "farion1231/cc-switch CVE",
           "farion1231/cc-switch vulnerability",
           "farion1231/cc-switch malware",
           "farion1231/cc-switch scam"
         ],
-        "results": 3,
+        "results": 1,
         "errors": 0,
         "hits": [
           {
@@ -6771,7 +6925,7 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 1
         },
@@ -6779,28 +6933,35 @@
           {
             "id": "CVE-2026-6143",
             "ghsa": "GHSA-rrm6-2q2p-cpx5",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           }
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "farion1231/cc-switch",
-        "stars": 145081,
-        "forks": 9605,
+        "stars": 145213,
+        "forks": 9613,
         "watchers": 265,
-        "openIssues": 1553,
+        "openIssues": 1528,
         "hasIssues": true,
-        "contributors": 302,
-        "commits": 3014,
+        "contributors": 284,
+        "commits": 3035,
         "created": "2025-08-04",
         "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 439,
+        "ageDays": 438,
+        "homepage": "https://ccswitch.io",
+        "license": "MIT",
         "flags": []
       }
+    },
+    "auto": {
+      "verdict": "FAIL",
+      "reasons": [
+        "1 open CVE(s) found by search: CVE-2026-6143 medium (unpatched)"
+      ]
     },
     "settled": {
       "by": "routine",
@@ -6808,7 +6969,8 @@
       "note": "1 moderate CVE (CVE-2026-6143) with fix-unverified status. Cannot verify from the cloud - settling FAIL pending Mac re-check.",
       "reasons": [
         "1 CVE(s) to check by hand: CVE-2026-6143"
-      ]
+      ],
+      "carried": "2026-10-17"
     }
   },
   "firecrawl/anydoc": {
@@ -7023,7 +7185,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-3p54-jg6f-68r8",
@@ -8452,7 +8614,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2018-20061",
@@ -8491,7 +8653,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52043",
@@ -8500,7 +8662,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52047",
@@ -8509,7 +8671,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52049",
@@ -8518,7 +8680,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52050",
@@ -8527,7 +8689,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52039",
@@ -8536,7 +8698,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52041",
@@ -8545,7 +8707,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-52042",
@@ -8554,7 +8716,7 @@
           "fix": null,
           "status": "unpatched",
           "recheck": "patched",
-          "why": "fix PR(s) #49192 merged and in release v16.36.0"
+          "why": "fix PR(s) #49192 merged and in release v16.51.1"
         },
         {
           "id": "CVE-2025-65267",
@@ -9385,7 +9547,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-7rqg-hjwc-6mjf",
@@ -10398,7 +10560,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-jff5-5j3g-vhqc",
@@ -10420,75 +10582,107 @@
   },
   "hugohe3/ppt-master": {
     "repo": "hugohe3/ppt-master",
-    "checked": "2026-10-16",
-    "verdict": "FAIL",
+    "checked": "2026-10-17",
+    "verdict": "PASS",
     "reasons": [
-      "2 open advisory(ies): GHSA-8qv4-8xgv-jxp5 moderate (unpatched), GHSA-mv87-79gf-mh4v moderate (unpatched)"
+      "2 report(s) to read"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/hugohe3/ppt-master/security/advisories",
         "count": 2,
-        "latestRelease": "6.7.0",
+        "latestRelease": "6.7.1",
         "items": [
           {
             "ghsa": "GHSA-8qv4-8xgv-jxp5",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-09-11",
             "summary": "Attribute injection in icon placeholder expansion writes unescaped markup to disk",
-            "patched": null,
+            "patched": "6.3.1",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "6.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-mv87-79gf-mh4v",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-09-11",
             "summary": "Live preview SVG sanitizer bypass via case-sensitive filtering (mXSS)",
-            "patched": null,
+            "patched": "6.3.2",
             "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "6.7.0"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "hugohe3/ppt-master CVE",
           "hugohe3/ppt-master vulnerability",
           "hugohe3/ppt-master malware",
           "hugohe3/ppt-master scam"
         ],
-        "results": 5,
+        "results": 10,
         "errors": 0,
-        "hits": [],
-        "fallbacks": 4,
+        "hits": [
+          {
+            "query": "hugohe3/ppt-master CVE",
+            "title": "SECURITY.md at main · hugohe3/ppt-master",
+            "url": "https://github.com/hugohe3/ppt-master/blob/main/SECURITY.md",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "report"
+          },
+          {
+            "query": "hugohe3/ppt-master CVE",
+            "title": "hugohe3/ppt-master v6.3.1 on GitHub",
+            "url": "https://newreleases.io/project/github/hugohe3/ppt-master/release/v6.3.1",
+            "published": "N/A",
+            "matched": "malicious",
+            "kind": "report"
+          },
+          {
+            "query": "hugohe3/ppt-master vulnerability",
+            "title": "Overview · hugohe3/ppt-master · GitHub",
+            "url": "https://github.com/hugohe3/ppt-master/security",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "own-security-page"
+          }
+        ],
+        "fallbacks": 0,
         "nvd": {
           "results": 0
         },
         "cves": []
       },
       "activity": {
-        "source": "public-page",
         "canonical": "hugohe3/ppt-master",
-        "stars": 62640,
-        "forks": 4966,
-        "watchers": 121,
-        "openIssues": 3,
+        "stars": 62750,
+        "forks": 4976,
+        "watchers": 122,
+        "openIssues": 1,
         "hasIssues": true,
         "contributors": 26,
-        "commits": 2147,
+        "commits": 2149,
         "created": "2025-12-10",
-        "pushed": "2026-10-14",
+        "pushed": "2026-10-16",
         "archived": false,
         "ageDays": 311,
+        "homepage": "https://hugohe3.github.io/ppt-master-examples/",
+        "license": "MIT",
         "flags": []
       }
+    },
+    "settled": {
+      "by": "human review",
+      "date": "2026-10-17",
+      "note": "Mac re-check Oct 16 2026 via the GitHub API: both advisories (GHSA-8qv4-8xgv-jxp5, GHSA-mv87-79gf-mh4v) are patched in 6.3.1 and 6.3.2; latest release is 6.7.1. The two search hits are the repo's own SECURITY.md and the v6.3.1 release note on newreleases.io, which describes those fixes (the word malicious refers to a malicious SVG input the fix guards against), not a report against the project.",
+      "reasons": [
+        "2 report(s) to read"
+      ]
     }
   },
   "Human-Agent-Society/reef": {
@@ -10804,7 +10998,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-h5w4-vjv4-9r5q",
@@ -10890,10 +11084,8 @@
   "jellyfin/jellyfin": {
     "repo": "jellyfin/jellyfin",
     "checked": "2026-09-27",
-    "verdict": "FAIL",
-    "reasons": [
-      "1 open after registry recheck: GHSA-4vx8-xhc9-qg6x medium (no fixed version in the advisory data or text)"
-    ],
+    "verdict": "PASS",
+    "reasons": [],
     "checks": {
       "advisories": {
         "source": "github-api",
@@ -11167,7 +11359,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-4vx8-xhc9-qg6x",
@@ -11180,8 +11372,8 @@
             "?"
           ],
           "status": "unpatched",
-          "recheck": "unpatched",
-          "why": "no fixed version in the advisory data or text",
+          "recheck": "patched",
+          "why": "fix 12.0.0, latest published 12.1.0",
           "packages": [
             ":"
           ]
@@ -11378,7 +11570,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-pmq2-6f2p-hjvf",
@@ -11616,7 +11808,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-62mm-xwmv-crhg",
@@ -11715,7 +11907,7 @@
     "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "1 open advisory(ies): GHSA-mh7w-q9jx-chg2 high (unpatched)"
+      "1 open after registry recheck: GHSA-mh7w-q9jx-chg2 high (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
@@ -11781,6 +11973,28 @@
         "license": "Apache-2.0",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "ghsa": "GHSA-mh7w-q9jx-chg2",
+          "cve": null,
+          "severity": "high",
+          "published": "2026-09-28",
+          "summary": "Prompt injection: calendar event text reaches a meeting agent's first message unfenced, and the thread-parent fence and injection screen can",
+          "patched": null,
+          "openPackages": [
+            "kirocrew"
+          ],
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "pip:kirocrew"
+          ]
+        }
+      ]
     }
   },
   "krayin/laravel-crm": {
@@ -12752,7 +12966,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-r495-55cx-fjh7",
@@ -14571,7 +14785,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-q42p-j3fm-rvq8",
@@ -14617,15 +14831,14 @@
   },
   "openai/codex": {
     "repo": "openai/codex",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "3 open CVE(s) found by search: CVE-2025-61260 critical (unpatched), CVE-2026-14898 moderate (unpatched), CVE-2026-19593 critical (unpatched)",
-      "new since the 2026-09-27 ruling: report https://news.ycombinator.com/item?id=49997377"
+      "3 open after registry recheck: GHSA-xrxf-jgv3-qmrm critical (no fixed version in the advisory data or text); GHSA-gj6m-4qqg-3cw8 medium (no fixed version in the advisory data or text); GHSA-hcf6-9q9g-xx3c critical (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/openai/codex/security/advisories",
         "count": 1,
         "latestRelease": "0.163.0",
@@ -14636,48 +14849,23 @@
             "severity": "high",
             "published": "2025-09-19",
             "summary": "Sandbox bypass due to bug in path configuration logic",
-            "patched": "0.39.0",
+            "patched": "0.39.0; 0.4.12",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "0.163.0"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "openai/codex CVE",
           "openai/codex vulnerability",
           "openai/codex malware",
           "openai/codex scam"
         ],
-        "results": 28,
+        "results": 8,
         "errors": 0,
         "hits": [
-          {
-            "query": "openai/codex malware",
-            "title": "First thing you see when Googling \"OpenAI Codex app\" is a fake malware website",
-            "url": "https://twitter.com/vashchylau/status/2059995154199572843",
-            "published": "2026-05-28",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "openai/codex malware",
-            "title": "Show HN: The Mog Programming Language",
-            "url": "https://moglang.org",
-            "published": "2026-03-09",
-            "matched": "malware",
-            "kind": "report"
-          },
-          {
-            "query": "openai/codex scam",
-            "title": "Also see  https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49997249  for the 1372 unique strings: abion, acc, account",
-            "url": "https://news.ycombinator.com/item?id=49997377",
-            "published": "2026-10-07",
-            "matched": "scam",
-            "kind": "report"
-          },
           {
             "query": "openai/codex CVE database",
             "title": "NVD - CVE-2025-54558",
@@ -14743,7 +14931,7 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 8
         },
@@ -14751,9 +14939,9 @@
           {
             "id": "CVE-2025-54558",
             "ghsa": "GHSA-q6hp-29g8-7j6j",
-            "severity": "moderate",
-            "fix": "0.9.0",
-            "status": "patched"
+            "severity": "medium",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2025-61260",
@@ -14765,7 +14953,7 @@
           {
             "id": "CVE-2026-14898",
             "ghsa": "GHSA-gj6m-4qqg-3cw8",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
             "status": "unpatched"
           },
@@ -14774,20 +14962,21 @@
             "ghsa": "GHSA-433v-pqvh-w4gj",
             "severity": "high",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-19591",
-            "ghsa": "GHSA-34x7-7wfj-jp4r",
-            "severity": "moderate",
-            "status": "other-project"
+            "ghsa": "GHSA-2frj-4qr5-m2rf",
+            "severity": "high",
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-19592",
             "ghsa": "GHSA-26wp-42v3-96xp",
             "severity": "high",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-19593",
@@ -14799,30 +14988,96 @@
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "openai/codex",
-        "stars": 129497,
-        "forks": 20375,
+        "stars": 129547,
+        "forks": 20393,
         "watchers": 657,
-        "openIssues": 5166,
+        "openIssues": 23043,
         "hasIssues": true,
-        "contributors": 672,
-        "commits": 12296,
+        "contributors": 671,
+        "commits": 12322,
         "created": "2025-04-13",
-        "pushed": "2026-10-16",
+        "pushed": "2026-10-17",
         "archived": false,
         "ageDays": 552,
+        "homepage": null,
+        "license": "Apache-2.0",
         "flags": []
       }
     },
-    "previous": {
-      "verdict": "PASS",
-      "settled": {
-        "by": "human review",
-        "date": "2026-09-27",
-        "note": "The critical advisory (CVE-2025-61260, GHSA-xrxf-jgv3-qmrm) was fixed in Codex CLI 0.23.0 on Aug 20 2025, per Check Point's disclosure, which confirms the fix works (research.checkpoint.com/2025/openai-codex-cli-command-injection-vulnerability). Current npm version 0.157.1.",
-        "carried": "2026-09-27"
-      }
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "id": "CVE-2025-54558",
+          "ghsa": "GHSA-q6hp-29g8-7j6j",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.9.0, latest published 0.163.0",
+          "packages": []
+        },
+        {
+          "id": "CVE-2025-61260",
+          "ghsa": "GHSA-xrxf-jgv3-qmrm",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "npm:@openai/codex"
+          ]
+        },
+        {
+          "id": "CVE-2026-14898",
+          "ghsa": "GHSA-gj6m-4qqg-3cw8",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-19590",
+          "ghsa": "GHSA-433v-pqvh-w4gj",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix PR(s) #22843 merged and in release rust-v0.163.0"
+        },
+        {
+          "id": "CVE-2026-19591",
+          "ghsa": "GHSA-2frj-4qr5-m2rf",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix PR(s) #22643 merged and in release rust-v0.163.0"
+        },
+        {
+          "id": "CVE-2026-19592",
+          "ghsa": "GHSA-26wp-42v3-96xp",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix PR(s) #22652 merged and in release rust-v0.163.0"
+        },
+        {
+          "id": "CVE-2026-19593",
+          "ghsa": "GHSA-hcf6-9q9g-xx3c",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        }
+      ]
     }
   },
   "openai/codex-security": {
@@ -15429,7 +15684,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-17613",
@@ -15650,7 +15905,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-58446",
@@ -16060,7 +16315,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-fqgj-m2gp-mr3q",
@@ -17426,7 +17681,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-phmw-4rgv-r4xv",
@@ -17870,7 +18125,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-v39r-w5vg-j9pp",
@@ -18743,7 +18998,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "id": "CVE-2026-7595",
@@ -19352,7 +19607,7 @@
       }
     },
     "recheck": {
-      "date": "2026-09-27",
+      "date": "2026-10-17",
       "items": [
         {
           "ghsa": "GHSA-pcwc-3fw3-8cqv",
@@ -20110,7 +20365,7 @@
     "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "28 open CVE(s) found by search: CVE-2026-7020 low (unpatched), GHSA-x99g-8v8j-25j2 low (unpatched), CVE-2024-39722 high (unpatched), CVE-2024-39719 high (unpatched), CVE-2024-39721 high (unpatched), CVE-2024-12055 high (unpatched), CVE-2024-8063 high (unpatched), CVE-2025-0312 high (unpatched), CVE-2025-0315 high (unpatched), CVE-2025-0317 high (unpatched), CVE-2025-1975 high (unpatched), CVE-2025-51471 medium (unpatched), CVE-2025-63389 critical (unpatched), CVE-2025-15514 high (unpatched), CVE-2025-66959 high (unpatched), CVE-2025-66960 high (unpatched), CVE-2025-15063 critical (unpatched), CVE-2026-5530 medium (unpatched), CVE-2026-42248 high (unpatched), CVE-2026-42249 high (unpatched), CVE-2026-43625 high (unpatched), CVE-2026-5757 high (unpatched), CVE-2026-15685 high (unpatched), CVE-2026-65315 high (unpatched), CVE-2026-9081 high (unpatched), CVE-2026-85180 high (unpatched), CVE-2026-86289 low (unpatched), CVE-2026-102697 high (unpatched)"
+      "22 open after registry recheck: GHSA-x99g-8v8j-25j2 low (no fixed version in the advisory data or text); GHSA-cpxh-jwhh-m496 high (no fixed version in the advisory data or text); GHSA-89qx-m49c-8crf high (no fixed version in the advisory data or text); GHSA-2xf2-gjm6-g2c6 high (no fixed version in the advisory data or text); GHSA-p2wh-w96x-w232 high (no fixed version in the advisory data or text); GHSA-fccc-8m69-8r78 high (no fixed version in the advisory data or text); GHSA-9gcr-28rp-cc24 high (no fixed version in the advisory data or text); GHSA-wrh5-cmwx-q2qr high (no fixed version in the advisory data or text); GHSA-x9hg-5q6g-q3jr medium (fix PR(s) #10750 not merged or not in latest release v0.40.5); GHSA-f6mr-38g8-39rg critical (no fixed version in the advisory data or text); GHSA-6q56-mrmc-cph4 high (no fixed version in the advisory data or text); GHSA-h73v-mc67-xw25 high (no fixed version in the advisory data or text); GHSA-jr3x-q8gx-4gw3 high (no fixed version in the advisory data or text); GHSA-qgp8-r7w8-m3rv critical (no fixed version in the advisory data or text); GHSA-r4wp-gg33-whwg medium (no fixed version in the advisory data or text); GHSA-5fjh-wjgp-25ph high (no fixed version in the advisory data or text); GHSA-7mp6-jmch-f3fh high (no fixed version in the advisory data or text); GHSA-c839-jg98-xwx3 high (no fixed version in the advisory data or text); GHSA-c7vp-gjfc-x6p8 high (no fixed version in the advisory data or text); GHSA-9hhj-2jwx-r87p high (no fixed version in the advisory data or text); GHSA-fqv5-gx59-2xgv high (no fixed version in the advisory data or text); GHSA-57p7-34ff-7w3w high (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
@@ -20870,6 +21125,303 @@
         "license": "MIT",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "id": "CVE-2026-7020",
+          "ghsa": "GHSA-x99g-8v8j-25j2",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2024-39722",
+          "ghsa": "GHSA-cfxq-8762-vx3v",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.1.46, latest published 0.35.1",
+          "packages": []
+        },
+        {
+          "id": "CVE-2024-39719",
+          "ghsa": "GHSA-cpxh-jwhh-m496",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2024-39721",
+          "ghsa": "GHSA-mvx2-276h-w78v",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.1.34, latest published 0.35.1",
+          "packages": []
+        },
+        {
+          "id": "CVE-2024-12055",
+          "ghsa": "GHSA-89qx-m49c-8crf",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2024-8063",
+          "ghsa": "GHSA-2xf2-gjm6-g2c6",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-0312",
+          "ghsa": "GHSA-p2wh-w96x-w232",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-0315",
+          "ghsa": "GHSA-fccc-8m69-8r78",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-0317",
+          "ghsa": "GHSA-9gcr-28rp-cc24",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-1975",
+          "ghsa": "GHSA-wrh5-cmwx-q2qr",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-51471",
+          "ghsa": "GHSA-x9hg-5q6g-q3jr",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "fix-unreleased",
+          "why": "fix PR(s) #10750 not merged or not in latest release v0.40.5"
+        },
+        {
+          "id": "CVE-2025-63389",
+          "ghsa": "GHSA-f6mr-38g8-39rg",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "go:github.com/ollama/ollama"
+          ]
+        },
+        {
+          "id": "CVE-2025-15514",
+          "ghsa": "GHSA-6q56-mrmc-cph4",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2025-66959",
+          "ghsa": "GHSA-h73v-mc67-xw25",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2025-66960",
+          "ghsa": "GHSA-jr3x-q8gx-4gw3",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2025-15063",
+          "ghsa": "GHSA-qgp8-r7w8-m3rv",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-33401",
+          "status": "unknown",
+          "note": "not in GitHub advisory database",
+          "recheck": "unconfirmed",
+          "why": "advisory could not be loaded"
+        },
+        {
+          "id": "CVE-2026-5530",
+          "ghsa": "GHSA-r4wp-gg33-whwg",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-42248",
+          "ghsa": "GHSA-5fjh-wjgp-25ph",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-42249",
+          "ghsa": "GHSA-7mp6-jmch-f3fh",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-43625",
+          "ghsa": "GHSA-x92v-hcjq-jcx7",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.32.0, latest published 0.35.1",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-5757",
+          "ghsa": "GHSA-c839-jg98-xwx3",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-15685",
+          "ghsa": "GHSA-c7vp-gjfc-x6p8",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-65315",
+          "ghsa": "GHSA-9hhj-2jwx-r87p",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-9081",
+          "ghsa": "GHSA-fqv5-gx59-2xgv",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-85180",
+          "ghsa": "GHSA-57p7-34ff-7w3w",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-86289",
+          "ghsa": "GHSA-c2q9-58w2-gjg4",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.31.2, latest published 0.35.1",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-102697",
+          "ghsa": "GHSA-44m8-pr79-3734",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 0.31.2, latest published 0.35.1",
+          "packages": []
+        }
+      ]
     }
   },
   "ggml-org/llama.cpp": {
@@ -20877,8 +21429,7 @@
     "checked": "2026-10-04",
     "verdict": "FAIL",
     "reasons": [
-      "1 open advisory(ies): GHSA-j8rj-fmpv-wcxw critical (unpatched)",
-      "7 open CVE(s) found by search: CVE-2026-78148 medium (unpatched), CVE-2026-2069 medium (unpatched), CVE-2026-17500 medium (unpatched), CVE-2026-17501 medium (unpatched), CVE-2026-18581 low (unpatched), CVE-2026-78147 medium (unpatched), CVE-2026-86317 medium (unpatched)"
+      "20 open after registry recheck: GHSA-3p4r-fq3f-q74v high (no fixed version in the advisory data or text); GHSA-j8rj-fmpv-wcxw critical (no fixed version in the advisory data or text); GHSA-96jg-mvhq-q7q7 high (no fixed version in the advisory data or text); GHSA-8947-pfff-2f3c low (no fixed version in the advisory data or text); GHSA-vgg9-87g3-85w8 high (no fixed version in the advisory data or text); GHSA-7rxv-5jhh-j6xx high (no fixed version in the advisory data or text); GHSA-g4cc-763q-h9h6 medium (no fixed version in the advisory data or text); GHSA-8wwf-w4qm-gpqr high (no fixed version in the advisory data or text); GHSA-wcr5-566p-9cwj critical (no fixed version in the advisory data or text); GHSA-5vm9-p64x-gqw9 medium (no fixed version in the advisory data or text); GHSA-mqp6-7pv6-fqjf medium (no fixed version in the advisory data or text); GHSA-49q7-2jmh-92fp medium (no fixed version in the advisory data or text); GHSA-p5mv-gjc5-mwqv high (no fixed version in the advisory data or text); GHSA-7hmx-m2vh-6qvw medium (fix PR(s) #25670 not merged or not in latest release v0.7.0); GHSA-f8m3-93xm-637c medium (fix PR(s) #18993 not merged or not in latest release v0.7.0); GHSA-92r6-r5fj-xg82 medium (fix PR(s) #25308 not merged or not in latest release v0.7.0); GHSA-h334-888w-8prr medium (fix PR(s) #25308 not merged or not in latest release v0.7.0); GHSA-3732-9c5p-7h79 low (no fixed version in the advisory data or text); GHSA-f4vj-w5xq-5xph medium (no fixed version in the advisory data or text); GHSA-c676-w283-jfxr medium (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
@@ -21218,6 +21769,274 @@
         "license": "MIT",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "ghsa": "GHSA-3p4r-fq3f-q74v",
+          "cve": "CVE-2026-27940",
+          "severity": "high",
+          "published": "2026-03-12",
+          "summary": "Heap Buffer Overflow via Integer Overflow in `mem_size` Calculation — Bypass of CVE-2025-53630 Fix",
+          "patched": ">= b8146",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":llama.cpp"
+          ]
+        },
+        {
+          "ghsa": "GHSA-j8rj-fmpv-wcxw",
+          "cve": "CVE-2026-34159",
+          "severity": "critical",
+          "published": "2026-03-26",
+          "summary": "Unauthenticated RCE via GRAPH_COMPUTE buffer=0 bypass in llama.cpp RPC backend",
+          "patched": null,
+          "openPackages": [
+            "llama.cpp"
+          ],
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "other:llama.cpp"
+          ]
+        },
+        {
+          "ghsa": "GHSA-96jg-mvhq-q7q7",
+          "cve": "CVE-2026-33298",
+          "severity": "high",
+          "published": "2026-03-18",
+          "summary": "Heap Buffer Overflow via Integer Overflow in GGUF Tensor Parsing",
+          "patched": "b7824",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":ggml-org/llama.cpp"
+          ]
+        },
+        {
+          "ghsa": "GHSA-8947-pfff-2f3c",
+          "cve": "CVE-2026-21869",
+          "severity": "low",
+          "published": "2026-01-05",
+          "summary": "Out-of-bounds Write in llama.cpp llama-server",
+          "patched": ">= c78fb90",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "ggml-org/llama.cpp:llama.cpp"
+          ]
+        },
+        {
+          "ghsa": "GHSA-vgg9-87g3-85w8",
+          "cve": "CVE-2025-53630",
+          "severity": "high",
+          "published": "2025-07-10",
+          "summary": "Integer Overflow in GGUF Parser can lead to Heap Out-of-Bounds Read/Write in gguf",
+          "patched": "26a48ad",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "llama.cpp:"
+          ]
+        },
+        {
+          "ghsa": "GHSA-7rxv-5jhh-j6xx",
+          "cve": "CVE-2025-52566",
+          "severity": "high",
+          "published": "2025-06-23",
+          "summary": "Tokenizer signed vs. unsigned heap overflow",
+          "patched": "b5721",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "llama.cpp:"
+          ]
+        },
+        {
+          "ghsa": "GHSA-g4cc-763q-h9h6",
+          "cve": null,
+          "severity": "medium",
+          "published": "2025-06-25",
+          "summary": "Heap-based Buffer Over-read in llama_model_load",
+          "patched": "c33fe8b8",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "llama.cpp:"
+          ]
+        },
+        {
+          "ghsa": "GHSA-8wwf-w4qm-gpqr",
+          "cve": "CVE-2025-49847",
+          "severity": "high",
+          "published": "2025-06-14",
+          "summary": "Buffer Overflow in llama.cpp via Malicious GGUF Model – Exploitable via Vocabulary Loading (`llama_vocab::impl::token_to_piece`)",
+          "patched": ">= b5662",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":llama.cpp"
+          ]
+        },
+        {
+          "ghsa": "GHSA-wcr5-566p-9cwj",
+          "cve": "CVE-2024-42479",
+          "severity": "critical",
+          "published": "2024-08-12",
+          "summary": "Write-what-where in rpc_server::set_tensor",
+          "patched": ">= b3561",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":"
+          ]
+        },
+        {
+          "ghsa": "GHSA-5vm9-p64x-gqw9",
+          "cve": "CVE-2024-42478",
+          "severity": "medium",
+          "published": "2024-08-12",
+          "summary": "Arbitrary Address Read in rpc_server::get_tensor",
+          "patched": ">= b3561",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":"
+          ]
+        },
+        {
+          "ghsa": "GHSA-mqp6-7pv6-fqjf",
+          "cve": "CVE-2024-42477",
+          "severity": "medium",
+          "published": "2024-08-12",
+          "summary": "global-buffer-overflow in ggml_type_size",
+          "patched": ">= b3561",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":"
+          ]
+        },
+        {
+          "ghsa": "GHSA-49q7-2jmh-92fp",
+          "cve": "CVE-2024-41130",
+          "severity": "medium",
+          "published": "2024-07-22",
+          "summary": "Null pointer dereference in gguf_init_from_file",
+          "patched": "b3427",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":"
+          ]
+        },
+        {
+          "ghsa": "GHSA-p5mv-gjc5-mwqv",
+          "cve": "CVE-2024-32878",
+          "severity": "high",
+          "published": "2024-04-26",
+          "summary": "Use of Uninitialized Variable Vulnerability in gguf_init_from_file",
+          "patched": "b2740",
+          "openPackages": [],
+          "status": "patch-unconfirmed",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            ":llama.cpp"
+          ]
+        },
+        {
+          "id": "CVE-2026-78148",
+          "ghsa": "GHSA-7hmx-m2vh-6qvw",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "fix-unreleased",
+          "why": "fix PR(s) #25670 not merged or not in latest release v0.7.0"
+        },
+        {
+          "id": "CVE-2026-2069",
+          "ghsa": "GHSA-f8m3-93xm-637c",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "fix-unreleased",
+          "why": "fix PR(s) #18993 not merged or not in latest release v0.7.0"
+        },
+        {
+          "id": "CVE-2026-17500",
+          "ghsa": "GHSA-92r6-r5fj-xg82",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "fix-unreleased",
+          "why": "fix PR(s) #25308 not merged or not in latest release v0.7.0"
+        },
+        {
+          "id": "CVE-2026-17501",
+          "ghsa": "GHSA-h334-888w-8prr",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "fix-unreleased",
+          "why": "fix PR(s) #25308 not merged or not in latest release v0.7.0"
+        },
+        {
+          "id": "CVE-2026-18581",
+          "ghsa": "GHSA-3732-9c5p-7h79",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-78147",
+          "ghsa": "GHSA-f4vj-w5xq-5xph",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-86317",
+          "ghsa": "GHSA-c676-w283-jfxr",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        }
+      ]
     }
   },
   "storytold/photocraft": {
@@ -22203,69 +23022,69 @@
   },
   "tmux/tmux": {
     "repo": "tmux/tmux",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "2 open CVE(s) found by search: CVE-2019-9535 critical (unpatched), CVE-2020-27347 high (unpatched)"
+      "2 open after registry recheck: GHSA-xp5q-c655-9565 high (no fixed version in the advisory data or text); GHSA-jwm6-6mgm-w3f5 critical (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/tmux/tmux/security/advisories",
         "count": 0,
         "latestRelease": "3.8.0",
         "items": []
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "tmux/tmux CVE",
           "tmux/tmux vulnerability",
           "tmux/tmux malware",
           "tmux/tmux scam"
         ],
-        "results": 29,
+        "results": 14,
         "errors": 0,
         "hits": [
           {
-            "query": "tmux/tmux malware",
-            "title": "The article probably written for non-Linux user who looking forward to switch side. Hardware compatibility, [almost]malw",
-            "url": "https://news.ycombinator.com/item?id=5187341",
-            "published": "2013-02-08",
-            "matched": "malware",
-            "kind": "before-repo"
+            "query": "tmux/tmux CVE",
+            "title": "Security Advisories · tmux/tmux · GitHub",
+            "url": "https://github.com/tmux/tmux/security/advisories",
+            "published": "N/A",
+            "matched": "vulnerab",
+            "kind": "own-security-page"
           },
           {
-            "query": "tmux/tmux malware",
-            "title": "Those people are fine just using arrows and backspace, as it isn&#x27;t worth it to min-max this. I  don&#x27;t  want to",
-            "url": "https://news.ycombinator.com/item?id=49271866",
-            "published": "2026-08-12",
-            "matched": "malware",
+            "query": "tmux/tmux CVE",
+            "title": "Information on source package tmux",
+            "url": "https://security-tracker.debian.org/tracker/source-package/tmux",
+            "published": "N/A",
+            "matched": "CVE-2026-11623",
             "kind": "report"
           },
           {
-            "query": "tmux/tmux malware",
-            "title": "My favourite less known app:  https:&#x2F;&#x2F;www.inyourface.app&#x2F;  - This amazing app throws up a fullscreen moda",
-            "url": "https://news.ycombinator.com/item?id=40629148",
-            "published": "2024-06-10",
-            "matched": "exfiltrat",
+            "query": "tmux/tmux CVE",
+            "title": "oss-security - tmux 3.6b fixes CVE-2026-11623",
+            "url": "https://www.openwall.com/lists/oss-security/2026/06/15/7",
+            "published": "2026-06-15",
+            "matched": "CVE-2026-11623",
             "kind": "report"
           },
           {
-            "query": "tmux/tmux malware",
-            "title": "There&#x27;s no function, given the PID of a target process, to inject code directly. In order to load code from a libra",
-            "url": "https://news.ycombinator.com/item?id=21931201",
-            "published": "2020-01-01",
-            "matched": "malicious",
+            "query": "tmux/tmux CVE",
+            "title": "[USN-8428-1] tmux vulnerability",
+            "url": "https://lists.ubuntu.com/archives/ubuntu-security-announce/2026-June/010757.html",
+            "published": "N/A",
+            "matched": "vulnerab",
             "kind": "report"
           },
           {
-            "query": "tmux/tmux malware",
-            "title": "While it&#x27;s not the intention to replace the binary itself, I&#x27;m just not a fan of the idea of substituting  sys",
-            "url": "https://news.ycombinator.com/item?id=14924143",
-            "published": "2017-08-03",
-            "matched": "malicious",
-            "kind": "report"
+            "query": "tmux/tmux CVE",
+            "title": "NVD - CVE-2020-27347",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-27347",
+            "published": "N/A",
+            "matched": "CVE-2020-27347",
+            "kind": "cve-record"
           },
           {
             "query": "tmux/tmux CVE database",
@@ -22281,14 +23100,6 @@
             "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-9535",
             "published": "2019-10-09",
             "matched": "CVE-2019-9535",
-            "kind": "cve-record"
-          },
-          {
-            "query": "tmux/tmux CVE database",
-            "title": "NVD - CVE-2020-27347",
-            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-27347",
-            "published": "2020-11-06",
-            "matched": "CVE-2020-27347",
             "kind": "cve-record"
           },
           {
@@ -22340,18 +23151,11 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 9
         },
         "cves": [
-          {
-            "id": "CVE-2019-9535",
-            "ghsa": "GHSA-jwm6-6mgm-w3f5",
-            "severity": "critical",
-            "fix": null,
-            "status": "unpatched"
-          },
           {
             "id": "CVE-2020-27347",
             "ghsa": "GHSA-xp5q-c655-9565",
@@ -22360,18 +23164,25 @@
             "status": "unpatched"
           },
           {
+            "id": "CVE-2019-9535",
+            "ghsa": "GHSA-jwm6-6mgm-w3f5",
+            "severity": "critical",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
             "id": "CVE-2023-46300",
             "ghsa": "GHSA-2rrh-8pm2-3q2c",
             "severity": "critical",
-            "fix": "3.4.20",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2024-38396",
             "ghsa": "GHSA-75hq-pffg-m782",
             "severity": "critical",
-            "fix": "3.5.2",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-26068",
@@ -22387,8 +23198,8 @@
             "id": "CVE-2026-11623",
             "ghsa": "GHSA-4cw9-jpqf-99x8",
             "severity": "low",
-            "fix": "3.7.0",
-            "status": "patched"
+            "fix": null,
+            "status": "unpatched"
           },
           {
             "id": "CVE-2026-48980",
@@ -22398,21 +23209,98 @@
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "tmux/tmux",
-        "stars": 49858,
-        "forks": 2954,
+        "stars": 49869,
+        "forks": 2955,
         "watchers": 488,
-        "openIssues": 32,
+        "openIssues": 33,
         "hasIssues": true,
-        "contributors": 23,
-        "commits": 12484,
+        "contributors": 55,
+        "commits": 12503,
         "created": "2015-06-03",
         "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 4154,
+        "ageDays": 4153,
+        "homepage": null,
+        "license": "ISC",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "id": "CVE-2020-27347",
+          "ghsa": "GHSA-xp5q-c655-9565",
+          "severity": "high",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2019-9535",
+          "ghsa": "GHSA-jwm6-6mgm-w3f5",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": []
+        },
+        {
+          "id": "CVE-2023-46300",
+          "ghsa": "GHSA-2rrh-8pm2-3q2c",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 3.4.20, latest published 3.8.0",
+          "packages": []
+        },
+        {
+          "id": "CVE-2024-38396",
+          "ghsa": "GHSA-75hq-pffg-m782",
+          "severity": "critical",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 3.5.2, latest published 3.8.0",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-26068",
+          "status": "unknown",
+          "note": "not in GitHub advisory database",
+          "recheck": "unconfirmed",
+          "why": "advisory could not be loaded"
+        },
+        {
+          "id": "CVE-2026-47270",
+          "status": "unknown",
+          "note": "not in GitHub advisory database",
+          "recheck": "unconfirmed",
+          "why": "advisory could not be loaded"
+        },
+        {
+          "id": "CVE-2026-11623",
+          "ghsa": "GHSA-4cw9-jpqf-99x8",
+          "severity": "low",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix 3.7.0, latest published 3.8.0",
+          "packages": []
+        },
+        {
+          "id": "CVE-2026-48980",
+          "status": "unknown",
+          "note": "not in GitHub advisory database",
+          "recheck": "unconfirmed",
+          "why": "advisory could not be loaded"
+        }
+      ]
     }
   },
   "coder/mux": {
@@ -22554,14 +23442,14 @@
   },
   "wger-project/wger": {
     "repo": "wger-project/wger",
-    "checked": "2026-10-16",
+    "checked": "2026-10-17",
     "verdict": "FAIL",
     "reasons": [
-      "1 open advisory(ies): GHSA-mw8f-w6p8-xrf4 high (unpatched)"
+      "1 open after registry recheck: GHSA-mw8f-w6p8-xrf4 high (no fixed version in the advisory data or text)"
     ],
     "checks": {
       "advisories": {
-        "source": "public-page",
+        "source": "github-api",
         "url": "https://github.com/wger-project/wger/security/advisories",
         "count": 17,
         "latestRelease": "2.7.0",
@@ -22573,20 +23461,20 @@
             "published": "2026-05-14",
             "summary": "Sibling-unpatched code paths in wger/core/views/user.py retain the same gym=None authorization gap as GHSA-mhc8-p3jx-84mm — cross-tenant acc",
             "patched": null,
-            "openPackages": [],
-            "status": "unpatched",
-            "latestPublished": "2.7.0"
+            "openPackages": [
+              "wger"
+            ],
+            "status": "unpatched"
           },
           {
             "ghsa": "GHSA-v25j-wqcw-fvhj",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-05-08",
             "summary": "Uncontrolled Resource Consumption in wger",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-x249-cx55-2h87",
@@ -22596,19 +23484,17 @@
             "summary": "Trainer Privilege Escalation - Improper Privilege Management",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-rjpf-7pf5-q54x",
             "cve": "CVE-2026-46438",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-10-04",
             "summary": "Cross-User Data Corruption via Missing Ownership Check on WorkoutLog.slot_entry",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-cj9g-27ph-4cgv",
@@ -22618,8 +23504,7 @@
             "summary": "IDOR: Authenticated Users Can Read Any User's Private Workout Session Data via Template Routine API",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-9qpr-vc49-hqg2",
@@ -22629,30 +23514,27 @@
             "summary": "Privilege escalation via trainer-login session chaining allows gym trainer to impersonate gym manager",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-xf64-4pmc-h8qf",
             "cve": "CVE-2026-45161",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-10-04",
             "summary": "wger: trainer_login accepts GET - CSRF bypass enables forced session rebinding",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-vqv8-j3mj-wjxj",
             "cve": null,
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-04-28",
             "summary": "wger: trainer_login open redirect - ?next= parameter not validated against host",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-c72h-82w6-rqfp",
@@ -22662,8 +23544,7 @@
             "summary": "wger: cross-tenant admin notes/contracts leak via gym=None bypass (5 views)",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-xq9m-hmp9-fw87",
@@ -22673,8 +23554,7 @@
             "summary": "wger: CSV/TSV formula injection in gym member export (first_name/last_name)",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-mhc8-p3jx-84mm",
@@ -22684,19 +23564,17 @@
             "summary": "wger: cross-tenant password reset and plaintext disclosure via gym=None bypass",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-v3x9-6gg8-c2c9",
             "cve": "CVE-2026-46437",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-10-04",
             "summary": "API credentials remain valid after logout/password change",
             "patched": ">= 2.6",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-6f54-qjvm-wwq3",
@@ -22706,8 +23584,7 @@
             "summary": "Stored XSS via Unescaped License Attribution Fields",
             "patched": ">= 2.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-xppv-4jrx-qf8m",
@@ -22717,8 +23594,7 @@
             "summary": "Broken Access Control in Global Gym Configuration Update Endpoint",
             "patched": ">= 2.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-42cr-w2gr-m54q",
@@ -22728,44 +23604,81 @@
             "summary": "IDOR via user-unscoped cache keys on routine API actions exposes workout data",
             "patched": ">=2.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-g8gc-6c4h-jg86",
             "cve": "CVE-2026-27839",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-02-26",
             "summary": "IDOR in nutritional_values endpoints exposes private dietary data via direct ORM lookup",
             "patched": ">=2.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           },
           {
             "ghsa": "GHSA-xf68-8hjw-7mpm",
             "cve": "CVE-2026-27835",
-            "severity": "moderate",
+            "severity": "medium",
             "published": "2026-02-26",
             "summary": "IDOR in RepetitionsConfig and MaxRepetitionsConfig API leaks other users workout data",
             "patched": ">=2.5",
             "openPackages": [],
-            "status": "patched",
-            "latestPublished": "2.7.0"
+            "status": "patched"
           }
         ]
       },
       "searches": {
-        "engine": "hn+nvd",
+        "engine": "exa+nvd",
         "queries": [
           "wger-project/wger CVE",
           "wger-project/wger vulnerability",
           "wger-project/wger malware",
           "wger-project/wger scam"
         ],
-        "results": 12,
+        "results": 7,
         "errors": 0,
         "hits": [
+          {
+            "query": "wger-project/wger malware",
+            "title": "Overview · wger-project/wger · GitHub",
+            "url": "https://github.com/wger-project/wger/security",
+            "published": "N/A",
+            "matched": "Vulnerab",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "wger-project/wger malware",
+            "title": "wger: CSV/TSV formula injection in gym member export (first_name/last_name) · Advisory · wger-project/wger · GitHub",
+            "url": "https://github.com/wger-project/wger/security/advisories/GHSA-xq9m-hmp9-fw87",
+            "published": "2026-04-28",
+            "matched": "exfiltrat",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "wger-project/wger malware",
+            "title": "Stored XSS via Unescaped License Attribution Fields · Advisory · wger-project/wger · GitHub",
+            "url": "https://github.com/wger-project/wger/security/advisories/GHSA-6f54-qjvm-wwq3",
+            "published": "2026-04-15",
+            "matched": "malicious",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "wger-project/wger malware",
+            "title": "wger: cross-tenant password reset and plaintext disclosure via gym=None bypass · Advisory · wger-project/wger · GitHub",
+            "url": "https://github.com/wger-project/wger/security/advisories/GHSA-mhc8-p3jx-84mm",
+            "published": "2026-04-28",
+            "matched": "VULNERAB",
+            "kind": "own-security-page"
+          },
+          {
+            "query": "wger-project/wger malware",
+            "title": "Privilege escalation via trainer-login session chaining allows gym trainer to impersonate gym manager · Advisory · wger-project/wger · GitHu",
+            "url": "https://github.com/wger-project/wger/security/advisories/GHSA-9qpr-vc49-hqg2",
+            "published": "2026-05-14",
+            "matched": "Vulnerab",
+            "kind": "own-security-page"
+          },
           {
             "query": "wger-project/wger CVE database",
             "title": "NVD - CVE-2022-2650",
@@ -22783,7 +23696,7 @@
             "kind": "cve-record"
           }
         ],
-        "fallbacks": 4,
+        "fallbacks": 0,
         "nvd": {
           "results": 2
         },
@@ -22792,34 +23705,66 @@
             "id": "CVE-2022-2650",
             "ghsa": "GHSA-gr58-76rp-mmg4",
             "severity": "critical",
-            "fix": "2.2.0",
+            "fix": "2.2",
             "status": "patched"
           },
           {
             "id": "CVE-2026-82544",
             "ghsa": "GHSA-frcw-fw5q-gh4g",
-            "severity": "moderate",
+            "severity": "medium",
             "fix": null,
-            "status": "fix-unverified"
+            "status": "unpatched"
           }
         ]
       },
       "activity": {
-        "source": "public-page",
         "canonical": "wger-project/wger",
-        "stars": 7133,
-        "forks": 1037,
+        "stars": 7135,
+        "forks": 1040,
         "watchers": 78,
         "openIssues": 235,
         "hasIssues": true,
-        "contributors": 281,
+        "contributors": 362,
         "commits": 9704,
         "created": "2013-01-19",
         "pushed": "2026-10-15",
         "archived": false,
-        "ageDays": 5019,
+        "ageDays": 5018,
+        "homepage": "https://wger.de",
+        "license": "AGPL-3.0",
         "flags": []
       }
+    },
+    "recheck": {
+      "date": "2026-10-17",
+      "items": [
+        {
+          "ghsa": "GHSA-mw8f-w6p8-xrf4",
+          "cve": null,
+          "severity": "high",
+          "published": "2026-05-14",
+          "summary": "Sibling-unpatched code paths in wger/core/views/user.py retain the same gym=None authorization gap as GHSA-mhc8-p3jx-84mm — cross-tenant acc",
+          "patched": null,
+          "openPackages": [
+            "wger"
+          ],
+          "status": "unpatched",
+          "recheck": "unpatched",
+          "why": "no fixed version in the advisory data or text",
+          "packages": [
+            "pip:wger"
+          ]
+        },
+        {
+          "id": "CVE-2026-82544",
+          "ghsa": "GHSA-frcw-fw5q-gh4g",
+          "severity": "medium",
+          "fix": null,
+          "status": "unpatched",
+          "recheck": "patched",
+          "why": "fix PR(s) #2415 merged and in release 2.7"
+        }
+      ]
     }
   }
 }

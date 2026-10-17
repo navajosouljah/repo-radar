@@ -41,7 +41,9 @@ rebuild. Design context: `PRODUCT.md` (who it's for and the principles).
   GitHub's public pages when the API isn't there (the cloud). `candidates.mjs` gathers and scores
   the week's candidates (its GitHub search for the newest repos finds candidates only; it never
   counts as an independent source). `picks-lib.mjs` holds the gain cap and the line each Top 10
-  card shows in place of total stars. `shots.mjs` finds a real picture of a product. `build.mjs` makes pages from
+  card shows in place of total stars. `shots.mjs` finds a real picture of a product. `youtube-prescan.sh` is the
+  Thursday-night YouTube scan from this Mac (launchd `com.jjgilmore.repo-radar-youtube`, 8 PM); it
+  writes `data/candidates/<friday>.youtube.json`, which the Friday run merges in. `build.mjs` makes pages from
   data. `verify.mjs` and the `*.test.mjs` tests must pass. `ship.sh` deploys.
 - `data/tips.md`: repos JJ spotted himself. When he says "add <repo> to the radar tips", append it
   there; the Friday run must evaluate it.

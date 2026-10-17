@@ -43,7 +43,10 @@ scores them, applies the floors and the 8-week cool-down, and writes `data/candi
   line. Never drop it silently.
 - **Fail closed:** if the script prints `FAIL CLOSED` (fewer than 3 discovery sources reached), stop.
   Do not push. Report which sources failed.
-- **YouTube** can't be read from the cloud (it answers with a CAPTCHA). Don't add YouTube coverage
+- **YouTube** can't be read from the cloud (it answers with a CAPTCHA). JJ's Mac runs
+  `scripts/youtube-prescan.sh` on Thursday nights, which saves the scan to
+  `data/candidates/<date>.youtube.json`; `candidates.mjs` merges it in automatically and reports
+  `youtube=ok (... pre-scan <date>)`. If that file is missing, YouTube was not scanned. Don't add YouTube coverage
   from search results unless the page you actually read shows the view count. Otherwise the `method`
   line says YouTube was not scanned.
 - **The search finds, it never qualifies.** `github-search` is not one of the 6 discovery sources: a

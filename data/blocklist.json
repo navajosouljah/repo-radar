@@ -54,12 +54,6 @@
     "reason": "2 open after registry recheck: GHSA-h5w4-vjv4-9r5q low (no fixed version in the advisory data or text); GHSA-8244-8vpr-vp9c critical (no fixed version in the advisory data or text); all searches failed"
   },
   {
-    "repo": "jellyfin/jellyfin",
-    "date": "2026-09-27",
-    "kind": "open-advisories",
-    "reason": "1 open after registry recheck: GHSA-4vx8-xhc9-qg6x medium (no fixed version in the advisory data or text)"
-  },
-  {
     "repo": "khoj-ai/khoj",
     "date": "2026-09-27",
     "kind": "open-advisories",
@@ -210,22 +204,10 @@
     "reason": "1 open advisory(ies): GHSA-mh7w-q9jx-chg2 high (unpatched)"
   },
   {
-    "repo": "akitaonrails/ai-memory",
-    "date": "2026-10-09",
-    "kind": "open-advisories",
-    "reason": "3 open advisory(ies): GHSA-2jrq-p5rw-6wvv low (unpatched), GHSA-7qj3-7wqw-m5w6 moderate (unpatched), GHSA-vh98-jf5c-jw45 low (unpatched) | activity check failed: repo page unreadable (no star count on it)"
-  },
-  {
     "repo": "deepseek-ai/deepseek-harness",
     "date": "2026-10-16",
     "kind": "open-advisories",
     "reason": "5 open CVE(s) found by search: CVE-2026-101078 low (unpatched), CVE-2026-101102 moderate (unpatched), CVE-2026-101131 low (unpatched), CVE-2026-108788 low (unpatched), CVE-2026-108789 low (unpatched)"
-  },
-  {
-    "repo": "hugohe3/ppt-master",
-    "date": "2026-10-16",
-    "kind": "open-advisories",
-    "reason": "2 open advisory(ies): GHSA-8qv4-8xgv-jxp5 moderate (unpatched), GHSA-mv87-79gf-mh4v moderate (unpatched)"
   },
   {
     "repo": "openai/codex",

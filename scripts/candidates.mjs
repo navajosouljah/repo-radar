@@ -20,6 +20,10 @@
 // agent's job. Star snapshots are appended to metrics.json dated the day they were measured.
 //
 // Usage: node scripts/candidates.mjs [YYYY-MM-DD] [--no-enrich] [--youtube] [--dry]
+//        node scripts/candidates.mjs YYYY-MM-DD --youtube-only
+//   --youtube-only  run just the YouTube scan (needs yt-dlp) and save its hits to
+//              data/candidates/<date>.youtube.json. Any later run for the same date (the cloud
+//              routine, which cannot reach YouTube) merges that file in as the youtube source.
 //        node scripts/candidates.mjs YYYY-MM-DD --rescore
 //   --rescore  recompute floors and scores from data/candidates/<date>.json without fetching
 //              anything, after adding sources or facts by hand. Facts go in
@@ -37,6 +41,9 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const DATE = argv.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a)) || TODAY;
 const FILE = `${ROOT}data/candidates/${DATE}.json`;
 const FACTS = `${ROOT}data/candidates/${DATE}.facts.json`;
+const YT = `${ROOT}data/candidates/${DATE}.youtube.json`;
+const YTDLP = process.env.YTDLP || 'yt-dlp';
+const YT_ONLY = argv.includes('--youtube-only');
 const RESCORE = argv.includes('--rescore');
 const UA = { 'User-Agent': 'Mozilla/5.0 (repo-radar candidates)' };
 const DISCOVERY = ['github-trending', 'trendshift', 'skills.sh', 'findarepo', 'hacker-news', 'youtube'];
@@ -74,7 +81,7 @@ if (RESCORE) {
   };
 
   // 1. GitHub Trending
-  await source('github-trending', async () => {
+  if (!YT_ONLY) await source('github-trending', async () => {
     let seen = 0;
     for (const since of ['daily', 'weekly', 'monthly']) for (const lang of ['', 'javascript', 'typescript', 'python']) {
       const html = await text(`https://github.com/trending${lang ? '/' + lang : ''}?since=${since}`);
@@ -94,7 +101,7 @@ if (RESCORE) {
   });
 
   // 2. Trendshift
-  await source('trendshift', async () => {
+  if (!YT_ONLY) await source('trendshift', async () => {
     let seen = 0;
     for (const path of ['', 'monthly']) {
       const html = await text(`https://trendshift.io/${path}`);
@@ -105,7 +112,7 @@ if (RESCORE) {
   });
 
   // 3. skills.sh (installs are per skill; summed per repo)
-  await source('skills.sh', async () => {
+  if (!YT_ONLY) await source('skills.sh', async () => {
     const per = new Map();
     for (const path of ['', 'trending', 'hot']) {
       const md = await jina(`https://skills.sh/${path}`);
@@ -123,7 +130,7 @@ if (RESCORE) {
   });
 
   // 4. findarepo digests, last 7 days
-  await source('findarepo', async () => {
+  if (!YT_ONLY) await source('findarepo', async () => {
     let n = 0;
     for (let i = 0; i < 7; i++) {
       const d = new Date(Date.parse(DATE) - i * 864e5).toISOString().slice(0, 10);
@@ -139,7 +146,7 @@ if (RESCORE) {
   });
 
   // 5. Hacker News: stories with 100+ points that link GitHub, last 14 days
-  await source('hacker-news', async () => {
+  if (!YT_ONLY) await source('hacker-news', async () => {
     const since = Math.floor(Date.parse(DATE) / 1000) - 14 * 86400;
     const d = JSON.parse(await text(`https://hn.algolia.com/api/v1/search?query=github.com&tags=story&numericFilters=created_at_i%3E${since},points%3E100&hitsPerPage=100`));
     let n = 0;
@@ -153,10 +160,10 @@ if (RESCORE) {
   });
 
   // 6. YouTube (local only): repo links in descriptions of recent 25K+ view videos
-  if (argv.includes('--youtube')) await source('youtube', async () => {
+  if (argv.includes('--youtube') || YT_ONLY) await source('youtube', async () => {
     let n = 0;
     for (const q of ['github trending repos this week', 'best github repos', 'open source ai tools github', 'claude code skills github']) {
-      const { stdout } = await run('yt-dlp', [`ytsearchdate25:${q}`, '--dump-json', '--no-warnings', '--skip-download', '--dateafter', `now-14days`], { maxBuffer: 200 << 20, timeout: 240000 });
+      const { stdout } = await run(YTDLP, [`ytsearch25:${q}`, '--dump-json', '--no-warnings', '--skip-download', '--dateafter', `now-14days`, '--socket-timeout', '30'], { maxBuffer: 200 << 20, timeout: 240000 });
       for (const line of stdout.split('\n').filter(Boolean)) {
         const v = JSON.parse(line);
         if ((v.view_count || 0) < 25000) continue;
@@ -168,7 +175,22 @@ if (RESCORE) {
     }
     return `${n} repo links`;
   });
+  else if (existsSync(YT)) {
+    // A Mac ran `--youtube-only` for this date (scripts/youtube-prescan.sh, Thursday night). Merge its hits.
+    const saved = JSON.parse(readFileSync(YT, 'utf8'));
+    for (const [repo, yt] of Object.entries(saved.hits || {})) add(repo, { sources: { youtube: yt } });
+    sources.youtube = { reached: true, detail: `${Object.keys(saved.hits || {}).length} repo links (pre-scan ${saved.scanned})` };
+  }
   else sources.youtube = { reached: false, detail: 'skipped (run with --youtube on a machine with yt-dlp)' };
+
+  if (YT_ONLY) {
+    const hits = {};
+    for (const c of cand.values()) if (c.sources.youtube) hits[c.repo] = c.sources.youtube;
+    mkdirSync(`${ROOT}data/candidates`, { recursive: true });
+    writeFileSync(YT, JSON.stringify({ date: DATE, scanned: TODAY, source: sources.youtube, hits }, null, 2) + '\n');
+    console.log(`youtube: ${sources.youtube.reached ? 'ok' : 'NO'} (${sources.youtube.detail}) -> ${Object.keys(hits).length} repos saved to data/candidates/${DATE}.youtube.json`);
+    process.exit(sources.youtube.reached ? 0 : 1);
+  }
 
   // GitHub search: the newest repos by stars (JJ, Oct 3 2026). The trending pages show who is hot
   // that morning; a repo that peaked on Tuesday is gone by Friday. This asks GitHub directly, so a
