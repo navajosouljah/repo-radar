@@ -585,22 +585,22 @@
   },
   "zai-org/ZCode": {
     "repo": "zai-org/ZCode",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "FAIL",
     "reasons": [
       "blocklisted for conduct: Credible reports (The Register, RuntimeWire, SCMP, Sep 18-22 2026) that ZCode silently packaged and uploaded users' entire workspaces including .git history to vendor cloud storage, even with the relevant settings off. Vendor claims remediation, but server-side retention is unverifiable and the repo is a 3-commit code drop (2 contributors, 6.9K stars in 7 days), so the published code can't be veri",
-      "activity: 6888 stars on 2 contributor(s); 6888 stars on only 3 commit(s)"
+      "activity: 8151 stars on 2 contributor(s); 8151 stars on only 6 commit(s)"
     ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/zai-org/ZCode/security/advisories",
         "count": 0,
         "latestRelease": "3.14.3",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "zai-org/ZCode CVE",
           "zai-org/ZCode vulnerability",
@@ -617,23 +617,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "zai-org/ZCode",
-        "stars": 6888,
-        "forks": 2077,
-        "watchers": 41,
-        "openIssues": 11,
+        "stars": 8151,
+        "forks": 2501,
+        "watchers": 54,
+        "openIssues": 0,
         "hasIssues": false,
         "contributors": 2,
-        "commits": 3,
+        "commits": 6,
         "created": "2026-09-20",
-        "pushed": "2026-09-24",
+        "pushed": "2026-10-20",
         "archived": false,
-        "ageDays": 7,
-        "homepage": "https://zcode.z.ai/",
-        "license": "Apache-2.0",
+        "ageDays": 34,
         "flags": [
-          "6888 stars on 2 contributor(s)",
-          "6888 stars on only 3 commit(s)"
+          "8151 stars on 2 contributor(s)",
+          "8151 stars on only 6 commit(s)"
         ]
       }
     },
@@ -641,8 +640,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "Credible reports (The Register, RuntimeWire, SCMP, Sep 18-22 2026) that ZCode silently packaged and uploaded users' entire workspaces including .git history to vendor cloud storage, even with the relevant settings off. Vendor claims remediation, but server-side retention is unverifiable and the repo is a 3-commit code drop (2 contributors, 6.9K stars in 7 days), so the published code can't be verified against the distributed app."
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "activepieces/activepieces": {
     "repo": "activepieces/activepieces",
@@ -849,7 +847,7 @@
   },
   "affaan-m/ECC": {
     "repo": "affaan-m/ECC",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -880,53 +878,67 @@
       "activity": {
         "source": "public-page",
         "canonical": "affaan-m/ECC",
-        "stars": 270942,
-        "forks": 40506,
-        "watchers": null,
-        "openIssues": 340,
+        "stars": 286936,
+        "forks": 42557,
+        "watchers": 1414,
+        "openIssues": 263,
         "hasIssues": true,
-        "contributors": 409,
-        "commits": 3043,
+        "contributors": 457,
+        "commits": 3957,
         "created": "2026-01-18",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-20",
         "archived": false,
-        "ageDays": 258,
+        "ageDays": 279,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "akitaonrails/ai-memory": {
     "repo": "akitaonrails/ai-memory",
-    "checked": "2026-10-17",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-23",
+    "verdict": "FAIL",
+    "reasons": [
+      "4 open advisory(ies): GHSA-9xw8-cg9v-h9gw high (unpatched), GHSA-2jrq-p5rw-6wvv low (unpatched), GHSA-7qj3-7wqw-m5w6 moderate (unpatched), GHSA-vh98-jf5c-jw45 low (unpatched)"
+    ],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/akitaonrails/ai-memory/security/advisories",
-        "count": 6,
-        "latestRelease": "3.1.0",
+        "count": 7,
+        "latestRelease": "3.2.2",
         "items": [
+          {
+            "ghsa": "GHSA-9xw8-cg9v-h9gw",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-19",
+            "summary": "ai-memory: Request-Controlled eval Configuration in POST /admin/auto-improve Leads to Server-Side Remote Command Execution (RCE)",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "3.2.2"
+          },
           {
             "ghsa": "GHSA-gcpc-88hm-3xqr",
             "cve": null,
             "severity": "low",
             "published": "2026-10-12",
             "summary": "Capture exclusions (ignore_paths) could be bypassed, capturing excluded file content",
-            "patched": "2.6.4",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "3.2.2"
           },
           {
             "ghsa": "GHSA-6mc4-46pr-w82w",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-10-12",
             "summary": "Cross-origin browser requests could change state on an unauthenticated server",
-            "patched": "2.6.4",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "3.2.2"
           },
           {
             "ghsa": "GHSA-2jrq-p5rw-6wvv",
@@ -934,19 +946,21 @@
             "severity": "low",
             "published": "2026-10-09",
             "summary": "Wiki page reads and writes follow symlinks out of the project tree",
-            "patched": "2.6.0",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "unpatched",
+            "latestPublished": "3.2.2"
           },
           {
             "ghsa": "GHSA-7qj3-7wqw-m5w6",
             "cve": null,
-            "severity": "medium",
+            "severity": "moderate",
             "published": "2026-10-09",
             "summary": "Database user without write access can modify the shared global preferences scope",
-            "patched": "2.6.0",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "unpatched",
+            "latestPublished": "3.2.2"
           },
           {
             "ghsa": "GHSA-gf78-hf8g-vffm",
@@ -954,9 +968,10 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "memory_read_page include_related exposes metadata of pages in restricted projects",
-            "patched": "2.5.2",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "3.2.2"
           },
           {
             "ghsa": "GHSA-vh98-jf5c-jw45",
@@ -964,60 +979,51 @@
             "severity": "low",
             "published": "2026-10-01",
             "summary": "ignore_paths capture exclusion fails open for a path with a leading double slash",
-            "patched": "2.5.1",
+            "patched": null,
             "openPackages": [],
-            "status": "patched"
+            "status": "unpatched",
+            "latestPublished": "3.2.2"
           }
         ]
       },
       "searches": {
-        "engine": "exa+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "akitaonrails/ai-memory CVE",
           "akitaonrails/ai-memory vulnerability",
           "akitaonrails/ai-memory malware",
           "akitaonrails/ai-memory scam"
         ],
-        "results": 15,
+        "results": 10,
         "errors": 0,
-        "hits": [
-          {
-            "query": "akitaonrails/ai-memory vulnerability",
-            "title": "Overview · akitaonrails/ai-memory · GitHub",
-            "url": "https://github.com/akitaonrails/ai-memory/security",
-            "published": "N/A",
-            "matched": "vulnerab",
-            "kind": "own-security-page"
-          }
-        ],
-        "fallbacks": 0,
+        "hits": [],
+        "fallbacks": 4,
         "nvd": {
           "results": 0
         },
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "akitaonrails/ai-memory",
-        "stars": 9614,
-        "forks": 690,
-        "watchers": 52,
-        "openIssues": 22,
+        "stars": 12899,
+        "forks": 901,
+        "watchers": 62,
+        "openIssues": 23,
         "hasIssues": true,
-        "contributors": 153,
-        "commits": 3788,
+        "contributors": 168,
+        "commits": 4577,
         "created": "2026-05-21",
-        "pushed": "2026-10-16",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 148,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 156,
         "flags": []
       }
     }
   },
   "addyosmani/agent-skills": {
     "repo": "addyosmani/agent-skills",
-    "checked": "2026-10-16",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -1048,17 +1054,17 @@
       "activity": {
         "source": "public-page",
         "canonical": "addyosmani/agent-skills",
-        "stars": 107224,
-        "forks": 11157,
-        "watchers": 538,
-        "openIssues": 128,
+        "stars": 109802,
+        "forks": 11449,
+        "watchers": 545,
+        "openIssues": 148,
         "hasIssues": true,
         "contributors": 83,
         "commits": 702,
         "created": "2026-02-15",
         "pushed": "2026-10-13",
         "archived": false,
-        "ageDays": 244,
+        "ageDays": 251,
         "flags": []
       }
     },
@@ -1119,7 +1125,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was a plugin-directory scan: grade A, 0 findings across 26 rules (agentmods.dev)."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "alibaba/open-code-review": {
     "repo": "alibaba/open-code-review",
@@ -1184,7 +1191,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own SECURITY.md."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "andrewyng/openworker": {
     "repo": "andrewyng/openworker",
@@ -1232,7 +1240,8 @@
         "ageDays": 89,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "anomalyco/opencode": {
     "repo": "anomalyco/opencode",
@@ -1319,7 +1328,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "Datadog's RCE finding is GHSA-632h-h47v-g4x4, fixed in 1.18.22; the latest release is 1.18.32."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "anthropics/claude-code": {
     "repo": "anthropics/claude-code",
@@ -1745,7 +1755,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits are about Anthropic's separate skill scanner and a third party impersonating Anthropic, not this repo."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "antirez/ds4": {
     "repo": "antirez/ds4",
@@ -1793,7 +1804,8 @@
         "ageDays": 164,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "anywhere-labs/dsh-desktop": {
     "repo": "anywhere-labs/dsh-desktop",
@@ -1846,7 +1858,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an inspect.software health report: 81/100, Excellent."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "apache/superset": {
     "repo": "apache/superset",
@@ -2349,7 +2362,8 @@
         "ageDays": 164,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "bilawalsidhu/gods-eye-view": {
     "repo": "bilawalsidhu/gods-eye-view",
@@ -2402,7 +2416,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was the repo's own SECURITY.md."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "assafelovic/gpt-researcher": {
     "repo": "assafelovic/gpt-researcher",
@@ -2649,7 +2664,8 @@
       "note": "Company code drop from Browser Use (1 contributor, 3 commits); findarepo's star check says it looks organic. Flag named on the page. Sep 27 review of a Hacker News claim that its browser component leaks data to PostHog: browser-harness 0.1.13 (which it installs) uploads the full task script (up to 20,000 characters) and the end of the output to PostHog from its own command line tool, on by default, not mentioned in its README; jev-ultrafast only uses the library parts (admin.ensure_daemon, helpers.cdp), which contain no analytics code, so its own runs send nothing there. Named as a watch-out on the page, with the off switch.",
       "reasons": [],
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "bytedance/deer-flow": {
     "repo": "bytedance/deer-flow",
@@ -2702,7 +2718,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "All three advisories are fixed. The XSS fix (PR #1389, merged Mar 26) is in v2.1.0 through its merge commit."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "cloudflare/security-audit-skill": {
     "repo": "cloudflare/security-audit-skill",
@@ -2764,7 +2781,8 @@
       "date": "2026-09-27",
       "note": "Official Cloudflare repo; 22K stars on 14 commits (squashed history). Flag named on the page.",
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "CherryHQ/cherry-studio": {
     "repo": "CherryHQ/cherry-studio",
@@ -2964,7 +2982,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an unrelated Malwarebytes report on fake Cloudflare verification pages."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "cobusgreyling/loop-engineering": {
     "repo": "cobusgreyling/loop-engineering",
@@ -3017,7 +3036,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own SECURITY.md and a skill listing."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "codecrafters-io/build-your-own-x": {
     "repo": "codecrafters-io/build-your-own-x",
@@ -4098,7 +4118,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was the project's own README; no advisories and no reports."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "CopilotKit/OpenBot": {
     "repo": "CopilotKit/OpenBot",
@@ -4146,7 +4167,8 @@
         "ageDays": 61,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "deeplethe/utopia": {
     "repo": "deeplethe/utopia",
@@ -4194,7 +4216,8 @@
         "ageDays": 71,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "deepseek-ai/deepseek-harness": {
     "repo": "deepseek-ai/deepseek-harness",
@@ -4396,7 +4419,7 @@
   },
   "DietrichGebert/ponytail": {
     "repo": "DietrichGebert/ponytail",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -4404,7 +4427,7 @@
         "source": "public-page",
         "url": "https://github.com/DietrichGebert/ponytail/security/advisories",
         "count": 0,
-        "latestRelease": "4.10.0",
+        "latestRelease": "5.3.2",
         "items": []
       },
       "searches": {
@@ -4415,7 +4438,7 @@
           "DietrichGebert/ponytail malware",
           "DietrichGebert/ponytail scam"
         ],
-        "results": 11,
+        "results": 10,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -4427,17 +4450,17 @@
       "activity": {
         "source": "public-page",
         "canonical": "DietrichGebert/ponytail",
-        "stars": 151151,
-        "forks": 8110,
-        "watchers": 360,
-        "openIssues": 337,
+        "stars": 174355,
+        "forks": 9498,
+        "watchers": 411,
+        "openIssues": 98,
         "hasIssues": true,
-        "contributors": 75,
-        "commits": 224,
+        "contributors": 126,
+        "commits": 363,
         "created": "2026-06-12",
-        "pushed": "2026-09-14",
+        "pushed": "2026-10-18",
         "archived": false,
-        "ageDays": 113,
+        "ageDays": 134,
         "flags": []
       }
     },
@@ -4445,8 +4468,7 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "Issue #199 flags a caret range on @modelcontextprotocol/sdk (^1.19.0); fresh installs resolve to the patched 1.26+. Issue #735 is about a trojanized clone by another account, not this repo."
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "DeusData/codebase-memory-mcp": {
     "repo": "DeusData/codebase-memory-mcp",
@@ -4499,7 +4521,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The 'Trojan' hits are the README's documented Microsoft Defender false positive (61 of ~62 engines clean); no advisories."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "dagger/dagger": {
     "repo": "dagger/dagger",
@@ -4611,7 +4634,8 @@
         "1 report(s) to read"
       ],
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Dokploy/dokploy": {
     "repo": "Dokploy/dokploy",
@@ -6388,7 +6412,8 @@
       "date": "2026-09-27",
       "note": "The flagged hits were the repo's own security policy. Solo project (1 contributor); flag named on the page.",
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Egonex-AI/Understand-Anything": {
     "repo": "Egonex-AI/Understand-Anything",
@@ -6436,7 +6461,8 @@
         "ageDays": 216,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "dzhng/deep-research": {
     "repo": "dzhng/deep-research",
@@ -6679,7 +6705,8 @@
           "packages": []
         }
       ]
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "excalidraw/excalidraw": {
     "repo": "excalidraw/excalidraw",
@@ -6888,7 +6915,8 @@
         "ageDays": 77,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "farion1231/cc-switch": {
     "repo": "farion1231/cc-switch",
@@ -7019,7 +7047,8 @@
         "ageDays": 75,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "firecrawl/firecrawl": {
     "repo": "firecrawl/firecrawl",
@@ -7276,7 +7305,8 @@
         "ageDays": 89,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "frappe/erpnext": {
     "repo": "frappe/erpnext",
@@ -8857,20 +8887,35 @@
         "ageDays": 3440,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "garrytan/gstack": {
     "repo": "garrytan/gstack",
-    "checked": "2026-10-16",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-23",
+    "verdict": "REVIEW",
+    "reasons": [
+      "1 High/Critical advisory(ies) with an unconfirmed patch release"
+    ],
     "checks": {
       "advisories": {
         "source": "public-page",
         "url": "https://github.com/garrytan/gstack/security/advisories",
-        "count": 0,
+        "count": 1,
         "latestRelease": null,
-        "items": []
+        "items": [
+          {
+            "ghsa": "GHSA-249x-w96r-pw6c",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-20",
+            "summary": "gstack programs take configuration and code from the repository they run in (.env and bunfig.toml preload)",
+            "patched": "1.91.159.0",
+            "openPackages": [],
+            "status": "patch-unconfirmed",
+            "latestPublished": null
+          }
+        ]
       },
       "searches": {
         "engine": "hn+nvd",
@@ -8892,17 +8937,17 @@
       "activity": {
         "source": "public-page",
         "canonical": "garrytan/gstack",
-        "stars": 136633,
-        "forks": 20275,
-        "watchers": 777,
-        "openIssues": 114,
+        "stars": 137352,
+        "forks": 20359,
+        "watchers": 784,
+        "openIssues": 76,
         "hasIssues": true,
-        "contributors": 245,
-        "commits": 477,
+        "contributors": 259,
+        "commits": 556,
         "created": "2026-03-11",
-        "pushed": "2026-10-14",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 220,
+        "ageDays": 227,
         "flags": []
       }
     }
@@ -8953,7 +8998,8 @@
         "ageDays": 78,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "github/spec-kit": {
     "repo": "github/spec-kit",
@@ -9001,7 +9047,8 @@
         "ageDays": 422,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "gitleaks/gitleaks": {
     "repo": "gitleaks/gitleaks",
@@ -9096,7 +9143,8 @@
         "ageDays": 548,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "google/artemis": {
     "repo": "google/artemis",
@@ -9159,7 +9207,8 @@
       "date": "2026-09-27",
       "note": "The flagged hit was an unrelated Hacker News comment.",
       "carried": "2026-09-27"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "googleworkspace/cli": {
     "repo": "googleworkspace/cli",
@@ -9207,7 +9256,8 @@
         "ageDays": 229,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "grafana/grafana": {
     "repo": "grafana/grafana",
@@ -9741,11 +9791,12 @@
         "ageDays": 3921,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Graphify-Labs/graphify": {
     "repo": "Graphify-Labs/graphify",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -9753,7 +9804,7 @@
         "source": "public-page",
         "url": "https://github.com/Graphify-Labs/graphify/security/advisories",
         "count": 1,
-        "latestRelease": "0.9.73",
+        "latestRelease": "0.9.94",
         "items": [
           {
             "ghsa": "GHSA-pcc4-rvhr-2pr8",
@@ -9764,7 +9815,7 @@
             "patched": "0.9.70",
             "openPackages": [],
             "status": "patched",
-            "latestPublished": "0.9.73"
+            "latestPublished": "0.9.94"
           }
         ]
       },
@@ -9776,7 +9827,7 @@
           "Graphify-Labs/graphify malware",
           "Graphify-Labs/graphify scam"
         ],
-        "results": 20,
+        "results": 10,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -9788,21 +9839,20 @@
       "activity": {
         "source": "public-page",
         "canonical": "Graphify-Labs/graphify",
-        "stars": 123201,
-        "forks": 11880,
-        "watchers": 394,
-        "openIssues": 1534,
+        "stars": 133555,
+        "forks": 12761,
+        "watchers": 409,
+        "openIssues": 1621,
         "hasIssues": true,
-        "contributors": 303,
-        "commits": 2023,
+        "contributors": 365,
+        "commits": 2498,
         "created": "2026-04-03",
-        "pushed": "2026-09-30",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 183,
+        "ageDays": 204,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "guillaumemeyer/watermarks-remover": {
     "repo": "guillaumemeyer/watermarks-remover",
@@ -9850,7 +9900,8 @@
         "ageDays": 67,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "HKUDS/nanobot": {
     "repo": "HKUDS/nanobot",
@@ -10073,7 +10124,8 @@
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'nanobot'.",
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "HKUDS/RAG-Anything": {
     "repo": "HKUDS/RAG-Anything",
@@ -10121,7 +10173,8 @@
         "ageDays": 498,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "huginn/huginn": {
     "repo": "huginn/huginn",
@@ -10683,7 +10736,8 @@
       "reasons": [
         "2 report(s) to read"
       ]
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Human-Agent-Society/reef": {
     "repo": "Human-Agent-Society/reef",
@@ -10731,7 +10785,8 @@
         "ageDays": 47,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "hypit-ai/hypit": {
     "repo": "hypit-ai/hypit",
@@ -10779,7 +10834,8 @@
         "ageDays": 80,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "img2threejs/img2threejs": {
     "repo": "img2threejs/img2threejs",
@@ -10827,7 +10883,8 @@
         "ageDays": 94,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "immich-app/immich": {
     "repo": "immich-app/immich",
@@ -11079,7 +11136,8 @@
         "ageDays": 30,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "jellyfin/jellyfin": {
     "repo": "jellyfin/jellyfin",
@@ -11427,7 +11485,8 @@
         "ageDays": 196,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "JustVugg/colibri": {
     "repo": "JustVugg/colibri",
@@ -11900,7 +11959,8 @@
         "ageDays": 385,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "kirodotdev/KiroCrew": {
     "repo": "kirodotdev/KiroCrew",
@@ -12131,7 +12191,7 @@
   },
   "langchain-ai/openwiki": {
     "repo": "langchain-ai/openwiki",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -12139,7 +12199,7 @@
         "source": "public-page",
         "url": "https://github.com/langchain-ai/openwiki/security/advisories",
         "count": 1,
-        "latestRelease": "0.6.1",
+        "latestRelease": "0.7.2",
         "items": [
           {
             "ghsa": "GHSA-976j-qc4j-qwmg",
@@ -12150,7 +12210,7 @@
             "patched": "0.6.0",
             "openPackages": [],
             "status": "patched",
-            "latestPublished": "0.6.1"
+            "latestPublished": "0.7.2"
           }
         ]
       },
@@ -12162,7 +12222,7 @@
           "langchain-ai/openwiki malware",
           "langchain-ai/openwiki scam"
         ],
-        "results": 4,
+        "results": 11,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -12174,21 +12234,20 @@
       "activity": {
         "source": "public-page",
         "canonical": "langchain-ai/openwiki",
-        "stars": 16921,
-        "forks": 1234,
-        "watchers": 56,
-        "openIssues": 161,
+        "stars": 17351,
+        "forks": 1280,
+        "watchers": 58,
+        "openIssues": 198,
         "hasIssues": true,
-        "contributors": 96,
-        "commits": 449,
+        "contributors": 108,
+        "commits": 483,
         "created": "2026-06-22",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-21",
         "archived": false,
-        "ageDays": 103,
+        "ageDays": 124,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "lidge-jun/opencodex": {
     "repo": "lidge-jun/opencodex",
@@ -12236,7 +12295,8 @@
         "ageDays": 121,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "lnkiai/m3e-canvas": {
     "repo": "lnkiai/m3e-canvas",
@@ -12284,11 +12344,12 @@
         "ageDays": 45,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "mattpocock/skills": {
     "repo": "mattpocock/skills",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -12296,7 +12357,7 @@
         "source": "public-page",
         "url": "https://github.com/mattpocock/skills/security/advisories",
         "count": 0,
-        "latestRelease": "1.2.3",
+        "latestRelease": "1.3.1",
         "items": []
       },
       "searches": {
@@ -12319,21 +12380,20 @@
       "activity": {
         "source": "public-page",
         "canonical": "mattpocock/skills",
-        "stars": 274332,
-        "forks": 23045,
-        "watchers": null,
-        "openIssues": 544,
+        "stars": 301410,
+        "forks": 25336,
+        "watchers": 1577,
+        "openIssues": 200,
         "hasIssues": true,
         "contributors": 4,
-        "commits": 493,
+        "commits": 546,
         "created": "2026-02-03",
-        "pushed": "2026-09-29",
+        "pushed": "2026-10-19",
         "archived": false,
-        "ageDays": 242,
+        "ageDays": 263,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "MemPalace/mempalace": {
     "repo": "MemPalace/mempalace",
@@ -12422,7 +12482,8 @@
       "date": "2026-09-27",
       "note": "The malware warning concerns a fake domain impersonating the project (issue #326), not the repo. The 'scam' post is an April 2026 opinion about authorship, with no malicious code shown.",
       "carried": "2026-10-16"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Michael-A-Kuykendall/shimmy": {
     "repo": "Michael-A-Kuykendall/shimmy",
@@ -12476,7 +12537,8 @@
       "date": "2026-09-27",
       "note": "Solo project (1 contributor) with 5.9K stars; flag named on the page; no advisories or reports.",
       "carried": "2026-09-27"
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "metabase/metabase": {
     "repo": "metabase/metabase",
@@ -13736,7 +13798,8 @@
         "ageDays": 162,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "microsoft/VibeVoice": {
     "repo": "microsoft/VibeVoice",
@@ -13784,7 +13847,8 @@
         "ageDays": 418,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "miuuyy/codex-chatgpt-web": {
     "repo": "miuuyy/codex-chatgpt-web",
@@ -13832,7 +13896,8 @@
         "ageDays": 83,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "NandhaKishorM/laya": {
     "repo": "NandhaKishorM/laya",
@@ -13880,7 +13945,8 @@
         "ageDays": 29,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "msitarzewski/agency-agents": {
     "repo": "msitarzewski/agency-agents",
@@ -13928,7 +13994,8 @@
         "ageDays": 369,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "nexu-io/html-anything": {
     "repo": "nexu-io/html-anything",
@@ -13976,7 +14043,8 @@
         "ageDays": 159,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "nexu-io/open-design": {
     "repo": "nexu-io/open-design",
@@ -14024,7 +14092,8 @@
         "ageDays": 172,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "NousResearch/hermes-agent": {
     "repo": "NousResearch/hermes-agent",
@@ -14461,7 +14530,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'superpowers'."
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "odysseus-dev/odysseus": {
     "repo": "odysseus-dev/odysseus",
@@ -14509,7 +14579,8 @@
         "ageDays": 139,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "omnigent-ai/omnigent": {
     "repo": "omnigent-ai/omnigent",
@@ -14701,7 +14772,8 @@
         "ageDays": 128,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "onlook-dev/onlook": {
     "repo": "onlook-dev/onlook",
@@ -15082,19 +15154,19 @@
   },
   "openai/codex-security": {
     "repo": "openai/codex-security",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/openai/codex-security/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.30",
+        "latestRelease": "0.6.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "openai/codex-security CVE",
           "openai/codex-security vulnerability",
@@ -15120,20 +15192,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "openai/codex-security",
-        "stars": 10863,
-        "forks": 820,
-        "watchers": 34,
-        "openIssues": 240,
+        "stars": 11184,
+        "forks": 881,
+        "watchers": 38,
+        "openIssues": 206,
         "hasIssues": true,
-        "contributors": 45,
-        "commits": 655,
+        "contributors": 72,
+        "commits": 1319,
         "created": "2026-07-13",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 76,
-        "homepage": "https://developers.openai.com/codex/security",
-        "license": "Apache-2.0",
+        "ageDays": 103,
         "flags": []
       }
     },
@@ -15147,9 +15218,8 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was a Hacker News post about the tool itself, not a vulnerability report.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "OpenBB-finance/OpenBB": {
     "repo": "OpenBB-finance/OpenBB",
@@ -15244,23 +15314,24 @@
         "ageDays": 482,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "Panniantong/Agent-Reach": {
     "repo": "Panniantong/Agent-Reach",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/Panniantong/Agent-Reach/security/advisories",
         "count": 0,
-        "latestRelease": "1.5.0",
+        "latestRelease": "1.6.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "Panniantong/Agent-Reach CVE",
           "Panniantong/Agent-Reach vulnerability",
@@ -15277,24 +15348,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "Panniantong/Agent-Reach",
-        "stars": 85733,
-        "forks": 7537,
-        "watchers": 304,
-        "openIssues": 161,
+        "stars": 101203,
+        "forks": 8921,
+        "watchers": 340,
+        "openIssues": 228,
         "hasIssues": true,
-        "contributors": 36,
-        "commits": 376,
+        "contributors": 38,
+        "commits": 442,
         "created": "2026-02-24",
-        "pushed": "2026-09-15",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 216,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 242,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "penpot/penpot": {
     "repo": "penpot/penpot",
@@ -15711,26 +15780,26 @@
   },
   "pollen-robotics/microduck": {
     "repo": "pollen-robotics/microduck",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/pollen-robotics/microduck/security/advisories",
         "count": 0,
-        "latestRelease": "0.15.0",
+        "latestRelease": "0.17.8",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "pollen-robotics/microduck CVE",
           "pollen-robotics/microduck vulnerability",
           "pollen-robotics/microduck malware",
           "pollen-robotics/microduck scam"
         ],
-        "results": 4,
+        "results": 9,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -15740,40 +15809,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "pollen-robotics/microduck",
-        "stars": 8836,
-        "forks": 1135,
-        "watchers": 52,
-        "openIssues": 22,
+        "stars": 10324,
+        "forks": 1322,
+        "watchers": 68,
+        "openIssues": 47,
         "hasIssues": true,
-        "contributors": 13,
-        "commits": 1124,
+        "contributors": 18,
+        "commits": 1392,
         "created": "2026-07-29",
-        "pushed": "2026-09-23",
+        "pushed": "2026-10-19",
         "archived": false,
-        "ageDays": 60,
-        "homepage": "https://pollen-robotics.com/microduck",
-        "license": "Apache-2.0",
+        "ageDays": 87,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "petergyang/no-ai-slop": {
     "repo": "petergyang/no-ai-slop",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/petergyang/no-ai-slop/security/advisories",
         "count": 0,
         "latestRelease": "1.0.6",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "petergyang/no-ai-slop CVE",
           "petergyang/no-ai-slop vulnerability",
@@ -15790,39 +15857,36 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "petergyang/no-ai-slop",
-        "stars": 11423,
-        "forks": 780,
+        "stars": 12721,
+        "forks": 885,
         "watchers": 37,
-        "openIssues": 22,
+        "openIssues": 23,
         "hasIssues": true,
-        "contributors": 2,
+        "contributors": 5,
         "commits": 23,
         "created": "2026-07-07",
         "pushed": "2026-09-02",
         "archived": false,
-        "ageDays": 82,
-        "homepage": "https://creatoreconomy.so/p/use-my-no-ai-slop-skill-to-remove-20-ai-slop-patterns",
-        "license": "MIT",
+        "ageDays": 109,
         "flags": [
-          "11423 stars on 2 contributor(s)",
-          "11423 stars on only 23 commit(s)"
+          "12721 stars on only 23 commit(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 11423 stars on 2 contributor(s); 11423 stars on only 23 commit(s)"
+        "activity: 12721 stars on only 23 commit(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "11.4K stars on 2 contributors and 23 commits; flag named on the page; no advisories or reports.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "presenton/presenton": {
     "repo": "presenton/presenton",
@@ -16120,19 +16184,19 @@
   },
   "robbietilton/Compositor": {
     "repo": "robbietilton/Compositor",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/robbietilton/Compositor/security/advisories",
         "count": 0,
-        "latestRelease": "1.3.4",
+        "latestRelease": "1.5.6",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "robbietilton/Compositor CVE",
           "robbietilton/Compositor vulnerability",
@@ -16149,20 +16213,19 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "robbietilton/Compositor",
-        "stars": 5856,
-        "forks": 628,
-        "watchers": 28,
-        "openIssues": 27,
+        "stars": 17756,
+        "forks": 1751,
+        "watchers": 82,
+        "openIssues": 42,
         "hasIssues": true,
-        "contributors": 15,
-        "commits": 267,
+        "contributors": 27,
+        "commits": 549,
         "created": "2026-09-16",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 11,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 38,
         "flags": []
       }
     },
@@ -16170,20 +16233,19 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hits were unrelated Hacker News comments that use the word 'compositor'."
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "ruvnet/ruflo": {
     "repo": "ruvnet/ruflo",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/ruvnet/ruflo/security/advisories",
         "count": 1,
-        "latestRelease": "3.46.1",
+        "latestRelease": "3.59.17",
         "items": [
           {
             "ghsa": "GHSA-c4hm-4h84-2cf3",
@@ -16193,12 +16255,13 @@
             "summary": "Unauthenticated RCE in ruflo MCP bridge default docker-compose deployment",
             "patched": "3.16.3",
             "openPackages": [],
-            "status": "patched"
+            "status": "patched",
+            "latestPublished": "3.59.17"
           }
         ]
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "ruvnet/ruflo CVE",
           "ruvnet/ruflo vulnerability",
@@ -16215,24 +16278,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "ruvnet/ruflo",
-        "stars": 73382,
-        "forks": 8710,
-        "watchers": 464,
-        "openIssues": 1018,
+        "stars": 78634,
+        "forks": 9239,
+        "watchers": 473,
+        "openIssues": 970,
         "hasIssues": true,
-        "contributors": 47,
-        "commits": 7636,
+        "contributors": 75,
+        "commits": 9851,
         "created": "2025-06-02",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 482,
-        "homepage": "https://Cognitum.One",
-        "license": "MIT",
+        "ageDays": 509,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "rtk-ai/rtk": {
     "repo": "rtk-ai/rtk",
@@ -16354,19 +16415,19 @@
   },
   "sapientinc/PRAXIST": {
     "repo": "sapientinc/PRAXIST",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/sapientinc/PRAXIST/security/advisories",
         "count": 0,
         "latestRelease": "0.5.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "sapientinc/PRAXIST CVE",
           "sapientinc/PRAXIST vulnerability",
@@ -16383,54 +16444,52 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "sapientinc/PRAXIST",
-        "stars": 5041,
-        "forks": 652,
-        "watchers": 708,
-        "openIssues": 7,
+        "stars": 5554,
+        "forks": 727,
+        "watchers": 731,
+        "openIssues": 8,
         "hasIssues": true,
-        "contributors": 5,
+        "contributors": 18,
         "commits": 18,
         "created": "2026-08-27",
         "pushed": "2026-09-23",
         "archived": false,
-        "ageDays": 31,
-        "homepage": "https://praxist.sapient.inc/en/docs",
-        "license": "NOASSERTION",
+        "ageDays": 58,
         "flags": [
-          "5041 stars on only 18 commit(s)"
+          "5554 stars on only 18 commit(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 5041 stars on only 18 commit(s)"
+        "activity: 5554 stars on only 18 commit(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "5K stars on 18 commits; flag named on the page; no advisories or reports.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "shadcn/improve": {
     "repo": "shadcn/improve",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/shadcn/improve/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "shadcn/improve CVE",
           "shadcn/improve vulnerability",
@@ -16447,54 +16506,52 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "shadcn/improve",
-        "stars": 9184,
+        "stars": 9246,
         "forks": 412,
-        "watchers": 35,
+        "watchers": 34,
         "openIssues": 17,
         "hasIssues": true,
-        "contributors": 5,
+        "contributors": 7,
         "commits": 23,
         "created": "2026-06-10",
         "pushed": "2026-09-12",
         "archived": false,
-        "ageDays": 109,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 136,
         "flags": [
-          "9184 stars on only 23 commit(s)"
+          "9246 stars on only 23 commit(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 9184 stars on only 23 commit(s)"
+        "activity: 9246 stars on only 23 commit(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "9.2K stars on 23 commits; flag named on the page; no advisories or reports.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "shareAI-lab/learn-claude-code": {
     "repo": "shareAI-lab/learn-claude-code",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/shareAI-lab/learn-claude-code/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "shareAI-lab/learn-claude-code CVE",
           "shareAI-lab/learn-claude-code vulnerability",
@@ -16511,40 +16568,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "shareAI-lab/learn-claude-code",
-        "stars": 77678,
-        "forks": 12484,
-        "watchers": 311,
-        "openIssues": 58,
+        "stars": 79084,
+        "forks": 12645,
+        "watchers": 312,
+        "openIssues": 69,
         "hasIssues": true,
-        "contributors": 48,
-        "commits": 233,
+        "contributors": 46,
+        "commits": 235,
         "created": "2025-06-29",
-        "pushed": "2026-08-26",
+        "pushed": "2026-09-28",
         "archived": false,
-        "ageDays": 455,
-        "homepage": "https://learn.shareai.run",
-        "license": "MIT",
+        "ageDays": 482,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "StarTrail-org/PixelRAG": {
     "repo": "StarTrail-org/PixelRAG",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/StarTrail-org/PixelRAG/security/advisories",
         "count": 0,
         "latestRelease": "0.4.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "StarTrail-org/PixelRAG CVE",
           "StarTrail-org/PixelRAG vulnerability",
@@ -16561,24 +16616,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "StarTrail-org/PixelRAG",
-        "stars": 10105,
-        "forks": 864,
+        "stars": 10343,
+        "forks": 914,
         "watchers": 41,
-        "openIssues": 15,
+        "openIssues": 18,
         "hasIssues": true,
-        "contributors": 27,
-        "commits": 104,
+        "contributors": 38,
+        "commits": 121,
         "created": "2026-05-29",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-21",
         "archived": false,
-        "ageDays": 121,
-        "homepage": "https://arxiv.org/pdf/2606.28344",
-        "license": "Apache-2.0",
+        "ageDays": 148,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "stablyai/orca": {
     "repo": "stablyai/orca",
@@ -16626,7 +16679,8 @@
         "ageDays": 214,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "siyuan-note/siyuan": {
     "repo": "siyuan-note/siyuan",
@@ -17752,19 +17806,19 @@
   },
   "tamaratran/fast-jev-compaction": {
     "repo": "tamaratran/fast-jev-compaction",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/tamaratran/fast-jev-compaction/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "tamaratran/fast-jev-compaction CVE",
           "tamaratran/fast-jev-compaction vulnerability",
@@ -17781,54 +17835,52 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "tamaratran/fast-jev-compaction",
-        "stars": 7006,
-        "forks": 433,
-        "watchers": 14,
-        "openIssues": 91,
+        "stars": 7745,
+        "forks": 565,
+        "watchers": 15,
+        "openIssues": 123,
         "hasIssues": true,
         "contributors": 2,
         "commits": 30,
         "created": "2026-09-17",
-        "pushed": "2026-09-18",
+        "pushed": "2026-09-17",
         "archived": false,
-        "ageDays": 10,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 37,
         "flags": [
-          "7006 stars on 2 contributor(s)"
+          "7745 stars on 2 contributor(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 7006 stars on 2 contributor(s)"
+        "activity: 7745 stars on 2 contributor(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "2 contributors; findarepo's star check says it looks organic. Flag named on the page.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "TauricResearch/TradingAgents": {
     "repo": "TauricResearch/TradingAgents",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/TauricResearch/TradingAgents/security/advisories",
         "count": 0,
-        "latestRelease": "0.5.1",
+        "latestRelease": "0.7.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "TauricResearch/TradingAgents CVE",
           "TauricResearch/TradingAgents vulnerability",
@@ -17845,24 +17897,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "TauricResearch/TradingAgents",
-        "stars": 108873,
-        "forks": 20880,
-        "watchers": 825,
-        "openIssues": 86,
+        "stars": 113209,
+        "forks": 21902,
+        "watchers": 852,
+        "openIssues": 113,
         "hasIssues": true,
-        "contributors": 22,
-        "commits": 393,
+        "contributors": 24,
+        "commits": 493,
         "created": "2024-12-28",
-        "pushed": "2026-09-25",
+        "pushed": "2026-10-16",
         "archived": false,
-        "ageDays": 639,
-        "homepage": "https://arxiv.org/pdf/2412.20138",
-        "license": "Apache-2.0",
+        "ageDays": 665,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "thedotmack/claude-mem": {
     "repo": "thedotmack/claude-mem",
@@ -17928,23 +17978,23 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "trycompai/crm": {
     "repo": "trycompai/crm",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/trycompai/crm/security/advisories",
         "count": 0,
-        "latestRelease": "1.15.3",
+        "latestRelease": "1.16.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "trycompai/crm CVE",
           "trycompai/crm vulnerability",
@@ -17961,24 +18011,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "trycompai/crm",
-        "stars": 10912,
-        "forks": 1545,
-        "watchers": 58,
-        "openIssues": 51,
+        "stars": 11618,
+        "forks": 1702,
+        "watchers": 62,
+        "openIssues": 21,
         "hasIssues": true,
-        "contributors": 6,
-        "commits": 225,
+        "contributors": 8,
+        "commits": 230,
         "created": "2026-07-31",
-        "pushed": "2026-09-11",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 58,
-        "homepage": "https://trycrm.ai",
-        "license": "MIT",
+        "ageDays": 85,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "twentyhq/twenty": {
     "repo": "twentyhq/twenty",
@@ -18183,19 +18231,19 @@
   },
   "ultraworkers/claw-code": {
     "repo": "ultraworkers/claw-code",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/ultraworkers/claw-code/security/advisories",
         "count": 0,
-        "latestRelease": null,
+        "latestRelease": "0.1.7",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "ultraworkers/claw-code CVE",
           "ultraworkers/claw-code vulnerability",
@@ -18212,40 +18260,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "ultraworkers/claw-code",
-        "stars": 195294,
-        "forks": 108358,
-        "watchers": 1905,
-        "openIssues": 48,
+        "stars": 195077,
+        "forks": 107811,
+        "watchers": 1879,
+        "openIssues": 2,
         "hasIssues": true,
-        "contributors": 29,
-        "commits": 1690,
+        "contributors": 44,
+        "commits": 1852,
         "created": "2026-03-31",
-        "pushed": "2026-08-16",
+        "pushed": "2026-10-19",
         "archived": false,
-        "ageDays": 180,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 207,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "usestrix/strix": {
     "repo": "usestrix/strix",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/usestrix/strix/security/advisories",
         "count": 0,
-        "latestRelease": "1.6.2",
+        "latestRelease": "1.7.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "usestrix/strix CVE",
           "usestrix/strix vulnerability",
@@ -18279,20 +18325,19 @@
         ]
       },
       "activity": {
+        "source": "public-page",
         "canonical": "usestrix/strix",
-        "stars": 65158,
-        "forks": 7155,
-        "watchers": 291,
-        "openIssues": 415,
+        "stars": 71298,
+        "forks": 7935,
+        "watchers": 295,
+        "openIssues": 498,
         "hasIssues": true,
-        "contributors": 71,
-        "commits": 818,
+        "contributors": 79,
+        "commits": 937,
         "created": "2025-08-05",
-        "pushed": "2026-09-25",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 418,
-        "homepage": "https://strix.ai",
-        "license": "Apache-2.0",
+        "ageDays": 445,
         "flags": []
       }
     },
@@ -18306,25 +18351,24 @@
       "by": "human review",
       "date": "2026-09-27",
       "note": "The flagged hit was an unrelated Hacker News comment.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "Vincentwei1021/video-shotcraft": {
     "repo": "Vincentwei1021/video-shotcraft",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/Vincentwei1021/video-shotcraft/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "Vincentwei1021/video-shotcraft CVE",
           "Vincentwei1021/video-shotcraft vulnerability",
@@ -18341,47 +18385,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "Vincentwei1021/video-shotcraft",
-        "stars": 9688,
-        "forks": 874,
-        "watchers": 11,
-        "openIssues": 5,
+        "stars": 13141,
+        "forks": 1190,
+        "watchers": 20,
+        "openIssues": 11,
         "hasIssues": true,
-        "contributors": 10,
-        "commits": 100,
+        "contributors": 12,
+        "commits": 106,
         "created": "2026-07-19",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-17",
         "archived": false,
-        "ageDays": 70,
-        "homepage": "https://vincentwei1021.github.io/video-shotcraft/",
-        "license": "Apache-2.0",
+        "ageDays": 97,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "vercel-labs/agent-browser": {
     "repo": "vercel-labs/agent-browser",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/vercel-labs/agent-browser/security/advisories",
         "count": 0,
-        "latestRelease": "0.38.1",
+        "latestRelease": "0.39.2",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "vercel-labs/agent-browser CVE",
           "vercel-labs/agent-browser vulnerability",
           "vercel-labs/agent-browser malware",
           "vercel-labs/agent-browser scam"
         ],
-        "results": 11,
+        "results": 12,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -18391,40 +18433,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "vercel-labs/agent-browser",
-        "stars": 43263,
-        "forks": 2904,
-        "watchers": 109,
-        "openIssues": 823,
+        "stars": 44464,
+        "forks": 3044,
+        "watchers": 107,
+        "openIssues": 706,
         "hasIssues": true,
-        "contributors": 115,
-        "commits": 685,
+        "contributors": 159,
+        "commits": 712,
         "created": "2026-01-11",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 259,
-        "homepage": "https://agent-browser.dev",
-        "license": "Apache-2.0",
+        "ageDays": 286,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "virattt/ai-hedge-fund": {
     "repo": "virattt/ai-hedge-fund",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/virattt/ai-hedge-fund/security/advisories",
         "count": 0,
-        "latestRelease": "2.4.1",
+        "latestRelease": "2.6.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "virattt/ai-hedge-fund CVE",
           "virattt/ai-hedge-fund vulnerability",
@@ -18441,47 +18481,45 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "virattt/ai-hedge-fund",
-        "stars": 63769,
-        "forks": 11187,
-        "watchers": 675,
-        "openIssues": 168,
+        "stars": 64169,
+        "forks": 11262,
+        "watchers": 670,
+        "openIssues": 183,
         "hasIssues": true,
-        "contributors": 49,
-        "commits": 928,
+        "contributors": 46,
+        "commits": 943,
         "created": "2024-11-29",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-19",
         "archived": false,
-        "ageDays": 667,
-        "homepage": null,
-        "license": "MIT",
+        "ageDays": 694,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "webstudio-is/webstudio": {
     "repo": "webstudio-is/webstudio",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/webstudio-is/webstudio/security/advisories",
         "count": 0,
-        "latestRelease": "0.301.0",
+        "latestRelease": "0.306.0",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "webstudio-is/webstudio CVE",
           "webstudio-is/webstudio vulnerability",
           "webstudio-is/webstudio malware",
           "webstudio-is/webstudio scam"
         ],
-        "results": 11,
+        "results": 12,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -18491,24 +18529,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "webstudio-is/webstudio",
-        "stars": 8993,
-        "forks": 1612,
-        "watchers": 66,
-        "openIssues": 369,
+        "stars": 9102,
+        "forks": 1628,
+        "watchers": 65,
+        "openIssues": 351,
         "hasIssues": true,
-        "contributors": 50,
-        "commits": 6715,
+        "contributors": 52,
+        "commits": 6761,
         "created": "2022-03-13",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 1660,
-        "homepage": "https://webstudio.is",
-        "license": "AGPL-3.0",
+        "ageDays": 1686,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "windmill-labs/windmill": {
     "repo": "windmill-labs/windmill",
@@ -18610,19 +18646,19 @@
   },
   "wshobson/agents": {
     "repo": "wshobson/agents",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/wshobson/agents/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "wshobson/agents CVE",
           "wshobson/agents vulnerability",
@@ -18639,40 +18675,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "wshobson/agents",
-        "stars": 40029,
-        "forks": 4271,
-        "watchers": 315,
-        "openIssues": 7,
+        "stars": 41592,
+        "forks": 4411,
+        "watchers": 319,
+        "openIssues": 8,
         "hasIssues": true,
-        "contributors": 85,
-        "commits": 592,
+        "contributors": 89,
+        "commits": 620,
         "created": "2025-07-24",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-17",
         "archived": false,
-        "ageDays": 430,
-        "homepage": "https://sethhobson.com",
-        "license": "MIT",
+        "ageDays": 457,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "xai-org/grok-build": {
     "repo": "xai-org/grok-build",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/xai-org/grok-build/security/advisories",
         "count": 0,
         "latestRelease": null,
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "xai-org/grok-build CVE",
           "xai-org/grok-build vulnerability",
@@ -18689,61 +18723,59 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "xai-org/grok-build",
-        "stars": 27123,
-        "forks": 5105,
-        "watchers": 236,
-        "openIssues": 0,
+        "stars": 27512,
+        "forks": 5198,
+        "watchers": 243,
+        "openIssues": null,
         "hasIssues": false,
         "contributors": 1,
-        "commits": 49,
+        "commits": 51,
         "created": "2026-07-14",
-        "pushed": "2026-09-23",
+        "pushed": "2026-09-29",
         "archived": false,
-        "ageDays": 75,
-        "homepage": null,
-        "license": "Apache-2.0",
+        "ageDays": 102,
         "flags": [
-          "27123 stars on 1 contributor(s)"
+          "27512 stars on 1 contributor(s)"
         ]
       }
     },
     "auto": {
       "verdict": "REVIEW",
       "reasons": [
-        "activity: 27123 stars on 1 contributor(s)"
+        "activity: 27512 stars on 1 contributor(s)"
       ]
     },
     "settled": {
       "by": "human review",
       "date": "2026-09-27",
       "note": "Official xAI code drop (1 contributor); flag named on the page.",
-      "carried": "2026-09-27"
-    },
-    "rechecked": "2026-10-16"
+      "carried": "2026-10-23"
+    }
   },
   "XiaomiMiMo/MiMo-Code": {
     "repo": "XiaomiMiMo/MiMo-Code",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/XiaomiMiMo/MiMo-Code/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.14",
+        "latestRelease": "0.1.15",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "XiaomiMiMo/MiMo-Code CVE",
           "XiaomiMiMo/MiMo-Code vulnerability",
           "XiaomiMiMo/MiMo-Code malware",
           "XiaomiMiMo/MiMo-Code scam"
         ],
-        "results": 4,
+        "results": 3,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -18753,40 +18785,38 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "XiaomiMiMo/MiMo-Code",
-        "stars": 13516,
-        "forks": 1401,
+        "stars": 13705,
+        "forks": 1445,
         "watchers": 75,
-        "openIssues": 1087,
+        "openIssues": 1157,
         "hasIssues": true,
-        "contributors": 21,
-        "commits": 1359,
+        "contributors": 20,
+        "commits": 1434,
         "created": "2026-06-10",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 109,
-        "homepage": "https://mimo.xiaomi.com/mimocode",
-        "license": "MIT",
+        "ageDays": 136,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "yc-software/qm": {
     "repo": "yc-software/qm",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/yc-software/qm/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.13",
+        "latestRelease": "0.1.15",
         "items": []
       },
       "searches": {
-        "engine": "exa+hn+nvd",
+        "engine": "hn+nvd",
         "queries": [
           "yc-software/qm CVE",
           "yc-software/qm vulnerability",
@@ -18803,24 +18833,22 @@
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "yc-software/qm",
-        "stars": 15262,
-        "forks": 1868,
-        "watchers": 75,
-        "openIssues": 582,
+        "stars": 15507,
+        "forks": 1924,
+        "watchers": 72,
+        "openIssues": 1020,
         "hasIssues": true,
-        "contributors": 23,
-        "commits": 696,
+        "contributors": 57,
+        "commits": 1151,
         "created": "2026-07-29",
-        "pushed": "2026-09-27",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 60,
-        "homepage": "https://x.com/qm__dev",
-        "license": "MIT",
+        "ageDays": 87,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "ZSeven-W/openpencil": {
     "repo": "ZSeven-W/openpencil",
@@ -18918,7 +18946,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "nextlevelbuilder/ui-ux-pro-max-skill": {
     "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
@@ -19185,7 +19213,7 @@
   },
   "heygen-com/hyperframes": {
     "repo": "heygen-com/hyperframes",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19193,7 +19221,7 @@
         "source": "public-page",
         "url": "https://github.com/heygen-com/hyperframes/security/advisories",
         "count": 0,
-        "latestRelease": "0.8.111",
+        "latestRelease": "0.8.188",
         "items": []
       },
       "searches": {
@@ -19204,7 +19232,7 @@
           "heygen-com/hyperframes malware",
           "heygen-com/hyperframes scam"
         ],
-        "results": 2,
+        "results": 4,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -19216,25 +19244,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "heygen-com/hyperframes",
-        "stars": 55595,
-        "forks": 5035,
-        "watchers": 149,
-        "openIssues": 181,
+        "stars": 70377,
+        "forks": 6372,
+        "watchers": 182,
+        "openIssues": 400,
         "hasIssues": true,
-        "contributors": 99,
-        "commits": 5093,
+        "contributors": 136,
+        "commits": 5867,
         "created": "2026-03-10",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 207,
+        "ageDays": 228,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "tt-a1i/archify": {
     "repo": "tt-a1i/archify",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19242,7 +19269,7 @@
         "source": "public-page",
         "url": "https://github.com/tt-a1i/archify/security/advisories",
         "count": 0,
-        "latestRelease": "3.0.1",
+        "latestRelease": "3.2.0",
         "items": []
       },
       "searches": {
@@ -19265,25 +19292,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "tt-a1i/archify",
-        "stars": 76075,
-        "forks": 5120,
-        "watchers": 223,
-        "openIssues": 204,
+        "stars": 88098,
+        "forks": 5934,
+        "watchers": 227,
+        "openIssues": 284,
         "hasIssues": true,
-        "contributors": 72,
-        "commits": 867,
+        "contributors": 90,
+        "commits": 1741,
         "created": "2026-04-15",
-        "pushed": "2026-09-30",
+        "pushed": "2026-10-19",
         "archived": false,
-        "ageDays": 171,
+        "ageDays": 192,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "debpalash/VoiceStudio": {
     "repo": "debpalash/VoiceStudio",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19314,21 +19340,20 @@
       "activity": {
         "source": "public-page",
         "canonical": "debpalash/VoiceStudio",
-        "stars": 51653,
-        "forks": 5756,
-        "watchers": 205,
-        "openIssues": 74,
+        "stars": 82365,
+        "forks": 9095,
+        "watchers": 294,
+        "openIssues": 327,
         "hasIssues": true,
-        "contributors": 93,
-        "commits": 3684,
+        "contributors": 99,
+        "commits": 4570,
         "created": "2026-04-09",
-        "pushed": "2026-10-01",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 177,
+        "ageDays": 198,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "ayghri/i-have-adhd": {
     "repo": "ayghri/i-have-adhd",
@@ -19758,23 +19783,24 @@
         "ageDays": 276,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "vectorize-io/hindsight": {
     "repo": "vectorize-io/hindsight",
-    "checked": "2026-09-27",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
       "advisories": {
-        "source": "github-api",
+        "source": "public-page",
         "url": "https://github.com/vectorize-io/hindsight/security/advisories",
         "count": 0,
-        "latestRelease": "0.10.1",
+        "latestRelease": "1.1.0",
         "items": []
       },
       "searches": {
-        "engine": "exa",
+        "engine": "hn+nvd",
         "queries": [
           "vectorize-io/hindsight CVE",
           "vectorize-io/hindsight vulnerability",
@@ -19785,30 +19811,32 @@
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
         "cves": []
       },
       "activity": {
+        "source": "public-page",
         "canonical": "vectorize-io/hindsight",
-        "stars": 35940,
-        "forks": 4574,
-        "watchers": 80,
-        "openIssues": 164,
+        "stars": 52977,
+        "forks": 6225,
+        "watchers": 110,
+        "openIssues": 136,
         "hasIssues": true,
-        "contributors": 263,
-        "commits": 3244,
+        "contributors": 289,
+        "commits": 3891,
         "created": "2025-10-30",
-        "pushed": "2026-09-26",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 332,
-        "homepage": "https://hindsight.vectorize.io/",
-        "license": "MIT",
+        "ageDays": 359,
         "flags": []
       }
     }
   },
   "Niko1221/Strata": {
     "repo": "Niko1221/Strata",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19816,7 +19844,7 @@
         "source": "public-page",
         "url": "https://github.com/Niko1221/Strata/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.35",
+        "latestRelease": "0.2.3",
         "items": []
       },
       "searches": {
@@ -19827,7 +19855,7 @@
           "Niko1221/Strata malware",
           "Niko1221/Strata scam"
         ],
-        "results": 15,
+        "results": 14,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -19839,25 +19867,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "Niko1221/Strata",
-        "stars": 5342,
-        "forks": 479,
-        "watchers": 39,
-        "openIssues": 99,
+        "stars": 30911,
+        "forks": 3302,
+        "watchers": 164,
+        "openIssues": 721,
         "hasIssues": true,
-        "contributors": 50,
-        "commits": 545,
+        "contributors": 292,
+        "commits": 3746,
         "created": "2026-09-24",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 9,
+        "ageDays": 30,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "eternity4719/HowToLiveBetter": {
     "repo": "eternity4719/HowToLiveBetter",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19888,25 +19915,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "eternity4719/HowToLiveBetter",
-        "stars": 34522,
-        "forks": 2676,
-        "watchers": 100,
-        "openIssues": 16,
+        "stars": 68223,
+        "forks": 5906,
+        "watchers": 206,
+        "openIssues": 21,
         "hasIssues": true,
-        "contributors": 5,
-        "commits": 299,
+        "contributors": 24,
+        "commits": 469,
         "created": "2026-09-07",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-21",
         "archived": false,
-        "ageDays": 26,
+        "ageDays": 47,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "rohitg00/ai-engineering-from-scratch": {
     "repo": "rohitg00/ai-engineering-from-scratch",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19914,7 +19940,7 @@
         "source": "public-page",
         "url": "https://github.com/rohitg00/ai-engineering-from-scratch/security/advisories",
         "count": 0,
-        "latestRelease": "2026.10.0",
+        "latestRelease": "2026.10.4",
         "items": []
       },
       "searches": {
@@ -19937,25 +19963,24 @@
       "activity": {
         "source": "public-page",
         "canonical": "rohitg00/ai-engineering-from-scratch",
-        "stars": 62569,
-        "forks": 10698,
-        "watchers": 393,
-        "openIssues": 63,
+        "stars": 72634,
+        "forks": 12772,
+        "watchers": 445,
+        "openIssues": 71,
         "hasIssues": true,
-        "contributors": 22,
-        "commits": 1813,
+        "contributors": 30,
+        "commits": 2621,
         "created": "2026-03-18",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 199,
+        "ageDays": 220,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "NVIDIA/OpenShell": {
     "repo": "NVIDIA/OpenShell",
-    "checked": "2026-10-02",
+    "checked": "2026-10-23",
     "verdict": "PASS",
     "reasons": [],
     "checks": {
@@ -19963,7 +19988,7 @@
         "source": "public-page",
         "url": "https://github.com/NVIDIA/OpenShell/security/advisories",
         "count": 0,
-        "latestRelease": "0.1.2",
+        "latestRelease": "0.1.5",
         "items": []
       },
       "searches": {
@@ -20072,21 +20097,20 @@
       "activity": {
         "source": "public-page",
         "canonical": "NVIDIA/OpenShell",
-        "stars": 14237,
-        "forks": 1643,
-        "watchers": 71,
-        "openIssues": 527,
+        "stars": 18259,
+        "forks": 1852,
+        "watchers": 70,
+        "openIssues": 563,
         "hasIssues": true,
-        "contributors": 130,
-        "commits": 1605,
+        "contributors": 140,
+        "commits": 1852,
         "created": "2026-02-24",
-        "pushed": "2026-10-02",
+        "pushed": "2026-10-22",
         "archived": false,
-        "ageDays": 221,
+        "ageDays": 242,
         "flags": []
       }
-    },
-    "rechecked": "2026-10-16"
+    }
   },
   "mvschwarz/openrig": {
     "repo": "mvschwarz/openrig",
@@ -22086,7 +22110,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "storytold/filmcraft": {
     "repo": "storytold/filmcraft",
@@ -22135,7 +22159,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "storytold/lightcraft": {
     "repo": "storytold/lightcraft",
@@ -22184,7 +22208,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "rehan-remade/universal-modder": {
     "repo": "rehan-remade/universal-modder",
@@ -22233,7 +22257,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "storytold/pdfcraft": {
     "repo": "storytold/pdfcraft",
@@ -22282,7 +22306,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "morluto/rea": {
     "repo": "morluto/rea",
@@ -22331,7 +22355,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "storytold/artcraft": {
     "repo": "storytold/artcraft",
@@ -22392,7 +22416,7 @@
         "activity: 12368 stars on only 21 commit(s)"
       ]
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "anthropics/knowledge-work-plugins": {
     "repo": "anthropics/knowledge-work-plugins",
@@ -22441,7 +22465,7 @@
         "flags": []
       }
     },
-    "rechecked": "2026-10-16"
+    "rechecked": "2026-10-23"
   },
   "boykopovar/AnyPS5": {
     "repo": "boykopovar/AnyPS5",
@@ -22489,20 +22513,112 @@
         "ageDays": 75,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "DuarteSantos8/openGym": {
     "repo": "DuarteSantos8/openGym",
-    "checked": "2026-10-16",
-    "verdict": "PASS",
-    "reasons": [],
+    "checked": "2026-10-23",
+    "verdict": "FAIL",
+    "reasons": [
+      "4 open advisory(ies): GHSA-568g-hg5j-h53q moderate (unpatched), GHSA-w724-p4hx-jfv9 moderate (unpatched), GHSA-375x-wfvj-jf7q high (unpatched), GHSA-48ff-v63h-99xr moderate (unpatched)"
+    ],
     "checks": {
       "advisories": {
         "source": "public-page",
         "url": "https://github.com/DuarteSantos8/openGym/security/advisories",
-        "count": 0,
-        "latestRelease": "1.4.1",
-        "items": []
+        "count": 8,
+        "latestRelease": "1.4.2",
+        "items": [
+          {
+            "ghsa": "GHSA-69j8-85pp-mf8j",
+            "cve": null,
+            "severity": "low",
+            "published": "2026-10-23",
+            "summary": "One profile's saved state can stall the whole server through the reminder tick",
+            "patched": null,
+            "openPackages": [],
+            "status": "fix-unverified",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-568g-hg5j-h53q",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "Push subscription takeover",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-w724-p4hx-jfv9",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "The Coach privilege gate is skipped on some paths, and a refused job binds the owner's credential",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-375x-wfvj-jf7q",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-23",
+            "summary": "The API base can be pointed off-origin by a crafted link",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-48ff-v63h-99xr",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "Login CSRF on the passkey routes",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-c84f-w7q3-jm72",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "Unrestricted State Injection via Unvalidated PUT Endpoint (/api/data`)",
+            "patched": null,
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-m5g5-7w6f-58m9",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "Push Subscription Endpoint Accepts Arbitrary URL Without Validation",
+            "patched": null,
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.4.2"
+          },
+          {
+            "ghsa": "GHSA-4wq8-fpv6-2c4r",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-23",
+            "summary": "Prompt Injection via Uncapped Coach Profile Fields",
+            "patched": null,
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.4.2"
+          }
+        ]
       },
       "searches": {
         "engine": "hn+nvd",
@@ -22512,7 +22628,7 @@
           "DuarteSantos8/openGym malware",
           "DuarteSantos8/openGym scam"
         ],
-        "results": 11,
+        "results": 20,
         "errors": 0,
         "hits": [],
         "fallbacks": 4,
@@ -22524,17 +22640,17 @@
       "activity": {
         "source": "public-page",
         "canonical": "DuarteSantos8/openGym",
-        "stars": 12691,
-        "forks": 1552,
-        "watchers": 27,
-        "openIssues": 182,
+        "stars": 15093,
+        "forks": 1961,
+        "watchers": 35,
+        "openIssues": 254,
         "hasIssues": true,
-        "contributors": 75,
-        "commits": 1805,
+        "contributors": 80,
+        "commits": 2052,
         "created": "2026-07-18",
-        "pushed": "2026-10-13",
+        "pushed": "2026-10-23",
         "archived": false,
-        "ageDays": 91,
+        "ageDays": 98,
         "flags": []
       }
     }
@@ -22585,7 +22701,8 @@
         "ageDays": 184,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "coreyhaines31/marketingskills": {
     "repo": "coreyhaines31/marketingskills",
@@ -22681,7 +22798,8 @@
         "ageDays": 9,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "storytold/wordcraft": {
     "repo": "storytold/wordcraft",
@@ -22729,7 +22847,8 @@
         "ageDays": 10,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "yetone/magpie": {
     "repo": "yetone/magpie",
@@ -22777,7 +22896,8 @@
         "ageDays": 24,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "mksglu/context-mode": {
     "repo": "mksglu/context-mode",
@@ -22825,7 +22945,8 @@
         "ageDays": 236,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "xerj-org/xerj": {
     "repo": "xerj-org/xerj",
@@ -22873,7 +22994,8 @@
         "ageDays": 109,
         "flags": []
       }
-    }
+    },
+    "rechecked": "2026-10-23"
   },
   "openai/math": {
     "repo": "openai/math",
@@ -23764,6 +23886,2610 @@
           "recheck": "patched",
           "why": "fix PR(s) #2415 merged and in release 2.7"
         }
+      ]
+    }
+  },
+  "Gathin23/cleanyourtv": {
+    "repo": "Gathin23/cleanyourtv",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/Gathin23/cleanyourtv/security/advisories",
+        "count": 0,
+        "latestRelease": "2.6.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "Gathin23/cleanyourtv CVE",
+          "Gathin23/cleanyourtv vulnerability",
+          "Gathin23/cleanyourtv malware",
+          "Gathin23/cleanyourtv scam"
+        ],
+        "results": 0,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "Gathin23/cleanyourtv",
+        "stars": 26294,
+        "forks": 2895,
+        "watchers": 68,
+        "openIssues": 85,
+        "hasIssues": true,
+        "contributors": 362,
+        "commits": 1932,
+        "created": "2026-10-17",
+        "pushed": "2026-10-23",
+        "archived": false,
+        "ageDays": 7,
+        "flags": []
+      }
+    }
+  },
+  "tangency-labs/solidcraft": {
+    "repo": "tangency-labs/solidcraft",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/tangency-labs/solidcraft/security/advisories",
+        "count": 0,
+        "latestRelease": "0.20.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "tangency-labs/solidcraft CVE",
+          "tangency-labs/solidcraft vulnerability",
+          "tangency-labs/solidcraft malware",
+          "tangency-labs/solidcraft scam"
+        ],
+        "results": 7,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "tangency-labs/solidcraft",
+        "stars": 9540,
+        "forks": 1146,
+        "watchers": 78,
+        "openIssues": 2906,
+        "hasIssues": true,
+        "contributors": 138,
+        "commits": 1937,
+        "created": "2026-10-07",
+        "pushed": "2026-10-23",
+        "archived": false,
+        "ageDays": 17,
+        "flags": []
+      }
+    }
+  },
+  "Droid-Deck/DroidDeck": {
+    "repo": "Droid-Deck/DroidDeck",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/Droid-Deck/DroidDeck/security/advisories",
+        "count": 0,
+        "latestRelease": "0.6.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "Droid-Deck/DroidDeck CVE",
+          "Droid-Deck/DroidDeck vulnerability",
+          "Droid-Deck/DroidDeck malware",
+          "Droid-Deck/DroidDeck scam"
+        ],
+        "results": 1,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "Droid-Deck/DroidDeck",
+        "stars": 13075,
+        "forks": 666,
+        "watchers": 94,
+        "openIssues": 409,
+        "hasIssues": true,
+        "contributors": 58,
+        "commits": 1303,
+        "created": "2026-09-24",
+        "pushed": "2026-10-23",
+        "archived": false,
+        "ageDays": 30,
+        "flags": []
+      }
+    }
+  },
+  "anthropics/claude-plugins-official": {
+    "repo": "anthropics/claude-plugins-official",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/anthropics/claude-plugins-official/security/advisories",
+        "count": 0,
+        "latestRelease": null,
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "anthropics/claude-plugins-official CVE",
+          "anthropics/claude-plugins-official vulnerability",
+          "anthropics/claude-plugins-official malware",
+          "anthropics/claude-plugins-official scam"
+        ],
+        "results": 2,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "anthropics/claude-plugins-official",
+        "stars": 44018,
+        "forks": 4633,
+        "watchers": 256,
+        "openIssues": 1203,
+        "hasIssues": true,
+        "contributors": 49,
+        "commits": 4631,
+        "created": "2025-11-20",
+        "pushed": "2026-10-22",
+        "archived": false,
+        "ageDays": 338,
+        "flags": []
+      }
+    }
+  },
+  "tashfeenahmed/freellmapi": {
+    "repo": "tashfeenahmed/freellmapi",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/tashfeenahmed/freellmapi/security/advisories",
+        "count": 0,
+        "latestRelease": "0.16.8",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "tashfeenahmed/freellmapi CVE",
+          "tashfeenahmed/freellmapi vulnerability",
+          "tashfeenahmed/freellmapi malware",
+          "tashfeenahmed/freellmapi scam"
+        ],
+        "results": 0,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "tashfeenahmed/freellmapi",
+        "stars": 39898,
+        "forks": 5391,
+        "watchers": 223,
+        "openIssues": 40,
+        "hasIssues": true,
+        "contributors": 101,
+        "commits": 995,
+        "created": "2026-04-21",
+        "pushed": "2026-10-23",
+        "archived": false,
+        "ageDays": 186,
+        "flags": []
+      }
+    }
+  },
+  "Saffsanity/sill": {
+    "repo": "Saffsanity/sill",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/Saffsanity/sill/security/advisories",
+        "count": 0,
+        "latestRelease": "0.5.1",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "Saffsanity/sill CVE",
+          "Saffsanity/sill vulnerability",
+          "Saffsanity/sill malware",
+          "Saffsanity/sill scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "Saffsanity/sill",
+        "stars": 3932,
+        "forks": 223,
+        "watchers": 10,
+        "openIssues": 112,
+        "hasIssues": true,
+        "contributors": 8,
+        "commits": 722,
+        "created": "2026-09-22",
+        "pushed": "2026-10-19",
+        "archived": false,
+        "ageDays": 32,
+        "flags": []
+      }
+    }
+  },
+  "deepseek-ai/DeepInfer": {
+    "repo": "deepseek-ai/DeepInfer",
+    "checked": "2026-10-23",
+    "verdict": "REVIEW",
+    "reasons": [
+      "activity: 20602 stars on only 4 commit(s)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/deepseek-ai/DeepInfer/security/advisories",
+        "count": 0,
+        "latestRelease": null,
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "deepseek-ai/DeepInfer CVE",
+          "deepseek-ai/DeepInfer vulnerability",
+          "deepseek-ai/DeepInfer malware",
+          "deepseek-ai/DeepInfer scam"
+        ],
+        "results": 10,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "deepseek-ai/DeepInfer",
+        "stars": 20602,
+        "forks": 2235,
+        "watchers": 46,
+        "openIssues": 172,
+        "hasIssues": false,
+        "contributors": 3,
+        "commits": 4,
+        "created": "2026-10-16",
+        "pushed": "2026-10-21",
+        "archived": false,
+        "ageDays": 8,
+        "flags": [
+          "20602 stars on only 4 commit(s)"
+        ]
+      }
+    }
+  },
+  "NationalSecurityAgency/ghidra": {
+    "repo": "NationalSecurityAgency/ghidra",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/NationalSecurityAgency/ghidra/security/advisories",
+        "count": 64,
+        "latestRelease": "12.2.0",
+        "items": [
+          {
+            "ghsa": "GHSA-xphx-c697-5gm2",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Ghidra ssh-gdbserver Image command injection",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-896f-pqhq-j5v9",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Unbounded dyld chained fixup traversal causes Ghidra JVM heap exhaustion from a crafted Mach-O",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-jv87-2gr3-mf6x",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Ghidra startup cleanup follows attacker-planted directory symlinks and deletes victim files",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-qm7x-8wxx-mpr5",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "SplitMultiplePefContainersScript path traversal allows arbitrary file write",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-m7qw-4fr6-9w54",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Ghidra client RMI filter permits unbounded DataBuffer allocation",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vx5j-h56c-cp74",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "SquashFS Inode Count Causes Unbounded Array Allocation and JVM Heap Exhaustion",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-9hvr-c5qj-r569",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Unbounded Minidump Stream Count Exhausts the JVM During Load-Spec Discovery",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j8pg-96rw-v4hh",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "COFF archive negative member size causes JVM heap exhaustion",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-v423-5vh7-c7jw",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Integer Truncation in PackedDecode::skipAttribute Causes Parser State Corruption in Decompiler",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-c3pf-92jf-vq96",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-09-22",
+            "summary": "Arbitrary Code Execution via uncontrolled search path in the Swift Demangler analyzer (Windows)",
+            "patched": "12.1.4",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vvp8-22p8-x954",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Denial of Service via Uncontrolled Resource Consumption When Importing TAR/Zip Archive",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-c4gg-7cg9-6j3x",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "FSRL MD5 parameters can traverse FileCache paths before filesystem validation",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vcmv-9vvw-jvfh",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Symlink escape in ELF debug-link external-file lookup",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-fvwx-pwq5-3738",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Denial of Service via Filesystem Inode Exhaustion During Theme Import",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j5q9-fhqg-q995",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Denial of Service via Filesystem Inode Exhaustion During Extension Import",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-fqm9-556w-5xwr",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Mach-O LC_DYLD_CHAINED_FIXUPS: unchecked `segCount` causes uncontrolled allocation and JVM crash (OOM)",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-64pj-q6g9-grhm",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Mach-O LC_BUILD_VERSION: unchecked `ntools` count causes uncontrolled allocation and JVM crash (OOM)",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-gh9w-rvr5-4gmp",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "DEX Importer: Uncontrolled memory consumption in StringDataItem and DebugInfoItem",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-6mj8-x8x9-7gxq",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Improper Handling of Highly Compressed Theme Archive Causes Denial of Service",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-mcjr-7qqr-m3w8",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Improper Handling of Highly Compressed Extension Archive Causes Denial of Service",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-cp9q-hr98-3wr8",
+            "cve": "CVE-2026-100505",
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Heap out-of-bounds read in decompiler `StringManager::getCodepoint()` when reconstructing constant strings",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j2c9-63qh-32p6",
+            "cve": "CVE-2026-100503",
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Heap-use-after-free in the opInsertAfter via a stale INDIRECT effect-op reference",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vxmq-6v38-hgf6",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-09-22",
+            "summary": "Denial of Service, Cyclic x64 chained unwind metadata causes StackOverflowError during PE import",
+            "patched": "12.1.4",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vhh3-r623-8wxc",
+            "cve": "CVE-2026-100504",
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Out-of-bounds read and write in `leftshift128` during decompilation",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-4w7g-wmg8-fgv5",
+            "cve": "CVE-2026-96273",
+            "severity": "moderate",
+            "published": "2026-09-22",
+            "summary": "Improper Array Index Validation in DB Unregistered Options parsing Leads to unreleased lock and Denial of Service",
+            "patched": "12.1.4",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j5xh-h7gc-69rh",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Incomplete fix for GHSA-mc3p: `@url` annotations still reach analysts from binary-derived comments, one click to code execution on Windows",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-q538-hhhf-5jxp",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Denial of Service via Uncontrolled Memory Allocation in DB DataBuffer",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-rwp4-7wjf-x92g",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Denial of service in Ghidra 12.1.2 via bundled SevenZip decoder (CVE-2017-17969)",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-2697-fm9m-mqvw",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "Infinite loop (uncontrolled resource consumption) in PEF loader — crafted PEF hangs Ghidra on import",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-pjx5-3v6w-px6v",
+            "cve": null,
+            "severity": "critical",
+            "published": "2026-10-22",
+            "summary": "Unauthenticated Ghidra Debugger ISF metadata export and EOF CPU DoS",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-3f3p-5h4j-gq2r",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "Path Traversal in XmlLoader Allows Arbitrary Local File Read During XML Import",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-4pqp-hrg7-62xp",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Ghidra 12.1.2: RCE via SevenZipJBinding: Untrusted Archive Parsing with Potential Memory Corruption and System Compromise.",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-pcfh-853f-q3gh",
+            "cve": "CVE-2026-18718",
+            "severity": "high",
+            "published": "2026-08-19",
+            "summary": "Conditional Arbitrary Code Execution via Swift Demangler Analyzer (ACE)",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-74wf-772p-fg2r",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "DEX CodeItem insns_size causes unbounded heap allocation during import",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-4f99-4vq6-pc32",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-22",
+            "summary": "Java class Code attribute code_length causes unbounded heap allocation during import",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-f5gv-pxqw-x95w",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "Dyld cache mappingCount causes unbounded heap allocation during import load-spec discovery",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-f75p-8cqj-9v3g",
+            "cve": "CVE-2026-54389",
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "PDB Parser Resource Consumption",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-v6c3-h9cp-3whf",
+            "cve": "CVE-2026-52759",
+            "severity": "moderate",
+            "published": "2026-06-08",
+            "summary": "Uncontrolled Resource Consumption in MachoLoader",
+            "patched": "12.1.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-42gp-j98c-2297",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-08-19",
+            "summary": "Path traversal in APK: Project export allows arbitrary file write",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-hrpw-vjfw-gq5r",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "OutOfMemoryError crash when opening a crafted trace database due to unbounded array allocation",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-r625-mph7-wf6j",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-06-08",
+            "summary": "Unvalidated input instantiates attacker-specified classes when opening a malicious Ghidra project",
+            "patched": "12.1.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-p4ff-f27r-j8q7",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-08-19",
+            "summary": "Heap-buffer-overflow in TypeFactory::getBase() during jump table recovery",
+            "patched": "12.1.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j9qm-gxv4-62p4",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-06-08",
+            "summary": "Stack-array out-of-bounds write in udiv128 simplification helper",
+            "patched": "12.1.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-8jqp-qv73-395r",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-15",
+            "summary": "Heap-use-after-free in HighVariable::merge() during decompilation",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-5c38-3rf3-gp75",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "Windows Command Injection via URL Annotation Click (CWE-77, BatBadBut Class)",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vp5p-r833-fq6f",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "TLS Server Certificate Validation Disabled by Default (CWE-295)",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-fgg5-g275-7742",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "Ghidra RCE via Unfiltered RMI Deserialisation",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-pv6p-xjjp-g544",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-22",
+            "summary": "Insecure Default Authentication in BSim PostgreSQL Backend Leads to Unauthenticated Remote Code Execution",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-5wxq-7qpv-65p2",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "GhidraServer PKI Privilege Escalation: Null Signature Bypasses Identity Verification",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-wm33-9f68-3vjg",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-14",
+            "summary": "Uncontrolled Resource Consumption via Circular Reference in Mach-O Export Trie Parser",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-r82g-8jpp-8cfx",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-06-08",
+            "summary": "Unrecoverable Infinite Loop in ELF GNU Hash Table Parser",
+            "patched": "12.1.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-57g6-7qw2-p5hx",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-14",
+            "summary": "Path Traversal via .gnu_debuglink in DWARF External Debug File Resolution",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-8pr2-46mf-v2r2",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-14",
+            "summary": "Unauthenticated Path Traversal in Debugger ISF Server",
+            "patched": "12.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-vv7r-2rhf-5h7g",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "SQL Injection in BSim Password Change Allows PostgreSQL Privilege Escalation",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-8r4f-65cr-fwxm",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-05-14",
+            "summary": "SQL Injection via Unescaped Filter Values in BSim Search",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-gqh9-2c72-wpjc",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-05-14",
+            "summary": "Heap-Use-After-Free in SleighBuilder::generatePointerAdd",
+            "patched": "12.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-3r55-xjr4-jh8f",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-03-10",
+            "summary": "Zip Slip: Path traversal in Ghidra theme import",
+            "patched": "12.0.4",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-mc3p-mq2p-xw6v",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-02-19",
+            "summary": "Arbitrary Code Execution via @execute annotation in binary-derived comments",
+            "patched": "12.0.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-m94m-fqr3-x442",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-02-11",
+            "summary": "Out-of-Memory in Ghidra GNU Demangler causes Process Crash",
+            "patched": "12.0.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-jhc2-q7qf-9c25",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-02-02",
+            "summary": "Zip Slip: Path traversal in Ghidra extension installer",
+            "patched": "12.0.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-4g43-2f29-xvp4",
+            "cve": null,
+            "severity": "low",
+            "published": "2024-09-19",
+            "summary": "Use after free vulnerability in Sleigh backend",
+            "patched": "11.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-cqfj-5crw-rh6p",
+            "cve": "CVE-2023-22671",
+            "severity": "critical",
+            "published": "2023-02-13",
+            "summary": "Ghidra command injection in launch.sh",
+            "patched": "10.2.3",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-pr2h-5qhx-9544",
+            "cve": "CVE-2019-17664",
+            "severity": "high",
+            "published": "2023-01-06",
+            "summary": "Ghidra untrusted search path in Jython",
+            "patched": "10.2",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          },
+          {
+            "ghsa": "GHSA-j3xg-fc2p-4jc4",
+            "cve": "CVE-2021-44228",
+            "severity": "critical",
+            "published": "2021-12-14",
+            "summary": "Ghidra remote code injection in Log4j",
+            "patched": "10.1",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "12.2.0"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "NationalSecurityAgency/ghidra CVE",
+          "NationalSecurityAgency/ghidra vulnerability",
+          "NationalSecurityAgency/ghidra malware",
+          "NationalSecurityAgency/ghidra scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "NationalSecurityAgency/ghidra",
+        "stars": 93399,
+        "forks": 10481,
+        "watchers": 1197,
+        "openIssues": 2143,
+        "hasIssues": true,
+        "contributors": 418,
+        "commits": 18836,
+        "created": "2019-03-01",
+        "pushed": "2026-10-21",
+        "archived": false,
+        "ageDays": 2794,
+        "flags": []
+      }
+    }
+  },
+  "php/php-src": {
+    "repo": "php/php-src",
+    "checked": "2026-10-23",
+    "verdict": "FAIL",
+    "reasons": [
+      "3 open advisory(ies): GHSA-ch8v-r6jh-4vvr low (unpatched), GHSA-9f67-6fw4-hpfp moderate (unpatched), GHSA-hh26-4ppw-5864 moderate (unpatched)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/php/php-src/security/advisories",
+        "count": 66,
+        "latestRelease": "8.5.12",
+        "items": [
+          {
+            "ghsa": "GHSA-7875-c8px-7q5f",
+            "cve": "CVE-2026-93682",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "Out-of-bounds read in the HTTP stream wrapper when following a redirect with an empty Location header",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-w8hw-w9fx-j79w",
+            "cve": "CVE-2026-109618",
+            "severity": "critical",
+            "published": "2026-10-21",
+            "summary": "RCE via OOM corruption",
+            "patched": "8.2.35",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-6wmf-4rv5-p3rp",
+            "cve": "CVE-2026-109619",
+            "severity": "critical",
+            "published": "2026-10-21",
+            "summary": "RCE via stale global state",
+            "patched": "8.2.35",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-62xp-839h-2637",
+            "cve": "CVE-2026-91768",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "IPv6 ACL bypass in FastCGI listen.allowed_clients due to partial address comparison (memcmp 12 bytes)",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-ch8v-r6jh-4vvr",
+            "cve": null,
+            "severity": "low",
+            "published": "2026-09-24",
+            "summary": "ext/filter: encode 0xFF in FILTER_SANITIZE_ENCODED",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-7jrw-539f-x6vr",
+            "cve": "CVE-2026-14355",
+            "severity": "moderate",
+            "published": "2026-07-02",
+            "summary": "ext/openssl: Memory corruption (zend_mm_heap corrupted) in openssl_encrypt with AES-WRAP-PAD",
+            "patched": "8.2.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-fpwc-w8rq-cr92",
+            "cve": "CVE-2026-91766",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "Cross-origin credential leak in HTTP stream wrapper redirects",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-rgrp-mwpx-f6rm",
+            "cve": "CVE-2026-91765",
+            "severity": "high",
+            "published": "2026-09-24",
+            "summary": "SOAP: Unbounded Recursion in Server-Side cleanup_xml_node",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-7qpv-r5mr-78m4",
+            "cve": "CVE-2026-17543",
+            "severity": "high",
+            "published": "2026-07-30",
+            "summary": "SQL injection in ext-pgsql via E'...' backslash breakout",
+            "patched": "8.2.33",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-x692-q9x7-8c3f",
+            "cve": "CVE-2026-17544",
+            "severity": "high",
+            "published": "2026-07-30",
+            "summary": "Out-of-bounds write in bccomp() via crafted operand and scale",
+            "patched": "8.4.24",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-mhmq-mmqj-2v39",
+            "cve": "CVE-2026-12184",
+            "severity": "high",
+            "published": "2026-07-02",
+            "summary": "Failure to setup TLS with a remote server can result in a remote DoS",
+            "patched": "8.3.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-xr7j-rvgx-xq5p",
+            "cve": "CVE-2026-91767",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "Heap-buffer-overflow in php_openssl_matches_wildcard_name on crafted server cert wildcard CN",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-hmxp-6pc4-f3vv",
+            "cve": "CVE-2026-7262",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "NULL pointer dereference in SOAP apache:Map decoder with missing <value>",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-m33r-qmcv-p97q",
+            "cve": "CVE-2026-7261",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "SoapServer session-persisted object use-after-free via SOAP header fault",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-85c2-q967-79q5",
+            "cve": "CVE-2026-6722",
+            "severity": "high",
+            "published": "2026-05-07",
+            "summary": "Use-After-Free in SOAP using Apache map with Remote Code Execution",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-m8rr-4c36-8gq4",
+            "cve": "CVE-2026-7258",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "Out-of-bounds read in urldecode()",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-9f67-6fw4-hpfp",
+            "cve": "CVE-2026-17545",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "PHP on Windows: Reserved Device Names Are Not Rejected Before File/Stream I/O which can cause DoS",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-vc5h-9ppw-p5f3",
+            "cve": "CVE-2026-7260",
+            "severity": "moderate",
+            "published": "2026-07-30",
+            "summary": "Stack overflow in phar with circular symlinks",
+            "patched": "8.2.33",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-vvx9-73fr-5jjx",
+            "cve": "CVE-2026-91769",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "TLS Hostname Verification Falls Back to CN After SAN Mismatch",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-j3wh-g957-2m85",
+            "cve": "CVE-2026-6103",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "Phar TAR phar_tar_number() Integer Overflow - Archive Entry Injection",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-74r9-qxhc-fx53",
+            "cve": "CVE-2026-6104",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "Global buffer over-read in mb_convert_encoding() with attacker-supplied encoding",
+            "patched": "8.4.21",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-4jhr-8w89-j733",
+            "cve": "CVE-2026-7263",
+            "severity": "high",
+            "published": "2026-05-07",
+            "summary": "DoS attack via DOMNode::C14N()",
+            "patched": "8.4.21",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-88hq-2827-7pg6",
+            "cve": "CVE-2026-92842",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "OOB read / info leak in convert.* stream filters when line-break-chars contains NUL",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-7qg2-v9fj-4mwv",
+            "cve": "CVE-2026-6735",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "XSS within PHP-FPM status endpoint",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-96wq-48vp-hh57",
+            "cve": "CVE-2026-7568",
+            "severity": "low",
+            "published": "2026-05-07",
+            "summary": "Signed integer overflow in metaphone()",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-wm6j-2649-pv75",
+            "cve": "CVE-2026-7259",
+            "severity": "low",
+            "published": "2026-05-07",
+            "summary": "Null pointer dereference in php_mb_check_encoding() via mb_ereg_search_init()",
+            "patched": "8.5.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-3237-qqm7-mfv7",
+            "cve": "CVE-2025-14177",
+            "severity": "moderate",
+            "published": "2025-12-18",
+            "summary": "Information Leak of Memory in getimagesize",
+            "patched": "8.1.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-h96m-rvf9-jgm2",
+            "cve": "CVE-2025-14178",
+            "severity": "moderate",
+            "published": "2025-12-18",
+            "summary": "Heap buffer overflow in array_merge()",
+            "patched": "8.1.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-8xr5-qppj-gvwj",
+            "cve": "CVE-2025-14180",
+            "severity": "moderate",
+            "published": "2025-12-18",
+            "summary": "NULL Pointer Dereference in PDO quoting",
+            "patched": "8.1.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-w476-322c-wpvm",
+            "cve": "CVE-2025-14179",
+            "severity": "high",
+            "published": "2026-05-07",
+            "summary": "SQL injection in pdo_firebird via NUL bytes in quoted strings",
+            "patched": "8.2.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-cj93-vc83-wgqv",
+            "cve": "CVE-2025-14181",
+            "severity": "moderate",
+            "published": "2026-09-24",
+            "summary": "Integer overflow to buffer overflow in soap HTTP parsing",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-453j-q27h-5p8x",
+            "cve": "CVE-2025-6491",
+            "severity": "moderate",
+            "published": "2025-07-03",
+            "summary": "NULL Pointer Dereference in PHP SOAP Extension via Large XML Namespace Prefix",
+            "patched": "8.1.33",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-www2-q4fc-65wf",
+            "cve": null,
+            "severity": "low",
+            "published": "2025-12-18",
+            "summary": "Null byte termination in dns_get_record()",
+            "patched": "8.1.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-hrwm-9436-5mv3",
+            "cve": "CVE-2025-1735",
+            "severity": "moderate",
+            "published": "2025-07-03",
+            "summary": "pgsql extension does not check for errors during escaping",
+            "patched": "8.1.33",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-52jp-hrpf-2jff",
+            "cve": "CVE-2025-1861",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "Stream HTTP wrapper truncate redirect location to 1024 bytes",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-pcmh-g36c-qc44",
+            "cve": "CVE-2025-1734",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "Streams HTTP wrapper does not fail for headers with invalid name and no colon",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-wg4p-4hqh-c3g9",
+            "cve": null,
+            "severity": "low",
+            "published": "2025-03-13",
+            "summary": "Possible out of bounds read when XML_OPTION_SKIP_TAGSTART used",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-v8xr-gpvj-cx9g",
+            "cve": "CVE-2025-1217",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "Header parser of `http` stream wrapper does not handle folded headers",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-r6x9-5r99-36j7",
+            "cve": "CVE-2025-1218",
+            "severity": "low",
+            "published": "2026-09-24",
+            "summary": "Various packet overreads in mysqlnd_writeprotocol.c",
+            "patched": "8.2.34",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-p3x9-6h7p-cgfc",
+            "cve": "CVE-2025-1219",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "libxml streams use wrong `content-type` header when requesting a redirected resource",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-hgf5-96fm-v528",
+            "cve": "CVE-2025-1736",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "Stream HTTP wrapper header check might omit basic auth header",
+            "patched": "8.1.32",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-4w77-75f9-2c8w",
+            "cve": null,
+            "severity": "low",
+            "published": "2024-11-21",
+            "summary": "Heap-Use-After-Free in sapi_read_post_data Processing in CLI SAPI Interface",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-r977-prxv-hc43",
+            "cve": "CVE-2024-11233",
+            "severity": "moderate",
+            "published": "2024-11-21",
+            "summary": "Single byte overread with convert.quoted-printable-decode filter",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-rwp7-7vc6-8477",
+            "cve": "CVE-2024-11235",
+            "severity": "moderate",
+            "published": "2025-03-13",
+            "summary": "Reference counting in php_request_shutdown causes Use-After-Free",
+            "patched": "8.3.19",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-5hqh-c84r-qjcv",
+            "cve": "CVE-2024-11236",
+            "severity": "moderate",
+            "published": "2024-11-21",
+            "summary": "Integer overflow in the firebird and dblib quoters causing OOB writes",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-c5f2-jwm7-mmq2",
+            "cve": "CVE-2024-11234",
+            "severity": "moderate",
+            "published": "2024-11-21",
+            "summary": "Configuring a proxy in a stream context might allow for CRLF injection in URIs",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-g665-fm4p-vhff",
+            "cve": "CVE-2024-8932",
+            "severity": "moderate",
+            "published": "2024-11-21",
+            "summary": "OOB access in ldap_escape",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-h35g-vwh6-m678",
+            "cve": "CVE-2024-8929",
+            "severity": "high",
+            "published": "2024-11-21",
+            "summary": "[Mysqlnd] Leak partial content of the heap through heap buffer over-read",
+            "patched": "8.1.31",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-865w-9rf3-2wh5",
+            "cve": "CVE-2024-9026",
+            "severity": "low",
+            "published": "2024-09-27",
+            "summary": "[PHP-FPM] Logs from childrens may be altered",
+            "patched": "8.1.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-3cr5-j632-f35r",
+            "cve": "CVE-2025-1220",
+            "severity": "low",
+            "published": "2025-07-03",
+            "summary": "Null byte termination in hostnames",
+            "patched": "8.1.33",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-9pqp-7h25-4f32",
+            "cve": "CVE-2024-8925",
+            "severity": "low",
+            "published": "2024-09-27",
+            "summary": "Erroneous parsing of multipart form data",
+            "patched": "8.1.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-p99j-rfp4-xqvq",
+            "cve": "CVE-2024-8926",
+            "severity": "moderate",
+            "published": "2024-09-27",
+            "summary": "PHP CGI Parameter Injection Vulnerability (CVE-2024-4577 bypass)",
+            "patched": "8.1.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-94p6-54jq-9mwp",
+            "cve": "CVE-2024-8927",
+            "severity": "moderate",
+            "published": "2024-09-27",
+            "summary": "cgi.force_redirect configuration is bypassable due to the environment variable collision",
+            "patched": "8.1.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-w8qr-v226-r27w",
+            "cve": "CVE-2024-5458",
+            "severity": "moderate",
+            "published": "2024-06-09",
+            "summary": "Filter bypass in filter_var (FILTER_VALIDATE_URL)",
+            "patched": "8.1.29, 8.2.20, 8.3.8.",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-3qgc-jrrr-25jv",
+            "cve": "CVE-2024-4577",
+            "severity": "high",
+            "published": "2024-09-28",
+            "summary": "PHP RCE: A Bypass of CVE-2012-1823, Argument Injection in PHP-CGI",
+            "patched": "8.3.8",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-9fcc-425m-g385",
+            "cve": "CVE-2024-5585",
+            "severity": "high",
+            "published": "2024-06-09",
+            "summary": "bypass CVE-2024-1874",
+            "patched": "8.1.29, 8.2.20, 8.3.8",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-wpj3-hf5j-x4v4",
+            "cve": "CVE-2024-2756",
+            "severity": "moderate",
+            "published": "2024-04-11",
+            "summary": "__Host-/__Secure- cookie bypass due to partial CVE-2022-31629 fix",
+            "patched": "8.1.28",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-h746-cjrr-wfmr",
+            "cve": "CVE-2024-3096",
+            "severity": "low",
+            "published": "2024-04-11",
+            "summary": "password_verify can erroneously return true, opening ATO risk",
+            "patched": "8.1.28",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-fjp9-9hwx-59fq",
+            "cve": "CVE-2024-2757",
+            "severity": "high",
+            "published": "2024-04-11",
+            "summary": "mb_encode_mimeheader runs endlessly for some inputs",
+            "patched": "8.3.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-pc52-254m-w9w7",
+            "cve": "CVE-2024-1874",
+            "severity": "critical",
+            "published": "2024-04-11",
+            "summary": "Command injection via array-ish $command parameter of proc_open even if bypass_shell option enabled on Windows",
+            "patched": "8.1.28",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-hh26-4ppw-5864",
+            "cve": "CVE-2024-2408",
+            "severity": "moderate",
+            "published": "2024-06-06",
+            "summary": "PHP is vulnerable to the Marvin Attack",
+            "patched": null,
+            "openPackages": [],
+            "status": "unpatched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-3qrf-m4j2-pcrr",
+            "cve": "CVE-2023-3823",
+            "severity": "high",
+            "published": "2023-08-05",
+            "summary": "Security issue with external entity loading in XML without enabling it",
+            "patched": "8.0.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-jqcx-ccgc-xwhv",
+            "cve": "CVE-2023-3824",
+            "severity": "critical",
+            "published": "2023-08-05",
+            "summary": "Buffer overflow and overread in phar_dir_read()",
+            "patched": "8.0.30",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-76gg-c692-v2mw",
+            "cve": "CVE-2023-3247",
+            "severity": "low",
+            "published": "2023-06-12",
+            "summary": "Missing error check and insufficient random bytes in HTTP Digest authentication for SOAP",
+            "patched": "8.0.29",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-7fj2-8x79-rjf4",
+            "cve": "CVE-2023-0567",
+            "severity": "low",
+            "published": "2023-02-15",
+            "summary": "BCrypt hashes erroneously validate if the salt is cut short by `$`",
+            "patched": "8.0.28",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          },
+          {
+            "ghsa": "GHSA-54hq-v5wp-fqgv",
+            "cve": "CVE-2023-0662",
+            "severity": "high",
+            "published": "2023-02-15",
+            "summary": "DoS vulnerability when parsing multipart request body",
+            "patched": "8.0.28",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "8.5.12"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "php/php-src CVE",
+          "php/php-src vulnerability",
+          "php/php-src malware",
+          "php/php-src scam"
+        ],
+        "results": 10,
+        "errors": 0,
+        "hits": [
+          {
+            "query": "php/php-src scam",
+            "title": "That post appears to show the same stack trace as this reported issue  https:&#x2F;&#x2F;github.com&#x2F;php&#x2F;php-sr",
+            "url": "https://news.ycombinator.com/item?id=50187564",
+            "published": "2026-10-21",
+            "matched": "exploit",
+            "kind": "report"
+          }
+        ],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "php/php-src",
+        "stars": 41453,
+        "forks": 8340,
+        "watchers": 1360,
+        "openIssues": 2228,
+        "hasIssues": true,
+        "contributors": 1102,
+        "commits": 149555,
+        "created": "2011-06-16",
+        "pushed": "2026-10-23",
+        "archived": false,
+        "ageDays": 5609,
+        "flags": []
+      }
+    }
+  },
+  "brunodev85/winlator": {
+    "repo": "brunodev85/winlator",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/brunodev85/winlator/security/advisories",
+        "count": 0,
+        "latestRelease": "11.2.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "brunodev85/winlator CVE",
+          "brunodev85/winlator vulnerability",
+          "brunodev85/winlator malware",
+          "brunodev85/winlator scam"
+        ],
+        "results": 4,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "brunodev85/winlator",
+        "stars": 19584,
+        "forks": 1878,
+        "watchers": 363,
+        "openIssues": 15,
+        "hasIssues": false,
+        "contributors": 8,
+        "commits": 116,
+        "created": "2023-07-26",
+        "pushed": "2026-10-17",
+        "archived": false,
+        "ageDays": 1186,
+        "flags": []
+      }
+    }
+  },
+  "itsdevcoffee/plum": {
+    "repo": "itsdevcoffee/plum",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/itsdevcoffee/plum/security/advisories",
+        "count": 0,
+        "latestRelease": "0.4.3",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "itsdevcoffee/plum CVE",
+          "itsdevcoffee/plum vulnerability",
+          "itsdevcoffee/plum malware",
+          "itsdevcoffee/plum scam"
+        ],
+        "results": 15,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "itsdevcoffee/plum",
+        "stars": 11,
+        "forks": 0,
+        "watchers": 0,
+        "openIssues": 1,
+        "hasIssues": true,
+        "contributors": 2,
+        "commits": 147,
+        "created": "2025-12-09",
+        "pushed": "2026-02-15",
+        "archived": false,
+        "ageDays": 319,
+        "flags": []
+      }
+    }
+  },
+  "mem0ai/mem0": {
+    "repo": "mem0ai/mem0",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/mem0ai/mem0/security/advisories",
+        "count": 1,
+        "latestRelease": "3.3.1",
+        "items": [
+          {
+            "ghsa": "GHSA-5324-3w58-qpp2",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-10-20",
+            "summary": "Cross-tenant conversation leak via unescaped delimiter collision in session-scope key (_build_session_scope)",
+            "patched": "2.0.18",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "3.3.1"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "mem0ai/mem0 CVE",
+          "mem0ai/mem0 vulnerability",
+          "mem0ai/mem0 malware",
+          "mem0ai/mem0 scam"
+        ],
+        "results": 21,
+        "errors": 0,
+        "hits": [
+          {
+            "query": "mem0ai/mem0 CVE database",
+            "title": "NVD - CVE-2026-7597",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-7597",
+            "published": "2026-05-01",
+            "matched": "CVE-2026-7597",
+            "kind": "cve-record"
+          }
+        ],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 1
+        },
+        "cves": [
+          {
+            "id": "CVE-2026-7597",
+            "ghsa": "GHSA-xqxw-r767-67m7",
+            "severity": "low",
+            "fix": "2.0.0",
+            "status": "patched"
+          }
+        ]
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "mem0ai/mem0",
+        "stars": 67691,
+        "forks": 7992,
+        "watchers": 257,
+        "openIssues": 863,
+        "hasIssues": true,
+        "contributors": 415,
+        "commits": 2674,
+        "created": "2023-06-20",
+        "pushed": "2026-10-21",
+        "archived": false,
+        "ageDays": 1222,
+        "flags": []
+      }
+    }
+  },
+  "BerriAI/litellm": {
+    "repo": "BerriAI/litellm",
+    "checked": "2026-10-23",
+    "verdict": "FAIL",
+    "reasons": [
+      "8 open CVE(s) found by search: CVE-2025-45809 moderate (unpatched), CVE-2026-12771 low (unpatched), CVE-2026-12772 low (unpatched), CVE-2026-12774 low (unpatched), CVE-2026-12795 moderate (unpatched), CVE-2026-12797 low (unpatched), CVE-2026-12798 low (unpatched), CVE-2026-108575 low (unpatched)"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/BerriAI/litellm/security/advisories",
+        "count": 17,
+        "latestRelease": "1.106.2",
+        "items": [
+          {
+            "ghsa": "GHSA-7hp6-4w63-5g45",
+            "cve": "CVE-2026-114612",
+            "severity": "critical",
+            "published": "2026-09-30",
+            "summary": "Privilege Escalation to Proxy Admin via Cross-Domain Reuse of the Salt Key",
+            "patched": "1.100.4",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-3cv6-jpf6-8222",
+            "cve": "CVE-2026-84377",
+            "severity": "moderate",
+            "published": "2026-08-26",
+            "summary": "Authenticated SSRF and provider-credential exfiltration via unvalidated request-body routing parameters",
+            "patched": "1.96.2, 1.95.1, 1.94.3, 1.93.2, 1.92.2, 1.91.5, 1.90.7, 1.89.7, 1.88.6",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-4g5m-c9r5-49xf",
+            "cve": "CVE-2026-59819",
+            "severity": "low",
+            "published": "2026-06-30",
+            "summary": "Local file read via request-supplied OIDC file references",
+            "patched": ">= 1.83.10-stable",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-5jmr-gcrj-2c9q",
+            "cve": "CVE-2026-59820",
+            "severity": "moderate",
+            "published": "2026-06-30",
+            "summary": "Arbitrary file write via path traversal in Skills archive extraction",
+            "patched": ">= 1.83.7-stable",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-hx8v-g79f-8w5f",
+            "cve": "CVE-2026-59823",
+            "severity": "moderate",
+            "published": "2026-08-26",
+            "summary": "Server-side request forgery via the `user_config` request parameter in LiteLLM Proxy",
+            "patched": "1.83.9",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-g5ff-637f-6q2m",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-10-01",
+            "summary": "internal_user_viewer arbitrary local file read via `vertex_ai_credentials`",
+            "patched": "1.95.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-4xpc-pv4p-pm3w",
+            "cve": "CVE-2026-49468",
+            "severity": "critical",
+            "published": "2026-05-28",
+            "summary": "Authentication Bypass via Host Header Injection",
+            "patched": ">=1.84.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-hhww-mrg2-969h",
+            "cve": null,
+            "severity": "moderate",
+            "published": "2026-09-30",
+            "summary": "Reflected XSS in /sso/debug/callback",
+            "patched": "1.85.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-72m8-9m7m-h278",
+            "cve": "CVE-2026-59821",
+            "severity": "low",
+            "published": "2026-06-30",
+            "summary": "Custom Code Guardrails production endpoints bypass code safety checks",
+            "patched": ">= 1.82.0-stable",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-7488-6r32-c95q",
+            "cve": "CVE-2026-59822",
+            "severity": "high",
+            "published": "2026-06-30",
+            "summary": "MCP Authentication Bypass via OAuth2 Passthrough Fallback",
+            "patched": ">= 1.84.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-v4p8-mg3p-g94g",
+            "cve": "CVE-2026-42271",
+            "severity": "high",
+            "published": "2026-04-21",
+            "summary": "Authenticated command execution via MCP stdio test endpoints",
+            "patched": ">=1.83.7",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-wxxx-gvqv-xp7p",
+            "cve": "CVE-2026-40217",
+            "severity": "moderate",
+            "published": "2026-05-07",
+            "summary": "Sandbox escape in custom-code guardrail",
+            "patched": ">= 1.83.10",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-r75f-5x8p-qvmc",
+            "cve": "CVE-2026-42208",
+            "severity": "critical",
+            "published": "2026-04-20",
+            "summary": "SQL injection in Proxy API key verification",
+            "patched": ">=1.83.7",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-xqmj-j6mv-4862",
+            "cve": "CVE-2026-42203",
+            "severity": "high",
+            "published": "2026-04-20",
+            "summary": "Server-Side Template Injection in /prompts/test endpoint",
+            "patched": ">= 1.83.7",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-69x8-hrgq-fjj8",
+            "cve": null,
+            "severity": "high",
+            "published": "2026-04-04",
+            "summary": "Password hash exposure and pass-the-hash authentication bypass",
+            "patched": "1.83.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-53mr-6c8q-9789",
+            "cve": "CVE-2026-35029",
+            "severity": "high",
+            "published": "2026-04-03",
+            "summary": "Privilege escalation via unrestricted proxy configuration endpoint",
+            "patched": "1.83.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          },
+          {
+            "ghsa": "GHSA-jjhc-v7c2-5hh6",
+            "cve": "CVE-2026-35030",
+            "severity": "critical",
+            "published": "2026-04-03",
+            "summary": "Authentication bypass via OIDC userinfo cache key collision",
+            "patched": "1.83.0",
+            "openPackages": [],
+            "status": "patched",
+            "latestPublished": "1.106.2"
+          }
+        ]
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "BerriAI/litellm CVE",
+          "BerriAI/litellm vulnerability",
+          "BerriAI/litellm malware",
+          "BerriAI/litellm scam"
+        ],
+        "results": 37,
+        "errors": 0,
+        "hits": [
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2024-4888",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-4888",
+            "published": "2024-06-06",
+            "matched": "CVE-2024-4888",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2024-10188",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-10188",
+            "published": "2025-03-20",
+            "matched": "CVE-2024-10188",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2025-45809",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-45809",
+            "published": "2025-07-03",
+            "matched": "CVE-2025-45809",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12770",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12770",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12770",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12771",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12771",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12771",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12772",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12772",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12772",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12773",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12773",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12773",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12774",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12774",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12774",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12795",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12795",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12795",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12796",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12796",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12796",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12797",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12797",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12797",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12798",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12798",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12798",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-12799",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12799",
+            "published": "2026-06-21",
+            "matched": "CVE-2026-12799",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-37004",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-37004",
+            "published": "2026-08-27",
+            "matched": "CVE-2026-37004",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-89032",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89032",
+            "published": "2026-09-25",
+            "matched": "CVE-2026-89032",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-108574",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108574",
+            "published": "2026-10-11",
+            "matched": "CVE-2026-108574",
+            "kind": "cve-record"
+          },
+          {
+            "query": "BerriAI/litellm CVE database",
+            "title": "NVD - CVE-2026-108575",
+            "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-108575",
+            "published": "2026-10-11",
+            "matched": "CVE-2026-108575",
+            "kind": "cve-record"
+          }
+        ],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 17
+        },
+        "cves": [
+          {
+            "id": "CVE-2024-4888",
+            "ghsa": "GHSA-5vmm-gjq3-hj55",
+            "severity": "moderate",
+            "status": "other-project"
+          },
+          {
+            "id": "CVE-2024-10188",
+            "ghsa": "GHSA-gw2q-qw9j-rgv7",
+            "severity": "high",
+            "fix": "1.53.1",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2025-45809",
+            "ghsa": "GHSA-cgmh-xxmq-hp46",
+            "severity": "moderate",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12770",
+            "ghsa": "GHSA-6qr3-3g89-m4jj",
+            "severity": "low",
+            "fix": null,
+            "status": "fix-unverified"
+          },
+          {
+            "id": "CVE-2026-12771",
+            "ghsa": "GHSA-qmf3-4767-5fg3",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12772",
+            "ghsa": "GHSA-mf52-j94g-746m",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12773",
+            "ghsa": "GHSA-4jcj-7x88-m979",
+            "severity": "moderate",
+            "fix": "1.84.0",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-12774",
+            "ghsa": "GHSA-h9c7-cfj6-h8j6",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12795",
+            "ghsa": "GHSA-j37q-q7p9-vpwm",
+            "severity": "moderate",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12796",
+            "ghsa": "GHSA-8fcf-v89g-xpg6",
+            "severity": "moderate",
+            "status": "other-project"
+          },
+          {
+            "id": "CVE-2026-12797",
+            "ghsa": "GHSA-p897-vf7j-f5h8",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12798",
+            "ghsa": "GHSA-c693-x898-5g4h",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          },
+          {
+            "id": "CVE-2026-12799",
+            "ghsa": "GHSA-rfhw-2486-47r9",
+            "severity": "moderate",
+            "status": "other-project"
+          },
+          {
+            "id": "CVE-2026-37004",
+            "ghsa": "GHSA-6wvf-77m9-58rm",
+            "severity": "critical",
+            "fix": "1.83.7",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-89032",
+            "ghsa": "GHSA-237m-2qxv-ww7c",
+            "severity": "high",
+            "fix": "1.101.0",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-108574",
+            "ghsa": "GHSA-wxjw-vcvf-mvw9",
+            "severity": "low",
+            "fix": "1.96.0",
+            "status": "patched"
+          },
+          {
+            "id": "CVE-2026-108575",
+            "ghsa": "GHSA-gw95-8pcg-7gvv",
+            "severity": "low",
+            "fix": null,
+            "status": "unpatched"
+          }
+        ]
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "BerriAI/litellm",
+        "stars": 61893,
+        "forks": 12594,
+        "watchers": 238,
+        "openIssues": 5644,
+        "hasIssues": true,
+        "contributors": 1997,
+        "commits": 55070,
+        "created": "2023-07-27",
+        "pushed": "2026-10-22",
+        "archived": false,
+        "ageDays": 1185,
+        "flags": []
+      }
+    }
+  },
+  "paul-gauthier/aider": {
+    "repo": "paul-gauthier/aider",
+    "checked": "2026-10-23",
+    "verdict": "PASS",
+    "reasons": [
+      "activity: renamed/moved to Aider-AI/aider"
+    ],
+    "checks": {
+      "advisories": {
+        "source": "public-page",
+        "url": "https://github.com/paul-gauthier/aider/security/advisories",
+        "count": 0,
+        "latestRelease": "0.86.0",
+        "items": []
+      },
+      "searches": {
+        "engine": "hn+nvd",
+        "queries": [
+          "paul-gauthier/aider CVE",
+          "paul-gauthier/aider vulnerability",
+          "paul-gauthier/aider malware",
+          "paul-gauthier/aider scam"
+        ],
+        "results": 20,
+        "errors": 0,
+        "hits": [],
+        "fallbacks": 4,
+        "nvd": {
+          "results": 0
+        },
+        "cves": []
+      },
+      "activity": {
+        "source": "public-page",
+        "canonical": "Aider-AI/aider",
+        "stars": 49712,
+        "forks": 5100,
+        "watchers": 271,
+        "openIssues": 1938,
+        "hasIssues": true,
+        "contributors": 171,
+        "commits": 13138,
+        "created": "2023-05-09",
+        "pushed": "2026-05-22",
+        "archived": false,
+        "ageDays": 1264,
+        "flags": [
+          "renamed/moved to Aider-AI/aider"
+        ]
+      }
+    },
+    "settled": {
+      "by": "routine",
+      "date": "2026-10-23",
+      "note": "Activity flag only: repo was renamed/moved to Aider-AI/aider. No advisories, no CVEs, no security reports. A rename is not a security concern.",
+      "reasons": [
+        "activity: renamed/moved to Aider-AI/aider"
       ]
     }
   }

@@ -1,0 +1,201 @@
+{
+  "repo": "Saffsanity/sill",
+  "name": "Sill",
+  "tagline": "A free app that puts any Mac window on your iPhone or iPad, with full touch control.",
+  "sentence": "Streams your Mac's screen to your phone or tablet so you can tap, swipe, draw with Apple Pencil and type - useful for checking a dashboard from the couch or sketching in Procreate on an iPad while the Mac does the heavy lifting.",
+  "fit": "you",
+  "links": {
+    "website": "https://getsill.app",
+    "docs": "https://github.com/Saffsanity/sill/blob/main/docs/DEVELOPMENT.md"
+  },
+  "visual": {
+    "src": "assets/shots/sill.jpg",
+    "width": 1032,
+    "height": 1376,
+    "alt": "iPad showing a live Weather window from a Mac - San Francisco at 57 degrees, with a wind map and hourly forecast visible. The Sill toolbar sits at the top with Apps, Menus, Keyboard, Desktop and Settings buttons.",
+    "caption": "Mac's Weather app streamed live to an iPad, controllable by touch."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your Mac app is on one screen, but you need to see or touch it from somewhere else."
+    },
+    {
+      "role": "trigger",
+      "say": "You open Sill on your Mac and tap the window you want to share.",
+      "eg": "Click the Sill menu-bar icon, pick a window or the whole desktop."
+    },
+    {
+      "role": "input",
+      "say": "The Mac window you chose, streamed as encrypted video.",
+      "eg": "Your Weather app, a spreadsheet, or your full desktop."
+    },
+    {
+      "role": "does",
+      "say": "Sill captures, compresses and sends the picture in real time.",
+      "steps": [
+        "Captures the window with macOS ScreenCaptureKit and encodes it as HEVC video.",
+        "Sends the encrypted stream over Wi-Fi, USB, or a direct wireless link to your device.",
+        "Receives your taps, swipes, Pencil strokes and keyboard input and sends them back to the Mac."
+      ]
+    },
+    {
+      "role": "result",
+      "say": "You see and control your Mac window on your iPhone or iPad.",
+      "outputs": [
+        {
+          "what": "A live picture of the Mac window",
+          "eg": "Up to 120 frames per second on ProMotion displays, at quality presets from 4 to 150 megabits per second."
+        },
+        {
+          "what": "Full control by touch, Pencil, trackpad and keyboard",
+          "eg": "Three-finger swipe opens Mission Control; Apple Pencil draws in any Mac app that accepts a mouse."
+        },
+        {
+          "what": "Two-way clipboard",
+          "eg": "Copy text on the Mac, paste it on the iPad (up to 256 KB at a time)."
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You walk away from your desk and lose sight of what's on the Mac screen.",
+    "Paid tools like Luna Display ($130) or Duet ($4/month) add an account, a subscription, and a cloud relay.",
+    "Apple's built-in screen sharing is full-desktop only and doesn't support touch."
+  ],
+  "after": [
+    "Pick one window and see it on your phone, with touch control, from anywhere on the same network.",
+    "No account, no subscription, no cloud server - the stream goes directly from Mac to device.",
+    "Works over USB, Wi-Fi, direct wireless, or your own VPN (like Tailscale) when you're away from home."
+  ],
+  "uses_note": "Sill is 31 days old. Real use evidence is early - most coverage is feature reporting, not hands-on reviews.",
+  "uses": [],
+  "pulse": {
+    "gain": "+1.7K stars in the last 7 days (3.9K total, 31 days old)",
+    "history": [
+      [
+        "2026-09-22",
+        0
+      ],
+      [
+        "2026-10-16",
+        2268
+      ],
+      [
+        "2026-10-23",
+        3932
+      ]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Any window from your Mac, on your iPhone and iPad",
+      "url": "https://news.ycombinator.com/item?id=50112739",
+      "meta": "273 points - Oct 16"
+    },
+    {
+      "plat": "iThinkDifferent",
+      "title": "Sill Puts Any Mac App on Your iPhone or iPad for Free",
+      "url": "https://www.ithinkdiff.com/sill-app-stream-mac-windows-iphone-ipad-iphone-duo/",
+      "meta": "Imran Hussain - Oct 14"
+    },
+    {
+      "plat": "Geeky Gadgets",
+      "title": "Sill stream Mac to iPad",
+      "url": "https://www.geeky-gadgets.com/sill-stream-mac-ipad/",
+      "meta": "Julian Horsey - Oct 16"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Saffsanity/sill trending #30 daily and monthly",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 23"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Download Sill for Mac](https://getsill.app/download) (about 3 MB) and drag it to Applications. Allow Screen Recording and Accessibility when asked.",
+      "[Install Sill on your iPhone or iPad](https://apps.apple.com/app/sill/id6816359860) from the App Store (free).",
+      "Launch [Sill](https://getsill.app/) on both devices, tap your Mac's name on the phone, scan the pairing code, then pick any window to stream."
+    ],
+    "paste": "/skillspector https://github.com/Saffsanity/sill\n(Sill is a native Mac + iOS app - install from https://getsill.app/download for Mac and the App Store for iPhone/iPad, then pair the devices on the same network.)"
+  },
+  "footprint": {
+    "disk": "About 3 MB for the Mac app (DMG), plus the free iOS app from the App Store.",
+    "memory": "no data found",
+    "runs_on": "Apple silicon Mac on macOS 14 or later; iPhone or iPad on iOS/iPadOS 17 or later. No Windows, Linux, or Android support.",
+    "source": {
+      "title": "Sill README and Releases",
+      "url": "https://github.com/Saffsanity/sill"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Mac users who want a free second screen on their iPhone or iPad without a subscription.",
+      "Anyone who needs to check a Mac window from the couch or another room.",
+      "iPad users who want to control Mac apps with touch or Apple Pencil."
+    ],
+    "skip_if": [
+      "You don't have both a Mac and an iPhone or iPad - it's Apple-only.",
+      "You need audio streaming - Sill doesn't send sound.",
+      "You need multiple windows at once - Sill streams one window or the whole desktop, not both."
+    ],
+    "alternatives": [
+      {
+        "name": "Luna Display",
+        "url": "https://astropad.com/product/luna-display/",
+        "line": "Hardware dongle ($130) that turns an iPad into a full Mac display with touch. More features, but not free."
+      },
+      {
+        "name": "Duet Display",
+        "url": "https://www.duetdisplay.com/",
+        "line": "Subscription app ($4/month) for a second display on iPad, Android, or another computer."
+      }
+    ]
+  },
+  "watch": [
+    "**Single developer.** Noah Saffer is the sole named maintainer. If he stops, updates stop.",
+    "**Uses a private macOS API.** The optional virtual display feature uses an undocumented Apple interface. A future macOS update could break it, and Apple won't put the Mac app in the App Store because of it.",
+    "**No audio.** Sill streams video only - no Mac sound on the device. The developer has not announced plans for audio.",
+    "**31 days old.** The first release was Sep 22, 2026. Expect rough edges."
+  ],
+  "sources": [
+    {
+      "title": "Sill GitHub repo",
+      "url": "https://github.com/Saffsanity/sill",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Sill website",
+      "url": "https://getsill.app",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Sill Releases (v0.5.1)",
+      "url": "https://github.com/Saffsanity/sill/releases",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Hacker News discussion (273 pts)",
+      "url": "https://news.ycombinator.com/item?id=50112739",
+      "date": "2026-10-16"
+    },
+    {
+      "title": "iThinkDifferent coverage",
+      "url": "https://www.ithinkdiff.com/sill-app-stream-mac-windows-iphone-ipad-iphone-duo/",
+      "date": "2026-10-14"
+    },
+    {
+      "title": "Geeky Gadgets coverage",
+      "url": "https://www.geeky-gadgets.com/sill-stream-mac-ipad/",
+      "date": "2026-10-16"
+    },
+    {
+      "title": "Trendshift listing",
+      "url": "https://trendshift.io/",
+      "date": "2026-10-23"
+    }
+  ]
+}

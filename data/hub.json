@@ -1,5 +1,5 @@
 {
-  "categories_note": "The top 3 in each lane, checked for safety on Oct 16. Design counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. Ranked by measured growth, adoption and total stars.",
+  "categories_note": "The top 3 in each lane, checked for safety on Oct 23. Design counts AI design skills, the tools people actually install: impeccable, taste-skill and ui-ux-pro-max. Ranked by measured growth, adoption and total stars.",
   "categories": [
     {
       "name": "Development & Coding Agents",
@@ -25,7 +25,7 @@
         }
       ],
       "id": "development-coding-agents",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "AI Updates",
@@ -50,7 +50,7 @@
         }
       ],
       "id": "ai-updates",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Automation & Agent Orchestration",
@@ -75,7 +75,7 @@
         }
       ],
       "id": "automation-agent-orchestration",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Research & Knowledge",
@@ -95,14 +95,14 @@
         {
           "repo": "vectorize-io/hindsight",
           "name": "hindsight",
-          "stars": 35906,
+          "stars": 52972,
           "perday": 1040,
           "url": "https://hindsight.vectorize.io/",
           "oneliner": "Long-term memory for AI agents that learns from what they did before."
         }
       ],
       "id": "research-knowledge",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Web Scraping & Data Extraction",
@@ -121,7 +121,7 @@
         }
       ],
       "id": "web-scraping-data-extraction",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Website Builders",
@@ -140,7 +140,7 @@
         }
       ],
       "id": "website-builders",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Design & Branding",
@@ -171,7 +171,7 @@
         }
       ],
       "id": "design-branding",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Build & DevOps",
@@ -184,13 +184,13 @@
         }
       ],
       "id": "build-devops",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Sales & CRM",
       "picks": [],
       "id": "sales-crm",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Finance",
@@ -215,7 +215,7 @@
         }
       ],
       "id": "finance",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     },
     {
       "name": "Security & Privacy",
@@ -242,45 +242,52 @@
         }
       ],
       "id": "security-privacy",
-      "checked": "2026-10-16"
+      "checked": "2026-10-23"
     }
   ],
-  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Oct 16), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
+  "claude_board_note": "The most-installed Claude skills and plugins, counted on skills.sh (Oct 23), each checked for safety. Vendor-only packs (such as Microsoft's Azure skills) are left out, and a repo needs at least 1K GitHub stars so install counts can't be gamed.",
   "claude_board": [
     {
       "repo": "mattpocock/skills",
       "name": "mattpocock/skills",
-      "installs_label": "28.4M installs · 55 skills",
+      "installs_label": "29.7M installs · 55 skills",
       "url": "https://skills.sh/mattpocock/skills",
       "oneliner": "Matt Pocock's everyday engineering skills for AI agents: planning, reviews, debugging and more."
     },
     {
       "repo": "heygen-com/hyperframes",
       "name": "HyperFrames",
-      "installs_label": "13.9M installs · 52 skills",
+      "installs_label": "15.4M installs · 52 skills",
       "url": "https://skills.sh/heygen-com/hyperframes",
       "oneliner": "Your AI writes a web page, and HyperFrames turns it into a video."
     },
     {
       "repo": "Leonxlnx/taste-skill",
       "name": "taste-skill",
-      "installs_label": "5.3M installs · 16 skills",
+      "installs_label": "5.5M installs · 16 skills",
       "url": "https://tasteskill.dev",
       "oneliner": "Gives your AI good taste: stops it from producing boring, generic designs."
     },
     {
       "repo": "JuliusBrussee/caveman",
       "name": "caveman",
-      "installs_label": "4.2M installs · 25 skills",
+      "installs_label": "4.4M installs · 25 skills",
       "url": "https://skills.sh/JuliusBrussee/caveman",
       "oneliner": "Makes your AI answer in short, blunt sentences to save money on tokens."
     },
     {
       "repo": "vercel-labs/skills",
       "name": "skills (find-skills)",
-      "installs_label": "3.9M installs",
+      "installs_label": "4.0M installs · 3 skills",
       "url": "https://skills.sh/vercel-labs/skills",
       "oneliner": "The npx skills tool: finds and installs skills for your AI agent."
+    },
+    {
+      "repo": "obra/superpowers",
+      "name": "superpowers",
+      "installs_label": "3.6M installs · 15 skills",
+      "url": "https://skills.sh/obra/superpowers",
+      "oneliner": "Teaches coding agents to plan, test and debug like a careful senior engineer."
     },
     {
       "repo": "anthropics/skills",
@@ -290,11 +297,11 @@
       "oneliner": "Anthropic's official skills for Claude: documents, slides, design and more."
     },
     {
-      "repo": "obra/superpowers",
-      "name": "superpowers",
-      "installs_label": "3.5M installs · 15 skills",
-      "url": "https://skills.sh/obra/superpowers",
-      "oneliner": "Teaches coding agents to plan, test and debug like a careful senior engineer."
+      "repo": "remotion-dev/skills",
+      "name": "remotion skills",
+      "installs_label": "2.7M installs · 15 skills",
+      "url": "https://skills.sh/remotion-dev/skills",
+      "oneliner": "Official skills for making videos with code, using Remotion."
     },
     {
       "repo": "wshobson/agents",
@@ -302,13 +309,6 @@
       "installs_label": "2.4M installs · 185 skills",
       "url": "https://skills.sh/wshobson/agents",
       "oneliner": "A big marketplace of ready-made agents and skills for Claude Code and other tools."
-    },
-    {
-      "repo": "remotion-dev/skills",
-      "name": "remotion skills",
-      "installs_label": "2.3M installs · 15 skills",
-      "url": "https://skills.sh/remotion-dev/skills",
-      "oneliner": "Official skills for making videos with code, using Remotion."
     },
     {
       "repo": "pbakaus/impeccable",

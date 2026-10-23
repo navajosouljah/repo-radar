@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolidCraft: Free, open-source 3D design software you can run in your browser or on your desktop - or let your AI agent drive it. | Repo Radar</title>
+<meta name="description" content="A parametric CAD tool built in Rust that runs on your desktop, in the browser, from the command line, or as a plugin your AI agent can control.">
+<meta property="og:title" content="SolidCraft: Free, open-source 3D design software you can run in your browser or on your desktop - or let your AI agent drive it. | Repo Radar">
+<meta property="og:description" content="A parametric CAD tool built in Rust that runs on your desktop, in the browser, from the command line, or as a plugin your AI agent can control.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/solidcraft.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 013 &middot; Week of October 23, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#2 this week</span><span class="repo-id">tangency-labs/solidcraft</span></div>
+    <h1 id="name">SolidCraft</h1>
+    <p class="tagline">Free, open-source 3D design software you can run in your browser or on your desktop - or let your AI agent drive it.</p>
+    <p class="sentence">A parametric CAD tool built in Rust that runs on your desktop, in the browser, from the command line, or as a plugin your AI agent can control.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: Paying for SolidWorks or Fusion 360 to design 3D parts</span>
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://solidcraft.io" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/tangency-labs/solidcraft" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/solidcraft.jpg" alt="SolidCraft's desktop editor showing a Raspberry Pi enclosure being designed - a 3D view of an open-top case with rounded edges, the parametric feature timeline visible on the left side." width="1600" height="900" loading="eager">
+    <figcaption>Parametric 3D modeling in SolidCraft's desktop editor - a Raspberry Pi enclosure with editable dimensions.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">9.5K</span><span class="v-note">GitHub stars, <b>+9.5K stars in 16 days (created Oct 7)</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 12.3 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>145 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 23: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Professional 3D design software costs hundreds per year, and the free options either lack parametric tools or run only on one platform.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You download SolidCraft or open it in a browser and start modeling a part.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Your design idea - a bracket, an enclosure, a gear, a shelf mount - described in words, a sketch, or drawn with the tool's parametric editor.</p></div><div class="note does"><span class="role">It does</span><p class="say">It gives you a full parametric modeling environment with constraints, sketches and a timeline.</p><ol class="steps-in"><li>You create 2D sketches with lines, arcs, circles and constraints (like 'this edge stays parallel to that one')</li><li>You turn sketches into 3D shapes with operations like extrude, revolve and fillet</li><li>Every step is tracked in a timeline so you can go back and change a dimension and everything downstream updates</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">A 3D model you can export, 3D-print, or hand to a manufacturer.</p><ul class="outputs"><li><b>A parametric 3D model</b><span>A phone stand with adjustable dimensions that updates when you change the phone width</span></li><li><b>Export files</b><span>STL files for 3D printing, STEP files for manufacturing</span></li><li><b>A shareable link</b><span>When using the browser version, a link anyone can open to view or remix your design</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Professional CAD costs $500+/year (SolidWorks, Fusion 360) or locks your files in the cloud</li><li>Free alternatives like FreeCAD have steep learning curves and no AI integration</li><li>Sharing a design means exporting files and emailing them</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>A free, open-source parametric CAD that runs on desktop, in the browser, or from the command line</li><li>A plugin lets your AI agent create and modify 3D models for you</li><li>Designs live in standard formats you own - no vendor lock-in</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://solidcraft.io" rel="noopener">Open SolidCraft in your browser</a> - no download needed, it runs in Chrome, Firefox or Safari.</li><li>Or <a href="https://github.com/tangency-labs/solidcraft/releases" rel="noopener">download the desktop app</a> for Mac, Windows (also via <code>winget install solidcraft</code>), or Linux.</li><li>Start with the built-in tutorial: sketch a rectangle, constrain its dimensions, extrude it into a box, and fillet the edges.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>The desktop app is roughly 50-100 MB. Source build needs Rust toolchain (~1 GB with dependencies).</dd></div>
+    <div><dt>Memory while it runs</dt><dd>Runs on modest hardware. The browser version works in any modern browser.</dd></div>
+    <div><dt>Runs on</dt><dd>Mac, Windows, Linux (desktop). Any modern browser (web version). MCP server for AI agents.</dd></div>
+  </dl><a class="src" href="https://github.com/tangency-labs/solidcraft" rel="noopener">Source: SolidCraft README</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-solidcraft">/skillspector https://github.com/tangency-labs/solidcraft
+(SolidCraft runs in the browser at solidcraft.io or as a desktop app. Try the browser version first, then install the desktop app from the releases page.)</pre>
+      <button class="copy" type="button" data-copy="paste-solidcraft">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>Hobbyists and makers who want parametric CAD without paying for SolidWorks</li><li>Anyone who wants to describe a part to an AI agent and get a 3D model back</li><li>Teams who need to share designs in a browser without installing software</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You need production-grade CAD with assembly tools and simulation (use Fusion 360 or SolidWorks)</li><li>You already have a CAD tool you're productive in</li><li>You need NURBS surfaces for organic shapes (SolidCraft is focused on solid modeling)</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://www.freecad.org" rel="noopener"><b>FreeCAD</b></a><span>The established open-source parametric CAD - more mature but no browser version or AI integration</span></li><li><a href="https://openscad.org" rel="noopener"><b>OpenSCAD</b></a><span>Code-based 3D modeling - write scripts instead of drawing, good for programmers</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/tangency-labs/solidcraft/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 23</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>7 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>9.5K stars, 138 contributors, 1.9K commits. findarepo: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>16 days old.</b> The feature set is growing fast (1,937 commits, v0.15.0) but expect rough edges - slow fillets and booleans are known issues.</li><li><b>Unsigned installers.</b> The Windows and Mac desktop installers are not code-signed, so your OS will warn you when you install them.</li><li><b>Longevity uncertain.</b> HN commenters worry about long-term maintenance. CAD files need to stay openable for years, and a 16-day-old project has not proven that yet.</li><li><b>Large STEP imports may fail.</b> A Hackaday commenter could not load a large 3D printer STEP file. Complex imported models may hit limits.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">SolidCraft is 16 days old. Hackaday commenters report modifying designs and exporting to PrusaSlicer, but documented production use is still early.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=50064840" rel="noopener">SolidCraft - Open-Source Parametric CAD in Rust with MCP Support</a><span class="meta">145 points, 52 comments - Oct 13</span></li><li class=""><span class="plat">Hackaday</span><a href="https://hackaday.com/2026/10/17/solidcraft-is-parametric-automation-friendly-cad-for-desktop-and-browser/" rel="noopener">SolidCraft Is Parametric, Automation-friendly CAD For Desktop And Browser</a><span class="meta">Donald Papp - Oct 17</span></li><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/tangency-labs/solidcraft/" rel="noopener">Star growth looks organic</a><span class="meta">Oct 23</span></li></ul>
+  <div class="trending"><span class="chip">findarepo: star growth looks organic</span><span class="chip">hacker-news: 145 points</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/tangency-labs/solidcraft" rel="noopener">SolidCraft GitHub</a>, Oct 23</li><li><a href="https://solidcraft.io" rel="noopener">SolidCraft website</a>, Oct 23</li><li><a href="https://news.ycombinator.com/item?id=50064840" rel="noopener">Hacker News discussion (145 pts)</a>, Oct 13</li><li><a href="https://hackaday.com/2026/10/17/solidcraft-is-parametric-automation-friendly-cad-for-desktop-and-browser/" rel="noopener">Hackaday coverage</a>, Oct 17</li><li><a href="https://findarepo.com/repo/tangency-labs/solidcraft/" rel="noopener">findarepo listing</a>, Oct 23</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 013 &middot; October 23, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{
+  "number": "013",
+  "date": "2026-10-23",
+  "theme_short": "New powers for you and your AI",
+  "theme": "**New powers for you and your AI.** Four picks put everyday tools in your hands - a TV declutterer, a 3D designer, a phone gaming deck, and a Mac-to-iPad link. The other six sharpen the AI agents that work for you.",
+  "method": "**How this week was picked:** 273 candidates from 6 of 6 sources (GitHub Trending, Trendshift, skills.sh, findarepo, Hacker News, YouTube pre-scan Oct 17). GitHub search found candidates only (not an independent source). 13 cleared all floors. Picks: 4 by score, 3 new this week (under 45 days), 1 still climbing (over 90 days), 2 additional by score after slot allocation. **Every repo passed our safety check on Oct 23.** php/php-src (3 open advisories) failed the gate and was replaced by Graphify-Labs/graphify. Ebony-Vinyl/dsh-our-free-model excluded: star-gated access (must star to unlock features) inflates the star count, and its platform deepseek-harness is blocklisted for 5 CVEs. deepseek-ai/DeepInfer (REVIEW, activity flag: 20.6K stars on 4 commits) could not be settled (command blocked) - does not appear. 3 repos taken down this week: DuarteSantos8/openGym (8 new advisories, was Edition 012 pick), akitaonrails/ai-memory (new advisory), garrytan/gstack (new advisory, REVIEW - not blocklisted, needs JJ). Tips: none this week (data/tips.md empty).",
+  "picks": [
+    {
+      "rank": 1,
+      "slug": "cleanyourtv",
+      "repo": "Gathin23/cleanyourtv",
+      "name": "CleanYourTV",
+      "fit": "you",
+      "slot": "new",
+      "stars": 26270,
+      "thumb": "assets/shots/cleanyourtv.jpg",
+      "oneliner": "One app that strips the ads and bloat off your smart TV and replaces the launcher with a clean one."
+    },
+    {
+      "rank": 2,
+      "slug": "solidcraft",
+      "repo": "tangency-labs/solidcraft",
+      "name": "SolidCraft",
+      "fit": "you",
+      "slot": "new",
+      "stars": 9536,
+      "thumb": "assets/shots/solidcraft.jpg",
+      "oneliner": "Free, open-source 3D design software you can run in your browser or on your desktop - or let your AI agent drive it."
+    },
+    {
+      "rank": 3,
+      "slug": "droiddeck",
+      "repo": "Droid-Deck/DroidDeck",
+      "name": "DroidDeck",
+      "fit": "you",
+      "slot": "new",
+      "stars": 13071,
+      "thumb": "assets/shots/droiddeck.jpg",
+      "oneliner": "Turns an Android phone or handheld into a Steam Deck - play your PC games on the go."
+    },
+    {
+      "rank": 4,
+      "slug": "claude-plugins-official",
+      "repo": "anthropics/claude-plugins-official",
+      "name": "Claude Plugins Official",
+      "fit": "you",
+      "slot": "score",
+      "stars": 44017,
+      "oneliner": "Anthropic's curated directory of plugins for Claude Code - browse, install, and extend what your AI can do."
+    },
+    {
+      "rank": 5,
+      "slug": "agent-skills",
+      "repo": "addyosmani/agent-skills",
+      "name": "Agent Skills",
+      "fit": "you",
+      "slot": "score",
+      "stars": 109802,
+      "oneliner": "A pack of ready-made skill files that teach your AI coding agent to plan, build, test and ship like a senior engineer."
+    },
+    {
+      "rank": 6,
+      "slug": "ghidra",
+      "repo": "NationalSecurityAgency/ghidra",
+      "name": "Ghidra",
+      "fit": "developers",
+      "slot": "score",
+      "stars": 93395,
+      "oneliner": "The NSA's free tool for taking software apart - used by security researchers to find what code really does."
+    },
+    {
+      "rank": 7,
+      "slug": "hindsight",
+      "repo": "vectorize-io/hindsight",
+      "name": "Hindsight",
+      "fit": "developers",
+      "slot": "climbing",
+      "stars": 52972,
+      "oneliner": "Long-term memory for AI agents - they remember what worked before and get better over time."
+    },
+    {
+      "rank": 8,
+      "slug": "freellmapi",
+      "repo": "tashfeenahmed/freellmapi",
+      "name": "FreeLLMApi",
+      "fit": "you",
+      "slot": "score",
+      "stars": 39888,
+      "oneliner": "One app that connects you to every major AI model's free tier - no API keys, automatic failover."
+    },
+    {
+      "rank": 9,
+      "slug": "sill",
+      "repo": "Saffsanity/sill",
+      "name": "Sill",
+      "fit": "you",
+      "slot": "score",
+      "stars": 3932,
+      "oneliner": "Streams any Mac window to your iPhone or iPad with full touch and Pencil control - no account needed."
+    },
+    {
+      "rank": 10,
+      "slug": "graphify",
+      "repo": "Graphify-Labs/graphify",
+      "name": "Graphify",
+      "fit": "developers",
+      "slot": "score",
+      "stars": 133551,
+      "oneliner": "Turns your codebase into a searchable map your AI agent can query - finds anything in seconds."
+    }
+  ]
+}

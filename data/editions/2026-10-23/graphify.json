@@ -1,0 +1,236 @@
+{
+  "repo": "Graphify-Labs/graphify",
+  "name": "Graphify",
+  "tagline": "A map of your codebase that AI coding assistants can read and query.",
+  "sentence": "Scans your project's files and draws a connected map so your AI coding assistant finds the right code faster - like giving it a table of contents instead of making it read every page.",
+  "fit": "developers",
+  "links": {
+    "website": "https://graphify.com",
+    "docs": "https://docs.graphify.com"
+  },
+  "visual": {
+    "src": "assets/shots/graphify.png",
+    "width": 1400,
+    "height": 692,
+    "alt": "Interactive knowledge graph of a codebase - colored dots represent code concepts like APIRouter (96 connections), SecurityBase (71), and FastAPI (46). A communities panel on the right lists 15 groups by connection count.",
+    "caption": "A codebase mapped as a knowledge graph, with communities and connection counts."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding assistant wastes time reading the wrong files because it doesn't know how your codebase fits together."
+    },
+    {
+      "role": "trigger",
+      "say": "You run one command, and the assistant can query the map from then on.",
+      "eg": "Type /graphify . in Claude Code, Cursor, or Codex."
+    },
+    {
+      "role": "input",
+      "say": "Your project's code, documents, database schemas (a type of data blueprint), and config files.",
+      "eg": "A Python web app with 200 files, its README, and its database schema."
+    },
+    {
+      "role": "does",
+      "say": "Graphify reads every file, finds the connections between them, and builds a queryable map.",
+      "steps": [
+        "Parses all code locally using tree-sitter (a code-reading engine) - nothing leaves your machine.",
+        "Maps imports, function calls, inheritance and cross-file references into a graph with labeled edges.",
+        "Finds 'god nodes' (the most-connected pieces) and communities (clusters of related code).",
+        "Saves the map as graph.json, an interactive graph.html, and a written report."
+      ]
+    },
+    {
+      "role": "result",
+      "say": "Your AI assistant reads the map and goes straight to the right files.",
+      "outputs": [
+        {
+          "what": "An interactive graph you can explore in a browser",
+          "eg": "graph.html shows 15 communities in a FastAPI project, with APIRouter as the most-connected node (96 edges)."
+        },
+        {
+          "what": "A queryable map for your AI assistant",
+          "eg": "Ask 'what connects FastAPI to ModelField?' and get the exact path, hop by hop, with file and line numbers."
+        },
+        {
+          "what": "A written architecture report",
+          "eg": "GRAPH_REPORT.md lists the communities, god nodes, and how the code clusters together."
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Your AI assistant reads dozens of files to understand how three components relate - burning through its working memory.",
+    "You answer the same 'where is this defined?' questions every time someone new joins the project.",
+    "Architecture knowledge lives in one person's head, and it leaves when they leave."
+  ],
+  "after": [
+    "The assistant queries the graph and jumps straight to the right file and line.",
+    "New team members explore an interactive map of the codebase instead of asking around.",
+    "Architecture is documented in a graph that updates every time you rebuild it."
+  ],
+  "uses_note": "Graphify is 203 days old. Most coverage is vendor-adjacent or blog reviews, not production case studies.",
+  "uses": [
+    {
+      "who": "Kevin Kinnett",
+      "what": "Tested Graphify with Claude Code on a mid-sized project to compare AI navigation speed.",
+      "result": "Found useful architectural insights but said the graph did not consistently outperform Claude Code's normal navigation.",
+      "source": {
+        "title": "Graphify Review: Is the Codebase Knowledge Graph Worth It?",
+        "url": "https://codeconductor.ai/blog/graphify-review/",
+        "date": "2026-10-15"
+      }
+    },
+    {
+      "who": "Jeremy Stover",
+      "what": "Ran Graphify on its own codebase as a test.",
+      "result": "Completed the graph in about 15 seconds and praised the deterministic approach over search-based alternatives.",
+      "source": {
+        "title": "Graphify Review: Is the Codebase Knowledge Graph Worth It?",
+        "url": "https://codeconductor.ai/blog/graphify-review/",
+        "date": "2026-10-15"
+      }
+    }
+  ],
+  "pulse": {
+    "gain": "+6.4K stars in the last 7 days (133.6K total, 203 days old)",
+    "history": [
+      [
+        "2026-04-03",
+        0
+      ],
+      [
+        "2026-10-16",
+        127118
+      ],
+      [
+        "2026-10-23",
+        133551
+      ]
+    ],
+    "facts": {
+      "created": "2026-04-03"
+    }
+  },
+  "trending": [
+    "findarepo: star growth looks organic"
+  ],
+  "star_check": "findarepo: looks organic",
+  "coverage": [
+    {
+      "plat": "CodeConductor",
+      "title": "Graphify Review: Is the Codebase Knowledge Graph Worth It?",
+      "url": "https://codeconductor.ai/blog/graphify-review/",
+      "meta": "Paul Dhaliwal - Oct 15"
+    },
+    {
+      "plat": "Wavect",
+      "title": "Graphify Review: Codebase Knowledge Graph",
+      "url": "https://wavect.io/blog/graphify-review-codebase-knowledge-graph/",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Augment Code",
+      "title": "Graphify: Knowledge Graphs for AI Coding",
+      "url": "https://www.augmentcode.com/learn/graphify-knowledge-graph-codebase-skill",
+      "meta": "2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Graphify-Labs/graphify trending #7 in AI Agents",
+      "url": "https://findarepo.com/repo/Graphify-Labs/graphify/",
+      "meta": "Oct 23 - 919 stars/day"
+    }
+  ],
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Install the tool: run `uv tool install graphifyy` (note the double y) or `pipx install graphifyy`. Needs Python 3.10 or later.",
+      "Register it with your AI assistant: run `graphify install`, then type `/graphify .` in [Claude Code](https://claude.ai/code), Cursor, or Codex.",
+      "Explore the result: view `graph.html` in a browser to see the interactive map, or read `GRAPH_REPORT.md` for the written summary. [Full docs](https://github.com/Graphify-Labs/graphify#readme)."
+    ],
+    "paste": "/skillspector https://github.com/Graphify-Labs/graphify\nuv tool install graphifyy && graphify install\n/graphify ."
+  },
+  "footprint": {
+    "disk": "About 5 MB (the Python package is 1.7 MB for the wheel, 2.9 MB for the source). Dependencies add more.",
+    "memory": "no data found",
+    "runs_on": "macOS, Linux, and Windows. Needs Python 3.10 or later. Code-only graphs run locally with no API key. Document and image parsing needs a configured AI model or a local Ollama instance.",
+    "source": {
+      "title": "graphifyy on PyPI",
+      "url": "https://pypi.org/project/graphifyy/"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Teams with large, tangled codebases where the AI assistant keeps reading the wrong files.",
+      "Developers onboarding to an unfamiliar project who need a map of how it fits together.",
+      "Anyone who wants to see their codebase as an interactive graph they can explore."
+    ],
+    "skip_if": [
+      "Your project is small and well-organized - the graph won't save much time.",
+      "You need production-grade documentation - Graphify maps code structure, it doesn't write docs.",
+      "You want a turnkey solution - the graph needs rebuilding when the code changes."
+    ],
+    "alternatives": [
+      {
+        "name": "Graphicle (Rust port)",
+        "url": "https://news.ycombinator.com/item?id=50088713",
+        "line": "A Rust rewrite of Graphify with added memory for coding agents. 48 points on HN, Oct 14."
+      },
+      {
+        "name": "Aider",
+        "repo": "paul-gauthier/aider",
+        "url": "https://github.com/paul-gauthier/aider",
+        "line": "AI pair programming tool with its own repo-mapping approach. Different philosophy: edits code directly."
+      }
+    ]
+  },
+  "watch": [
+    "**Commercial upsell.** Graphify Cloud is a paid hosted version. The open-source engine is free, but the company behind it (YC S26) needs revenue, and some features may move behind a paywall.",
+    "**903 open pull requests.** A large backlog of unmerged contributions suggests the core team may not keep up with community input.",
+    "**Graph goes stale.** The map reflects the code when you last ran the tool. If you change the code without rebuilding, the graph is out of date.",
+    "**Benchmark claims are self-reported.** The 67-73% token savings come from the project's own tests. Independent benchmarks have not confirmed them."
+  ],
+  "sources": [
+    {
+      "title": "Graphify GitHub repo",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Graphify website",
+      "url": "https://graphify.com",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Graphify docs",
+      "url": "https://docs.graphify.com",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "graphifyy on PyPI (v0.9.94)",
+      "url": "https://pypi.org/project/graphifyy/",
+      "date": "2026-10-22"
+    },
+    {
+      "title": "findarepo listing",
+      "url": "https://findarepo.com/repo/Graphify-Labs/graphify/",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "CodeConductor review (real users: Kinnett, Stover)",
+      "url": "https://codeconductor.ai/blog/graphify-review/",
+      "date": "2026-10-15"
+    },
+    {
+      "title": "Wavect review",
+      "url": "https://wavect.io/blog/graphify-review-codebase-knowledge-graph/",
+      "date": "2026-10-15"
+    },
+    {
+      "title": "Augment Code overview",
+      "url": "https://www.augmentcode.com/learn/graphify-knowledge-graph-codebase-skill",
+      "date": "2026-10-23"
+    }
+  ]
+}

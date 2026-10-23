@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hindsight: A long-term memory service for AI agents - they store what they learn, recall it later, and get better over time. | Repo Radar</title>
+<meta name="description" content="Give your AI agent a persistent memory so it remembers your preferences, past decisions and project context across sessions - like a digital notebook it reads before every conversation.">
+<meta property="og:title" content="Hindsight: A long-term memory service for AI agents - they store what they learn, recall it later, and get better over time. | Repo Radar">
+<meta property="og:description" content="Give your AI agent a persistent memory so it remembers your preferences, past decisions and project context across sessions - like a digital notebook it reads before every conversation.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/hindsight.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 013 &middot; Week of October 23, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#7 this week</span><span class="repo-id">vectorize-io/hindsight</span></div>
+    <h1 id="name">Hindsight</h1>
+    <p class="tagline">A long-term memory service for AI agents - they store what they learn, recall it later, and get better over time.</p>
+    <p class="sentence">Give your AI agent a persistent memory so it remembers your preferences, past decisions and project context across sessions - like a digital notebook it reads before every conversation.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://hindsight.vectorize.io/" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/user-attachments/assets/923b798d-3581-4897-bb62-9cfa5a931682" rel="noopener">See it work <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/vectorize-io/hindsight" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/hindsight.webp" alt="Diagram showing Hindsight's three operations: Retain (green arrow storing information into World Facts, Experiences, Opinions and Observations), Recall (blue arrow retrieving information), and Reflect (purple arrow generating new insights from stored memories)." width="1708" height="878" loading="eager">
+    <figcaption>Three operations: Retain stores facts, Recall retrieves them, Reflect synthesizes new insights across memories.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">53K</span><span class="v-note">GitHub stars, <b>+28.1K stars in 30 days. Still climbing after 12 months. 53K total.</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 5.3 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">About an hour</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 23: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Your AI agent forgets everything between sessions - it asks the same questions, misses context, and starts from scratch every time.</p><p class="eg">You tell your coding agent your project uses PostgreSQL and prefers tabs over spaces. Next session, it suggests MySQL and uses spaces.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Your agent calls Hindsight's 'retain' operation after each conversation, and 'recall' before the next one.</p><p class="eg">At the end of a coding session, the agent sends its notes to Hindsight. Before the next session, it asks Hindsight what it knows about this project.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Conversations, facts, decisions and preferences - anything the agent should remember later.</p><p class="eg">A conversation where you told the agent 'always use TypeScript, never JavaScript' and 'deploy to the staging server first'.</p></div><div class="note does"><span class="role">It does</span><p class="say">It breaks conversations into facts, stores them, and builds a picture of what it knows over time.</p><ol class="steps-in"><li>Retain: breaks the input into individual facts and relationships, stores them with timestamps and context</li><li>Recall: searches stored memories using four strategies at once (meaning, keywords, connections and time) and ranks the best matches</li><li>Reflect: looks across many memories to answer questions that need reasoning, like 'what patterns does this user follow?'</li></ol><p class="eg">After 20 sessions, Hindsight has built a profile: this user prefers TypeScript, deploys to staging first, and reviews PRs on Monday mornings.</p></div><div class="note result"><span class="role">You get</span><p class="say">An agent that remembers what you told it, learns your preferences, and gets more useful over time.</p><ul class="outputs"><li><b>Persistent memory across sessions</b><span>The agent recalls that you use PostgreSQL without being told again</span></li><li><b>Observations that build over time</b><span>After several sessions, Hindsight consolidates 'prefers tabs' into a standing observation the agent always sees</span></li><li><b>Answers to standing questions</b><span>A 'mental model' page answers 'what are this user's coding preferences?' without searching each time</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Your AI agent forgets everything between sessions. You repeat your preferences, your project context, and your past decisions every time.</li><li>There is no shared memory across agents - if you use Claude Code and another tool, each one starts from zero.</li><li>You keep a manual notes file of context to paste into each new session.</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>The agent remembers your preferences, past decisions and project context across sessions, and they improve over time as it consolidates what it learns.</li><li>Multiple agents share the same memory, so switching between tools does not mean starting over.</li><li>Standing 'mental model' pages answer common questions instantly, without searching or calling an AI model each time.</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: About an hour"><span class="">5 minutes</span><span class="on">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li><a href="https://hindsight.vectorize.io/getting-started/quickstart" rel="noopener">Read the quickstart guide</a> to choose your install method: a container image, a Python package, or the managed cloud service.</li><li>Run the container image with your AI provider key: <code>docker run -d -p 8888:8888 -p 9999:9999 -e OPENAI_API_KEY=your-key ghcr.io/vectorize-io/hindsight:latest</code>. Open <a href="http://localhost:9999" rel="noopener">localhost:9999</a> to see the dashboard.</li><li>Install the Python or Node.js client and try the retain-recall-reflect cycle from <a href="https://hindsight.vectorize.io/guides" rel="noopener">the cookbook</a>.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Container image: no data found for image size. Python package (hindsight-all): large dependency tree including PyTorch - one reviewer ran out of space in a 2 GB container. Binary downloads: about 3-4 MB per platform (macOS ARM 2.8 MB, Linux x64 4.1 MB). Needs a PostgreSQL database with pgvector.</dd></div>
+    <div><dt>Memory while it runs</dt><dd>No data found. Requires a running PostgreSQL instance and an AI provider key for the extract step.</dd></div>
+    <div><dt>Runs on</dt><dd>Linux (x86_64 and ARM64), macOS (Apple Silicon and Intel - Intel is limited, use the slim package), Windows (x86_64). Also available as a managed cloud service.</dd></div>
+  </dl><a class="src" href="https://github.com/vectorize-io/hindsight/releases/tag/v1.1.0" rel="noopener">Source: Hindsight GitHub Releases v1.1.0</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-hindsight">/skillspector https://github.com/vectorize-io/hindsight
+
+If that scan passes: run the container image with `docker run -d -p 8888:8888 -p 9999:9999 -e OPENAI_API_KEY=$OPENAI_API_KEY ghcr.io/vectorize-io/hindsight:latest`, then install the Python client with `pip install hindsight-client` and try the retain and recall example from the quickstart. 10 minutes max.</pre>
+      <button class="copy" type="button" data-copy="paste-hindsight">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>You build AI agents that talk to the same users repeatedly and need to remember past conversations and preferences</li><li>You want agents that improve over time by consolidating what they learn into reusable knowledge</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You only use AI agents for one-off tasks - persistent memory adds complexity with no payoff if there is nothing to remember</li><li>You need a simple key-value store - Hindsight's retain-recall-reflect pipeline requires an AI provider key and a database, which is heavy for basic storage</li><li>You want something that works without any cloud AI service - Hindsight needs an AI provider for fact extraction</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://github.com/mem0ai/mem0" rel="noopener"><b>Mem0</b></a><span>Another open-source agent memory system. Graph features are behind a paid Pro tier at $249 per month.</span></li><li><a href="https://www.getzep.com/" rel="noopener"><b>Zep</b></a><span>Open-core agent memory with a managed cloud option. Scored 71.2% on the LongMemEval benchmark versus Hindsight's claimed 94.6%.</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/vectorize-io/hindsight/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 23</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>53K stars, 289 contributors, 3.9K commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Benchmark numbers are self-reported.</b> The project claims 94.6% on LongMemEval and says Virginia Tech and The Washington Post independently reproduced the results, but the reproduction details are on the vendor's own site.</li><li><b>The pip install is very large.</b> One reviewer's install failed after 226 seconds in a 2 GB container because the dependency tree (including PyTorch) ran out of space. Start with the container image instead.</li><li><b>Commercial company behind it.</b> Vectorize.io offers a managed cloud service and an enterprise tier. The open-source project is MIT-licensed today, but the company's business model may shape future development.</li><li><b>Fortune 500 claims are unverified.</b> The project says it is used in production at Fortune 500 enterprises, but names no companies and no independent source confirms this.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">Hindsight is 12 months old with 53K stars. The project claims Fortune 500 adoption but names no companies. Independent real-world case studies are hard to find.</p><ol class="uses">
+  <li class="use"><span class="who-mark long" aria-hidden="true">0 of 4 steps passed</span><div><h3>andrew.ooo (AI-agent-operated review site)</h3><p>Attempted a hands-on install and test of Hindsight in a clean container</p><p class="result">The pip install failed after 226 seconds with 'No space left on device' due to the large dependency tree. Recommended starting with the container image instead.</p><a class="src" href="https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/" rel="noopener">Hindsight review: agent memory that learns, Oct 5</a></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">YouTube</span><a href="https://www.youtube.com/watch?v=S_W4OSuh2Aw" rel="noopener">Eric Michaud on Hindsight agent memory</a><span class="meta">164K views, Oct 13 2026</span></li><li class="tone-critical"><span class="plat">Blog</span><a href="https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/" rel="noopener">Hindsight review: agent memory that learns</a><span class="meta">Hands-on install test, Oct 5 2026</span></li><li class=""><span class="plat">arXiv</span><a href="https://arxiv.org/html/2512.12818v1" rel="noopener">Hindsight is 20/20: Building Agent Memory that Retains, Recalls, and Reflects</a><span class="meta">Research paper, Dec 2025</span></li><li class=""><span class="plat">Blog</span><a href="https://emelia.io/hub/hindsight-ai-agent-memory" rel="noopener">Hindsight: The Open-Source Memory System That Lets AI Agents Actually Learn</a><span class="meta">Feature overview</span></li></ul>
+  
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/vectorize-io/hindsight" rel="noopener">Hindsight on GitHub (README, releases)</a>, Oct 23</li><li><a href="https://hindsight.vectorize.io/" rel="noopener">Hindsight documentation</a>, Oct 23</li><li><a href="https://github.com/vectorize-io/hindsight/releases/tag/v1.1.0" rel="noopener">Hindsight v1.1.0 release notes</a>, Oct 21</li><li><a href="https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/" rel="noopener">Hindsight review (andrew.ooo)</a>, Oct 5</li><li><a href="https://www.youtube.com/watch?v=S_W4OSuh2Aw" rel="noopener">Eric Michaud YouTube video</a>, Oct 13</li><li><a href="https://arxiv.org/html/2512.12818v1" rel="noopener">Hindsight arXiv paper</a>, Dec undefined</li><li><a href="https://emelia.io/hub/hindsight-ai-agent-memory" rel="noopener">Hindsight feature overview (emelia.io)</a></li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 013 &middot; October 23, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

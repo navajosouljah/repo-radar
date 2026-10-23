@@ -1,0 +1,189 @@
+{
+  "repo": "tangency-labs/solidcraft",
+  "name": "SolidCraft",
+  "tagline": "Free, open-source 3D design software you can run in your browser or on your desktop - or let your AI agent drive it.",
+  "sentence": "A parametric CAD tool built in Rust that runs on your desktop, in the browser, from the command line, or as a plugin your AI agent can control.",
+  "fit": "you",
+  "replaces": "Paying for SolidWorks or Fusion 360 to design 3D parts",
+  "links": {
+    "website": "https://solidcraft.io",
+    "docs": "https://docs.solidcraft.io"
+  },
+  "visual": {
+    "src": "assets/shots/solidcraft.jpg",
+    "width": 1600,
+    "height": 900,
+    "alt": "SolidCraft's desktop editor showing a Raspberry Pi enclosure being designed - a 3D view of an open-top case with rounded edges, the parametric feature timeline visible on the left side.",
+    "caption": "Parametric 3D modeling in SolidCraft's desktop editor - a Raspberry Pi enclosure with editable dimensions."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Professional 3D design software costs hundreds per year, and the free options either lack parametric tools or run only on one platform."
+    },
+    {
+      "role": "trigger",
+      "say": "You download SolidCraft or open it in a browser and start modeling a part."
+    },
+    {
+      "role": "input",
+      "say": "Your design idea - a bracket, an enclosure, a gear, a shelf mount - described in words, a sketch, or drawn with the tool's parametric editor."
+    },
+    {
+      "role": "does",
+      "say": "It gives you a full parametric modeling environment with constraints, sketches and a timeline.",
+      "steps": [
+        "You create 2D sketches with lines, arcs, circles and constraints (like 'this edge stays parallel to that one')",
+        "You turn sketches into 3D shapes with operations like extrude, revolve and fillet",
+        "Every step is tracked in a timeline so you can go back and change a dimension and everything downstream updates"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A 3D model you can export, 3D-print, or hand to a manufacturer.",
+      "outputs": [
+        {
+          "what": "A parametric 3D model",
+          "eg": "A phone stand with adjustable dimensions that updates when you change the phone width"
+        },
+        {
+          "what": "Export files",
+          "eg": "STL files for 3D printing, STEP files for manufacturing"
+        },
+        {
+          "what": "A shareable link",
+          "eg": "When using the browser version, a link anyone can open to view or remix your design"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Professional CAD costs $500+/year (SolidWorks, Fusion 360) or locks your files in the cloud",
+    "Free alternatives like FreeCAD have steep learning curves and no AI integration",
+    "Sharing a design means exporting files and emailing them"
+  ],
+  "after": [
+    "A free, open-source parametric CAD that runs on desktop, in the browser, or from the command line",
+    "A plugin lets your AI agent create and modify 3D models for you",
+    "Designs live in standard formats you own - no vendor lock-in"
+  ],
+  "uses_note": "SolidCraft is 16 days old. Hackaday commenters report modifying designs and exporting to PrusaSlicer, but documented production use is still early.",
+  "uses": [],
+  "pulse": {
+    "gain": "+9.5K stars in 16 days (created Oct 7)",
+    "history": [
+      [
+        "2026-10-07",
+        0
+      ],
+      [
+        "2026-10-16",
+        6498
+      ],
+      [
+        "2026-10-23",
+        9536
+      ]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "SolidCraft - Open-Source Parametric CAD in Rust with MCP Support",
+      "url": "https://news.ycombinator.com/item?id=50064840",
+      "meta": "145 points, 52 comments - Oct 13"
+    },
+    {
+      "plat": "Hackaday",
+      "title": "SolidCraft Is Parametric, Automation-friendly CAD For Desktop And Browser",
+      "url": "https://hackaday.com/2026/10/17/solidcraft-is-parametric-automation-friendly-cad-for-desktop-and-browser/",
+      "meta": "Donald Papp - Oct 17"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Star growth looks organic",
+      "url": "https://findarepo.com/repo/tangency-labs/solidcraft/",
+      "meta": "Oct 23"
+    }
+  ],
+  "trending": [
+    "findarepo: star growth looks organic",
+    "hacker-news: 145 points"
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Open SolidCraft in your browser](https://solidcraft.io) - no download needed, it runs in Chrome, Firefox or Safari.",
+      "Or [download the desktop app](https://github.com/tangency-labs/solidcraft/releases) for Mac, Windows (also via `winget install solidcraft`), or Linux.",
+      "Start with the built-in tutorial: sketch a rectangle, constrain its dimensions, extrude it into a box, and fillet the edges."
+    ],
+    "paste": "/skillspector https://github.com/tangency-labs/solidcraft\n(SolidCraft runs in the browser at solidcraft.io or as a desktop app. Try the browser version first, then install the desktop app from the releases page.)"
+  },
+  "footprint": {
+    "disk": "The desktop app is roughly 50-100 MB. Source build needs Rust toolchain (~1 GB with dependencies).",
+    "memory": "Runs on modest hardware. The browser version works in any modern browser.",
+    "runs_on": "Mac, Windows, Linux (desktop). Any modern browser (web version). MCP server for AI agents.",
+    "source": {
+      "title": "SolidCraft README",
+      "url": "https://github.com/tangency-labs/solidcraft"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Hobbyists and makers who want parametric CAD without paying for SolidWorks",
+      "Anyone who wants to describe a part to an AI agent and get a 3D model back",
+      "Teams who need to share designs in a browser without installing software"
+    ],
+    "skip_if": [
+      "You need production-grade CAD with assembly tools and simulation (use Fusion 360 or SolidWorks)",
+      "You already have a CAD tool you're productive in",
+      "You need NURBS surfaces for organic shapes (SolidCraft is focused on solid modeling)"
+    ],
+    "alternatives": [
+      {
+        "name": "FreeCAD",
+        "url": "https://www.freecad.org",
+        "line": "The established open-source parametric CAD - more mature but no browser version or AI integration"
+      },
+      {
+        "name": "OpenSCAD",
+        "url": "https://openscad.org",
+        "line": "Code-based 3D modeling - write scripts instead of drawing, good for programmers"
+      }
+    ]
+  },
+  "watch": [
+    "**16 days old.** The feature set is growing fast (1,937 commits, v0.15.0) but expect rough edges - slow fillets and booleans are known issues.",
+    "**Unsigned installers.** The Windows and Mac desktop installers are not code-signed, so your OS will warn you when you install them.",
+    "**Longevity uncertain.** HN commenters worry about long-term maintenance. CAD files need to stay openable for years, and a 16-day-old project has not proven that yet.",
+    "**Large STEP imports may fail.** A Hackaday commenter could not load a large 3D printer STEP file. Complex imported models may hit limits."
+  ],
+  "sources": [
+    {
+      "title": "SolidCraft GitHub",
+      "url": "https://github.com/tangency-labs/solidcraft",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "SolidCraft website",
+      "url": "https://solidcraft.io",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Hacker News discussion (145 pts)",
+      "url": "https://news.ycombinator.com/item?id=50064840",
+      "date": "2026-10-13"
+    },
+    {
+      "title": "Hackaday coverage",
+      "url": "https://hackaday.com/2026/10/17/solidcraft-is-parametric-automation-friendly-cad-for-desktop-and-browser/",
+      "date": "2026-10-17"
+    },
+    {
+      "title": "findarepo listing",
+      "url": "https://findarepo.com/repo/tangency-labs/solidcraft/",
+      "date": "2026-10-23"
+    }
+  ]
+}

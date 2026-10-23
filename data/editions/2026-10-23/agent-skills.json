@@ -1,0 +1,155 @@
+{
+  "repo": "addyosmani/agent-skills",
+  "name": "Agent Skills",
+  "tagline": "A training pack that teaches your AI coding agent to work like a senior engineer - from planning to shipping.",
+  "sentence": "Install 25 ready-made skill files and your AI coding agent follows senior-engineer practices automatically - for example, it writes a spec before coding, tests each piece, and reviews its own work before committing.",
+  "fit": "you",
+  "links": {
+    "website": "https://addyosmani.com/blog/agent-skills/",
+    "docs": "https://github.com/addyosmani/agent-skills"
+  },
+  "visual": {
+    "src": "https://camo.githubusercontent.com/dd13a635ba936be31326ecf651ff2f7b198c9849cf048df4c51d825e95cedbf3/68747470733a2f2f616464796f736d616e692e636f6d2f6173736574732f696d616765732f61646479732d6167656e742d736b696c6c732e6a7067",
+    "width": 1376,
+    "height": 768,
+    "alt": "Agent Skills logo showing the seven lifecycle phases: Spec, Plan, Build, Test, Review, Simplify, Ship - each in a colored pill badge",
+    "caption": "The seven phases an AI coding agent follows after installing Agent Skills"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding agent jumps straight to writing code. It skips planning, rarely tests, and never reviews its own work - so you end up fixing things it should have caught.",
+      "eg": "You ask Claude Code to add a login page. It writes the code immediately, with no spec, no tests, and no check for security holes."
+    },
+    {
+      "role": "trigger",
+      "say": "You type a slash command in your AI coding agent - like /spec, /plan, /build, /test, /review, or /ship.",
+      "eg": "Type `/spec` in Claude Code and it interviews you about what you want before writing a single line of code."
+    },
+    {
+      "role": "input",
+      "say": "A task description or a codebase. The skills guide the agent through each phase of the work.",
+      "eg": "'Add a dark mode toggle to the settings page' - the agent writes a spec, plans the steps, builds each one with tests, then reviews."
+    },
+    {
+      "role": "does",
+      "say": "The agent follows a structured workflow for each phase, with built-in quality gates that catch problems before they ship.",
+      "steps": [
+        "Interviews you about requirements and writes a spec before any code (the /spec skill)",
+        "Breaks the work into small tasks, builds each one incrementally, and writes tests for every piece",
+        "Reviews its own code for bugs, security issues, and unnecessary complexity - and simplifies what it finds",
+        "Commits each task separately with clear messages and runs final checks before marking it done"
+      ],
+      "eg": "The README's /build auto example: the agent generates a plan, gets one approval, then implements all tasks - testing and committing each one individually."
+    },
+    {
+      "role": "result",
+      "say": "Your AI coding agent produces better, more reliable work - with specs, tests, reviews, and clean commits built into every task.",
+      "outputs": [
+        {"what": "Structured specs and plans", "eg": "The /spec command produces a requirements document; /plan breaks it into numbered tasks with dependencies"},
+        {"what": "Tested, reviewed code", "eg": "Each task gets its own tests, and /review catches bugs, security holes, and unnecessary complexity before shipping"},
+        {"what": "Clean git history", "eg": "Each task is committed separately with descriptive messages, not one giant commit at the end"}
+      ]
+    }
+  ],
+  "before": [
+    "Your AI coding agent writes code immediately with no plan, no tests, and no self-review - you catch the mistakes after the fact.",
+    "Every agent stores instructions differently, so practices you set up in one tool do not transfer to another."
+  ],
+  "after": [
+    "The agent follows a full spec-plan-build-test-review-ship workflow automatically, catching problems before you see them.",
+    "One install puts the same 25 skills into Claude Code, Cursor, Codex, and 75+ other agents at once."
+  ],
+  "uses_note": "Agent Skills has 110K stars and 376 points on Hacker News, but individual named adopters are hard to find because skills install silently into coding agents. The author, Addy Osmani, is an engineering lead at Google Chrome.",
+  "uses": [],
+  "pulse": {
+    "gain": "110K stars in 8 months. Created February 15, 2026.",
+    "history": [
+      ["2026-02-15", 0],
+      ["2026-10-23", 109802]
+    ],
+    "history_note": "Addy Osmani (Google Chrome engineering lead) published the original agent-skills essay on May 3, 2026. The repo was already live since February.",
+    "facts": [
+      {"value": "110K", "label": "stars on GitHub"},
+      {"value": "702", "label": "commits"},
+      {"value": "25", "label": "skills included"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Agent Skills",
+      "url": "https://news.ycombinator.com/item?id=48015397",
+      "meta": "376 points, May 4, 2026"
+    },
+    {
+      "plat": "Substack",
+      "title": "How AI Agents Follow Senior-Engineer Production Workflows",
+      "url": "https://alphasignalai.substack.com/p/how-ai-agents-follow-senior-engineer",
+      "meta": "AlphaSignal analysis of the harness-over-model approach"
+    },
+    {
+      "plat": "DEV Community",
+      "title": "Addy Osmani Agent Skills Review: 24 Production Skills",
+      "url": "https://dev.to/yimtheppariyapol/addy-osmani-agent-skills-review-24-production-skills-726k-stars-22em",
+      "meta": "In-depth review of each skill's structure and approach"
+    },
+    {
+      "plat": "Blog",
+      "title": "Addy Osmani's Agent Skills: Returned to GitHub Trending",
+      "url": "https://www.remio.ai/post/addyosmani-agent-skills-returned-to-github-trending-but-prompts-are-not-the-poin",
+      "meta": "Analysis of why prompts alone are not the point"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install all 25 skills into Claude Code: run `/plugin marketplace add addyosmani/agent-skills`, then `/plugin install agent-skills@addy-agent-skills` in your [Claude Code terminal](https://code.claude.com).",
+      "Try the spec skill: type `/spec` and describe a feature you want to build. The agent will interview you about requirements before writing any code.",
+      "Try the build skill: type `/build auto` with an approved spec. The agent plans, builds, tests, and commits each task on its own."
+    ],
+    "paste": "/skillspector https://github.com/addyosmani/agent-skills\n\nIf that scan passes: install with `/plugin marketplace add addyosmani/agent-skills` then `/plugin install agent-skills@addy-agent-skills`. Try `/spec` on a small feature, then `/build auto`. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No standalone install needed. Skills are Markdown files that install into your AI coding agent's configuration folder. The full pack is under 1 MB.",
+    "memory": "No data found. Skills are text files loaded by the agent on demand - they add no running processes.",
+    "runs_on": "Any system where Claude Code, Cursor, Codex, or another supported agent runs. Mac, Windows, and Linux. Requires the skills tool (Node.js) or the agent's built-in plugin install.",
+    "source": {"title": "agent-skills README on GitHub", "url": "https://github.com/addyosmani/agent-skills"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use an AI coding agent and want it to follow a structured workflow - specs, plans, tests, reviews - instead of jumping straight to code",
+      "You work across multiple agents (Claude Code, Cursor, Codex) and want the same engineering practices in all of them"
+    ],
+    "skip_if": [
+      "You already have a well-tuned set of agent instructions and do not want another pack potentially conflicting with them",
+      "You prefer to give your agent open-ended freedom rather than structured workflows with quality gates"
+    ],
+    "alternatives": [
+      {
+        "name": "anthropics/knowledge-work-plugins",
+        "repo": "anthropics/knowledge-work-plugins",
+        "url": "https://github.com/anthropics/knowledge-work-plugins",
+        "line": "Anthropic's own plugin pack for Claude Code. More focused on knowledge work than engineering workflows."
+      },
+      {
+        "name": "Manual CLAUDE.md instructions",
+        "url": "https://code.claude.com/docs/en/skills",
+        "line": "Write your own instructions directly in CLAUDE.md. More control, but you maintain them yourself and they only work in Claude Code."
+      }
+    ]
+  },
+  "watch": [
+    "**Single-author dependency.** The pack is maintained primarily by Addy Osmani with two listed collaborators. If he stops maintaining it, updates stop.",
+    "**Skills run with your agent's permissions.** These instructions become part of what your AI coding agent does. Review what they tell the agent to do, especially the automated commit and ship steps.",
+    "**No independent benchmarks.** The pack claims to improve agent reliability, but there are no published third-party measurements of the improvement. The approach is based on engineering experience, not controlled tests.",
+    "**Name overlap with built-in commands.** Some slash commands (like /review) share names with Claude Code's built-in commands. Use the namespaced form (`/agent-skills:review`) to avoid confusion."
+  ],
+  "sources": [
+    {"title": "agent-skills on GitHub (README, skills list, install)", "url": "https://github.com/addyosmani/agent-skills", "date": "2026-10-23"},
+    {"title": "Agent Skills essay by Addy Osmani", "url": "https://addyosmani.com/blog/agent-skills/", "date": "2026-05-03"},
+    {"title": "Hacker News discussion (376 points)", "url": "https://news.ycombinator.com/item?id=48015397", "date": "2026-05-04"},
+    {"title": "AlphaSignal: How AI Agents Follow Senior-Engineer Production Workflows", "url": "https://alphasignalai.substack.com/p/how-ai-agents-follow-senior-engineer", "date": "2026-10-23"},
+    {"title": "DEV Community review", "url": "https://dev.to/yimtheppariyapol/addy-osmani-agent-skills-review-24-production-skills-726k-stars-22em", "date": "2026-10-23"}
+  ]
+}

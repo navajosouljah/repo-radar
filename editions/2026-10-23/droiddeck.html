@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DroidDeck: Turns an Android phone or handheld into a Steam Deck - play your PC games on the go. | Repo Radar</title>
+<meta name="description" content="An open-source compatibility layer that lets Android devices run Steam games through ARM64 Proton - no streaming, the games run locally on the phone.">
+<meta property="og:title" content="DroidDeck: Turns an Android phone or handheld into a Steam Deck - play your PC games on the go. | Repo Radar">
+<meta property="og:description" content="An open-source compatibility layer that lets Android devices run Steam games through ARM64 Proton - no streaming, the games run locally on the phone.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/droiddeck.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 013 &middot; Week of October 23, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#3 this week</span><span class="repo-id">Droid-Deck/DroidDeck</span></div>
+    <h1 id="name">DroidDeck</h1>
+    <p class="tagline">Turns an Android phone or handheld into a Steam Deck - play your PC games on the go.</p>
+    <p class="sentence">An open-source compatibility layer that lets Android devices run Steam games through ARM64 Proton - no streaming, the games run locally on the phone.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      <span class="chip replaces">Replaces: Buying a Steam Deck or streaming PC games to your phone over Wi-Fi</span>
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://github.com/Droid-Deck/DroidDeck" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/Droid-Deck/DroidDeck" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/droiddeck.jpg" alt="An Android tablet held in two hands showing DroidDeck's Steam interface - the Steam Autumn Sale banner, game covers including Neon White, Dishonored 2, and Kingdom Come Deliverance, with virtual ABXY controller buttons overlaid on the right side." width="1200" height="675" loading="eager">
+    <figcaption>DroidDeck running the full Steam library on an Android tablet, with virtual controller overlay.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">13.1K</span><span class="v-note">GitHub stars, <b>+13.1K stars in 29 days (created Sep 24)</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L50.0 11.5 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">6</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">About an hour</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 23: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want to play your Steam library on the go, but a Steam Deck costs $400+ and phone game streaming needs fast Wi-Fi.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You install DroidDeck on an Android phone or handheld with a recent Qualcomm chip.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Your Steam account and the games you want to play.</p></div><div class="note does"><span class="role">It does</span><p class="say">It runs Valve's own ARM64 Steam client and translates PC game code to ARM instructions in real time.</p><ol class="steps-in"><li>Installs a compatibility layer (ARM64 Proton, Valve's translation tool) that converts x86 game code to ARM instructions your phone can run.</li><li>Presents your Steam library in a Steam Deck-style interface with virtual controls, a performance overlay, and frame generation.</li><li>Runs each game locally on your phone's GPU - no streaming, no PC, no internet needed during play.</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">Your Steam games running on your Android device, with controller support and performance tuning.</p><ul class="outputs"><li><b>Playable Steam games</b><span>One user reported MXGP 2021 at 60 FPS (Medium) on an AYN Odin 3 - results vary by game and device.</span></li><li><b>Steam Deck-style controls</b><span>Virtual ABXY buttons, gyro, trackpads, and a Quick Access button - your phone acts as a Steam Deck controller.</span></li><li><b>A performance overlay</b><span>GPU load, CPU load, temperatures, VRAM, battery life and frame-time data, like Steam Deck's built-in overlay.</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Playing Steam games on the go means buying a $400+ Steam Deck</li><li>Phone game streaming needs strong Wi-Fi and adds input lag</li><li>Mobile ports of PC games are often stripped-down versions</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Your Android phone runs Steam games locally - no streaming, no extra hardware</li><li>Games use your phone's GPU directly, so they work offline</li><li>An open-source project you can inspect - no hidden services or accounts beyond Steam</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: About an hour"><span class="">5 minutes</span><span class="on">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Check your device: you need Android 9 or later with a Qualcomm Adreno 650 or newer GPU (most flagship phones from 2021 onward, or handhelds like the AYN Odin 3 or Retroid Pocket 5). About 4 GB of free space for the runtime.</li><li><a href="https://github.com/Droid-Deck/DroidDeck/releases" rel="noopener">Download DroidDeck v0.6.0</a> - install the APK (allow installs from unknown sources if prompted).</li><li>Launch DroidDeck, sign into <a href="https://store.steampowered.com/" rel="noopener">Steam</a>, and pick a lighter game first (2D or older 3D titles work best). The app will download the runtime on first launch.</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>About 3 GB for the runtime, plus 1.1 GB for optional desktop components. Games need their full install size on top (typically 5 to 50 GB per game).</dd></div>
+    <div><dt>Memory while it runs</dt><dd>no data found</dd></div>
+    <div><dt>Runs on</dt><dd>Android 9 or later with a Qualcomm Adreno 650 or newer GPU. v0.6.0 also supports Meta Quest 2/3/3S (VR headsets) and several XR glasses (VITURE Pro, RayNeo, Rokid). Mali, Xclipse, PowerVR, and Adreno 710 GPUs are not supported.</dd></div>
+  </dl><a class="src" href="https://github.com/Droid-Deck/DroidDeck/releases" rel="noopener">Source: DroidDeck README and v0.6.0 release notes</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-droiddeck">/skillspector https://github.com/Droid-Deck/DroidDeck
+(DroidDeck is an Android app - download the APK from the GitHub releases page and install it on a Qualcomm Snapdragon device.)</pre>
+      <button class="copy" type="button" data-copy="paste-droiddeck">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>Gamers who want their Steam library on an Android phone without streaming</li><li>Owners of Android gaming handhelds looking for a Steam Deck alternative</li><li>Tinkerers who enjoy testing game compatibility on new hardware</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>Your phone has a non-Qualcomm GPU (Mali, PowerVR) - not supported yet</li><li>You want a plug-and-play experience - this is early software and many games need tweaking</li><li>You're happy with cloud gaming (GeForce Now, Xbox Cloud) and have good Wi-Fi</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://store.steampowered.com/app/353380/Steam_Link/" rel="noopener"><b>Steam Link</b></a><span>Valve's official app for streaming PC games to your phone - needs Wi-Fi but works with any phone</span></li><li><a href="https://github.com/brunodev85/winlator" rel="noopener"><b>Winlator</b></a><span>Runs Windows apps and some games on Android through Wine - broader compatibility but not Steam-integrated</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/Droid-Deck/DroidDeck/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 23</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>1 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>13.1K stars, 58 contributors, 1.3K commits. findarepo: looks organic</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Beware fake download sites.</b> The project warns about impersonation sites using its name and logo. Download only from the <a href="https://github.com/Droid-Deck/DroidDeck/releases" rel="noopener">official GitHub releases page</a>.</li><li><b>29 days old, beta software.</b> Game compatibility is limited and performance varies by device. Notebookcheck characterizes it as beta with limited hardware validation.</li><li><b>GPU requirements are strict.</b> Qualcomm Adreno 650 or newer only. Mali, PowerVR, Xclipse, and Adreno 710 GPUs are not supported - that rules out most Samsung Exynos and Google Tensor phones.</li><li><b>One Reddit user bricked their controller mapping</b> after updating to v0.3.0 (fixed by switching to X360 mode). Expect rough edges between updates.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">DroidDeck is 29 days old. Press coverage shows gameplay on handhelds, but detailed benchmarks are from individual uncontrolled tests - not formal reviews.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Notebookcheck</span><a href="https://www.notebookcheck.net/DroidDeck-0-3-0-brings-Steam-Deck-style-controls-and-frame-generation-to-Android-as-Steam-startup-falls-from-31-to-6-seconds.1414466.0.html" rel="noopener">DroidDeck 0.3.0 brings Steam Deck-style controls and frame generation to Android</a><span class="meta">Louise Burke - Oct 3</span></li><li class=""><span class="plat">Dexerto</span><a href="https://www.dexerto.com/gaming/free-app-lets-android-phones-play-steam-games-without-a-pc-3417889/" rel="noopener">Free app lets Android phones play Steam games without a PC</a><span class="meta">Oct 2026</span></li><li class=""><span class="plat">Pocket Tactics</span><a href="https://www.pockettactics.com/droiddeck-android" rel="noopener">This new Android app makes your gaming handheld feel more like a Steam Deck</a><span class="meta">Connor Christie - Oct 6</span></li><li class=""><span class="plat">Android Authority</span><a href="https://androidauthority.com/droiddeck-steam-os-app-android-3719435" rel="noopener">DroidDeck: SteamOS-style app for Android</a><span class="meta">Oct 2026</span></li><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io/" rel="noopener">DroidDeck trending monthly</a><span class="meta">Oct 23</span></li><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/Droid-Deck/DroidDeck/" rel="noopener">Star growth looks organic (100/100)</a><span class="meta">542 stars/day - Oct 23</span></li></ul>
+  <div class="trending"><span class="chip">trendshift: trending</span><span class="chip">findarepo: star growth looks organic</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/Droid-Deck/DroidDeck" rel="noopener">DroidDeck GitHub</a>, Oct 23</li><li><a href="https://github.com/Droid-Deck/DroidDeck/releases" rel="noopener">DroidDeck v0.6.0 release notes</a>, Oct 22</li><li><a href="https://www.notebookcheck.net/DroidDeck-0-3-0-brings-Steam-Deck-style-controls-and-frame-generation-to-Android-as-Steam-startup-falls-from-31-to-6-seconds.1414466.0.html" rel="noopener">Notebookcheck coverage (Louise Burke)</a>, Oct 3</li><li><a href="https://www.dexerto.com/gaming/free-app-lets-android-phones-play-steam-games-without-a-pc-3417889/" rel="noopener">Dexerto coverage</a>, Oct 23</li><li><a href="https://www.pockettactics.com/droiddeck-android" rel="noopener">Pocket Tactics coverage (Connor Christie)</a>, Oct 6</li><li><a href="https://androidauthority.com/droiddeck-steam-os-app-android-3719435" rel="noopener">Android Authority coverage</a>, Oct 23</li><li><a href="https://findarepo.com/repo/Droid-Deck/DroidDeck/" rel="noopener">findarepo listing</a>, Oct 23</li><li><a href="https://trendshift.io/" rel="noopener">Trendshift listing</a>, Oct 23</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 013 &middot; October 23, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

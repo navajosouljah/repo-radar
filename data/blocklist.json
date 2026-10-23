@@ -232,5 +232,29 @@
     "date": "2026-10-16",
     "kind": "open-advisories",
     "reason": "1 moderate CVE (CVE-2026-6143) with fix-unverified status. Cannot verify from the cloud - settling FAIL pending Mac re-check."
+  },
+  {
+    "repo": "DuarteSantos8/openGym",
+    "date": "2026-10-23",
+    "kind": "open-advisories",
+    "reason": "4 open advisory(ies): GHSA-568g-hg5j-h53q moderate (unpatched), GHSA-w724-p4hx-jfv9 moderate (unpatched), GHSA-375x-wfvj-jf7q high (unpatched), GHSA-48ff-v63h-99xr moderate (unpatched)"
+  },
+  {
+    "repo": "akitaonrails/ai-memory",
+    "date": "2026-10-23",
+    "kind": "open-advisories",
+    "reason": "4 open advisory(ies): GHSA-9xw8-cg9v-h9gw high (unpatched), GHSA-2jrq-p5rw-6wvv low (unpatched), GHSA-7qj3-7wqw-m5w6 moderate (unpatched), GHSA-vh98-jf5c-jw45 low (unpatched)"
+  },
+  {
+    "repo": "php/php-src",
+    "date": "2026-10-23",
+    "kind": "open-advisories",
+    "reason": "3 open advisory(ies): GHSA-ch8v-r6jh-4vvr low (unpatched), GHSA-9f67-6fw4-hpfp moderate (unpatched), GHSA-hh26-4ppw-5864 moderate (unpatched)"
+  },
+  {
+    "repo": "BerriAI/litellm",
+    "date": "2026-10-23",
+    "kind": "open-advisories",
+    "reason": "8 open CVE(s) found by search: CVE-2025-45809 moderate (unpatched), CVE-2026-12771 low (unpatched), CVE-2026-12772 low (unpatched), CVE-2026-12774 low (unpatched), CVE-2026-12795 moderate (unpatched), CVE-2026-12797 low (unpatched), CVE-2026-12798 low (unpatched), CVE-2026-108575 low (unpatched)"
   }
 ]

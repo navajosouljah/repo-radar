@@ -1,0 +1,170 @@
+{
+  "repo": "vectorize-io/hindsight",
+  "name": "Hindsight",
+  "tagline": "A long-term memory service for AI agents - they store what they learn, recall it later, and get better over time.",
+  "sentence": "Give your AI agent a persistent memory so it remembers your preferences, past decisions and project context across sessions - like a digital notebook it reads before every conversation.",
+  "fit": "developers",
+  "links": {
+    "website": "https://hindsight.vectorize.io/",
+    "demo": "https://github.com/user-attachments/assets/923b798d-3581-4897-bb62-9cfa5a931682",
+    "docs": "https://hindsight.vectorize.io/guides"
+  },
+  "visual": {
+    "src": "assets/shots/hindsight.webp",
+    "width": 1708,
+    "height": 878,
+    "alt": "Diagram showing Hindsight's three operations: Retain (green arrow storing information into World Facts, Experiences, Opinions and Observations), Recall (blue arrow retrieving information), and Reflect (purple arrow generating new insights from stored memories).",
+    "caption": "Three operations: Retain stores facts, Recall retrieves them, Reflect synthesizes new insights across memories."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI agent forgets everything between sessions - it asks the same questions, misses context, and starts from scratch every time.",
+      "eg": "You tell your coding agent your project uses PostgreSQL and prefers tabs over spaces. Next session, it suggests MySQL and uses spaces."
+    },
+    {
+      "role": "trigger",
+      "say": "Your agent calls Hindsight's 'retain' operation after each conversation, and 'recall' before the next one.",
+      "eg": "At the end of a coding session, the agent sends its notes to Hindsight. Before the next session, it asks Hindsight what it knows about this project."
+    },
+    {
+      "role": "input",
+      "say": "Conversations, facts, decisions and preferences - anything the agent should remember later.",
+      "eg": "A conversation where you told the agent 'always use TypeScript, never JavaScript' and 'deploy to the staging server first'."
+    },
+    {
+      "role": "does",
+      "say": "It breaks conversations into facts, stores them, and builds a picture of what it knows over time.",
+      "steps": [
+        "Retain: breaks the input into individual facts and relationships, stores them with timestamps and context",
+        "Recall: searches stored memories using four strategies at once (meaning, keywords, connections and time) and ranks the best matches",
+        "Reflect: looks across many memories to answer questions that need reasoning, like 'what patterns does this user follow?'"
+      ],
+      "eg": "After 20 sessions, Hindsight has built a profile: this user prefers TypeScript, deploys to staging first, and reviews PRs on Monday mornings."
+    },
+    {
+      "role": "result",
+      "say": "An agent that remembers what you told it, learns your preferences, and gets more useful over time.",
+      "outputs": [
+        {"what": "Persistent memory across sessions", "eg": "The agent recalls that you use PostgreSQL without being told again"},
+        {"what": "Observations that build over time", "eg": "After several sessions, Hindsight consolidates 'prefers tabs' into a standing observation the agent always sees"},
+        {"what": "Answers to standing questions", "eg": "A 'mental model' page answers 'what are this user's coding preferences?' without searching each time"}
+      ]
+    }
+  ],
+  "before": [
+    "Your AI agent forgets everything between sessions. You repeat your preferences, your project context, and your past decisions every time.",
+    "There is no shared memory across agents - if you use Claude Code and another tool, each one starts from zero.",
+    "You keep a manual notes file of context to paste into each new session."
+  ],
+  "after": [
+    "The agent remembers your preferences, past decisions and project context across sessions, and they improve over time as it consolidates what it learns.",
+    "Multiple agents share the same memory, so switching between tools does not mean starting over.",
+    "Standing 'mental model' pages answer common questions instantly, without searching or calling an AI model each time."
+  ],
+  "uses_note": "Hindsight is 12 months old with 53K stars. The project claims Fortune 500 adoption but names no companies. Independent real-world case studies are hard to find.",
+  "uses": [
+    {
+      "who": "andrew.ooo (AI-agent-operated review site)",
+      "what": "Attempted a hands-on install and test of Hindsight in a clean container",
+      "result": "The pip install failed after 226 seconds with 'No space left on device' due to the large dependency tree. Recommended starting with the container image instead.",
+      "stat": "0 of 4 steps passed",
+      "source": {"title": "Hindsight review: agent memory that learns", "url": "https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/", "date": "2026-10-05"}
+    }
+  ],
+  "pulse": {
+    "gain": "+28.1K stars in 30 days. Still climbing after 12 months. 53K total.",
+    "history": [
+      ["2025-10-30", 0],
+      ["2026-10-16", 50296],
+      ["2026-10-23", 52972]
+    ],
+    "history_note": "Created Oct 30, 2025. Growth accelerated in late 2026.",
+    "facts": [
+      {"value": "53K", "label": "stars on GitHub"},
+      {"value": "3,891", "label": "commits"},
+      {"value": "6.2K", "label": "forks"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "YouTube",
+      "title": "Eric Michaud on Hindsight agent memory",
+      "url": "https://www.youtube.com/watch?v=S_W4OSuh2Aw",
+      "meta": "164K views, Oct 13 2026"
+    },
+    {
+      "plat": "Blog",
+      "title": "Hindsight review: agent memory that learns",
+      "url": "https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/",
+      "meta": "Hands-on install test, Oct 5 2026",
+      "tone": "critical"
+    },
+    {
+      "plat": "arXiv",
+      "title": "Hindsight is 20/20: Building Agent Memory that Retains, Recalls, and Reflects",
+      "url": "https://arxiv.org/html/2512.12818v1",
+      "meta": "Research paper, Dec 2025"
+    },
+    {
+      "plat": "Blog",
+      "title": "Hindsight: The Open-Source Memory System That Lets AI Agents Actually Learn",
+      "url": "https://emelia.io/hub/hindsight-ai-agent-memory",
+      "meta": "Feature overview"
+    }
+  ],
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "[Read the quickstart guide](https://hindsight.vectorize.io/getting-started/quickstart) to choose your install method: a container image, a Python package, or the managed cloud service.",
+      "Run the container image with your AI provider key: `docker run -d -p 8888:8888 -p 9999:9999 -e OPENAI_API_KEY=your-key ghcr.io/vectorize-io/hindsight:latest`. Open [localhost:9999](http://localhost:9999) to see the dashboard.",
+      "Install the Python or Node.js client and try the retain-recall-reflect cycle from [the cookbook](https://hindsight.vectorize.io/guides)."
+    ],
+    "paste": "/skillspector https://github.com/vectorize-io/hindsight\n\nIf that scan passes: run the container image with `docker run -d -p 8888:8888 -p 9999:9999 -e OPENAI_API_KEY=$OPENAI_API_KEY ghcr.io/vectorize-io/hindsight:latest`, then install the Python client with `pip install hindsight-client` and try the retain and recall example from the quickstart. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "Container image: no data found for image size. Python package (hindsight-all): large dependency tree including PyTorch - one reviewer ran out of space in a 2 GB container. Binary downloads: about 3-4 MB per platform (macOS ARM 2.8 MB, Linux x64 4.1 MB). Needs a PostgreSQL database with pgvector.",
+    "memory": "No data found. Requires a running PostgreSQL instance and an AI provider key for the extract step.",
+    "runs_on": "Linux (x86_64 and ARM64), macOS (Apple Silicon and Intel - Intel is limited, use the slim package), Windows (x86_64). Also available as a managed cloud service.",
+    "source": {"title": "Hindsight GitHub Releases v1.1.0", "url": "https://github.com/vectorize-io/hindsight/releases/tag/v1.1.0"}
+  },
+  "verdict": {
+    "best_for": [
+      "You build AI agents that talk to the same users repeatedly and need to remember past conversations and preferences",
+      "You want agents that improve over time by consolidating what they learn into reusable knowledge"
+    ],
+    "skip_if": [
+      "You only use AI agents for one-off tasks - persistent memory adds complexity with no payoff if there is nothing to remember",
+      "You need a simple key-value store - Hindsight's retain-recall-reflect pipeline requires an AI provider key and a database, which is heavy for basic storage",
+      "You want something that works without any cloud AI service - Hindsight needs an AI provider for fact extraction"
+    ],
+    "alternatives": [
+      {
+        "name": "Mem0",
+        "repo": "mem0ai/mem0",
+        "url": "https://github.com/mem0ai/mem0",
+        "line": "Another open-source agent memory system. Graph features are behind a paid Pro tier at $249 per month."
+      },
+      {
+        "name": "Zep",
+        "url": "https://www.getzep.com/",
+        "line": "Open-core agent memory with a managed cloud option. Scored 71.2% on the LongMemEval benchmark versus Hindsight's claimed 94.6%."
+      }
+    ]
+  },
+  "watch": [
+    "**Benchmark numbers are self-reported.** The project claims 94.6% on LongMemEval and says Virginia Tech and The Washington Post independently reproduced the results, but the reproduction details are on the vendor's own site.",
+    "**The pip install is very large.** One reviewer's install failed after 226 seconds in a 2 GB container because the dependency tree (including PyTorch) ran out of space. Start with the container image instead.",
+    "**Commercial company behind it.** Vectorize.io offers a managed cloud service and an enterprise tier. The open-source project is MIT-licensed today, but the company's business model may shape future development.",
+    "**Fortune 500 claims are unverified.** The project says it is used in production at Fortune 500 enterprises, but names no companies and no independent source confirms this."
+  ],
+  "sources": [
+    {"title": "Hindsight on GitHub (README, releases)", "url": "https://github.com/vectorize-io/hindsight", "date": "2026-10-23"},
+    {"title": "Hindsight documentation", "url": "https://hindsight.vectorize.io/", "date": "2026-10-23"},
+    {"title": "Hindsight v1.1.0 release notes", "url": "https://github.com/vectorize-io/hindsight/releases/tag/v1.1.0", "date": "2026-10-21"},
+    {"title": "Hindsight review (andrew.ooo)", "url": "https://andrew.ooo/posts/hindsight-review-agent-memory-that-learns/", "date": "2026-10-05"},
+    {"title": "Eric Michaud YouTube video", "url": "https://www.youtube.com/watch?v=S_W4OSuh2Aw", "date": "2026-10-13"},
+    {"title": "Hindsight arXiv paper", "url": "https://arxiv.org/html/2512.12818v1", "date": "2025-12"},
+    {"title": "Hindsight feature overview (emelia.io)", "url": "https://emelia.io/hub/hindsight-ai-agent-memory"}
+  ]
+}

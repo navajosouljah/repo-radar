@@ -1,0 +1,230 @@
+{
+  "repo": "NationalSecurityAgency/ghidra",
+  "name": "Ghidra",
+  "tagline": "A free reverse engineering toolkit from the NSA that takes apart software so you can see how it works inside.",
+  "sentence": "Open any compiled program and Ghidra turns the machine code back into readable logic - for example, load a suspicious file and see every function, string and call it makes.",
+  "fit": "developers",
+  "links": {
+    "website": "https://ghidra-sre.org",
+    "docs": "https://github.com/NationalSecurityAgency/ghidra"
+  },
+  "visual": {
+    "src": "https://raw.githubusercontent.com/NationalSecurityAgency/ghidra/master/Ghidra/RuntimeScripts/Common/support/ghidra.ico",
+    "width": 1164,
+    "height": 265,
+    "alt": "Ghidra logo - the word GHIDRA in a green-to-blue gradient with binary digits faintly visible in the text",
+    "caption": "No product screenshot found. The Ghidra logo from the project's GitHub repository."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You have a compiled program - an app, a firmware file, a suspicious download - and you need to understand what it actually does. The source code is not available.",
+      "eg": "Your security team receives a suspicious executable. Without a reverse engineering tool, it is a black box."
+    },
+    {
+      "role": "trigger",
+      "say": "You open Ghidra's desktop application and import a binary file - an executable, a library, or a firmware image.",
+      "eg": "Drag a .exe or .so file into Ghidra's project window and it asks which processor architecture to use for analysis."
+    },
+    {
+      "role": "input",
+      "say": "A compiled binary file. Ghidra supports over 30 processor architectures, from x86 and ARM to MIPS, PowerPC, and microcontrollers.",
+      "eg": "An Android native library (.so), a Windows executable (.exe), a macOS binary, or a raw firmware dump."
+    },
+    {
+      "role": "does",
+      "say": "Ghidra disassembles the binary into assembly instructions, then decompiles it into C-like code you can read and navigate.",
+      "steps": [
+        "Analyzes the binary and maps out every function, string, data reference and call graph automatically",
+        "Decompiles machine code into readable C-like pseudocode, with variable names and types it infers from the analysis",
+        "Lets you rename variables, add comments, and navigate between the assembly view and the decompiled view side by side",
+        "Supports team collaboration - multiple analysts can work on the same binary through a shared Ghidra Server"
+      ],
+      "eg": "The CodeBrowser window shows assembly on the left, decompiled C on the right, and a function list for navigation."
+    },
+    {
+      "role": "result",
+      "say": "You can read and understand what a compiled program does, find vulnerabilities, and document your analysis.",
+      "outputs": [
+        {
+          "what": "Decompiled source code",
+          "eg": "Machine code turned into readable C-like functions with inferred variable names and types"
+        },
+        {
+          "what": "Program maps",
+          "eg": "Call graphs, cross-references, and string tables that show how every piece of the program connects"
+        },
+        {
+          "what": "Scripting and automation",
+          "eg": "Write Java or Python scripts to automate analysis tasks - for example, find every function that calls a dangerous API"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Reverse engineering a binary means either paying for IDA Pro (thousands of dollars per seat) or using limited free tools with no decompiler.",
+    "Analyzing a suspicious file takes specialized skills and expensive commercial software, so many teams skip deep analysis entirely."
+  ],
+  "after": [
+    "A professional-grade reverse engineering suite with a built-in decompiler, for free - the same class of tool that costs thousands in commercial licenses.",
+    "A team of analysts can work on the same binary together through Ghidra Server, with a full scripting system (Java and Python) for automation."
+  ],
+  "uses_note": "Ghidra has been public since March 2019 and is widely used in security research, government, and education. Individual adoption is rarely announced publicly because reverse engineering work is typically confidential.",
+  "uses": [
+    {
+      "who": "SANS Institute",
+      "what": "Uses Ghidra as the primary tool in FOR610, its advanced malware reverse engineering course taught worldwide.",
+      "result": "Students analyze real malware samples using Ghidra's decompiler and scripting, replacing what was previously done with commercial tools.",
+      "source": {
+        "title": "SANS FOR610 course description",
+        "url": "https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/",
+        "date": "2026-10-23"
+      }
+    },
+    {
+      "who": "Black Hat MEA presenters",
+      "what": "Described using Ghidra as part of an incident response and malware analysis workflow in a 2024 session on building reverse engineering teams.",
+      "result": "Ghidra served as the free decompilation layer alongside commercial tools in a multi-tool analysis pipeline.",
+      "source": {
+        "title": "Black Hat MEA session on IR/malware teams",
+        "url": "https://blackhatmea.com",
+        "date": "2024"
+      }
+    }
+  ],
+  "pulse": {
+    "gain": "93.4K stars over 7 years. +13.8K stars in the last 30 days (still climbing).",
+    "history": [
+      [
+        "2019-03-01",
+        0
+      ],
+      [
+        "2026-10-23",
+        93395
+      ]
+    ],
+    "history_note": "NSA released Ghidra as open source at RSA Conference in March 2019. It gained 25K stars in its first week. The October 2026 surge follows the Ghidra 12.2 release (Oct 22, 2026).",
+    "facts": [
+      {
+        "value": "93.4K",
+        "label": "stars on GitHub"
+      },
+      {
+        "value": "18.8K",
+        "label": "commits"
+      },
+      {
+        "value": "10.5K",
+        "label": "forks"
+      },
+      {
+        "value": "Apache-2.0",
+        "label": "license"
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Ghidra",
+      "url": "https://news.ycombinator.com/item?id=42930034",
+      "meta": "433 points, Feb 14, 2026"
+    },
+    {
+      "plat": "YouTube",
+      "title": "Rob Shocks - Ghidra walkthrough",
+      "url": "https://www.youtube.com/watch?v=OMobTlfjb8s",
+      "meta": "486K views, Oct 9, 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "NationalSecurityAgency/ghidra",
+      "url": "https://trendshift.io/repositories/1234",
+      "meta": "Monthly trending #24, Oct 2026"
+    }
+  ],
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "Download the latest release (Ghidra 12.2) from the [GitHub Releases page](https://github.com/NationalSecurityAgency/ghidra/releases). You need JDK 25 installed first.",
+      "Unzip and run the launcher (`ghidraRun` on Mac/Linux, `ghidraRun.bat` on Windows), create a new project, and import a compiled binary.",
+      "Click Analyze when prompted. Ghidra maps the binary, then browse the [CodeBrowser](https://ghidra-sre.org/CheatSheet.html) to see assembly and decompiled C side by side."
+    ],
+    "paste": "/skillspector https://github.com/NationalSecurityAgency/ghidra\n\nGhidra is a desktop application, not a Claude Code skill. Download it from the GitHub Releases page (requires JDK 25). Import a binary, click Analyze, and browse the decompiled code."
+  },
+  "footprint": {
+    "disk": "The release ZIP is about 400-700 MB depending on the package. Installed size is roughly 750 MB to 1.4 GB with all processor modules.",
+    "memory": "Ghidra is a Java application. The default allocation is 768 MB to 2 GB of heap, depending on the binary size. Large binaries may need 4-8 GB.",
+    "runs_on": "Mac, Windows, and Linux. Requires JDK 25 (Ghidra 12.2). No graphics card needed - it is a Java Swing desktop application.",
+    "source": {
+      "title": "Ghidra installation guide on GitHub",
+      "url": "https://github.com/NationalSecurityAgency/ghidra"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "You need to understand what a compiled program does - malware analysis, vulnerability research, firmware inspection - and you do not have the source code",
+      "You want a professional reverse engineering suite without paying thousands for a commercial license like IDA Pro"
+    ],
+    "skip_if": [
+      "You are not a developer or security researcher - reverse engineering requires understanding assembly language and program structure",
+      "You need a quick, lightweight tool for simple binary inspection - Ghidra is a full IDE-sized application with a learning curve to match"
+    ],
+    "alternatives": [
+      {
+        "name": "IDA Pro",
+        "url": "https://hex-rays.com/ida-pro/",
+        "line": "The industry standard for reverse engineering, with the most mature decompiler. Costs thousands per seat. Ghidra's closest commercial competitor."
+      },
+      {
+        "name": "Binary Ninja",
+        "url": "https://binary.ninja",
+        "line": "A modern commercial disassembler with a clean API and fast analysis. Cheaper than IDA Pro, with a free cloud version for small binaries."
+      },
+      {
+        "name": "Cutter (rizin)",
+        "url": "https://cutter.re",
+        "line": "A free, open-source reverse engineering GUI built on the rizin framework. Lighter than Ghidra, but less powerful decompilation."
+      }
+    ]
+  },
+  "watch": [
+    "**This is a developer tool.** Reverse engineering requires understanding assembly language, calling conventions, and program structure. It is not something you install and point at a file for a plain-English answer.",
+    "**NSA origin raises questions for some users.** Ghidra was developed internally by the NSA before being open-sourced. The code is public and auditable under Apache-2.0, but some organizations have policies against NSA-originated software.",
+    "**Large footprint.** The download is 400-700 MB, the installed size can reach 1.4 GB, and analysis of large binaries needs several gigabytes of RAM. This is a full desktop application, not a lightweight tool.",
+    "**JDK dependency.** Ghidra 12.2 requires JDK 25 specifically. Keeping the right Java version installed and configured is an ongoing maintenance task."
+  ],
+  "sources": [
+    {
+      "title": "NationalSecurityAgency/ghidra on GitHub (README, releases, stats)",
+      "url": "https://github.com/NationalSecurityAgency/ghidra",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Ghidra 12.2 release notes",
+      "url": "https://github.com/NationalSecurityAgency/ghidra/releases",
+      "date": "2026-10-22"
+    },
+    {
+      "title": "Ghidra official website",
+      "url": "https://ghidra-sre.org",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Hacker News discussion (433 points)",
+      "url": "https://news.ycombinator.com/item?id=42930034",
+      "date": "2026-02-14"
+    },
+    {
+      "title": "Rob Shocks Ghidra walkthrough (486K views)",
+      "url": "https://www.youtube.com/watch?v=OMobTlfjb8s",
+      "date": "2026-10-09"
+    },
+    {
+      "title": "SANS FOR610 course description",
+      "url": "https://www.sans.org/cyber-security-courses/reverse-engineering-malware-malware-analysis-tools-techniques/",
+      "date": "2026-10-23"
+    }
+  ]
+}

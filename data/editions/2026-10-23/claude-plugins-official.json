@@ -1,0 +1,140 @@
+{
+  "repo": "anthropics/claude-plugins-official",
+  "name": "Claude Plugins Official",
+  "tagline": "An app store for Claude Code - browse, install and manage add-ons that give your AI assistant new abilities.",
+  "sentence": "Install a new ability into Claude Code with one command - for example, a plugin that connects it to your calendar so it can schedule meetings while it works.",
+  "fit": "you",
+  "links": {
+    "website": "https://code.claude.com/docs/en/plugins",
+    "docs": "https://github.com/anthropics/claude-plugins-official"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Claude Code is powerful out of the box, but it does not know about your specific tools - your project manager, your design system, your database. Each new ability means writing instructions from scratch.",
+      "eg": "You want Claude Code to check your Sentry error dashboard before shipping, but it has no idea Sentry exists until someone writes the connection."
+    },
+    {
+      "role": "trigger",
+      "say": "You type a command in Claude Code and browse the plugin directory, or install one by name.",
+      "eg": "Type `/plugin install sentry@claude-plugins-official` and Claude Code gains the ability to read your Sentry errors."
+    },
+    {
+      "role": "input",
+      "say": "A plugin name, or a keyword to search the directory. You can also browse what is available with the Discover tab.",
+      "eg": "`/plugin` opens the plugin menu; the Discover tab shows categories like productivity, data, and design."
+    },
+    {
+      "role": "does",
+      "say": "It downloads the plugin, installs it into Claude Code, and registers its commands, skills, and connections.",
+      "steps": [
+        "Finds the plugin in Anthropic's curated directory or a community marketplace you have added",
+        "Downloads and installs it - the plugin can include slash commands, agent definitions, skills, and server connections",
+        "Claude Code loads the new abilities automatically the next time they are relevant to your task"
+      ],
+      "eg": "The README shows the install flow: `/plugin install {plugin-name}@claude-plugins-official` and the plugin is ready."
+    },
+    {
+      "role": "result",
+      "say": "Claude Code has new abilities - each one vetted by Anthropic's review process before it appears in the directory.",
+      "outputs": [
+        {"what": "New commands and abilities", "eg": "A data plugin adds `/query` so you can ask Claude Code to pull numbers from your database"},
+        {"what": "A curated directory", "eg": "Every plugin goes through Anthropic's submission and security review before it is listed"},
+        {"what": "Your own plugins", "eg": "Submit your own through the plugin directory submission form at clau.de/plugin-directory-submission"}
+      ]
+    }
+  ],
+  "before": [
+    "Adding a new ability to Claude Code means writing custom instructions, server connections, and slash commands by hand - and hoping they work together.",
+    "There is no central, reviewed place to find ready-made add-ons. You copy configurations from blog posts and troubleshoot alone."
+  ],
+  "after": [
+    "One command installs a reviewed plugin that adds commands, skills, and connections to Claude Code - ready to use immediately.",
+    "A curated directory with a submission and security review process, so you are not installing unvetted code into your AI assistant."
+  ],
+  "uses_note": "Individual named adopters are hard to find because plugins install silently into Claude Code sessions and leave no public trace. Anthropic launched enterprise plugins with partners including LSEG and FactSet in February 2026.",
+  "uses": [],
+  "pulse": {
+    "gain": "44K stars in 11 months. Created November 2025.",
+    "history": [
+      ["2025-11-20", 0],
+      ["2026-10-23", 44017]
+    ],
+    "history_note": "The plugin system launched alongside Claude Code's marketplace feature in early 2026.",
+    "facts": [
+      {"value": "44K", "label": "stars on GitHub"},
+      {"value": "4.6K", "label": "commits"},
+      {"value": "1.1K", "label": "open issues"}
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Blog",
+      "title": "Claude Code Plugins: How to Build, Discover, and Install Plugins",
+      "url": "https://fast.io/resources/claude-code-plugins-development-guide/",
+      "meta": "Step-by-step guide covering discovery, install, and publishing"
+    },
+    {
+      "plat": "Blog",
+      "title": "Claude Code Plugins and Marketplaces: Install, Build, and Publish",
+      "url": "https://www.morphllm.com/claude-code-marketplace",
+      "meta": "2026 overview of the marketplace ecosystem"
+    },
+    {
+      "plat": "News",
+      "title": "Anthropic Unveils Enterprise Plug-ins for Claude",
+      "url": "https://letsdatascience.com/news/anthropic-unveils-enterprise-plug-ins-for-claude-46a7967e",
+      "meta": "10 enterprise plugins launched Feb 25, 2026"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Open Claude Code and type `/plugin` to see the plugin menu, then browse the [Discover tab](https://code.claude.com/docs/en/plugins) for available plugins.",
+      "Install one: type `/plugin install {plugin-name}@claude-plugins-official` - for example, a productivity or data plugin.",
+      "Use it: the plugin's commands and abilities are now available. Type `/` to see any new slash commands it added."
+    ],
+    "paste": "/skillspector https://github.com/anthropics/claude-plugins-official\n\nIf that scan passes: run `/plugin` to browse the Discover tab, pick a plugin, install it, and try its new commands. 10 minutes max."
+  },
+  "footprint": {
+    "disk": "No standalone install needed. Plugins install inside Claude Code. Individual plugins are small - typically a few text files (JSON metadata, Markdown skills, and optional scripts).",
+    "memory": "No data found. Plugins run inside Claude Code's existing process.",
+    "runs_on": "Wherever Claude Code runs: Mac, Windows, and Linux.",
+    "source": {"title": "claude-plugins-official README on GitHub", "url": "https://github.com/anthropics/claude-plugins-official"}
+  },
+  "verdict": {
+    "best_for": [
+      "You use Claude Code and want to add abilities - connecting to tools, new commands, specialized knowledge - without writing configuration from scratch",
+      "You want a reviewed source of add-ons rather than copying unvetted instructions from blog posts"
+    ],
+    "skip_if": [
+      "You do not use Claude Code - these plugins only work inside Claude Code",
+      "You prefer to write and maintain your own instructions rather than depend on third-party plugins that may change"
+    ],
+    "alternatives": [
+      {
+        "name": "skills (Vercel)",
+        "repo": "vercel-labs/skills",
+        "url": "https://skills.sh",
+        "line": "Cross-agent skill installer that works across 75+ agents, not just Claude Code. Broader reach, but no curated review process."
+      },
+      {
+        "name": "Plum",
+        "url": "https://github.com/itsdevcoffee/plum",
+        "line": "A terminal browser that searches 11 plugin marketplaces at once, including this one. Useful if you want to compare options across registries."
+      }
+    ]
+  },
+  "watch": [
+    "**Review is not verification.** Anthropic's README warns that it 'does not control what MCP servers, files, or software a plugin includes' and 'cannot verify that plugins work as intended or won't change.' Review a plugin before installing it.",
+    "**1.1K open issues.** The directory has a large backlog of open issues, which may reflect unreviewed submissions or unresolved reports.",
+    "**Third-party plugins carry their own risk.** External plugins in `/external_plugins` come from partners and the community. Each links to its own license and source."
+  ],
+  "sources": [
+    {"title": "claude-plugins-official on GitHub (README, structure, install)", "url": "https://github.com/anthropics/claude-plugins-official", "date": "2026-10-23"},
+    {"title": "Claude Code Plugins documentation", "url": "https://code.claude.com/docs/en/plugins", "date": "2026-10-23"},
+    {"title": "Anthropic Unveils Enterprise Plug-ins for Claude", "url": "https://letsdatascience.com/news/anthropic-unveils-enterprise-plug-ins-for-claude-46a7967e", "date": "2026-02-25"},
+    {"title": "Claude Code Plugins: How to Build, Discover, and Install", "url": "https://fast.io/resources/claude-code-plugins-development-guide/", "date": "2026-10-23"},
+    {"title": "Claude Code Plugins and Marketplaces (morphllm)", "url": "https://www.morphllm.com/claude-code-marketplace", "date": "2026-10-23"}
+  ]
+}

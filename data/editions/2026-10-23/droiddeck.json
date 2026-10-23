@@ -1,0 +1,222 @@
+{
+  "repo": "Droid-Deck/DroidDeck",
+  "name": "DroidDeck",
+  "tagline": "Turns an Android phone or handheld into a Steam Deck - play your PC games on the go.",
+  "sentence": "An open-source compatibility layer that lets Android devices run Steam games through ARM64 Proton - no streaming, the games run locally on the phone.",
+  "fit": "you",
+  "replaces": "Buying a Steam Deck or streaming PC games to your phone over Wi-Fi",
+  "links": {
+    "website": "https://github.com/Droid-Deck/DroidDeck",
+    "docs": "https://github.com/Droid-Deck/DroidDeck/wiki"
+  },
+  "visual": {
+    "src": "assets/shots/droiddeck.jpg",
+    "width": 1200,
+    "height": 675,
+    "alt": "An Android tablet held in two hands showing DroidDeck's Steam interface - the Steam Autumn Sale banner, game covers including Neon White, Dishonored 2, and Kingdom Come Deliverance, with virtual ABXY controller buttons overlaid on the right side.",
+    "caption": "DroidDeck running the full Steam library on an Android tablet, with virtual controller overlay."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want to play your Steam library on the go, but a Steam Deck costs $400+ and phone game streaming needs fast Wi-Fi."
+    },
+    {
+      "role": "trigger",
+      "say": "You install DroidDeck on an Android phone or handheld with a recent Qualcomm chip."
+    },
+    {
+      "role": "input",
+      "say": "Your Steam account and the games you want to play."
+    },
+    {
+      "role": "does",
+      "say": "It runs Valve's own ARM64 Steam client and translates PC game code to ARM instructions in real time.",
+      "steps": [
+        "Installs a compatibility layer (ARM64 Proton, Valve's translation tool) that converts x86 game code to ARM instructions your phone can run.",
+        "Presents your Steam library in a Steam Deck-style interface with virtual controls, a performance overlay, and frame generation.",
+        "Runs each game locally on your phone's GPU - no streaming, no PC, no internet needed during play."
+      ]
+    },
+    {
+      "role": "result",
+      "say": "Your Steam games running on your Android device, with controller support and performance tuning.",
+      "outputs": [
+        {
+          "what": "Playable Steam games",
+          "eg": "One user reported MXGP 2021 at 60 FPS (Medium) on an AYN Odin 3 - results vary by game and device."
+        },
+        {
+          "what": "Steam Deck-style controls",
+          "eg": "Virtual ABXY buttons, gyro, trackpads, and a Quick Access button - your phone acts as a Steam Deck controller."
+        },
+        {
+          "what": "A performance overlay",
+          "eg": "GPU load, CPU load, temperatures, VRAM, battery life and frame-time data, like Steam Deck's built-in overlay."
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Playing Steam games on the go means buying a $400+ Steam Deck",
+    "Phone game streaming needs strong Wi-Fi and adds input lag",
+    "Mobile ports of PC games are often stripped-down versions"
+  ],
+  "after": [
+    "Your Android phone runs Steam games locally - no streaming, no extra hardware",
+    "Games use your phone's GPU directly, so they work offline",
+    "An open-source project you can inspect - no hidden services or accounts beyond Steam"
+  ],
+  "uses_note": "DroidDeck is 29 days old. Press coverage shows gameplay on handhelds, but detailed benchmarks are from individual uncontrolled tests - not formal reviews.",
+  "uses": [],
+  "pulse": {
+    "gain": "+13.1K stars in 29 days (created Sep 24)",
+    "history": [
+      [
+        "2026-09-24",
+        0
+      ],
+      [
+        "2026-10-16",
+        9277
+      ],
+      [
+        "2026-10-23",
+        13071
+      ]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Notebookcheck",
+      "title": "DroidDeck 0.3.0 brings Steam Deck-style controls and frame generation to Android",
+      "url": "https://www.notebookcheck.net/DroidDeck-0-3-0-brings-Steam-Deck-style-controls-and-frame-generation-to-Android-as-Steam-startup-falls-from-31-to-6-seconds.1414466.0.html",
+      "meta": "Louise Burke - Oct 3"
+    },
+    {
+      "plat": "Dexerto",
+      "title": "Free app lets Android phones play Steam games without a PC",
+      "url": "https://www.dexerto.com/gaming/free-app-lets-android-phones-play-steam-games-without-a-pc-3417889/",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Pocket Tactics",
+      "title": "This new Android app makes your gaming handheld feel more like a Steam Deck",
+      "url": "https://www.pockettactics.com/droiddeck-android",
+      "meta": "Connor Christie - Oct 6"
+    },
+    {
+      "plat": "Android Authority",
+      "title": "DroidDeck: SteamOS-style app for Android",
+      "url": "https://androidauthority.com/droiddeck-steam-os-app-android-3719435",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "DroidDeck trending monthly",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 23"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Star growth looks organic (100/100)",
+      "url": "https://findarepo.com/repo/Droid-Deck/DroidDeck/",
+      "meta": "542 stars/day - Oct 23"
+    }
+  ],
+  "trending": [
+    "trendshift: trending",
+    "findarepo: star growth looks organic"
+  ],
+  "star_check": "findarepo: looks organic",
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "Check your device: you need Android 9 or later with a Qualcomm Adreno 650 or newer GPU (most flagship phones from 2021 onward, or handhelds like the AYN Odin 3 or Retroid Pocket 5). About 4 GB of free space for the runtime.",
+      "[Download DroidDeck v0.6.0](https://github.com/Droid-Deck/DroidDeck/releases) - install the APK (allow installs from unknown sources if prompted).",
+      "Launch DroidDeck, sign into [Steam](https://store.steampowered.com/), and pick a lighter game first (2D or older 3D titles work best). The app will download the runtime on first launch."
+    ],
+    "paste": "/skillspector https://github.com/Droid-Deck/DroidDeck\n(DroidDeck is an Android app - download the APK from the GitHub releases page and install it on a Qualcomm Snapdragon device.)"
+  },
+  "footprint": {
+    "disk": "About 3 GB for the runtime, plus 1.1 GB for optional desktop components. Games need their full install size on top (typically 5 to 50 GB per game).",
+    "memory": "no data found",
+    "runs_on": "Android 9 or later with a Qualcomm Adreno 650 or newer GPU. v0.6.0 also supports Meta Quest 2/3/3S (VR headsets) and several XR glasses (VITURE Pro, RayNeo, Rokid). Mali, Xclipse, PowerVR, and Adreno 710 GPUs are not supported.",
+    "source": {
+      "title": "DroidDeck README and v0.6.0 release notes",
+      "url": "https://github.com/Droid-Deck/DroidDeck/releases"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Gamers who want their Steam library on an Android phone without streaming",
+      "Owners of Android gaming handhelds looking for a Steam Deck alternative",
+      "Tinkerers who enjoy testing game compatibility on new hardware"
+    ],
+    "skip_if": [
+      "Your phone has a non-Qualcomm GPU (Mali, PowerVR) - not supported yet",
+      "You want a plug-and-play experience - this is early software and many games need tweaking",
+      "You're happy with cloud gaming (GeForce Now, Xbox Cloud) and have good Wi-Fi"
+    ],
+    "alternatives": [
+      {
+        "name": "Steam Link",
+        "url": "https://store.steampowered.com/app/353380/Steam_Link/",
+        "line": "Valve's official app for streaming PC games to your phone - needs Wi-Fi but works with any phone"
+      },
+      {
+        "name": "Winlator",
+        "url": "https://github.com/brunodev85/winlator",
+        "line": "Runs Windows apps and some games on Android through Wine - broader compatibility but not Steam-integrated"
+      }
+    ]
+  },
+  "watch": [
+    "**Beware fake download sites.** The project warns about impersonation sites using its name and logo. Download only from the [official GitHub releases page](https://github.com/Droid-Deck/DroidDeck/releases).",
+    "**29 days old, beta software.** Game compatibility is limited and performance varies by device. Notebookcheck characterizes it as beta with limited hardware validation.",
+    "**GPU requirements are strict.** Qualcomm Adreno 650 or newer only. Mali, PowerVR, Xclipse, and Adreno 710 GPUs are not supported - that rules out most Samsung Exynos and Google Tensor phones.",
+    "**One Reddit user bricked their controller mapping** after updating to v0.3.0 (fixed by switching to X360 mode). Expect rough edges between updates."
+  ],
+  "sources": [
+    {
+      "title": "DroidDeck GitHub",
+      "url": "https://github.com/Droid-Deck/DroidDeck",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "DroidDeck v0.6.0 release notes",
+      "url": "https://github.com/Droid-Deck/DroidDeck/releases",
+      "date": "2026-10-22"
+    },
+    {
+      "title": "Notebookcheck coverage (Louise Burke)",
+      "url": "https://www.notebookcheck.net/DroidDeck-0-3-0-brings-Steam-Deck-style-controls-and-frame-generation-to-Android-as-Steam-startup-falls-from-31-to-6-seconds.1414466.0.html",
+      "date": "2026-10-03"
+    },
+    {
+      "title": "Dexerto coverage",
+      "url": "https://www.dexerto.com/gaming/free-app-lets-android-phones-play-steam-games-without-a-pc-3417889/",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Pocket Tactics coverage (Connor Christie)",
+      "url": "https://www.pockettactics.com/droiddeck-android",
+      "date": "2026-10-06"
+    },
+    {
+      "title": "Android Authority coverage",
+      "url": "https://androidauthority.com/droiddeck-steam-os-app-android-3719435",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "findarepo listing",
+      "url": "https://findarepo.com/repo/Droid-Deck/DroidDeck/",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Trendshift listing",
+      "url": "https://trendshift.io/",
+      "date": "2026-10-23"
+    }
+  ]
+}

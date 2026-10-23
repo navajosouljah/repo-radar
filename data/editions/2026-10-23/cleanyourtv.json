@@ -1,0 +1,219 @@
+{
+  "repo": "Gathin23/cleanyourtv",
+  "name": "CleanYourTV",
+  "tagline": "A free app that strips the ads and bloat off your Android smart TV and gives it a clean home screen.",
+  "sentence": "Run one command over Wi-Fi and your TV loses the sponsored rows, telemetry and pre-loaded apps you never asked for - replaced by a 474 KB launcher styled like Apple TV.",
+  "fit": "you",
+  "replaces": "The cluttered, ad-filled home screen your TV maker forces on you",
+  "links": {
+    "website": "https://cleanyour.tv",
+    "docs": "https://github.com/Gathin23/cleanyourtv/blob/main/docs/TROUBLESHOOTING.md"
+  },
+  "visual": {
+    "src": "assets/shots/cleanyourtv.jpg",
+    "width": 1600,
+    "height": 1280,
+    "alt": "Before and after: a Google TV home screen cluttered with sponsored rows and ads on the left, and the same TV showing CleanYourTV's clean launcher with Netflix, Prime Video, YouTube and JioHotstar app tiles on the right. Stats at top: 248 TV models, 72 brands, 25 languages, 474 KB launcher.",
+    "caption": "Before and after: from sponsored clutter to a clean dock in minutes."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your smart TV's home screen is full of ads, sponsored rows and apps you never asked for."
+    },
+    {
+      "role": "trigger",
+      "say": "You give a coding assistant (like Claude Code) the project's prompt file and your TV's model name."
+    },
+    {
+      "role": "input",
+      "say": "Your TV's IP address on Wi-Fi and Developer Options turned on (a one-time toggle in Settings)."
+    },
+    {
+      "role": "does",
+      "say": "It connects to your TV over the network and runs a cleanup script.",
+      "steps": [
+        "Disables ad services, telemetry and bloatware apps one by one (nothing is deleted - a restore script can bring each one back)",
+        "Installs a 474 KB launcher as the new home screen - a dock of your apps, a clock, and nothing else",
+        "Audits voice assistant, automatic content recognition and tracking components"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A TV that boots to a clean home screen with no ads.",
+      "outputs": [
+        {
+          "what": "A clean launcher",
+          "eg": "A dock with your streaming apps (Netflix, YouTube, Prime Video), a clock screensaver, and no sponsored rows"
+        },
+        {
+          "what": "A list of what was disabled",
+          "eg": "The script names each app it turned off, like 'com.google.android.tvrecommendations' (the 'For You' row)"
+        },
+        {
+          "what": "A backup",
+          "eg": "A snapshot of your TV's app state before changes, so you can undo any step"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Your TV boots to a home screen full of sponsored rows and ads for shows you'll never watch",
+    "Telemetry services run in the background, slowing down a TV with 1 GB of RAM",
+    "Preloaded apps you can't uninstall take up space and clutter the app list"
+  ],
+  "after": [
+    "A clean dock with only the apps you choose, styled like Apple TV",
+    "Background ad and tracking services are off - the TV runs faster",
+    "Every change is reversible: a restore script re-enables anything you miss"
+  ],
+  "uses_note": "CleanYourTV is 6 days old. The creator's own use is documented, and TechCrunch reports 'a few thousand people' tried it in two days, but detailed before-and-after reviews are still thin.",
+  "uses": [
+    {
+      "who": "Gathin T. (creator)",
+      "what": "Built the project to clean up ads on his parents' Xiaomi TV - Claude Code disabled 25 packages and wrote the launcher.",
+      "result": "A clean home screen with only the family's streaming apps, no ads or sponsored rows.",
+      "stat": "25 packages disabled",
+      "source": {
+        "title": "TechCrunch: People are using AI to make their smart TVs dumb again",
+        "url": "https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/",
+        "date": "2026-10-19"
+      }
+    }
+  ],
+  "pulse": {
+    "gain": "+26.3K stars in 6 days",
+    "history": [
+      [
+        "2026-10-17",
+        0
+      ],
+      [
+        "2026-10-23",
+        26270
+      ]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "TechCrunch",
+      "title": "People are using AI to make their smart TVs dumb again",
+      "url": "https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/",
+      "meta": "Sarah Perez - Oct 19"
+    },
+    {
+      "plat": "TechRadar",
+      "title": "Your TV should do what you paid for - people are vibe-coding apps to banish ads",
+      "url": "https://www.techradar.com/entertainment/streaming/your-tv-should-do-what-you-paid-for-people-are-vibe-coding-apps-to-banish-ads-from-their-smart-tvs-and-android-tv-and-its-catching-on",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Shelly Palmer",
+      "title": "Making Smart TVs Dumb Again",
+      "url": "https://shellypalmer.com/2026/10/making-smart-tvs-dumb-again/",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "CleanYourTV trending daily and monthly",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 23"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Star growth looks organic (100/100)",
+      "url": "https://findarepo.com/repo/Gathin23/cleanyourtv/",
+      "meta": "4.4K stars/day - Oct 23"
+    }
+  ],
+  "trending": [
+    "trendshift: trending",
+    "findarepo: star growth looks organic (100/100)"
+  ],
+  "star_check": "findarepo: looks organic (100/100)",
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Turn on Developer Options: in your Android TV Settings, find About, then tap Build Number 7 times. Enable USB Debugging (or Network/ADB Debugging) in the new Developer Options menu.",
+      "[Download the project](https://github.com/Gathin23/cleanyourtv) or clone it, then give `PROMPT.md` to Claude Code with your TV model name",
+      "Accept the USB debugging prompt on your TV and follow the assistant's checklist - the cleanup takes about 5 minutes"
+    ],
+    "paste": "/skillspector https://github.com/Gathin23/cleanyourtv\nThen: Read PROMPT.md and follow its steps for my TV (I'll tell you the model and IP)."
+  },
+  "footprint": {
+    "disk": "The launcher APK is about 474 KB. The cleanup tools (Python scripts) are under 5 MB.",
+    "memory": "The launcher itself needs very little memory - designed for TVs with 1 GB of RAM.",
+    "runs_on": "Android TV or Google TV (Android 8.0 / API 26 or newer). Fire TV gets only the debloat, not the launcher. Samsung (Tizen) and LG (webOS) are not supported.",
+    "source": {
+      "title": "CleanYourTV README",
+      "url": "https://github.com/Gathin23/cleanyourtv"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone tired of ads on their Android TV home screen",
+      "Households with older TVs slowed down by bloatware",
+      "People who want a simple, Apple TV-style launcher"
+    ],
+    "skip_if": [
+      "You have a Samsung or LG TV (not supported)",
+      "You rely on Google TV's content recommendations",
+      "You're not comfortable turning on Developer Options"
+    ],
+    "alternatives": [
+      {
+        "name": "FLauncher",
+        "url": "https://gitlab.com/nicemicro/flauncher",
+        "line": "A simpler open-source launcher without the debloating tools"
+      },
+      {
+        "name": "Projectivy Launcher",
+        "url": "https://play.google.com/store/apps/details?id=com.spocky.projengmenu",
+        "line": "A customizable launcher available on the Play Store, no sideloading needed"
+      }
+    ]
+  },
+  "watch": [
+    "**ADB debugging opens a network port.** Enabling ADB debugging on your TV opens port 5555, which anyone on your Wi-Fi could connect to. The project recommends turning it off after setup.",
+    "**No formal releases yet.** The project has 1,932 commits but no tagged releases or version numbers. You install from the main branch.",
+    "**Beware lookalike domains.** The official site is cleanyour.tv - the project warns that other domains using the name are not run by them.",
+    "**Only 6 days old.** 26.3K stars and 200+ contributors in under a week is remarkable, but the project is still very new."
+  ],
+  "sources": [
+    {
+      "title": "CleanYourTV GitHub",
+      "url": "https://github.com/Gathin23/cleanyourtv",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "CleanYourTV website",
+      "url": "https://cleanyour.tv",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "TechCrunch coverage (Sarah Perez)",
+      "url": "https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/",
+      "date": "2026-10-19"
+    },
+    {
+      "title": "TechRadar coverage",
+      "url": "https://www.techradar.com/entertainment/streaming/your-tv-should-do-what-you-paid-for-people-are-vibe-coding-apps-to-banish-ads-from-their-smart-tvs-and-android-tv-and-its-catching-on",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Shelly Palmer coverage",
+      "url": "https://shellypalmer.com/2026/10/making-smart-tvs-dumb-again/",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "findarepo listing",
+      "url": "https://findarepo.com/repo/Gathin23/cleanyourtv/",
+      "date": "2026-10-23"
+    },
+    {
+      "title": "Trendshift listing",
+      "url": "https://trendshift.io/",
+      "date": "2026-10-23"
+    }
+  ]
+}
