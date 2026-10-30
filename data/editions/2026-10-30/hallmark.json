@@ -1,0 +1,161 @@
+{
+  "repo": "Nutlope/hallmark",
+  "name": "Hallmark",
+  "tagline": "A design skill that teaches your AI coding tool to build web pages that don't look AI-generated.",
+  "sentence": "Install one file, type /hallmark, and your coding assistant builds a web page using 50 real design themes with proper typography, spacing, and photography - then reviews the result in a browser to catch common AI-design patterns.",
+  "fit": "you",
+  "links": {
+    "website": "https://www.usehallmark.com",
+    "docs": "https://github.com/Nutlope/hallmark"
+  },
+  "visual": {
+    "src": "assets/shots/hallmark.jpg",
+    "width": 1200,
+    "height": 824,
+    "alt": "A design portfolio site for Field Office, a Copenhagen brand studio, showing precise wordmark typography with Hedvig Letters Serif measured at x-height 520, cap height 700, ascender 800, and baseline 0. The layout uses elegant serif type, muted earth tones, and careful letter spacing.",
+    "caption": "One of Hallmark's 50 themes - precise typography and real design decisions, not AI defaults."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "When AI builds a web page, the result often looks generic - the same fonts, the same layout, the same stock-photo feel that screams 'a machine made this'."
+    },
+    {
+      "role": "trigger",
+      "say": "You type /hallmark followed by what you want to build, or /hallmark redesign to fix an existing page."
+    },
+    {
+      "role": "input",
+      "say": "A description of the page you want, or a path to an existing page you want redesigned."
+    },
+    {
+      "role": "does",
+      "say": "The skill guides your AI through a design process, then reviews the result in a browser.",
+      "steps": [
+        "Picks a theme from 50 material-based design systems (or creates a custom one from your prompt)",
+        "Builds the page with proper typography, color, spacing, and about 755 openly licensed photos from Wikimedia Commons",
+        "Opens the finished page in a browser and runs a lint pass to catch common AI design patterns",
+        "Flags anything that looks machine-made (generic gradients, centered everything, stock-photo layouts) and fixes it"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A web page that looks like a designer made it.",
+      "outputs": [
+        {
+          "what": "A themed web page",
+          "eg": "A hotel website with serif typography, hand-illustrated artwork, and a color palette based on earth tones"
+        },
+        {
+          "what": "A browser-verified design",
+          "eg": "The lint pass caught 3 AI-slop patterns (centered hero, generic gradient, no real photography) and fixed them"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "AI builds a web page and it looks like every other AI-generated page - centered text, blue gradients, generic stock photos",
+    "You ask the AI to 'make it look better' and it changes colors but keeps the same boring layout",
+    "Hiring a designer for a one-page site costs time and money you don't have for a quick project"
+  ],
+  "after": [
+    "50 real design themes with distinct typography, color, and layout - not just color swaps",
+    "A browser-based lint pass catches common AI design patterns before you ship",
+    "One command to redesign or audit an existing page without starting over"
+  ],
+  "uses_note": "Hallmark is about 6 months old. Independent use reports are thin - most discussion is by developers comparing it to other design skills.",
+  "uses": [],
+  "pulse": {
+    "gain": "+11.4K stars this week, +12.5K this month",
+    "history": [
+      ["2026-10-23", 31041],
+      ["2026-10-30", 42414]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending monthly",
+      "url": "https://github.com/trending",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Oct 30 digest (rank 6)",
+      "url": "https://findarepo.com/digest/2026-10-30/",
+      "meta": "Oct 30"
+    }
+  ],
+  "trending": [
+    "github-trending: monthly",
+    "findarepo: Oct 30 digest (rank 6)"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install the skill: run `npx skills add nutlope/hallmark -g` in your terminal (needs Node 18+)",
+      "Open [Claude Code](https://code.claude.com/) (or Cursor, Codex, or OpenCode) and type `/hallmark` followed by what you want to build - for example, `/hallmark a landing page for a weekend pottery workshop`",
+      "Review the result - the skill opens it in your browser and runs a lint pass. To redesign an existing page, try `/hallmark redesign index.html`"
+    ],
+    "paste": "/skillspector https://github.com/Nutlope/hallmark\nThen: Install with `npx skills add nutlope/hallmark -g`, then try `/hallmark a landing page for a weekend pottery workshop` to see it build a themed page."
+  },
+  "footprint": {
+    "disk": "The skill itself is a set of text files and about 755 reference photos. Total size is no data found.",
+    "memory": "Runs inside your coding tool - no separate process. Browser checks need Chrome or Chromium installed.",
+    "runs_on": "Any machine that runs Claude Code, Cursor, Codex CLI, OpenCode, or GitHub Copilot. Needs Node 18+ for install. Browser lint checks need Chrome.",
+    "source": {
+      "title": "Hallmark README",
+      "url": "https://github.com/Nutlope/hallmark"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who uses AI to build web pages and wants them to look hand-designed",
+      "Non-designers who want real design themes, not just color changes",
+      "People who want to audit existing AI-built pages for generic patterns"
+    ],
+    "skip_if": [
+      "You already have a designer or a design system you follow",
+      "You don't build web pages with an AI coding tool",
+      "You need a full design tool, not a prompt skill - Hallmark guides the AI, it doesn't replace Figma"
+    ],
+    "alternatives": [
+      {
+        "name": "Impeccable",
+        "repo": "pbakaus/impeccable",
+        "url": "https://impeccable.style",
+        "line": "A broader design vocabulary with 24 commands (polish, bolder, critique, audit and more) from the creator of jQuery UI"
+      },
+      {
+        "name": "taste-skill",
+        "repo": "Leonxlnx/taste-skill",
+        "url": "https://tasteskill.dev",
+        "line": "A skill focused on giving your AI 'good taste' in design, with a different philosophy"
+      },
+      {
+        "name": "Impeccable",
+        "repo": "pbakaus/impeccable",
+        "url": "https://impeccable.style",
+        "line": "A design vocabulary for your AI agent with polish, critique, and audit commands"
+      }
+    ]
+  },
+  "watch": [
+    "**Design is subjective.** The skill enforces its own design opinions - 50 themes and a lint pass for 'AI slop'. Your taste may differ, and the AI still makes the final choices.",
+    "**Browser checks need Chrome.** The lint pass opens your page in a real browser. Static checks work without it, but the full review needs Chrome or Chromium installed.",
+    "**No tagged releases.** Install is via npx from the main branch. The skill updates whenever the repo changes.",
+    "**The photos are openly licensed, but check the credits.** Hallmark includes about 755 photos from Wikimedia Commons, each credited on the generated page."
+  ],
+  "sources": [
+    {
+      "title": "Hallmark GitHub",
+      "url": "https://github.com/Nutlope/hallmark",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Hallmark website",
+      "url": "https://www.usehallmark.com",
+      "date": "2026-10-30"
+    }
+  ]
+}

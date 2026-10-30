@@ -1,0 +1,134 @@
+{
+  "repo": "Zagitta/gpu-unlock",
+  "name": "gpu-unlock",
+  "tagline": "A tool that removes the speed limit NVIDIA puts on consumer graphics cards for AI work - up to twice as fast.",
+  "sentence": "If you run AI tasks on a GeForce card, NVIDIA caps your math speed at half of what the hardware can do - this removes that cap, and benchmarks show 25% to 100% real-world gains depending on the workload.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/Zagitta/gpu-unlock"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your NVIDIA gaming card can do AI math twice as fast as NVIDIA lets it - they slow it down so you'll buy the expensive professional version."
+    },
+    {
+      "role": "trigger",
+      "say": "You install a small program and restart your computer."
+    },
+    {
+      "role": "input",
+      "say": "An NVIDIA GeForce RTX 20, 30 or 40 series graphics card running Linux."
+    },
+    {
+      "role": "does",
+      "say": "It loads before the NVIDIA driver and removes the artificial speed limit on certain math operations.",
+      "steps": [
+        "Installs itself as a boot-time module that runs before the standard NVIDIA driver loads",
+        "Sends a reset-and-reconfigure command to each supported GPU, removing the half-rate cap on FP16, BF16 and TF32 tensor math",
+        "The standard NVIDIA driver then loads normally and sees full-speed hardware"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "The same GPU, the same driver, but AI workloads run measurably faster.",
+      "outputs": [
+        {
+          "what": "Faster AI model responses",
+          "eg": "An RTX 4090 goes from 165 to 329 TFLOPS on BF16 matrix math - a 100% increase in raw throughput"
+        },
+        {
+          "what": "Real-world speed gains",
+          "eg": "Image generation runs 30% to 55% faster, fine-tuning runs 25% to 50% faster, and time to first response from a local language model drops 25% to 30%"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Your GeForce card runs AI math at half the speed its hardware supports - NVIDIA reserves full speed for their professional cards",
+    "Buying the full-speed version (an A100 or H100) costs thousands of dollars more",
+    "You have no way to tell the card to use its full capability"
+  ],
+  "after": [
+    "The same card now runs AI math at full speed - verified by benchmarks the project publishes for each card model",
+    "No driver patch or firmware flash needed - the module loads at boot and works with the standard NVIDIA driver",
+    "Every change is reversible: remove the boot setting and your card goes back to stock behavior"
+  ],
+  "uses_note": "The project is 12 days old but already has 100+ user reports for RTX 30 series cards per the README. Individual named uses are thin at this stage.",
+  "uses": [],
+  "pulse": {
+    "gain": "+13.3K stars in 12 days",
+    "history": [
+      ["2026-10-30", 13321]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Gpu-unlock: Remove half-rate limit on GeForce FP16/BF16/TF32",
+      "url": "https://news.ycombinator.com/item?id=50219700",
+      "meta": "350 points - Oct 24"
+    },
+    {
+      "plat": "Notebookcheck",
+      "title": "GPU Unlock brings full AI tensor performance to GeForce cards",
+      "url": "https://www.notebookcheck.net/",
+      "meta": "Oct 2026"
+    }
+  ],
+  "try": {
+    "effort": "hour",
+    "steps": [
+      "[Clone the repository](https://github.com/Zagitta/gpu-unlock) and run `make install` (Debian/Ubuntu: `make install-deb`, Fedora: `make install-rpm`, Arch: `make install-arch`)",
+      "Add `gpu_unlock.targets=all` to your boot command line (the README gives steps for GRUB, systemd-boot and Fedora)",
+      "Reboot and verify with `journalctl -k -b | grep gpu_unlock` - you should see a line for each unlocked GPU"
+    ],
+    "paste": "/skillspector https://github.com/Zagitta/gpu-unlock\nThen: Follow the README install steps for my Linux distro, add the kernel parameter, reboot, and verify with journalctl."
+  },
+  "footprint": {
+    "disk": "A small kernel module - the source is under 1 MB. Requires kernel headers for your Linux version.",
+    "memory": "Negligible - the module runs once at boot and uses a small DMA buffer per GPU.",
+    "runs_on": "Linux only. Supported GPUs: NVIDIA GeForce RTX 20 series (experimental), 30 series (stable, 100+ reports), and 40 series (experimental). RTX 50 series is not supported. Requires sudo for installation.",
+    "source": {
+      "title": "gpu-unlock README",
+      "url": "https://github.com/Zagitta/gpu-unlock"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone running local AI models on an NVIDIA GeForce card under Linux",
+      "People doing image generation or fine-tuning who want more speed without buying new hardware",
+      "Tinkerers who want to see what their GPU can actually do"
+    ],
+    "skip_if": [
+      "You run Windows (Linux only; a community Windows port exists but is not maintained by this project)",
+      "You have an RTX 50 series card (not supported yet)",
+      "You only use your GPU for gaming or non-AI work (gaming and FP32 performance are unchanged)"
+    ],
+    "alternatives": [
+      {
+        "name": "Windows-GPU-UNLOCK",
+        "url": "https://github.com/impacifist/Windows-GPU-UNLOCK",
+        "line": "A community Windows port linked from the FAQ - experimental and not maintained by the gpu-unlock team"
+      }
+    ]
+  },
+  "watch": [
+    "**RTX 20 and 40 series are experimental.** The project calls RTX 30 series 'stable' with 100+ user reports. RTX 20 and 40 series are labeled experimental with less testing.",
+    "**NVIDIA could patch it out.** A future driver update could change how the speed limit is applied, breaking the unlock. The module works with the standard driver today but has no guarantee of future compatibility.",
+    "**Linux only.** There is no official Windows support. The README warns against Windows installers circulating online and says the project has no cryptocurrency, no website and no installer beyond the source code.",
+    "**Laptops may silently re-lock.** Laptops that power down the discrete GPU when idle can reset the unlock. Suspend also resets cards, though the module re-unlocks them on resume."
+  ],
+  "sources": [
+    {
+      "title": "gpu-unlock GitHub",
+      "url": "https://github.com/Zagitta/gpu-unlock",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Hacker News discussion (350 points)",
+      "url": "https://news.ycombinator.com/item?id=50219700",
+      "date": "2026-10-24"
+    }
+  ]
+}

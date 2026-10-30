@@ -1,0 +1,112 @@
+{
+  "number": "014",
+  "date": "2026-10-30",
+  "theme_short": "Design, discovery and the tools you didn't know you needed",
+  "theme": "**Design, discovery and the tools you didn't know you needed.** Two design skills teach your AI real taste, while a GPU speed unlock and an AI tutoring platform show that the most useful tools solve problems you may not have known you had.",
+  "method": "**How this week was picked:** 221 candidates from 4 of 6 sources (GitHub Trending, Trendshift, Hacker News, findarepo). skills.sh returned a 401 (leaderboard data retrieved via fallback for Claude Board update only). YouTube was not scanned (no pre-scan file for Oct 30). GitHub search found candidates only (not an independent source). 14 cleared all floors. Picks: 6 by score, 3 new this week (under 45 days), 1 still climbing (over 90 days). **Every repo passed our safety check on Oct 30.** Ebony-Vinyl/dsh-our-free-model settled PASS by routine (activity flag only - 40 watchers on 52K stars; suspicious star pattern noted as watch-out). No repos taken down this week from the re-check. Tips: none this week (data/tips.md empty).",
+  "picks": [
+    {
+      "rank": 1,
+      "slug": "ai-pose-gallery-zh",
+      "repo": "anhao/ai-pose-gallery-zh",
+      "name": "AI Pose Gallery",
+      "fit": "you",
+      "slot": "new",
+      "stars": 3712,
+      "thumb": "assets/shots/ai-pose-gallery-zh.jpg",
+      "oneliner": "A free library of 1,439 body-pose reference images for AI art, organized by angle and category."
+    },
+    {
+      "rank": 2,
+      "slug": "hallmark",
+      "repo": "Nutlope/hallmark",
+      "name": "Hallmark",
+      "fit": "you",
+      "slot": "score",
+      "stars": 42414,
+      "thumb": "assets/shots/hallmark.jpg",
+      "oneliner": "A skill that teaches your AI coding tool to spot and fix generic, AI-looking design."
+    },
+    {
+      "rank": 3,
+      "slug": "impeccable",
+      "repo": "pbakaus/impeccable",
+      "name": "Impeccable",
+      "fit": "you",
+      "slot": "score",
+      "stars": 96370,
+      "thumb": "assets/shots/impeccable.webp",
+      "oneliner": "A design vocabulary for your AI agent - steer with polish, review with critique, catch AI slop before it ships."
+    },
+    {
+      "rank": 4,
+      "slug": "linkswift",
+      "repo": "hmjz100/LinkSwift",
+      "name": "LinkSwift",
+      "fit": "you",
+      "slot": "score",
+      "stars": 36512,
+      "oneliner": "A browser script that gets full-speed downloads from eight Chinese cloud storage services."
+    },
+    {
+      "rank": 5,
+      "slug": "deeptutor",
+      "repo": "HKUDS/DeepTutor",
+      "name": "DeepTutor",
+      "fit": "you",
+      "slot": "score",
+      "stars": 51268,
+      "oneliner": "An AI tutor that reads your textbooks and explains them at your level - with follow-up questions."
+    },
+    {
+      "rank": 6,
+      "slug": "ziwei-doushu",
+      "repo": "Renhuai123/ziwei-doushu",
+      "name": "Ziwei Doushu",
+      "fit": "you",
+      "slot": "score",
+      "stars": 10759,
+      "oneliner": "An open-source Chinese astrology chart engine based on classical texts."
+    },
+    {
+      "rank": 7,
+      "slug": "gpu-unlock",
+      "repo": "Zagitta/gpu-unlock",
+      "name": "GPU Unlock",
+      "fit": "you",
+      "slot": "new",
+      "stars": 13321,
+      "oneliner": "Removes the speed limit NVIDIA puts on consumer graphics cards for AI work - up to 2x faster."
+    },
+    {
+      "rank": 8,
+      "slug": "dsh-our-free-model",
+      "repo": "Ebony-Vinyl/dsh-our-free-model",
+      "name": "DSH Free Model",
+      "fit": "you",
+      "slot": "new",
+      "stars": 52104,
+      "oneliner": "A plugin that connects you to free AI model providers through one interface."
+    },
+    {
+      "rank": 9,
+      "slug": "agent-reach",
+      "repo": "Panniantong/Agent-Reach",
+      "name": "Agent-Reach",
+      "fit": "you",
+      "slot": "score",
+      "stars": 106592,
+      "oneliner": "Gives your AI agent eyes to read Twitter, Reddit, YouTube and more - one tool, no API fees."
+    },
+    {
+      "rank": 10,
+      "slug": "superpowers",
+      "repo": "obra/superpowers",
+      "name": "Superpowers",
+      "fit": "you",
+      "slot": "climbing",
+      "stars": 309084,
+      "oneliner": "A skills framework that teaches AI coding agents to plan, test and debug like a careful senior engineer."
+    }
+  ]
+}

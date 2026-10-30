@@ -126,10 +126,10 @@
         "line": "Another design skill for AI agents. Different design philosophy - impeccable focuses on 'design sense' while taste-skill focuses on 'good taste.'"
       },
       {
-        "name": "ui-ux-pro-max",
-        "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
-        "url": "https://www.uupm.cc/",
-        "line": "A design playbook for AI agents focused on professional web and mobile screens. More structured and rule-based than taste-skill."
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "Anti-AI-slop design skill with 50 themes and a lint pass that catches generic patterns."
       }
     ]
   },

@@ -1,0 +1,142 @@
+{
+  "repo": "Panniantong/Agent-Reach",
+  "name": "Agent Reach",
+  "tagline": "A tool that lets your AI assistant read Twitter, Reddit, YouTube and other sites it normally can't see.",
+  "sentence": "Give your AI coding tool one command and it can search Bilibili, read Reddit threads, pull YouTube transcripts and browse 10+ platforms - no API keys or paid subscriptions needed for most channels.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/Panniantong/Agent-Reach"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI assistants can't browse the real internet - they can't read Twitter threads, Reddit posts, YouTube transcripts or Chinese platforms like Bilibili."
+    },
+    {
+      "role": "trigger",
+      "say": "You ask your AI assistant to look something up on a specific platform - for example, 'search Twitter for reactions to the new iPhone.'"
+    },
+    {
+      "role": "input",
+      "say": "A search query or a URL from a supported platform (Twitter, Reddit, YouTube, Bilibili, GitHub, and others)."
+    },
+    {
+      "role": "does",
+      "say": "It connects to the platform, fetches the content and returns it in a format the AI can read.",
+      "steps": [
+        "Picks the right channel for the platform (Bilibili, YouTube, Reddit, etc.) or detects it from the URL",
+        "Fetches the page content - search results, video transcripts, thread comments, or profile data",
+        "Returns structured text the AI assistant can read and act on"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "Real internet content your AI assistant can read, summarize and act on.",
+      "outputs": [
+        {
+          "what": "Platform search results",
+          "eg": "A Bilibili search for a topic returns video titles, view counts and descriptions"
+        },
+        {
+          "what": "Video transcripts",
+          "eg": "A YouTube video URL returns the full transcript (speech-to-text if no subtitles exist, using a Groq key)"
+        },
+        {
+          "what": "Thread and post content",
+          "eg": "A Reddit URL returns the post text and top comments in plain text"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Your AI assistant is blind to the live internet - it can't read social media, watch videos or check what people are saying right now",
+    "Getting content from platforms like Bilibili or XiaoHongShu requires building custom scrapers or paying for API access",
+    "Each platform has its own format - there's no single tool that reads them all"
+  ],
+  "after": [
+    "One command (`agent-reach read <url>`) fetches content from 10+ platforms and returns it as plain text",
+    "Most channels work without API keys - YouTube speech-to-text and podcast transcription need a free Groq key",
+    "Your AI assistant can now research across Twitter, Reddit, YouTube, Bilibili, GitHub, V2EX and more"
+  ],
+  "uses_note": "Agent Reach has 106K stars and is widely referenced in Chinese AI agent tutorials, but specific named uses with results are thin in English-language coverage.",
+  "uses": [],
+  "pulse": {
+    "gain": "+5.4K stars this week, +20.6K this month",
+    "history": [
+      ["2026-10-02", 87791],
+      ["2026-10-09", 94564],
+      ["2026-10-16", 97982],
+      ["2026-10-23", 101203],
+      ["2026-10-30", 106592]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Wavect",
+      "title": "Agent Reach: Give your AI agent eyes to see the entire internet",
+      "url": "https://wavect.io/",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "Apidog",
+      "title": "How to use Agent Reach with AI coding tools",
+      "url": "https://apidog.com/",
+      "meta": "Oct 2026"
+    }
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Ask your AI assistant to install Agent Reach by giving it the [install guide](https://raw.githubusercontent.com/Panniantong/Agent-Reach/main/docs/install.md) - it handles the setup itself",
+      "Try a basic search: ask your assistant to run `agent-reach bilibili search` with a topic, or `agent-reach read <url>` with any supported URL",
+      "To add optional platforms (XiaoHongShu, LinkedIn, Reddit): ask your assistant to run `agent-reach` and follow the prompts to add channels"
+    ],
+    "paste": "/skillspector https://github.com/Panniantong/Agent-Reach\nThen: Follow the install guide and test with 'agent-reach channels' to see available platforms, then try 'agent-reach read' with a URL."
+  },
+  "footprint": {
+    "disk": "no data found",
+    "memory": "no data found",
+    "runs_on": "Python 3.10 or newer. Uses `uv` as its package manager (installed automatically). Works on Mac, Windows and Linux. Some platforms need logins stored in ~/.agent-reach/.",
+    "source": {
+      "title": "Agent Reach README",
+      "url": "https://github.com/Panniantong/Agent-Reach"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who wants their AI assistant to research topics across social media and video platforms",
+      "People who work with Chinese platforms like Bilibili and XiaoHongShu",
+      "AI agent builders who need live internet data without paying for API access"
+    ],
+    "skip_if": [
+      "You need guaranteed reliability - scraping can break when platforms change their pages",
+      "You only need web search - a simpler tool like Jina Reader covers basic web pages",
+      "You're concerned about terms of service - scraping social media may violate platform rules"
+    ],
+    "alternatives": [
+      {
+        "name": "Jina Reader",
+        "url": "https://r.jina.ai",
+        "line": "Reads any web page as clean text - simpler but doesn't handle platform-specific features like video transcripts"
+      },
+      {
+        "name": "Exa",
+        "url": "https://exa.ai",
+        "line": "AI-native search engine with an API - more reliable but requires an API key and has usage limits"
+      }
+    ]
+  },
+  "watch": [
+    "**Scraping can break.** Platforms change their pages regularly, and channels that work today may stop working tomorrow. The README labels Twitter, Facebook and Instagram as 'experimental.'",
+    "**Don't install the PyPI package.** The README warns that a package named `agent-reach` on PyPI is not this project. Install only from the GitHub repo.",
+    "**No official cryptocurrency.** The README includes a warning that crypto projects using the Agent Reach name are unrelated scams. Don't connect a wallet or pay fees.",
+    "**Some channels need logins.** Bilibili subtitles, XiaoHongShu and LinkedIn require logging in. Login credentials are stored locally in ~/.agent-reach/."
+  ],
+  "sources": [
+    {
+      "title": "Agent Reach GitHub",
+      "url": "https://github.com/Panniantong/Agent-Reach",
+      "date": "2026-10-30"
+    }
+  ]
+}

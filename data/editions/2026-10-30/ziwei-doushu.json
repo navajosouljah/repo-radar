@@ -1,0 +1,129 @@
+{
+  "repo": "Renhuai123/ziwei-doushu",
+  "name": "ziwei-doushu",
+  "tagline": "An open-source Chinese astrology chart calculator that does in seconds what takes a practitioner hours by hand.",
+  "sentence": "Enter a birth date and time and get a complete Zi Wei Dou Shu chart - the traditional Chinese system of 14 stars across 12 life areas - with pattern analysis and classical references.",
+  "fit": "you",
+  "links": {
+    "website": "https://metisziwei.com",
+    "demo": "https://metisziwei.com/chart",
+    "docs": "https://github.com/Renhuai123/ziwei-doushu"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Casting a Zi Wei Dou Shu chart by hand means looking up dozens of star positions, transformations and patterns across 12 life areas - it takes hours and mistakes are easy."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the web app and enter a birth date, time and gender."
+    },
+    {
+      "role": "input",
+      "say": "A birth year, month, day and two-hour time window (the traditional Chinese hour system divides the day into 12 slots)."
+    },
+    {
+      "role": "does",
+      "say": "The engine converts your birth details into a traditional lunar calendar date and calculates every position.",
+      "steps": [
+        "Places the 14 main stars and dozens of minor stars into the correct palaces (life areas like career, relationships, wealth)",
+        "Calculates the Four Transformations - four stars that shift meaning based on your birth year",
+        "Matches the chart against a knowledge base of named patterns from classical texts"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A complete chart grid you can read or share.",
+      "outputs": [
+        {
+          "what": "A 12-palace chart",
+          "eg": "Each palace shows its stars, brightness level (1 of 7 grades) and which transformation landed there"
+        },
+        {
+          "what": "Pattern matches",
+          "eg": "Named patterns from the classical Tianji texts, like 'Purple Star in Zi palace' with the original passage"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Casting a chart means flipping through tables and cross-referencing dozens of stars by hand - a full chart takes an experienced practitioner 1 to 2 hours",
+    "Online calculators exist but most are closed-source, ad-heavy, or require paid subscriptions for the full chart",
+    "No way to verify the algorithm against classical sources"
+  ],
+  "after": [
+    "A complete chart in seconds, verified against 768 regression tests and cross-checked with classical texts",
+    "The algorithm is open-source and documented - anyone can audit how each star is placed",
+    "Two research datasets (675K charts, 20.4 billion characters of interpretations) are published under a Creative Commons license"
+  ],
+  "uses_note": "This is a niche traditional Chinese astrology tool. It has 10.8K stars and 2.2K forks, but documented real-world uses by named individuals are thin.",
+  "uses": [],
+  "pulse": {
+    "gain": "+5.7K stars in 30 days",
+    "history": [
+      ["2026-10-23", 6566],
+      ["2026-10-30", 10759]
+    ]
+  },
+  "coverage": [],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Open the live demo](https://metisziwei.com/chart) and enter a birth date, time and gender",
+      "Read the generated chart - each of the 12 palaces shows its stars and brightness level, and the Four Transformations are highlighted",
+      "To run it locally: clone [the repo](https://github.com/Renhuai123/ziwei-doushu), run `npm install` and `npm run dev`, then open localhost in your browser"
+    ],
+    "paste": "/skillspector https://github.com/Renhuai123/ziwei-doushu\nThen: Clone the repo, run npm install && npm run dev, and open localhost to try the chart calculator."
+  },
+  "footprint": {
+    "disk": "The app itself is a standard web project (under 50 MB installed). The optional research datasets are large: v3.0 is 5.5 GB compressed (33.1 GB uncompressed), v4.0 is 161 MB compressed (56.6 GB uncompressed).",
+    "memory": "The chart calculator runs in the browser and needs very little memory. The datasets are for research only.",
+    "runs_on": "Any modern browser. To run locally: Node.js with Next.js. No specific version listed.",
+    "source": {
+      "title": "ziwei-doushu README",
+      "url": "https://github.com/Renhuai123/ziwei-doushu"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Practitioners of Zi Wei Dou Shu who want a fast, verifiable chart calculator",
+      "Researchers studying traditional Chinese astrology algorithms",
+      "Anyone curious about how Chinese natal charts work"
+    ],
+    "skip_if": [
+      "You don't read Chinese - the interface and all documentation are in Mandarin",
+      "You want Western astrology (this is a completely different system)",
+      "You're looking for fortune-telling predictions - this calculates chart positions, it doesn't predict the future"
+    ],
+    "alternatives": [
+      {
+        "name": "iztro",
+        "repo": "SylarLong/iztro",
+        "url": "https://github.com/SylarLong/iztro",
+        "line": "The calculation library this project builds on - lighter, API-only, no web interface"
+      },
+      {
+        "name": "Metis Ziwei (commercial)",
+        "url": "https://metisziwei.com",
+        "line": "The creator's own hosted version with AI-powered chart interpretation (the AI part is not open-source)"
+      }
+    ]
+  },
+  "watch": [
+    "**Astrology is not science.** Zi Wei Dou Shu is a traditional belief system, not an evidence-based method. The engine calculates chart positions accurately, but the interpretations are traditional lore, not predictions.",
+    "**Everything is in Chinese.** The interface, documentation, datasets and classical references are all in Mandarin. There is no English translation.",
+    "**The AI interpretation is closed.** The open-source repo includes the chart engine and datasets, but the AI-powered interpretation feature on metisziwei.com is not included. You'd need to build your own."
+  ],
+  "sources": [
+    {
+      "title": "ziwei-doushu GitHub",
+      "url": "https://github.com/Renhuai123/ziwei-doushu",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Metis Ziwei website",
+      "url": "https://metisziwei.com",
+      "date": "2026-10-30"
+    }
+  ]
+}

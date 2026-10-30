@@ -166,10 +166,10 @@
         "line": "A direct competitor on this week's Design & Branding board - same idea, different rulebook."
       },
       {
-        "name": "ui-ux-pro-max",
-        "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
-        "url": "https://www.uupm.cc/",
-        "line": "Leans toward a fixed playbook for whole screens rather than auditing what you already built."
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "Anti-AI-slop design skill with 50 themes and a lint pass that catches generic patterns."
       }
     ]
   },

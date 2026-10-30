@@ -1,0 +1,122 @@
+{
+  "repo": "hmjz100/LinkSwift",
+  "name": "LinkSwift",
+  "tagline": "A browser script that finds the real download link on Chinese cloud-storage pages so you can use your own download tool.",
+  "sentence": "Install one script in your browser, open a Baidu or Aliyun cloud-storage shared link, and it shows the direct download address - so you can grab the file with any download manager instead of the provider's app.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/hmjz100/LinkSwift"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Someone sends you a file on Baidu, Aliyun, or another Chinese cloud drive, and you have to install their app to download it at a reasonable speed."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the shared link in your browser, where the LinkSwift script is already installed."
+    },
+    {
+      "role": "input",
+      "say": "The cloud-storage shared link someone gave you."
+    },
+    {
+      "role": "does",
+      "say": "The script reads the page and finds the file's real download address.",
+      "steps": [
+        "Detects which cloud provider the page belongs to (Baidu, Aliyun, Quark, Xunlei, UC, 123 Cloud, China Mobile Cloud, or Tianyi Cloud)",
+        "Calls the provider's own public download interface to get the direct file link",
+        "Shows a download button with the direct link on the page"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A direct download link you can use with any download manager.",
+      "outputs": [
+        {
+          "what": "A direct download link",
+          "eg": "A full URL you can paste into your browser's download bar, IDM, or any download manager"
+        },
+        {
+          "what": "No app required",
+          "eg": "Download the file directly instead of installing the Baidu Netdisk desktop app"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You have to install the cloud provider's desktop app just to download a file someone shared",
+    "Downloads through the web interface are throttled to slow speeds without a paid plan",
+    "Each provider has its own app, so you end up with 3-4 apps for occasional file downloads"
+  ],
+  "after": [
+    "One browser script covers 8 cloud providers - no apps to install",
+    "Direct download links work in any download manager or browser",
+    "No account or login needed for files shared with a public link"
+  ],
+  "uses_note": "LinkSwift has 36.5K stars and has been on GitHub since 2022, but no independent English-language use reports were found. The user base is primarily Chinese-speaking.",
+  "uses": [],
+  "pulse": {
+    "gain": "+9.3K stars this week",
+    "history": [
+      ["2026-10-23", 27216],
+      ["2026-10-30", 36512]
+    ]
+  },
+  "coverage": [],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install the [Tampermonkey extension](https://www.tampermonkey.net/) in your browser (Chrome, Firefox, Edge, or Safari)",
+      "[Install LinkSwift](https://github.com/hmjz100/LinkSwift) from GitHub by clicking the user.js file and hitting 'Install' in Tampermonkey",
+      "Open a shared file link on [Baidu Pan](https://pan.baidu.com/) or any other supported cloud drive - the script adds a download button to the page"
+    ],
+    "paste": "/skillspector https://github.com/hmjz100/LinkSwift\nThen: Read the README for install instructions and test with a Baidu cloud-storage shared link."
+  },
+  "footprint": {
+    "disk": "A single JavaScript file, under 1 MB. Runs inside your browser's Tampermonkey extension.",
+    "memory": "Runs inside a browser tab - no separate process.",
+    "runs_on": "Any browser that supports Tampermonkey or Violentmonkey: Chrome, Firefox, Edge, Safari. Works on desktop only.",
+    "source": {
+      "title": "LinkSwift README",
+      "url": "https://github.com/hmjz100/LinkSwift"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who receives files shared through Chinese cloud-storage services and wants to skip installing the provider's app",
+      "People who prefer using their own download manager instead of the provider's client"
+    ],
+    "skip_if": [
+      "You don't use Chinese cloud-storage services (Baidu, Aliyun, etc.)",
+      "You already have the provider's desktop app and are fine with it",
+      "You need to upload or sync files, not just download"
+    ],
+    "alternatives": [
+      {
+        "name": "Motrix",
+        "url": "https://motrix.app/",
+        "line": "A free download manager that can use direct links once you have them"
+      },
+      {
+        "name": "baiduyun (original)",
+        "repo": "syhyz1990/baiduyun",
+        "url": "https://github.com/syhyz1990/baiduyun",
+        "line": "The original userscript LinkSwift is based on - Baidu-only, no longer actively maintained"
+      }
+    ]
+  },
+  "watch": [
+    "**Based on another developer's work.** LinkSwift is a modified version of the original script by syhyz1990. The README does not clarify whether the original author consented to the fork.",
+    "**Chinese-language only.** The entire interface, documentation, and community are in Chinese.",
+    "**Cloud providers change their systems.** Direct-link scripts break when a provider updates its download API. The project has been maintained since 2022, but breaks are common.",
+    "**Legal gray area.** Extracting direct download links may violate some providers' terms of service. The project states it uses public APIs and does not bypass speed limits, but provider policies vary."
+  ],
+  "sources": [
+    {
+      "title": "LinkSwift GitHub",
+      "url": "https://github.com/hmjz100/LinkSwift",
+      "date": "2026-10-30"
+    }
+  ]
+}

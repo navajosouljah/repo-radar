@@ -1,0 +1,151 @@
+{
+  "repo": "anhao/ai-pose-gallery-zh",
+  "name": "AI Pose Gallery",
+  "tagline": "A free library of 1,439 body-pose reference images you can browse, filter by angle, and use for AI art.",
+  "sentence": "Open a website, pick a pose and a camera angle, and download a clean line drawing ready to feed into an image generator - 288 poses across 5 viewing angles, no account needed.",
+  "fit": "you",
+  "links": {
+    "website": "https://ai-pose-gallery.anhao.app/",
+    "docs": "https://github.com/anhao/ai-pose-gallery-zh"
+  },
+  "visual": {
+    "src": "assets/shots/ai-pose-gallery-zh.jpg",
+    "width": 2880,
+    "height": 1800,
+    "alt": "The Pose Atlas gallery interface showing 288 pose groups with 1,439 reference images and 5 viewing angles. Thumbnails of human figure line drawings are laid out in a grid, with category tabs at the top for full-body, upper-body, and two-person poses.",
+    "caption": "Browse 288 poses by category and angle - each one is a clean line drawing at 900 x 1,200 pixels."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You need a body reference image for an AI art prompt, but searching the web gives you inconsistent styles and angles."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the Pose Atlas website in your browser."
+    },
+    {
+      "role": "input",
+      "say": "A rough idea of the pose you want - standing, leaning, sitting - and the camera angle you need."
+    },
+    {
+      "role": "does",
+      "say": "The gallery filters its 288 pose groups by your criteria.",
+      "steps": [
+        "Shows thumbnails sorted by category: full-body, upper-body, or two-person poses",
+        "Lets you filter by 5 viewing angles: front, oblique, side, top-down, and bottom-up",
+        "Click a thumbnail to see the full 900 x 1,200 pixel original"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A clean line drawing you can use as a reference.",
+      "outputs": [
+        {
+          "what": "A pose reference image",
+          "eg": "A 900 x 1,200 PNG line drawing of a standing figure with arms crossed, viewed from the front"
+        },
+        {
+          "what": "A labeled pose ID",
+          "eg": "Pose P001 with its Chinese and original Japanese name, so you can find it again"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Searching Google or Pinterest for body reference gives you a mix of photos, sketches, and 3D renders in different styles",
+    "Hard to find the same pose from multiple camera angles",
+    "Free reference sites are scattered and require accounts or downloads"
+  ],
+  "after": [
+    "One site with 288 poses in a consistent line-drawing style, each in up to 5 camera angles",
+    "Browse and download originals without an account - nothing extra to install",
+    "Every image is a clean line drawing at 900 x 1,200 pixels, ready for AI image generation"
+  ],
+  "uses_note": "AI Pose Gallery is 3 days old. It is a Chinese translation of the original Japanese AI Pose Gallery by @giaaibusi. No independent use reports found yet.",
+  "uses": [],
+  "pulse": {
+    "gain": "+3.7K stars in 3 days",
+    "history": [
+      ["2026-10-27", 0],
+      ["2026-10-30", 3712]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Trendshift",
+      "title": "Trending daily (rank 12)",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Oct 30 digest",
+      "url": "https://findarepo.com/digest/2026-10-30/",
+      "meta": "Oct 30"
+    }
+  ],
+  "trending": [
+    "trendshift: trending daily (rank 12)",
+    "findarepo: listed in Oct 30 digest"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "[Open the gallery](https://ai-pose-gallery.anhao.app/) in your browser - no install needed",
+      "Use the category tabs at the top (full-body, upper-body, two-person) and the angle filters (front, oblique, side, top-down, bottom-up) to find a pose",
+      "Click a thumbnail to see the full 900 x 1,200 pixel original, then right-click to save or copy the image for your AI art prompt"
+    ],
+    "paste": "/skillspector https://github.com/anhao/ai-pose-gallery-zh\nThen: Clone the repo and open index.html with a local server (python3 -m http.server 8000). Browse the poses and try the agent skills in the skills/ folder."
+  },
+  "footprint": {
+    "disk": "The full repo with all images is about 660 MB. The site itself (HTML, CSS, JSON) is under 1 MB - the images are the bulk.",
+    "memory": "Runs in a browser tab - no special memory needs.",
+    "runs_on": "Any device with a web browser. For local hosting: Python 3 (for the built-in server) or any static file host.",
+    "source": {
+      "title": "AI Pose Gallery README",
+      "url": "https://github.com/anhao/ai-pose-gallery-zh"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Artists who use AI image generators and need consistent body-pose references",
+      "Anyone making character art who wants clean, angle-matched reference drawings"
+    ],
+    "skip_if": [
+      "You don't read Chinese (the interface and labels are entirely in Chinese)",
+      "You need photographic references rather than line drawings",
+      "You need poses beyond the 288 included (no upload or custom pose creation)"
+    ],
+    "alternatives": [
+{
+        "name": "PoseMyArt",
+        "url": "https://posemy.art/",
+        "line": "A 3D pose tool where you drag a mannequin into any position and export a reference image"
+      }
+    ]
+  },
+  "watch": [
+    "**The interface is entirely in Chinese.** Every label, category name, and description is in Chinese. The poses themselves are universal line drawings, but navigating the site requires some comfort with Chinese text or a browser translator.",
+    "**Three days old.** The project launched on Oct 27, 2026 and has no tagged releases, version numbers, or changelog.",
+    "**Images are not freely licensed.** The MIT license covers only the scripts and HTML. The images and data belong to the original author (@giaaibusi) and are not licensed for commercial use.",
+    "**Adult content warning.** Some pose categories include artistic nudity and intimate two-person poses."
+  ],
+  "sources": [
+    {
+      "title": "AI Pose Gallery GitHub",
+      "url": "https://github.com/anhao/ai-pose-gallery-zh",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Trendshift listing",
+      "url": "https://trendshift.io/",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "findarepo digest",
+      "url": "https://findarepo.com/digest/2026-10-30/",
+      "date": "2026-10-30"
+    }
+  ]
+}

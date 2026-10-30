@@ -1,0 +1,5818 @@
+{
+  "date": "2026-10-30",
+  "measured": "2026-10-30",
+  "sources": {
+    "github-trending": {
+      "reached": true,
+      "detail": "183 rows"
+    },
+    "trendshift": {
+      "reached": true,
+      "detail": "62 rows"
+    },
+    "skills.sh": {
+      "reached": false,
+      "detail": "401 https://r.jina.ai/https://skills.sh/"
+    },
+    "findarepo": {
+      "reached": false,
+      "detail": "no digests found"
+    },
+    "hacker-news": {
+      "reached": true,
+      "detail": "51 stories"
+    },
+    "youtube": {
+      "reached": false,
+      "detail": "skipped (run with --youtube on a machine with yt-dlp)"
+    },
+    "github-search": {
+      "reached": true,
+      "detail": "40 rows"
+    },
+    "github": {
+      "reached": true,
+      "detail": "219/221 read via public pages"
+    },
+    "findarepo-growth": {
+      "reached": true,
+      "detail": "16 repos filled"
+    }
+  },
+  "count": 221,
+  "candidates": [
+    {
+      "repo": "anhao/ai-pose-gallery-zh",
+      "sources": {
+        "trendshift": {
+          "daily": 12
+        },
+        "github-search": {
+          "7d": true
+        },
+        "findarepo": {
+          "2026-10-30": 10
+        }
+      },
+      "signals": {
+        "stars": 3712,
+        "gain7_source": "all stars since launch",
+        "gain7": 3712,
+        "gain30_source": "all stars since launch",
+        "gain30": 3712
+      },
+      "description": "中文版 AI 姿势参考图库 · 1439 组 / 2878 张图片 / 完整汉化 · 零依赖静态画廊",
+      "created": "2026-10-27",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 44.3,
+      "independent_sources": 2,
+      "age_days": 3,
+      "floors_failed": []
+    },
+    {
+      "repo": "Gathin23/cleanyourtv",
+      "sources": {
+        "trendshift": {
+          "monthly": 7
+        },
+        "github-search": {
+          "45d": true
+        },
+        "findarepo": {
+          "2026-10-30": 2
+        }
+      },
+      "signals": {
+        "stars": 46091,
+        "gain7": 19821,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 46091
+      },
+      "description": "Debloat any Android or Google TV over Wi-Fi and get an Apple TV-style home.",
+      "created": "2026-10-17",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 42.6,
+      "independent_sources": 2,
+      "age_days": 13,
+      "floors_failed": [
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "unclebob/ub-mode",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 5158,
+        "gain7_source": "all stars since launch",
+        "gain7": 5158,
+        "gain30_source": "all stars since launch",
+        "gain30": 5158
+      },
+      "created": "2026-10-25",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": null,
+      "score": 42.3,
+      "independent_sources": 0,
+      "age_days": 5,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rddmwmddr/android-ad-cleaner",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 4948,
+        "gain7_source": "all stars since launch",
+        "gain7": 4948,
+        "gain30_source": "all stars since launch",
+        "gain30": 4948
+      },
+      "description": "关掉国产安卓手机系统里的广告、热搜、资讯推荐和营销推送。不 root，可还原，支持 AI 智能体一键执行。",
+      "created": "2026-10-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 42.2,
+      "independent_sources": 0,
+      "age_days": 6,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "interplains/Zero-Breach-Toolkit",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 3740,
+        "gain7_source": "all stars since launch",
+        "gain7": 3740,
+        "gain30_source": "all stars since launch",
+        "gain30": 3740
+      },
+      "description": "Free, open-source, offline checks for traces of known mercenary spyware. Works on Windows, macOS and Linux, Android phones and iPhone bac…",
+      "created": "2026-10-25",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 41.3,
+      "independent_sources": 0,
+      "age_days": 5,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "designfuchen/word-atlas",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 3313,
+        "gain7_source": "all stars since launch",
+        "gain7": 3313,
+        "gain30_source": "all stars since launch",
+        "gain30": 3313
+      },
+      "description": "词光 · Word Atlas — Illustrated IELTS vocabulary with 7,298 words, UK/US audio and FSRS review. Open-source app + CC BY 4.0 dataset.",
+      "created": "2026-10-25",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 40.9,
+      "independent_sources": 0,
+      "age_days": 5,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "seedds/nxnative",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 9981,
+        "gain7": 7749,
+        "gain7_source": "findarepo (per-day x 7)",
+        "gain30_source": "all stars since launch",
+        "gain30": 9981
+      },
+      "description": "Switch games running natively on iPhone, iPad and Mac: an NSP folder becomes an unsigned IPA (NSO rewriter, Horizon HLE host, NVN→Metal)",
+      "created": "2026-10-13",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 40.7,
+      "independent_sources": 0,
+      "age_days": 17,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KillaBoi/StealMyBitcoin-PoC",
+      "sources": {
+        "hacker-news": {
+          "points": 182,
+          "id": "50237379",
+          "date": "2026-10-26"
+        }
+      },
+      "signals": {
+        "stars": 1011,
+        "gain7_source": "all stars since launch",
+        "gain7": 1011,
+        "gain30_source": "all stars since launch",
+        "gain30": 1011
+      },
+      "created": "2026-10-25",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 40.1,
+      "independent_sources": 1,
+      "age_days": 5,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "t3dotgg/tstack",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 2433,
+        "gain7_source": "all stars since launch",
+        "gain7": 2433,
+        "gain30_source": "all stars since launch",
+        "gain30": 2433
+      },
+      "description": "The agent skills I use every day. Works with Claude Code and Codex.",
+      "created": "2026-10-24",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 39.9,
+      "independent_sources": 0,
+      "age_days": 6,
+      "floors_failed": [
+        "under 3K stars",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ccch1mneyyy/dsh-Go",
+      "sources": {
+        "trendshift": {
+          "daily": 1
+        },
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 1689,
+        "gain7_source": "all stars since launch",
+        "gain7": 1689,
+        "gain30_source": "all stars since launch",
+        "gain30": 1689
+      },
+      "description": "dsh-go — DeepSeek Harness 装进口袋：手机本机运行，也能遥控你的电脑。",
+      "created": "2026-10-25",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 39.8,
+      "independent_sources": 1,
+      "age_days": 5,
+      "floors_failed": [
+        "under 3K stars",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "debpalash/VoiceStudio",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 8
+        },
+        "findarepo": {
+          "2026-10-30": 5
+        }
+      },
+      "signals": {
+        "stars": 94977,
+        "gain7": 12825,
+        "gain30": 47778
+      },
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.",
+      "created": "2026-04-09",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 39.6,
+      "independent_sources": 3,
+      "age_days": 204,
+      "floors_failed": [
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "cloudflare/security-audit-skill",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 15
+        }
+      },
+      "signals": {
+        "stars": 53379,
+        "gain7": 14320,
+        "gain30": 29622
+      },
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "created": "2026-06-18",
+      "pushed": "2026-09-14",
+      "archived": false,
+      "last_featured": "2026-09-18",
+      "score": 38.9,
+      "independent_sources": 2,
+      "age_days": 134,
+      "floors_failed": [
+        "no commit in 30 days",
+        "featured 2026-09-18 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "hmjz100/LinkSwift",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 23
+        },
+        "findarepo": {
+          "2026-10-30": 8
+        }
+      },
+      "signals": {
+        "stars": 36512,
+        "gain1": 2058,
+        "gain7": 9296,
+        "gain30": 15476
+      },
+      "description": "一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘",
+      "created": "2022-08-10",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 38.9,
+      "independent_sources": 3,
+      "age_days": 1542,
+      "floors_failed": []
+    },
+    {
+      "repo": "makecindy/cindy",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8660,
+        "gain7": 5329,
+        "gain30": 5760
+      },
+      "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "created": "2026-07-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 38.8,
+      "independent_sources": 1,
+      "age_days": 100,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "qybaihe/bla",
+      "sources": {
+        "trendshift": {
+          "daily": 8
+        },
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 1163,
+        "gain7_source": "all stars since launch",
+        "gain7": 1163,
+        "gain30_source": "all stars since launch",
+        "gain30": 1163
+      },
+      "description": "🛡️ BLA (Blind LLM Agents) — Adversarial defense shield that protects binaries, Electron apps, JS bundles, Python, and WebAssembly against…",
+      "created": "2026-10-25",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 38.6,
+      "independent_sources": 1,
+      "age_days": 5,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "andyhuo520/digital-human-koubo",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 1534,
+        "gain7_source": "all stars since launch",
+        "gain7": 1534,
+        "gain30_source": "all stars since launch",
+        "gain30": 1534
+      },
+      "description": "AI digital-human talking-head videos from one photo: Renoise MCP generation + 5 editing styles + 48 creator-grade packaging components. A…",
+      "created": "2026-10-26",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 38.5,
+      "independent_sources": 0,
+      "age_days": 4,
+      "floors_failed": [
+        "under 3K stars",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Nutlope/hallmark",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "findarepo": {
+          "2026-10-30": 6
+        }
+      },
+      "signals": {
+        "stars": 42414,
+        "gain30": 12501,
+        "gain7": 11373,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "created": "2026-04-27",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 38,
+      "independent_sources": 2,
+      "age_days": 186,
+      "floors_failed": []
+    },
+    {
+      "repo": "valentderah/totk-pc-recomp",
+      "sources": {
+        "trendshift": {
+          "daily": 19
+        }
+      },
+      "signals": {
+        "stars": 954,
+        "gain7_source": "all stars since launch",
+        "gain7": 954,
+        "gain30_source": "all stars since launch",
+        "gain30": 954
+      },
+      "created": "2026-10-29",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 37.9,
+      "independent_sources": 1,
+      "age_days": 1,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "DenisSergeevitch/ex-ussr-kinship-research",
+      "sources": {
+        "github-search": {
+          "7d": true
+        }
+      },
+      "signals": {
+        "stars": 1286,
+        "gain7_source": "all stars since launch",
+        "gain7": 1286,
+        "gain30_source": "all stars since launch",
+        "gain30": 1286
+      },
+      "description": "Evidence-first genealogy skill for AI agents (Codex, Claude Code): church books, civil, military, deportation and repression records acro…",
+      "created": "2026-10-25",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 37.9,
+      "independent_sources": 0,
+      "age_days": 5,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 11,
+          "monthly": 12
+        },
+        "findarepo": {
+          "2026-10-30": 7
+        }
+      },
+      "signals": {
+        "stars": 96370,
+        "gain1": 2299,
+        "gain7": 9713,
+        "gain30": 22473
+      },
+      "description": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "created": "2025-11-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 37.4,
+      "independent_sources": 3,
+      "age_days": 348,
+      "floors_failed": []
+    },
+    {
+      "repo": "HKUDS/DeepTutor",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 5
+        },
+        "findarepo": {
+          "2026-10-30": 9
+        }
+      },
+      "signals": {
+        "stars": 51268,
+        "gain1": 2282,
+        "gain7": 7509,
+        "gain30": 9293
+      },
+      "description": "DeepTutor: Lifelong Personalized Tutoring. https://deeptutor.info/.",
+      "created": "2025-12-28",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 36.1,
+      "independent_sources": 3,
+      "age_days": 306,
+      "floors_failed": []
+    },
+    {
+      "repo": "Renhuai123/ziwei-doushu",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 13
+        }
+      },
+      "signals": {
+        "stars": 10759,
+        "gain1": 1146,
+        "gain7": 3823,
+        "gain30": 5728
+      },
+      "description": "紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据",
+      "created": "2026-05-01",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 35.4,
+      "independent_sources": 2,
+      "age_days": 182,
+      "floors_failed": []
+    },
+    {
+      "repo": "deepseek-ai/DeepInfer",
+      "sources": {
+        "hacker-news": {
+          "points": 2353,
+          "id": "50163277",
+          "date": "2026-10-20"
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 24416,
+        "gain7": 3820,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 24416
+      },
+      "description": "DeepInfer: High-performance, large-scale inference framework for DeepSeek models",
+      "created": "2026-10-16",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": null,
+      "score": 35,
+      "independent_sources": 1,
+      "age_days": 14,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "stablyai/orca",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 21
+        }
+      },
+      "signals": {
+        "stars": 110662,
+        "gain30": 29190,
+        "gain7": 7323,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
+      "created": "2026-03-17",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 34.9,
+      "independent_sources": 2,
+      "age_days": 227,
+      "floors_failed": [
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "DietrichGebert/ponytail",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 20
+        }
+      },
+      "signals": {
+        "stars": 180634,
+        "gain30": 33063,
+        "gain7": 6300,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "created": "2026-06-12",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-02",
+      "score": 34.4,
+      "independent_sources": 2,
+      "age_days": 140,
+      "floors_failed": [
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "heygen-com/hyperframes",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 25
+        }
+      },
+      "signals": {
+        "stars": 75765,
+        "gain7": 5647,
+        "gain30": 21520
+      },
+      "description": "Write HTML. Render video. Built for agents.",
+      "created": "2026-03-10",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 34.1,
+      "independent_sources": 2,
+      "age_days": 234,
+      "floors_failed": [
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "mattpocock/skills",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        },
+        "trendshift": {
+          "monthly": 16
+        }
+      },
+      "signals": {
+        "stars": 307009,
+        "gain1": 882,
+        "gain7": 5606,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 32677,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "created": "2026-02-03",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 34,
+      "independent_sources": 2,
+      "age_days": 269,
+      "floors_failed": [
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "Niko1221/Strata",
+      "sources": {
+        "trendshift": {
+          "monthly": 6
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 36278,
+        "gain7": 5368,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 30937,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on loca…",
+      "created": "2026-09-24",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 33.8,
+      "independent_sources": 1,
+      "age_days": 36,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "Panniantong/Agent-Reach",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 22
+        }
+      },
+      "signals": {
+        "stars": 106592,
+        "gain30": 20593,
+        "gain7": 5389,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Give your AI agent eyes to see the entire internet. Read &amp; search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "created": "2026-02-24",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": "2026-08-21",
+      "score": 33.6,
+      "independent_sources": 2,
+      "age_days": 248,
+      "floors_failed": []
+    },
+    {
+      "repo": "DuarteSantos8/openGym",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        },
+        "trendshift": {
+          "monthly": 18
+        }
+      },
+      "signals": {
+        "stars": 17447,
+        "gain30": 15794,
+        "gain7": 2400,
+        "gain7_source": "findarepo"
+      },
+      "description": "Open-source gym &amp; body-weight tracker, now in the App Store (iPhone + Apple Watch) and as an Android APK. Plan routines, log workouts, see which muscles are trained, import from Strong/Hevy/FitNotes. Self-host it or use it on the phone alone.",
+      "created": "2026-07-18",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-16",
+      "score": 33.3,
+      "independent_sources": 2,
+      "age_days": 104,
+      "floors_failed": [
+        "on the blocklist",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "storytold/photocraft",
+      "sources": {
+        "trendshift": {
+          "monthly": 2
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 75025,
+        "gain7": 3369,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 75025
+      },
+      "description": "PhotoCraft: An open-source, photo editor written by scratch in pure Rust",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 33.2,
+      "independent_sources": 1,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "affaan-m/ECC",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 293045,
+        "gain1": 987,
+        "gain7": 6594,
+        "gain30": 24663
+      },
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "created": "2026-01-18",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 32.8,
+      "independent_sources": 1,
+      "age_days": 285,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "ifixai-ai/iFixAi",
+      "sources": {
+        "trendshift": {
+          "monthly": 13
+        }
+      },
+      "signals": {
+        "stars": 38418,
+        "gain7": 4918,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 19517,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2026-04-27",
+      "pushed": "2026-10-24",
+      "archived": false,
+      "last_featured": null,
+      "score": 32.6,
+      "independent_sources": 1,
+      "age_days": 186,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "wheresryan22/anatomy",
+      "sources": {
+        "trendshift": {
+          "monthly": 24
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 22833,
+        "gain7": 3377,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 22833
+      },
+      "description": "An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex systems. Generates polished …",
+      "created": "2026-10-08",
+      "pushed": "2026-10-18",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 32.6,
+      "independent_sources": 1,
+      "age_days": 22,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "tashfeenahmed/freellmapi",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 44326,
+        "gain7": 4541,
+        "gain30": 14488
+      },
+      "description": "7.4 billion tokens per month. 34 free LLM providers. 635 free model endpoints. All behind one /v1 endpoint, plus any custom OpenAI-compatible endpoint. Smart routing, automatic failover, encrypted keys. Personal experimentation only.",
+      "created": "2026-04-21",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 32.5,
+      "independent_sources": 1,
+      "age_days": 192,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "obra/superpowers",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 23
+        }
+      },
+      "signals": {
+        "stars": 309084,
+        "gain1": 1255,
+        "gain7": 4894,
+        "gain30": 14889,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "An agentic skills framework &amp; software development methodology that works.",
+      "created": "2025-10-09",
+      "pushed": "2026-10-21",
+      "archived": false,
+      "last_featured": "2026-08-14",
+      "score": 32.4,
+      "independent_sources": 2,
+      "age_days": 386,
+      "floors_failed": []
+    },
+    {
+      "repo": "openai/math",
+      "sources": {
+        "hacker-news": {
+          "points": 798,
+          "id": "50251661",
+          "date": "2026-10-26"
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 17093,
+        "gain7": 1672,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 17093
+      },
+      "created": "2026-10-06",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 32.3,
+      "independent_sources": 1,
+      "age_days": 24,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "lwh0630/TokenBar",
+      "sources": {
+        "trendshift": {
+          "daily": 27,
+          "monthly": 27
+        }
+      },
+      "signals": {
+        "stars": 155,
+        "gain7_source": "all stars since launch",
+        "gain7": 155,
+        "gain30_source": "all stars since launch",
+        "gain30": 155
+      },
+      "created": "2026-10-24",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 32.1,
+      "independent_sources": 1,
+      "age_days": 6,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "deepseek-ai/deepseek-harness",
+      "sources": {
+        "trendshift": {
+          "daily": 22
+        }
+      },
+      "signals": {
+        "stars": 266428,
+        "gain7": 7415,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 24327,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2026-08-13",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-08-14",
+      "score": 32,
+      "independent_sources": 1,
+      "age_days": 78,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "eternity4719/HowToLiveBetter",
+      "sources": {
+        "trendshift": {
+          "monthly": 11
+        }
+      },
+      "signals": {
+        "stars": 71500,
+        "gain7": 3281,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 36986,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2026-09-07",
+      "pushed": "2026-10-21",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 31.9,
+      "independent_sources": 1,
+      "age_days": 53,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "johncassil/dontallow",
+      "sources": {
+        "hacker-news": {
+          "points": 145,
+          "id": "50294506",
+          "date": "2026-10-29"
+        }
+      },
+      "signals": {
+        "stars": 76,
+        "gain7_source": "all stars since launch",
+        "gain7": 76,
+        "gain30_source": "all stars since launch",
+        "gain30": 76
+      },
+      "created": "2026-10-29",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 31.9,
+      "independent_sources": 1,
+      "age_days": 1,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "AgriciDaniel/claude-seo",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 24228,
+        "gain7": 4110,
+        "gain30": 5997
+      },
+      "description": "Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.",
+      "created": "2026-02-07",
+      "pushed": "2026-10-22",
+      "archived": false,
+      "last_featured": null,
+      "score": 31.8,
+      "independent_sources": 1,
+      "age_days": 265,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Leonxlnx/taste-skill",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 105968,
+        "gain1": 1131,
+        "gain7": 4359,
+        "gain30": 14568
+      },
+      "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages",
+      "created": "2026-02-19",
+      "pushed": "2026-10-24",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 31.6,
+      "independent_sources": 1,
+      "age_days": 253,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "NVIDIA/OpenShell",
+      "sources": {
+        "hacker-news": {
+          "points": 508,
+          "id": "50198675",
+          "date": "2026-10-22"
+        }
+      },
+      "signals": {
+        "stars": 20731,
+        "gain7": 2479,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 6497,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2026-02-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-02",
+      "score": 31.5,
+      "independent_sources": 1,
+      "age_days": 248,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "google-research/harness2",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 21423,
+        "gain7": 3115,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 21423
+      },
+      "created": "2026-10-06",
+      "pushed": "2026-10-14",
+      "archived": false,
+      "last_featured": null,
+      "score": 31.3,
+      "independent_sources": 0,
+      "age_days": 24,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "tangency-labs/solidcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 12207,
+        "gain7": 2671,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 12207
+      },
+      "description": "SolidCraft: an open-source parametric 3D CAD application built in pure Rust. Desktop, web, and automation through MCP.",
+      "created": "2026-10-07",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 31.2,
+      "independent_sources": 0,
+      "age_days": 23,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "thedotmack/claude-mem",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        },
+        "trendshift": {
+          "daily": 10
+        }
+      },
+      "signals": {
+        "stars": 105348,
+        "gain1": 1145,
+        "gain7": 2989,
+        "gain30": 9911
+      },
+      "description": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "created": "2025-08-31",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 31.1,
+      "independent_sources": 2,
+      "age_days": 425,
+      "floors_failed": [
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "vectorize-io/hindsight",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 56388,
+        "gain1": 1454,
+        "gain7": 3416,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 11874,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Hindsight: Agent Memory That Learns",
+      "created": "2025-10-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 31.1,
+      "independent_sources": 1,
+      "age_days": 365,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 75663,
+        "gain30": 14950,
+        "gain7": 3038,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "Learn AI Engineering! Learn it. Build it. Ship it for others.",
+      "created": "2026-03-18",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-02",
+      "score": 31.1,
+      "independent_sources": 1,
+      "age_days": 226,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-02 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "togg53192-cmd/jailbreaks",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        },
+        "trendshift": {
+          "daily": 6
+        }
+      },
+      "signals": {
+        "stars": 9969,
+        "gain1": 2053
+      },
+      "description": "LIST OF ALL MY JAILBREAKS",
+      "created": "2026-06-18",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 31,
+      "independent_sources": 2,
+      "age_days": 134,
+      "floors_failed": []
+    },
+    {
+      "repo": "NationalSecurityAgency/ghidra",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 96040,
+        "gain30": 16113,
+        "gain7": 2700,
+        "gain7_source": "findarepo"
+      },
+      "description": "Ghidra is a software reverse engineering (SRE) framework",
+      "created": "2019-03-01",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-23",
+      "score": 30.9,
+      "independent_sources": 1,
+      "age_days": 2800,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 226644,
+        "gain7": 4250,
+        "gain30": 10155,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "created": "2026-01-27",
+      "pushed": "2026-04-20",
+      "archived": false,
+      "last_featured": null,
+      "score": 30.5,
+      "independent_sources": 1,
+      "age_days": 276,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "paperclipai/paperclip",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 108835,
+        "gain30": 14927,
+        "gain7": 2435,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "The open-source app everyone uses to manage agents at work",
+      "created": "2026-03-02",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 30.5,
+      "independent_sources": 1,
+      "age_days": 242,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 33943,
+        "gain7": 2504,
+        "gain30": 8086
+      },
+      "description": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "created": "2026-01-23",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 30.2,
+      "independent_sources": 1,
+      "age_days": 280,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "Orkas-AI/Orkas",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        },
+        "trendshift": {
+          "daily": 2
+        }
+      },
+      "signals": {
+        "stars": 4886,
+        "gain1": 1000
+      },
+      "description": "Orkas is an open-source (MIT), local-first AI team for your desktop: a Commander turns your goal into to-dos and coordinates 16 built-in specialist agents plus Claude Code, Codex, OpenCode, OpenClaw and Hermes, with projects, scheduled automations and connectors. Free app for macOS &amp; Windows; built-in models or your own keys.",
+      "created": "2026-04-29",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 30,
+      "independent_sources": 2,
+      "age_days": 184,
+      "floors_failed": []
+    },
+    {
+      "repo": "chthollyphile/folia-major",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 10315,
+        "gain30": 7108,
+        "gain7": 1349,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "专注于绚丽的歌词动画效果的本地音乐/navidrome/第三方多平台在线音乐播放器",
+      "created": "2025-11-28",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 30,
+      "independent_sources": 1,
+      "age_days": 336,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 111870,
+        "gain1": 305,
+        "gain30": 12332,
+        "gain7": 2068,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "created": "2026-02-15",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 29.9,
+      "independent_sources": 1,
+      "age_days": 257,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "SnailSploit/Claude-Red",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 9882,
+        "gain7": 2005,
+        "gain30": 2699,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface — from SQLi to shellcode, EDR evasion to exploit development.",
+      "created": "2026-03-04",
+      "pushed": "2026-10-12",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.9,
+      "independent_sources": 1,
+      "age_days": 240,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "calesthio/OpenMontage",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 73174,
+        "gain30": 11512,
+        "gain7": 2123,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+      "created": "2026-03-29",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.9,
+      "independent_sources": 1,
+      "age_days": 215,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "pingdotgg/t3code",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 32279,
+        "gain1": 920,
+        "gain7": 2142,
+        "gain30": 7708
+      },
+      "created": "2026-02-08",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.8,
+      "independent_sources": 1,
+      "age_days": 264,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "remotion-dev/remotion",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 69028,
+        "gain7": 2583,
+        "gain30": 7986
+      },
+      "description": "🎥 Make videos programmatically with React",
+      "created": "2020-06-23",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.7,
+      "independent_sources": 1,
+      "age_days": 2320,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "NVIDIA/SkillSpector",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 23460,
+        "gain7": 2405,
+        "gain30": 4801
+      },
+      "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
+      "created": "2026-03-21",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.7,
+      "independent_sources": 1,
+      "age_days": 223,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "lexmount/moli",
+      "sources": {
+        "trendshift": {
+          "monthly": 14
+        }
+      },
+      "signals": {
+        "stars": 21670,
+        "gain7": 1429,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 17865,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2026-08-10",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.7,
+      "independent_sources": 1,
+      "age_days": 81,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "luongnv89/claude-howto",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 46192,
+        "gain7": 3279,
+        "gain30": 4564
+      },
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "created": "2025-11-07",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.5,
+      "independent_sources": 1,
+      "age_days": 357,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "LibreSpark/LibreTV",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 22803,
+        "gain30": 8873,
+        "gain7": 1498,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "一分钟搭建影视站，支持Docker等部署方式",
+      "created": "2025-04-06",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.5,
+      "independent_sources": 1,
+      "age_days": 572,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "earthtojake/text-to-cad",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 24273,
+        "gain30": 7732,
+        "gain7": 1619,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Design physical products with AI",
+      "created": "2026-04-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 29.4,
+      "independent_sources": 1,
+      "age_days": 191,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/pdfcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 18717,
+        "gain7": 1380,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 18717
+      },
+      "description": "PdfCraft: An open-source PDF reader and editor written by scratch in pure Rust",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 28.9,
+      "independent_sources": 0,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "ruvnet/ruflo",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 80227,
+        "gain7": 1854,
+        "gain30": 7026
+      },
+      "description": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, federation, vector RAG integration, and native Claude Code / Codex / Hermes and many more Integrated",
+      "created": "2025-06-02",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.8,
+      "independent_sources": 1,
+      "age_days": 515,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/claude-plugins-official",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 45371,
+        "gain30": 8277,
+        "gain7": 1400,
+        "gain7_source": "findarepo"
+      },
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "created": "2025-11-20",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-23",
+      "score": 28.8,
+      "independent_sources": 1,
+      "age_days": 344,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "gitroomhq/postiz-app",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 40180,
+        "gain7": 2555,
+        "gain30": 3749
+      },
+      "description": "📨 The ultimate agentic social media scheduling tool 🤖",
+      "created": "2023-07-08",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.7,
+      "independent_sources": 1,
+      "age_days": 1210,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "JetBrains/thinkrail",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "hacker-news": {
+          "points": 242,
+          "id": "50233294",
+          "date": "2026-10-25"
+        }
+      },
+      "signals": {
+        "stars": 6339,
+        "gain1": 717,
+        "gain7": 4850
+      },
+      "description": "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need",
+      "created": "2026-07-08",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.5,
+      "independent_sources": 2,
+      "age_days": 114,
+      "floors_failed": []
+    },
+    {
+      "repo": "mksglu/context-mode",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 32901,
+        "gain30": 8800,
+        "gain7": 991,
+        "gain7_source": "findarepo"
+      },
+      "description": "Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.",
+      "created": "2026-02-23",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-16",
+      "score": 28.4,
+      "independent_sources": 1,
+      "age_days": 249,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "thesysdev/openui",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 14463,
+        "gain30": 4596,
+        "gain7": 1181,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "The Open Standard for Generative UI",
+      "created": "2024-12-02",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.3,
+      "independent_sources": 1,
+      "age_days": 697,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "HKUDS/CLI-Anything",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 57784,
+        "gain30": 6938,
+        "gain7": 1352,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "created": "2026-03-08",
+      "pushed": "2026-09-22",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.3,
+      "independent_sources": 1,
+      "age_days": 236,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "anthropics/skills",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 184949,
+        "gain1": 287,
+        "gain7": 1877,
+        "gain30": 5561,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Public repository for Agent Skills",
+      "created": "2025-09-22",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": "2026-08-21",
+      "score": 28.2,
+      "independent_sources": 1,
+      "age_days": 403,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/filmcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 16909,
+        "gain7": 1072,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 16909
+      },
+      "description": "FilmCraft: An open-source, nonlinear video editor written by scratch in pure Rust",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 28.2,
+      "independent_sources": 0,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "cursor/plugins",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 14668,
+        "gain30": 5677,
+        "gain7": 970,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Cursor plugin specification and official plugins",
+      "created": "2026-01-23",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 28.1,
+      "independent_sources": 1,
+      "age_days": 280,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/wordcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 16681,
+        "gain7": 1036,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 16681
+      },
+      "description": "An open-source, clean-room reimplementation of Microsoft Word in pure Rust",
+      "created": "2026-10-07",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 28.1,
+      "independent_sources": 0,
+      "age_days": 23,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "coreyhaines31/marketingskills",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 57426,
+        "gain7": 1363,
+        "gain30": 5596
+      },
+      "description": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "created": "2026-01-15",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 27.9,
+      "independent_sources": 1,
+      "age_days": 288,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anthropics/sandbox-runtime",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 6868,
+        "gain7": 1218,
+        "gain30": 1474
+      },
+      "description": "A lightweight sandboxing tool for enforcing filesystem and network restrictions on arbitrary processes at the OS level, without requiring a container.",
+      "created": "2025-10-20",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": null,
+      "score": 27.7,
+      "independent_sources": 1,
+      "age_days": 375,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vercel-labs/skills",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 37204,
+        "gain30": 4512,
+        "gain7": 969,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "The open agent skills tool - npx skills",
+      "created": "2026-01-14",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 27.1,
+      "independent_sources": 1,
+      "age_days": 289,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "TencentCloud/Octop",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 11353,
+        "gain30": 5699,
+        "gain7": 551,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
+      "created": "2026-07-08",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": null,
+      "score": 27.1,
+      "independent_sources": 1,
+      "age_days": 114,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Kruk2/jasna",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 4103,
+        "gain30": 2249,
+        "gain7": 625,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Video restoration tool",
+      "created": "2026-01-18",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 27.1,
+      "independent_sources": 1,
+      "age_days": 285,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/lightcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 15076,
+        "gain7": 685,
+        "gain7_source": "findarepo",
+        "gain30_source": "all stars since launch",
+        "gain30": 15076
+      },
+      "description": "LightCraft: An open-source non-destructive photo editor written by scratch in pure Rust",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-09",
+      "score": 27.1,
+      "independent_sources": 0,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "android/skills",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 10056,
+        "gain30": 2460,
+        "gain7": 729,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-03-16",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 26.3,
+      "independent_sources": 1,
+      "age_days": 228,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/vectorcraft",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 11035,
+        "gain7": 548,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 11035
+      },
+      "description": "VectorCraft: An open-source, vector art tool written by scratch in pure Rust",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 26.3,
+      "independent_sources": 0,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "n8n-io/n8n",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 209104,
+        "gain1": 154,
+        "gain30": 2602,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+      "created": "2019-06-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 26,
+      "independent_sources": 1,
+      "age_days": 2687,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "supabase/supabase",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 114338,
+        "gain30": 3731,
+        "gain7": 666,
+        "gain7_source": "findarepo"
+      },
+      "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
+      "created": "2019-10-12",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 25.9,
+      "independent_sources": 1,
+      "age_days": 2575,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cdyforever/how-to-live-better",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 13823,
+        "gain7": 692,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 7585,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+      "created": "2026-09-18",
+      "pushed": "2026-10-22",
+      "archived": false,
+      "last_featured": null,
+      "score": 25.9,
+      "independent_sources": 0,
+      "age_days": 42,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "michael-denyer/pstack-claude",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3645,
+        "gain30": 2941,
+        "gain7": 322,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Claude Code, Codex, Copilot, Pi, OpenCode, Muse, Gemini, and Prime Agent versions of Poteto's pstack. Rigorous agent workflows with Cursor primitives translated for other harnesses.",
+      "created": "2026-05-26",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 25.7,
+      "independent_sources": 1,
+      "age_days": 157,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "rehan-remade/universal-modder",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 9219,
+        "gain7": 453,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 9219,
+        "gain30_source": "all stars since launch"
+      },
+      "description": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reverse engineering, …",
+      "created": "2026-09-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 25.7,
+      "independent_sources": 0,
+      "age_days": 30,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "IamRamgarhia/Free-GST-Billing-Software",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 353,
+        "gain1": 79
+      },
+      "description": "Free GST Billing Software — Free, open-source GST invoice &amp; billing software. Tax Invoice, Proforma, Credit Note, Bill of Supply. CGST/SGST/IGST. Multi-currency. 100% offline, no signup. PWA installable.",
+      "created": "2026-03-15",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 25.3,
+      "independent_sources": 1,
+      "age_days": 229,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "nodejs/node",
+      "sources": {
+        "github-trending": {
+          "weekly": true,
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 123100,
+        "gain7": 748,
+        "gain30": 2117
+      },
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "created": "2014-11-26",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 25.1,
+      "independent_sources": 1,
+      "age_days": 4356,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "openclaw/openclaw",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 393429,
+        "gain1": 149,
+        "gain7": 598,
+        "gain7_source": "findarepo",
+        "gain30": 2232,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞",
+      "created": "2025-11-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 24.8,
+      "independent_sources": 1,
+      "age_days": 340,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "OpenWhispr/openwhispr",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 10353,
+        "gain7": 555,
+        "gain30": 1404,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Voice-to-text dictation app with local (Nvidia Parakeet/Whisper) and cloud models (BYOK). Privacy-first and available cross-platform.",
+      "created": "2025-06-19",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 24.7,
+      "independent_sources": 1,
+      "age_days": 498,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "NandhaKishorM/laya",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 34674,
+        "gain7": 629,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 4633,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass, in 100+ lan…",
+      "created": "2026-09-18",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 24.4,
+      "independent_sources": 0,
+      "age_days": 42,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "wshobson/agents",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 41997,
+        "gain30": 2027,
+        "gain7": 405,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi",
+      "created": "2025-07-24",
+      "pushed": "2026-10-17",
+      "archived": false,
+      "last_featured": "2026-08-28",
+      "score": 24.2,
+      "independent_sources": 1,
+      "age_days": 463,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "OpenHands/OpenHands",
+      "sources": {
+        "trendshift": {
+          "daily": 30,
+          "monthly": 30
+        }
+      },
+      "signals": {
+        "stars": 92254,
+        "gain7": 620,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 2458,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2024-03-13",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 24.1,
+      "independent_sources": 1,
+      "age_days": 961,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "nightly-labs/openbot",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 4146,
+        "gain1": 572,
+        "gain7": 2961
+      },
+      "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "created": "2026-08-12",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 24,
+      "independent_sources": 1,
+      "age_days": 79,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "plugin87/ux-ui-agent-skills",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3058,
+        "gain30": 1587,
+        "gain7": 189,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Turn Claude into a senior design architect: DTCG tokens, 52 components, WCAG 2.2 AA-AAA, 138 design systems, any-framework code, and 50 objective gates that fail the build instead of faking success.",
+      "created": "2026-03-16",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 23.5,
+      "independent_sources": 1,
+      "age_days": 228,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 117217,
+        "gain30": 1447,
+        "gain7": 400,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "JavaScript 3D Library.",
+      "created": "2010-03-23",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 23.5,
+      "independent_sources": 1,
+      "age_days": 6065,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cobanov/PS5LM",
+      "sources": {
+        "hacker-news": {
+          "points": 375,
+          "id": "50122431",
+          "date": "2026-10-16"
+        }
+      },
+      "signals": {
+        "stars": 742,
+        "gain7": 94,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 742
+      },
+      "created": "2026-10-01",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 23.1,
+      "independent_sources": 1,
+      "age_days": 29,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "browser-use/jev-ultrafast",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 23919,
+        "gain7": 407,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 2153,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Fastest and cheapest web agent",
+      "created": "2026-09-16",
+      "pushed": "2026-09-18",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 22.4,
+      "independent_sources": 0,
+      "age_days": 44,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "finereli/whatsapp-mcp",
+      "sources": {
+        "hacker-news": {
+          "points": 157,
+          "id": "50145715",
+          "date": "2026-10-18"
+        }
+      },
+      "signals": {
+        "stars": 396,
+        "gain7": 70,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30_source": "all stars since launch",
+        "gain30": 396
+      },
+      "created": "2026-10-18",
+      "pushed": "2026-10-24",
+      "archived": false,
+      "last_featured": null,
+      "score": 22.3,
+      "independent_sources": 1,
+      "age_days": 12,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "qist/tvbox",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 12455,
+        "gain30": 921,
+        "gain7": 228,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "OK影视、tvbox配置文件，如果喜欢，请Fork自用。使用前请仔细阅读仓库说明，一旦使用将被视为你已了解。",
+      "created": "2023-08-29",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 22.1,
+      "independent_sources": 1,
+      "age_days": 1158,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Zagitta/gpu-unlock",
+      "sources": {
+        "hacker-news": {
+          "points": 350,
+          "id": "50219700",
+          "date": "2026-10-24"
+        },
+        "github-search": {
+          "45d": true
+        },
+        "findarepo": {
+          "2026-10-30": 4
+        }
+      },
+      "signals": {
+        "stars": 13321,
+        "gain30_source": "all stars since launch",
+        "gain30": 13321
+      },
+      "description": "Your GeForce runs AI at half speed. This fixes it for 20/30/40 series cards. Up to 2× FP16 / BF16 / TF32 tensor throughput",
+      "created": "2026-10-18",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 21.9,
+      "independent_sources": 2,
+      "age_days": 12,
+      "floors_failed": []
+    },
+    {
+      "repo": "jaredpalmer/kev",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 9712,
+        "gain7": 239,
+        "gain7_source": "our snapshot 2026-10-23",
+        "gain30": 1445,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "description": "Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own",
+      "created": "2026-09-17",
+      "pushed": "2026-10-22",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 21.1,
+      "independent_sources": 0,
+      "age_days": 43,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "androoAGI/starnet",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 1657,
+        "gain30": 941,
+        "gain7": 76,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "A living pixel-art station where real AI agents do real work. Local-first desktop agent harness - bring your own key, watch your crew actually run.",
+      "created": "2026-06-14",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 21,
+      "independent_sources": 1,
+      "age_days": 138,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Ebony-Vinyl/dsh-our-free-model",
+      "sources": {
+        "trendshift": {
+          "monthly": 3
+        },
+        "github-search": {
+          "45d": true
+        },
+        "findarepo": {
+          "2026-10-30": 3
+        }
+      },
+      "signals": {
+        "stars": 52104,
+        "gain7": 13810,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no logi…",
+      "created": "2026-09-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 20.5,
+      "independent_sources": 2,
+      "age_days": 36,
+      "floors_failed": []
+    },
+    {
+      "repo": "macro-inc/macro",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 5696,
+        "gain1": 379
+      },
+      "description": "Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.",
+      "created": "2025-11-08",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 20.1,
+      "independent_sources": 1,
+      "age_days": 356,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KnifeLemon/Filee",
+      "sources": {
+        "trendshift": {
+          "daily": 21,
+          "monthly": 17
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 18083,
+        "gain7": 7386,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Free, open-source file converter. Convert 263 formats offline by drag & drop — images, PDF, Word, Excel, PowerPoint, HWP/HWPX, video, aud…",
+      "created": "2026-09-29",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 19.7,
+      "independent_sources": 1,
+      "age_days": 31,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "morluto/rea",
+      "sources": {
+        "trendshift": {
+          "daily": 18,
+          "monthly": 1
+        },
+        "findarepo": {
+          "2026-10-30": 1
+        }
+      },
+      "signals": {
+        "stars": 410246,
+        "gain7": 40104,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-04-14",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 19.5,
+      "independent_sources": 2,
+      "age_days": 199,
+      "floors_failed": [
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "milind-soni/OpenMausBot",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 15
+        }
+      },
+      "signals": {
+        "stars": 7943,
+        "gain1": 899,
+        "gain7": 2441
+      },
+      "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
+      "created": "2026-08-11",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 18.6,
+      "independent_sources": 2,
+      "age_days": 80,
+      "floors_failed": []
+    },
+    {
+      "repo": "Alishahryar1/free-claude-code",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 65069,
+        "gain30": 9312
+      },
+      "description": "Use Claude Code, Codex, Antigravity, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now from the browser with native browser sessions (multi-harness + multi-model) like OpenClaw (voice supported + ToS friendly)",
+      "created": "2026-01-28",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 18.3,
+      "independent_sources": 1,
+      "age_days": 275,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "mvschwarz/openrig",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 8314,
+        "gain30": 5720
+      },
+      "description": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
+      "created": "2026-04-01",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 17.4,
+      "independent_sources": 1,
+      "age_days": 212,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "kksimp/Mac.apk",
+      "sources": {
+        "hacker-news": {
+          "points": 348,
+          "id": "50154624",
+          "date": "2026-10-19"
+        }
+      },
+      "signals": {
+        "stars": 3714,
+        "gain7": 1112,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-05-19",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 17.4,
+      "independent_sources": 1,
+      "age_days": 164,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ethanplusai/harvey",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 3357,
+        "gain1": 248,
+        "gain7": 1135,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Autonomous AI sales agent powered by Claude Code or Codex. Finds prospects, writes cold emails, sends campaigns, handles replies, books meetings. No API keys needed — runs on your Claude or Codex subscriptions.",
+      "created": "2026-03-12",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 17,
+      "independent_sources": 1,
+      "age_days": 232,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "AstrBotDevs/AstrBot",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 44982,
+        "gain30": 3752
+      },
+      "description": "AI Agent Assistant &amp; development framework that integrates lots of IM platforms, LLMs, plugins and AI feature, and can be your openclaw alternative. ✨",
+      "created": "2022-12-08",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 16.7,
+      "independent_sources": 1,
+      "age_days": 1422,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "yetone/magpie",
+      "sources": {
+        "trendshift": {
+          "monthly": 10
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 25960,
+        "gain7": 5960,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "created": "2026-09-23",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 16.7,
+      "independent_sources": 1,
+      "age_days": 37,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "danyuchn/asd-ste100-skill",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 5844,
+        "gain30": 3556
+      },
+      "description": "ASD-STE100 Simplified Technical English rules, repurposed as a Claude Code skill for rewriting ambiguous agent-facing English.",
+      "created": "2026-07-20",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 16.6,
+      "independent_sources": 1,
+      "age_days": 102,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "oosexgang/hakios-xnu-kernel",
+      "sources": {
+        "hacker-news": {
+          "points": 536,
+          "id": "50196718",
+          "date": "2026-10-22"
+        }
+      },
+      "signals": {
+        "stars": 1960,
+        "gain30_source": "all stars since launch",
+        "gain30": 1960
+      },
+      "created": "2026-10-22",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 16.5,
+      "independent_sources": 1,
+      "age_days": 8,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "HeyPuter/everything",
+      "sources": {
+        "trendshift": {
+          "daily": 4
+        }
+      },
+      "signals": {
+        "stars": 5829,
+        "gain30_source": "all stars since launch",
+        "gain30": 5829
+      },
+      "created": "2026-10-13",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 16.4,
+      "independent_sources": 1,
+      "age_days": 17,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ranxianglei/billion-context",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 3419,
+        "gain30": 2991
+      },
+      "description": "A context-compression plugin for month-long single sessions (billions of tokens) ,small context windows (a 100K context is enough) and token savings (5x fewer tokens) .上下文压缩插件，月级长会话会话， 兼顾小窗口(100k上下文足矣)省token(省5倍token) . billion-context is all you need",
+      "created": "2026-08-06",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 16.3,
+      "independent_sources": 1,
+      "age_days": 85,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "CopilotKit/OpenBot",
+      "sources": {
+        "github-trending": {
+          "daily": true,
+          "weekly": true
+        },
+        "trendshift": {
+          "daily": 25
+        }
+      },
+      "signals": {
+        "stars": 8459,
+        "gain1": 707,
+        "gain7": 1472
+      },
+      "description": "Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with every action decided before it happens and recorded after. Bring any AG-UI agent.",
+      "created": "2026-08-17",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 15.9,
+      "independent_sources": 2,
+      "age_days": 74,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "microsoft/skill-recorder",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 5559,
+        "gain7": 1295
+      },
+      "description": "Desktop app that records your on-screen work session and uses the GitHub Copilot SDK to reconstruct it as an intent + ordered steps, then builds a reusable Skill or Automation for Microsoft Autopilots like Scout, Microsoft Copilot Cowork, or Copilot Studio.",
+      "created": "2026-07-29",
+      "pushed": "2026-09-21",
+      "archived": false,
+      "last_featured": null,
+      "score": 15.6,
+      "independent_sources": 1,
+      "age_days": 93,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "mikroverk/esp32sim",
+      "sources": {
+        "hacker-news": {
+          "points": 212,
+          "id": "50131189",
+          "date": "2026-10-17"
+        }
+      },
+      "signals": {
+        "stars": 908,
+        "gain7": 279,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-08-25",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 15.6,
+      "independent_sources": 1,
+      "age_days": 66,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "flutter/flutter",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 180677,
+        "gain30": 1993
+      },
+      "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      "created": "2015-03-06",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 15.5,
+      "independent_sources": 1,
+      "age_days": 4256,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Droid-Deck/DroidDeck",
+      "sources": {
+        "trendshift": {
+          "monthly": 19
+        },
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 16339,
+        "gain7": 3297,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "DroidDeck brings the SteamOS experience to Android",
+      "created": "2026-09-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": "2026-10-23",
+      "score": 15.5,
+      "independent_sources": 1,
+      "age_days": 36,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "lightpanda-io/browser",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 37869,
+        "gain1": 559
+      },
+      "description": "Lightpanda: the headless browser designed for AI and automation",
+      "created": "2023-02-07",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 15.3,
+      "independent_sources": 1,
+      "age_days": 1361,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "herdrdev/herdr-app",
+      "sources": {
+        "trendshift": {
+          "daily": 16
+        },
+        "hacker-news": {
+          "points": 244,
+          "id": "50298436",
+          "date": "2026-10-30"
+        }
+      },
+      "signals": {
+        "stars": 582,
+        "gain30_source": "all stars since launch",
+        "gain30": 582
+      },
+      "created": "2026-10-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 15.3,
+      "independent_sources": 2,
+      "age_days": 14,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d"
+      ]
+    },
+    {
+      "repo": "yihui-dev/awesome-opus5-5-videos",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 12660,
+        "gain7": 3150,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "A growing collection of viral videos made with Claude Opus 5.5 and the prompts behind them. Watch each original next to a live remake on …",
+      "created": "2026-09-27",
+      "pushed": "2026-10-13",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 15.1,
+      "independent_sources": 0,
+      "age_days": 33,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "TauricResearch/TradingAgents",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 118533,
+        "gain7": 5557
+      },
+      "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "created": "2024-12-28",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 14.9,
+      "independent_sources": 1,
+      "age_days": 671,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "expo/skills",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 3783,
+        "gain1": 233,
+        "gain7": 791,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "A collection of AI agent skills for working with Expo projects and Expo Application Services",
+      "created": "2025-11-30",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 14.6,
+      "independent_sources": 1,
+      "age_days": 334,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "higgsfield-ai/skills",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 1817,
+        "gain7": 455
+      },
+      "created": "2026-04-09",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 14.4,
+      "independent_sources": 1,
+      "age_days": 204,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Tencent-Hunyuan/Hy-Memory",
+      "sources": {
+        "trendshift": {
+          "daily": 24
+        }
+      },
+      "signals": {
+        "stars": 1873,
+        "gain30_source": "all stars since launch",
+        "gain30": 1873
+      },
+      "created": "2026-10-15",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 14.4,
+      "independent_sources": 1,
+      "age_days": 15,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "InukaAsith/TwinDesk",
+      "sources": {
+        "trendshift": {
+          "daily": 9
+        }
+      },
+      "signals": {
+        "stars": 1721,
+        "gain30_source": "all stars since launch",
+        "gain30": 1721
+      },
+      "created": "2026-10-14",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 14.3,
+      "independent_sources": 1,
+      "age_days": 16,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "citrolabs/ego-lite",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 20804,
+        "gain7": 1897
+      },
+      "description": "The fastest browser for AI agents to run browser automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
+      "created": "2026-04-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 14.1,
+      "independent_sources": 1,
+      "age_days": 197,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "l0ng-ai/openidea",
+      "sources": {
+        "trendshift": {
+          "daily": 7
+        }
+      },
+      "signals": {
+        "stars": 1477,
+        "gain30_source": "all stars since launch",
+        "gain30": 1477
+      },
+      "created": "2026-10-21",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 14,
+      "independent_sources": 1,
+      "age_days": 9,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "blader/humanizer",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 62559,
+        "gain7": 2784
+      },
+      "description": "Agent skill that removes signs of AI-generated writing from text",
+      "created": "2026-01-18",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 13.9,
+      "independent_sources": 1,
+      "age_days": 285,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "cline/cline",
+      "sources": {
+        "trendshift": {
+          "daily": 29,
+          "monthly": 29
+        }
+      },
+      "signals": {
+        "stars": 71063,
+        "gain30": 1353,
+        "gain30_source": "our snapshot 2026-10-02"
+      },
+      "created": "2024-07-06",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.8,
+      "independent_sources": 1,
+      "age_days": 846,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "MemPalace/mempalace",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 60128,
+        "gain1": 357
+      },
+      "description": "The best-benchmarked open-source AI memory system. And it's free.",
+      "created": "2026-04-05",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": "2026-07-31",
+      "score": 13.7,
+      "independent_sources": 1,
+      "age_days": 208,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anomalyco/opencode",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 223174,
+        "gain7": 3292
+      },
+      "description": "The open source coding agent.",
+      "created": "2025-04-30",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.7,
+      "independent_sources": 1,
+      "age_days": 548,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "sveltejs/svelte",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 88492,
+        "gain30": 704
+      },
+      "description": "web development for the rest of us",
+      "created": "2016-11-20",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.7,
+      "independent_sources": 1,
+      "age_days": 3631,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "FrigadeHQ/hob",
+      "sources": {
+        "hacker-news": {
+          "points": 175,
+          "id": "50246238",
+          "date": "2026-10-26"
+        }
+      },
+      "signals": {
+        "stars": 390,
+        "gain30_source": "all stars since launch",
+        "gain30": 390
+      },
+      "created": "2026-10-14",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.6,
+      "independent_sources": 1,
+      "age_days": 16,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ai-job-search-dev/ai-job-search",
+      "sources": {
+        "trendshift": {
+          "monthly": 9
+        }
+      },
+      "signals": {
+        "stars": 67643,
+        "gain7": 3800,
+        "gain7_source": "findarepo"
+      },
+      "created": "2026-03-18",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 13.5,
+      "independent_sources": 1,
+      "age_days": 226,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "dsmurrell/onkey",
+      "sources": {
+        "hacker-news": {
+          "points": 236,
+          "id": "50195488",
+          "date": "2026-10-22"
+        }
+      },
+      "signals": {
+        "stars": 360,
+        "gain30_source": "all stars since launch",
+        "gain30": 360
+      },
+      "created": "2026-10-18",
+      "pushed": "2026-10-23",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.5,
+      "independent_sources": 1,
+      "age_days": 12,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "microsoft/TokenEconomizer",
+      "sources": {
+        "trendshift": {
+          "daily": 14
+        }
+      },
+      "signals": {
+        "stars": 1032,
+        "gain30_source": "all stars since launch",
+        "gain30": 1032
+      },
+      "created": "2026-10-13",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.4,
+      "independent_sources": 1,
+      "age_days": 17,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "jakubkrehel/skills",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 9274,
+        "gain7": 980
+      },
+      "description": "A collection of agent skills that help you build great interfaces.",
+      "created": "2026-07-10",
+      "pushed": "2026-10-25",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.3,
+      "independent_sources": 1,
+      "age_days": 112,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ulsklyc/yuvomi",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 2144,
+        "gain7": 387
+      },
+      "description": "One home instead of many subscriptions. Yuvomi is a self-hosted family planner: tasks, calendar, budget, meals, shopping, health and more in one PWA on your own server or NAS. Docker, Podman, TrueNAS, Umbrel, Unraid. No tracking, MIT.",
+      "created": "2026-03-24",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 13.1,
+      "independent_sources": 1,
+      "age_days": 220,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "lfnovo/open-notebook",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 40975,
+        "gain1": 220
+      },
+      "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+      "created": "2024-10-21",
+      "pushed": "2026-10-05",
+      "archived": false,
+      "last_featured": null,
+      "score": 13,
+      "independent_sources": 1,
+      "age_days": 739,
+      "floors_failed": [
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "openai/codex",
+      "sources": {
+        "hacker-news": {
+          "points": 176,
+          "id": "50133231",
+          "date": "2026-10-17"
+        }
+      },
+      "signals": {
+        "stars": 131659,
+        "gain7": 1091,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2025-04-13",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 13,
+      "independent_sources": 1,
+      "age_days": 565,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "algorithm-visualizer/algorithm-visualizer",
+      "sources": {
+        "github-trending": {
+          "monthly": true
+        }
+      },
+      "signals": {
+        "stars": 49295,
+        "gain30": 460
+      },
+      "description": "🎆Interactive Online Platform that Visualizes Algorithms from Code",
+      "created": "2016-05-15",
+      "pushed": "2023-11-18",
+      "archived": false,
+      "last_featured": null,
+      "score": 12.9,
+      "independent_sources": 1,
+      "age_days": 3820,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "boykopovar/AnyPS5",
+      "sources": {
+        "trendshift": {
+          "monthly": 4
+        }
+      },
+      "signals": {
+        "stars": 49691,
+        "gain7": 2591,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-08-03",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-16",
+      "score": 12.9,
+      "independent_sources": 1,
+      "age_days": 88,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-16 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "SheepSeb/tinyworldformer",
+      "sources": {
+        "hacker-news": {
+          "points": 232,
+          "id": "50295450",
+          "date": "2026-10-29"
+        }
+      },
+      "signals": {
+        "stars": 244,
+        "gain30_source": "all stars since launch",
+        "gain30": 244
+      },
+      "created": "2026-10-22",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 12.8,
+      "independent_sources": 1,
+      "age_days": 8,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vladocar/Sumi.css",
+      "sources": {
+        "hacker-news": {
+          "points": 105,
+          "id": "50180039",
+          "date": "2026-10-21"
+        }
+      },
+      "signals": {
+        "stars": 219,
+        "gain30_source": "all stars since launch",
+        "gain30": 219
+      },
+      "created": "2026-10-20",
+      "pushed": "2026-10-23",
+      "archived": false,
+      "last_featured": null,
+      "score": 12.6,
+      "independent_sources": 1,
+      "age_days": 10,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KeygraphHQ/shannon",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 50502,
+        "gain1": 334,
+        "gain7": 1260,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "Shannon is an AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.",
+      "created": "2025-09-27",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 12.5,
+      "independent_sources": 1,
+      "age_days": 398,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "storytold/artcraft",
+      "sources": {
+        "trendshift": {
+          "monthly": 5
+        }
+      },
+      "signals": {
+        "stars": 37736,
+        "gain7": 1927,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2022-03-31",
+      "pushed": "2026-10-23",
+      "archived": false,
+      "last_featured": "2026-10-09",
+      "score": 12.5,
+      "independent_sources": 1,
+      "age_days": 1674,
+      "floors_failed": [
+        "fewer than 2 independent sources",
+        "featured 2026-10-09 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "aws/agent-toolkit-for-aws",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 3350,
+        "gain7": 413
+      },
+      "description": "Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS",
+      "created": "2026-04-23",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 12.4,
+      "independent_sources": 1,
+      "age_days": 190,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "google-pytorch/torch_tpu",
+      "sources": {
+        "hacker-news": {
+          "points": 380,
+          "id": "50169053",
+          "date": "2026-10-20"
+        }
+      },
+      "signals": {
+        "stars": 799,
+        "gain7": 127,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-03-09",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 12.3,
+      "independent_sources": 1,
+      "age_days": 235,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Saffsanity/sill",
+      "sources": {
+        "hacker-news": {
+          "points": 275,
+          "id": "50112739",
+          "date": "2026-10-16"
+        }
+      },
+      "signals": {
+        "stars": 4256,
+        "gain7": 324,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-09-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-10-23",
+      "score": 12.3,
+      "independent_sources": 1,
+      "age_days": 38,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-10-23 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "google-gemini/gemini-cli",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 108627,
+        "gain7": 1236
+      },
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "created": "2025-04-17",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": "2026-08-21",
+      "score": 12.2,
+      "independent_sources": 1,
+      "age_days": 561,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Crosstalk-Solutions/project-nomad",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 41319,
+        "gain1": 112
+      },
+      "description": "Project NOMAD is an offline-first knowledge and education server. Wikipedia, thousands of books, courses, maps, and optional local AI, all running on hardware you own with no internet required.",
+      "created": "2025-06-24",
+      "pushed": "2026-10-05",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": 493,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "AdguardTeam/AdGuardHome",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 37935,
+        "gain1": 107
+      },
+      "description": "Network-wide ads &amp; trackers blocking DNS server",
+      "created": "2016-07-06",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": 3768,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ErTasselli/OpenTerminal",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 2139,
+        "gain1": 37
+      },
+      "description": "A Terminal-style trading dashboard built entirely on free public market data. No API keys, no subscriptions.",
+      "created": "2026-07-28",
+      "pushed": "2026-10-06",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": 94,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 38300,
+        "gain7": 778
+      },
+      "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+      "created": "2024-01-08",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": 1026,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "IsuruMaduranga/harness-engineering-101",
+      "sources": {
+        "hacker-news": {
+          "points": 132,
+          "id": "50151390",
+          "date": "2026-10-19"
+        }
+      },
+      "signals": {
+        "stars": 615,
+        "gain7": 92,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-09-06",
+      "pushed": "2026-10-19",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.7,
+      "independent_sources": 1,
+      "age_days": 54,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "tywr/Nordwand-Mono",
+      "sources": {
+        "hacker-news": {
+          "points": 570,
+          "id": "50141581",
+          "date": "2026-10-18"
+        }
+      },
+      "signals": {
+        "stars": 1707,
+        "gain7": 159,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-03-28",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.6,
+      "independent_sources": 1,
+      "age_days": 216,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 95905,
+        "gain7": 768
+      },
+      "description": "A high-throughput and memory-efficient inference and serving engine for LLMs",
+      "created": "2023-02-09",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.5,
+      "independent_sources": 1,
+      "age_days": 1359,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "langfuse/langfuse",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 36752,
+        "gain7": 516
+      },
+      "description": "🪢 Open source agent evals &amp; observability: Trace, evaluate, and improve LLM applications with one open platform.",
+      "created": "2023-05-18",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.1,
+      "independent_sources": 1,
+      "age_days": 1261,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "php/php-src",
+      "sources": {
+        "hacker-news": {
+          "points": 1107,
+          "id": "50180873",
+          "date": "2026-10-21"
+        }
+      },
+      "signals": {
+        "stars": 41732,
+        "gain7": 282,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2011-06-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11.1,
+      "independent_sources": 1,
+      "age_days": 5615,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "mitmproxy/mitmproxy",
+      "sources": {
+        "hacker-news": {
+          "points": 628,
+          "id": "50189232",
+          "date": "2026-10-21"
+        }
+      },
+      "signals": {
+        "stars": 46488,
+        "gain7": 269,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2010-02-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 11,
+      "independent_sources": 1,
+      "age_days": 6100,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "langchain-ai/deepagents",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 30784,
+        "gain1": 60
+      },
+      "description": "The batteries-included agent harness.",
+      "created": "2025-07-27",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.8,
+      "independent_sources": 1,
+      "age_days": 460,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "maxilevi/project-hedra",
+      "sources": {
+        "hacker-news": {
+          "points": 241,
+          "id": "50199389",
+          "date": "2026-10-22"
+        }
+      },
+      "signals": {
+        "stars": 190,
+        "gain7": 33,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2019-01-07",
+      "pushed": "2026-10-22",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.6,
+      "independent_sources": 1,
+      "age_days": 2853,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "anubhavmalhotra/r2d2-tv",
+      "sources": {
+        "hacker-news": {
+          "points": 112,
+          "id": "50202865",
+          "date": "2026-10-23"
+        }
+      },
+      "signals": {
+        "stars": 68,
+        "gain30_source": "all stars since launch",
+        "gain30": 68
+      },
+      "created": "2026-10-21",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.5,
+      "independent_sources": 1,
+      "age_days": 9,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "open-gsd/gsd-core",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 11026,
+        "gain1": 42
+      },
+      "description": "Git. Ship. Done - Core",
+      "created": "2026-05-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.4,
+      "independent_sources": 1,
+      "age_days": 161,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "github/awesome-copilot",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 40588,
+        "gain1": 45
+      },
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
+      "created": "2025-06-11",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.3,
+      "independent_sources": 1,
+      "age_days": 506,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "omnara-ai/omnara",
+      "sources": {
+        "hacker-news": {
+          "points": 114,
+          "id": "50183892",
+          "date": "2026-10-21"
+        }
+      },
+      "signals": {
+        "stars": 3316,
+        "gain7": 118,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2025-07-09",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.3,
+      "independent_sources": 1,
+      "age_days": 478,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "shihabal3amri/DiPlay",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 12855,
+        "gain7": 728,
+        "gain7_source": "findarepo (per-day x 7)"
+      },
+      "description": "Independent CarPlay receiver for compatible Android head units. Wired and wireless public preview.",
+      "created": "2026-09-24",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 10.2,
+      "independent_sources": 0,
+      "age_days": 36,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "QwenLM/qwen-code",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 28829,
+        "gain1": 40
+      },
+      "description": "An open-source AI coding agent that lives in your terminal.",
+      "created": "2025-06-26",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 10.1,
+      "independent_sources": 1,
+      "age_days": 491,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "QwenAudio/qwen-audio-agent",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 3080,
+        "gain1": 18
+      },
+      "description": "A realtime voice runtime that keeps Agents talking, working, and present. Real-time Voice Runtime for AI Agents",
+      "created": "2026-07-27",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.5,
+      "independent_sources": 1,
+      "age_days": 95,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "openai/plugins",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 7669,
+        "gain1": 23
+      },
+      "description": "OpenAI Plugins",
+      "created": "2026-03-04",
+      "pushed": "2026-10-08",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.5,
+      "independent_sources": 1,
+      "age_days": 240,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "NomaDamas/k-skill",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 8215,
+        "gain7": 163
+      },
+      "description": "한국인을 위한 스킬 모음집 - 에이전트를 한국인으로",
+      "created": "2026-03-24",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.5,
+      "independent_sources": 1,
+      "age_days": 220,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "openai/openai-cli",
+      "sources": {
+        "hacker-news": {
+          "points": 244,
+          "id": "50191507",
+          "date": "2026-10-22"
+        }
+      },
+      "signals": {
+        "stars": 1142,
+        "gain7": 58,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-05-01",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.5,
+      "independent_sources": 1,
+      "age_days": 182,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "kirodotdev/KiroCrew",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 4654,
+        "gain1": 19
+      },
+      "description": "A persistent workspace for development work that self-improves and continues beyond one session.",
+      "created": "2026-07-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.4,
+      "independent_sources": 1,
+      "age_days": 106,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist"
+      ]
+    },
+    {
+      "repo": "microg/GmsCore",
+      "sources": {
+        "hacker-news": {
+          "points": 431,
+          "id": "50162177",
+          "date": "2026-10-20"
+        }
+      },
+      "signals": {
+        "stars": 15120,
+        "gain7": 85,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2014-04-23",
+      "pushed": "2026-10-26",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.4,
+      "independent_sources": 1,
+      "age_days": 4573,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KKKKhazix/AIHOT",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 8932,
+        "gain7": 445,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+      "created": "2026-09-28",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.4,
+      "independent_sources": 0,
+      "age_days": 32,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "home-assistant/home-assistant.io",
+      "sources": {
+        "hacker-news": {
+          "points": 251,
+          "id": "50124251",
+          "date": "2026-10-16"
+        }
+      },
+      "signals": {
+        "stars": 10070,
+        "gain7": 75,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2014-12-21",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.2,
+      "independent_sources": 1,
+      "age_days": 4331,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KatrielMoses/voidaccess",
+      "sources": {
+        "hacker-news": {
+          "points": 188,
+          "id": "50167286",
+          "date": "2026-10-20"
+        }
+      },
+      "signals": {
+        "stars": 957,
+        "gain7": 44,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-04-29",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 9.1,
+      "independent_sources": 1,
+      "age_days": 184,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "robbietilton/Compositor",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 18207,
+        "gain7": 451,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "The Photoshop alternative for Mac",
+      "created": "2026-09-16",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 9,
+      "independent_sources": 0,
+      "age_days": 44,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "EveryInc/compound-engineering-plugin",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 25784,
+        "gain1": 20,
+        "gain7": 108,
+        "gain7_source": "findarepo"
+      },
+      "description": "Official Compound Engineering plugin for Claude Code, Codex, Cursor, and more",
+      "created": "2025-10-09",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "star_check": "findarepo: looks organic",
+      "last_featured": null,
+      "score": 8.7,
+      "independent_sources": 1,
+      "age_days": 386,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "google/brotli",
+      "sources": {
+        "github-trending": {
+          "weekly": true
+        }
+      },
+      "signals": {
+        "stars": 15065,
+        "gain7": 106
+      },
+      "description": "Brotli compression format",
+      "created": "2014-10-09",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 8.7,
+      "independent_sources": 1,
+      "age_days": 4404,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "NVIDIA-NeMo/Speech",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 18655,
+        "gain1": 14
+      },
+      "description": "A scalable generative AI framework built for researchers and developers working on Large Language Models, Multimodal, and Speech AI (Automatic Speech Recognition and Text-to-Speech)",
+      "created": "2019-08-05",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 8.6,
+      "independent_sources": 1,
+      "age_days": 2643,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "zion-sati/NetWasm",
+      "sources": {
+        "hacker-news": {
+          "points": 161,
+          "id": "50175510",
+          "date": "2026-10-21"
+        }
+      },
+      "signals": {
+        "stars": 278,
+        "gain7": 18,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2026-08-10",
+      "pushed": "2026-10-28",
+      "archived": false,
+      "last_featured": null,
+      "score": 8.1,
+      "independent_sources": 1,
+      "age_days": 81,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "zai-org/ZCode",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 8378,
+        "gain7": 227,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "description": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
+      "created": "2026-09-20",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": "2026-09-25",
+      "score": 8.1,
+      "independent_sources": 0,
+      "age_days": 40,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "on the blocklist",
+        "featured 2026-09-25 (8-week cool-down)"
+      ]
+    },
+    {
+      "repo": "phaserjs/phaser",
+      "sources": {
+        "github-trending": {
+          "daily": true
+        }
+      },
+      "signals": {
+        "stars": 40603,
+        "gain1": 7
+      },
+      "description": "Phaser is a fun, free and fast 2D game framework for making HTML5 games for desktop and mobile web browsers, supporting Canvas and WebGL rendering.",
+      "created": "2013-04-12",
+      "pushed": "2026-08-21",
+      "archived": false,
+      "last_featured": null,
+      "score": 7.6,
+      "independent_sources": 1,
+      "age_days": 4949,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "0x23/MicroManipulatorStepper",
+      "sources": {
+        "hacker-news": {
+          "points": 222,
+          "id": "50140001",
+          "date": "2026-10-18"
+        }
+      },
+      "signals": {
+        "stars": 2223,
+        "gain7": 22,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2025-08-28",
+      "pushed": "2026-10-11",
+      "archived": false,
+      "last_featured": null,
+      "score": 7.6,
+      "independent_sources": 1,
+      "age_days": 428,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "VikOlliver/RepRapMicron",
+      "sources": {
+        "hacker-news": {
+          "points": 445,
+          "id": "50141076",
+          "date": "2026-10-18"
+        }
+      },
+      "signals": {
+        "stars": 319,
+        "gain7": 14,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2024-04-01",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 7.5,
+      "independent_sources": 1,
+      "age_days": 942,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "valimised/ivxv",
+      "sources": {
+        "hacker-news": {
+          "points": 234,
+          "id": "50127586",
+          "date": "2026-10-17"
+        }
+      },
+      "signals": {
+        "stars": 515,
+        "gain7": 7,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2017-09-05",
+      "pushed": "2025-10-03",
+      "archived": false,
+      "last_featured": null,
+      "score": 6.1,
+      "independent_sources": 1,
+      "age_days": 3342,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "ardiri/palmos-lemmings",
+      "sources": {
+        "hacker-news": {
+          "points": 159,
+          "id": "50143536",
+          "date": "2026-10-18"
+        }
+      },
+      "signals": {
+        "stars": 180,
+        "gain7": 2,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2022-05-18",
+      "pushed": "2026-10-20",
+      "archived": false,
+      "last_featured": null,
+      "score": 4.7,
+      "independent_sources": 1,
+      "age_days": 1626,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "flamerix-ai/c3905705cc4205e5de3011fa2e74efce",
+      "sources": {
+        "hacker-news": {
+          "points": 567,
+          "id": "50284255",
+          "date": "2026-10-29"
+        }
+      },
+      "signals": {},
+      "enrich_error": true,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": null,
+      "floors_failed": [
+        "star count unknown",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "commit date unknown"
+      ]
+    },
+    {
+      "repo": "obsproject/obs-studio",
+      "sources": {
+        "hacker-news": {
+          "points": 474,
+          "id": "50218430",
+          "date": "2026-10-24"
+        }
+      },
+      "signals": {
+        "stars": 78607
+      },
+      "created": "2013-10-01",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 4777,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "notaroomba/keybytes",
+      "sources": {
+        "hacker-news": {
+          "points": 318,
+          "id": "50228115",
+          "date": "2026-10-25"
+        }
+      },
+      "signals": {
+        "stars": 397
+      },
+      "created": "2025-12-19",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 315,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "microsoft/pylance-release",
+      "sources": {
+        "hacker-news": {
+          "points": 268,
+          "id": "50248371",
+          "date": "2026-10-26"
+        }
+      },
+      "signals": {
+        "stars": 2162
+      },
+      "created": "2020-05-21",
+      "pushed": "2026-10-22",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 2353,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "KrushnaVardhanReddy/PaperPilot",
+      "sources": {
+        "hacker-news": {
+          "points": 236,
+          "id": "50238739",
+          "date": "2026-10-26"
+        }
+      },
+      "signals": {
+        "stars": 723
+      },
+      "created": "2026-09-28",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 32,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ihhub/fheroes2",
+      "sources": {
+        "hacker-news": {
+          "points": 220,
+          "id": "50230384",
+          "date": "2026-10-25"
+        }
+      },
+      "signals": {
+        "stars": 3698
+      },
+      "created": "2019-08-30",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 2618,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "DilawarShafiq/nietzschian-debugger",
+      "sources": {
+        "hacker-news": {
+          "points": 218,
+          "id": "50247493",
+          "date": "2026-10-26"
+        }
+      },
+      "signals": {
+        "stars": 528
+      },
+      "created": "2026-02-24",
+      "pushed": "2026-10-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 248,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "ClickHouse/ClickBench",
+      "sources": {
+        "hacker-news": {
+          "points": 197,
+          "id": "50205816",
+          "date": "2026-10-23"
+        }
+      },
+      "signals": {
+        "stars": 1148
+      },
+      "created": "2022-07-11",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 1572,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "openssl/openssl",
+      "sources": {
+        "hacker-news": {
+          "points": 188,
+          "id": "50208099",
+          "date": "2026-10-23"
+        }
+      },
+      "signals": {
+        "stars": 31125
+      },
+      "created": "2013-01-15",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 5036,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "slee-persis/GVS5H",
+      "sources": {
+        "hacker-news": {
+          "points": 185,
+          "id": "50228167",
+          "date": "2026-10-25"
+        }
+      },
+      "signals": {
+        "stars": 1119
+      },
+      "created": "2026-08-26",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 65,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "e-n-f/if-then-else",
+      "sources": {
+        "hacker-news": {
+          "points": 171,
+          "id": "50233059",
+          "date": "2026-10-25"
+        }
+      },
+      "signals": {
+        "stars": 370
+      },
+      "created": "2019-02-18",
+      "pushed": "2020-12-13",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 2811,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "da-luce/astroterm",
+      "sources": {
+        "hacker-news": {
+          "points": 159,
+          "id": "50270651",
+          "date": "2026-10-28"
+        }
+      },
+      "signals": {
+        "stars": 2320
+      },
+      "created": "2023-06-16",
+      "pushed": "2026-04-01",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 1232,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "picocss/pico",
+      "sources": {
+        "hacker-news": {
+          "points": 158,
+          "id": "50298964",
+          "date": "2026-10-30"
+        }
+      },
+      "signals": {
+        "stars": 16827
+      },
+      "created": "2019-11-15",
+      "pushed": "2026-10-04",
+      "archived": true,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 2541,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "archived"
+      ]
+    },
+    {
+      "repo": "otya128/winevdm",
+      "sources": {
+        "hacker-news": {
+          "points": 149,
+          "id": "50253529",
+          "date": "2026-10-27"
+        }
+      },
+      "signals": {
+        "stars": 3626
+      },
+      "created": "2015-09-22",
+      "pushed": "2026-10-24",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 4056,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "golang/go",
+      "sources": {
+        "hacker-news": {
+          "points": 139,
+          "id": "50160877",
+          "date": "2026-10-20"
+        }
+      },
+      "signals": {
+        "stars": 139441,
+        "gain7": -42,
+        "gain7_source": "our snapshot 2026-10-23"
+      },
+      "created": "2014-08-19",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 3,
+      "independent_sources": 1,
+      "age_days": 4455,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "Donchitos/Claude-Code-Game-Studios",
+      "sources": {
+        "trendshift": {
+          "daily": 3
+        }
+      },
+      "signals": {
+        "stars": 29960
+      },
+      "created": "2026-02-12",
+      "pushed": "2026-10-19",
+      "archived": false,
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": 260,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "skyzh/tiny-llm",
+      "sources": {
+        "trendshift": {
+          "daily": 17
+        }
+      },
+      "signals": {
+        "stars": 5178
+      },
+      "created": "2025-04-19",
+      "pushed": "2026-09-27",
+      "archived": false,
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": 559,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "no commit in 30 days"
+      ]
+    },
+    {
+      "repo": "JimLiu/baoyu-design",
+      "sources": {
+        "trendshift": {
+          "daily": 20
+        }
+      },
+      "signals": {
+        "stars": 5364
+      },
+      "created": "2026-06-07",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": 145,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "0x5am5/hybrid-gateway",
+      "sources": {
+        "trendshift": {
+          "daily": 28,
+          "monthly": 28
+        }
+      },
+      "signals": {
+        "stars": 0,
+        "gain30_source": "all stars since launch",
+        "gain30": 0
+      },
+      "created": "2026-10-22",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": 8,
+      "floors_failed": [
+        "under 3K stars",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "aaif-goose/goose",
+      "sources": {
+        "trendshift": {
+          "daily": 31,
+          "monthly": 31
+        }
+      },
+      "signals": {
+        "stars": 55956
+      },
+      "created": "2024-08-23",
+      "pushed": "2026-10-30",
+      "archived": false,
+      "last_featured": null,
+      "score": 1,
+      "independent_sources": 1,
+      "age_days": 798,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "lemomo-ai/lemo-opuscar",
+      "sources": {
+        "github-search": {
+          "45d": true
+        }
+      },
+      "signals": {
+        "stars": 9627
+      },
+      "description": "A toolbox of film styles made in code for Claude Code: 66 ready to use, and your own. Each style is a style prompt plus a demo film made …",
+      "created": "2026-09-26",
+      "pushed": "2026-10-29",
+      "archived": false,
+      "last_featured": null,
+      "score": 0,
+      "independent_sources": 0,
+      "age_days": 34,
+      "floors_failed": [
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources"
+      ]
+    },
+    {
+      "repo": "owner/repo",
+      "sources": {
+        "tips": {
+          "yes": true
+        }
+      },
+      "signals": {},
+      "enrich_error": true,
+      "last_featured": null,
+      "score": 0,
+      "independent_sources": 0,
+      "age_days": null,
+      "floors_failed": [
+        "star count unknown",
+        "growth below 1.5K/7d and 5K/30d",
+        "fewer than 2 independent sources",
+        "commit date unknown"
+      ]
+    }
+  ]
+}

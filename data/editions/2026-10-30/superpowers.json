@@ -1,0 +1,133 @@
+{
+  "repo": "obra/superpowers",
+  "name": "Superpowers",
+  "tagline": "A set of rules that teach your AI coding assistant to plan first, test everything and debug carefully - like a senior engineer would.",
+  "sentence": "Install 15 skills into your coding tool and it stops rushing into code - it asks questions, writes a plan, builds tests before features, reviews its own work and catches mistakes before you see them.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/obra/superpowers"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI coding assistants rush straight into writing code - they skip planning, ignore edge cases, forget to write tests and produce sloppy work that breaks later."
+    },
+    {
+      "role": "trigger",
+      "say": "You install the skills once and they activate automatically every time you start a coding task."
+    },
+    {
+      "role": "input",
+      "say": "Your coding project - any codebase you're working on with an AI assistant."
+    },
+    {
+      "role": "does",
+      "say": "The skills change how the AI assistant approaches every task - planning, building, testing and reviewing.",
+      "steps": [
+        "Before coding, the assistant asks clarifying questions and drafts a design for your approval",
+        "It writes a detailed plan, then works through it using test-driven development - tests first, code second",
+        "When the code is done, it runs its own code review, catches issues, and only marks the task complete after verifying everything works"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "An AI assistant that works like a careful senior engineer instead of a rushed intern.",
+      "outputs": [
+        {
+          "what": "A structured plan before any code",
+          "eg": "The assistant writes a plan document with acceptance criteria, then asks you to approve it before starting"
+        },
+        {
+          "what": "Tests written before features",
+          "eg": "For a new feature, it writes the test cases first, confirms they fail, then writes the code to make them pass"
+        },
+        {
+          "what": "Self-reviewed code",
+          "eg": "Before marking a task done, the assistant reviews its own changes, checks for edge cases and runs the test suite"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Your AI assistant dives straight into writing code without asking what you actually want",
+    "It produces code that works for the obvious case but breaks on edge cases nobody tested",
+    "You spend time reviewing and fixing mistakes the assistant should have caught itself"
+  ],
+  "after": [
+    "The assistant asks questions first, writes a plan, and waits for your approval before coding",
+    "Tests are written before features - the assistant proves the code works, not just that it compiles",
+    "A self-review step catches common mistakes before you ever see the code"
+  ],
+  "uses_note": "Superpowers has 309K stars and 3.6M installs on skills.sh. The creator says the assistant can 'sometimes work autonomously for a couple of hours without deviating from the plan,' but independent benchmarks are thin.",
+  "uses": [],
+  "pulse": {
+    "gain": "+14.9K stars in 30 days",
+    "history": [
+      ["2026-10-02", 294195],
+      ["2026-10-16", 300367],
+      ["2026-10-30", 309084]
+    ]
+  },
+  "coverage": [],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "In Claude Code, run `/plugin install superpowers@claude-plugins-official`. For other tools, see the [install guide](https://github.com/obra/superpowers) - there are one-line installs for 16 AI coding tools.",
+      "Start a new session and give it a task - for example, 'Let's make a React to-do list.' The assistant should start by asking clarifying questions instead of jumping into code.",
+      "Follow the assistant's plan - it will write tests first, then code, then review its own work before marking the task done."
+    ],
+    "paste": "/skillspector https://github.com/obra/superpowers\nThen: Install the skills and test with a small coding task - the assistant should brainstorm and plan before writing any code."
+  },
+  "footprint": {
+    "disk": "The skills are plain text files - the entire repo is well under 1 MB.",
+    "memory": "No runtime memory - the skills are instructions loaded into the AI assistant's context window.",
+    "runs_on": "Works with 16 AI coding tools: Claude Code, Cursor, Codex (app and CLI), Gemini CLI, GitHub Copilot CLI, Grok Build CLI, Kimi Code, OpenCode, and others. No operating system restriction.",
+    "source": {
+      "title": "Superpowers README",
+      "url": "https://github.com/obra/superpowers"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone using an AI coding assistant who wants more reliable, better-tested output",
+      "Teams that want their AI tools to follow a consistent development process",
+      "People new to AI-assisted coding who want guardrails on the assistant's behavior"
+    ],
+    "skip_if": [
+      "You prefer to control the process yourself and find pre-set workflows restrictive",
+      "You use AI for quick one-off scripts where planning overhead isn't worth it",
+      "Your team already has strict coding standards the AI follows"
+    ],
+    "alternatives": [
+      {
+        "name": "mattpocock/skills",
+        "repo": "mattpocock/skills",
+        "url": "https://github.com/mattpocock/skills",
+        "line": "Matt Pocock's engineering skills - broader (55 skills) and more focused on day-to-day engineering tasks than methodology"
+      },
+      {
+        "name": "ECC",
+        "repo": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "line": "A performance optimization system for coding agents - focuses on speed and efficiency rather than methodology"
+      }
+    ]
+  },
+  "watch": [
+    "**Very opinionated.** Superpowers enforces one specific development methodology (plan, test, review). If your team has its own process, the skills may conflict with it.",
+    "**Adds overhead to quick tasks.** The brainstorming and planning steps add time. For a one-line fix or a quick script, the ceremony can feel like overkill.",
+    "**Works best with Claude Code.** The README lists 16 tools, but the creator built and tested it primarily with Claude Code. Other tools may not trigger all skills correctly."
+  ],
+  "sources": [
+    {
+      "title": "Superpowers GitHub",
+      "url": "https://github.com/obra/superpowers",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "skills.sh listing (3.6M installs)",
+      "url": "https://skills.sh/obra/superpowers",
+      "date": "2026-10-30"
+    }
+  ]
+}

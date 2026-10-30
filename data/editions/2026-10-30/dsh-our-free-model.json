@@ -1,0 +1,117 @@
+{
+  "repo": "Ebony-Vinyl/dsh-our-free-model",
+  "name": "dsh-our-free-model",
+  "tagline": "A plugin that gives you free access to AI models like DeepSeek and Kimi - no API key, no sign-up, no bill.",
+  "sentence": "Install this plugin into DeepSeek Harness (a coding tool) and it routes your prompts through free model gateways, so you can use frontier AI models without paying for API credits.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Using AI models through their official channels costs money - API fees add up, and free tiers run out."
+    },
+    {
+      "role": "trigger",
+      "say": "You install the plugin into DeepSeek Harness (a coding tool, like an AI-powered editor) and restart it."
+    },
+    {
+      "role": "input",
+      "say": "Your prompts - the same questions and tasks you'd normally send to a paid AI model."
+    },
+    {
+      "role": "does",
+      "say": "It connects to free model gateways and routes your prompts through them.",
+      "steps": [
+        "Checks which free model providers are available from your network",
+        "Routes your prompt to the best available free gateway (OpenCode's Zen gateway, Kilo AI's public pool, or others)",
+        "If one provider is overloaded, falls back to the next one in a chain"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "AI model responses without an API bill.",
+      "outputs": [
+        {
+          "what": "Free model access",
+          "eg": "Prompts routed through free gateways to models like DeepSeek V4.1 Flash and Kimi K3"
+        },
+        {
+          "what": "A local forwarding port",
+          "eg": "A local connection point so other tools on your computer can use the free models too"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Using AI models costs money - credits, subscriptions, or pay-per-message fees that add up with heavy use",
+    "Free tiers from providers have strict limits and require sign-ups with email verification",
+    "Switching between free providers means managing multiple accounts and API keys"
+  ],
+  "after": [
+    "Send prompts to frontier models without paying - the plugin handles provider routing and fallbacks",
+    "No sign-up needed for the basic free lane (some premium channels require a GitHub login)",
+    "A local connection point lets other tools on your machine use the same free models"
+  ],
+  "uses_note": "This plugin has 52K stars but zero independent coverage or documented real-world uses by named individuals. The star-to-watcher ratio is unusual (40 watchers on 52K stars). Real adoption is unverified.",
+  "uses": [],
+  "pulse": {
+    "gain": "+13.8K stars this week",
+    "history": [
+      ["2026-10-16", 18777],
+      ["2026-10-23", 38294],
+      ["2026-10-30", 52104]
+    ]
+  },
+  "coverage": [],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Make sure you have [DeepSeek Harness](https://github.com/nicepkg/dsh) installed (the coding tool this plugin extends)",
+      "Clone this repo and run `dsh plugin --profile web add /path/to/dsh-our-free-model`, then restart DeepSeek Harness",
+      "Send a prompt - the plugin routes it to a free model automatically. Check the status bar to see which provider answered."
+    ],
+    "paste": "/skillspector https://github.com/Ebony-Vinyl/dsh-our-free-model\nThen: Clone the repo, install it as a dsh plugin, restart dsh, and test with a prompt."
+  },
+  "footprint": {
+    "disk": "no data found",
+    "memory": "no data found",
+    "runs_on": "Requires DeepSeek Harness and Node.js 22.19+ or 24+. Works on Mac, Windows and Linux wherever dsh runs.",
+    "source": {
+      "title": "dsh-our-free-model README",
+      "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "DeepSeek Harness users who want to try AI models without paying for API credits",
+      "Hobbyists experimenting with different AI models on personal projects"
+    ],
+    "skip_if": [
+      "You need reliable, guaranteed uptime - free gateways can throttle or disappear",
+      "You send sensitive data - the README warns that free providers may log prompts",
+      "You don't use DeepSeek Harness (this is a plugin for that specific tool)"
+    ],
+    "alternatives": [
+      {
+        "name": "OpenRouter free models",
+        "url": "https://openrouter.ai",
+        "line": "A model router with some free-tier models, works with any tool that speaks the OpenAI format"
+      }
+    ]
+  },
+  "watch": [
+    "**Suspicious star growth.** The repo has 52K stars but only 40 watchers - a ratio that is far outside the normal range. The stars may not reflect real adoption.",
+    "**Free providers may log your prompts.** The README says Kilo's free pool 'may log prompts and use them to improve services.' Don't send passwords, API keys, personal data or confidential material.",
+    "**Free quotas can vanish.** The upstream providers set the free limits and can change, throttle or remove them at any time. The plugin has no control over this.",
+    "**Don't install from npm.** The README warns that a package named `dsh-our-free-model` on npm is a third-party copy and differs from this repo."
+  ],
+  "sources": [
+    {
+      "title": "dsh-our-free-model GitHub",
+      "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
+      "date": "2026-10-30"
+    }
+  ]
+}

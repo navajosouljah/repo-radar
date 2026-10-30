@@ -1,0 +1,173 @@
+{
+  "repo": "pbakaus/impeccable",
+  "name": "Impeccable",
+  "tagline": "A design toolkit that teaches your AI coding tool real design sense - like hiring a designer who reviews every page.",
+  "sentence": "Install one skill, and your AI gets 24 design commands - from 'polish' (the final pass before shipping) to 'critique' (a scored review) to 'bolder' (amplify a timid design) - plus a 62-rule detector that flags common AI-generated patterns without needing an internet connection.",
+  "fit": "you",
+  "links": {
+    "website": "https://impeccable.style",
+    "docs": "https://github.com/pbakaus/impeccable"
+  },
+  "visual": {
+    "src": "assets/shots/impeccable.webp",
+    "width": 1280,
+    "height": 854,
+    "alt": "A hotel website for Villa Castagneto in Liguria showing elegant serif typography reading 'Fourteen rooms on a cliff. Ours since 1961,' muted earth tones, a hand-illustrated seaside villa scene, and real photography with breakfast terrace and room views.",
+    "caption": "A page built with Impeccable - real typography, hand-illustrated art, and a color palette from the place itself."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI-built websites all look the same: centered text, safe colors, generic layouts. They work, but nobody would mistake them for something a designer made."
+    },
+    {
+      "role": "trigger",
+      "say": "You install the skill and tell your AI to build a page, or run a command like /impeccable polish or /impeccable critique on an existing one."
+    },
+    {
+      "role": "input",
+      "say": "Your project - a new page to build, or an existing one to review."
+    },
+    {
+      "role": "does",
+      "say": "The skill gives your AI a design vocabulary and a detector that catches common mistakes.",
+      "steps": [
+        "Applies design commands: 'polish' for a final pass, 'bolder' to amplify a timid design, 'quieter' to tone down a loud one, 'critique' for a scored review",
+        "Runs a 62-rule detector that flags AI-generated patterns (generic gradients, centered everything, rounded corners on everything, safe blue buttons)",
+        "Reviews typography, color, spacing, animation, and responsive behavior",
+        "The 'audit' command writes a technical quality report covering accessibility, performance, theming, and responsive design"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A website that looks like a designer made it, with a report showing what was caught and fixed.",
+      "outputs": [
+        {
+          "what": "A designed page",
+          "eg": "A hotel website with serif typography, earth-tone palette, and illustrated artwork instead of stock photos"
+        },
+        {
+          "what": "A design critique",
+          "eg": "A scored report: 'Typography: 8/10 - good font pairing. Layout: 6/10 - too centered, needs asymmetry.'"
+        },
+        {
+          "what": "A detection report",
+          "eg": "The detector flagged 4 AI patterns: generic gradient, uniform border-radius, centered hero, and no custom illustration"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "AI builds a page that technically works but looks like every other AI-generated page",
+    "Asking the AI to 'make it look better' changes colors but keeps the same generic structure",
+    "No way to check whether a page 'looks AI-made' without showing it to a real designer"
+  ],
+  "after": [
+    "24 design commands give specific direction: 'bolder' to push a timid design, 'polish' for the final pass, 'critique' for a scored review",
+    "A 62-rule detector catches common AI patterns without an internet connection or API key",
+    "Works in 19 coding agents including Claude Code, Cursor, Codex, and Copilot"
+  ],
+  "uses_note": "Impeccable is about a year old and has 96K stars. Most public discussion is by developers comparing design skills, and detailed before-and-after case studies are thin.",
+  "uses": [],
+  "pulse": {
+    "gain": "+9.7K stars this week, +22.5K this month",
+    "history": [
+      ["2026-10-02", 73897],
+      ["2026-10-23", 86657],
+      ["2026-10-30", 96370]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending daily, weekly, and monthly",
+      "url": "https://github.com/trending",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Trending daily (rank 11) and monthly (rank 12)",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Oct 30 digest (rank 7)",
+      "url": "https://findarepo.com/digest/2026-10-30/",
+      "meta": "Oct 30"
+    }
+  ],
+  "trending": [
+    "github-trending: daily, weekly, monthly",
+    "trendshift: daily (rank 11), monthly (rank 12)",
+    "findarepo: Oct 30 digest (rank 7)"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install the skill: run `npx impeccable install` in your project folder",
+      "Reload your coding tool (Claude Code, Cursor, Codex, or any of the [19 supported agents](https://github.com/pbakaus/impeccable))",
+      "Try `/impeccable polish` on an existing page to see the design pass, or `/impeccable critique` for a scored review without changes"
+    ],
+    "paste": "/skillspector https://github.com/pbakaus/impeccable\nThen: Install with `npx impeccable install`, reload, and run `/impeccable polish` on an existing page to see the design pass in action."
+  },
+  "footprint": {
+    "disk": "The skill is a set of text files. The 62-rule detector is a standalone script. Total size is no data found.",
+    "memory": "Runs inside your coding tool - no separate process. The detector runs locally without an API key.",
+    "runs_on": "Any machine that runs one of the 19 supported coding agents. Node.js needed only for `npx impeccable install`.",
+    "source": {
+      "title": "Impeccable README",
+      "url": "https://github.com/pbakaus/impeccable"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who uses AI to build web pages and wants them to look professionally designed",
+      "Teams who want a quick design review before shipping a page",
+      "Non-designers who need more than 'make it prettier' from their AI"
+    ],
+    "skip_if": [
+      "You already have a designer or a formal design system",
+      "You don't build web pages with an AI coding tool",
+      "You want a visual design tool - Impeccable is a skill that guides your AI, not a drag-and-drop editor"
+    ],
+    "alternatives": [
+      {
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "50 material-based themes and a browser lint pass that catches AI-slop patterns"
+      },
+      {
+        "name": "taste-skill",
+        "repo": "Leonxlnx/taste-skill",
+        "url": "https://tasteskill.dev",
+        "line": "Gives your AI 'good taste' - a different philosophy from Impeccable's vocabulary approach"
+      },
+      {
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "Anti-AI-slop design skill with 50 themes and a lint pass that catches generic patterns"
+      }
+    ]
+  },
+  "watch": [
+    "**Design is subjective.** Impeccable teaches one design philosophy. The 62-rule detector catches common AI patterns, but 'good design' is still a judgment call.",
+    "**Results vary by AI model.** The skill guides the AI, but the quality of the output depends on which model your coding tool uses. Larger models follow the design vocabulary more closely.",
+    "**The detector runs without an LLM.** The 62-rule detector is deterministic - it checks CSS and HTML patterns without calling an API. The design commands (polish, bolder, critique) need the AI model.",
+    "**Creator: Paul Bakaus.** Made by the creator of jQuery UI, currently at Google. The project began from Anthropic's frontend-design skill and is licensed Apache 2.0."
+  ],
+  "sources": [
+    {
+      "title": "Impeccable GitHub",
+      "url": "https://github.com/pbakaus/impeccable",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "Impeccable website",
+      "url": "https://impeccable.style",
+      "date": "2026-10-30"
+    }
+  ]
+}

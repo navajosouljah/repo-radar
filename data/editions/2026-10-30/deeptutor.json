@@ -1,0 +1,165 @@
+{
+  "repo": "HKUDS/DeepTutor",
+  "name": "DeepTutor",
+  "tagline": "A free AI tutor that reads your textbooks and teaches you from them - like a private tutor who never gets tired.",
+  "sentence": "Upload a PDF or point it at a topic, and DeepTutor builds a lesson plan, explains concepts with examples, generates quizzes, and adapts to your level - running locally or in a browser with your own AI key.",
+  "fit": "you",
+  "links": {
+    "website": "https://deeptutor.info/",
+    "docs": "https://deeptutor.info/"
+  },
+  "visual": {
+    "src": "assets/shots/deeptutor.png",
+    "width": 1390,
+    "height": 878,
+    "alt": "DeepTutor's chat interface showing a conversation about Fourier transforms. The AI explains frequency components with a rendered math equation (the Fourier integral), uses a musical-chord analogy, lists 3 practical uses (filtering, compression, convolution), and asks a follow-up question about sine waves.",
+    "caption": "A real tutoring session - math equations, analogies, and a follow-up question to check understanding."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You're studying a textbook or course material on your own, and there's no one to explain the hard parts, quiz you, or check whether you actually understand."
+    },
+    {
+      "role": "trigger",
+      "say": "You upload a PDF, a textbook, or a set of notes into DeepTutor and ask a question."
+    },
+    {
+      "role": "input",
+      "say": "Your study material (a PDF, notes, or a topic) and what you want to learn."
+    },
+    {
+      "role": "does",
+      "say": "DeepTutor reads your material, builds understanding, and teaches you from it.",
+      "steps": [
+        "Reads and indexes your documents so it can cite specific pages and sections",
+        "Explains concepts using analogies and examples, adapting to your level (it starts simple and gets more detailed as you learn)",
+        "Generates quizzes and practice problems from the material, with worked solutions",
+        "Tracks what you've mastered and what needs more work in a 3-layer memory system"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A personalized learning path through your own material.",
+      "outputs": [
+        {
+          "what": "Explanations with math and visuals",
+          "eg": "The Fourier transform explained with the integral equation rendered, a musical-chord analogy, and 3 practical uses"
+        },
+        {
+          "what": "Quizzes from your material",
+          "eg": "5 questions on Chapter 3, graded instantly with explanations for wrong answers"
+        },
+        {
+          "what": "A mastery tracker",
+          "eg": "You've mastered 12 of 18 concepts in Chapter 3 - here are 6 that need review"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You read a textbook chapter and have no one to explain the parts you don't understand",
+    "Searching online gives you generic explanations, not ones based on your specific course material",
+    "Self-study has no quizzes, no feedback, and no way to know what you've actually learned"
+  ],
+  "after": [
+    "An AI tutor that has read your actual textbook and explains from it, with rendered math and analogies",
+    "Quizzes generated from your material, graded instantly with worked solutions",
+    "A mastery tracker that knows what you've studied and what to review next"
+  ],
+  "uses_note": "DeepTutor is about 10 months old and has 51K stars. It comes from an academic research lab (HKUDS at Hong Kong University). Independent reviews are thin - most discussion is on tech sites rather than education forums.",
+  "uses": [],
+  "pulse": {
+    "gain": "+7.5K stars this week, +9.3K this month",
+    "history": [
+      ["2026-10-02", 41975],
+      ["2026-10-23", 43759],
+      ["2026-10-30", 51268]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending daily, weekly, and monthly",
+      "url": "https://github.com/trending",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Trending daily (rank 5)",
+      "url": "https://trendshift.io/",
+      "meta": "Oct 30"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Oct 30 digest (rank 9)",
+      "url": "https://findarepo.com/digest/2026-10-30/",
+      "meta": "Oct 30"
+    }
+  ],
+  "trending": [
+    "github-trending: daily, weekly, monthly",
+    "trendshift: daily (rank 5)",
+    "findarepo: Oct 30 digest (rank 9)"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Quickest trial: run `docker run -p 3782:3782 ghcr.io/hkuds/deeptutor:latest` and open [http://127.0.0.1:3782](http://127.0.0.1:3782) in your browser",
+      "In Settings, add an AI provider (OpenAI, Anthropic, or a local model via Ollama - bring your own key)",
+      "Upload a PDF or paste a topic, then ask a question - DeepTutor will read the material and teach you from it. Try 'Quiz me on Chapter 1' to see quiz generation"
+    ],
+    "paste": "/skillspector https://github.com/HKUDS/DeepTutor\nThen: Install with `pip install -U 'deeptutor[full]'`, run `deeptutor init` and `deeptutor start`, open the browser, configure a model provider in Settings, and upload a PDF to try."
+  },
+  "footprint": {
+    "disk": "The Docker image size is no data found. The Python install (`pip install deeptutor[full]`) pulls Python and Node.js dependencies.",
+    "memory": "Depends on the AI model you choose. With a cloud provider (OpenAI, Anthropic), the app itself uses moderate memory. With a local model via Ollama, you need enough RAM for the model.",
+    "runs_on": "Mac, Windows, or Linux. Needs Python 3.11-3.14 and Node.js 20+. Docker is the easiest path. A cloud AI key (OpenAI, Anthropic, etc.) or a local model server (Ollama, LM Studio) is required.",
+    "source": {
+      "title": "DeepTutor README",
+      "url": "https://github.com/HKUDS/DeepTutor"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Students studying from textbooks who want an AI tutor that actually reads their material",
+      "Self-learners who want quizzes and mastery tracking, not just chat",
+      "Anyone who learns better from explanations with analogies, rendered math, and follow-up questions"
+    ],
+    "skip_if": [
+      "You need a tutor for hands-on subjects (lab work, physical skills) - DeepTutor works on text and documents",
+      "You want a simple chatbot - DeepTutor's feature set is large and takes time to learn",
+      "You're not comfortable with Docker or pip install and providing an API key"
+    ],
+    "alternatives": [
+      {
+        "name": "NotebookLM",
+        "url": "https://notebooklm.google.com/",
+        "line": "Google's free tool that reads your documents and answers questions about them - simpler but no quizzes or mastery tracking"
+      },
+      {
+        "name": "Anki",
+        "url": "https://apps.ankiweb.net/",
+        "line": "The gold standard for spaced-repetition flashcards - proven method, but you create the cards yourself"
+      }
+    ]
+  },
+  "watch": [
+    "**You need an AI key or local model.** DeepTutor is the interface - the actual AI brain comes from your own OpenAI, Anthropic, or Ollama setup. The quality depends on which model you choose and pay for.",
+    "**Academic research project.** Built by the HKUDS lab at Hong Kong University. The companion paper is on arXiv (2604.26962). Development pace may follow academic cycles, not commercial roadmaps.",
+    "**Large feature surface.** The project has chat, quizzes, research, visualization, mastery paths, video lessons, notebooks, and more. Some features may be rough or experimental.",
+    "**Apache 2.0 license.** Open source, free for commercial and personal use."
+  ],
+  "sources": [
+    {
+      "title": "DeepTutor GitHub",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "date": "2026-10-30"
+    },
+    {
+      "title": "DeepTutor documentation",
+      "url": "https://deeptutor.info/",
+      "date": "2026-10-30"
+    }
+  ]
+}
