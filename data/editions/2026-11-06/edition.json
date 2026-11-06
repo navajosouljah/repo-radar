@@ -1,0 +1,29 @@
+{
+  "number": "015",
+  "date": "2026-11-06",
+  "theme_short": "Agents, reverse engineering and the tools that work for you",
+  "theme": "**Agents that work while you sleep, tools that reverse-engineer anything, and skills that redesign your AI's output.** This week's lineup spans autonomous coding agents, a desktop app that studies any software and rebuilds it, and a Claude skill that turns generic AI interfaces into polished designs.",
+  "method": "**How this week was picked:** 5 of 6 discovery sources scanned (GitHub Trending, Trendshift, skills.sh, findarepo, Hacker News). YouTube was not scanned (no prescan file). GitHub search found candidates only (not an independent source). DeepInfer was added after manual verification of a 2,355-point Hacker News story and a findarepo listing. ruflo (Automation lane) and universal-modder (Edition 009) came down on new advisories the cloud cannot trace to a release - listed for JJ. ruvnet/ruflo removed from Automation & Agent Orchestration category. No tips to evaluate (tips file is empty). 17 candidates cleared all floors; 10 picked. Slots 9 and 10 filled by score after skipping developer-only repos to meet the 7-you minimum.",
+  "picks": [
+    { "rank": 1, "slug": "dsh-superagent-prototype", "repo": "deepseek-ai/dsh-superagent-prototype", "name": "DSH Superagent", "fit": "developers", "slot": "new",
+      "stars": 19994, "oneliner": "DeepSeek's research prototype for an autonomous coding agent that watches your GitHub repo and works when asked." },
+    { "rank": 2, "slug": "craft-anything", "repo": "storytold/craft-anything", "name": "Craft Anything", "fit": "you", "slot": "new",
+      "stars": 16596, "thumb": "assets/shots/craft-anything-simple.png", "oneliner": "A desktop app that studies any software, then uses a coding agent to build your own version." },
+    { "rank": 3, "slug": "dsh-go", "repo": "ccch1mneyyy/dsh-Go", "name": "DSH Go", "fit": "you", "slot": "new",
+      "stars": 12454, "oneliner": "Run DeepSeek's AI assistant on your phone and remote-control your computer from anywhere." },
+    { "rank": 4, "slug": "unslop", "repo": "heydamir/unslop", "name": "Unslop", "fit": "you", "slot": "score",
+      "stars": 10349, "oneliner": "A Claude skill that takes AI-generated interfaces and redesigns them to look hand-crafted." },
+    { "rank": 5, "slug": "openidea", "repo": "l0ng-ai/openidea", "name": "OpenIDEA", "fit": "developers", "slot": "score",
+      "stars": 7263, "oneliner": "The IntelliJ experience rebuilt from scratch in Rust - faster startup, less memory, 60+ languages." },
+    { "rank": 6, "slug": "t3code", "repo": "pingdotgg/t3code", "name": "T3 Code", "fit": "you", "slot": "climbing",
+      "stars": 48947, "oneliner": "Control your AI coding agents from your phone, a browser, or a desktop app - one screen for all of them." },
+    { "rank": 7, "slug": "auto-ontology", "repo": "NVIDIA/auto-ontology", "name": "Auto Ontology", "fit": "developers", "slot": "score",
+      "stars": 8294, "oneliner": "NVIDIA's tool that reads your database and builds a knowledge map so AI can answer questions about your data." },
+    { "rank": 8, "slug": "claude-seo", "repo": "AgriciDaniel/claude-seo", "name": "Claude SEO", "fit": "you", "slot": "score",
+      "stars": 26990, "oneliner": "A 26-skill SEO toolkit for Claude Code that audits, fixes and monitors your website's search ranking." },
+    { "rank": 9, "slug": "anthropic-skills", "repo": "anthropics/skills", "name": "Anthropic Skills", "fit": "you", "slot": "score",
+      "stars": 187972, "oneliner": "Anthropic's official skill collection for Claude Code - the starter pack from the team that makes the tool." },
+    { "rank": 10, "slug": "openmausbot", "repo": "milind-soni/OpenMausBot", "name": "OpenMausBot", "fit": "you", "slot": "score",
+      "stars": 14268, "oneliner": "An open-source desktop AI assistant with its own virtual computer - like Grok's bot, but you own it." }
+  ]
+}

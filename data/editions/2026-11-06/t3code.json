@@ -1,0 +1,172 @@
+{
+  "repo": "pingdotgg/t3code",
+  "name": "T3 Code",
+  "tagline": "One app to control all your AI coding agents - from your phone, browser, or desktop.",
+  "sentence": "Gives you a single dashboard to start, steer, and review work from every coding agent you already pay for, including from your phone.",
+  "fit": "you",
+  "links": {
+    "website": "https://t3.codes",
+    "docs": "https://github.com/pingdotgg/t3code"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You juggle separate terminal windows for each AI coding agent and can't check on any of them from your phone."
+    },
+    {
+      "role": "trigger",
+      "say": "Open T3 Code and pick an agent (or say 'use Claude for this thread')."
+    },
+    {
+      "role": "input",
+      "say": "A project folder and a task in plain language."
+    },
+    {
+      "role": "does",
+      "say": "Connects to the agent's own subscription on your machine, runs the task, and shows progress as it happens.",
+      "steps": [
+        "Connects to the agent you chose (Claude Code, Codex, Cursor, Grok Build, or others) using your existing subscription",
+        "Runs the task in an isolated branch so nothing breaks your main code",
+        "Shows inline diffs (line-by-line changes) as work happens, on any screen"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A finished branch with a one-click pull request - title, body, and changelog written for you.",
+      "outputs": [
+        {
+          "what": "A ready-to-merge branch",
+          "eg": "Review the diff on your phone, tap to open a pull request"
+        },
+        {
+          "what": "Agent switching mid-task",
+          "eg": "Start with Claude, switch to Codex mid-thread if one gets stuck"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Switch between 3-4 terminal windows to check different agents; can't see progress when away from the desk",
+    "Writing a pull request by hand after each agent task",
+    "No way to switch models mid-conversation when one gets stuck"
+  ],
+  "after": [
+    "One screen shows every agent's work; push a pull request from your phone while at lunch",
+    "Switch models mid-thread when one gets stuck",
+    "Title, body, and changelog generated for each pull request"
+  ],
+  "uses_note": "Testimonials are from the product's own website (t3.codes). No independent case studies found.",
+  "uses": [
+    {
+      "who": "@QuinnyPig (Corey Quinn, cloud commentator)",
+      "what": "Used T3 Code for daily coding agent work",
+      "result": "Called it 'freaking transformational'",
+      "source": {
+        "title": "T3 Code testimonials",
+        "url": "https://t3.codes",
+        "date": "2026-11"
+      }
+    },
+    {
+      "who": "@appfactory",
+      "what": "Used T3 Code as a daily agent orchestrator",
+      "result": "Called it 'the most sane version of an agent orchestrator that I've used'",
+      "source": {
+        "title": "T3 Code testimonials",
+        "url": "https://t3.codes",
+        "date": "2026-11"
+      }
+    }
+  ],
+  "pulse": {
+    "gain": "48.9K stars over 271 days - still climbing",
+    "history": [
+      ["2026-11-06", 48947]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending (daily and monthly)",
+      "url": "https://github.com/trending",
+      "meta": "Oct-Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Trending on Trendshift",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Shiporskip.io",
+      "title": "Rated 'ship' at 75%",
+      "url": "https://shiporskip.io",
+      "meta": "2026",
+      "tone": "critical"
+    }
+  ],
+  "trending": [
+    "github-trending: daily and monthly",
+    "trendshift: trending"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Install: run `curl -fsSL https://t3.codes/install | sh` (Mac/Linux) or download the [desktop app](https://t3.codes)",
+      "Run `t3` to start the local server and web UI",
+      "Pick a project folder, choose an agent, and describe your task"
+    ],
+    "paste": "/skillspector https://github.com/pingdotgg/t3code\nThen: Install with `curl -fsSL https://t3.codes/install | sh`, run `t3`, open a project, and run a small task with Claude Code through the UI. 10 minutes."
+  },
+  "footprint": {
+    "disk": "no data found (Electron app; release file sizes not published)",
+    "memory": "no data found",
+    "runs_on": "macOS, Windows, Linux (desktop); iOS, Android (mobile); web browser",
+    "source": {
+      "title": "T3 Code website and README",
+      "url": "https://t3.codes"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who pays for more than one AI coding agent and wants one screen for all of them",
+      "People who want to check on agent work from their phone",
+      "Teams that want pull requests generated automatically from agent tasks"
+    ],
+    "skip_if": [
+      "You only use one coding agent - T3 Code's value is in unifying multiple agents",
+      "You want a free AI model included - T3 Code requires your own subscriptions",
+      "You prefer working in the terminal and don't need a visual dashboard"
+    ],
+    "alternatives": [
+      {
+        "name": "Claude Code",
+        "url": "https://claude.ai/code",
+        "line": "Anthropic's own coding agent - works standalone in the terminal without a wrapper"
+      },
+      {
+        "name": "Cursor",
+        "url": "https://cursor.com",
+        "line": "An AI-first code editor with its own built-in agent and model switching"
+      }
+    ]
+  },
+  "watch": [
+    "**Expect bugs.** The maintainers warn the app is early stage and bugs should be expected.",
+    "**Requires existing subscriptions.** T3 Code does not include any AI model - you bring Claude Code, Codex, Cursor, or others.",
+    "**Mostly not accepting contributions.** The project is largely single-maintainer in practice.",
+    "**1,800 open issues** suggest active development but also many unresolved items."
+  ],
+  "sources": [
+    {
+      "title": "T3 Code website",
+      "url": "https://t3.codes",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "T3 Code GitHub",
+      "url": "https://github.com/pingdotgg/t3code",
+      "date": "2026-11-06"
+    }
+  ]
+}

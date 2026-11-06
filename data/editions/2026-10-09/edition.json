@@ -49,16 +49,6 @@
       "oneliner": "A free, open-source PDF reader and organizer that works like Acrobat - view, combine, split and secure PDFs on your own machine."
     },
     {
-      "rank": 5,
-      "slug": "universal-modder",
-      "repo": "rehan-remade/universal-modder",
-      "name": "Universal Modder",
-      "fit": "you",
-      "slot": "score",
-      "stars": 5835,
-      "oneliner": "A game-modding toolkit for AI agents - tell Claude Code what you want changed in a game, and it does the modding for you."
-    },
-    {
       "rank": 6,
       "slug": "rea",
       "repo": "morluto/rea",

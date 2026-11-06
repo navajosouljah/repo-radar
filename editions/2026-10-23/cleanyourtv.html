@@ -40,10 +40,10 @@
   </figure>
 </section>
 <div class="vitals" aria-label="At a glance">
-  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">26.3K</span><span class="v-note">GitHub stars, <b>+26.3K stars in 6 days</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">53K</span><span class="v-note">GitHub stars, <b>+26.3K stars in 6 days</b></span><svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path d="M0.0 30.0 L100.0 4.0" fill="none" stroke="var(--green-ink)" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/></svg></div>
   <div class="vital"><span class="v-label">Buzz</span><span class="v-big">5</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
   <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
-  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Oct 23: no open security issues</span></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Nov 6: no open security issues</span></div>
 </div>
 <section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Your smart TV's home screen is full of ads, sponsored rows and apps you never asked for.</p></div></div>
 <div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">You give a coding assistant (like Claude Code) the project's prompt file and your TV's model name.</p></div><div class="note input"><span class="role">You give it</span><p class="say">Your TV's IP address on Wi-Fi and Developer Options turned on (a one-time toggle in Settings).</p></div><div class="note does"><span class="role">It does</span><p class="say">It connects to your TV over the network and runs a cleanup script.</p><ol class="steps-in"><li>Disables ad services, telemetry and bloatware apps one by one (nothing is deleted - a restore script can bring each one back)</li><li>Installs a 474 KB launcher as the new home screen - a dock of your apps, a clock, and nothing else</li><li>Audits voice assistant, automatic content recognition and tracking components</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">A TV that boots to a clean home screen with no ads.</p><ul class="outputs"><li><b>A clean launcher</b><span>A dock with your streaming apps (Netflix, YouTube, Prime Video), a clock screensaver, and no sponsored rows</span></li><li><b>A list of what was disabled</b><span>The script names each app it turned off, like 'com.google.android.tvrecommendations' (the 'For You' row)</span></li><li><b>A backup</b><span>A snapshot of your TV's app state before changes, so you can undo any step</span></li></ul></div></div>
@@ -82,11 +82,11 @@ Then: Read PROMPT.md and follow its steps for my TV (I'll tell you the model and
   <div>
     <span class="stamp pass">PASSED</span>
     <ul class="checks">
-      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/Gathin23/cleanyourtv/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Oct 23</span></div></li>
-      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>0 results read, including the national CVE database: nothing found</span></div></li>
-      <li class=""><div><b>Are the stars earned?</b><span>26.3K stars, 362 contributors, 1.9K commits. findarepo: looks organic (100/100)</span></div></li>
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/Gathin23/cleanyourtv/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Nov 6</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>3 results read, including the national CVE database: nothing unresolved</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>53K stars, 959 contributors, 5.5K commits. findarepo: looks organic (100/100)</span></div></li>
     </ul>
-    
+    <p class="lede" style="margin:var(--s-4) 0 0">The sole search hit (HN item 50329683) matched 'malware' but the comment is a user recommending CleanYourTV for removing bloatware, not reporting malware. No advisory, no CVE, no security concern.</p>
   </div>
   <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>ADB debugging opens a network port.</b> Enabling ADB debugging on your TV opens port 5555, which anyone on your Wi-Fi could connect to. The project recommends turning it off after setup.</li><li><b>No formal releases yet.</b> The project has 1,932 commits but no tagged releases or version numbers. You install from the main branch.</li><li><b>Beware lookalike domains.</b> The official site is cleanyour.tv - the project warns that other domains using the name are not run by them.</li><li><b>Only 6 days old.</b> 26.3K stars and 200+ contributors in under a week is remarkable, but the project is still very new.</li></ul></div>
 </div></section>

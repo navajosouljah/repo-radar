@@ -1,0 +1,161 @@
+{
+  "repo": "AgriciDaniel/claude-seo",
+  "name": "Claude SEO",
+  "tagline": "A free SEO audit that runs inside Claude Code - checks your site for search engines and AI search, then tells you what to fix first.",
+  "sentence": "Runs a full website audit - technical health, content quality, structured data, and AI search readiness - and hands you a prioritized fix list, all from inside Claude Code.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/AgriciDaniel/claude-seo"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You don't know if search engines and AI assistants (like ChatGPT or Perplexity) can find and understand your website."
+    },
+    {
+      "role": "trigger",
+      "say": "Type `/seo audit <your-website-url>` in Claude Code."
+    },
+    {
+      "role": "input",
+      "say": "A website URL. It auto-detects your business type (online store, local business, software company, publisher, or agency)."
+    },
+    {
+      "role": "does",
+      "say": "Up to 17 specialist agents check your site in parallel, scan up to 500 pages, and sort findings by priority.",
+      "steps": [
+        "Detects your business type and picks the right checks",
+        "Up to 17 agents check technical health, content, structured data, and AI search readiness in parallel",
+        "Scans up to 500 pages with a headless browser (a browser that reads pages without showing them)",
+        "Scores findings and sorts them by priority - what to fix first, second, third, and which fixes unlock others"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A prioritized action plan saved as a report, with each fix explained and a way to verify it.",
+      "outputs": [
+        {
+          "what": "A graded audit report",
+          "eg": "A structured-data report for rankenstein.pro returned a B+ grade with two critical issues including a founder mismatch"
+        },
+        {
+          "what": "An AI search readiness check",
+          "eg": "`/seo geo` checks whether AI search engines can find and cite your pages"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Pay $100-300/month for SEO tools, or hire an agency to audit your site",
+    "No way to know if AI assistants like ChatGPT or Perplexity can cite your content"
+  ],
+  "after": [
+    "A free audit inside the tool you already use, with a fix list sorted by impact",
+    "`/seo geo` checks whether AI search engines can find and cite your pages",
+    "One command to recheck after fixes - no switching to another tool"
+  ],
+  "uses_note": "The author reports 10.8K Search Console clicks and 324K impressions over 12 weeks on their own showcase site, plus a 99 mobile PageSpeed score. These are self-reported, not independently verified. No independent user case studies found.",
+  "uses": [],
+  "pulse": {
+    "gain": "27K stars over 272 days",
+    "history": [
+      ["2026-11-06", 26990]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Towards AI",
+      "title": "Claude SEO Review: What to Verify Before Using the Claude Code Skill",
+      "url": "https://towardsai.net",
+      "meta": "Sep 2026"
+    },
+    {
+      "plat": "andrew.ooo",
+      "title": "claude-seo review",
+      "url": "https://andrew.ooo",
+      "meta": "May 2026",
+      "tone": "critical"
+    },
+    {
+      "plat": "AI Indigo",
+      "title": "Review focused on AI search and GEO features",
+      "url": "https://aiindigo.com",
+      "meta": "2026"
+    },
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending #12 on Trendshift",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "github-trending: daily",
+    "findarepo: listed in digests"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "In Claude Code, run `/plugin marketplace add AgriciDaniel/claude-seo` then `/plugin install claude-seo@agricidaniel-claude-seo`",
+      "Run `/seo setup` to install the isolated Python runtime and headless browser",
+      "Run `/seo audit` on a page you own and read the prioritized report"
+    ],
+    "paste": "/skillspector https://github.com/AgriciDaniel/claude-seo\nThen: Install via the plugin marketplace with `/plugin marketplace add AgriciDaniel/claude-seo`, run `/seo setup`, and audit a small site with `/seo audit <url>`. 10 minutes."
+  },
+  "footprint": {
+    "disk": "Installs an isolated Python runtime and headless Chromium (exact size: no data found)",
+    "memory": "Runs up to 5 Opus agents and 14 Sonnet agents in parallel; token cost depends on site size",
+    "runs_on": "macOS, Windows, Linux (inside Claude Code 1.0.33+, Python 3.11-3.14)",
+    "source": {
+      "title": "Claude SEO README",
+      "url": "https://github.com/AgriciDaniel/claude-seo"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone with a website who wants a free, thorough SEO audit without paying for a tool",
+      "People who want to know if AI search engines can find and cite their content",
+      "Small business owners and creators who use Claude Code and want SEO built into their workflow"
+    ],
+    "skip_if": [
+      "Your site is larger than 500 pages - the crawl cap won't cover it",
+      "You need real-world performance data - without Google API keys, it gives lab estimates only",
+      "You already pay for Ahrefs, Semrush, or Screaming Frog and are happy with them"
+    ],
+    "alternatives": [
+      {
+        "name": "Ahrefs Webmaster Tools",
+        "url": "https://ahrefs.com/webmaster-tools",
+        "line": "Free tier of the industry standard - real backlink and ranking data, but no AI search readiness check"
+      },
+      {
+        "name": "Screaming Frog",
+        "url": "https://www.screamingfrog.co.uk/seo-spider/",
+        "line": "A desktop crawler that handles large sites - free up to 500 pages, no AI integration"
+      }
+    ]
+  },
+  "watch": [
+    "**Token cost.** A full audit runs up to 17 agents (5 on Opus, the most capable and expensive model), so it uses significant plan capacity on large sites.",
+    "**500-page crawl cap.** Not suited for sites with thousands of pages.",
+    "**Self-promotional footer** appended to most reports. Remove it before sending to clients.",
+    "**Without Google API keys, performance data is lab-only estimates** (not your real visitors' experience from Google Search Console)."
+  ],
+  "sources": [
+    {
+      "title": "Claude SEO GitHub",
+      "url": "https://github.com/AgriciDaniel/claude-seo",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Towards AI review",
+      "url": "https://towardsai.net",
+      "date": "2026-09"
+    },
+    {
+      "title": "andrew.ooo review",
+      "url": "https://andrew.ooo",
+      "date": "2026-05"
+    }
+  ]
+}

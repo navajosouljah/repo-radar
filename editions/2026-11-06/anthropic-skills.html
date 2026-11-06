@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic Skills: Anthropic's official skill library - ready-made abilities you install in Claude to handle documents, design, testing, and more. | Repo Radar</title>
+<meta name="description" content="Installs pre-built abilities into Claude so it can create PowerPoints, audit web apps, design brand guidelines, and handle PDFs - skills it didn't have out of the box.">
+<meta property="og:title" content="Anthropic Skills: Anthropic's official skill library - ready-made abilities you install in Claude to handle documents, design, testing, and more. | Repo Radar">
+<meta property="og:description" content="Installs pre-built abilities into Claude so it can create PowerPoints, audit web apps, design brand guidelines, and handle PDFs - skills it didn't have out of the box.">
+<meta property="og:image" content="https://opengraph.githubassets.com/1/anthropics/skills">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 015 &middot; Week of November 6, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#9 this week</span><span class="repo-id">anthropics/skills</span></div>
+    <h1 id="name">Anthropic Skills</h1>
+    <p class="tagline">Anthropic's official skill library - ready-made abilities you install in Claude to handle documents, design, testing, and more.</p>
+    <p class="sentence">Installs pre-built abilities into Claude so it can create PowerPoints, audit web apps, design brand guidelines, and handle PDFs - skills it didn't have out of the box.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn primary" href="https://claude.com/blog/skills" rel="noopener">Visit the website <span class="arrow" aria-hidden="true">&#8599;</span></a><a class="btn quiet" href="https://github.com/anthropics/skills" rel="noopener">GitHub</a></div>
+  </div>
+  <figure class="pinned">
+    <img src="https://opengraph.githubassets.com/1/anthropics/skills" alt="Anthropic Skills on GitHub" width="1200" height="600" loading="eager">
+    <figcaption>No demo published yet: this is its GitHub card.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">188K</span><span class="v-note">GitHub stars, <b>188K stars over 410 days - the most-starred skills repo on GitHub</b></span></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>816 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Nov 6: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">Claude is general-purpose but doesn't know your specific workflows out of the box - it can't make a slide deck or audit an app without detailed instructions every time.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Mention a task that matches a skill ('Use the PDF skill to extract the form fields from this file').</p></div><div class="note input"><span class="role">You give it</span><p class="say">A file, a URL, or a task description.</p></div><div class="note does"><span class="role">It does</span><p class="say">Claude loads the matching skill and follows its specialized workflow instead of guessing.</p><ol class="steps-in"><li>Claude scans your installed skills and loads the one that matches your task</li><li>The skill's instructions, scripts, and resources activate</li><li>Claude follows the skill's specialized workflow step by step</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">The task done the skill's way - consistent results without writing a detailed prompt.</p><ul class="outputs"><li><b>Specialized document handling</b><span>The PDF skill returns structured field data; the PPTX skill produces a formatted slide deck</span></li><li><b>Composable skills</b><span>The PDF skill and the internal-comms skill can work together on the same task</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>Claude tries its best but often misses domain-specific steps or formatting</li><li>You write detailed prompts every time to get consistent results</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>Install a skill once and Claude follows the right workflow automatically</li><li>Skills compose - the PDF skill and the internal-comms skill can work together</li><li>Anthropic's own team maintains the core collection</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>In Claude Code, run <code>/plugin marketplace add anthropics/skills</code></li><li>Run <code>/plugin install document-skills@anthropic-agent-skills</code> (or <code>example-skills</code> for creative and dev skills)</li><li>Ask Claude to use a skill: 'Use the PDF skill to extract form fields from invoice.pdf'</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>Negligible - skills are text files (Markdown and optional scripts)</dd></div>
+    <div><dt>Memory while it runs</dt><dd>Runs within Claude's own session - no separate process</dd></div>
+    <div><dt>Runs on</dt><dd>Claude Code, claude.ai (paid plan), or Claude API</dd></div>
+  </dl><a class="src" href="https://github.com/anthropics/skills" rel="noopener">Source: Anthropic Skills README</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-anthropic-skills">/skillspector https://github.com/anthropics/skills
+Then: Install with `/plugin marketplace add anthropics/skills`, install a skill set, and try extracting form fields from a PDF. 10 minutes.</pre>
+      <button class="copy" type="button" data-copy="paste-anthropic-skills">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>Anyone who uses Claude Code and wants pre-built workflows for documents, design, or testing</li><li>Non-technical users who want consistent results without writing detailed prompts</li><li>Teams that want a trusted starting point from the company that makes Claude</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You don't use Claude Code, claude.ai, or the Claude API</li><li>You need production-guaranteed tools - the README says these are for demonstration and education</li><li>You already have custom skills that cover your workflow</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://www.usehallmark.com" rel="noopener"><b>Hallmark</b></a><span>A community skill focused on web design - 50 themes and a lint pass for AI-generated pages</span></li><li><a href="https://skills.sh" rel="noopener"><b>skills.sh marketplace</b></a><span>The community marketplace for Claude skills - thousands of options beyond Anthropic's official set</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/anthropics/skills/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Nov 6</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>20 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>188K stars, 19 contributors, 61 commits</span></div></li>
+    </ul>
+    <p class="lede" style="margin:var(--s-4) 0 0">The flagged hits are about Anthropic's separate skill scanner and a third party impersonating Anthropic, not this repo.</p>
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Example skills, not production-guaranteed.</b> The README says these are 'for demonstration and educational purposes only.'</li><li><b>Document skills are source-available, not Apache 2.0.</b> The DOCX, PDF, PPTX, and XLSX skills have a different license from the rest.</li><li><b>431 open issues and 1,100 open pull requests</b> suggest the repo is very busy but also has a large backlog.</li><li><b>Skills work differently across platforms.</b> Test in your environment - Claude Code, claude.ai, and the API each handle skills slightly differently.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><ol class="uses">
+  <li class="use"><span class="who-mark" aria-hidden="true">1</span><div><h3>Rakuten</h3><p>Used skills for management accounting and finance workflows</p><p class="result">What once took a day now takes an hour</p><a class="src" href="https://claude.com/blog/skills" rel="noopener">Anthropic blog - Skills launch, Oct undefined</a></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">2</span><div><h3>Box</h3><p>Lets users turn stored files into PowerPoint, Excel, and Word documents following organization standards</p><p class="result">Integrated as a partner skill set</p><a class="src" href="https://claude.com/blog/skills" rel="noopener">Anthropic blog - Skills launch, Oct undefined</a></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">3</span><div><h3>Notion</h3><p>Published Notion Skills for Claude as a partner integration</p><p class="result">Listed in the skills README as a partner</p><a class="src" href="https://github.com/anthropics/skills" rel="noopener">Anthropic Skills README, Nov undefined</a></div></li>
+  <li class="use"><span class="who-mark" aria-hidden="true">4</span><div><h3>Suraj Khaitan (DEV Community)</h3><p>Tested 100 Claude skills and published a list of the best</p><p class="result">Noted webapp-testing 'worked first try' as a smoke-test replacement</p><a class="src" href="https://dev.to" rel="noopener">DEV Community - I tried 100 Claude Skills, undefined undefined</a></div></li></ol>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com" rel="noopener">Claude Skills</a><span class="meta">816 points - Oct 16, 2025</span></li><li class=""><span class="plat">Anthropic blog</span><a href="https://claude.com/blog/skills" rel="noopener">Skills launch post and skill-creator update</a><span class="meta">Oct 2025, Mar 2026</span></li><li class=""><span class="plat">DEV Community</span><a href="https://dev.to" rel="noopener">I tried 100 Claude Skills - these are the best</a><span class="meta">2026</span></li></ul>
+  <div class="trending"><span class="chip">github-trending: daily</span><span class="chip">skills.sh: listed</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/anthropics/skills" rel="noopener">Anthropic Skills GitHub</a>, Nov 6</li><li><a href="https://claude.com/blog/skills" rel="noopener">Anthropic blog - Skills launch</a>, Oct undefined</li><li><a href="https://news.ycombinator.com" rel="noopener">Hacker News - Claude Skills discussion</a>, Oct 16</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 015 &middot; November 6, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

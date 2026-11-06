@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenMausBot: A chat app where every contact is an AI bot with its own computer and apps - the open-source alternative to Grok Bot. | Repo Radar</title>
+<meta name="description" content="Gives you a team of AI bots in a familiar chat interface, each with its own computer and app connections, that ask permission before doing anything risky.">
+<meta property="og:title" content="OpenMausBot: A chat app where every contact is an AI bot with its own computer and apps - the open-source alternative to Grok Bot. | Repo Radar">
+<meta property="og:description" content="Gives you a team of AI bots in a familiar chat interface, each with its own computer and app connections, that ask permission before doing anything risky.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/openmausbot.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 015 &middot; Week of November 6, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#10 this week</span><span class="repo-id">milind-soni/OpenMausBot</span></div>
+    <h1 id="name">OpenMausBot</h1>
+    <p class="tagline">A chat app where every contact is an AI bot with its own computer and apps - the open-source alternative to Grok Bot.</p>
+    <p class="sentence">Gives you a team of AI bots in a familiar chat interface, each with its own computer and app connections, that ask permission before doing anything risky.</p>
+    <div class="chips">
+      <span class="chip fit-you"><span class="dot" aria-hidden="true"></span>Use it yourself</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn quiet" href="https://github.com/milind-soni/OpenMausBot" rel="noopener">GitHub</a><span class="no-site">No website yet: the GitHub page is its home.</span></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/openmausbot.png" alt="The OpenMausBot desktop app showing a chat interface with an AI bot conversation on the right and a contact list of bots on the left, similar to a messaging app like iMessage or WhatsApp." width="2880" height="1800" loading="eager">
+    <figcaption>Each 'contact' is an AI bot with its own computer - send it a task the way you'd send a text.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">14.3K</span><span class="v-note">GitHub stars, <b>14.3K stars over 87 days</b></span></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">4</span><span class="v-note">independent write-ups and threads we found. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">5 minutes</span><div class="meter" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Nov 6: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">You want AI agents to handle tasks (inbox sweeps, competitor watches, code reviews) but don't want to give them free rein on your machine.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Send a message to a bot in the chat interface, or set a schedule, a webhook (an automatic trigger from another app), or an app-event trigger.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A task in plain language, like 'Sweep my inbox and draft replies to anything from clients.'</p></div><div class="note does"><span class="role">It does</span><p class="say">The bot works in its own isolated computer and asks permission before risky actions.</p><ol class="steps-in"><li>The bot works in its own isolated computer (a cloud desktop, a local virtual machine, or your host)</li><li>When it needs to do something risky (run a shell command, edit a file), it shows an Allow/Deny card</li><li>It can connect to Gmail, Slack, GitHub, Notion, and hundreds of other apps</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">The task done, with a full transcript and approval cards for everything risky.</p><ul class="outputs"><li><b>Completed tasks with a transcript</b><span>A weekly competitor watch that runs on schedule and posts a summary to Slack</span></li><li><b>Permission cards for risky actions</b><span>Before sending an email or running a command, the bot shows Allow/Deny - you decide</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>You run AI tasks in separate terminal windows with no approval step before risky actions</li><li>Each agent has its own interface - switching between Claude, Codex, and Grok means switching apps</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>One chat app, multiple agents, each with approval cards before risky actions</li><li>Schedule recurring tasks (weekly reports, inbox sweeps) and get results in chat</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: 5 minutes"><span class="on">5 minutes</span><span class="">About an hour</span><span class="">Needs a developer</span></div>
+    <ol class="steps"><li>Download the <a href="https://github.com/milind-soni/OpenMausBot/releases" rel="noopener">desktop app</a> for Mac, Windows, or Ubuntu</li><li>During onboarding, it detects your installed agent CLIs (Claude Code, Codex, Grok)</li><li>Send a message to a bot and try a simple task like 'Summarize the last 5 emails in my inbox'</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>no data found (Electron app with bundled dependencies)</dd></div>
+    <div><dt>Memory while it runs</dt><dd>no data found (runs a local server on port 8799)</dd></div>
+    <div><dt>Runs on</dt><dd>macOS (Apple Silicon and Intel, signed .dmg), Windows (x64, unsigned installer), Ubuntu 24.04 (beta, .deb or AppImage). Node 24+ for building from source.</dd></div>
+  </dl><a class="src" href="https://github.com/milind-soni/OpenMausBot" rel="noopener">Source: OpenMausBot README - install section</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-openmausbot">/skillspector https://github.com/milind-soni/OpenMausBot
+Then: Download the desktop app from GitHub Releases, let onboarding detect your agents, and try a simple task. 10 minutes.</pre>
+      <button class="copy" type="button" data-copy="paste-openmausbot">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>Anyone who wants one chat app to manage multiple AI agents with built-in permission controls</li><li>People who already pay for AI coding agents and want a visual interface instead of terminals</li><li>Non-technical users who want to schedule recurring AI tasks without writing code</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You're comfortable in the terminal - OpenMausBot adds a GUI layer you may not need</li><li>You want a polished product today - it's self-described as early with rough edges</li><li>You're on Ubuntu with Wayland - host control is disabled on that setup</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://t3.codes" rel="noopener"><b>T3 Code</b></a><span>A similar multi-agent dashboard focused on coding - more mature, with mobile apps</span></li><li><a href="https://x.ai" rel="noopener"><b>Grok Bot</b></a><span>The closed-source original - polished but locked to xAI's ecosystem</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/milind-soni/OpenMausBot/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Nov 6</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>0 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>14.3K stars, 196 contributors, 8.6K commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Early stage.</b> Self-described as 'Early but real' with rough edges expected.</li><li><b>Windows installer is unsigned.</b> SmartScreen will show a warning on install - you'll need to click 'Run anyway.'</li><li><b>Ubuntu is beta.</b> Host control is disabled on Wayland (the default display system on newer Ubuntu).</li><li><b>API keys stored in plain text</b> in <code>config.json</code> (with restricted file permissions on Mac and Linux, but readable on Windows).</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">The project is 87 days old and describes itself as 'Early but real.' No published case studies or independent user reports found.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">GitHub Trending</span><a href="https://github.com/trending" rel="noopener">Trending (daily)</a><span class="meta">Oct-Nov 2026</span></li><li class=""><span class="plat">Trendshift</span><a href="https://trendshift.io" rel="noopener">Trending on Trendshift</a><span class="meta">Nov 2026</span></li><li class=""><span class="plat">Bitdoze</span><a href="https://bitdoze.com" rel="noopener">Best Open Source Grok Bot Alternatives</a><span class="meta">Oct 2026</span></li><li class="tone-critical"><span class="plat">chatgate.ai</span><a href="https://chatgate.ai" rel="noopener">OpenMausBot review</a><span class="meta">Oct 2026</span></li></ul>
+  <div class="trending"><span class="chip">github-trending: daily</span><span class="chip">trendshift: trending</span><span class="chip">findarepo: listed in digests</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/milind-soni/OpenMausBot" rel="noopener">OpenMausBot GitHub</a>, Nov 6</li><li><a href="https://bitdoze.com" rel="noopener">Bitdoze - Best Open Source Grok Bot Alternatives</a>, Oct undefined</li><li><a href="https://chatgate.ai" rel="noopener">chatgate.ai - OpenMausBot review</a>, Oct undefined</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 015 &middot; November 6, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

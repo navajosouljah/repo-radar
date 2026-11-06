@@ -1,0 +1,168 @@
+{
+  "repo": "milind-soni/OpenMausBot",
+  "name": "OpenMausBot",
+  "tagline": "A chat app where every contact is an AI bot with its own computer and apps - the open-source alternative to Grok Bot.",
+  "sentence": "Gives you a team of AI bots in a familiar chat interface, each with its own computer and app connections, that ask permission before doing anything risky.",
+  "fit": "you",
+  "links": {
+    "docs": "https://github.com/milind-soni/OpenMausBot"
+  },
+  "visual": {
+    "src": "assets/shots/openmausbot.png",
+    "width": 2880,
+    "height": 1800,
+    "alt": "The OpenMausBot desktop app showing a chat interface with an AI bot conversation on the right and a contact list of bots on the left, similar to a messaging app like iMessage or WhatsApp.",
+    "caption": "Each 'contact' is an AI bot with its own computer - send it a task the way you'd send a text."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You want AI agents to handle tasks (inbox sweeps, competitor watches, code reviews) but don't want to give them free rein on your machine."
+    },
+    {
+      "role": "trigger",
+      "say": "Send a message to a bot in the chat interface, or set a schedule, a webhook (an automatic trigger from another app), or an app-event trigger."
+    },
+    {
+      "role": "input",
+      "say": "A task in plain language, like 'Sweep my inbox and draft replies to anything from clients.'"
+    },
+    {
+      "role": "does",
+      "say": "The bot works in its own isolated computer and asks permission before risky actions.",
+      "steps": [
+        "The bot works in its own isolated computer (a cloud desktop, a local virtual machine, or your host)",
+        "When it needs to do something risky (run a shell command, edit a file), it shows an Allow/Deny card",
+        "It can connect to Gmail, Slack, GitHub, Notion, and hundreds of other apps"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "The task done, with a full transcript and approval cards for everything risky.",
+      "outputs": [
+        {
+          "what": "Completed tasks with a transcript",
+          "eg": "A weekly competitor watch that runs on schedule and posts a summary to Slack"
+        },
+        {
+          "what": "Permission cards for risky actions",
+          "eg": "Before sending an email or running a command, the bot shows Allow/Deny - you decide"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You run AI tasks in separate terminal windows with no approval step before risky actions",
+    "Each agent has its own interface - switching between Claude, Codex, and Grok means switching apps"
+  ],
+  "after": [
+    "One chat app, multiple agents, each with approval cards before risky actions",
+    "Schedule recurring tasks (weekly reports, inbox sweeps) and get results in chat"
+  ],
+  "uses_note": "The project is 87 days old and describes itself as 'Early but real.' No published case studies or independent user reports found.",
+  "uses": [],
+  "pulse": {
+    "gain": "14.3K stars over 87 days",
+    "history": [
+      ["2026-11-06", 14268]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending (daily)",
+      "url": "https://github.com/trending",
+      "meta": "Oct-Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Trending on Trendshift",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Bitdoze",
+      "title": "Best Open Source Grok Bot Alternatives",
+      "url": "https://bitdoze.com",
+      "meta": "Oct 2026"
+    },
+    {
+      "plat": "chatgate.ai",
+      "title": "OpenMausBot review",
+      "url": "https://chatgate.ai",
+      "meta": "Oct 2026",
+      "tone": "critical"
+    }
+  ],
+  "trending": [
+    "github-trending: daily",
+    "trendshift: trending",
+    "findarepo: listed in digests"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Download the [desktop app](https://github.com/milind-soni/OpenMausBot/releases) for Mac, Windows, or Ubuntu",
+      "During onboarding, it detects your installed agent CLIs (Claude Code, Codex, Grok)",
+      "Send a message to a bot and try a simple task like 'Summarize the last 5 emails in my inbox'"
+    ],
+    "paste": "/skillspector https://github.com/milind-soni/OpenMausBot\nThen: Download the desktop app from GitHub Releases, let onboarding detect your agents, and try a simple task. 10 minutes."
+  },
+  "footprint": {
+    "disk": "no data found (Electron app with bundled dependencies)",
+    "memory": "no data found (runs a local server on port 8799)",
+    "runs_on": "macOS (Apple Silicon and Intel, signed .dmg), Windows (x64, unsigned installer), Ubuntu 24.04 (beta, .deb or AppImage). Node 24+ for building from source.",
+    "source": {
+      "title": "OpenMausBot README - install section",
+      "url": "https://github.com/milind-soni/OpenMausBot"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who wants one chat app to manage multiple AI agents with built-in permission controls",
+      "People who already pay for AI coding agents and want a visual interface instead of terminals",
+      "Non-technical users who want to schedule recurring AI tasks without writing code"
+    ],
+    "skip_if": [
+      "You're comfortable in the terminal - OpenMausBot adds a GUI layer you may not need",
+      "You want a polished product today - it's self-described as early with rough edges",
+      "You're on Ubuntu with Wayland - host control is disabled on that setup"
+    ],
+    "alternatives": [
+      {
+        "name": "T3 Code",
+        "repo": "pingdotgg/t3code",
+        "url": "https://t3.codes",
+        "line": "A similar multi-agent dashboard focused on coding - more mature, with mobile apps"
+      },
+      {
+        "name": "Grok Bot",
+        "url": "https://x.ai",
+        "line": "The closed-source original - polished but locked to xAI's ecosystem"
+      }
+    ]
+  },
+  "watch": [
+    "**Early stage.** Self-described as 'Early but real' with rough edges expected.",
+    "**Windows installer is unsigned.** SmartScreen will show a warning on install - you'll need to click 'Run anyway.'",
+    "**Ubuntu is beta.** Host control is disabled on Wayland (the default display system on newer Ubuntu).",
+    "**API keys stored in plain text** in `config.json` (with restricted file permissions on Mac and Linux, but readable on Windows)."
+  ],
+  "sources": [
+    {
+      "title": "OpenMausBot GitHub",
+      "url": "https://github.com/milind-soni/OpenMausBot",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Bitdoze - Best Open Source Grok Bot Alternatives",
+      "url": "https://bitdoze.com",
+      "date": "2026-10"
+    },
+    {
+      "title": "chatgate.ai - OpenMausBot review",
+      "url": "https://chatgate.ai",
+      "date": "2026-10"
+    }
+  ]
+}

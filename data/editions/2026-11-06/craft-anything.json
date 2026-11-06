@@ -1,0 +1,163 @@
+{
+  "repo": "storytold/craft-anything",
+  "name": "Craft Anything",
+  "tagline": "Point at any website, app, or game, and a coding agent builds you a working copy from scratch.",
+  "sentence": "Studies existing software - a website, an app, a game - and has a coding agent build a fresh version in your chosen language, then compares and refines it until it matches.",
+  "fit": "you",
+  "links": {
+    "website": "https://getartcraft.com/apps/craft-anything",
+    "docs": "https://github.com/storytold/craft-anything"
+  },
+  "visual": {
+    "src": "assets/shots/craft-anything-simple.png",
+    "width": 2160,
+    "height": 1500,
+    "alt": "Craft Anything's Simple mode showing a completed snake game built from a text prompt, with a green snake on a dark grid and a score counter at the top.",
+    "caption": "Simple mode: describe what you want, and the agent builds it."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "You see software you admire but can't build your own version of it."
+    },
+    {
+      "role": "trigger",
+      "say": "You paste a URL or point it at an app and say 'Recreate this.'"
+    },
+    {
+      "role": "input",
+      "say": "A website URL, an app, a game, or a file you want to study and rebuild."
+    },
+    {
+      "role": "does",
+      "say": "The app studies the target, has a coding agent build a new version, and refines it.",
+      "steps": [
+        "Studies the target - takes screenshots at every width, reads visible text and layout",
+        "A coding agent (like Claude Code) builds a new project in your chosen language",
+        "Compares the build with the original and lists mismatches",
+        "Refines until the comparison check passes"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A working project you own, built from scratch.",
+      "outputs": [
+        {
+          "what": "A recreated project",
+          "eg": "Paste a website URL and get a working copy in your chosen language, checked against the original"
+        },
+        {
+          "what": "A comparison report",
+          "eg": "The app found 2 mismatches (missing footer, wrong font) and fixed them in a second pass"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You see a website or app you like and try to code something similar from scratch, guessing at behavior",
+    "Reverse engineering takes specialized tools and deep technical knowledge"
+  ],
+  "after": [
+    "Point at any software and get a working recreation in your chosen language, checked against the original",
+    "Clean-room mode means you work only from visible material - screenshots and text - not source code"
+  ],
+  "uses_note": "Craft Anything is 6 days old. No independent user reports have been published yet.",
+  "uses": [],
+  "pulse": {
+    "gain": "16.6K stars in 6 days since launch",
+    "history": [
+      ["2026-11-06", 16596]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "GadgetPilipinas",
+      "title": "Open-source tool that studies software and builds fresh versions",
+      "url": "https://gadgetpilipinas.net",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Monthly trending",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in digest",
+      "url": "https://findarepo.com/repo/storytold/craft-anything/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "trendshift: monthly trending",
+    "findarepo: listed in digest"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Download the installer for your OS from [GitHub Releases](https://github.com/storytold/craft-anything/releases/latest) (about 60 MB)",
+      "Open [Craft Anything](https://getartcraft.com/apps/craft-anything), paste a website URL, and say 'Recreate this website'",
+      "Review the comparison checks and approve the result, or request changes"
+    ],
+    "paste": "/skillspector https://github.com/storytold/craft-anything\nThen: Download from the Releases page, open the app, paste a simple website URL and say 'Recreate this website.' 10 minutes."
+  },
+  "footprint": {
+    "disk": "About 60 MB for the app (Linux AppImage is 59.4 MB, deb is 64.2 MB).",
+    "memory": "no data found",
+    "runs_on": "macOS, Windows, Linux, FreeBSD. Requires a coding agent installed (like Claude Code). Building from source needs Rust 1.97+.",
+    "source": {
+      "title": "Craft Anything GitHub Releases",
+      "url": "https://github.com/storytold/craft-anything/releases"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who sees an app or website and wants their own version of it",
+      "People who want to learn how software works by rebuilding it",
+      "Non-coders who want a coding agent to do the building for them"
+    ],
+    "skip_if": [
+      "You need production-quality code - this is early alpha",
+      "You don't have a coding agent installed (Claude Code, Codex, or similar)",
+      "You want to copy source code directly - Craft Anything works from screenshots and visible text only"
+    ],
+    "alternatives": [
+      {
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://github.com/Nutlope/hallmark",
+        "line": "A design skill for web pages - focuses on making AI-built sites look hand-designed, not on recreating existing ones"
+      },
+      {
+        "name": "Unslop",
+        "repo": "heydamir/unslop",
+        "url": "https://github.com/heydamir/unslop",
+        "line": "Fixes the generic look of AI-built interfaces pass by pass, rather than rebuilding from scratch"
+      }
+    ]
+  },
+  "watch": [
+    "**Early alpha.** The README says so explicitly - expect rough edges and incomplete features.",
+    "**Requires a coding agent.** Craft Anything doesn't write code itself. You need Claude Code, Codex, or a similar agent installed and signed in on your machine.",
+    "**Clean-room only.** It works from screenshots and visible text, not source code. Results may not replicate behavior exactly.",
+    "**Check your rights.** Only use it on software you own or are allowed to examine. Recreating copyrighted software may have legal implications."
+  ],
+  "sources": [
+    {
+      "title": "Craft Anything GitHub",
+      "url": "https://github.com/storytold/craft-anything",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "ArtCraft website",
+      "url": "https://getartcraft.com/apps/craft-anything",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "GadgetPilipinas coverage",
+      "url": "https://gadgetpilipinas.net",
+      "date": "2026-11-06"
+    }
+  ]
+}

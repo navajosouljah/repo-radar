@@ -1,0 +1,154 @@
+{
+  "repo": "deepseek-ai/dsh-superagent-prototype",
+  "name": "DSH Superagent",
+  "tagline": "A coding agent that picks up work from your team chats and delivers pull requests without being asked.",
+  "sentence": "Monitors your GitHub project for coding requests from authorized people and works them in parallel, returning pull requests without you coordinating each one.",
+  "fit": "developers",
+  "links": {
+    "website": "https://deepseek.com/en/harness",
+    "docs": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your coding agent only works when you ask it, one task at a time, and stops the moment you walk away."
+    },
+    {
+      "role": "trigger",
+      "say": "Someone posts a coding request in a GitHub conversation on your project."
+    },
+    {
+      "role": "input",
+      "say": "A bug report, a feature request, or a question posted in a GitHub thread by an authorized team member."
+    },
+    {
+      "role": "does",
+      "say": "The agent picks up the request, works it in its own session, and replies with a pull request.",
+      "steps": [
+        "A router picks up the message, checks whether the sender is authorized, and creates a work item",
+        "A worker session clones the project into its own directory and codes the fix or feature",
+        "The agent replies in the original conversation with a pull request or an answer",
+        "A web panel flags anything that needs your review"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "Pull requests delivered while you do other things, and a panel showing only the items that need your decision.",
+      "outputs": [
+        {
+          "what": "Automatic pull requests",
+          "eg": "A team member reports a bug in a GitHub thread; the agent opens a pull request with the fix and replies with a link"
+        },
+        {
+          "what": "A review panel",
+          "eg": "A web dashboard shows 3 items needing your approval and 7 completed tasks"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You assign each bug or task to the agent by hand, one at a time, and wait for it to finish",
+    "Messages asking for code fixes pile up until someone acts on them"
+  ],
+  "after": [
+    "The agent picks up authorized requests from your team and works them in parallel",
+    "A web panel shows only the items that need your decision - everything else is handled"
+  ],
+  "uses_note": "DSH Superagent is 6 days old. The only known user is DeepSeek's own engineering team, who built this from their daily workflow.",
+  "uses": [],
+  "pulse": {
+    "gain": "20K stars in 6 days since launch",
+    "history": [
+      ["2026-11-06", 19994]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "TechNode",
+      "title": "DeepSeek team open-sources proactive coding agent research prototype",
+      "url": "https://technode.com",
+      "meta": "Nov 2, 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Monthly trending",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Nov 2-4 digests",
+      "url": "https://findarepo.com/repo/deepseek-ai/dsh-superagent-prototype/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "trendshift: monthly trending",
+    "findarepo: listed in Nov 2-4 digests"
+  ],
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Install [DeepSeek Harness](https://deepseek.com/en/harness) on your machine",
+      "Clone the repo: `git clone https://github.com/deepseek-ai/dsh-superagent-prototype`",
+      "Ask the agent: 'Read SETUP.md and set up dsh-superagent with me' - it walks you through connecting to a GitHub project"
+    ],
+    "paste": "/skillspector https://github.com/deepseek-ai/dsh-superagent-prototype\nThen: Clone the repo, install DeepSeek Harness, and ask the agent to read SETUP.md and set up the superagent with you. 10 minutes."
+  },
+  "footprint": {
+    "disk": "no data found",
+    "memory": "no data found",
+    "runs_on": "Any machine that runs Node.js and pnpm. Requires DeepSeek Harness (a separate install from deepseek.com/en/harness).",
+    "source": {
+      "title": "DSH Superagent README",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Teams that want coding tasks handled automatically from GitHub conversations",
+      "Developers who already use DeepSeek Harness and want it to work without being asked"
+    ],
+    "skip_if": [
+      "You don't write code or manage a codebase",
+      "You need a production-ready agent - this is a research prototype with known bugs",
+      "You're not comfortable giving an agent broad permissions on your machine"
+    ],
+    "alternatives": [
+      {
+        "name": "Claude Code",
+        "url": "https://claude.ai/code",
+        "line": "Anthropic's coding agent - you run it yourself, one task at a time, from your terminal"
+      },
+      {
+        "name": "T3 Code",
+        "repo": "pingdotgg/t3code",
+        "url": "https://t3.codes",
+        "line": "A control panel for multiple coding agents - you still start each task, but you can manage them from your phone"
+      }
+    ]
+  },
+  "watch": [
+    "**Single-commit code drop with 20K stars.** The entire codebase was published in one commit with zero listed contributors. This is common for initial open-source releases from major companies, but means the commit history is opaque.",
+    "**Research prototype, not production-ready.** DeepSeek says it may contain bugs, and the published code doesn't match their internal version.",
+    "**Broad permissions.** The agent runs with full access to your operating system user's files and commands.",
+    "**Very early.** The only known user is DeepSeek's own team. Independent adoption has not been reported."
+  ],
+  "sources": [
+    {
+      "title": "DSH Superagent GitHub",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "DeepSeek Harness",
+      "url": "https://deepseek.com/en/harness",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "TechNode coverage",
+      "url": "https://technode.com",
+      "date": "2026-11-02"
+    }
+  ]
+}

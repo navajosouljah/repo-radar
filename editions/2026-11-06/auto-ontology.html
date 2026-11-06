@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Ontology: NVIDIA's tool that teaches AI to ask your databases the right questions - and show its work. | Repo Radar</title>
+<meta name="description" content="Maps your business terms to database columns so an AI agent answers 'What was revenue last quarter?' with the right query, the SQL it wrote, and why.">
+<meta property="og:title" content="Auto Ontology: NVIDIA's tool that teaches AI to ask your databases the right questions - and show its work. | Repo Radar">
+<meta property="og:description" content="Maps your business terms to database columns so an AI agent answers 'What was revenue last quarter?' with the right query, the SQL it wrote, and why.">
+<meta property="og:image" content="https://repo-radar-weekly.vercel.app/assets/shots/auto-ontology.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='10' width='40' height='40' rx='3' fill='%23f7e38a' transform='rotate(-6 26 30)'/%3E%3Crect x='20' y='16' width='38' height='38' rx='3' fill='%23bfe8c9' transform='rotate(5 39 35)'/%3E%3Cpath d='M18 36c8-2 16-2 26 0' stroke='%232f3350' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Shantell+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/radar.css">
+<script src="../../assets/radar.js" defer></script>
+</head>
+<body>
+<div class="wrap"><header class="topbar">
+  <a class="brand" href="../../index.html">Repo <span>Radar</span></a>
+  <nav aria-label="Site"><a href="../../index.html">This week's 10</a><a href="../../index.html#categories">Categories</a><a href="../../archive.html">Archive</a><a href="../../lookup.html">Look up a repo</a></nav>
+</header><p class="crumb">Edition 015 &middot; Week of November 6, 2026</p></div>
+<main class="wrap">
+<section class="answer" aria-labelledby="name">
+  <div>
+    <div class="kicker"><span class="rank-tag">#7 this week</span><span class="repo-id">NVIDIA/auto-ontology</span></div>
+    <h1 id="name">Auto Ontology</h1>
+    <p class="tagline">NVIDIA's tool that teaches AI to ask your databases the right questions - and show its work.</p>
+    <p class="sentence">Maps your business terms to database columns so an AI agent answers 'What was revenue last quarter?' with the right query, the SQL it wrote, and why.</p>
+    <div class="chips">
+      <span class="chip fit-dev"><span class="dot" aria-hidden="true"></span>For developers</span>
+      
+      
+    </div>
+    <div class="actions"><a class="btn quiet" href="https://github.com/NVIDIA/auto-ontology" rel="noopener">GitHub</a><span class="no-site">No website yet: the GitHub page is its home.</span></div>
+  </div>
+  <figure class="pinned">
+    <img src="../../assets/shots/auto-ontology.png" alt="A semantic graph visualization showing business concepts (Revenue, Customer, Product, Region) connected by labeled relationships, with database tables and columns mapped underneath each concept." width="1044" height="648" loading="eager">
+    <figcaption>Auto Ontology maps business terms to database columns so the AI writes the right query.</figcaption>
+  </figure>
+</section>
+<div class="vitals" aria-label="At a glance">
+  <div class="vital"><span class="v-label">Popularity</span><span class="v-big">8.3K</span><span class="v-note">GitHub stars, <b>8.3K stars over 193 days</b></span></div>
+  <div class="vital"><span class="v-label">Buzz</span><span class="v-big">3</span><span class="v-note">independent write-ups and threads we found. Biggest: <b>289 points on Hacker News</b>. <a href="#who">See them</a></span></div>
+  <div class="vital"><span class="v-label">Effort to try</span><span class="v-big" style="font-size:1.25rem">Needs a developer</span><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+  <div class="vital safe"><span class="v-label">Safety check</span><span class="v-big">Passed</span><span class="v-note">Checked Nov 6: no open security issues</span></div>
+</div>
+<section class="q" id="how" aria-labelledby="how-h"><header><span class="q-num">1</span><h2 id="how-h">How does it work?</h2></header><div class="board"><div class="headline"><div class="note problem"><span class="role">Your problem</span><p class="say">AI agents guess at your database structure and write wrong queries, or you spend hours writing SQL (database queries) by hand.</p></div></div>
+<div class="flow"><div class="note trigger"><span class="role">When it kicks in</span><p class="say">Type a business question in the Auto Ontology chat window, or call it from another tool through its server.</p></div><div class="note input"><span class="role">You give it</span><p class="say">A question like 'What was total revenue for WidgetCo in New York last quarter?'</p></div><div class="note does"><span class="role">It does</span><p class="say">Classifies the question, retrieves matching business terms from the map, writes a database query, and validates it before running.</p><ol class="steps-in"><li>Classifies your question and finds the matching business terms in the meaning map</li><li>Writes a database query against the actual table and column names</li><li>Validates the query before running it</li><li>Returns the answer with the query it wrote and the reasoning chain</li></ol></div><div class="note result"><span class="role">You get</span><p class="say">The answer, the query that produced it, and a refusal when the data doesn't exist.</p><ul class="outputs"><li><b>A sourced answer</b><span>Revenue: $4.2M, with the SQL query and reasoning shown (from the project's documentation)</span></li><li><b>An honest 'I can't answer that'</b><span>'I can't answer ad-spend questions because the connected data doesn't contain advertising data'</span></li></ul></div></div>
+</div>
+<p class="legend" aria-hidden="true"><span class="l-problem">the problem</span><span class="l-how">how it works</span><span class="l-result">what you get</span><span class="l-watch">watch out</span></p></section>
+<section class="q" id="changes" aria-labelledby="changes-h"><header><span class="q-num">2</span><h2 id="changes-h">What changes for me?</h2></header><div class="ba">
+  <div class="before"><h3>Without it</h3><ul><li>An AI guesses column names and joins, producing wrong numbers you don't catch</li><li>You write database queries by hand or ask a data analyst and wait</li></ul></div>
+  <div class="after"><h3>With it</h3><ul><li>A business question returns an answer, the query, and the reasoning - all auditable</li><li>When the data doesn't exist, the system says so instead of making something up</li></ul></div>
+</div></section>
+<section class="q" id="try" aria-labelledby="try-h"><header><span class="q-num">3</span><h2 id="try-h">How hard is it to try?</h2></header><div class="try">
+  <div class="effort">
+    <h3 style="font-size:1.125rem">Effort</h3>
+    <div class="levels" role="img" aria-label="Effort: Needs a developer"><span class="">5 minutes</span><span class="">About an hour</span><span class="on">Needs a developer</span></div>
+    <ol class="steps"><li>Clone the repo and copy <code>.env.example</code> to <code>.env</code>, then add an <a href="https://build.nvidia.com" rel="noopener">NVIDIA API key</a></li><li>Run <code>docker compose up --build</code> (needs <a href="https://www.docker.com/get-started/" rel="noopener">Docker</a> with Compose v2)</li><li>Open <a href="http://localhost:3000" rel="noopener">localhost:3000</a> in your browser, connect a sample database, and ask a question in the chat</li></ol>
+  </div>
+  <div class="try-side">
+    <div class="footprint"><h3>What it takes on your computer</h3><dl>
+    <div><dt>Space on disk</dt><dd>no data found (runs via Docker images; no releases published)</dd></div>
+    <div><dt>Memory while it runs</dt><dd>no data found (runs PostgreSQL 17 + pgvector, a web server, a Python API server, and model calls)</dd></div>
+    <div><dt>Runs on</dt><dd>Any OS with Docker Compose v2 (or Kubernetes via Helm chart)</dd></div>
+  </dl><a class="src" href="https://github.com/NVIDIA/auto-ontology" rel="noopener">Source: Auto Ontology README - install section</a></div>
+    <div class="paste">
+      <p>Paste this into Claude Code. It runs your safety scan first, then a 10-minute test.</p>
+      <pre id="paste-auto-ontology">/skillspector https://github.com/NVIDIA/auto-ontology
+Then: Clone the repo, copy .env.example to .env, add your NVIDIA API key, run `docker compose up --build`, open localhost:3000 and try a revenue question. 10 minutes (Docker pull may take longer).</pre>
+      <button class="copy" type="button" data-copy="paste-auto-ontology">Copy the prompt</button>
+    </div>
+  </div>
+</div></section>
+<section class="q" id="should" aria-labelledby="should-h"><header><span class="q-num">4</span><h2 id="should-h">Should I?</h2></header><div class="should">
+  <div class="yes"><h3>Great if you...</h3><ul><li>Data teams that want AI to write accurate, auditable database queries from business questions</li><li>Companies that need a meaning layer between business terms and database columns</li><li>Teams building internal tools where non-technical people ask data questions</li></ul></div>
+  <div class="no"><h3>Skip it if...</h3><ul><li>You don't have databases to connect - this is a data tool, not a general AI assistant</li><li>You need a one-click install - this requires Docker, an NVIDIA API key, and configuration</li><li>You want to modify the code - NVIDIA is not accepting code contributions, only issues</li></ul></div>
+</div>
+<div class="alts"><h3>Instead, you could look at</h3><ul><li><a href="https://www.metabase.com" rel="noopener"><b>Metabase</b></a><span>An open-source business intelligence tool with natural-language queries - simpler to set up, no meaning layer</span></li><li><a href="https://vanna.ai" rel="noopener"><b>Vanna.ai</b></a><span>An AI-powered SQL generation tool that learns from your queries - less infrastructure required</span></li></ul></div></section>
+<section class="q" id="safe" aria-labelledby="safe-h"><header><span class="q-num">5</span><h2 id="safe-h">Is it safe?</h2></header><div class="safety">
+  <div>
+    <span class="stamp pass">PASSED</span>
+    <ul class="checks">
+      <li><div><b>Security advisories: 0</b><span><a href="https://github.com/NVIDIA/auto-ontology/security/advisories" rel="noopener">GitHub's advisory list</a>, checked Nov 6</span></div></li>
+      <li><div><b>Searches for CVEs, vulnerabilities, malware and scams</b><span>0 results read, including the national CVE database: nothing found</span></div></li>
+      <li class=""><div><b>Are the stars earned?</b><span>8.3K stars, 13 contributors, 1.4K commits</span></div></li>
+    </ul>
+    
+  </div>
+  <div><h3 style="font-size:1.125rem;margin-bottom:var(--s-3)">Watch out for</h3><ul class="watch"><li><b>Requires Docker and an NVIDIA API key.</b> Not a one-click install - you need Docker Compose v2 and a free key from build.nvidia.com.</li><li><b>Not accepting code contributions.</b> NVIDIA takes issues and integration requests only.</li><li><b>KumoRFM predictive features upload your tables to a hosted service</b> (default cap of 20 tables). Disable if that's a concern.</li><li><b>The data intake endpoints have no login wall.</b> Ports 3001-3002 should stay on a private network, not the open internet.</li></ul></div>
+</div></section>
+<section class="q" id="who" aria-labelledby="who-h"><header><span class="q-num">6</span><h2 id="who-h">Who's using it, and for what?</h2></header><p class="lede">No independent user reports found. The project is 193 days old with 8.3K stars and 666 forks, but real adoption evidence is thin - this is a framework aimed at enterprise data teams.</p><p class="thin">We couldn't find anyone describing real use of it yet. That's normal for a brand-new repo, and it's worth knowing.</p>
+<div class="talk"><h3>Who's talking about it</h3>
+  <ul class="wall"><li class=""><span class="plat">Hacker News</span><a href="https://news.ycombinator.com/item?id=50323848" rel="noopener">Nvidia - open-source auto-ontology</a><span class="meta">289 points - Nov 3, 2026</span></li><li class=""><span class="plat">GitHub Trending</span><a href="https://github.com/trending" rel="noopener">Trending (daily)</a><span class="meta">Nov 2026</span></li><li class=""><span class="plat">findarepo</span><a href="https://findarepo.com/repo/NVIDIA/auto-ontology/" rel="noopener">Listed in Nov digests</a><span class="meta">Nov 2026</span></li></ul>
+  <div class="trending"><span class="chip">github-trending: daily</span><span class="chip">trendshift: trending</span><span class="chip">findarepo: listed in Nov digests</span><span class="chip">hacker-news: 289 points</span></div>
+</div></section>
+<section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol><li><a href="https://github.com/NVIDIA/auto-ontology" rel="noopener">Auto Ontology GitHub</a>, Nov 6</li><li><a href="https://news.ycombinator.com/item?id=50323848" rel="noopener">Hacker News discussion</a>, Nov 3</li></ol></section>
+<footer class="site-foot"><span>Repo Radar &middot; Edition 015 &middot; November 6, 2026</span><a href="./">&larr; Back to this week's 10</a></footer>
+</main>
+</body>
+</html>

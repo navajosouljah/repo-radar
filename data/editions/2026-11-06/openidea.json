@@ -1,0 +1,157 @@
+{
+  "repo": "l0ng-ai/openidea",
+  "name": "OpenIDEA",
+  "tagline": "The IntelliJ-style code editor rebuilt in Rust - same workflow, opens in under a second, uses a fraction of the memory.",
+  "sentence": "Opens a 770-file project in 0.9 seconds using 169 MB where IntelliJ (a popular code editor) takes 3.1 seconds and 2 GB, with the same keyboard shortcuts and built-in database and web-request tools.",
+  "fit": "developers",
+  "links": {
+    "docs": "https://github.com/l0ng-ai/openidea"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your code editor takes seconds to start, uses gigabytes of memory, and the interface lags on large projects."
+    },
+    {
+      "role": "trigger",
+      "say": "You open OpenIDEA and load a project."
+    },
+    {
+      "role": "input",
+      "say": "Your code project - Python, JavaScript, Go, Rust, or any of 60+ supported languages."
+    },
+    {
+      "role": "does",
+      "say": "Opens the project almost instantly and loads familiar IntelliJ-style tools.",
+      "steps": [
+        "Opens the project window in under a second (0.9 seconds in the project's own benchmark on a 770-file Python project)",
+        "Loads IntelliJ-style tool windows, keyboard shortcuts, and search-everywhere (press Shift twice to search anything)",
+        "Runs add-ons (extensions that add features) as sandboxed WebAssembly (a safe container) - the add-on system is in preview"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A ready code editor using a fraction of the memory, with the same workflow you already know.",
+      "outputs": [
+        {
+          "what": "A fast code editor",
+          "eg": "A 770-file Python project loads in 0.9 seconds using 169 MB, vs. 3.1 seconds and about 2 GB in IntelliJ"
+        },
+        {
+          "what": "Built-in tools",
+          "eg": "Database browser, web-request tester, Git interface, and terminal - all in one window"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "IntelliJ takes 3.1 seconds to show the window and 13.2 seconds until ready, using about 2 GB of memory",
+    "Lightweight editors lack the integrated database, web-request, and debugger tools that full editors have"
+  ],
+  "after": [
+    "Window in 0.9 seconds, ready in 1.1 seconds, using 169 MB (project's own benchmark, 770-file Python project)",
+    "Full code editor with debugger, Git, database, web-request tester, and terminal in a native app"
+  ],
+  "uses_note": "OpenIDEA is 16 days old. No independent user reports have been published yet.",
+  "uses": [],
+  "pulse": {
+    "gain": "7.3K stars in 16 days since launch",
+    "history": [
+      ["2026-11-06", 7263]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "EcosistemaStartup",
+      "title": "OpenIDEA: el IDE en Rust que abre en 0,9 segundos",
+      "url": "https://ecosistemastartup.com",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Zeli",
+      "title": "OpenIDEA rebuilds the IntelliJ-style IDE in Rust",
+      "url": "https://zeli.app",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Monthly trending",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in digest",
+      "url": "https://findarepo.com/repo/l0ng-ai/openidea/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "trendshift: monthly trending",
+    "findarepo: listed in digest"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Download the installer for your OS from [GitHub Releases](https://github.com/l0ng-ai/openidea/releases/latest) (about 59 MB)",
+      "Open [OpenIDEA](https://github.com/l0ng-ai/openidea) and load a project - it uses IntelliJ's keyboard shortcuts and layout by default",
+      "Try search-everywhere (press Shift twice) and the built-in database browser (Settings > Plugins)"
+    ],
+    "paste": "/skillspector https://github.com/l0ng-ai/openidea\nThen: Download from the Releases page, open a project, and try search-everywhere by pressing Shift twice. 10 minutes."
+  },
+  "footprint": {
+    "disk": "About 59 MB for the installer (Linux RPM is 59.2 MB).",
+    "memory": "About 169 MB idle with a project loaded (the project's own benchmark).",
+    "runs_on": "macOS, Windows, Linux (x86-64 and ARM64). Building from source requires Rust 1.96+ and Node.js.",
+    "source": {
+      "title": "OpenIDEA README and Releases",
+      "url": "https://github.com/l0ng-ai/openidea"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Developers who use IntelliJ and want the same experience with faster startup and less memory",
+      "Anyone whose current editor feels sluggish on large projects"
+    ],
+    "skip_if": [
+      "You're not a developer - this is a code editor for people who write code",
+      "You rely on a specific IntelliJ plugin - the add-on system is still in preview",
+      "You need a mature, battle-tested editor - OpenIDEA is 16 days old"
+    ],
+    "alternatives": [
+      {
+        "name": "VS Code",
+        "url": "https://code.visualstudio.com",
+        "line": "The most popular free code editor - slower than OpenIDEA but with a massive extension library"
+      },
+      {
+        "name": "Zed",
+        "url": "https://zed.dev",
+        "line": "Another Rust-built code editor focused on speed, with multiplayer editing and AI features"
+      }
+    ]
+  },
+  "watch": [
+    "**Very new (16 days old).** Expect rough edges, missing features, and frequent changes.",
+    "**The benchmark is the project's own.** The maintainers note that IntelliJ analyzes Python more deeply, so 'ready' doesn't mean the same work was done on both sides.",
+    "**Add-on system is in preview.** If you depend on specific IntelliJ plugins, check whether they exist for OpenIDEA first.",
+    "**Not affiliated with JetBrains.** IntelliJ IDEA is a JetBrains trademark. OpenIDEA is a separate project."
+  ],
+  "sources": [
+    {
+      "title": "OpenIDEA GitHub",
+      "url": "https://github.com/l0ng-ai/openidea",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "EcosistemaStartup coverage",
+      "url": "https://ecosistemastartup.com",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Zeli coverage",
+      "url": "https://zeli.app",
+      "date": "2026-11-06"
+    }
+  ]
+}

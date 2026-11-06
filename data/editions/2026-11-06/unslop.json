@@ -1,0 +1,171 @@
+{
+  "repo": "heydamir/unslop",
+  "name": "Unslop",
+  "tagline": "A Claude Code skill that finds and fixes the generic, AI-generated look in your interface, pass by pass.",
+  "sentence": "Audits your AI-built interface for design slop - purple gradients, emoji labels, stock layouts - sets a direction, and fixes it screen by screen like a designer doing a review.",
+  "fit": "you",
+  "links": {
+    "website": "https://heydamir.design/unslop",
+    "docs": "https://github.com/heydamir/unslop"
+  },
+  "visual": {
+    "src": "assets/shots/unslop.webp",
+    "width": 2400,
+    "height": 1200,
+    "alt": "Before and after comparison of a dashboard interface. The left side shows a generic AI-generated design with purple gradients and glowing elements. The right side shows the same dashboard with clean typography, restrained colors, and professional spacing.",
+    "caption": "Before and after: the same dashboard, unslopped."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI-built interface looks like every other AI-built interface - generic gradients, stock layouts, and copy that screams 'a machine made this.'"
+    },
+    {
+      "role": "trigger",
+      "say": "You type `/unslop this dashboard` in Claude Code (or `$unslop` in Codex)."
+    },
+    {
+      "role": "input",
+      "say": "Your project's interface code (React, Vue, Svelte, Tailwind, plain HTML/CSS, or a live site URL)."
+    },
+    {
+      "role": "does",
+      "say": "The skill audits the screen, sets a design direction, and makes fixes in order.",
+      "steps": [
+        "Audits the screen and lists each sign of 'slop' with its location",
+        "Sets a design direction - character, color moments, a signature detail - and shows it to you before changing anything",
+        "Makes passes in order: spacing, color, icons, copy, typography, layout, details, visuals, motion",
+        "Optionally generates a short video of the screen unslopping itself (needs Playwright and ffmpeg installed)"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "A designed interface instead of a generic one.",
+      "outputs": [
+        {
+          "what": "A redesigned interface",
+          "eg": "Removes purple gradients, replaces emoji labels with proper icons, fixes uneven spacing"
+        },
+        {
+          "what": "A design-direction document",
+          "eg": "Before any edits, you see the proposed character, color palette, and signature detail - you can steer it"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Every AI-built interface has the same purple gradient, centered hero, three-card layout, and emoji labels",
+    "You'd need to hire a designer or learn design yourself to fix the generic look"
+  ],
+  "after": [
+    "One command audits the slop, proposes a direction, and fixes it pass by pass",
+    "Works with your existing code - React, Vue, Svelte, Tailwind, or plain HTML"
+  ],
+  "uses_note": "Unslop is 9 days old. No independent user reports have been published yet. Creator Damir Sokolovsky started the 'Unslopping series' on X.",
+  "uses": [],
+  "pulse": {
+    "gain": "10.3K stars in 9 days since launch",
+    "history": [
+      ["2026-11-06", 10349]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "jc-aiwiki",
+      "title": "Unslop UI wiki entry",
+      "url": "https://jc-aiwiki.com",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Bleap Finance",
+      "title": "Best Claude Code Skills for Vibe Coding",
+      "url": "https://bleap.finance",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "Monthly trending",
+      "url": "https://trendshift.io",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in digest",
+      "url": "https://findarepo.com/repo/heydamir/unslop/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "trendshift: monthly trending",
+    "findarepo: listed in digest"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Clone the repo: `git clone https://github.com/heydamir/unslop`",
+      "Copy the skill to your Claude Code skills folder: `mkdir -p ~/.claude/skills && cp -r unslop/skills/unslop ~/.claude/skills/`",
+      "In any project, type `/unslop this dashboard` and review the audit before it makes changes"
+    ],
+    "paste": "/skillspector https://github.com/heydamir/unslop\nThen: Clone the repo, copy the skill to `~/.claude/skills/unslop`, open a project with a UI, and type `/unslop this dashboard`. 10 minutes."
+  },
+  "footprint": {
+    "disk": "The skill itself is just text files (a few KB). Optional: Playwright (a browser testing tool) and Chromium for snapshots and videos. ffmpeg (a video tool) for the story video.",
+    "memory": "Runs inside Claude Code - no separate process.",
+    "runs_on": "Anywhere Claude Code or Codex runs (macOS, Windows, Linux).",
+    "source": {
+      "title": "Unslop README",
+      "url": "https://github.com/heydamir/unslop"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who builds interfaces with AI and wants them to look hand-designed",
+      "Non-designers who want a design review without hiring one",
+      "People who already use Claude Code and want a one-command design fix"
+    ],
+    "skip_if": [
+      "You already have a designer or a design system you follow",
+      "You don't use Claude Code or Codex - this skill only works inside those tools",
+      "You need full design control - Unslop applies its own design opinions"
+    ],
+    "alternatives": [
+      {
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "50 real design themes for building new pages from scratch, rather than fixing existing ones"
+      },
+      {
+        "name": "Impeccable",
+        "repo": "pbakaus/impeccable",
+        "url": "https://impeccable.style",
+        "line": "A broader design vocabulary with 24 commands (polish, bolder, critique, audit) from the creator of jQuery UI"
+      },
+      {
+        "name": "taste-skill",
+        "repo": "Leonxlnx/taste-skill",
+        "url": "https://tasteskill.dev",
+        "line": "A skill focused on giving your AI 'good taste' in design, with a different philosophy"
+      }
+    ]
+  },
+  "watch": [
+    "**10K stars on 12 commits.** Viral popularity on a very small codebase. The skill is just text files - there isn't much code to review.",
+    "**9 days old.** Real use beyond the creator's own examples has not been reported.",
+    "**Only works with Claude Code or Codex.** It's a skill (an instruction set), not a standalone tool.",
+    "**Generated visuals cost money.** If you ask it to generate scenes or objects (not just fix your code), it uses a paid service (fal, Replicate, or OpenAI) and asks before each generation.",
+    "**CC BY 4.0 license.** Requires attribution - not the MIT or Apache license most open-source tools use."
+  ],
+  "sources": [
+    {
+      "title": "Unslop GitHub",
+      "url": "https://github.com/heydamir/unslop",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Unslop website",
+      "url": "https://heydamir.design/unslop",
+      "date": "2026-11-06"
+    }
+  ]
+}

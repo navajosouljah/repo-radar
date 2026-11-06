@@ -1,0 +1,157 @@
+{
+  "repo": "NVIDIA/auto-ontology",
+  "name": "Auto Ontology",
+  "tagline": "NVIDIA's tool that teaches AI to ask your databases the right questions - and show its work.",
+  "sentence": "Maps your business terms to database columns so an AI agent answers 'What was revenue last quarter?' with the right query, the SQL it wrote, and why.",
+  "fit": "developers",
+  "links": {
+    "docs": "https://github.com/NVIDIA/auto-ontology"
+  },
+  "visual": {
+    "src": "assets/shots/auto-ontology.png",
+    "width": 1044,
+    "height": 648,
+    "alt": "A semantic graph visualization showing business concepts (Revenue, Customer, Product, Region) connected by labeled relationships, with database tables and columns mapped underneath each concept.",
+    "caption": "Auto Ontology maps business terms to database columns so the AI writes the right query."
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "AI agents guess at your database structure and write wrong queries, or you spend hours writing SQL (database queries) by hand."
+    },
+    {
+      "role": "trigger",
+      "say": "Type a business question in the Auto Ontology chat window, or call it from another tool through its server."
+    },
+    {
+      "role": "input",
+      "say": "A question like 'What was total revenue for WidgetCo in New York last quarter?'"
+    },
+    {
+      "role": "does",
+      "say": "Classifies the question, retrieves matching business terms from the map, writes a database query, and validates it before running.",
+      "steps": [
+        "Classifies your question and finds the matching business terms in the meaning map",
+        "Writes a database query against the actual table and column names",
+        "Validates the query before running it",
+        "Returns the answer with the query it wrote and the reasoning chain"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "The answer, the query that produced it, and a refusal when the data doesn't exist.",
+      "outputs": [
+        {
+          "what": "A sourced answer",
+          "eg": "Revenue: $4.2M, with the SQL query and reasoning shown (from the project's documentation)"
+        },
+        {
+          "what": "An honest 'I can't answer that'",
+          "eg": "'I can't answer ad-spend questions because the connected data doesn't contain advertising data'"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "An AI guesses column names and joins, producing wrong numbers you don't catch",
+    "You write database queries by hand or ask a data analyst and wait"
+  ],
+  "after": [
+    "A business question returns an answer, the query, and the reasoning - all auditable",
+    "When the data doesn't exist, the system says so instead of making something up"
+  ],
+  "uses_note": "No independent user reports found. The project is 193 days old with 8.3K stars and 666 forks, but real adoption evidence is thin - this is a framework aimed at enterprise data teams.",
+  "uses": [],
+  "pulse": {
+    "gain": "8.3K stars over 193 days",
+    "history": [
+      ["2026-11-06", 8294]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Nvidia - open-source auto-ontology",
+      "url": "https://news.ycombinator.com/item?id=50323848",
+      "meta": "289 points - Nov 3, 2026"
+    },
+    {
+      "plat": "GitHub Trending",
+      "title": "Trending (daily)",
+      "url": "https://github.com/trending",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in Nov digests",
+      "url": "https://findarepo.com/repo/NVIDIA/auto-ontology/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "github-trending: daily",
+    "trendshift: trending",
+    "findarepo: listed in Nov digests",
+    "hacker-news: 289 points"
+  ],
+  "try": {
+    "effort": "developer",
+    "steps": [
+      "Clone the repo and copy `.env.example` to `.env`, then add an [NVIDIA API key](https://build.nvidia.com)",
+      "Run `docker compose up --build` (needs [Docker](https://www.docker.com/get-started/) with Compose v2)",
+      "Open [localhost:3000](http://localhost:3000) in your browser, connect a sample database, and ask a question in the chat"
+    ],
+    "paste": "/skillspector https://github.com/NVIDIA/auto-ontology\nThen: Clone the repo, copy .env.example to .env, add your NVIDIA API key, run `docker compose up --build`, open localhost:3000 and try a revenue question. 10 minutes (Docker pull may take longer)."
+  },
+  "footprint": {
+    "disk": "no data found (runs via Docker images; no releases published)",
+    "memory": "no data found (runs PostgreSQL 17 + pgvector, a web server, a Python API server, and model calls)",
+    "runs_on": "Any OS with Docker Compose v2 (or Kubernetes via Helm chart)",
+    "source": {
+      "title": "Auto Ontology README - install section",
+      "url": "https://github.com/NVIDIA/auto-ontology"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Data teams that want AI to write accurate, auditable database queries from business questions",
+      "Companies that need a meaning layer between business terms and database columns",
+      "Teams building internal tools where non-technical people ask data questions"
+    ],
+    "skip_if": [
+      "You don't have databases to connect - this is a data tool, not a general AI assistant",
+      "You need a one-click install - this requires Docker, an NVIDIA API key, and configuration",
+      "You want to modify the code - NVIDIA is not accepting code contributions, only issues"
+    ],
+    "alternatives": [
+      {
+        "name": "Metabase",
+        "url": "https://www.metabase.com",
+        "line": "An open-source business intelligence tool with natural-language queries - simpler to set up, no meaning layer"
+      },
+      {
+        "name": "Vanna.ai",
+        "url": "https://vanna.ai",
+        "line": "An AI-powered SQL generation tool that learns from your queries - less infrastructure required"
+      }
+    ]
+  },
+  "watch": [
+    "**Requires Docker and an NVIDIA API key.** Not a one-click install - you need Docker Compose v2 and a free key from build.nvidia.com.",
+    "**Not accepting code contributions.** NVIDIA takes issues and integration requests only.",
+    "**KumoRFM predictive features upload your tables to a hosted service** (default cap of 20 tables). Disable if that's a concern.",
+    "**The data intake endpoints have no login wall.** Ports 3001-3002 should stay on a private network, not the open internet."
+  ],
+  "sources": [
+    {
+      "title": "Auto Ontology GitHub",
+      "url": "https://github.com/NVIDIA/auto-ontology",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Hacker News discussion",
+      "url": "https://news.ycombinator.com/item?id=50323848",
+      "date": "2026-11-03"
+    }
+  ]
+}

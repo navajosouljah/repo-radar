@@ -1,0 +1,195 @@
+{
+  "repo": "anthropics/skills",
+  "name": "Anthropic Skills",
+  "tagline": "Anthropic's official skill library - ready-made abilities you install in Claude to handle documents, design, testing, and more.",
+  "sentence": "Installs pre-built abilities into Claude so it can create PowerPoints, audit web apps, design brand guidelines, and handle PDFs - skills it didn't have out of the box.",
+  "fit": "you",
+  "links": {
+    "website": "https://claude.com/blog/skills",
+    "docs": "https://github.com/anthropics/skills"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Claude is general-purpose but doesn't know your specific workflows out of the box - it can't make a slide deck or audit an app without detailed instructions every time."
+    },
+    {
+      "role": "trigger",
+      "say": "Mention a task that matches a skill ('Use the PDF skill to extract the form fields from this file')."
+    },
+    {
+      "role": "input",
+      "say": "A file, a URL, or a task description."
+    },
+    {
+      "role": "does",
+      "say": "Claude loads the matching skill and follows its specialized workflow instead of guessing.",
+      "steps": [
+        "Claude scans your installed skills and loads the one that matches your task",
+        "The skill's instructions, scripts, and resources activate",
+        "Claude follows the skill's specialized workflow step by step"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "The task done the skill's way - consistent results without writing a detailed prompt.",
+      "outputs": [
+        {
+          "what": "Specialized document handling",
+          "eg": "The PDF skill returns structured field data; the PPTX skill produces a formatted slide deck"
+        },
+        {
+          "what": "Composable skills",
+          "eg": "The PDF skill and the internal-comms skill can work together on the same task"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "Claude tries its best but often misses domain-specific steps or formatting",
+    "You write detailed prompts every time to get consistent results"
+  ],
+  "after": [
+    "Install a skill once and Claude follows the right workflow automatically",
+    "Skills compose - the PDF skill and the internal-comms skill can work together",
+    "Anthropic's own team maintains the core collection"
+  ],
+  "uses": [
+    {
+      "who": "Rakuten",
+      "what": "Used skills for management accounting and finance workflows",
+      "result": "What once took a day now takes an hour",
+      "source": {
+        "title": "Anthropic blog - Skills launch",
+        "url": "https://claude.com/blog/skills",
+        "date": "2025-10"
+      }
+    },
+    {
+      "who": "Box",
+      "what": "Lets users turn stored files into PowerPoint, Excel, and Word documents following organization standards",
+      "result": "Integrated as a partner skill set",
+      "source": {
+        "title": "Anthropic blog - Skills launch",
+        "url": "https://claude.com/blog/skills",
+        "date": "2025-10"
+      }
+    },
+    {
+      "who": "Notion",
+      "what": "Published Notion Skills for Claude as a partner integration",
+      "result": "Listed in the skills README as a partner",
+      "source": {
+        "title": "Anthropic Skills README",
+        "url": "https://github.com/anthropics/skills",
+        "date": "2026-11"
+      }
+    },
+    {
+      "who": "Suraj Khaitan (DEV Community)",
+      "what": "Tested 100 Claude skills and published a list of the best",
+      "result": "Noted webapp-testing 'worked first try' as a smoke-test replacement",
+      "source": {
+        "title": "DEV Community - I tried 100 Claude Skills",
+        "url": "https://dev.to",
+        "date": "2026"
+      }
+    }
+  ],
+  "pulse": {
+    "gain": "188K stars over 410 days - the most-starred skills repo on GitHub",
+    "history": [
+      ["2026-11-06", 187972]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hacker News",
+      "title": "Claude Skills",
+      "url": "https://news.ycombinator.com",
+      "meta": "816 points - Oct 16, 2025"
+    },
+    {
+      "plat": "Anthropic blog",
+      "title": "Skills launch post and skill-creator update",
+      "url": "https://claude.com/blog/skills",
+      "meta": "Oct 2025, Mar 2026"
+    },
+    {
+      "plat": "DEV Community",
+      "title": "I tried 100 Claude Skills - these are the best",
+      "url": "https://dev.to",
+      "meta": "2026"
+    }
+  ],
+  "trending": [
+    "github-trending: daily",
+    "skills.sh: listed"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "In Claude Code, run `/plugin marketplace add anthropics/skills`",
+      "Run `/plugin install document-skills@anthropic-agent-skills` (or `example-skills` for creative and dev skills)",
+      "Ask Claude to use a skill: 'Use the PDF skill to extract form fields from invoice.pdf'"
+    ],
+    "paste": "/skillspector https://github.com/anthropics/skills\nThen: Install with `/plugin marketplace add anthropics/skills`, install a skill set, and try extracting form fields from a PDF. 10 minutes."
+  },
+  "footprint": {
+    "disk": "Negligible - skills are text files (Markdown and optional scripts)",
+    "memory": "Runs within Claude's own session - no separate process",
+    "runs_on": "Claude Code, claude.ai (paid plan), or Claude API",
+    "source": {
+      "title": "Anthropic Skills README",
+      "url": "https://github.com/anthropics/skills"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who uses Claude Code and wants pre-built workflows for documents, design, or testing",
+      "Non-technical users who want consistent results without writing detailed prompts",
+      "Teams that want a trusted starting point from the company that makes Claude"
+    ],
+    "skip_if": [
+      "You don't use Claude Code, claude.ai, or the Claude API",
+      "You need production-guaranteed tools - the README says these are for demonstration and education",
+      "You already have custom skills that cover your workflow"
+    ],
+    "alternatives": [
+      {
+        "name": "Hallmark",
+        "repo": "Nutlope/hallmark",
+        "url": "https://www.usehallmark.com",
+        "line": "A community skill focused on web design - 50 themes and a lint pass for AI-generated pages"
+      },
+      {
+        "name": "skills.sh marketplace",
+        "url": "https://skills.sh",
+        "line": "The community marketplace for Claude skills - thousands of options beyond Anthropic's official set"
+      }
+    ]
+  },
+  "watch": [
+    "**Example skills, not production-guaranteed.** The README says these are 'for demonstration and educational purposes only.'",
+    "**Document skills are source-available, not Apache 2.0.** The DOCX, PDF, PPTX, and XLSX skills have a different license from the rest.",
+    "**431 open issues and 1,100 open pull requests** suggest the repo is very busy but also has a large backlog.",
+    "**Skills work differently across platforms.** Test in your environment - Claude Code, claude.ai, and the API each handle skills slightly differently."
+  ],
+  "sources": [
+    {
+      "title": "Anthropic Skills GitHub",
+      "url": "https://github.com/anthropics/skills",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Anthropic blog - Skills launch",
+      "url": "https://claude.com/blog/skills",
+      "date": "2025-10"
+    },
+    {
+      "title": "Hacker News - Claude Skills discussion",
+      "url": "https://news.ycombinator.com",
+      "date": "2025-10-16"
+    }
+  ]
+}

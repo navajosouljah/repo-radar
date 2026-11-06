@@ -1,0 +1,166 @@
+{
+  "repo": "ccch1mneyyy/dsh-Go",
+  "name": "DSH Go",
+  "tagline": "An Android app that runs DeepSeek's AI assistant on your phone or remote-controls it on your desktop.",
+  "sentence": "Puts DeepSeek Harness (DeepSeek's coding assistant) in your pocket - run it locally on Android without root access, or connect to your desktop and keep working from anywhere.",
+  "fit": "you",
+  "links": {
+    "website": "https://go.dshtui.com/download",
+    "docs": "https://github.com/ccch1mneyyy/dsh-Go"
+  },
+  "board": [
+    {
+      "role": "problem",
+      "say": "Your AI coding assistant is stuck on your desktop - you can't check on it or give it new tasks from your phone."
+    },
+    {
+      "role": "trigger",
+      "say": "You open the app on your Android phone."
+    },
+    {
+      "role": "input",
+      "say": "A chat message, a voice command, or a connection to your desktop's DeepSeek coding assistant."
+    },
+    {
+      "role": "does",
+      "say": "Runs the AI assistant locally on your phone or connects to your desktop over a secure link.",
+      "steps": [
+        "Runs the DeepSeek engine in a bundled Linux environment on your phone (no root needed), or connects to your desktop over SSH (a secure remote link)",
+        "Sends your request to the AI provider you configured",
+        "Shows approval cards for sensitive actions - payments and passwords always need your OK"
+      ]
+    },
+    {
+      "role": "result",
+      "say": "Your AI assistant, accessible from your pocket.",
+      "outputs": [
+        {
+          "what": "Chat on the go",
+          "eg": "Continue a coding conversation from your phone while waiting for coffee"
+        },
+        {
+          "what": "Remote desktop control",
+          "eg": "Connect to your desktop's AI agent from your phone and start a new task without walking back to your desk"
+        }
+      ]
+    }
+  ],
+  "before": [
+    "You leave your desk and your coding assistant sits idle until you get back",
+    "Checking on a running task means walking back to your computer"
+  ],
+  "after": [
+    "Continue AI conversations from your phone, or remote-control your desktop's agent from anywhere",
+    "Sensitive actions (payments, passwords, shell commands) show an approval card before running"
+  ],
+  "uses_note": "DSH Go is 12 days old. No independent user reports have been published yet.",
+  "uses": [],
+  "pulse": {
+    "gain": "12.5K stars in 12 days since launch",
+    "history": [
+      ["2026-11-06", 12454]
+    ]
+  },
+  "coverage": [
+    {
+      "plat": "Hermes AI",
+      "title": "DSH Go Brings DeepSeek's Coding Agent to Android Without Root Access",
+      "url": "https://hermes-ai.net",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "BestHub",
+      "title": "Run DeepSeek Harness on Android: DSH Go Lets You Remote-Control Desktop AI Agents",
+      "url": "https://besthub.dev",
+      "meta": "Nov 2026"
+    },
+    {
+      "plat": "Trendshift",
+      "title": "#1 daily trending (all languages)",
+      "url": "https://trendshift.io",
+      "meta": "Oct 30, 2026"
+    },
+    {
+      "plat": "findarepo",
+      "title": "Listed in digest",
+      "url": "https://findarepo.com/repo/ccch1mneyyy/dsh-Go/",
+      "meta": "Nov 2026"
+    }
+  ],
+  "trending": [
+    "trendshift: #1 daily trending Oct 30",
+    "findarepo: listed in digest"
+  ],
+  "try": {
+    "effort": "minutes",
+    "steps": [
+      "Download the APK from [GitHub Releases](https://github.com/ccch1mneyyy/dsh-Go/releases/latest) (or [go.dshtui.com/download](https://go.dshtui.com/download)) and install it on your Android phone",
+      "On first launch, choose Local (installs a Linux environment, needs about 1 GB) or Remote (connect to a desktop DeepSeek Harness over SSH)",
+      "Configure your AI provider and start chatting - or enable phone control under permissions"
+    ],
+    "paste": "/skillspector https://github.com/ccch1mneyyy/dsh-Go\nThen: Download the APK from the Releases page, install it, choose Local mode, and start a chat. 10 minutes (the first-time Linux setup adds a few minutes)."
+  },
+  "footprint": {
+    "disk": "About 1 GB for the local engine. The offline speech model adds 241 MB.",
+    "memory": "no data found. Low-memory devices should use Remote mode (connects to a desktop instead of running locally).",
+    "runs_on": "Android 8.0+ (arm64). An x86_64 build is available for emulators. iOS and HarmonyOS are planned but not yet available.",
+    "source": {
+      "title": "DSH Go README",
+      "url": "https://github.com/ccch1mneyyy/dsh-Go"
+    }
+  },
+  "verdict": {
+    "best_for": [
+      "Anyone who uses DeepSeek Harness and wants to check on it from their phone",
+      "Android users who want an AI assistant that runs locally without root access",
+      "People who work away from their desk and want to keep their coding agent running"
+    ],
+    "skip_if": [
+      "You use an iPhone - there's no iOS version yet",
+      "You don't use DeepSeek Harness - this app is built specifically for it",
+      "You're uncomfortable with an unofficial app that sends screen data to an AI provider"
+    ],
+    "alternatives": [
+      {
+        "name": "T3 Code",
+        "repo": "pingdotgg/t3code",
+        "url": "https://t3.codes",
+        "line": "Controls multiple coding agents (Claude, Codex, Grok) from your phone or browser - not just DeepSeek"
+      },
+      {
+        "name": "OpenMausBot",
+        "repo": "milind-soni/OpenMausBot",
+        "url": "https://github.com/milind-soni/OpenMausBot",
+        "line": "A desktop chat app where each contact is an AI bot - runs on Mac, Windows and Linux, not mobile"
+      }
+    ]
+  },
+  "watch": [
+    "**Unofficial.** DSH Go is not affiliated with or endorsed by DeepSeek. It's a community-built client.",
+    "**Anonymous usage statistics are on by default.** You can turn them off in Settings, but they're collecting data until you do.",
+    "**Screen data may be sent to the AI provider.** When phone control is enabled, screenshots and screen text go to the model you configured.",
+    "**Chinese phone brands may kill the background process.** Xiaomi, Huawei, and similar brands aggressively close background apps. The app links to workaround settings, but it's an extra step."
+  ],
+  "sources": [
+    {
+      "title": "DSH Go GitHub",
+      "url": "https://github.com/ccch1mneyyy/dsh-Go",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "DSH Go download page",
+      "url": "https://go.dshtui.com/download",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "Hermes AI coverage",
+      "url": "https://hermes-ai.net",
+      "date": "2026-11-06"
+    },
+    {
+      "title": "BestHub coverage",
+      "url": "https://besthub.dev",
+      "date": "2026-11-06"
+    }
+  ]
+}
